@@ -12,6 +12,8 @@ spec:
     path: apps/exdns
     repoURL: https://github.com/halkeye/home-k8s
     targetRevision: HEAD
+    valueFiles:
+      - values.yaml
   syncPolicy:
     automated:
       selfHeal: true
