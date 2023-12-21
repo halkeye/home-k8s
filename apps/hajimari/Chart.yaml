@@ -7,5 +7,5 @@ appVersion: "1.0"
 
 dependencies:
 - name: hajimari
-  version: 9.0.3
+  version: 2.0.2
   repository: https://hajimari.io
