@@ -1,6 +1,7 @@
-domain: home.g4v.dev
-service:
-  type: LoadBalancer
-  # externalTrafficPolicy: Local
-  externalIPs:
-  - 172.16.10.116
+k8s-gateway:
+  domain: home.g4v.dev
+  service:
+    type: LoadBalancer
+    # externalTrafficPolicy: Local
+    externalIPs:
+    - 172.16.10.116
