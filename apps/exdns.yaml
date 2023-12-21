@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: exdns
+  namespace: argocd
+spec:
+  destination:
+    namespace: exdns
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: apps/exdns
+    repoURL: https://github.com/halkeye/home-k8s
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
