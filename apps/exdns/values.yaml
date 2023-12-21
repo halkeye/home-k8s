@@ -5,3 +5,7 @@ k8s-gateway:
     # externalTrafficPolicy: Local
     externalIPs:
     - 172.16.10.116
+  watchedResources:
+    - Ingress
+  debug:
+    enabled: true
