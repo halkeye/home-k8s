@@ -22,7 +22,7 @@ hajimari:
     namespaceSelector:
       any: true
     lightTheme: gazette
-    darkTheme: horizon
+    darkTheme: tron
     defaultAppIcon: mdi:application
     searchProviders:
       - name: Google
