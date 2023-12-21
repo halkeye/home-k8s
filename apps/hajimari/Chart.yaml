@@ -1,0 +1,11 @@
+apiVersion: v2
+name: hajimari
+description: Hajimari
+type: application
+version: 0.1.0
+appVersion: "1.0"
+
+dependencies:
+- name: hajimari
+  version: 9.0.3
+  repository: https://hajimari.io
