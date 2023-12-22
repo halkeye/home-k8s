@@ -8,4 +8,4 @@ k8s-gateway:
   watchedResources:
     - Ingress
   debug:
-    enabled: true
+    enabled: false
