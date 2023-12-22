@@ -1,18 +1,29 @@
 apiVersion: v1
 data:
-  helm.valuesFileSchemes: secrets+gpg-import, secrets+gpg-import-kubernetes, secrets+age-import, secrets+age-import-kubernetes, secrets,secrets+literal, https
-  kustomize.buildOptions: --enable-alpha-plugins --enable-exec
   admin.enabled: "false"
+  dex.config: |
+    connectors:
+      # OIDC
+      - type: oidc
+        id: Auth
+        name: Auth
+        config:
+          issuer: https://auth.g4v.dev/application/o/argocd/
+          clientID: zP5xeL7aYlacy7HSN9c7q63k964G47nz0cPEN3mW
+          clientSecret: $oidc.authentik.clientSecret
+          allowedAudiences:
+            - zP5xeL7aYlacy7HSN9c7q63k964G47nz0cPEN3mW
+            - argo-cd-cli
+          insecureEnableGroups: true
+          scopes:
+            - openid
+            - profile
+            - email
+            - groups
+  helm.valuesFileSchemes: secrets+gpg-import, secrets+gpg-import-kubernetes, secrets+age-import,
+    secrets+age-import-kubernetes, secrets,secrets+literal, https
+  kustomize.buildOptions: --enable-alpha-plugins --enable-exec
   url: https://argocd.home.g4v.dev
-  oidc.config: |
-    name: authentik
-    issuer: https://auth.g4v.dev/application/o/argocd/
-    clientID: zP5xeL7aYlacy7HSN9c7q63k964G47nz0cPEN3mW
-    clientSecret: $oidc.authentik.clientSecret
-    allowedAudiences:
-      - zP5xeL7aYlacy7HSN9c7q63k964G47nz0cPEN3mW
-    # Optional set of OIDC scopes to request. If omitted, defaults to: ["openid", "profile", "email", "groups"]
-    requestedScopes: ["openid", "profile", "email", "groups"]
 kind: ConfigMap
 metadata:
     labels:
