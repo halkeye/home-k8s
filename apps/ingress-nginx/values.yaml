@@ -1,0 +1,10 @@
+ingress-nginx:
+  ingressClassResource:
+    name: nginx
+    enabled: true
+    default: true
+  service:
+    type: LoadBalancer
+    # externalTrafficPolicy: Local
+    externalIPs:
+    - 172.16.10.116
