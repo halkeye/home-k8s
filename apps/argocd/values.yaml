@@ -40,7 +40,7 @@ argo-cd:
             config:
               issuer: https://auth.g4v.dev/application/o/argocd/
               clientID: zP5xeL7aYlacy7HSN9c7q63k964G47nz0cPEN3mW
-              clientSecret: $oidc.authentik.clientSecret
+              clientSecret: $dex.authentik.clientSecret
               allowedAudiences:
                 - zP5xeL7aYlacy7HSN9c7q63k964G47nz0cPEN3mW
                 - argo-cd-cli
