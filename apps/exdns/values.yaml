@@ -9,3 +9,6 @@ k8s-gateway:
     - Ingress
   debug:
     enabled: false
+  dnsChallenge:
+    enabled: true
+    domain: 1.1.1.1
