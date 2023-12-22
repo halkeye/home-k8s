@@ -16,6 +16,14 @@ argo-cd:
           hosts:
             - *host
   configs:
+    repositories:
+      github:
+        url: https://github.com/halkeye/home-k8s
+        name: halkeye-home-k8s
+
+    rbac:
+      policy.csv: g, ArgoCD Admins, role:admin
+      policy.default: role:readonly
     cm:
       exec.enabled: true
       admin.enabled: "false"
@@ -36,6 +44,7 @@ argo-cd:
               allowedAudiences:
                 - zP5xeL7aYlacy7HSN9c7q63k964G47nz0cPEN3mW
                 - argo-cd-cli
+                - argo-cd
               insecureEnableGroups: true
               scopes:
                 - openid
