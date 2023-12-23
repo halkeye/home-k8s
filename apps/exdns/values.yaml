@@ -1,5 +1,5 @@
 k8s-gateway:
-  domain: home.g4v.dev
+  domain: h.g4v.dev
   service:
     type: LoadBalancer
     # externalTrafficPolicy: Local

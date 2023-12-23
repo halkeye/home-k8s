@@ -9,7 +9,7 @@ hajimari:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         hajimari.io/enable: 'false'
       hosts:
-        - host: &host dash.home.g4v.dev
+        - host: &host dash.h.g4v.dev
           paths:
             - path: /
               pathType: Prefix
