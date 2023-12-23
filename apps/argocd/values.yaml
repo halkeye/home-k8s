@@ -20,7 +20,7 @@ argo-cd:
       github:
         url: https://github.com/halkeye/home-k8s
         name: halkeye-home-k8s
-
+        type: helm
     rbac:
       policy.csv: g, ArgoCD Admins, role:admin
       policy.default: role:readonly
