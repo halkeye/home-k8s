@@ -16,6 +16,7 @@ spec:
       valueFiles:
         - values.yaml
         - secrets://values-secrets.yaml
+# - secrets://https://raw.githubusercontent.com/halkeye/home-k8s/main/apps/cert-manager-config/values-secrets.yaml
   syncPolicy:
     automated:
       selfHeal: true
