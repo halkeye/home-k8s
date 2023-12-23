@@ -3,7 +3,7 @@ k8s-gateway:
   service:
     type: LoadBalancer
     # externalTrafficPolicy: Local
-    externalIPs:
-    - 172.16.10.116
+    #externalIPs:
+    #- 172.16.10.116
   watchedResources:
     - Ingress
