@@ -7,7 +7,7 @@ argo-cd:
         hajimari.io/appName: "ArgoCD"
         hajimari.io/icon: "robot"
       hosts:
-        - &host argocd.home.g4v.dev
+        - &host argocd.h.g4v.dev
       tls:
         - secretName: argocd-tls-certificate
           hosts:
@@ -29,7 +29,7 @@ argo-cd:
       helm.valuesFileSchemes: secrets+gpg-import, secrets+gpg-import-kubernetes, secrets+age-import,
         secrets+age-import-kubernetes, secrets,secrets+literal, https
       kustomize.buildOptions: --enable-alpha-plugins --enable-exec
-      url: https://argocd.home.g4v.dev
+      url: https://argocd.h.g4v.dev
       dex.config: |
         connectors:
           # OIDC

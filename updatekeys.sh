@@ -1,2 +1,2 @@
 #!/bin/bash
-find -name '*secrets*.yaml' -exec sops updatekeys -y {} \;
+find -name 'values-secrets*.yaml' -exec sops updatekeys -y {} \;

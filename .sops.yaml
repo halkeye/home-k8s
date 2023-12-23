@@ -4,8 +4,8 @@ creation_rules:
       - age:
         # thor
         - age1vqm5gwkmf38jsmt3j4lm3fdslausskaadtz360ewn0g7z2fchahqyr694v
-        # ghactions
-        - age1kfafc2k5remh9j7k0gz884p3xhvegv8mzyek2nf75fwhrfa86vhsrseepw
+        # argocd
+        - age16awtpax59xdt6cfsd8z7rk2v8m3q85x7050msjdpfjq0gsvv8dfqg6gvny
         # blackpanther
         - age1y562y0u4k8y0eyq56s4g00ssd2cduamddcgfpu8fs7t00pfjss2s9nymt8
         # antman
