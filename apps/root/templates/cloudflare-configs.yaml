@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cloudflare-config
+  namespace: argocd
+spec:
+  destination:
+    namespace: cloudflare-operator-system
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: apps/cloudflare-config
+    repoURL: https://github.com/halkeye/home-k8s
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values.yaml
+        - secrets://values-secrets.yaml
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
