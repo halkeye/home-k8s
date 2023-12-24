@@ -4,5 +4,6 @@ apiVersion: networking.cfargotunnel.com/v1alpha1
 kind: ClusterTunnel
 metadata:
   name: {{ $tunnel.name }}
+  namespace: {{ .Release.Namespace | quote }}
 spec: {{ toYaml $tunnel | nindent 2 }}
 {{- end }}
