@@ -1,7 +1,3 @@
 apiVersion: v2
 name: cloudflared
 version: 0.0.0
-dependencies:
-  - name: cloudflared
-    version: 1.0.5
-    repository: https://charts.kubito.dev

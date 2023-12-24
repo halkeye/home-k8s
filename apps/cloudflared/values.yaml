@@ -1,1 +1,14 @@
-cloudflared: {}
+image:
+  repository: cloudflare/cloudflared
+  tag: "2023.10.0"
+  imagePullPolicy: IfNotPresent
+
+replicaCount: 3
+tunnelID: ""
+auth:
+  accountTag: ""
+  tunnelName: ""
+  tunnelSecret: ""
+existingSecret: ""
+warpRouting: false
+ingress: []
