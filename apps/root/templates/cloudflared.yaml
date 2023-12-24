@@ -1,15 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cloudflare-operator-chart
+  name: cloudflared-chart
   namespace: argocd
 spec:
   destination:
-    namespace: cloudflare-operator
+    namespace: cloudflared
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: apps/cloudflare-operator
+    path: apps/cloudflared
     repoURL: https://github.com/halkeye/home-k8s
     targetRevision: HEAD
     helm:

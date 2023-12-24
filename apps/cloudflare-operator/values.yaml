@@ -1,6 +1,0 @@
-cloudflare-operator:
-  metrics:
-    prometheusRule:
-      enabled: false
-    podMonitor:
-      enabled: false
