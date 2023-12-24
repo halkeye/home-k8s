@@ -6,7 +6,7 @@ spec:
   newTunnel:
     name: home-k8s-tunnel
   size: 2
-  noTlsVerify: false
+  noTlsVerify: true
   image: cloudflare/cloudflared:2023.10.0
   cloudflare:
     email: cloudflare@halkeye.net
