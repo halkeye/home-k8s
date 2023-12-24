@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -24,9 +25,8 @@ spec:
         imagePullPolicy: {{ .Values.image.imagePullPolicy }}
         args:
           - tunnel
-          - --no-autoupdate
           - --config
-          - /etc/cloudflared/config.yaml
+          - /etc/cloudflared/config/config.yaml
           - run
         livenessProbe:
           httpGet:
@@ -55,7 +55,7 @@ spec:
             # kubectl create secret generic tunnel-credentials \
             # --from-file=credentials.json=/Users/yourusername/.cloudflared/<tunnel ID>.json
             # ```
-            name: {{ .Release.Name }}-creds
+            secretName: {{ .Release.Name }}-creds
         # Create a config.yaml file from the ConfigMap below.
         - name: config
           configMap:
