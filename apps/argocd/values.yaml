@@ -1,4 +1,16 @@
 argo-cd:
+  applicationSet:
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: acme-letsencrypt-prod
+        hajimari.io/enabled: "false"
+      hosts:
+        - &host argocd-webhooks.h.g4v.dev
+      tls:
+        - secretName: argocd-webhooks-tls-certificate
+          hosts:
+            - *host
   server:
     ingress:
       enabled: true
