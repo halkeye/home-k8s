@@ -1,4 +1,4 @@
-openexcalidraw:
+excalidraw:
   ingress:
     enabled: true
     annotations:
