@@ -6,8 +6,8 @@ spec:
   newTunnel:
     name: home-k8s-tunnel
   size: 2
-  image:
-    default: cloudflare/cloudflared:2023.10.0
+  noTlsVerify: fals
+  image: cloudflare/cloudflared:2023.10.0
   cloudflare:
     email: cloudflare@halkeye.net
     domain: g4v.dev
