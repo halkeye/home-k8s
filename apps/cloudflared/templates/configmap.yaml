@@ -3,8 +3,6 @@ kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-configmap
   namespace: {{ .Release.Namespace }}
-annotations:
-  checksum/ingress: {{ .Values.ingress | toJson | sha256sum }}
 data:
   config.yaml: |-
     logDirectory: /var/log/cloudflared
