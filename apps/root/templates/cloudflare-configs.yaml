@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cloudflare-config
+  name: cloudflare-configs
   namespace: argocd
 spec:
   destination:
@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: apps/cloudflare-config
+    path: apps/cloudflare-configs
     repoURL: https://github.com/halkeye/home-k8s
     targetRevision: HEAD
     helm:
