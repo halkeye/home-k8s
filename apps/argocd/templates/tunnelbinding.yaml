@@ -1,0 +1,15 @@
+apiVersion: networking.cfargotunnel.com/v1alpha1
+kind: TunnelBinding
+metadata:
+  name: argocd-home-webhooks-cluster-tun
+subjects:
+  - kind: Service # Default
+    name: argocd-home-webhooks
+    spec:
+      fqdn: argocd-home-webhooks.g4v.dev
+      protocol: http
+      target: https://argocd-webhooks.h.g4v.dev:443
+      noTlsVerify: false
+tunnelRef:
+  kind: ClusterTunnel
+  name: cloudflare-configs-home-k8s
