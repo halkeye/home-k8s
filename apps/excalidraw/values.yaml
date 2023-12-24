@@ -1,0 +1,16 @@
+openexcalidraw:
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: acme-letsencrypt-prod
+      hajimari.io/appName: excalidraw
+      hajimari.io/icon: draw-pen
+    hosts:
+      - host: &host draw.h.g4v.dev
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - secretName: excalidraw-tls-certificate
+        hosts:
+          - *host
