@@ -112,7 +112,7 @@ spec:
                   do not match an ingress. Defaults to http_status:404
                 type: string
               image:
-                default: cloudflare/cloudflared:2022.12.1
+                default: cloudflare/cloudflared:2023.10.0
                 description: Image sets the Cloudflared Image to use. Defaults to
                   the image set during the release of the operator.
                 type: string
@@ -822,7 +822,7 @@ spec:
         - --leader-elect
         command:
         - /manager
-        image: adyanth/cloudflare-operator:0.10.1
+        image: adyanth/cloudflare-operator:0.10.2
         livenessProbe:
           httpGet:
             path: /healthz
