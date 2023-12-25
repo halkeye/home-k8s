@@ -7,11 +7,12 @@ argo-cd:
           cert-manager.io/cluster-issuer: acme-letsencrypt-prod
           hajimari.io/enabled: "false"
         hosts:
-          - &host argocd-webhooks.h.g4v.dev
+          - &webhookhost argocd-webhooks.h.g4v.dev
         tls:
           - secretName: argocd-webhooks-tls-certificate
+            #- secretName: cloudflare-origin-tls-certificate
             hosts:
-              - *host
+              - *webhookhost
   server:
     ingress:
       enabled: true

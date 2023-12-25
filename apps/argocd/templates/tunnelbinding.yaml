@@ -8,8 +8,11 @@ subjects:
     spec:
       fqdn: argocd-home-webhooks.g4v.dev
       protocol: http
-      target: https://argocd-webhooks.h.g4v.dev:443
-      noTlsVerify: false
+      path: '\/api\/webhook$'
+      target: http://argo-cd-argocd-applicationset-controller.argocd:7000
+      #protocol: https
+      #target: https://argocd-webhooks.h.g4v.dev:443
+      noTlsVerify: true
 tunnelRef:
   kind: ClusterTunnel
   name: cloudflare-configs-home-k8s
