@@ -1,4 +1,4 @@
-mariadb-operator:
+mariadb-configs:
   metrics:
     enabled: false
     serviceMonitor:
