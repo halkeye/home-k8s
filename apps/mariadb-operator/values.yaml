@@ -1,0 +1,5 @@
+mariadb-operator:
+  metrics:
+    enabled: false
+    serviceMonitor:
+      enabled: false
