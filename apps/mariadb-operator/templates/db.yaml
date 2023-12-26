@@ -21,15 +21,15 @@ spec:
   volumeClaimTemplate:
     resources:
       requests:
-        storage: 100Mi
-    storageClassName: standard
+        storage: 1024Mi
+    storageClassName: synology-csi-chart-retain
     accessModes:
       - ReadWriteOnce
 
-  bootstrapFrom:
-    backupRef:
-      name: backup
-    physical: true
+#  bootstrapFrom:
+#    backupRef:
+#      name: backup
+#    physical: true
 
   resources:
     requests:
