@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: mariadb-configs
+  name: mariadb-operator
   namespace: argocd
 spec:
   destination:
@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: apps/mariadb-configs
+    path: apps/mariadb-operator
     repoURL: https://github.com/halkeye/home-k8s
     targetRevision: HEAD
     helm:
