@@ -45,5 +45,5 @@ spec:
 
   envFrom:
     - configMapRef:
-        name: mariadb
+        name: {{ include "mariadb-configs.fullname" . }}-configmap
 
