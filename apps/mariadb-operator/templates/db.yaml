@@ -4,13 +4,13 @@ metadata:
   name: mariadb
 spec:
   rootPasswordSecretKeyRef:
-    name: mariadb
+    name: {{ include "mariadb-operator.fullname" . }}-secrets
     key: root-password
 
   database: mariadb
   username: mariadb
   passwordSecretKeyRef:
-    name: mariadb
+    name: {{ include "mariadb-operator.fullname" . }}-secrets
     key: password
 
   image: mariadb:11.0.3
