@@ -41,9 +41,9 @@ spec:
 
   env:
     - name: TZ
-      value: SYSTEM
+      value: UTC
 
-  envFrom:
-    - configMapRef:
-        name: {{ include "mariadb-configs.fullname" . }}-configmap
+#  envFrom:
+#    - configMapRef:
+#        name: {{ include "mariadb-configs.fullname" . }}-configmap
 
