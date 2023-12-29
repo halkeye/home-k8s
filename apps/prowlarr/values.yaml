@@ -17,7 +17,6 @@ app-template:
               PROWLARR__AUTHENTICATION_METHOD: External
               PROWLARR__THEME: dark
               TZ: America/Vancouver
-            envFrom: *envFrom
             probes:
               liveness: &probes
                 enabled: true
