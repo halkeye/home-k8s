@@ -22,7 +22,7 @@ spec:
     resources:
       requests:
         storage: 1024Mi
-    storageClassName: synology-csi-chart-retain
+    storageClassName: synology-csi-retain
     accessModes:
       - ReadWriteOnce
 
