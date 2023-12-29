@@ -21,7 +21,7 @@ spec:
   volumeClaimTemplate:
     resources:
       requests:
-        storage: 1024Mi
+        storage: 1Gi
     storageClassName: synology-csi-retain
     accessModes:
       - ReadWriteOnce
