@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: prowlarr
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "20"
 spec:
   destination:
     namespace: prowlarr
