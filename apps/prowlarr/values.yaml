@@ -19,12 +19,12 @@ app-template:
             PROWLARR__POSTGRES_USER:
               valueFrom:
                 secretKeyRef:
-                  name: prowlarr.prowlarr-user.acid-minimal-cluster.credentials.postgresql.acid.zalan.do password
+                  name: prowlarr.prowlarr-user.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
                   key: username
             PROWLARR__POSTGRES_PASSWORD:
               valueFrom:
                 secretKeyRef:
-                  name: prowlarr.prowlarr-user.acid-minimal-cluster.credentials.postgresql.acid.zalan.do password
+                  name: prowlarr.prowlarr-user.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
                   key: password
             PROWLARR__POSTGRES_PORT: "5432"
             PROWLARR__POSTGRES_HOST: "acid-minimal-cluster.postgres"
