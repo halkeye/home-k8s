@@ -13,10 +13,12 @@ spec:
     - superuser
     - createdb
     prowlarr.prowlarr_user: []
-    prowlarr_user: []  # role for application prowlarr
+    prowlarr.prowlarr_owner: []
+    prowlarr.prowlarr_reader: []
+    prowlarr.prowlarr_writer: []
   databases:
-    prowlarr-main: prowlarr.prowlarr_user
-    prowlarr-log: prowlarr.prowlarr_user
+    prowlarr-main: prowlarr.prowlarr_owner
+    prowlarr-log: prowlarr.prowlarr_owner
   preparedDatabases:
     prowlarr-main:
       defaultUsers: true
