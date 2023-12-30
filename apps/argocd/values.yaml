@@ -5,7 +5,7 @@ argo-cd:
         enabled: true
         annotations:
           cert-manager.io/cluster-issuer: acme-letsencrypt-prod
-          hajimari.io/enabled: "false"
+          hajimari.io/enable: 'false'
         hosts:
           - &webhookhost argocd-webhooks.h.g4v.dev
         tls:
