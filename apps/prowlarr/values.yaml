@@ -70,6 +70,9 @@ app-template:
   ingress:
     main:
       enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: acme-letsencrypt-prod
+        hajimari.io/icon: search-web
       hosts:
         - host: &host "prowlarr.g4v.dev"
           paths:
