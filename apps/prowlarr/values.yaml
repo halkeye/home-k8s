@@ -1,79 +1,78 @@
 app-template:
-  values:
-    controllers:
-      main:
-        containers:
-          main:
-            image:
-              repository: ghcr.io/onedr0p/prowlarr-develop
-              tag: 1.11.3.4163@sha256:388ab3fafa6d5239fc931cf974fd32a5f64e88341fb167f815a3ffd370e615bf
-            env:
-              # https://github.com/Radarr/Radarr/issues/7030#issuecomment-1039689518
-              # https://github.com/dotnet/runtime/issues/9336
-              COMPlus_EnableDiagnostics: "0"
-              PROWLARR__INSTANCE_NAME: Prowlarr
-              PROWLARR__PORT: &port 80
-              PROWLARR__LOG_LEVEL: info
-              PROWLARR__AUTHENTICATION_METHOD: External
-              PROWLARR__THEME: dark
-              TZ: America/Vancouver
-            probes:
-              liveness: &probes
-                enabled: true
-                custom: true
-                spec:
-                  httpGet:
-                    path: /ping
-                    port: *port
-                  initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 3
-              readiness: *probes
-              startup:
-                enabled: false
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
-            resources:
-              limits: &resources
-                memory: 1Gi
-              requests:
-                <<: *resources
-                cpu: 10m
-        pod:
+  controllers:
+    main:
+      containers:
+        main:
+          image:
+            repository: ghcr.io/onedr0p/prowlarr-develop
+            tag: 1.11.3.4163@sha256:388ab3fafa6d5239fc931cf974fd32a5f64e88341fb167f815a3ffd370e615bf
+          env:
+            # https://github.com/Radarr/Radarr/issues/7030#issuecomment-1039689518
+            # https://github.com/dotnet/runtime/issues/9336
+            COMPlus_EnableDiagnostics: "0"
+            PROWLARR__INSTANCE_NAME: Prowlarr
+            PROWLARR__PORT: &port 80
+            PROWLARR__LOG_LEVEL: info
+            PROWLARR__AUTHENTICATION_METHOD: External
+            PROWLARR__THEME: dark
+            TZ: America/Vancouver
+          probes:
+            liveness: &probes
+              enabled: true
+              custom: true
+              spec:
+                httpGet:
+                  path: /ping
+                  port: *port
+                initialDelaySeconds: 0
+                periodSeconds: 10
+                timeoutSeconds: 1
+                failureThreshold: 3
+            readiness: *probes
+            startup:
+              enabled: false
           securityContext:
-            runAsUser: 568
-            runAsGroup: 568
-            runAsNonRoot: true
-            fsGroup: 568
-            fsGroupChangePolicy: OnRootMismatch
-    service:
-      main:
-        ports:
-          http:
-            port: *port
-    ingress:
-      main:
-        enabled: true
-        className: internal
-        hosts:
-          - host: &host "prowlarr.g4v.dev"
-            paths:
-              - path: /
-                service:
-                  name: main
-                  port: http
-        tls:
-          - hosts:
-              - *host
-    persistence:
-      config:
-        enabled: true
-        type: persistentVolumeClaim
-        accessMode: ReadWriteOnce
-        storageClass: synology-csi-delete
-        size: 1Gi
-      tmp:
-        type: emptyDir
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }
+          resources:
+            limits: &resources
+              memory: 1Gi
+            requests:
+              <<: *resources
+              cpu: 10m
+      pod:
+        securityContext:
+          runAsUser: 568
+          runAsGroup: 568
+          runAsNonRoot: true
+          fsGroup: 568
+          fsGroupChangePolicy: OnRootMismatch
+  service:
+    main:
+      ports:
+        http:
+          port: *port
+  ingress:
+    main:
+      enabled: true
+      className: internal
+      hosts:
+        - host: &host "prowlarr.g4v.dev"
+          paths:
+            - path: /
+              service:
+                name: main
+                port: http
+      tls:
+        - hosts:
+            - *host
+  persistence:
+    config:
+      enabled: true
+      type: persistentVolumeClaim
+      accessMode: ReadWriteOnce
+      storageClass: synology-csi-delete
+      size: 1Gi
+    tmp:
+      type: emptyDir
