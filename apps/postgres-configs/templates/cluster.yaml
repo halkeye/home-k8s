@@ -18,7 +18,11 @@ spec:
     prowlarr-main: prowlarr.prowlarr_user
     prowlarr-log: prowlarr.prowlarr_user
   preparedDatabases:
-    prowlarr-main: {}
-    prowlarr-log: {}
+    prowlarr-main:
+      defaultUsers: true
+      secretNamespace: prowlarr
+    prowlarr-log:
+      defaultUsers: true
+      secretNamespace: prowlarr
   postgresql:
     version: "15"
