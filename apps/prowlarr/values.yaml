@@ -16,6 +16,20 @@ app-template:
             PROWLARR__AUTHENTICATION_METHOD: External
             PROWLARR__THEME: dark
             TZ: America/Vancouver
+            PROWLARR__POSTGRES_USER:
+              valueFrom:
+                secretKeyRef:
+                  name: prowlarr.prowlarr-user.acid-minimal-cluster.credentials.postgresql.acid.zalan.do password
+                  key: username
+            PROWLARR__POSTGRES_PASSWORD:
+              valueFrom:
+                secretKeyRef:
+                  name: prowlarr.prowlarr-user.acid-minimal-cluster.credentials.postgresql.acid.zalan.do password
+                  key: password
+            PROWLARR__POSTGRES_PORT: "5432"
+            PROWLARR__POSTGRES_HOST: "acid-minimal-cluster.postgres"
+            PROWLARR__POSTGRES_MAIN_DB: "prowlarr-main"
+            PROWLARR__POSTGRES_LOG_DB: "prowlarr-log"
           probes:
             liveness: &probes
               enabled: true
@@ -68,10 +82,6 @@ app-template:
             - *host
   persistence:
     config:
-      enabled: true
-      type: persistentVolumeClaim
-      accessMode: ReadWriteOnce
-      storageClass: synology-csi-delete
-      size: 1Gi
+      type: emptyDir
     tmp:
       type: emptyDir
