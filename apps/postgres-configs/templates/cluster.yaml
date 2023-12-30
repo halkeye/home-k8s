@@ -23,8 +23,14 @@ spec:
     prowlarr-main:
       defaultUsers: true
       secretNamespace: prowlarr
+      schemas:
+        public:
+          defaultRoles: false
     prowlarr-log:
       defaultUsers: true
       secretNamespace: prowlarr
+      schemas:
+        public:
+          defaultRoles: false
   postgresql:
     version: "15"
