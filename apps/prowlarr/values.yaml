@@ -56,7 +56,6 @@ app-template:
   ingress:
     main:
       enabled: true
-      className: internal
       hosts:
         - host: &host "prowlarr.g4v.dev"
           paths:
