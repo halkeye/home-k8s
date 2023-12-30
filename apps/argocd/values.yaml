@@ -10,7 +10,6 @@ argo-cd:
           - &webhookhost argocd-webhooks.h.g4v.dev
         tls:
           - secretName: argocd-webhooks-tls-certificate
-            #- secretName: cloudflare-origin-tls-certificate
             hosts:
               - *webhookhost
   server:
@@ -22,7 +21,7 @@ argo-cd:
         hajimari.io/icon: "robot"
       hosts:
         - &host argocd.h.g4v.dev
-        - argocd.172.16.10.148.nip.io
+        - argocd.172.16.10.5.nip.io
       tls:
         - secretName: argocd-tls-certificate
           hosts:
