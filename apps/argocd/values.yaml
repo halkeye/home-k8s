@@ -142,7 +142,7 @@ argo-cd:
   configs:
     repositories:
       github:
-        type: github
+        type: git
         url: https://github.com/halkeye/home-k8s
         name: halkeye-home-k8s
     rbac:
