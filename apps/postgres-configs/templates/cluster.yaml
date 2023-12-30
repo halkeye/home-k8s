@@ -1,0 +1,23 @@
+apiVersion: "acid.zalan.do/v1"
+kind: postgresql
+metadata:
+  name: acid-minimal-cluster
+spec:
+  teamId: "acid"
+  volume:
+    size: 1Gi
+    storageClass: synology-csi-retain
+  numberOfInstances: 2
+  users:
+    halkeye:  # database owner
+    - superuser
+    - createdb
+    prowlarr_user: []  # role for application prowlarr
+  databases:
+    prowlarr-main: prowlarr_user
+    prowlarr-log: prowlarr_user  # dbname: owner
+  preparedDatabases:
+    prowlarr-main: {}
+    prowlarr-log: {}
+  postgresql:
+    version: "15"
