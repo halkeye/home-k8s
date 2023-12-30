@@ -1,4 +1,4 @@
 apiVersion: v2
-name: mariadb-configs
+name: postgres-configs
 version: 0.0.0
 dependencies: []
