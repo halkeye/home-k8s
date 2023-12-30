@@ -80,6 +80,7 @@ app-template:
       tls:
         - hosts:
             - *host
+          secretName: prowlarr-tls-certificate
   persistence:
     config:
       type: emptyDir
