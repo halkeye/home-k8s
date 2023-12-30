@@ -1,5 +1,5 @@
 k8s-gateway:
-  domain: h.g4v.dev
+  domain: g4v.dev h.g4v.dev
   fallthrough:
     enabled: true
   service:
