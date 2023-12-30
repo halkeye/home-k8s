@@ -23,6 +23,13 @@ hajimari:
     lightTheme: gazette
     darkTheme: tron
     defaultAppIcon: mdi:application
+    customApps:
+      - group: Static
+        apps:
+          - name: Proxmox
+            url: 'https://172.16.10.145:8006/'
+            icon: 'mdi:silverware'
+            info: Proxmox
     searchProviders:
       - name: Google
         token: g
