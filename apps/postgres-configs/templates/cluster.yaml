@@ -17,16 +17,16 @@ spec:
     prowlarr.prowlarr_reader: []
     prowlarr.prowlarr_writer: []
   databases:
-    prowlarr-main: prowlarr.prowlarr_owner
-    prowlarr-log: prowlarr.prowlarr_owner
+    prowlarr_main: prowlarr.prowlarr_owner
+    prowlarr_log: prowlarr.prowlarr_owner
   preparedDatabases:
-    prowlarr-main:
+    prowlarr_main:
       defaultUsers: true
       secretNamespace: prowlarr
       schemas:
         public:
           defaultRoles: false
-    prowlarr-log:
+    prowlarr_log:
       defaultUsers: true
       secretNamespace: prowlarr
       schemas:
