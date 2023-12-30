@@ -12,10 +12,11 @@ spec:
     halkeye:  # database owner
     - superuser
     - createdb
+    prowlarr.prowlarr_user: []
     prowlarr_user: []  # role for application prowlarr
   databases:
-    prowlarr-main: prowlarr_user
-    prowlarr-log: prowlarr_user  # dbname: owner
+    prowlarr-main: prowlarr.prowlarr_user
+    prowlarr-log: prowlarr.prowlarr_user
   preparedDatabases:
     prowlarr-main: {}
     prowlarr-log: {}
