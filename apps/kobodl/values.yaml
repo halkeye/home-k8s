@@ -1,0 +1,67 @@
+app-template:
+  controllers:
+    main:
+      containers:
+        main:
+          image:
+            repository: ghcr.io/subdavis/kobodl
+            tag: latest@sha256:a28db847f5769a344561f2f6ec23e59bb03a46a238caff45c0a86b67fe8dd08b
+          env:
+            TZ: America/Vancouver
+          args:
+            - "--config"
+            - "/config/kobodl.json"
+            - "serve"
+            - "-h"
+            - "0.0.0.0"
+            - "-p"
+            - "5000"
+            - "--output-dir"
+            - "/tmp"
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }
+          resources:
+            limits: &resources
+              memory: 1Gi
+            requests:
+              <<: *resources
+              cpu: 10m
+      pod:
+        securityContext:
+          runAsUser: 1026
+          runAsGroup: 101
+          runAsNonRoot: true
+          fsGroup: 101
+          fsGroupChangePolicy: OnRootMismatch
+  service:
+    main:
+      ports:
+        http:
+          port: 5000
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: acme-letsencrypt-prod
+        hajimari.io/icon: book
+      hosts:
+        - host: &host "kobodl.g4v.dev"
+          paths:
+            - path: /
+              service:
+                name: main
+                port: http
+      tls:
+        - hosts:
+            - *host
+          secretName: kobodl-tls-certificate
+  persistence:
+    config:
+      enabled: true
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Apps/kobodl/
+    tmp:
+      type: emptyDir
