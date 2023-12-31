@@ -1,4 +1,3 @@
 cloudflare-tunnel-ingress-controller:
-  tunnelName: home-k8s-ingress
-  accountId: ""
-  apiToken: ""
+  cloudflare:
+    tunnelName: home-k8s-ingress
