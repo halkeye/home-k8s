@@ -6,4 +6,5 @@ image:
 replicaCount: 3
 tunnelID: ""
 tunnelAuth: ""
-ingress: []
+ingress:
+    - service: http_status:404
