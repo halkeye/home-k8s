@@ -25,3 +25,11 @@ kube-prometheus-stack:
             - prometheus.h.g4v.dev
   grafana:
     enabled: false
+  kubeProxy:
+    enabled: false
+  defaultRules:
+    rules:
+      kubeControllerManager: false
+      kubeProxy: false
+      kubeSchedulerAlerting: false
+      kubeSchedulerRecording: false
