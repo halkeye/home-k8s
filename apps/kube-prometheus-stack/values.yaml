@@ -1,0 +1,27 @@
+kube-prometheus-stack:
+  alertmanager:
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: acme-letsencrypt-prod
+        hajimari.io/appName: "Alert Manager"
+      hosts:
+        - alertmanager.h.g4v.dev
+      tls:
+        - secretName: alertmanager-tls-certificate
+          hosts:
+            - alertmanager.h.g4v.dev
+  prometheus:
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: acme-letsencrypt-prod
+        hajimari.io/appName: "Alert Manager"
+      hosts:
+        - prometheus.h.g4v.dev
+      tls:
+        - secretName: prometheus-tls-certificate
+          hosts:
+            - prometheus.h.g4v.dev
+  grafana:
+    enabled: false
