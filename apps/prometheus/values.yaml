@@ -50,3 +50,6 @@ kube-prometheus-stack:
       kubeProxy: false
       kubeSchedulerAlerting: false
       kubeSchedulerRecording: false
+  prometheusOperator:
+    kubeletService:
+      name: kubelet
