@@ -7,10 +7,8 @@ data:
   config.yaml: |-
     logDirectory: /var/log/cloudflared
     tunnel: {{ required "The Argo Tunnel ID is missing." .Values.tunnelID }}
-    credentials-file: /etc/cloudflared/creds/credentials.json
-    warp-routing:
-      enabled: {{ .Values.warpRouting }}
     ingress: {{ toYaml .Values.ingress | nindent 6 }}
+    token: {{ required "The Argo Tunnel Token is missing." .Values.tunnelToken | quote }}
     # Serves the metrics server under /metrics and the readiness server under /ready
     metrics: 0.0.0.0:2000
     # Autoupdates applied in a k8s pod will be lost when the pod is removed or restarted, so

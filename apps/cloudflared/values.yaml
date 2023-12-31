@@ -5,10 +5,5 @@ image:
 
 replicaCount: 3
 tunnelID: ""
-auth:
-  accountTag: ""
-  tunnelName: ""
-  tunnelSecret: ""
-existingSecret: ""
-warpRouting: false
+tunnelAuth: ""
 ingress: []

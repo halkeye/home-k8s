@@ -17,7 +17,8 @@ spec:
         checksum/tunnel-id: {{ sha256sum .Values.tunnelID }}
         checksum/ingress: {{ .Values.ingress | toJson | sha256sum }}
         checksum/auth: {{ .Values.auth | toJson | sha256sum }}
-        checksum/warp-routing: {{ .Values.warpRouting | toJson | sha256sum }}
+        prometheus.io/scrape: 'true'
+        prometheus.io/port: '2000'
     spec:
       containers:
       - name: cloudflared
@@ -41,21 +42,9 @@ spec:
           - name: config
             mountPath: /etc/cloudflared/config
             readonly: true
-          - name: creds
-            mountPath: /etc/cloudflared/creds
-            readOnly: true
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       volumes:
-        - name: creds
-          secret:
-            # By default, the credentials file will be created under ~/.cloudflared/<tunnel ID>.json
-            # when you run `cloudflared tunnel create`. You can move it into a secret by using:
-            # ```sh
-            # kubectl create secret generic tunnel-credentials \
-            # --from-file=credentials.json=/Users/yourusername/.cloudflared/<tunnel ID>.json
-            # ```
-            secretName: {{ .Release.Name }}-creds
         # Create a config.yaml file from the ConfigMap below.
         - name: config
           configMap:
