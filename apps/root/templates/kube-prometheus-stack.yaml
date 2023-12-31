@@ -11,7 +11,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: apps/kube-prometheus-stack
+    path: apps/prometheus
     repoURL: https://github.com/halkeye/home-k8s
     targetRevision: HEAD
     helm:
