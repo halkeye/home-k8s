@@ -11,6 +11,18 @@ kube-prometheus-stack:
         - secretName: alertmanager-tls-certificate
           hosts:
             - alertmanager.h.g4v.dev
+    route:
+      receiver: "null"
+      routes:
+        - receiver: 'null'
+          matchers:
+            - alertname = "Watchdog"
+        - receiver: discord
+          matchers:
+            - severity = "page"
+        - receiver: discord
+          matchers:
+            - severity = "critical"
   prometheus:
     ingress:
       enabled: true
