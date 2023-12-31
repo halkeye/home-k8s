@@ -24,6 +24,11 @@ kube-prometheus-stack:
           matchers:
             - severity = "critical"
   prometheus:
+    prometheusSpec:
+      ruleSelectorNilUsesHelmValues: false
+      serviceMonitorSelectorNilUsesHelmValues: false
+      podMonitorSelectorNilUsesHelmValues: false
+      probeSelectorNilUsesHelmValues: false
     ingress:
       enabled: true
       annotations:
