@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prowlarr
+  name: sonarr
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "20"
 spec:
   destination:
-    namespace: prowlarr
+    namespace: sonarr
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: apps/prowlarr
+    path: apps/sonarr
     repoURL: https://github.com/halkeye/home-k8s
     targetRevision: HEAD
     helm:
