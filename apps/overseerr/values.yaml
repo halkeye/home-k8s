@@ -50,6 +50,8 @@ app-template:
   ingress:
     main:
       enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: acme-letsencrypt-prod
       hosts:
         - host: &host overseerr.g4v.dev
           paths:
