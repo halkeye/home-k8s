@@ -26,6 +26,7 @@ argo-cd:
         ingressClassName: cloudflare-tunnel
         annotations:
           hajimari.io/enable: 'false'
+          gethomepage.dev/enabled: 'false'
         hosts:
           - &webhookhost argocd-webhooks.g4v.dev
   server:

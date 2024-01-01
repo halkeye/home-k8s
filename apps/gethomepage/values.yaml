@@ -1,0 +1,67 @@
+homepage:
+  env:
+    TZ: America/Vancouver
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: acme-letsencrypt-prod
+        gethomepage.dev/enabled: 'false'
+        hajimari.io/enable: 'false'
+      hosts:
+        - host: dash.g4v.dev
+          paths:
+            - path: /
+              pathType: Prefix
+        - host: gethomepage.g4v.dev
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - secretName: gethomepage-tls-certificate
+          hosts:
+            - gethomepage.g4v.dev
+            - dash.g4v.dev
+  bookmarks:
+    - Developer:
+        - Github:
+            - abbr: GH
+              href: https://github.com/
+  services:
+    - Static:
+        - Proxmox:
+            href: https://172.16.10.145:8006/
+            description: Proxmox
+  widgets:
+    # show the kubernetes widget, with the cluster summary and individual nodes
+    - kubernetes:
+        cluster:
+          show: true
+          cpu: true
+          memory: true
+          showLabel: true
+          label: "cluster"
+        nodes:
+          show: true
+          cpu: true
+          memory: true
+          showLabel: true
+    - search:
+        provider: duckduckgo
+        target: _blank
+  kubernetes:
+    mode: cluster
+  settings: {}
+
+  # The service account is necessary to allow discovery of other services
+  serviceAccount:
+    create: true
+    name: gethomepage
+
+  # This enables the service account to access the necessary resources
+  enableRbac: true
+
+  persistence:
+    data:
+      enabled: false
+
