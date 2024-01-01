@@ -101,27 +101,9 @@ app-template:
       path: /volume1/Apps/nzbget
       globalMounts:
         - path: /nzb-downloads
-    movies:
+    music:
       type: nfs
       server: 172.16.10.10
-      path: /volume1/Movies
+      path: /volume1/Audio/Music
       globalMounts:
-        - path: /movies
-    webseries-movies:
-      type: nfs
-      server: 172.16.10.10
-      path: "/volume1/Webseries Movies"
-      globalMounts:
-        - path: /webseries-movies
-    anime-movies:
-      type: nfs
-      server: 172.16.10.10
-      path: "/volume1/Anime Movies"
-      globalMounts:
-        - path: /anime-movies
-    comedian-specials:
-      type: nfs
-      server: 172.16.10.10
-      path: "/volume1/Comedian Specials"
-      globalMounts:
-        - path: /comedian-specials
+        - path: /music
