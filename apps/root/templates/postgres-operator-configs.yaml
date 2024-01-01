@@ -17,7 +17,6 @@ spec:
     helm:
       valueFiles:
         - values.yaml
-        - secrets://values-secrets.yaml
   syncPolicy:
     automated:
       selfHeal: true
