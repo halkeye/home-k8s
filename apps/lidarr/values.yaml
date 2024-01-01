@@ -1,0 +1,127 @@
+app-template:
+  controllers:
+    main:
+      containers:
+        main:
+          image:
+            repository: ghcr.io/onedr0p/lidarr
+            tag: 2.0.7.3849
+          env:
+            COMPlus_EnableDiagnostics: "0"
+            LIDARR__INSTANCE_NAME: lidarr
+            LIDARR__PORT: &port 80
+            LIDARR__LOG_LEVEL: info
+            LIDARR__AUTHENTICATION_METHOD: External
+            TZ: America/Vancouver
+            LIDARR__POSTGRES_USER:
+              valueFrom:
+                secretKeyRef:
+                  name: lidarr.lidarr-owner.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
+                  key: username
+            LIDARR__POSTGRES_PASSWORD:
+              valueFrom:
+                secretKeyRef:
+                  name: lidarr.lidarr-owner.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
+                  key: password
+            LIDARR__POSTGRES_PORT: "5432"
+            LIDARR__POSTGRES_HOST: "acid-minimal-cluster.postgres"
+            LIDARR__POSTGRES_MAIN_DB: "lidarr_main"
+            LIDARR__POSTGRES_LOG_DB: "lidarr_log"
+          envFrom:
+            - secretRef:
+                name: lidarr-secret
+          probes:
+            liveness: &probes
+              enabled: true
+              custom: true
+              spec:
+                httpGet:
+                  path: /ping
+                  port: *port
+                initialDelaySeconds: 0
+                periodSeconds: 10
+                timeoutSeconds: 1
+                failureThreshold: 3
+            readiness: *probes
+            startup:
+              enabled: false
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }
+          resources:
+            limits: &resources
+              memory: 1Gi
+            requests:
+              <<: *resources
+              cpu: 10m
+      pod:
+        securityContext:
+          runAsUser: 568
+          runAsGroup: 568
+          runAsNonRoot: true
+          fsGroup: 568
+          fsGroupChangePolicy: OnRootMismatch
+  service:
+    main:
+      ports:
+        http:
+          port: *port
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: acme-letsencrypt-prod
+        hajimari.io/icon: search-web
+      hosts:
+        - host: &host "lidarr.g4v.dev"
+          paths:
+            - path: /
+              service:
+                name: main
+                port: http
+      tls:
+        - hosts:
+            - *host
+          secretName: lidarr-tls-certificate
+  persistence:
+    config:
+      type: emptyDir
+    tmp:
+      type: emptyDir
+    torrents:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Apps/torrents
+      globalMounts:
+        - path: /torrents
+    nzbdownloads:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Apps/nzbget
+      globalMounts:
+        - path: /nzb-downloads
+    movies:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Movies
+      globalMounts:
+        - path: /movies
+    webseries-movies:
+      type: nfs
+      server: 172.16.10.10
+      path: "/volume1/Webseries Movies"
+      globalMounts:
+        - path: /webseries-movies
+    anime-movies:
+      type: nfs
+      server: 172.16.10.10
+      path: "/volume1/Anime Movies"
+      globalMounts:
+        - path: /anime-movies
+    comedian-specials:
+      type: nfs
+      server: 172.16.10.10
+      path: "/volume1/Comedian Specials"
+      globalMounts:
+        - path: /comedian-specials
