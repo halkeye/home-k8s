@@ -85,7 +85,13 @@ app-template:
           secretName: sonarr-tls-certificate
   persistence:
     config:
-      type: emptyDir
+      enabled: true
+      type: persistentVolumeClaim
+      accessMode: ReadWriteOnce
+      size: 1Gi
+      storageClass: synology-csi-delete
+      globalMounts:
+        - path: /config
     tmp:
       type: emptyDir
     torrents:
