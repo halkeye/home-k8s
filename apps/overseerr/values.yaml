@@ -63,7 +63,10 @@ app-template:
     persistence:
       config:
         enabled: true
-        existingClaim: overseerr
+        type: persistentVolumeClaim
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        storageClass: synology-csi-retain
         globalMounts:
           - path: /app/config
       tmp:
