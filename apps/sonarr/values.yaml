@@ -3,6 +3,7 @@ app-template:
     main:
       containers:
         main:
+          nodeName: debk3s01
           image:
             repository: ghcr.io/onedr0p/sonarr
             tag: 4.0.0.741@sha256:6f288ad22ff1e07e3f94ecbacc6a5e3641a86689091c6a3cbf5f196e52ab3c66
@@ -86,10 +87,7 @@ app-template:
   persistence:
     config:
       enabled: true
-      type: persistentVolumeClaim
-      accessMode: ReadWriteOnce
-      size: 1Gi
-      storageClass: synology-csi-delete
+      existingClaim: sonarr-pvc
       globalMounts:
         - path: /config
     tmp:
