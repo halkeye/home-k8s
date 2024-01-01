@@ -29,7 +29,9 @@ app-template:
             RADARR__POSTGRES_HOST: "acid-minimal-cluster.postgres"
             RADARR__POSTGRES_MAIN_DB: "radarr_main"
             RADARR__POSTGRES_LOG_DB: "radarr_log"
-            RADARR__API_KEY: b7b806b2f0c344a1bc6db52634a7556b
+          envFrom:
+            - secretRef:
+                name: radarr-secret
           probes:
             liveness: &probes
               enabled: true

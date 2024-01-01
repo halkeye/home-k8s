@@ -14,7 +14,7 @@ app-template:
             PROWLARR__PORT: &port 80
             PROWLARR__LOG_LEVEL: info
             PROWLARR__AUTHENTICATION_METHOD: External
-            PROWLARR__THEME: dark
+            PROWLARR__THEME: auto
             TZ: America/Vancouver
             PROWLARR__POSTGRES_USER:
               valueFrom:
@@ -30,6 +30,9 @@ app-template:
             PROWLARR__POSTGRES_HOST: "acid-minimal-cluster.postgres"
             PROWLARR__POSTGRES_MAIN_DB: "prowlarr_main"
             PROWLARR__POSTGRES_LOG_DB: "prowlarr_log"
+          envFrom:
+            - secretRef:
+                name: prowlarr-secret
           probes:
             liveness: &probes
               enabled: true
