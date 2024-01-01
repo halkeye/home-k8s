@@ -12,13 +12,13 @@ spec:
     halkeye:  # database owner
     - superuser
     - createdb
-    prowlarr.prowlarr_user: []
     prowlarr.prowlarr_owner: []
-    prowlarr.prowlarr_reader: []
-    prowlarr.prowlarr_writer: []
+    sonarr.sonarr_owner: []
   databases:
     prowlarr_main: prowlarr.prowlarr_owner
     prowlarr_log: prowlarr.prowlarr_owner
+    sonarr_main: sonarr.sonarr_owner
+    sonarr_log: sonarr.sonarr_owner
   preparedDatabases:
     prowlarr_main:
       defaultUsers: true
@@ -29,6 +29,18 @@ spec:
     prowlarr_log:
       defaultUsers: true
       secretNamespace: prowlarr
+      schemas:
+        public:
+          defaultRoles: false
+    sonarr_main:
+      defaultUsers: true
+      secretNamespace: sonarr
+      schemas:
+        public:
+          defaultRoles: false
+    sonarr_log:
+      defaultUsers: true
+      secretNamespace: sonarr
       schemas:
         public:
           defaultRoles: false
