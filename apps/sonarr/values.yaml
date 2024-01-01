@@ -86,10 +86,7 @@ app-template:
           secretName: sonarr-tls-certificate
   persistence:
     config:
-      enabled: true
-      existingClaim: sonarr-pvc
-      globalMounts:
-        - path: /config
+      type: emptyDir
     tmp:
       type: emptyDir
     torrents:
