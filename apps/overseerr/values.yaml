@@ -60,6 +60,7 @@ app-template:
       tls:
         - hosts:
             - *host
+          secretName: overseerr-tls-certificate
   persistence:
     config:
       enabled: true
