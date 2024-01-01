@@ -91,13 +91,13 @@ app-template:
     torrents:
       type: nfs
       server: 172.16.10.10
-      path: /volume1/docker/torrents
+      path: /volume1/Apps/torrents
       globalMounts:
         - path: /torrents
     nzbdownloads:
       type: nfs
       server: 172.16.10.10
-      path: /volume1/docker/zbget
+      path: /volume1/Apps/nzbget
       globalMounts:
         - path: /nzb-downloads
     tv:
