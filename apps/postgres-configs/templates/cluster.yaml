@@ -16,7 +16,6 @@ spec:
     sonarr.sonarr_owner: []
     lidarr.lidarr_owner: []
     readarr.readarr_owner: []
-    whisparr.whisparr_owner: []
     prowlarr.prowlarr_owner: []
   databases:
     prowlarr_main: prowlarr.prowlarr_owner
@@ -29,8 +28,6 @@ spec:
     lidarr_log: lidarr.lidarr_owner
     readarr_main: readarr.readarr_owner
     readarr_log: readarr.readarr_owner
-    whisparr_main: whisparr.whisparr_owner
-    whisparr_log: whisparr.whisparr_owner
   preparedDatabases:
     prowlarr_main:
       defaultUsers: true
@@ -89,18 +86,6 @@ spec:
     readarr_log:
       defaultUsers: true
       secretNamespace: readarr
-      schemas:
-        public:
-          defaultRoles: false
-    whisparr_main:
-      defaultUsers: true
-      secretNamespace: whisparr
-      schemas:
-        public:
-          defaultRoles: false
-    whisparr_log:
-      defaultUsers: true
-      secretNamespace: whisparr
       schemas:
         public:
           defaultRoles: false
