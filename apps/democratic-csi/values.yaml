@@ -26,6 +26,8 @@ democratic-csi:
   volumeSnapshotClasses:
   - name: synology-iscsi
     parameters:
+    annotations:
+      fake: so-argo-sync
     secrets:
       snapshotter-secret:
 

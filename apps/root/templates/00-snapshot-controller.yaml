@@ -1,23 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: democratic-csi
+  name: snapshot-controller
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   destination:
-    namespace: democratic-csi-system
+    namespace: kube-system
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: apps/democratic-csi
-    repoURL: https://github.com/halkeye/home-k8s
-    targetRevision: HEAD
-    helm:
-      valueFiles:
-        - values.yaml
-        - secrets://values-secrets.yaml
+    chart: snapshot-controller
+    repoURL: https://democratic-csi.github.io/charts/
+    targetRevision: 0.2.4
+    helm: {}
   syncPolicy:
     automated:
       selfHeal: true
