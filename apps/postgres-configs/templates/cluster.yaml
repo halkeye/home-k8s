@@ -12,13 +12,25 @@ spec:
     halkeye:  # database owner
     - superuser
     - createdb
-    prowlarr.prowlarr_owner: []
+    radarr.radarr_owner: []
     sonarr.sonarr_owner: []
+    lidarr.lidarr_owner: []
+    readarr.readarr_owner: []
+    whisparr.whisparr_owner: []
+    prowlarr.prowlarr_owner: []
   databases:
     prowlarr_main: prowlarr.prowlarr_owner
     prowlarr_log: prowlarr.prowlarr_owner
     sonarr_main: sonarr.sonarr_owner
     sonarr_log: sonarr.sonarr_owner
+    radarr_main: radarr.radarr_owner
+    radarr_log: radarr.radarr_owner
+    lidarr_main: lidarr.lidarr_owner
+    lidarr_log: lidarr.lidarr_owner
+    readarr_main: readarr.readarr_owner
+    readarr_log: readarr.readarr_owner
+    whisparr_main: whisparr.whisparr_owner
+    whisparr_log: whisparr.whisparr_owner
   preparedDatabases:
     prowlarr_main:
       defaultUsers: true
@@ -41,6 +53,54 @@ spec:
     sonarr_log:
       defaultUsers: true
       secretNamespace: sonarr
+      schemas:
+        public:
+          defaultRoles: false
+    radarr_main:
+      defaultUsers: true
+      secretNamespace: radarr
+      schemas:
+        public:
+          defaultRoles: false
+    radarr_log:
+      defaultUsers: true
+      secretNamespace: radarr
+      schemas:
+        public:
+          defaultRoles: false
+    lidarr_main:
+      defaultUsers: true
+      secretNamespace: lidarr
+      schemas:
+        public:
+          defaultRoles: false
+    lidarr_log:
+      defaultUsers: true
+      secretNamespace: lidarr
+      schemas:
+        public:
+          defaultRoles: false
+    readarr_main:
+      defaultUsers: true
+      secretNamespace: readarr
+      schemas:
+        public:
+          defaultRoles: false
+    readarr_log:
+      defaultUsers: true
+      secretNamespace: readarr
+      schemas:
+        public:
+          defaultRoles: false
+    whisparr_main:
+      defaultUsers: true
+      secretNamespace: whisparr
+      schemas:
+        public:
+          defaultRoles: false
+    whisparr_log:
+      defaultUsers: true
+      secretNamespace: whisparr
       schemas:
         public:
           defaultRoles: false

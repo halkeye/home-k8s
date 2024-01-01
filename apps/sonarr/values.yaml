@@ -11,7 +11,7 @@ app-template:
             # https://github.com/Radarr/Radarr/issues/7030#issuecomment-1039689518
             # https://github.com/dotnet/runtime/issues/9336
             COMPlus_EnableDiagnostics: "0"
-            SONARR__INSTANCE_NAME: Prowlarr
+            SONARR__INSTANCE_NAME: sonarr
             SONARR__PORT: &port 80
             SONARR__LOG_LEVEL: info
             SONARR__AUTHENTICATION_METHOD: External
