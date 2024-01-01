@@ -22,37 +22,6 @@ homepage:
           hosts:
             - gethomepage.g4v.dev
             - dash.g4v.dev
-  bookmarks:
-    - Developer:
-        - Github:
-            - abbr: GH
-              href: https://github.com/
-  services:
-    - Static:
-        - Proxmox:
-            href: https://172.16.10.145:8006/
-            description: Proxmox
-  widgets:
-    # show the kubernetes widget, with the cluster summary and individual nodes
-    - kubernetes:
-        cluster:
-          show: true
-          cpu: true
-          memory: true
-          showLabel: true
-          label: "cluster"
-        nodes:
-          show: true
-          cpu: true
-          memory: true
-          showLabel: true
-    - search:
-        provider: duckduckgo
-        target: _blank
-  kubernetes:
-    mode: cluster
-  settings: {}
-
   # The service account is necessary to allow discovery of other services
   serviceAccount:
     create: true
@@ -65,3 +34,34 @@ homepage:
     data:
       enabled: false
 
+  config:
+    bookmarks:
+      - Developer:
+          - Github:
+              - abbr: GH
+                href: https://github.com/
+    services:
+      - Static:
+          - Proxmox:
+              href: https://172.16.10.145:8006/
+              description: Proxmox
+    widgets:
+      # show the kubernetes widget, with the cluster summary and individual nodes
+      - kubernetes:
+          cluster:
+            show: true
+            cpu: true
+            memory: true
+            showLabel: true
+            label: "cluster"
+          nodes:
+            show: true
+            cpu: true
+            memory: true
+            showLabel: true
+      - search:
+          provider: duckduckgo
+          target: _blank
+    kubernetes:
+      mode: cluster
+    settings: {}
