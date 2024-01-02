@@ -1,0 +1,24 @@
+immich:
+  immich:
+    persistence:
+      # Main data store for all photos shared between different components.
+      library:
+        existingClaim: "photos-immich-volume"
+
+  server:
+    ingress:
+      main:
+        enabled: true
+        hosts:
+          - host: &host "immich.g4v.dev"
+            paths:
+              - path: /
+        tls:
+          - secretName: immich-tls-certificate
+            hosts:
+              - *host
+    machine-learning:
+      persistence:
+        cache:
+          type: custom
+          storageClass: do-block-storage
