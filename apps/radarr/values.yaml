@@ -74,7 +74,14 @@ app-template:
       enabled: true
       annotations:
         cert-manager.io/cluster-issuer: acme-letsencrypt-prod
-        hajimari.io/icon: search-web
+        hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/radarr.png
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Series Management
+        gethomepage.dev/group: Media Fetchers
+        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/radarr.png
+        gethomepage.dev/name: Radarr
+        gethomepage.dev/widget.type: "radarr"
+        gethomepage.dev/widget.url: "https://radarr.g4v.dev"
       hosts:
         - host: &host "radarr.g4v.dev"
           paths:
