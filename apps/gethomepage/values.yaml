@@ -41,10 +41,6 @@ homepage:
               - abbr: GH
                 href: https://github.com/
     services:
-      - Static:
-          - Proxmox:
-              href: https://172.16.10.145:8006/
-              description: Proxmox
       - Reading:
           - Miniflux:
               href: https://miniflux.g4v.dev
@@ -60,6 +56,10 @@ homepage:
           - Home Assistant:
               href: https://home.g4v.dev
               icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/home-assistant.png
+          - Proxmox:
+              href: https://172.16.10.145:8006/
+              icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/proxmox.png
+              description: Proxmox
     widgets:
       # show the kubernetes widget, with the cluster summary and individual nodes
       - kubernetes:
