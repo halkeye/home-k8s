@@ -1,4 +1,16 @@
 apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: photos-immich-volume
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 250Gi
+---
+apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: photos-immich-volume
