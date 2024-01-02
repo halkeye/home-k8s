@@ -45,6 +45,21 @@ homepage:
           - Proxmox:
               href: https://172.16.10.145:8006/
               description: Proxmox
+      - Reading:
+          - Miniflux:
+              href: https://miniflux.g4v.dev
+              description: RSS Reader
+              icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/miniflux.png
+          - Calibre:
+              href: https://books.g4v.dev
+              icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/calibre-web.png
+      - Home:
+          - Unifi:
+              href: https://unifi.g4v.dev
+              icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/unifi.png
+          - Home Assistant:
+              href: https://home.g4v.dev
+              icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/home-assistant.png
     widgets:
       # show the kubernetes widget, with the cluster summary and individual nodes
       - kubernetes:
