@@ -4,6 +4,11 @@ immich:
   redis:
     enabled: true
   common:
+    secrets:
+      secret:
+        enabled: true
+        stringData:
+          DB_DATABASE_NAME: "immich"
     controllers:
       microservices:
         containers:
@@ -24,7 +29,6 @@ immich:
                   secretKeyRef:
                     name: immich.immich-owner.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
                     key: password
-              DB_DATABASE_NAME: "immich"
       server:
         containers:
           main:
@@ -44,7 +48,6 @@ immich:
                   secretKeyRef:
                     name: immich.immich-owner.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
                     key: password
-              DB_DATABASE_NAME: "immich"
         ingress:
           main:
             enabled: true
@@ -83,7 +86,6 @@ immich:
                   secretKeyRef:
                     name: immich.immich-owner.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
                     key: password
-              DB_DATABASE_NAME: "immich"
   persistence:
     library:
       type: nfs
