@@ -5,7 +5,10 @@ version: 1.0.0
 appVersion: "1.0.0"
 
 dependencies:
+  #- name: common
+  #  repository: https://bjw-s.github.io/helm-charts
+  #  version: 2.4.0
   - name: immich
     version: 0.3.1
-    repository: https://immich-app.github.io/immich-charts
+  #  repository: https://immich-app.github.io/immich-charts
 
