@@ -10,6 +10,6 @@ dependencies:
   #  version: 2.4.0
   - name: immich
     version: 0.3.1
-    repository: git+https://github.com/halkeye/immich-charts@charts?ref=ceba6b6cfa9a1651ce988c887fb440346d947ab6
+    repository: git+https://github.com/halkeye/immich-charts@charts?ref=17097db64d496df60fd2582b265df102240ea8f4
   #  repository: https://immich-app.github.io/immich-charts
 
