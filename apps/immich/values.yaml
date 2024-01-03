@@ -3,22 +3,19 @@ immich:
     enabled: false
   redis:
     enabled: true
+common:
   common:
     secrets:
       secret:
         enabled: true
         stringData:
           DB_DATABASE_NAME: "immich"
+          DB_HOSTNAME: "acid-minimal-cluster.postgres"
     controllers:
       microservices:
         containers:
           main:
             env:
-              DB_HOSTNAME:
-                valueFrom:
-                  secretKeyRef:
-                    name: "acid-minimal-cluster.postgres"
-                    key: DB_HOSTNAME
               DB_USERNAME:
                 valueFrom:
                   secretKeyRef:
@@ -33,11 +30,6 @@ immich:
         containers:
           main:
             env:
-              DB_HOSTNAME:
-                valueFrom:
-                  secretKeyRef:
-                    name: "acid-minimal-cluster.postgres"
-                    key: DB_HOSTNAME
               DB_USERNAME:
                 valueFrom:
                   secretKeyRef:
@@ -71,11 +63,6 @@ immich:
         containers:
           main:
             env:
-              DB_HOSTNAME:
-                valueFrom:
-                  secretKeyRef:
-                    name: "acid-minimal-cluster.postgres"
-                    key: DB_HOSTNAME
               DB_USERNAME:
                 valueFrom:
                   secretKeyRef:
