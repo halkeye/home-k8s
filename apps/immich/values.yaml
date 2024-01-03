@@ -11,6 +11,7 @@ common:
         stringData:
           DB_DATABASE_NAME: "immich"
           DB_HOSTNAME: "acid-minimal-cluster.postgres"
+          TYPESENSE_API_KEY: different-string-for-now
     controllers:
       microservices:
         containers:
