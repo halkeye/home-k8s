@@ -2,36 +2,90 @@ immich:
   postgresql:
     enabled: false
   redis:
-    enabled: false
-#immich:
-#  immich:
-#    persistence:
-#      # Main data store for all photos shared between different components.
-#      library:
-#        existingClaim: "photos-immich-volume"
-
-#  server:
-#    ingress:
-#      main:
-#        enabled: true
-#        annotations:
-#          cert-manager.io/cluster-issuer: acme-letsencrypt-prod
-#          hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/immich.png
-#          hajimari.io/appName: Immich
-#          gethomepage.dev/enabled: "true"
-#          gethomepage.dev/description: Photos
-#          gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/immich.png
-#          gethomepage.dev/name: Immich
-#        hosts:
-#          - host: &host "immich.g4v.dev"
-#            paths:
-#              - path: /
-#        tls:
-#          - secretName: immich-tls-certificate
-#            hosts:
-#              - *host
-#    machine-learning:
-#      persistence:
-#        cache:
-#          type: custom
-#          storageClass: do-block-storage
+    enabled: true
+  common:
+    controllers:
+      microservices:
+        containers:
+          main:
+            env:
+              DB_HOSTNAME:
+                valueFrom:
+                  secretKeyRef:
+                    name: "acid-minimal-cluster.postgres"
+                    key: DB_HOSTNAME
+              DB_USERNAME:
+                valueFrom:
+                  secretKeyRef:
+                    name: immich.immich-owner.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
+                    key: username
+              DB_PASSWORD:
+                valueFrom:
+                  secretKeyRef:
+                    name: immich.immich-owner.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
+                    key: password
+              DB_DATABASE_NAME: "immich"
+      server:
+        containers:
+          main:
+            env:
+              DB_HOSTNAME:
+                valueFrom:
+                  secretKeyRef:
+                    name: "acid-minimal-cluster.postgres"
+                    key: DB_HOSTNAME
+              DB_USERNAME:
+                valueFrom:
+                  secretKeyRef:
+                    name: immich.immich-owner.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
+                    key: username
+              DB_PASSWORD:
+                valueFrom:
+                  secretKeyRef:
+                    name: immich.immich-owner.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
+                    key: password
+              DB_DATABASE_NAME: "immich"
+        ingress:
+          main:
+            enabled: true
+            annotations:
+              cert-manager.io/cluster-issuer: acme-letsencrypt-prod
+              hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/immich.png
+              hajimari.io/appName: Immich
+              gethomepage.dev/enabled: "true"
+              gethomepage.dev/description: Photos
+              gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/immich.png
+              gethomepage.dev/name: Immich
+            hosts:
+              - host: &host "immich.g4v.dev"
+                paths:
+                  - path: /
+            tls:
+              - secretName: immich-tls-certificate
+                hosts:
+                  - *host
+      machine-learning:
+        containers:
+          main:
+            env:
+              DB_HOSTNAME:
+                valueFrom:
+                  secretKeyRef:
+                    name: "acid-minimal-cluster.postgres"
+                    key: DB_HOSTNAME
+              DB_USERNAME:
+                valueFrom:
+                  secretKeyRef:
+                    name: immich.immich-owner.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
+                    key: username
+              DB_PASSWORD:
+                valueFrom:
+                  secretKeyRef:
+                    name: immich.immich-owner.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
+                    key: password
+              DB_DATABASE_NAME: "immich"
+  persistence:
+    library:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Apps/immich
