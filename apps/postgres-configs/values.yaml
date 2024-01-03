@@ -10,4 +10,5 @@ databases:
   readarr_main: readarr.readarr_owner
   readarr_log: readarr.readarr_owner
   readarr_cache: readarr.readarr_owner
+  immich: immich.immich_owner
 
