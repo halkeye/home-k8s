@@ -1,0 +1,10 @@
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: immich-db-user
+  namespace: immich
+spec:
+  role: immich
+  database: immich-db       # This references the Postgres CR
+  secretName: immich-db-secret
+  privileges: OWNER     # Can be OWNER/READ/WRITE

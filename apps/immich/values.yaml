@@ -17,44 +17,29 @@ immich:
         containers:
           main:
             env:
-              DB_USERNAME:
+              DB_URL:
                 valueFrom:
                   secretKeyRef:
-                    name: immich.immich-owner.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
-                    key: username
-              DB_PASSWORD:
-                valueFrom:
-                  secretKeyRef:
-                    name: immich.immich-owner.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
-                    key: password
+                    name: immich-db-secret-immich-db-user
+                    key: DB_URL
       main:
         containers:
           main:
             env:
-              DB_USERNAME:
+              DB_URL:
                 valueFrom:
                   secretKeyRef:
-                    name: immich.immich-owner.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
-                    key: username
-              DB_PASSWORD:
-                valueFrom:
-                  secretKeyRef:
-                    name: immich.immich-owner.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
-                    key: password
+                    name: immich-db-secret-immich-db-user
+                    key: DB_URL
       machine-learning:
         containers:
           main:
             env:
-              DB_USERNAME:
+              DB_URL:
                 valueFrom:
                   secretKeyRef:
-                    name: immich.immich-owner.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
-                    key: username
-              DB_PASSWORD:
-                valueFrom:
-                  secretKeyRef:
-                    name: immich.immich-owner.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
-                    key: password
+                    name: immich-db-secret-immich-db-user
+                    key: DB_URL
 
     ingress:
       main:
