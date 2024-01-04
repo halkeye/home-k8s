@@ -1,0 +1,11 @@
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: immich-db
+spec:
+  database: immich-db
+  dropOnDelete: false
+  extensions:
+  - cube
+  - earthdistance
+  - vectors
