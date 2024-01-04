@@ -8,3 +8,5 @@ spec:
   database: immich-db       # This references the Postgres CR
   secretName: immich-db-secret
   privileges: OWNER     # Can be OWNER/READ/WRITE
+  secretTemplate:
+    DB_URL: postgresql://{{.Role}}:{{.Password}}@{{.Host}}/{{.Database}}?sslmode=require
