@@ -4,7 +4,7 @@ metadata:
   name: ext-postgres-operator
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "20"
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   destination:
     namespace: ext-postgres-operator
