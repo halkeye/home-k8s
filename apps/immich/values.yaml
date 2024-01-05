@@ -21,7 +21,7 @@ immich:
                 valueFrom:
                   secretKeyRef:
                     name: immich-db-secret-immich-db-user
-                    key: POSTGRES_URL
+                    key: DB_URL
       main:
         containers:
           main:
@@ -30,7 +30,7 @@ immich:
                 valueFrom:
                   secretKeyRef:
                     name: immich-db-secret-immich-db-user
-                    key: POSTGRES_URL
+                    key: DB_URL
       machine-learning:
         containers:
           main:
@@ -39,7 +39,7 @@ immich:
                 valueFrom:
                   secretKeyRef:
                     name: immich-db-secret-immich-db-user
-                    key: POSTGRES_URL
+                    key: DB_URL
 
     ingress:
       main:
