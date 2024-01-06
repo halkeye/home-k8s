@@ -3,4 +3,4 @@ kind: Secret
 metadata:
   name: superuser-secret
 type: Opaque
-stringData: {{ .Values.superuser | toYaml | nindent 2 }}
+stringData: {{ (index .Values "ext-postgres-operator").postgres | toYaml | nindent 2 }}
