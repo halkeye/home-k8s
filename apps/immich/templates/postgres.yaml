@@ -8,4 +8,4 @@ spec:
   extensions:
   - cube
   - earthdistance
-#- vectors
+  - vectors
