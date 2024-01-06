@@ -3,15 +3,18 @@ kind: MariaDB
 metadata:
   name: mariadb
 spec:
-#  rootPasswordSecretKeyRef:
-#    name: {{ include "mariadb-configs.fullname" . }}-secrets
-#    key: root-password
-
+{{/*
+  rootPasswordSecretKeyRef:
+    name: {{ include "mariadb-configs.fullname" . }}-secrets
+    key: root-password
+*/}}
   database: mariadb
   username: mariadb
-#  passwordSecretKeyRef:
-#    name: {{ include "mariadb-configs.fullname" . }}-secrets
-#    key: password
+{{/*
+  passwordSecretKeyRef:
+    name: {{ include "mariadb-configs.fullname" . }}-secrets
+    key: password
+*/}}
 
   image: mariadb:11.0.3
   imagePullPolicy: IfNotPresent
@@ -26,10 +29,12 @@ spec:
     accessModes:
       - ReadWriteOnce
 
-#  bootstrapFrom:
-#    backupRef:
-#      name: backup
-#    physical: true
+{{/*
+  bootstrapFrom:
+    backupRef:
+      name: backup
+    physical: true
+*/}}
 
   resources:
     requests:
@@ -43,7 +48,8 @@ spec:
     - name: TZ
       value: UTC
 
-#  envFrom:
-#    - configMapRef:
-#        name: {{ include "mariadb-configs.fullname" . }}-configmap
-
+{{/*
+  envFrom:
+    - configMapRef:
+        name: {{ include "mariadb-configs.fullname" . }}-configmap
+*/}}
