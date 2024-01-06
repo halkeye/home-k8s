@@ -1,11 +1,11 @@
 apiVersion: "acid.zalan.do/v1"
 kind: postgresql
 metadata:
-  name: acid-minimal-cluster
+  name: postgres
 spec:
   teamId: "acid"
   volume:
-    size: 1Gi
+    size: 10Gi
     storageClass: synology-csi-retain
   numberOfInstances: 2
   postgresql:
@@ -14,19 +14,3 @@ spec:
     halkeye:  # database owner
     - superuser
     - createdb
-    {{- range $v := values .Values.databases | uniq | sortAlpha }}
-    {{ $v }}: []
-    {{- end }}
-  databases:
-    {{- range $k, $v := .Values.databases }}
-    {{ $k }}: {{ $v }}
-    {{- end }}
-  preparedDatabases:
-    {{- range $k, $v := .Values.databases }}
-    {{ $k }}:
-      defaultUsers: true
-      secretNamespace: {{ splitList "." $v | first }}
-      schemas:
-        public:
-          defaultRoles: false
-    {{- end }}
