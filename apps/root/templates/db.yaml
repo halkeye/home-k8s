@@ -14,7 +14,10 @@ spec:
     path: apps/db-configs
     repoURL: https://github.com/halkeye/home-k8s
     targetRevision: HEAD
-    helm: {}
+    helm:
+      valueFiles:
+        - values.yaml
+        - secrets://values-secrets.yaml
   syncPolicy:
     automated:
       selfHeal: true
