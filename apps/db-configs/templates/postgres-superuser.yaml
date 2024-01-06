@@ -3,7 +3,11 @@ kind: Secret
 metadata:
   name: superuser-secret
 type: Opaque
-stringData:
-  user: {{ .Values.superuser }}
-  username: {{ .Values.superuser }}
-  password: {{ .Values.superpassword }}
+apiVersion: v1
+data:
+  username: {{ (index .Values "ext-postgres-operator").postgres.user | b64enc | quote }}
+  password: {{ (index .Values "ext-postgres-operator").postgres.password | b64enc | quote }}
+kind: Secret
+metadata:
+  name: app-secret
+type: kubernetes.io/basic-auth

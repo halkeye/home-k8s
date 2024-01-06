@@ -1,7 +1,1 @@
-ext-postgres-operator:
-    existingSecret: superuser-secret
-    postgres:
-        # postgres hostname
-        host: "postgres-rw.db"
-        # postgres admin user and password
-        default_database: "postgres"
+ext-postgres-operator: {}
