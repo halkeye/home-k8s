@@ -1,16 +1,40 @@
-apiVersion: "acid.zalan.do/v1"
-kind: postgresql
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
 metadata:
   name: postgres
 spec:
-  teamId: "acid"
-  volume:
-    size: 10Gi
+  instances: 3
+  imageName: ghcr.io/cloudnative-pg/postgis:16-3.4
+  bootstrap:
+    initdb:
+      postInitTemplateSQL:
+        - CREATE EXTENSION postgis;
+        - CREATE EXTENSION postgis_topology;
+        - CREATE EXTENSION fuzzystrmatch;
+        - CREATE EXTENSION postgis_tiger_geocoder;
+  storage:
     storageClass: synology-csi-retain
-  numberOfInstances: 2
-  postgresql:
-    version: "15"
-  users:
-    halkeye:  # database owner
-    - superuser
-    - createdb
+    size: 10Gi
+  enableSuperuserAccess: true
+  superuserSecret:
+    name: superuser-secret
+  backup:
+    barmanObjectStore:
+      destinationPath: s3://{{ .Values.minio_bucket }}/
+      endpointURL: http://172.16.10.10:9001
+      s3Credentials:
+        accessKeyId:
+          name: backup-creds
+          key: ACCESS_KEY_ID
+        secretAccessKey:
+          name: backup-creds
+          key: ACCESS_SECRET_KEY
+      wal:
+        compression: gzip
+        encryption: AES256
+      data:
+        compression: gzip
+        encryption: AES256
+        immediateCheckpoint: false
+        jobs: 2
+    retentionPolicy: "30d"
