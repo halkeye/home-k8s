@@ -1,4 +1,0 @@
-apiVersion: v2
-name: postgres-configs
-version: 0.0.0
-dependencies: []
