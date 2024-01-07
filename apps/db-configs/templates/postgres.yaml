@@ -4,7 +4,7 @@ metadata:
   name: postgres
 spec:
   instances: 3
-  imageName: ghcr.io/halkeye/postgres-16:16-2
+  imageName: ghcr.io/halkeye/postgres-16:16-15
   # tensorchord/pgvecto-rs:pg16-v0.1.11
   postgresql:
     shared_preload_libraries:
