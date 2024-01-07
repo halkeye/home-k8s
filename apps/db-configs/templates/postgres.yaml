@@ -12,9 +12,11 @@ spec:
         - CREATE EXTENSION postgis_topology;
         - CREATE EXTENSION fuzzystrmatch;
         - CREATE EXTENSION postgis_tiger_geocoder;
+{{/*
   storage:
     storageClass: synology-csi-retain
     size: 10Gi
+*/}}
   enableSuperuserAccess: true
 {{/*
   superuserSecret:
