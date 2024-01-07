@@ -4,7 +4,7 @@ metadata:
   name: postgres
 spec:
   instances: 3
-  imageName: ghcr.io/halkeye/postgres-16:main@sha256:619b325a0aeec6a0eb164b2a089fc9a400e57cf6b7c73b90040a7c7018b55238
+  imageName: ghcr.io/halkeye/postgres-16:16-1
   bootstrap:
     initdb:
       postInitTemplateSQL:
