@@ -5,6 +5,10 @@ metadata:
 spec:
   instances: 3
   imageName: ghcr.io/halkeye/postgres-16:16-2
+  # tensorchord/pgvecto-rs:pg16-v0.1.11
+  postgresql:
+    shared_preload_libraries:
+      - vectors.so
   bootstrap:
     initdb:
       postInitTemplateSQL:
