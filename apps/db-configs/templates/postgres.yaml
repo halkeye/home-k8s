@@ -30,7 +30,7 @@ spec:
   backup:
     barmanObjectStore:
       destinationPath: s3://{{ .Values.minio_bucket }}/
-      endpointURL: http://172.16.10.10:9001
+      endpointURL: http://172.16.10.10:9000
       s3Credentials:
         accessKeyId:
           name: backup-creds
