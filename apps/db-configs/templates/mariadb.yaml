@@ -25,17 +25,6 @@ spec:
     accessModes:
       - ReadWriteOnce
 
-  storage:
-    s3:
-      bucket: mariadb-backups
-      endpoint: 172.16.10.10:9000
-      accessKeyIdSecretKeyRef:
-        name: minio-creds
-        key: ACCESS_KEY_ID
-      secretAccessKeySecretKeyRef:
-        name: minio-creds
-        key: ACCESS_SECRET_KEY
-
 {{/*
   bootstrapFrom:
     backupRef:
