@@ -3,18 +3,14 @@ kind: MariaDB
 metadata:
   name: mariadb
 spec:
-{{/*
   rootPasswordSecretKeyRef:
-    name: {{ include "mariadb-configs.fullname" . }}-secrets
+    name: mariadb-secrets
     key: root-password
-*/}}
   database: mariadb
   username: mariadb
-{{/*
   passwordSecretKeyRef:
-    name: {{ include "mariadb-configs.fullname" . }}-secrets
+    name: mariadb-secrets
     key: password
-*/}}
 
   image: mariadb:11.0.3
   imagePullPolicy: IfNotPresent
@@ -28,6 +24,17 @@ spec:
     storageClassName: synology-csi-retain
     accessModes:
       - ReadWriteOnce
+
+  storage:
+    s3:
+      bucket: mariadb-backups
+      endpoint: 172.16.10.10:9000
+      accessKeyIdSecretKeyRef:
+        name: minio-creds
+        key: ACCESS_KEY_ID
+      secretAccessKeySecretKeyRef:
+        name: minio-creds
+        key: ACCESS_SECRET_KEY
 
 {{/*
   bootstrapFrom:

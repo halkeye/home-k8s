@@ -33,10 +33,10 @@ spec:
       endpointURL: http://172.16.10.10:9000
       s3Credentials:
         accessKeyId:
-          name: backup-creds
+          name: minio-creds
           key: ACCESS_KEY_ID
         secretAccessKey:
-          name: backup-creds
+          name: minio-creds
           key: ACCESS_SECRET_KEY
       wal:
         compression: gzip
