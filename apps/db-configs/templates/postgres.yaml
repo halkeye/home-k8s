@@ -52,7 +52,6 @@ spec:
           compression: gzip
         destinationPath: s3://{{ .Values.minio_bucket }}/
         endpointURL: http://172.16.10.10:9000
-        serverName: db
         s3Credentials:
           accessKeyId:
             name: minio-creds
