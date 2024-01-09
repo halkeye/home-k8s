@@ -6,5 +6,5 @@ metadata:
 spec:
   role: sonarr
   database: sonarr
-  scretName: sonarr-db-secret
+  secretName: sonarr-db-secret
   privileges: OWNER
