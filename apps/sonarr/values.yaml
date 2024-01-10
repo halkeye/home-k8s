@@ -3,11 +3,11 @@ app-template:
     main:
       containers:
         main:
-          nodeName: debk3s01
           image:
             repository: ghcr.io/onedr0p/sonarr
             tag: 4.0.0.741@sha256:6f288ad22ff1e07e3f94ecbacc6a5e3641a86689091c6a3cbf5f196e52ab3c66
           env:
+            TZ: America/Vancouver
             # https://github.com/Radarr/Radarr/issues/7030#issuecomment-1039689518
             # https://github.com/dotnet/runtime/issues/9336
             COMPlus_EnableDiagnostics: "0"
@@ -15,24 +15,24 @@ app-template:
             SONARR__PORT: &port 80
             SONARR__LOG_LEVEL: info
             SONARR__AUTHENTICATION_METHOD: External
-            TZ: America/Vancouver
+            SONARR__POSTGRES_PORT: "5432"
+            SONARR__POSTGRES_HOST:
+              valueFrom:
+                secretKeyRef:
+                  name: sonarr-db-secret-sonarr
+                  key: HOST
+            SONARR__POSTGRES_MAIN_DB: "sonarr_main"
+            SONARR__POSTGRES_LOG_DB: "sonarr_log"
             SONARR__POSTGRES_USER:
               valueFrom:
                 secretKeyRef:
-                  name: sonarr.sonarr-owner.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
-                  key: username
+                  name: sonarr-db-secret-sonarr
+                  key: LOGIN
             SONARR__POSTGRES_PASSWORD:
               valueFrom:
                 secretKeyRef:
-                  name: sonarr.sonarr-owner.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
-                  key: password
-            SONARR__POSTGRES_PORT: "5432"
-            SONARR__POSTGRES_HOST: "acid-minimal-cluster.postgres"
-            SONARR__POSTGRES_MAIN_DB: "sonarr_main"
-            SONARR__POSTGRES_LOG_DB: "sonarr_log"
-          envFrom:
-            - secretRef:
-                name: sonarr-secret
+                  name: sonarr-db-secret-sonarr
+                  key: PASSWORD
           probes:
             liveness: &probes
               enabled: true
