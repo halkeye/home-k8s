@@ -29,6 +29,7 @@ spec:
 */}}
   backup:
     barmanObjectStore:
+      serverName: nas-postgres
       destinationPath: s3://{{ .Values.minio_bucket }}/
       endpointURL: http://172.16.10.10:9000
       s3Credentials:
@@ -44,6 +45,7 @@ spec:
         compression: gzip
         jobs: 2
     retentionPolicy: "30d"
+{{/*
   externalClusters:
     # this represents the s3 backup to restore from. Must be same version.
     - name: db
@@ -59,3 +61,4 @@ spec:
           secretAccessKey:
             name: minio-creds
             key: ACCESS_SECRET_KEY
+*/}}
