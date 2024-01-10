@@ -7,6 +7,7 @@ app-template:
             repository: ghcr.io/onedr0p/radarr
             tag: 5.2.6.8376
           env:
+            TZ: America/Vancouver
             # https://github.com/Radarr/Radarr/issues/7030#issuecomment-1039689518
             # https://github.com/dotnet/runtime/issues/9336
             COMPlus_EnableDiagnostics: "0"
@@ -14,24 +15,24 @@ app-template:
             RADARR__PORT: &port 80
             RADARR__LOG_LEVEL: info
             RADARR__AUTHENTICATION_METHOD: External
-            TZ: America/Vancouver
+            RADARR__POSTGRES_PORT: "5432"
+            RADARR__POSTGRES_HOST:
+              valueFrom:
+                secretKeyRef:
+                  name: radarr-db-secret-radarr
+                  key: HOST
+            RADARR__POSTGRES_MAIN_DB: "radarr_main"
+            RADARR__POSTGRES_LOG_DB: "radarr_log"
             RADARR__POSTGRES_USER:
               valueFrom:
                 secretKeyRef:
-                  name: radarr.radarr-owner.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
-                  key: username
+                  name: radarr-db-secret-radarr
+                  key: LOGIN
             RADARR__POSTGRES_PASSWORD:
               valueFrom:
                 secretKeyRef:
-                  name: radarr.radarr-owner.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
-                  key: password
-            RADARR__POSTGRES_PORT: "5432"
-            RADARR__POSTGRES_HOST: "acid-minimal-cluster.postgres"
-            RADARR__POSTGRES_MAIN_DB: "radarr_main"
-            RADARR__POSTGRES_LOG_DB: "radarr_log"
-          envFrom:
-            - secretRef:
-                name: radarr-secret
+                  name: radarr-db-secret-radarr
+                  key: PASSWORD
           probes:
             liveness: &probes
               enabled: true
@@ -59,10 +60,10 @@ app-template:
               cpu: 10m
       pod:
         securityContext:
-          runAsUser: 568
-          runAsGroup: 568
+          runAsUser: 1026
+          runAsGroup: 100
           runAsNonRoot: true
-          fsGroup: 568
+          fsGroup: 100
           fsGroupChangePolicy: OnRootMismatch
   service:
     main:
@@ -95,8 +96,10 @@ app-template:
           secretName: radarr-tls-certificate
   persistence:
     config:
+      enabled: true
       type: emptyDir
     tmp:
+      enabled: true
       type: emptyDir
     torrents:
       type: nfs
