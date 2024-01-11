@@ -1,17 +1,17 @@
 apiVersion: db.movetokube.com/v1alpha1
 kind: Postgres
 metadata:
-  name: lidarr_main
+  name: lidarr-main
 spec:
-  database: lidarr_main
+  database: lidarr-main
   masterRole: lidarr-group
   dropOnDelete: true
 ---
 apiVersion: db.movetokube.com/v1alpha1
 kind: Postgres
 metadata:
-  name: lidarr_log
+  name: lidarr-log
 spec:
-  database: lidarr_log
+  database: lidarr-log
   masterRole: lidarr-group
   dropOnDelete: true
