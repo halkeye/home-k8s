@@ -1,0 +1,10 @@
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: lidarr
+  namespace: lidarr
+spec:
+  role: lidarr
+  database: lidarr
+  secretName: lidarr-db-secret
+  privileges: OWNER

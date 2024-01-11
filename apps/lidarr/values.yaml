@@ -7,26 +7,30 @@ app-template:
             repository: ghcr.io/onedr0p/lidarr
             tag: 2.0.7.3849
           env:
+            TZ: America/Vancouver
             COMPlus_EnableDiagnostics: "0"
             LIDARR__INSTANCE_NAME: lidarr
             LIDARR__PORT: &port 80
             LIDARR__LOG_LEVEL: info
             LIDARR__AUTHENTICATION_METHOD: External
-            TZ: America/Vancouver
+            LIDARR__POSTGRES_PORT: "5432"
+            LIDARR__POSTGRES_HOST:
+              valueFrom:
+                secretKeyRef:
+                  name: lidarr-db-secret-lidarr
+                  key: HOST
+            LIDARR__POSTGRES_MAIN_DB: "lidarr_main"
+            LIDARR__POSTGRES_LOG_DB: "lidarr_log"
             LIDARR__POSTGRES_USER:
               valueFrom:
                 secretKeyRef:
-                  name: lidarr.lidarr-owner.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
-                  key: username
+                  name: lidarr-db-secret-lidarr
+                  key: LOGIN
             LIDARR__POSTGRES_PASSWORD:
               valueFrom:
                 secretKeyRef:
-                  name: lidarr.lidarr-owner.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
-                  key: password
-            LIDARR__POSTGRES_PORT: "5432"
-            LIDARR__POSTGRES_HOST: "acid-minimal-cluster.postgres"
-            LIDARR__POSTGRES_MAIN_DB: "lidarr_main"
-            LIDARR__POSTGRES_LOG_DB: "lidarr_log"
+                  name: lidarr-db-secret-lidarr
+                  key: PASSWORD
           envFrom:
             - secretRef:
                 name: lidarr-secret
@@ -57,10 +61,10 @@ app-template:
               cpu: 10m
       pod:
         securityContext:
-          runAsUser: 568
-          runAsGroup: 568
+          runAsUser: 1026
+          runAsGroup: 100
           runAsNonRoot: true
-          fsGroup: 568
+          fsGroup: 100
           fsGroupChangePolicy: OnRootMismatch
   service:
     main:
@@ -93,8 +97,10 @@ app-template:
           secretName: lidarr-tls-certificate
   persistence:
     config:
+      enabled: true
       type: emptyDir
     tmp:
+      enabled: true
       type: emptyDir
     torrents:
       type: nfs
