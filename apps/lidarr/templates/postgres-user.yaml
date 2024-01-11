@@ -5,6 +5,6 @@ metadata:
   namespace: lidarr
 spec:
   role: lidarr
-  database: lidarr-main
+  database: lidarr
   secretName: lidarr-db-secret
   privileges: OWNER
