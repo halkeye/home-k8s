@@ -7,23 +7,27 @@ app-template:
             repository: ghcr.io/onedr0p/readarr-develop
             tag: 0.3.14
           env:
-            COMPlus_EnableDiagnostics: "0"
             TZ: America/Vancouver
-            READARR__POSTGRES_USER:
+            COMPlus_EnableDiagnostics: "0"
+            READARR__POSTGRES_PORT: "5432"
+            READARR__POSTGRES_HOST:
               valueFrom:
                 secretKeyRef:
-                  name: readarr.readarr-owner.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
-                  key: username
-            READARR__POSTGRES_PASSWORD:
+                  name: readarr-db-secret-readarr
+                  key: HOST
+            SONARR__POSTGRES_USER:
               valueFrom:
                 secretKeyRef:
-                  name: readarr.readarr-owner.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
-                  key: password
+                  name: readarr-db-secret-readarr
+                  key: LOGIN
+            SONARR__POSTGRES_PASSWORD:
+              valueFrom:
+                secretKeyRef:
+                  name: readarr-db-secret-readarr
+                  key: PASSWORD
             READARR__INSTANCE_NAME: readarr
             READARR__PORT: &port 80
             READARR__LOG_LEVEL: info
-            READARR__POSTGRES_PORT: "5432"
-            READARR__POSTGRES_HOST: "acid-minimal-cluster.postgres"
             READARR__POSTGRES_MAIN_DB: "readarr_main"
             READARR__POSTGRES_LOG_DB: "readarr_log"
             READARR__POSTGRES_CACHE_DB: "readarr_cache"
@@ -57,10 +61,10 @@ app-template:
               cpu: 10m
       pod:
         securityContext:
-          runAsUser: 568
-          runAsGroup: 568
+          runAsUser: 1026
+          runAsGroup: 100
           runAsNonRoot: true
-          fsGroup: 568
+          fsGroup: 100
           fsGroupChangePolicy: OnRootMismatch
   service:
     main:
@@ -93,8 +97,10 @@ app-template:
           secretName: readarr-tls-certificate
   persistence:
     config:
+      enabled: true
       type: emptyDir
     tmp:
+      enabled: true
       type: emptyDir
     torrents:
       type: nfs
