@@ -33,6 +33,9 @@ app-template:
                 secretKeyRef:
                   name: sonarr-db-secret-sonarr
                   key: PASSWORD
+          envFrom:
+            - secretRef:
+                name: sonarr-secret
           probes:
             liveness: &probes
               enabled: true

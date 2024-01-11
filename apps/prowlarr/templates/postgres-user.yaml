@@ -1,0 +1,10 @@
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: prowlarr
+  namespace: prowlarr
+spec:
+  role: prowlarr
+  database: prowlarr
+  secretName: prowlarr-db-secret
+  privileges: OWNER

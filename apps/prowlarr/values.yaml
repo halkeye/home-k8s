@@ -19,15 +19,19 @@ app-template:
             PROWLARR__POSTGRES_USER:
               valueFrom:
                 secretKeyRef:
-                  name: prowlarr.prowlarr-owner.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
-                  key: username
+                  name: prowlarr-db-secret-prowlarr
+                  key: LOGIN
             PROWLARR__POSTGRES_PASSWORD:
               valueFrom:
                 secretKeyRef:
-                  name: prowlarr.prowlarr-owner.acid-minimal-cluster.credentials.postgresql.acid.zalan.do
-                  key: password
+                  name: prowlarr-db-secret-prowlarr
+                  key: PASSWORD
             PROWLARR__POSTGRES_PORT: "5432"
-            PROWLARR__POSTGRES_HOST: "acid-minimal-cluster.postgres"
+            PROWLARR__POSTGRES_HOST:
+              valueFrom:
+                secretKeyRef:
+                  name: prowlarr-db-secret-prowlarr
+                  key: HOST
             PROWLARR__POSTGRES_MAIN_DB: "prowlarr_main"
             PROWLARR__POSTGRES_LOG_DB: "prowlarr_log"
           envFrom:
@@ -60,10 +64,10 @@ app-template:
               cpu: 10m
       pod:
         securityContext:
-          runAsUser: 568
-          runAsGroup: 568
+          runAsUser: 1026
+          runAsGroup: 100
           runAsNonRoot: true
-          fsGroup: 568
+          fsGroup: 100
           fsGroupChangePolicy: OnRootMismatch
   service:
     main:
@@ -75,7 +79,14 @@ app-template:
       enabled: true
       annotations:
         cert-manager.io/cluster-issuer: acme-letsencrypt-prod
-        hajimari.io/icon: search-web
+        hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/prowlarr.png
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Series Management
+        gethomepage.dev/group: Media Fetchers
+        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/prowlarr.png
+        gethomepage.dev/name: Prowlarr
+        gethomepage.dev/widget.type: "prowlarr"
+        gethomepage.dev/widget.url: "https://prowlarr.g4v.dev"
       hosts:
         - host: &host "prowlarr.g4v.dev"
           paths:
@@ -89,6 +100,8 @@ app-template:
           secretName: prowlarr-tls-certificate
   persistence:
     config:
+      enabled: true
       type: emptyDir
     tmp:
+      enabled: true
       type: emptyDir
