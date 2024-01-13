@@ -1,0 +1,8 @@
+headlamp:
+  ingress:
+    annotations:
+      cert-manager.io/cluster-issuer: acme-letsencrypt-prod
+      hajimari.io/appName: Headlamp
+      gethomepage.dev/enabled: "true"
+      gethomepage.dev/group: Kubernetes
+      gethomepage.dev/name: Headlamp
