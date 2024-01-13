@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kubeview
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "20"
+spec:
+  destination:
+    namespace: kubeview
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: apps/kubeview
+    repoURL: https://github.com/halkeye/home-k8s
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values.yaml
+      values:
+        kubeview:
+          ingress:
+            enabled: true
+            hosts:
+              - host: &host kubeview.h.g4v.dev
+            tls:
+              - secretName: kubeview-tls-certificate
+                hosts:
+                - *host
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
