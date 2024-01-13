@@ -17,16 +17,7 @@ spec:
     helm:
       valueFiles:
         - values.yaml
-      valuesObject:
-        headlamp:
-          ingress:
-            enabled: true
-            hosts:
-              - host: &host headlamp.h.g4v.dev
-            tls:
-              - secretName: headlamp-tls-certificate
-                hosts:
-                - *host
+        - secrets://values-secrets.yaml
   syncPolicy:
     automated:
       selfHeal: true

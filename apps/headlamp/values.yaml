@@ -21,3 +21,4 @@ headlamp:
     oidc:
       clientID: W480DDDgCOx3UAGMz84LHjBsOec3IU14wBZOU6yC
       issuerURL: https://auth.g4v.dev/application/o/headlamp/
+      scopes: profile,email,groups
