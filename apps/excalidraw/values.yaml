@@ -4,9 +4,13 @@ excalidraw:
     annotations:
       cert-manager.io/cluster-issuer: acme-letsencrypt-prod
       hajimari.io/appName: excalidraw
-      hajimari.io/icon: draw-pen
+      hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/excalidraw.png
+      gethomepage.dev/enabled: "true"
+      gethomepage.dev/group: Tools
+      gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/excalidraw.png
+      gethomepage.dev/name: Excalidraw
     hosts:
-      - host: &host draw.h.g4v.dev
+      - host: &host draw.g4v.dev
         paths:
           - path: /
             pathType: Prefix
