@@ -10,6 +10,7 @@ traefik:
     kubernetesIngress:
       publishedService:
         enabled: true
+      allowExternalNameServices: true
   priorityClassName: "system-cluster-critical"
   tolerations:
   - key: "CriticalAddonsOnly"
@@ -22,3 +23,13 @@ traefik:
     effect: "NoSchedule"
   service:
     ipFamilyPolicy: "PreferDualStack"
+  logs:
+    general:
+      level: INFO
+  ports:
+    traefik:
+      expose: true
+  tlsStore:
+    default:
+      defaultCertificate:
+        secretName: wildcard-g4v-tls
