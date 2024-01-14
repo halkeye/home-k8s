@@ -1,4 +1,10 @@
 homepage:
+  resources:
+    requests:
+      cpu: 15m
+      memory: 127M
+    limits:
+      memory: 308M
   ingress:
     main:
       enabled: true
