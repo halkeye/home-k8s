@@ -2,7 +2,7 @@ traefik:
   ingressClass:
     enabled: true
     isDefaultClass: true
-    # name: my-custom-class
+    name: traefik-ingress
   podAnnotations:
     prometheus.io/port: "8082"
     prometheus.io/scrape: "true"
