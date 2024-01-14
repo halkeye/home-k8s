@@ -1,6 +1,4 @@
 homepage:
-  env:
-    TZ: America/Vancouver
   ingress:
     main:
       enabled: true
@@ -77,6 +75,28 @@ homepage:
       - search:
           provider: duckduckgo
           target: _blank
+      - unifi_console:
+          url: https://unifi.g4v.dev
+          username: "{{ UNIFI_USERNAME }}"
+          password: "{{ UNIFI_PASSWORD }}"
+          site: "{{ UNIFI_SITE }}"
     kubernetes:
       mode: cluster
     settings: {}
+  env:
+    TZ: America/Vancouver
+    UNIFI_USERNAME:
+      valueFrom:
+        secretKeyRef:
+          name: "gethomepage-secret"
+          key: UNIFI_USERNAME
+    UNIFI_PASSWORD:
+      valueFrom:
+        secretKeyRef:
+          name: "gethomepage-secret"
+          key: UNIFI_PASSWORD
+    UNIFI_SITE:
+      valueFrom:
+        secretKeyRef:
+          name: "gethomepage-secret"
+          key: UNIFI_SITE
