@@ -1,6 +1,6 @@
 homepage:
   image:
-    repository: ghcr.io/benphelps/homepage
+    repository: ghcr.io/gethomepage/homepage
     tag: v0.8.4
 
   resources:
