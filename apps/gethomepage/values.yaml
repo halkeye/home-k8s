@@ -62,6 +62,15 @@ homepage:
               href: https://172.16.10.145:8006/
               icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/proxmox.png
               description: Proxmox
+          - AdguardHome Carbon:
+              href: http://172.16.10.9/
+              icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/adguard-home.png
+              description: Pi Ad-Blocking
+              widget:
+                type: adguard
+                url: http://172.16.10.9/
+                username: {{ADGUARD_USERNAME}}
+                password: {{ADGUARD_PASSWORD}}
     widgets:
       # show the kubernetes widget, with the cluster summary and individual nodes
       - kubernetes:
@@ -104,3 +113,13 @@ homepage:
         secretKeyRef:
           name: "gethomepage-secret"
           key: UNIFI_SITE
+    ADGUARD_PASSWORD:
+      valueFrom:
+        secretKeyRef:
+          name: "gethomepage-secret"
+          key: ADGUARD_PASSWORD
+    ADGUARD_USERNAME:
+      valueFrom:
+        secretKeyRef:
+          name: "gethomepage-secret"
+          key: ADGUARD_USERNAME
