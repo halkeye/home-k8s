@@ -10,7 +10,10 @@ traefik:
     kubernetesIngress:
       publishedService:
         enabled: true
-      allowExternalNameServices: true
+  ingressRoute:
+    dashboard:
+      # -- Create an IngressRoute for the dashboard
+      enabled: false
   priorityClassName: "system-cluster-critical"
   tolerations:
   - key: "CriticalAddonsOnly"
@@ -26,9 +29,6 @@ traefik:
   logs:
     general:
       level: INFO
-  ports:
-    traefik:
-      expose: true
   tlsStore:
     default:
       defaultCertificate:
