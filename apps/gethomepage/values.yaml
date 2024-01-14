@@ -54,9 +54,9 @@ homepage:
               href: https://books.g4v.dev
               icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/calibre-web.png
       - Media:
-          - Calibre:
+          - Plex:
               href: https://app.plex.tv/desktop/
-              icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/plex.png
+              icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/plex.png
       - Home:
           - Unifi:
               href: https://unifi.g4v.dev
@@ -75,8 +75,8 @@ homepage:
               widget:
                 type: adguard
                 url: http://172.16.10.9/
-                username: "{{ADGUARD_USERNAME}}"
-                password: "{{ADGUARD_PASSWORD}}"
+                username: "{{HOMEPAGE_VAR_ADGUARD_USERNAME}}"
+                password: "{{HOMEPAGE_VAR_ADGUARD_PASSWORD}}"
     widgets:
       # show the kubernetes widget, with the cluster summary and individual nodes
       - kubernetes:
@@ -96,36 +96,14 @@ homepage:
           target: _blank
       - unifi_console:
           url: https://unifi.g4v.dev
-          username: "{{ UNIFI_USERNAME }}"
-          password: "{{ UNIFI_PASSWORD }}"
-          site: "{{ UNIFI_SITE }}"
+          username: "{{ HOMEPAGE_VAR_UNIFI_USERNAME }}"
+          password: "{{ HOMEPAGE_VAR_UNIFI_PASSWORD }}"
+          site: "{{ HOMEPAGE_VAR_UNIFI_SITE }}"
     kubernetes:
       mode: cluster
     settings: {}
+  envFrom:
+    - secretRef:
+        name: "gethomepage-secret"
   env:
     TZ: America/Vancouver
-    UNIFI_USERNAME:
-      valueFrom:
-        secretKeyRef:
-          name: "gethomepage-secret"
-          key: UNIFI_USERNAME
-    UNIFI_PASSWORD:
-      valueFrom:
-        secretKeyRef:
-          name: "gethomepage-secret"
-          key: UNIFI_PASSWORD
-    UNIFI_SITE:
-      valueFrom:
-        secretKeyRef:
-          name: "gethomepage-secret"
-          key: UNIFI_SITE
-    ADGUARD_PASSWORD:
-      valueFrom:
-        secretKeyRef:
-          name: "gethomepage-secret"
-          key: ADGUARD_PASSWORD
-    ADGUARD_USERNAME:
-      valueFrom:
-        secretKeyRef:
-          name: "gethomepage-secret"
-          key: ADGUARD_USERNAME
