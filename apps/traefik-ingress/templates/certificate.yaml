@@ -3,9 +3,8 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: g4v-wildcard-certificate
-  namespace: kube-system
 spec:
-  commonName: 'homek8s.g4v.dev'
+  commonName: '*.h.g4v.dev'
   dnsNames:
   - '*.g4v.dev'
   - '*.h.g4v.dev'
