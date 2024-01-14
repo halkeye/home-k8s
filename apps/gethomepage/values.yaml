@@ -47,6 +47,10 @@ homepage:
           - Calibre:
               href: https://books.g4v.dev
               icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/calibre-web.png
+      - Media:
+          - Calibre:
+              href: https://app.plex.tv/desktop/
+              icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/plex.png
       - Home:
           - Unifi:
               href: https://unifi.g4v.dev
