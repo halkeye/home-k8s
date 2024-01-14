@@ -75,8 +75,8 @@ homepage:
               widget:
                 type: adguard
                 url: http://172.16.10.9/
-                username: {{ADGUARD_USERNAME}}
-                password: {{ADGUARD_PASSWORD}}
+                username: "{{ADGUARD_USERNAME}}"
+                password: "{{ADGUARD_PASSWORD}}"
     widgets:
       # show the kubernetes widget, with the cluster summary and individual nodes
       - kubernetes:
