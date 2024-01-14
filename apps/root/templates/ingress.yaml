@@ -1,20 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nginx-ingress
+  name: traefik-ingress
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
   destination:
-    namespace: nginx-ingress
+    namespace: traefik-ingress
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: apps/nginx-ingress
+    path: apps/traefik-ingress
     repoURL: https://github.com/halkeye/home-k8s
     targetRevision: HEAD
     helm:
+      passCredentials: true
       valueFiles:
         - values.yaml
   syncPolicy:

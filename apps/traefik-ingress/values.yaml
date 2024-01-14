@@ -1,0 +1,5 @@
+traefik:
+  ingressClass:
+    enabled: true
+    isDefaultClass: false
+    # name: my-custom-class
