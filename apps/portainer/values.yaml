@@ -12,7 +12,8 @@ portainer:
       gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/portainer.png
     hosts:
       - host: portainer.g4v.dev
-        paths: []
+        paths:
+          - path: "/"
   persistence:
     enabled: true
     storageClass: synology-iscsi
