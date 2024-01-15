@@ -50,8 +50,9 @@ app-template:
   persistence:
     config:
       enabled: true
-      type: persistentVolumeClaim
-      storageClass: synology-iscsi
+      type: emptyDir
+      #type: persistentVolumeClaim
+      #storageClass: synology-iscsi
       globalMounts:
         - path: /kavita/config
     books:
