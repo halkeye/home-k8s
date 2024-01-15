@@ -4,8 +4,10 @@ app-template:
       containers:
         main:
           image:
-            repository: ghcr.io/kareadita/kavita
-            tag: 0.7.12@sha256:a7dd4dd9f903bff03c1209721753594d1f56b34198b0dc40be46c070d9073995
+            repository: kizaing/kavita
+            tag: 0.7.8
+          env:
+            TZ: America/Vancouver
           resources:
             requests:
               cpu: 50m
@@ -50,6 +52,8 @@ app-template:
       enabled: true
       type: persistentVolumeClaim
       storageClass: synology-iscsi
+      globalMounts:
+        - path: /kavita/config
     books:
       type: nfs
       server: 172.16.10.10
