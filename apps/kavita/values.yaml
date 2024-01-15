@@ -8,6 +8,7 @@ app-template:
             tag: 0.7.8
           env:
             TZ: America/Vancouver
+            COMPlus_EnableDiagnostics: "0"
           resources:
             requests:
               cpu: 50m
@@ -50,9 +51,9 @@ app-template:
   persistence:
     config:
       enabled: true
-      type: emptyDir
-      #type: persistentVolumeClaim
-      #storageClass: synology-iscsi
+      #type: emptyDir
+      type: persistentVolumeClaim
+      storageClass: synology-iscsi
       globalMounts:
         - path: /kavita/config
     books:
