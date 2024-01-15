@@ -16,6 +16,10 @@ immich:
       microservices:
         containers:
           main:
+            image:
+              repository: ghcr.io/immich-app/immich-server
+              pullPolicy: IfNotPresent
+              tag: v1.92.1
             env:
               DB_URL:
                 valueFrom:
@@ -25,6 +29,10 @@ immich:
       main:
         containers:
           main:
+            image:
+              repository: ghcr.io/immich-app/immich-server
+              pullPolicy: IfNotPresent
+              tag: v1.92.1
             env:
               DB_URL:
                 valueFrom:
@@ -34,6 +42,10 @@ immich:
       machine-learning:
         containers:
           main:
+            image:
+              repository: ghcr.io/immich-app/immich-machine-learning
+              tag: v1.92.1
+              pullPolicy: IfNotPresent
             env:
               DB_URL:
                 valueFrom:
