@@ -31,6 +31,39 @@ app-template:
       ports:
         http:
           port: *port
+  secrets:
+    secret:
+      enabled: true
+      data:
+        application.yml: |-
+          komga:
+            database:
+              file: /data/.komga/database.sqlite
+            delete-empty-collections: true
+            delete-empty-read-lists: true
+          server:
+            servlet:
+              session.timeout: 7d # session timeout, here 7 days
+              context-path: /
+          spring:
+            security:
+              oauth2:
+                client:
+                  registration:
+                    keycloak:
+                      provider: authentik # this must match the provider below
+                      client-id: {{.Values.oauth.clientId}}
+                      client-secret: {{.Values.oauth.clientSecret}}
+                      client-name: Oauth
+                      scope: openid,email
+                      authorization-grant-type: authorization_code
+                      # the placeholders in {} will be replaced automatically, you don't need to change this line
+                      redirect-uri: "{baseUrl}/{action}/oauth2/code/{registrationId}"
+                  provider:
+                    keycloak: # this must match the provider above
+                      user-name-attribute: preferred_username
+                      # either set the issuer-uri, in which case the app will lookup the configuration for you automatically
+                      issuer-uri: https://auth.g4v.dev/application/o/komga/
   ingress:
     main:
       enabled: true
@@ -50,9 +83,14 @@ app-template:
   persistence:
     config:
       enabled: true
-      #type: emptyDir
+      type: secret
+      name: "{{ .Release.Name }}-secret"
+    data:
+      enabled: true
       type: persistentVolumeClaim
       storageClass: synology-iscsi
+      accessMode: ReadWriteOnce
+      size: 1Gi
     books:
       type: nfs
       server: 172.16.10.10
