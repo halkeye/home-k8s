@@ -36,9 +36,18 @@ app-template:
       enabled: true
       stringData:
         application.yml: |-
+          ---
+          logging:
+            file:
+              name: /data/logs/komga.log
           komga:
             database:
               file: /data/database.sqlite
+            config-dir: /data
+            lucene:
+              data-directory: /data/lucene
+            tasks-db:
+              file: /data/tasks.sqlite
             delete-empty-collections: true
             delete-empty-read-lists: true
           server:
