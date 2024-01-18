@@ -34,11 +34,11 @@ app-template:
   secrets:
     secret:
       enabled: true
-      data:
+      stringData:
         application.yml: |-
           komga:
             database:
-              file: /data/.komga/database.sqlite
+              file: /data/database.sqlite
             delete-empty-collections: true
             delete-empty-read-lists: true
           server:
