@@ -21,11 +21,11 @@ app-template:
             SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_AUTHENTIK_SCOPE: openid,email,profile
             SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_AUTHENTIK_AUTHORIZATIONGRANTTYPE: authorization_code
             SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_AUTHENTIK_REDIRECTURI: "{baseUrl}/{action}/oauth2/code/{registrationId}"
-            SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_AUTHENTIK_ISSUER_URL: "https://auth.g4v.dev/application/o/komga"
-            SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_AUTHENTIK_AUTHORIZATIONURI: "https://auth.g4v.dev/application/o/authorize"
-            SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_AUTHENTIK_TOKENURI: "https://auth.g4v.dev/application/o/token"
-            SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_AUTHENTIK_JWKSETURI: "https://auth.g4v.dev/application/o/komga/jwks"
-            SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_AUTHENTIK_USERINFOURI: "https://auth.g4v.dev/application/o/userinfo"
+            SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_AUTHENTIK_ISSUER_URL: "https://auth.g4v.dev/application/o/komga/"
+            SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_AUTHENTIK_AUTHORIZATIONURI: "https://auth.g4v.dev/application/o/authorize/"
+            SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_AUTHENTIK_TOKENURI: "https://auth.g4v.dev/application/o/token/"
+            SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_AUTHENTIK_JWKSETURI: "https://auth.g4v.dev/application/o/komga/jwks/"
+            SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_AUTHENTIK_USERINFOURI: "https://auth.g4v.dev/application/o/userinfo/"
             SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_AUTHENTIK_USERNAMEATTRIBUTE: "preferred_username"
           resources:
             requests:
