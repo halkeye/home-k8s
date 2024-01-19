@@ -6,9 +6,25 @@ app-template:
           image:
             repository: gotson/komga
             tag: 1.10.1
+          envFrom:
+            - secretRef:
+                name: "{{ .Release.Name }}-secret"
           env:
             TZ: America/Vancouver
             SERVER_PORT: &port 8080
+            LOGGING_LEVEL_ROOT: INFO
+            LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY: DEBUG
+            KOMGA_CONFIGDIR: /data
+            SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_AUTHENTIK_PROVIDER: authentik
+            SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_AUTHENTIK_CLIENTNAME: Auth
+            SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_AUTHENTIK_SCOPE: openid,email
+            SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_AUTHENTIK_AUTHORIZATIONGRANTTYPE: authorization_code
+            SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_AUTHENTIK_REDIRECTURI: "{baseUrl}/{action}/oauth2/code/{registrationId}"
+            SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_AUTHENTIK_AUTHORIZATIONURI: "https://auth.g4v.dev/application/o/authorize/"
+            SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_AUTHENTIK_TOKENURI: "https://auth.g4v.dev/application/o/token/"
+            SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_AUTHENTIK_JWKSETURI: "https://auth.g4v.dev/application/o/komga/jwks/"
+            SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_AUTHENTIK_USERINFOURI: "https://auth.g4v.dev/application/o/userinfo/"
+            SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_AUTHENTIK_USERNAMEATTRIBUTE: "preferred_username"
           resources:
             requests:
               memory: 250Mi
@@ -35,44 +51,8 @@ app-template:
     secret:
       enabled: true
       stringData:
-        application.yml: |-
-          ---
-          logging:
-            file:
-              name: /data/logs/komga.log
-          komga:
-            database:
-              file: /data/database.sqlite
-            config-dir: /data
-            lucene:
-              data-directory: /data/lucene
-            tasks-db:
-              file: /data/tasks.sqlite
-            delete-empty-collections: true
-            delete-empty-read-lists: true
-          server:
-            servlet:
-              session.timeout: 7d # session timeout, here 7 days
-              context-path: /
-          spring:
-            security:
-              oauth2:
-                client:
-                  registration:
-                    keycloak:
-                      provider: authentik # this must match the provider below
-                      client-id: {{.Values.oauth.clientId}}
-                      client-secret: {{.Values.oauth.clientSecret}}
-                      client-name: Oauth
-                      scope: openid,email
-                      authorization-grant-type: authorization_code
-                      # the placeholders in {} will be replaced automatically, you don't need to change this line
-                      redirect-uri: "{baseUrl}/{action}/oauth2/code/{registrationId}"
-                  provider:
-                    authentik: # this must match the provider above
-                      user-name-attribute: preferred_username
-                      # either set the issuer-uri, in which case the app will lookup the configuration for you automatically
-                      issuer-uri: https://auth.g4v.dev/application/o/komga/
+        SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_AUTHENTIK_CLIENTID: "{{.Values.oauth.clientId}}"
+        SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_AUTHENTIK_CLIENTSECRET: "{{.Values.oauth.clientSecret}}"
   ingress:
     main:
       enabled: true
@@ -92,8 +72,7 @@ app-template:
   persistence:
     config:
       enabled: true
-      type: secret
-      name: "{{ .Release.Name }}-secret"
+      type: emptyDir
     data:
       enabled: true
       type: persistentVolumeClaim
