@@ -7,6 +7,7 @@ metadata:
 spec:
   commonName: 'homek8s.g4v.dev'
   dnsNames:
+  - 'homek8s.g4v.dev'
   - '*.g4v.dev'
   - '*.h.g4v.dev'
   issuerRef:
