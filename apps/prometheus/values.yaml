@@ -51,7 +51,18 @@ kube-prometheus-stack:
           hosts:
             - prometheus.h.g4v.dev
   grafana:
-    enabled: false
+    enabled: true
+    ingress:
+      enabled: true
+      annotations:
+        hajimari.io/appName: Grafana
+        hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/grafana.png
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: Kubernetes
+        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/grafana.png
+        gethomepage.dev/name: Grafana
+      hosts:
+        - grafana.h.g4v.dev
   kubeProxy:
     enabled: false
   defaultRules:
