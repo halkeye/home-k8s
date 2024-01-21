@@ -19,7 +19,7 @@ immich:
             image:
               repository: ghcr.io/immich-app/immich-server
               pullPolicy: IfNotPresent
-              tag: v1.92.1
+              tag: v1.93.3
             env:
               DB_URL:
                 valueFrom:
@@ -32,7 +32,7 @@ immich:
             image:
               repository: ghcr.io/immich-app/immich-server
               pullPolicy: IfNotPresent
-              tag: v1.92.1
+              tag: v1.93.3
             env:
               DB_URL:
                 valueFrom:
@@ -44,7 +44,7 @@ immich:
           main:
             image:
               repository: ghcr.io/immich-app/immich-machine-learning
-              tag: v1.92.1
+              tag: v1.93.3
               pullPolicy: IfNotPresent
             env:
               DB_URL:

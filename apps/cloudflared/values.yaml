@@ -1,6 +1,6 @@
 image:
   repository: cloudflare/cloudflared
-  tag: "2024.1.2"
+  tag: "2024.1.4"
   imagePullPolicy: IfNotPresent
 
 replicaCount: 3
