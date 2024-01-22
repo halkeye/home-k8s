@@ -5,7 +5,7 @@ app-template:
         main:
           image:
             repository: gotson/komga
-            tag: 1.10.1
+            tag: 1.10.2
           envFrom:
             - secretRef:
                 name: "{{ .Release.Name }}-secret"
