@@ -17,3 +17,7 @@ portainer:
   persistence:
     enabled: true
     storageClass: synology-iscsi
+  service:
+    annotations:
+      tailscale.com/expose: "true"
+      tailscale.com/hostname: "portainer"
