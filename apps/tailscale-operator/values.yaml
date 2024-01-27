@@ -1,0 +1,8 @@
+---
+tailscale-operator:
+  proxyConfig:
+    image:
+      repo: tailscale/tailscale
+      tag: "v1.56.1"
+    defaultTags: "tag:home-k8s"
+
