@@ -8,6 +8,7 @@ app-template:
             tag: 1.4.3
           env:
             TZ: America/Vancouver
+            HOME: /tmp
           resources:
             requests:
               memory: 250Mi
@@ -51,6 +52,9 @@ app-template:
     config:
       enabled: true
       storageClass: synology-iscsi
+    tmp:
+      enabled: true
+      type: emptyDir
     comics:
       type: nfs
       server: 172.16.10.10
