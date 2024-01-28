@@ -7,4 +7,5 @@ dependencies:
     repository: https://mariadb-operator.github.io/mariadb-operator
 maintainers:
   - name: Gavin Mogan
+    url: https://www.gavinmogan.com
     email: helm@gavinmogan.com

@@ -10,4 +10,5 @@ dependencies:
   repository: https://jameswynn.github.io/helm-charts
 maintainers:
   - name: Gavin Mogan
+    url: https://www.gavinmogan.com
     email: helm@gavinmogan.com

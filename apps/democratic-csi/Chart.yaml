@@ -7,4 +7,5 @@ dependencies:
     repository: https://democratic-csi.github.io/charts/
 maintainers:
   - name: Gavin Mogan
+    url: https://www.gavinmogan.com
     email: helm@gavinmogan.com

@@ -7,4 +7,5 @@ dependencies:
     repository: https://pmoscode-helm.github.io/excalidraw/
 maintainers:
   - name: Gavin Mogan
+    url: https://www.gavinmogan.com
     email: helm@gavinmogan.com

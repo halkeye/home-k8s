@@ -10,4 +10,5 @@ dependencies:
     repository: https://argoproj.github.io/argo-helm
 maintainers:
   - name: Gavin Mogan
+    url: https://www.gavinmogan.com
     email: helm@gavinmogan.com

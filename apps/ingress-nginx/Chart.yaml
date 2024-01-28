@@ -10,4 +10,5 @@ dependencies:
   repository: https://kubernetes.github.io/ingress-nginx
 maintainers:
   - name: Gavin Mogan
+    url: https://www.gavinmogan.com
     email: helm@gavinmogan.com

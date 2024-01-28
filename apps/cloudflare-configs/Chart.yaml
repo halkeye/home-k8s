@@ -24,4 +24,5 @@ version: 0.1.0
 appVersion: "1.16.0"
 maintainers:
   - name: Gavin Mogan
+    url: https://www.gavinmogan.com
     email: helm@gavinmogan.com

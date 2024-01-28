@@ -25,4 +25,5 @@ dependencies:
   repository: https://bjw-s.github.io/helm-charts
 maintainers:
   - name: Gavin Mogan
+    url: https://www.gavinmogan.com
     email: helm@gavinmogan.com

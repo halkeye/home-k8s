@@ -10,4 +10,5 @@ dependencies:
   repository: https://ori-edge.github.io/k8s_gateway/
 maintainers:
   - name: Gavin Mogan
+    url: https://www.gavinmogan.com
     email: helm@gavinmogan.com

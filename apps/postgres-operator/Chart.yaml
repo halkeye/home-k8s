@@ -7,4 +7,5 @@ dependencies:
     repository: https://opensource.zalando.com/postgres-operator/charts/postgres-operator
 maintainers:
   - name: Gavin Mogan
+    url: https://www.gavinmogan.com
     email: helm@gavinmogan.com

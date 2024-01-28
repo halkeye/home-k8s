@@ -29,4 +29,5 @@ dependencies:
   repository: https://benc-uk.github.io/kubeview/charts
 maintainers:
   - name: Gavin Mogan
+    url: https://www.gavinmogan.com
     email: helm@gavinmogan.com
