@@ -8,8 +8,6 @@ app-template:
             tag: 1.4.3
           env:
             TZ: America/Vancouver
-            PUID: 1026
-            PGID: 100
           resources:
             requests:
               memory: 250Mi
