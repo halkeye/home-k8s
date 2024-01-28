@@ -1,4 +1,4 @@
-common:
+app-template:
   secrets:
     secret:
       enabled: true
