@@ -48,5 +48,16 @@ app-template:
                 port: http
   persistence:
     config:
+      enabled: false
+    configs:
+      enabled: true
+      type: persistentVolumeClaim
+      storageClass: synology-iscsi
+      accessMode: ReadWriteOnce
+      size: 1Gi
+    logs:
+      enabled: true
+      type: emptyDir
+    data:
       enabled: true
       type: emptyDir
