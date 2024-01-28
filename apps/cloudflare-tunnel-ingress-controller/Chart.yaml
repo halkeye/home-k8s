@@ -28,6 +28,6 @@ dependencies:
   version: 0.0.9
   repository: https://helm.strrl.dev
 maintainers:
-  - name: Gavin Mogan
+  - name: halkeye
     url: https://www.gavinmogan.com
     email: helm@gavinmogan.com

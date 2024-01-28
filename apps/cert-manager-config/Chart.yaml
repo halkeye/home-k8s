@@ -28,6 +28,6 @@ dependencies:
   version: v2.0.4
   repository: https://beluga-cloud.github.io/charts/
 maintainers:
-  - name: Gavin Mogan
+  - name: halkeye
     url: https://www.gavinmogan.com
     email: helm@gavinmogan.com

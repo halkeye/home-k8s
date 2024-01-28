@@ -9,6 +9,6 @@ dependencies:
   version: 4.9.0
   repository: https://kubernetes.github.io/ingress-nginx
 maintainers:
-  - name: Gavin Mogan
+  - name: halkeye
     url: https://www.gavinmogan.com
     email: helm@gavinmogan.com

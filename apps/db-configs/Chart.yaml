@@ -6,6 +6,6 @@ dependencies:
   version: 1.2.5
   repository: https://movetokube.github.io/postgres-operator/
 maintainers:
-  - name: Gavin Mogan
+  - name: halkeye
     url: https://www.gavinmogan.com
     email: helm@gavinmogan.com

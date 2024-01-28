@@ -28,6 +28,6 @@ dependencies:
   version: 56.2.0
   repository: https://prometheus-community.github.io/helm-charts
 maintainers:
-  - name: Gavin Mogan
+  - name: halkeye
     url: https://www.gavinmogan.com
     email: helm@gavinmogan.com

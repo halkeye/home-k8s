@@ -6,6 +6,6 @@ dependencies:
     version: 0.1.2
     repository: https://openspeedtest.github.io/Helm-chart
 maintainers:
-  - name: Gavin Mogan
+  - name: halkeye
     url: https://www.gavinmogan.com
     email: helm@gavinmogan.com

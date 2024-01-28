@@ -3,6 +3,6 @@ name: mariadb-configs
 version: 0.0.0
 dependencies: []
 maintainers:
-  - name: Gavin Mogan
+  - name: halkeye
     url: https://www.gavinmogan.com
     email: helm@gavinmogan.com

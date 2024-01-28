@@ -6,6 +6,6 @@ dependencies:
     version: 0.9.7
     repository: https://christian-schlichtherle.github.io/synology-csi-chart
 maintainers:
-  - name: Gavin Mogan
+  - name: halkeye
     url: https://www.gavinmogan.com
     email: helm@gavinmogan.com

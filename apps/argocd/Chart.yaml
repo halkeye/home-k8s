@@ -9,6 +9,6 @@ dependencies:
     version: 5.53.9
     repository: https://argoproj.github.io/argo-helm
 maintainers:
-  - name: Gavin Mogan
+  - name: halkeye
     url: https://www.gavinmogan.com
     email: helm@gavinmogan.com

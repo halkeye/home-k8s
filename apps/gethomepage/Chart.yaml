@@ -9,6 +9,6 @@ dependencies:
   version: 1.2.3
   repository: https://jameswynn.github.io/helm-charts
 maintainers:
-  - name: Gavin Mogan
+  - name: halkeye
     url: https://www.gavinmogan.com
     email: helm@gavinmogan.com

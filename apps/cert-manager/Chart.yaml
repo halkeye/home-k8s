@@ -9,6 +9,6 @@ dependencies:
   version: v1.13.3
   repository: https://charts.jetstack.io
 maintainers:
-  - name: Gavin Mogan
+  - name: halkeye
     url: https://www.gavinmogan.com
     email: helm@gavinmogan.com
