@@ -14,11 +14,6 @@ app-template:
               memory: 128Mi
             limits:
               memory: 256Mi
-        securityContext:
-          allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
-          capabilities:
-            drop: ["ALL"]
       pod:
         securityContext:
           runAsUser: 1026
@@ -26,6 +21,10 @@ app-template:
           runAsNonRoot: true
           fsGroup: 100
           fsGroupChangePolicy: OnRootMismatch
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
   service:
     main:
       ports:
