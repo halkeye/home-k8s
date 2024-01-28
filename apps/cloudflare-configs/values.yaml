@@ -80,3 +80,7 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+cloudflare:
+  apiToken: ""
+  globalKey: ""
