@@ -5,14 +5,10 @@ version: 1.0.0
 appVersion: "1.0.0"
 
 dependencies:
-  #- name: common
-  #  repository: https://bjw-s.github.io/helm-charts
-  #  version: 2.4.0
   - name: immich
     version: 0.3.1
     repository: file://../../upstream/immich/
   #  repository: git+https://github.com/halkeye/immich-charts@charts?ref=17097db64d496df60fd2582b265df102240ea8f4
-  #  repository: https://immich-app.github.io/immich-charts
 
 maintainers:
   - name: Gavin Mogan
