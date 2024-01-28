@@ -13,7 +13,7 @@ goldilocks:
     ingress:
       enabled: true
       annotations:
-        hajimari.io//enabled: "true"
+        hajimari.io/enabled: "true"
         hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/etcd.png
         gethomepage.dev/enabled: "true"
         gethomepage.dev/group: Kubernetes
