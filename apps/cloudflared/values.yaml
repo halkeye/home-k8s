@@ -7,4 +7,4 @@ replicaCount: 3
 tunnelID: ""
 tunnelAuth: ""
 ingress:
-    - service: http_status:404
+  - service: http_status:404

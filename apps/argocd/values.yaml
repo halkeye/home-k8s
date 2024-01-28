@@ -124,7 +124,7 @@ argo-cd:
         value: "true"
       - name: HELM_SECRETS_HELM_PATH
         value: /usr/local/bin/helm
-      - name: SOPS_AGE_KEY_FILE # For age
+      - name: SOPS_AGE_KEY_FILE  # For age
         value: /helm-secrets-private-keys/key.txt
     initContainers:
       - name: custom-tools
@@ -185,7 +185,7 @@ argo-cd:
       helm.valuesFileSchemes: secrets+gpg-import, secrets+gpg-import-kubernetes, secrets+age-import,
         secrets+age-import-kubernetes, secrets,secrets+literal, https
       kustomize.buildOptions: --enable-alpha-plugins --enable-exec
-      url: *url 
+      url: *url
       dex.config: |
         connectors:
           # OIDC
