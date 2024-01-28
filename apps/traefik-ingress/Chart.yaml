@@ -27,3 +27,6 @@ dependencies:
 - name: traefik
   version: 26.0.0
   repository: https://helm.traefik.io/traefik
+maintainers:
+  - name: Gavin Mogan
+    email: helm@gavinmogan.com

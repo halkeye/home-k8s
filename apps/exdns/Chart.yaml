@@ -8,3 +8,6 @@ dependencies:
 - name: k8s-gateway
   version: 2.3.0
   repository: https://ori-edge.github.io/k8s_gateway/
+maintainers:
+  - name: Gavin Mogan
+    email: helm@gavinmogan.com

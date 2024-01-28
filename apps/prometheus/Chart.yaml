@@ -27,3 +27,6 @@ dependencies:
 - name: kube-prometheus-stack
   version: 56.2.0
   repository: https://prometheus-community.github.io/helm-charts
+maintainers:
+  - name: Gavin Mogan
+    email: helm@gavinmogan.com

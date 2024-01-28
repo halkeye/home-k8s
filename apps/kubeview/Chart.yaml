@@ -27,3 +27,6 @@ dependencies:
 - name: kubeview
   version: 0.1.31
   repository: https://benc-uk.github.io/kubeview/charts
+maintainers:
+  - name: Gavin Mogan
+    email: helm@gavinmogan.com

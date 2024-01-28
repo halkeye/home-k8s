@@ -5,3 +5,6 @@ dependencies:
   - name: synology-csi
     version: 0.9.7
     repository: https://christian-schlichtherle.github.io/synology-csi-chart
+maintainers:
+  - name: Gavin Mogan
+    email: helm@gavinmogan.com

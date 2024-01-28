@@ -5,3 +5,6 @@ dependencies:
   - name: cloudnative-pg
     version: 0.20.0
     repository: https://cloudnative-pg.github.io/charts
+maintainers:
+  - name: Gavin Mogan
+    email: helm@gavinmogan.com

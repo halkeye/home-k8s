@@ -27,3 +27,6 @@ dependencies:
 - name: cert-manager-issuers
   version: v2.0.4
   repository: https://beluga-cloud.github.io/charts/
+maintainers:
+  - name: Gavin Mogan
+    email: helm@gavinmogan.com

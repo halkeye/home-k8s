@@ -5,3 +5,6 @@ dependencies:
   - name: openspeedtest
     version: 0.1.2
     repository: https://openspeedtest.github.io/Helm-chart
+maintainers:
+  - name: Gavin Mogan
+    email: helm@gavinmogan.com

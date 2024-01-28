@@ -29,3 +29,6 @@ dependencies:
     repository: https://pkgs.tailscale.com/helmcharts/
     #repository: git+https://github.com/tailscale/tailscale@cmd/k8s-operator/deploy/chart?ref=v1.58.2&&sparse=0
 
+maintainers:
+  - name: Gavin Mogan
+    email: helm@gavinmogan.com

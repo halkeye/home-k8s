@@ -27,3 +27,6 @@ dependencies:
 - name: portainer
   version: 1.0.49
   repository: https://portainer.github.io/k8s/
+maintainers:
+  - name: Gavin Mogan
+    email: helm@gavinmogan.com
