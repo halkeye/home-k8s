@@ -4,9 +4,6 @@ k8s-gateway:
     enabled: true
   service:
     type: LoadBalancer
-    # externalTrafficPolicy: Local
-    #externalIPs:
-    #- 172.16.10.116
   watchedResources:
     - Ingress
   extraZonePlugins:
