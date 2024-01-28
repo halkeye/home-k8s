@@ -63,7 +63,8 @@ democratic-csi:
       iscsi:
         targetPortal: "server[:port]"
         # for multipath
-        targetPortals: [] # [ "server[:port]", "server[:port]", ... ]
+        # [ "server[:port]", "server[:port]", ... ]
+        targetPortals: []
         # leave empty to omit usage of -I with iscsiadm
         interface: ""
         # can be whatever you would like
@@ -81,54 +82,8 @@ democratic-csi:
         # See https://github.com/democratic-csi/democratic-csi/blob/master/docs/storage-class-parameters.md
         lunTemplate:
           # can be static value or handlebars template
-          #description: "{{ parameters.[csi.storage.k8s.io/pvc/namespace] }}-{{ parameters.[csi.storage.k8s.io/pvc/name] }}"
-
-          # btrfs thin provisioning
+          # description: "{{ parameters.[csi.storage.k8s.io/pvc/namespace] }}-{{ parameters.[csi.storage.k8s.io/pvc/name] }}"
           type: "BLUN"
-          # tpws = Hardware-assisted zeroing
-          # caw = Hardware-assisted locking
-          # 3pc = Hardware-assisted data transfer
-          # tpu = Space reclamation
-          # can_snapshot = Snapshot
-          #dev_attribs:
-          #- dev_attrib: emulate_tpws
-          #  enable: 1
-          #- dev_attrib: emulate_caw
-          #  enable: 1
-          #- dev_attrib: emulate_3pc
-          #  enable: 1
-          #- dev_attrib: emulate_tpu
-          #  enable: 0
-          #- dev_attrib: can_snapshot
-          #  enable: 1
-
-          # btfs thick provisioning
-          # only zeroing and locking supported
-          #type: "BLUN_THICK"
-          # tpws = Hardware-assisted zeroing
-          # caw = Hardware-assisted locking
-          #dev_attribs:
-          #- dev_attrib: emulate_tpws
-          #  enable: 1
-          #- dev_attrib: emulate_caw
-          #  enable: 1
-
-          # ext4 thinn provisioning UI sends everything with enabled=0
-          #type: "THIN"
-
-          # ext4 thin with advanced legacy features set
-          # can only alter tpu (all others are set as enabled=1)
-          #type: "ADV"
-          #dev_attribs:
-          #- dev_attrib: emulate_tpu
-          #  enable: 1
-
-          # ext4 thick
-          # can only alter caw
-          #type: "FILE"
-          #dev_attribs:
-          #- dev_attrib: emulate_caw
-          #  enable: 1
 
         lunSnapshotTemplate:
           is_locked: true

@@ -8,3 +8,7 @@ dependencies:
   - name: argo-cd
     version: 5.53.9
     repository: https://argoproj.github.io/argo-helm
+maintainers:
+  - name: halkeye
+    url: https://www.gavinmogan.com
+    email: helm@gavinmogan.com

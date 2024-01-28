@@ -27,3 +27,7 @@ dependencies:
 - name: traefik
   version: 26.0.0
   repository: https://helm.traefik.io/traefik
+maintainers:
+  - name: halkeye
+    url: https://www.gavinmogan.com
+    email: helm@gavinmogan.com

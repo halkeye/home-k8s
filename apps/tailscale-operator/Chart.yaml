@@ -27,5 +27,9 @@ dependencies:
   - name: tailscale-operator
     version: 1.56.1
     repository: https://pkgs.tailscale.com/helmcharts/
-    #repository: git+https://github.com/tailscale/tailscale@cmd/k8s-operator/deploy/chart?ref=v1.58.2&&sparse=0
+    # repository: git+https://github.com/tailscale/tailscale@cmd/k8s-operator/deploy/chart?ref=v1.58.2&&sparse=0
 
+maintainers:
+  - name: halkeye
+    url: https://www.gavinmogan.com
+    email: helm@gavinmogan.com

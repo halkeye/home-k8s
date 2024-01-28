@@ -5,3 +5,7 @@ dependencies:
   - name: excalidraw
     version: 0.1.1
     repository: https://pmoscode-helm.github.io/excalidraw/
+maintainers:
+  - name: halkeye
+    url: https://www.gavinmogan.com
+    email: helm@gavinmogan.com

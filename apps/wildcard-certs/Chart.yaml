@@ -1,3 +1,7 @@
 apiVersion: v2
 name: wildcard-certs
 version: 1.0.0
+maintainers:
+  - name: halkeye
+    url: https://www.gavinmogan.com
+    email: helm@gavinmogan.com

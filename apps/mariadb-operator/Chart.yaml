@@ -5,3 +5,7 @@ dependencies:
   - name: mariadb-operator
     version: 0.24.0
     repository: https://mariadb-operator.github.io/mariadb-operator
+maintainers:
+  - name: halkeye
+    url: https://www.gavinmogan.com
+    email: helm@gavinmogan.com

@@ -5,3 +5,7 @@ dependencies:
 - name: ext-postgres-operator
   version: 1.2.5
   repository: https://movetokube.github.io/postgres-operator/
+maintainers:
+  - name: halkeye
+    url: https://www.gavinmogan.com
+    email: helm@gavinmogan.com

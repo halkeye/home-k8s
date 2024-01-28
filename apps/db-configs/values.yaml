@@ -1,1 +1,17 @@
-ext-postgres-operator: {}
+---
+minio_username: ""
+minio_secret_key: ""
+minio_bucket: ""
+minio:
+    access:
+        key_id: ""
+        secret_key: ""
+ext-postgres-operator:
+    postgres:
+        host: ""
+        default_database: ""
+        user: ""
+        password: ""
+mariadb:
+    rootpassword: ""
+    password: ""

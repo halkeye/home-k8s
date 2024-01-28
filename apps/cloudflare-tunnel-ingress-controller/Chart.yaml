@@ -27,3 +27,7 @@ dependencies:
 - name: cloudflare-tunnel-ingress-controller
   version: 0.0.9
   repository: https://helm.strrl.dev
+maintainers:
+  - name: halkeye
+    url: https://www.gavinmogan.com
+    email: helm@gavinmogan.com
