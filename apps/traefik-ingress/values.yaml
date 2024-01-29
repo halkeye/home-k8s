@@ -33,3 +33,6 @@ traefik:
     default:
       defaultCertificate:
         secretName: wildcard-g4v-tls
+  experimental:
+    kubernetesGateway:
+      enabled: true
