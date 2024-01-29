@@ -4,7 +4,7 @@ immich:
   redis:
     enabled: true
 
-  app-template:
+  common:
     secrets:
       secret:
         enabled: true

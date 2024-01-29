@@ -15,7 +15,7 @@ maintainers:
   - name: bo0tzz
     email: immich@bo0tzz.me
 dependencies:
-  - name: app-template
+  - name: common
     repository: https://bjw-s.github.io/helm-charts
     version: 2.5.0
   - name: postgresql
