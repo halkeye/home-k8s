@@ -6,7 +6,7 @@ app-template:
         main:
           image:
             repository: amruthpillai/reactive-resume
-            tag: server-3.7.2@sha256:5794bfe8729a6660f321b5c3525c7bcd354cc0e80b2bfbc23b566a7aacf055be
+            tag: server-3.7.2
       env:
         PUBLIC_URL: http://rxresume.g4v.dev
         PUBLIC_SERVER_URL: http://rxresume.g4v.dev/api
@@ -43,7 +43,7 @@ app-template:
         main:
           image:
             repository: amruthpillai/reactive-resume
-            tag: client-3.7.2@sha256:04b561446fb40852e72ce62fd15340424c73cde86a0df4b6e0b7888bf5e53102
+            tag: client-3.7.2
       env:
         PUBLIC_URL: http://rxresume.g4v.dev
         PUBLIC_SERVER_URL: http://rxresume.g4v.dev/api
