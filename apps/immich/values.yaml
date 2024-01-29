@@ -1,84 +1,349 @@
-immich:
-  postgresql:
+redis:
+  enabled: true
+  architecture: standalone
+  auth:
     enabled: false
-  redis:
-    enabled: true
 
-  common:
-    secrets:
-      secret:
-        enabled: true
-        stringData:
-          DB_DATABASE_NAME: "immich"
-          DB_HOSTNAME: "acid-minimal-cluster.postgres"
-          TYPESENSE_API_KEY: different-string-for-now
-    controllers:
-      microservices:
-        containers:
-          main:
-            image:
-              repository: ghcr.io/immich-app/immich-server
-              pullPolicy: IfNotPresent
-              tag: v1.93.3
-            env:
-              DB_URL:
-                valueFrom:
-                  secretKeyRef:
-                    name: immich-db-secret-immich-db-user
-                    key: POSTGRES_URL
-      main:
-        containers:
-          main:
-            image:
-              repository: ghcr.io/immich-app/immich-server
-              pullPolicy: IfNotPresent
-              tag: v1.93.3
-            env:
-              DB_URL:
-                valueFrom:
-                  secretKeyRef:
-                    name: immich-db-secret-immich-db-user
-                    key: POSTGRES_URL
-      machine-learning:
-        containers:
-          main:
-            image:
-              repository: ghcr.io/immich-app/immich-machine-learning
-              tag: v1.93.3
-              pullPolicy: IfNotPresent
-            env:
-              DB_URL:
-                valueFrom:
-                  secretKeyRef:
-                    name: immich-db-secret-immich-db-user
-                    key: POSTGRES_URL
+app-template:
+  secrets:
+    secret:
+      enabled: true
+      stringData:
+        REDIS_HOSTNAME: '{{ printf "%s-redis-master" .Release.Name }}'
+        DB_HOSTNAME: "acid-minimal-cluster.postgres"
+        DB_DATABASE_NAME: "immich"
+        IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
+        TYPESENSE_API_KEY: different-string-for-now
+  service:
+    main:
+      controller: main
+      type: ClusterIP
+      ports:
+        http:
+          enabled: true
+          primary: true
+          port: 3001
+          protocol: HTTP
+    microservices:
+      controller: microservices
+      type: ClusterIP
+      ports:
+        http:
+          enabled: true
+          primary: true
+          port: 3001
+          protocol: HTTP
+    machine-learning:
+      controller: machine-learning
+      type: ClusterIP
+      ports:
+        http:
+          enabled: true
+          primary: true
+          port: 3003
+          protocol: HTTP
 
-    ingress:
-      main:
-        enabled: true
-        annotations:
-          cert-manager.io/cluster-issuer: acme-letsencrypt-prod
-          hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/immich.png
-          hajimari.io/appName: Immich
-          gethomepage.dev/enabled: "true"
-          gethomepage.dev/group: Media
-          gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/immich.png
-          gethomepage.dev/name: Immich
-        hosts:
-          - host: &host "immich.g4v.dev"
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  name: main
-                  port:
-        tls:
-          - secretName: immich-tls-certificate
-            hosts:
-              - *host
+  controllers:
+    microservices:
+      containers:
+        main:
+          image:
+            repository: ghcr.io/immich-app/immich-server
+            pullPolicy: IfNotPresent
+            tag: v1.93.3
+          command: "/bin/sh"
+          args:
+            - "./start-microservices.sh"
+          env:
+            REDIS_HOSTNAME:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: REDIS_HOSTNAME
+            DB_HOSTNAME:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: DB_HOSTNAME
+            DB_USERNAME:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: DB_USERNAME
+            DB_DATABASE_NAME:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: DB_DATABASE_NAME
+            DB_PASSWORD:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: DB_PASSWORD
+            IMMICH_MACHINE_LEARNING_URL:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: IMMICH_MACHINE_LEARNING_URL
+            TYPESENSE_API_KEY:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: TYPESENSE_API_KEY
+            DB_URL:
+              valueFrom:
+                secretKeyRef:
+                  name: immich-db-secret-immich-db-user
+                  key: POSTGRES_URL
+      persistence:
+        library:
+          enabled: true
+          mountPath: /usr/src/app/upload
+      probes:
+        liveness: &micro_probes
+          enabled: true
+          custom: true
+          spec:
+            httpGet:
+              path: /server-info/ping
+              port: 3001
+            initialDelaySeconds: 0
+            periodSeconds: 10
+            timeoutSeconds: 1
+            failureThreshold: 3
+        readiness: *micro_probes
+        startup:
+          enabled: false
 
-    persistence:
-      library:
-        type: nfs
-        server: 172.16.10.10
-        path: /volume1/Apps/immich
+    main:
+      containers:
+        main:
+          image:
+            repository: ghcr.io/immich-app/immich-server
+            pullPolicy: IfNotPresent
+            tag: v1.93.3
+          command: "/bin/sh"
+          args:
+            - "./start-server.sh"
+          env:
+            SERVER_PORT: 3001
+            REDIS_HOSTNAME:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: REDIS_HOSTNAME
+            DB_HOSTNAME:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: DB_HOSTNAME
+            DB_USERNAME:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: DB_USERNAME
+            DB_DATABASE_NAME:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: DB_DATABASE_NAME
+            DB_PASSWORD:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: DB_PASSWORD
+            IMMICH_MACHINE_LEARNING_URL:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: IMMICH_MACHINE_LEARNING_URL
+            TYPESENSE_API_KEY:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: TYPESENSE_API_KEY
+            DB_URL:
+              valueFrom:
+                secretKeyRef:
+                  name: immich-db-secret-immich-db-user
+                  key: POSTGRES_URL
+      probes:
+        liveness: &server_probes
+          enabled: true
+          custom: true
+          spec:
+            httpGet:
+              path: /server-info/ping
+              port: 3001
+            initialDelaySeconds: 0
+            periodSeconds: 10
+            timeoutSeconds: 1
+            failureThreshold: 3
+        readiness: *server_probes
+        startup:
+          enabled: false
+      persistence:
+        library:
+          enabled: true
+          mountPath: /usr/src/app/upload
+
+    machine-learning:
+      containers:
+        main:
+          image:
+            repository: ghcr.io/immich-app/immich-machine-learning
+            tag: v1.93.3
+            pullPolicy: IfNotPresent
+          env:
+            TRANSFORMERS_CACHE: /cache
+            REDIS_HOSTNAME:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: REDIS_HOSTNAME
+            DB_HOSTNAME:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: DB_HOSTNAME
+            DB_USERNAME:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: DB_USERNAME
+            DB_DATABASE_NAME:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: DB_DATABASE_NAME
+            DB_PASSWORD:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: DB_PASSWORD
+            IMMICH_MACHINE_LEARNING_URL:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: IMMICH_MACHINE_LEARNING_URL
+            TYPESENSE_API_KEY:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: TYPESENSE_API_KEY
+            DB_URL:
+              valueFrom:
+                secretKeyRef:
+                  name: immich-db-secret-immich-db-user
+                  key: POSTGRES_URL
+          probes:
+            liveness: &machine_probes
+              enabled: true
+              custom: true
+              spec:
+                httpGet:
+                  path: /ping
+                  port: 3003
+                initialDelaySeconds: 0
+                periodSeconds: 10
+                timeoutSeconds: 1
+                failureThreshold: 3
+            readiness: *machine_probes
+            startup:
+              enabled: false
+
+    typesense:
+      type: statefulset
+      strategy: RollingUpdate
+      containers:
+        main:
+          image:
+            repository: typesense/typesense
+            tag: 0.25.2
+            pullPolicy: IfNotPresent
+          env:
+            TYPESENSE_DATA_DIR: /typesense-data
+            TYPESENSE_API_KEY:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: TYPESENSE_API_KEY
+          probes:
+            liveness: &typesense_probes
+              enabled: true
+              custom: true
+              spec:
+                httpGet:
+                  path: /health
+                  port: &port 8108
+                initialDelaySeconds: 0
+                periodSeconds: 10
+                timeoutSeconds: 1
+                failureThreshold: 3
+            readiness: *typesense_probes
+            startup:
+              enabled: true
+              custom: true
+              spec:
+                httpGet:
+                  path: /health
+                  port: 8108
+                failureThreshold: 30
+                periodSeconds: 5
+                successThreshold: 1
+                timeoutSeconds: 1
+
+  persistence:
+    machine-learning-cache:
+      enabled: true
+      size: 10Gi
+      # Optional: Set this to pvc to avoid downloading the ML models every start.
+      type: emptyDir
+      accessMode: ReadWriteMany
+      # storageClass: your-class
+      advancedMounts:
+        machine-learning:
+          main:
+            - path: /cache
+    typesense-data:
+      type: emptyDir
+      advancedMounts:
+        typesense:
+          main:
+            - path: /typesense-data
+    library:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Apps/immich
+      globalMounts:
+        - path: /usr/src/app/upload
+    geocoding-dump:
+      type: emptyDir
+      globalMounts:
+        - path: /usr/src/app/.reverse-geocoding-dump
+    transformers-cache:
+      type: emptyDir
+      globalMounts:
+        - path: /usr/src/app/.transformers_cache
+
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: acme-letsencrypt-prod
+        hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/immich.png
+        hajimari.io/appName: Immich
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: Media
+        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/immich.png
+        gethomepage.dev/name: Immich
+        # proxy-body-size is set to 0 to remove the body limit on file uploads
+        nginx.ingress.kubernetes.io/proxy-body-size: "0"
+      hosts:
+        - host: &host "immich.g4v.dev"
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                name: main
+                port:
