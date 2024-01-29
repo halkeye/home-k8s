@@ -25,7 +25,7 @@ app-template:
                 secretKeyRef:
                   name: rxresume-secret-rxresume-user
                   key: PASSWORD
-            POSTGRES_HOST: "acid-minimal-cluster.postgres"
+            POSTGRES_HOST: "postgres-rw.db"
             POSTGRES_PORT: 5432
             SECRET_KEY:
               valueFrom:

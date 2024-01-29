@@ -10,7 +10,7 @@ app-template:
       enabled: true
       stringData:
         REDIS_HOSTNAME: '{{ printf "%s-redis-master" .Release.Name }}'
-        DB_HOSTNAME: "acid-minimal-cluster.postgres"
+        DB_HOSTNAME: "postgres-rw.db"
         DB_DATABASE_NAME: "immich"
         IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
         TYPESENSE_API_KEY: different-string-for-now
