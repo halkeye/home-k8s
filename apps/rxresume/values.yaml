@@ -9,7 +9,7 @@ app-template:
             tag: server-3.7.2
           env:
             PUBLIC_URL: http://rxresume.g4v.dev
-            PUBLIC_SERVER_URL: http://rxresume.g4v.dev/api
+            PUBLIC_SERVER_URL: http://rxresume-api.g4v.dev
             POSTGRES_DB:
               valueFrom:
                 secretKeyRef:
@@ -52,7 +52,7 @@ app-template:
             tag: client-3.7.2
           env:
             PUBLIC_URL: http://rxresume.g4v.dev
-            PUBLIC_SERVER_URL: http://rxresume.g4v.dev/api
+            PUBLIC_SERVER_URL: http://rxresume-api.g4v.dev
             DATABASE_URL:
               valueFrom:
                 secretKeyRef:
@@ -62,6 +62,19 @@ app-template:
     main:
       enabled: true
       annotations:
+        hajimari.io/false: "true"
+        gethomepage.dev/enabled: "false"
+      hosts:
+        - host: &host "rxresume-api.g4v.dev"
+          paths:
+            - path: /
+              service:
+                name: main
+                port: http
+    client:
+      enabled: true
+      annotations:
+        hajimari.io/enabled: "true"
         hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/open-resume.png
         gethomepage.dev/enabled: "true"
         gethomepage.dev/group: Utils
@@ -70,10 +83,6 @@ app-template:
       hosts:
         - host: &host "rxresume.g4v.dev"
           paths:
-            - path: /api
-              service:
-                name: main
-                port: http
             - path: /
               service:
                 name: client
