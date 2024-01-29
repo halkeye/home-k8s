@@ -25,6 +25,11 @@ app-template:
                 secretKeyRef:
                   name: rxresume-secret-rxresume-user
                   key: PASSWORD
+            DATABASE_URL:
+              valueFrom:
+                secretKeyRef:
+                  name: rxresume-secret-rxresume-user
+                  key: DB_URL
             POSTGRES_HOST: "postgres-rw.db"
             POSTGRES_PORT: 5432
             SECRET_KEY:
@@ -48,6 +53,11 @@ app-template:
           env:
             PUBLIC_URL: http://rxresume.g4v.dev
             PUBLIC_SERVER_URL: http://rxresume.g4v.dev/api
+            DATABASE_URL:
+              valueFrom:
+                secretKeyRef:
+                  name: rxresume-secret-rxresume-user
+                  key: DB_URL
   ingress:
     main:
       enabled: true
