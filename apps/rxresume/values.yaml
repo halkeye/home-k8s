@@ -1,0 +1,83 @@
+app-template:
+  controllers:
+    main:
+      enabled: true
+      containers:
+        main:
+          image:
+            repository: amruthpillai/reactive-resume
+            tag: server-3.7.2@sha256:5794bfe8729a6660f321b5c3525c7bcd354cc0e80b2bfbc23b566a7aacf055be
+      env:
+        PUBLIC_URL: http://rxresume.g4v.dev
+        PUBLIC_SERVER_URL: http://rxresume.g4v.dev/api
+        POSTGRES_DB:
+          valueFrom:
+            secretKeyRef:
+              name: rxresume-secret-rxresume-user
+              key: DATABASE_NAME
+        POSTGRES_USER:
+          valueFrom:
+            secretKeyRef:
+              name: rxresume-secret-rxresume-user
+              key: LOGIN
+        POSTGRES_PASSWORD:
+          valueFrom:
+            secretKeyRef:
+              name: rxresume-secret-rxresume-user
+              key: PASSWORD
+        POSTGRES_HOST: "acid-minimal-cluster.postgres"
+        POSTGRES_PORT: 5432
+        SECRET_KEY:
+          valueFrom:
+            secretKeyRef:
+              name: "{{.Release.Name}}-secret"
+              key: SECRET_KEY
+        JWT_SECRET:
+          valueFrom:
+            secretKeyRef:
+              name: "{{.Release.Name}}-secret"
+              key: JWT_SECRET
+    client:
+      enabled: true
+      containers:
+        main:
+          image:
+            repository: amruthpillai/reactive-resume
+            tag: client-3.7.2@sha256:04b561446fb40852e72ce62fd15340424c73cde86a0df4b6e0b7888bf5e53102
+      env:
+        PUBLIC_URL: http://rxresume.g4v.dev
+        PUBLIC_SERVER_URL: http://rxresume.g4v.dev/api
+  service:
+    main:
+      enabled: true
+      ports:
+        http:
+          port: 3100
+    client:
+      enabled: true
+      controller: client
+      ports:
+        http:
+          port: 3080
+  route:
+    main:
+      enabled: true
+      name: rxresume
+      parentRefs:
+        - namespace: rxresume
+          name: rxresume
+      hostnames:
+        - resume.g4v.dev
+      rules:
+        - backendRefs:
+            - name: main
+          matches:
+            - path:
+                type: PathPrefix
+                value: /api/
+        - backendRefs:
+            - name: client
+          matches:
+            - path:
+                type: PathPrefix
+                value: /
