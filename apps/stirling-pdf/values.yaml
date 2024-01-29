@@ -12,6 +12,8 @@ app-template:
             liveness: &probes
               enabled: true
               custom: true
+              tcpSocket:
+                port: 8080
               spec:
                 initialDelaySeconds: 0
                 periodSeconds: 10
