@@ -7,37 +7,37 @@ app-template:
           image:
             repository: amruthpillai/reactive-resume
             tag: server-3.7.2
-      env:
-        PUBLIC_URL: http://rxresume.g4v.dev
-        PUBLIC_SERVER_URL: http://rxresume.g4v.dev/api
-        POSTGRES_DB:
-          valueFrom:
-            secretKeyRef:
-              name: rxresume-secret-rxresume-user
-              key: DATABASE_NAME
-        POSTGRES_USER:
-          valueFrom:
-            secretKeyRef:
-              name: rxresume-secret-rxresume-user
-              key: LOGIN
-        POSTGRES_PASSWORD:
-          valueFrom:
-            secretKeyRef:
-              name: rxresume-secret-rxresume-user
-              key: PASSWORD
-        POSTGRES_HOST: "acid-minimal-cluster.postgres"
-        POSTGRES_PORT: 5432
-        SECRET_KEY:
-          valueFrom:
-            secretKeyRef:
-              name: "{{.Release.Name}}-secret"
-              key: SECRET_KEY
-        JWT_EXPIRY_TIME: 604800
-        JWT_SECRET:
-          valueFrom:
-            secretKeyRef:
-              name: "{{.Release.Name}}-secret"
-              key: JWT_SECRET
+          env:
+            PUBLIC_URL: http://rxresume.g4v.dev
+            PUBLIC_SERVER_URL: http://rxresume.g4v.dev/api
+            POSTGRES_DB:
+              valueFrom:
+                secretKeyRef:
+                  name: rxresume-secret-rxresume-user
+                  key: DATABASE_NAME
+            POSTGRES_USER:
+              valueFrom:
+                secretKeyRef:
+                  name: rxresume-secret-rxresume-user
+                  key: LOGIN
+            POSTGRES_PASSWORD:
+              valueFrom:
+                secretKeyRef:
+                  name: rxresume-secret-rxresume-user
+                  key: PASSWORD
+            POSTGRES_HOST: "acid-minimal-cluster.postgres"
+            POSTGRES_PORT: 5432
+            SECRET_KEY:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{.Release.Name}}-secret"
+                  key: SECRET_KEY
+            JWT_EXPIRY_TIME: 604800
+            JWT_SECRET:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{.Release.Name}}-secret"
+                  key: JWT_SECRET
     client:
       enabled: true
       containers:
@@ -45,9 +45,9 @@ app-template:
           image:
             repository: amruthpillai/reactive-resume
             tag: client-3.7.2
-      env:
-        PUBLIC_URL: http://rxresume.g4v.dev
-        PUBLIC_SERVER_URL: http://rxresume.g4v.dev/api
+          env:
+            PUBLIC_URL: http://rxresume.g4v.dev
+            PUBLIC_SERVER_URL: http://rxresume.g4v.dev/api
   service:
     main:
       enabled: true
