@@ -48,6 +48,26 @@ app-template:
           env:
             PUBLIC_URL: http://rxresume.g4v.dev
             PUBLIC_SERVER_URL: http://rxresume.g4v.dev/api
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/open-resume.png
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: Utils
+        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/open-resume.png
+        gethomepage.dev/name: RXResume
+      hosts:
+        - host: &host "rxresume.g4v.dev"
+          paths:
+            - path: /api
+              service:
+                name: main
+                port: http
+            - path: /
+              service:
+                name: client
+                port: http
   service:
     main:
       enabled: true
