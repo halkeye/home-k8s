@@ -32,6 +32,7 @@ app-template:
             secretKeyRef:
               name: "{{.Release.Name}}-secret"
               key: SECRET_KEY
+        JWT_EXPIRY_TIME: 604800
         JWT_SECRET:
           valueFrom:
             secretKeyRef:
