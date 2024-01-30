@@ -1,3 +1,9 @@
+redis:
+  enabled: true
+  architecture: standalone
+  auth:
+    enabled: false
+
 app-template:
   controllers:
     main:
@@ -11,6 +17,9 @@ app-template:
             NODE_ENV: production
             #PUBLIC_URL: http://rxresume.g4v.dev
             #PUBLIC_SERVER_URL: http://rxresume.g4v.dev/api
+            PUBLIC_URL: https://rxresume.g4v.dev
+            STORAGE_URL: https://g4v-rxresume.sfo3.digitaloceanspaces.com/
+            REDIS_URL: '{{ printf "redis://%s-redis-master" .Release.Name }}'
             POSTGRES_DB:
               valueFrom:
                 secretKeyRef:
