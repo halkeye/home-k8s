@@ -76,13 +76,8 @@ app-template:
             repository: amruthpillai/reactive-resume
             tag: client-3.7.2
           env:
-<<<<<<< HEAD
-            #PUBLIC_URL: http://rxresume.g4v.dev
-            #PUBLIC_SERVER_URL: http://rxresume.g4v.dev/api
-=======
-            PUBLIC_URL: http://rxresume.g4v.dev
-            PUBLIC_SERVER_URL: http://rxresume-api.g4v.dev
->>>>>>> parent of 2f7eb72 (Revert "split rxresume into two domains")
+            PUBLIC_URL: https://rxresume.g4v.dev
+            PUBLIC_SERVER_URL: https://rxresume-api.g4v.dev
             DATABASE_URL:
               valueFrom:
                 secretKeyRef:
