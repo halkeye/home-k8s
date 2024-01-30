@@ -9,8 +9,8 @@ app-template:
             tag: server-3.7.2
           env:
             NODE_ENV: production
-            PUBLIC_URL: http://rxresume.g4v.dev
-            PUBLIC_SERVER_URL: http://rxresume.g4v.dev/api
+            #PUBLIC_URL: http://rxresume.g4v.dev
+            #PUBLIC_SERVER_URL: http://rxresume.g4v.dev/api
             POSTGRES_DB:
               valueFrom:
                 secretKeyRef:
@@ -52,8 +52,8 @@ app-template:
             repository: amruthpillai/reactive-resume
             tag: client-3.7.2
           env:
-            PUBLIC_URL: http://rxresume.g4v.dev
-            PUBLIC_SERVER_URL: http://rxresume.g4v.dev/api
+            #PUBLIC_URL: http://rxresume.g4v.dev
+            #PUBLIC_SERVER_URL: http://rxresume.g4v.dev/api
             DATABASE_URL:
               valueFrom:
                 secretKeyRef:
