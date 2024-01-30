@@ -49,12 +49,12 @@ app-template:
             STORAGE_ACCESS_KEY:
               valueFrom:
                 secretKeyRef:
-                  name: rxresume-secret-rxresume-user
+                  name: "{{.Release.Name}}-secret"
                   key: STORAGE_ACCESS_KEY
             STORAGE_SECRET_KEY:
               valueFrom:
                 secretKeyRef:
-                  name: rxresume-secret-rxresume-user
+                  name: "{{.Release.Name}}-secret"
                   key: STORAGE_SECRET_KEY
             SECRET_KEY:
               valueFrom:
