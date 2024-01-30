@@ -8,6 +8,7 @@ app-template:
             repository: amruthpillai/reactive-resume
             tag: server-3.7.2
           env:
+            NODE_ENV: production
             PUBLIC_URL: http://rxresume.g4v.dev
             PUBLIC_SERVER_URL: http://rxresume-api.g4v.dev
             POSTGRES_DB:
