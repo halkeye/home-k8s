@@ -18,6 +18,7 @@ app-template:
             #PUBLIC_URL: http://rxresume.g4v.dev
             #PUBLIC_SERVER_URL: http://rxresume.g4v.dev/api
             PUBLIC_URL: https://rxresume.g4v.dev
+            PUBLIC_SERVER_URL: https://rxresume-api.g4v.dev
             STORAGE_URL: https://g4v-rxresume.sfo3.digitaloceanspaces.com/
             REDIS_URL: '{{ printf "redis://%s-redis-master" .Release.Name }}'
             POSTGRES_DB:
