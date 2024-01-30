@@ -26,6 +26,7 @@ app-template:
             STORAGE_ENDPOINT: g4v-rxresume.sfo3.digitaloceanspaces.com
             STORAGE_BUCKET: g4v-rxresume
             STORAGE_REGION: sfo3
+            STORAGE_PORT: 443
             STORAGE_URL_PREFIX: https://g4v-rxresume.sfo3.digitaloceanspaces.com/
             STORAGE_ACCESS_KEY:
               valueFrom:
@@ -48,6 +49,21 @@ app-template:
                 secretKeyRef:
                   name: "{{.Release.Name}}-secret"
                   key: JWT_SECRET
+            CHROME_TOKEN: chrome_token
+            CHROME_URL: ws://chrome:3000
+            ACCESS_TOKEN_SECRET: access_token_secret
+            REFRESH_TOKEN_SECRET: refresh_token_secret
+    chrome:
+      enabled: true
+      containers:
+        main:
+          image:
+            repository: browserless/chrome
+            tag: 1.61.0-puppeteer-21.4.1
+          env:
+            TOKEN: chrome_token
+            EXIT_ON_HEALTH_FAILURE: true
+            PRE_REQUEST_HEALTH_CHECK: true
   ingress:
     main:
       enabled: true
