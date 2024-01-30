@@ -33,6 +33,20 @@ app-template:
                   key: DB_URL
             POSTGRES_HOST: "postgres-rw.db"
             POSTGRES_PORT: 5432
+            STORAGE_ENDPOINT: g4v-rxresume.sfo3.digitaloceanspaces.com
+            STORAGE_BUCKET: g4v-rxresume
+            STORAGE_REGION: sfo3
+            STORAGE_URL_PREFIX: https://g4v-rxresume.sfo3.digitaloceanspaces.com/
+            STORAGE_ACCESS_KEY:
+              valueFrom:
+                secretKeyRef:
+                  name: rxresume-secret-rxresume-user
+                  key: STORAGE_ACCESS_KEY
+            STORAGE_SECRET_KEY:
+              valueFrom:
+                secretKeyRef:
+                  name: rxresume-secret-rxresume-user
+                  key: STORAGE_SECRET_KEY
             SECRET_KEY:
               valueFrom:
                 secretKeyRef:
