@@ -89,30 +89,17 @@ app-template:
         http:
           port: 3000
 
-
-nginx:
-  metrics:
-    enabled: true
-  rbac:
-    create: true
-  controller:
-    ingressClassResource:
-      name: rxresume-ingress
-      default: false
-
-    stats:
-      enabled: true
-
-    metrics:
-      enabled: true
-      port: 10254
-
-    service:
-      type: ClusterIP
-      publishService:
-        enabled: "true"
+  caddy:
+    replicaCount: 1
+    image:
+      repository: caddy/ingress
+      pullPolicy: IfNotPresent
+      tag: "v0.2.1"
+    ingressController:
+      className: 'rxresume-ingress'
+      classNameRequired: true
+    loadBalancer:
+      externalTrafficPolicy: Local
       annotations:
-        prometheus.io/scrape: "true"
-        prometheus.io/port: "10254"
         tailscale.com/expose: "true"
         tailscale.com/hostname: "rxresume"
