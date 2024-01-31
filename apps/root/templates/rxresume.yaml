@@ -15,40 +15,16 @@ spec:
       selfHeal: true
     syncOptions:
     - CreateNamespace=true
-  sources:
-    - path: apps/rxresume
-      repoURL: https://github.com/halkeye/home-k8s
-      targetRevision: HEAD
-      helm:
-        valueFiles:
-          - values.yaml
-          - secrets://values-secrets.yaml
-        valuesObject:
-          app-template:
-            ingress:
-              main:
-                className: rxresume-ingress
-#    - path: traefik
-#      repoURL: https://helm.traefik.io/traefik
-#      targetRevision: 26.0.0
-    - path: apps/traefik-ingress
-      repoURL: https://github.com/halkeye/home-k8s
-      targetRevision: HEAD
-      helm:
-        passCredentials: true
-        valueFiles:
-          - values.yaml
-        valuesObject:
-          traefik:
-            ingressClass:
-              enabled: true
-              isDefaultClass: false
-              name: rxresume-ingress
-            service:
-              enabled: true
-              annotations:
-                tailscale.com/expose: "true"
-                tailscale.com/hostname: "rxresume"
-            podAnnotations:
-              prometheus.io/port: "8082"
-              prometheus.io/scrape: "true"
+  source:
+    path: apps/rxresume
+    repoURL: https://github.com/halkeye/home-k8s
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values.yaml
+        - secrets://values-secrets.yaml
+      valuesObject:
+        app-template:
+          ingress:
+            main:
+              className: rxresume-ingress

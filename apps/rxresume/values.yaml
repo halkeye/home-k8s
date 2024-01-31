@@ -95,19 +95,29 @@ app-template:
           port: 3000
 
 
-traefik-ingress:
-  ingressClass:
+nginx:
+  metrics:
     enabled: true
-    isDefaultClass: false
-    name: rxresume-ingress
-  service:
-    enabled: true
-    annotations:
-      tailscale.com/expose: "true"
-      tailscale.com/hostname: "rxresume"
-  podAnnotations:
-    prometheus.io/port: "8082"
-    prometheus.io/scrape: "true"
-  cert:
-    commonName: 'rxresume.ts.g4v.dev'
-    dnsNames: ['rxresume.ts.g4v.dev']
+  rbac:
+    create: true
+  controller:
+    ingressClassResource:
+      name: rxresume-ingress
+      default: false
+
+    stats:
+      enabled: true
+
+    metrics:
+      enabled: true
+      port: 10254
+
+    service:
+      type: ClusterIP
+      publishService:
+        enabled: "true"
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "10254"
+        tailscale.com/expose: "true"
+        tailscale.com/hostname: "rxresume"
