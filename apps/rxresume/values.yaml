@@ -83,6 +83,10 @@ app-template:
               service:
                 name: main
                 port: http
+      tls:
+        - hosts:
+            - *host
+            - rxresume.taildba47.ts.net
   service:
     main:
       enabled: true
