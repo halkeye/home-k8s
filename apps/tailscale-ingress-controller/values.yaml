@@ -5,10 +5,9 @@
 replicaCount: 1
 
 image:
-  repository: valentinalexeev/tailscale-ingress-controller
-  pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: "stable"
+  repository: halkeye/tailscale-ingress-controller
+  pullPolicy: Always
+  tag: "latest"
 
 imagePullSecrets: []
 nameOverride: ""
