@@ -88,18 +88,3 @@ app-template:
       ports:
         http:
           port: 3000
-
-caddy:
-  replicaCount: 1
-  image:
-    repository: caddy/ingress
-    pullPolicy: IfNotPresent
-    tag: "v0.2.1"
-  ingressController:
-    className: 'rxresume-ingress'
-    classNameRequired: true
-  loadBalancer:
-    externalTrafficPolicy: Local
-    annotations:
-      tailscale.com/expose: "true"
-      tailscale.com/hostname: "rxresume"

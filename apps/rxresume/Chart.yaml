@@ -23,10 +23,6 @@ dependencies:
   - name: app-template
     version: 2.5.0
     repository: https://bjw-s.github.io/helm-charts
-  - name: caddy-ingress-controller
-    version: 1.1.0
-    alias: caddy
-    repository: https://caddyserver.github.io/ingress/
   - name: redis
     condition: redis.enabled
     repository: https://charts.bitnami.com/bitnami
