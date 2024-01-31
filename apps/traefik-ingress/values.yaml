@@ -33,3 +33,8 @@ traefik:
     default:
       defaultCertificate:
         secretName: wildcard-g4v-tls
+cert:
+  commonName: '*.h.g4v.dev'
+  dnsNames:
+  - '*.g4v.dev'
+  - '*.h.g4v.dev'
