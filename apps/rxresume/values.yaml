@@ -68,7 +68,7 @@ app-template:
   ingress:
     main:
       enabled: true
-      ingressClassName: tailscale
+      className: tailscale
       annotations:
         hajimari.io/enabled: "true"
         hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/open-resume.png
