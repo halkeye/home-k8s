@@ -60,7 +60,7 @@ app-template:
         main:
           image:
             repository: browserless/chrome
-            tag: 1.61.0-puppeteer-21.4.1
+            tag: 1.61.1-puppeteer-21.4.1
           env:
             TOKEN: chrome_token
             EXIT_ON_HEALTH_FAILURE: true
