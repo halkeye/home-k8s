@@ -27,6 +27,7 @@ app-template:
             STORAGE_BUCKET: g4v-rxresume
             STORAGE_REGION: sfo3
             STORAGE_PORT: 443
+            STORAGE_USE_SSL: "true"
             STORAGE_URL_PREFIX: https://g4v-rxresume.sfo3.digitaloceanspaces.com/
             STORAGE_ACCESS_KEY:
               valueFrom:
