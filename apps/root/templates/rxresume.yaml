@@ -23,8 +23,3 @@ spec:
       valueFiles:
         - values.yaml
         - secrets://values-secrets.yaml
-      valuesObject:
-        app-template:
-          ingress:
-            main:
-              className: rxresume-ingress
