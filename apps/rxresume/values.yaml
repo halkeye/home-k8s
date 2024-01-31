@@ -92,3 +92,21 @@ app-template:
       ports:
         http:
           port: 3000
+
+
+traefik-ingress:
+  ingressClass:
+    enabled: true
+    isDefaultClass: false
+    name: rxresume-ingress
+  service:
+    enabled: true
+    annotations:
+      tailscale.com/expose: "true"
+      tailscale.com/hostname: "rxresume"
+  podAnnotations:
+    prometheus.io/port: "8082"
+    prometheus.io/scrape: "true"
+  cert:
+    commonName: 'rxresume.ts.g4v.dev'
+    dnsNames: ['rxresume.ts.g4v.dev']

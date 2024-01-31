@@ -23,6 +23,9 @@ dependencies:
   - name: app-template
     version: 2.5.0
     repository: https://bjw-s.github.io/helm-charts
+  - name: traefik-ingress
+    version: 0.1.0
+    repository: file://../traefik-ingress
   - name: redis
     condition: redis.enabled
     repository: https://charts.bitnami.com/bitnami
