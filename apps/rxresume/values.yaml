@@ -69,6 +69,7 @@ app-template:
     main:
       enabled: true
       annotations:
+        cert-manager.io/cluster-issuer: acme-letsencrypt-prod
         hajimari.io/enabled: "true"
         hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/open-resume.png
         gethomepage.dev/enabled: "true"
