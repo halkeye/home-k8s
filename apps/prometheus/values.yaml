@@ -1,4 +1,10 @@
 kube-prometheus-stack:
+  prometheus-node-exporter:
+    tolerations:
+      - effect: NoSchedule
+        operator: Exists
+      - effect: NoExecute
+        operator: Exists
   alertmanager:
     ingress:
       enabled: true
@@ -16,18 +22,37 @@ kube-prometheus-stack:
         - secretName: alertmanager-tls-certificate
           hosts:
             - alertmanager.h.g4v.dev
-    route:
-      receiver: "null"
-      routes:
+    config:
+      receivers:
+        - name: 'null'
+        - name: 'discord'
+          slack_configs:
+          - channel: '#prometheus'
+            icon_url: https://avatars3.githubusercontent.com/u/3380462
+            username: 'Prometheus'
+            send_resolved: true
+            # https://github.com/onedr0p/home-cluster/blob/main/cluster/apps/monitoring/kube-prometheus-stack/helm-release.yaml#L33
+            title: |-
+              [{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ if ne .CommonAnnotations.summary ""}}{{ .CommonAnnotations.summary }} {{ else if ne .CommonAnnotations.message ""}}{{ .CommonAnnotations.message }} {{ else if ne .CommonAnnotations.description ""}}{{ .CommonAnnotations.description }} {{ else }}{{ .CommonLabels.alertname }}{{ end }}
+            text: >-
+              {{ range .Alerts -}}
+                **Alert:** {{ .Annotations.title }}{{ if .Labels.severity }} `{{ .Labels.severity }}`{{ end }}
+              {{ if ne .Annotations.summary ""}}**Summary:** {{ .Annotations.summary }} {{ else if ne .Annotations.message ""}}**Message:** {{ .Annotations.message }} {{ else if ne .Annotations.description ""}}**Description:** {{ .Annotations.description }}{{ end }}
+                **Details:**
+                {{ range .Labels.SortedPairs }} • {{ .Name }}: `{{ .Value }}`
+                {{ end }}
+              {{ end }}
+      route:
+        group_by: ['alertname', 'job']
+        group_wait: 30s
+        group_interval: 5m
+        repeat_interval: 6h
+        receiver: 'discord'
+        routes:
         - receiver: 'null'
           matchers:
-            - alertname = "Watchdog"
-        - receiver: discord
-          matchers:
-            - severity = "page"
-        - receiver: discord
-          matchers:
-            - severity = "critical"
+          - severity =~ "none"
+        - receiver: 'discord'
   prometheus:
     prometheusSpec:
       ruleSelectorNilUsesHelmValues: false
@@ -52,8 +77,8 @@ kube-prometheus-stack:
             - prometheus.h.g4v.dev
   grafana:
     enabled: true
-    defaultDashboardsTimezone: America/Vancouver
-    defaultDashboardsEditable: false
+    #defaultDashboardsTimezone: America/Vancouver
+    #defaultDashboardsEditable: false
     ingress:
       enabled: true
       annotations:
@@ -65,6 +90,20 @@ kube-prometheus-stack:
         gethomepage.dev/name: Grafana
       hosts:
         - grafana.h.g4v.dev
+    dashboardProviders:
+      dashboardproviders.yaml:
+        apiVersion: 1
+        providers:
+        - name: "default"
+          orgId: 1
+          folder: ""
+          type: file
+          disableDeletion: false
+          editable: true
+          options:
+            path: /var/lib/grafana/dashboards/default
+    plugins:
+      - grafana-piechart-panel
     dashboards:
       default:
         prometheus:
@@ -131,39 +170,42 @@ kube-prometheus-stack:
           gnetId: 12530
           revision: 1
           datasource: Prometheus
-        qbittorrent:
-          url: https://raw.githubusercontent.com/caseyscarborough/qbittorrent-grafana-dashboard/a27811eadf3d024dc7be3623052cf64cf33d8de8/dashboard-modern.json
-          datasource: Prometheus
         adguard:
           gnetId: 13330
           revision: 3
           datasource: Prometheus
+    sidecar:
+      dashboards:
+        enabled: true
+        searchNamespace: ALL
+      datasources:
+        enabled: true
+        searchNamespace: ALL
+    env:
+      GF_DEFAULT_INSTANCE_NAME: grafana-home
+      GF_SERVER_ROOT_URL: https://grafana.h.g4v.dev
+      GF_AUTH_ANONYMOUS_ENABLED: "false"
+      GF_AUTH_DISABLE_LOGIN_FORM: "true"
+      GF_AUTH_DISABLE_SIGNOUT_MENU: "true"
+      GF_AUTH_BASIC_ENABLED: "false"
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_USERS_AUTO_ASSIGN_ORG: "true"
+      GF_USERS_AUTO_ASSIGN_ORG_ROLE: Viewer
 
-      env:
-        GF_DEFAULT_INSTANCE_NAME: grafana-home
-        GF_SERVER_ROOT_URL: https://grafana.h.g4v.dev
-        GF_AUTH_ANONYMOUS_ENABLED: "false"
-        GF_AUTH_DISABLE_LOGIN_FORM: "true"
-        GF_AUTH_DISABLE_SIGNOUT_MENU: "true"
-        GF_AUTH_BASIC_ENABLED: "false"
-        GF_USERS_ALLOW_SIGN_UP: "false"
-        GF_USERS_AUTO_ASSIGN_ORG: "true"
-        GF_USERS_AUTO_ASSIGN_ORG_ROLE: Viewer
+      GF_PANELS_ENABLE_ALPHA: "true"
+      GF_PLUGINS_ENABLE_ALPHA: "true"
 
-        GF_PANELS_ENABLE_ALPHA: "true"
-        GF_PLUGINS_ENABLE_ALPHA: "true"
-
-        GF_AUTH_GENERIC_OAUTH_ENABLED: "true"
-        GF_AUTH_GENERIC_OAUTH_NAME: "g4v"
-        GF_AUTH_GENERIC_OAUTH_SCOPES: "openid profile email"
-        GF_AUTH_GENERIC_OAUTH_AUTH_URL: "https://auth.g4v.dev/application/o/authorize/"
-        GF_AUTH_GENERIC_OAUTH_TOKEN_URL: "https://auth.g4v.dev/application/o/token/"
-        GF_AUTH_GENERIC_OAUTH_API_URL: "https://auth.g4v.dev/application/o/userinfo/"
-        GF_AUTH_SIGNOUT_REDIRECT_URL: "https://auth.g4v.dev/application/o/grafana/end-session/"
-        # Optionally enable auto-login (bypasses Grafana login screen)
-        GF_AUTH_OAUTH_AUTO_LOGIN: "true"
-        # Optionally map user groups to Grafana roles
-        GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "contains(groups[*], 'Grafana Admins') && 'Admin' || contains(groups[*], 'Grafana Editors') && 'Editor' || 'Viewer'"
+      GF_AUTH_GENERIC_OAUTH_ENABLED: "true"
+      GF_AUTH_GENERIC_OAUTH_NAME: "g4v"
+      GF_AUTH_GENERIC_OAUTH_SCOPES: "openid profile email"
+      GF_AUTH_GENERIC_OAUTH_AUTH_URL: "https://auth.g4v.dev/application/o/authorize/"
+      GF_AUTH_GENERIC_OAUTH_TOKEN_URL: "https://auth.g4v.dev/application/o/token/"
+      GF_AUTH_GENERIC_OAUTH_API_URL: "https://auth.g4v.dev/application/o/userinfo/"
+      GF_AUTH_SIGNOUT_REDIRECT_URL: "https://auth.g4v.dev/application/o/grafana/end-session/"
+      # Optionally enable auto-login (bypasses Grafana login screen)
+      GF_AUTH_OAUTH_AUTO_LOGIN: "true"
+      # Optionally map user groups to Grafana roles
+      GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "contains(groups[*], 'Grafana Admins') && 'Admin' || contains(groups[*], 'Grafana Editors') && 'Editor' || 'Viewer'"
 
   kubeProxy:
     enabled: false
