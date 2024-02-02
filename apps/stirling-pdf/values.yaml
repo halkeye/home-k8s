@@ -13,13 +13,17 @@ app-template:
               enabled: true
               custom: false
               spec:
-                initialDelaySeconds: 0
                 periodSeconds: 10
                 timeoutSeconds: 1
                 failureThreshold: 3
             readiness: *probes
             startup:
               enabled: false
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
           resources:
             requests:
               cpu: 25m
@@ -33,10 +37,6 @@ app-template:
           runAsNonRoot: true
           fsGroup: 100
           fsGroupChangePolicy: OnRootMismatch
-          allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
-          capabilities:
-            drop: ["ALL"]
   service:
     main:
       ports:
