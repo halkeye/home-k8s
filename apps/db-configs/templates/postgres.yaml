@@ -20,7 +20,7 @@ spec:
         - CREATE EXTENSION earthdistance;
         - CREATE EXTENSION vectors;
   storage:
-    # storageClass: synology-csi-retain
+    # storageClassName: synology-iscsi
     size: 10Gi
   enableSuperuserAccess: true
 {{/*

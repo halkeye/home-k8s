@@ -21,7 +21,7 @@ spec:
     resources:
       requests:
         storage: 10Gi
-    storageClassName: synology-csi-retain
+    storageClassName: synology-iscsi
     accessModes:
       - ReadWriteOnce
 
