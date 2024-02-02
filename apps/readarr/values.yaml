@@ -12,7 +12,8 @@ app-template:
             READARR__INSTANCE_NAME: readarr
             READARR__PORT: &port 80
             READARR__LOG_LEVEL: info
-            READARR__AUTHENTICATION_METHOD: External
+            READARR__AUTHENTICATION_METHOD: None
+            READARR__AUTHENTICATION_REQUIRED: DisabledForLocalAddresses
             READARR__POSTGRES_PORT: "5432"
             READARR__POSTGRES_HOST:
               valueFrom:
