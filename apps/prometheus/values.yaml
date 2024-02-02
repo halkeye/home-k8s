@@ -99,7 +99,7 @@ kube-prometheus-stack:
           folder: ""
           type: file
           disableDeletion: false
-          editable: true
+          editable: false
           options:
             path: /var/lib/grafana/dashboards/default
     plugins:
@@ -184,28 +184,13 @@ kube-prometheus-stack:
     env:
       GF_DEFAULT_INSTANCE_NAME: grafana-home
       GF_SERVER_ROOT_URL: https://grafana.h.g4v.dev
-      GF_AUTH_ANONYMOUS_ENABLED: "false"
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
       GF_AUTH_DISABLE_LOGIN_FORM: "true"
       GF_AUTH_DISABLE_SIGNOUT_MENU: "true"
       GF_AUTH_BASIC_ENABLED: "false"
       GF_USERS_ALLOW_SIGN_UP: "false"
       GF_USERS_AUTO_ASSIGN_ORG: "true"
       GF_USERS_AUTO_ASSIGN_ORG_ROLE: Viewer
-
-      GF_PANELS_ENABLE_ALPHA: "true"
-      GF_PLUGINS_ENABLE_ALPHA: "true"
-
-      GF_AUTH_GENERIC_OAUTH_ENABLED: "true"
-      GF_AUTH_GENERIC_OAUTH_NAME: "g4v"
-      GF_AUTH_GENERIC_OAUTH_SCOPES: "openid profile email"
-      GF_AUTH_GENERIC_OAUTH_AUTH_URL: "https://auth.g4v.dev/application/o/authorize/"
-      GF_AUTH_GENERIC_OAUTH_TOKEN_URL: "https://auth.g4v.dev/application/o/token/"
-      GF_AUTH_GENERIC_OAUTH_API_URL: "https://auth.g4v.dev/application/o/userinfo/"
-      GF_AUTH_SIGNOUT_REDIRECT_URL: "https://auth.g4v.dev/application/o/grafana/end-session/"
-      # Optionally enable auto-login (bypasses Grafana login screen)
-      GF_AUTH_OAUTH_AUTO_LOGIN: "true"
-      # Optionally map user groups to Grafana roles
-      GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "contains(groups[*], 'Grafana Admins') && 'Admin' || contains(groups[*], 'Grafana Editors') && 'Editor' || 'Viewer'"
 
   kubeProxy:
     enabled: false
