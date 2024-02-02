@@ -3,8 +3,8 @@ kind: Certificate
 metadata:
   name: g4v-wildcard-certificate
 spec:
-  commonName: {{ .Values.cert.commonName }}
-  dnsNames: {{ .Values.cert.cnsNames | toJson }}
+  commonName: {{ .Values.cert.commonName | quote }}
+  dnsNames: {{ toYaml .Values.cert.dnsNames | nindent 4 }}
   issuerRef:
     kind: ClusterIssuer
     name: acme-letsencrypt-prod
