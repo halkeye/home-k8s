@@ -185,12 +185,6 @@ kube-prometheus-stack:
       GF_DEFAULT_INSTANCE_NAME: grafana-home
       GF_SERVER_ROOT_URL: https://grafana.h.g4v.dev
       GF_AUTH_ANONYMOUS_ENABLED: "true"
-      GF_AUTH_DISABLE_LOGIN_FORM: "true"
-      GF_AUTH_DISABLE_SIGNOUT_MENU: "true"
-      GF_AUTH_BASIC_ENABLED: "false"
-      GF_USERS_ALLOW_SIGN_UP: "false"
-      GF_USERS_AUTO_ASSIGN_ORG: "true"
-      GF_USERS_AUTO_ASSIGN_ORG_ROLE: Viewer
 
   kubeProxy:
     enabled: false
