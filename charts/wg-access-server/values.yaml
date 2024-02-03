@@ -96,7 +96,7 @@ app-template:
       stringData:
         config.yaml: |-
           wireguard:
-            privateKey: "{{ .Values.appConfig.wireguardPrivateKey }}"
+            privateKey: "{{ .Values.appConfigs.wireguardPrivateKey }}"
           # You can disable the builtin admin account by leaving out 'adminPassword'. Requires another backend to be configured.
           adminPassword: ""
           # adminUsername sets the user for the Basic/Simple Auth admin account if adminPassword is set.
