@@ -77,8 +77,6 @@ kube-prometheus-stack:
             - prometheus.h.g4v.dev
   grafana:
     enabled: true
-    #defaultDashboardsTimezone: America/Vancouver
-    #defaultDashboardsEditable: false
     ingress:
       enabled: true
       annotations:
