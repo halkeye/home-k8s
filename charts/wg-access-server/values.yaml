@@ -3,6 +3,7 @@ app-template:
     sessionSecret: ""
     oidcClientID: ""
     oidcClientSecret: ""
+    wireguardPrivateKey: ""
 
   controllers:
     main:
@@ -94,6 +95,8 @@ app-template:
       # -- Secret stringData content. Helm template enabled.
       stringData:
         config.yaml: |-
+          wireguard:
+            privateKey: "{{ .Values.appConfig.wireguardPrivateKey }}"
           # You can disable the builtin admin account by leaving out 'adminPassword'. Requires another backend to be configured.
           adminPassword: ""
           # adminUsername sets the user for the Basic/Simple Auth admin account if adminPassword is set.
