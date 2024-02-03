@@ -1,10 +1,10 @@
 apiVersion: db.movetokube.com/v1alpha1
 kind: PostgresUser
 metadata:
-  name: readarr
-  namespace: readarr
+  name: firezone
+  namespace: firezone
 spec:
-  role: readarr
-  database: readarr
-  secretName: readarr-db-secret
+  role: firezone
+  database: firezone
+  secretName: firezone-db-secret
   privileges: OWNER
