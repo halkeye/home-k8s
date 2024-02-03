@@ -1,0 +1,10 @@
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: wg-access-server
+  namespace: wg-access-server
+spec:
+  role: wg-access-server
+  database: wg-access-server
+  secretName: wg-access-server-db-secret
+  privileges: OWNER

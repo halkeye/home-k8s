@@ -1,0 +1,157 @@
+app-template:
+  appConfigs:
+    sessionSecret: ""
+    oidcClientID: ""
+    oidcClientSecret: ""
+
+  controllers:
+    main:
+      containers:
+        main:
+          image:
+            repository: ghcr.io/freifunkmuc/wg-access-server:latest
+            tag: v0.11.0
+          env:
+            TZ: America/Vancouver
+            WG_CONFIG: /config/config.yaml
+            WG_VPN_CIDRV6: 0
+            WG_STORAGE:
+              valueFrom:
+                secretKeyRef:
+                  name: wg-access-server-secret-wg-access-server-user
+                  key: POSTGRES_URL
+          envFrom:
+            - secretRef:
+                name: "{{.Release.Name}}-secret"
+          securityContext:
+            allowPrivilegeEscalation: true
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+              add:
+                - NET_ADMIN           # perform various network-related operations
+                - SYS_MODULE          # load and unload kernel modules
+          resources:
+            limits: &resources
+              memory: 1Gi
+            requests:
+              <<: *resources
+              cpu: 10m
+      pod:
+        securityContext:
+          runAsUser: 0
+          runAsGroup: 0
+          runAsNonRoot: false
+          fsGroup: 0
+          fsGroupChangePolicy: OnRootMismatch
+
+  service:
+    main:
+      ports:
+        http:
+          port: 8000
+    wireguard:
+      enabled: true
+      controller: main
+      type:  LoadBalancer
+      ports:
+        wireguard:
+          enabled: true
+          protocol: UDP
+          port: 51820
+
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/wireguard.png
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: VPN
+        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/wireguard.png
+        gethomepage.dev/name: Wireguard
+      hosts:
+        - host: &host "vpn-admin.g4v.dev"
+          paths:
+            - path: /
+              service:
+                name: main
+                port: http
+
+  persistence:
+    config:
+      enabled: true
+      type: secret
+      name: "{{ .Release.Name }}"
+
+  secrets:
+    secret:
+      # -- Enables or disables the Secret
+      enabled: true
+      # -- Labels to add to the Secret
+      labels: {}
+      # -- Annotations to add to the Secret
+      annotations: {}
+      # -- Secret stringData content. Helm template enabled.
+      stringData:
+        config.yaml: |-
+          # You can disable the builtin admin account by leaving out 'adminPassword'. Requires another backend to be configured.
+          adminPassword: ""
+          # adminUsername sets the user for the Basic/Simple Auth admin account if adminPassword is set.
+          # Every user of the basic and simple backend with a username matching adminUsername will have admin privileges.
+          adminUsername: "admin"
+          # Configure zero or more authentication backends
+          auth:
+            sessionStore:
+              # 32 random bytes in hexadecimal encoding (64 chars) used to sign session cookies. It's generated randomly
+              # if not present. Need to be set when running in HA setup (more than one replica)
+              secret: "{{ .Values.appConfigs.sessionSecret }}"
+            simple:
+              # Users is a list of htpasswd encoded username:password pairs
+              # supports BCrypt, Sha, Ssha, Md5
+              # You can create a user using "htpasswd -nB <username>"
+              users: []
+            # HTTP Basic Authentication
+            basic:
+              # Users is a list of htpasswd encoded username:password pairs
+              # supports BCrypt, Sha, Ssha, Md5
+              # You can create a user using "htpasswd -nB <username>"
+              users: []
+            oidc:
+              # A name for the backend (is shown on the login page and possibly in the devices list of the 'all devices' admin page)
+              name: "Auth"
+              # Should point to the OIDC Issuer (excluding /.well-known/openid-configuration)
+              issuer: "https://auth.g4v.dev"
+              # Your OIDC client credentials which would be provided by your OIDC provider
+              clientID: "{{ .Values.appConfigs.oidcClientID }}"
+              clientSecret: "{{ .Values.appConfigs.oidcClientSecret }}"
+              # The full redirect URL
+              # The path can be almost anything as long as it doesn't
+              # conflict with a path that the web UI uses.
+              # /callback is recommended.
+              redirectURL: https://admin-vpn.do.g4v.dev/callback
+              # List of scopes to request claims for. Must include 'openid'.
+              # Must include 'email' if 'emailDomains' is used. Can include 'profile' to show the user's name in the UI.
+              # Add custom ones if required for 'claimMapping'.
+              # Defaults to ["openid"]
+              scopes:
+                - openid
+                - profile
+                - email
+              # You can optionally restrict access to users with an email address
+              # that matches an allowed domain.
+              # If empty or omitted then all email domains will be allowed.
+              # emailDomains:
+              #  - example.com
+              # This is an advanced feature that allows you to define OIDC claim mapping expressions.
+              # This feature is used to define wg-access-server admins based off a claim in your OIDC token.
+              # A JSON-like object of claimKey: claimValue pairs as returned by the issuer is passed to the evaluation function. 
+              # See https://github.com/Knetic/govaluate/blob/9aa49832a739dcd78a5542ff189fb82c3e423116/MANUAL.md for the syntax.
+              claimMapping:
+                # This example works if you have a custom group_membership claim which is a list of strings 
+                admin: "'WireguardAdmins' in group_membership"
+                  #  access: "'WireguardAccess' in group_membership"
+              # Let wg-access-server retrieve the claims from the ID Token instead of querying the UserInfo endpoint.
+              # Some OIDC authorization provider implementations (e.g. ADFS) only publish claims in the ID Token.
+              claimsFromIDToken: false
+              # require this claim to be "true" to allow access for the user
+              # accessClaim: "access"
