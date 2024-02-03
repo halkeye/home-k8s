@@ -17,7 +17,7 @@ app-template:
                 secretKeyRef:
                   name: firezone-db-secret-firezone
                   key: HOST
-            POSTGRES_DB: "firezone"
+            DATABASE_NAME: "firezone"
             POSTGRES_USER:
               valueFrom:
                 secretKeyRef:
