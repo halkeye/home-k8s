@@ -18,7 +18,7 @@ app-template:
             WG_STORAGE:
               valueFrom:
                 secretKeyRef:
-                  name: wg-access-server-secret-wg-access-server-user
+                  name: "{{.Release.Name}}-db-secret-wg-access-server"
                   key: POSTGRES_URL
           envFrom:
             - secretRef:
