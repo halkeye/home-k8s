@@ -5,7 +5,7 @@ app-template:
         main:
           image:
             repository: firezone/firezone
-            tag: 0.7.36
+            tag: latest@sha256:6e65ebab1ddbdc8dfe8c6aa10defda1ea9b2b48e0f2b54772338f3e735be8a6f
           env:
             TZ: America/Vancouver
             VERSION: latest
