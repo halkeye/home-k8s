@@ -29,18 +29,18 @@ jobs:
       - name: Run chart-testing (list-changed)
         id: list-changed
         run: |
-          changed=$(ct list-changed --chart-dirs apps --target-branch ${{ github.event.repository.default_branch }})
+          changed=$(ct list-changed --chart-dirs charts --target-branch ${{ github.event.repository.default_branch }})
           if [[ -n "$changed" ]]; then
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Run chart-testing (lint)
         if: steps.list-changed.outputs.changed == 'true'
-        run: ct lint --check-version-increment=false --chart-dirs apps --target-branch ${{ github.event.repository.default_branch }}
+        run: ct lint --check-version-increment=false --chart-dirs charts --target-branch ${{ github.event.repository.default_branch }}
 
       #- name: Add repositories
       #  run: |
-      #    (for dir in $(ls -d upstream/*/ apps/*/); do helm dependency list $dir 2> /dev/null | grep -v 'file://' | tail +2 | head -n -1 | egrep -v '^$' | awk '{ print "helm repo add " $1 " " $3 }'; done) | sort | uniq | while read cmd; do $cmd; done
+      #    (for dir in $(ls -d upstream/*/ charts/*/); do helm dependency list $dir 2> /dev/null | grep -v 'file://' | tail +2 | head -n -1 | egrep -v '^$' | awk '{ print "helm repo add " $1 " " $3 }'; done) | sort | uniq | while read cmd; do $cmd; done
 
       #- name: Create kind cluster
       #  if: steps.list-changed.outputs.changed == 'true'
@@ -48,4 +48,4 @@ jobs:
 
       #- name: Run chart-testing (install)
       #  if: steps.list-changed.outputs.changed == 'true'
-      #  run: ct install --chart-dirs apps --target-branch ${{ github.event.repository.default_branch }}
+      #  run: ct install --chart-dirs charts --target-branch ${{ github.event.repository.default_branch }}
