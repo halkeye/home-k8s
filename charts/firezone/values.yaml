@@ -18,12 +18,12 @@ app-template:
                   name: firezone-db-secret-firezone
                   key: HOST
             DATABASE_NAME: "firezone"
-            POSTGRES_USER:
+            DATABASE_USER:
               valueFrom:
                 secretKeyRef:
                   name: firezone-db-secret-firezone
                   key: LOGIN
-            POSTGRES_PASSWORD:
+            DATABASE_PASSWORD:
               valueFrom:
                 secretKeyRef:
                   name: firezone-db-secret-firezone
