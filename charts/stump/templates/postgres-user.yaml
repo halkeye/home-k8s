@@ -1,0 +1,10 @@
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: readarr
+  namespace: readarr
+spec:
+  role: readarr
+  database: readarr
+  secretName: readarr-db-secret
+  privileges: OWNER
