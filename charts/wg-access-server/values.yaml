@@ -20,7 +20,7 @@ app-template:
               valueFrom:
                 secretKeyRef:
                   name: "{{.Release.Name}}-db-secret-wg-access-server"
-                  key: POSTGRES_URL
+                  key: DB_URL
           envFrom:
             - secretRef:
                 name: "{{.Release.Name}}-secret"

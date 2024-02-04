@@ -8,3 +8,5 @@ spec:
   database: wg-access-server
   secretName: wg-access-server-db-secret
   privileges: OWNER
+  secretTemplate:
+    DB_URL: {{ `postgresql://{{.Role}}:{{.Password}}@{{.Host}}:5432/{{.Database}}?sslmode=no-verify` }}
