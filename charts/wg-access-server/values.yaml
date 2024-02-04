@@ -5,6 +5,10 @@ app-template:
     oidcClientSecret: ""
     wireguardPrivateKey: ""
 
+  podAnnotations:
+    reloader.stakater.com/auto: "true"
+    secret.reloader.stakater.com/reload: "{{.Release.Name}}-secret,{{.Release.Name}}-db-secret-wg-access-server"
+
   controllers:
     main:
       containers:
@@ -123,7 +127,7 @@ app-template:
               # A name for the backend (is shown on the login page and possibly in the devices list of the 'all devices' admin page)
               name: "Auth"
               # Should point to the OIDC Issuer (excluding /.well-known/openid-configuration)
-              issuer: "https://auth.g4v.dev"
+              issuer: "https://auth.g4v.dev/application/o/vpn/"
               # Your OIDC client credentials which would be provided by your OIDC provider
               clientID: "{{ .Values.appConfigs.oidcClientID }}"
               clientSecret: "{{ .Values.appConfigs.oidcClientSecret }}"
