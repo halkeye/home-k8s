@@ -20,6 +20,7 @@ app-template:
             TZ: America/Vancouver
             WG_CONFIG: /config/config.yaml
             WG_VPN_CIDRV6: 0
+            WG_EXTERNAL_HOST: vpn.gavinmogan.com
             WG_STORAGE:
               valueFrom:
                 secretKeyRef:
