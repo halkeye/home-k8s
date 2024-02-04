@@ -8,9 +8,8 @@ app-template:
             tag: nightly@sha256:018a963ef0becff42689cc51a9c7c68689a4372dcad342e9966eafe0929c0ec5
           env:
             TZ: America/Vancouver
-            PGID: 1026
-            PUID: 100
             STUMP_PORT: 10801
+            HOME: /tmp
           probes:
             liveness:
               enabled: false
@@ -31,6 +30,9 @@ app-template:
               cpu: 10m
       pod:
         securityContext:
+          runAsUser: 1026
+          runAsGroup: 100
+          runAsNonRoot: true
           fsGroup: 100
           fsGroupChangePolicy: OnRootMismatch
   service:
