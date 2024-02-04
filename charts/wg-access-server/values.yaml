@@ -135,7 +135,7 @@ app-template:
               # The path can be almost anything as long as it doesn't
               # conflict with a path that the web UI uses.
               # /callback is recommended.
-              redirectURL: https://admin-vpn.do.g4v.dev/callback
+              redirectURL: https://admin-vpn.g4v.dev/callback
               # List of scopes to request claims for. Must include 'openid'.
               # Must include 'email' if 'emailDomains' is used. Can include 'profile' to show the user's name in the UI.
               # Add custom ones if required for 'claimMapping'.
