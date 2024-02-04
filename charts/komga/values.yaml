@@ -12,8 +12,8 @@ app-template:
           env:
             TZ: America/Vancouver
             SERVER_PORT: &port 8080
-            LOGGING_LEVEL_ROOT: DEBUG
-            LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY: DEBUG
+            LOGGING_LEVEL_ROOT: INFO
+            LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY: INFO
             KOMGA_CONFIGDIR: /data
             KOMGA_OAUTH2_ACCOUNT_CREATION: "true"
             SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_AUTHENTIK_PROVIDER: authentik
