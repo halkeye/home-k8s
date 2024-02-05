@@ -35,7 +35,7 @@ spec:
           value: "true"
         - name: DB_DUMP_TARGET
           value: "/backup"
-        image: databack/mysql-backup:v1.0.0-rc2
+        image: databack/mysql-backup:1.0.0-rc2
         imagePullPolicy: IfNotPresent
         name: mariadb-to-sql
         securityContext:
