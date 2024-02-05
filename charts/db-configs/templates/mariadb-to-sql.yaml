@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mariadb-to-sql
+spec:
+  strategy:
+    type: Recreate
+  template:
+    spec:
+      containers:
+      - env:
+        - name: DB_SERVER
+          value: mariadb.db
+        - name: DB_PORT
+          value: 3306
+        - name: DB_USER
+          value: 'root'
+        - name: DB_PASS
+          valueFrom:
+            secretKeyRef:
+              key: root-password
+              name: mariadb-secrets
+        - name: DB_DUMP_BY_SCHEMA
+          value: "true"
+        - name: DB_DUMP_TARGET
+          value: "/backup"
+        image: databack/mysql-backup:v1.0.0-rc2
+        imagePullPolicy: IfNotPresent
+        name: mariadb-to-sql
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          readOnlyRootFilesystem: true
+        volumeMounts:
+        - mountPath: /backup
+          name: backup
+      securityContext:
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
+        runAsGroup: 100
+        runAsNonRoot: true
+        runAsUser: 1026
+      volumes:
+      - name: backup
+        nfs:
+          path: /volume1/Backups/mariadb/homek8s-2024
+          server: 172.16.10.10

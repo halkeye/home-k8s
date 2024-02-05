@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-to-sql
+spec:
+  strategy:
+    type: Recreate
+  template:
+    spec:
+      containers:
+      - env:
+        - name: DB_SERVER
+          value: postgres-rw.db
+        - name: DB_PORT
+          value: 5432
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              key: USER
+              name: postgres-superuser
+        - name: DB_PASS
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: postgres-superuser
+        - name: DB_DUMP_BY_SCHEMA
+          value: "true"
+        image: ghcr.io/halkeye/postgres-backup:sha-53e24d3
+        imagePullPolicy: IfNotPresent
+        name: postgres-to-sql
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          readOnlyRootFilesystem: true
+        volumeMounts:
+        - mountPath: /backup
+          name: backup
+      securityContext:
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
+        runAsGroup: 100
+        runAsNonRoot: true
+        runAsUser: 1026
+      volumes:
+      - name: backup
+        nfs:
+          path: /volume1/Backups/postgresql/homek8s-2024
+          server: 172.16.10.10
