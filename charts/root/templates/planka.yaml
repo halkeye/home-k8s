@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: planka
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "20"
+spec:
+  destination:
+    namespace: planka
+    server: https://kubernetes.default.svc
+  project: default
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+  source:
+    path: charts/planka
+    repoURL: https://github.com/halkeye/home-k8s
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values.yaml
+        - secrets://values-secrets.yaml
