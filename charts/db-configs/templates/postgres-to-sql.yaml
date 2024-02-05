@@ -2,7 +2,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: postgres-to-sql
+  labels:
+    app.kubernetes.io/instance: postgres-to-sql
+    app.kubernetes.io/name: postgres-to-sql
 spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: postgres-to-sql
+      app.kubernetes.io/name: postgres-to-sql
   strategy:
     type: Recreate
   template:

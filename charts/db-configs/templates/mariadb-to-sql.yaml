@@ -2,7 +2,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mariadb-to-sql
+  labels:
+    app.kubernetes.io/instance: mariadb-to-sql
+    app.kubernetes.io/name: mariadb-to-sql
 spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: mariadb-to-sql
+      app.kubernetes.io/name: mariadb-to-sql
   strategy:
     type: Recreate
   template:
