@@ -19,7 +19,7 @@ app-template:
                 name: "{{.Release.Name}}-secret"
           securityContext:
             allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
+            readOnlyRootFilesystem: false
             capabilities:
               drop: ["ALL"]
           resources:
@@ -30,10 +30,10 @@ app-template:
               cpu: 10m
       pod:
         securityContext:
-          runAsUser: 1026
-          runAsGroup: 100
+          runAsUser: 1000
+          runAsGroup: 1000
           runAsNonRoot: true
-          fsGroup: 100
+          fsGroup: 1000
           fsGroupChangePolicy: OnRootMismatch
   service:
     main:
