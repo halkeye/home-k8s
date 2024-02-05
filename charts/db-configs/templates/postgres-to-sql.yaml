@@ -10,9 +10,9 @@ spec:
       containers:
       - env:
         - name: DB_SERVER
-          value: postgres-rw.db
+          value: "postgres-rw.db"
         - name: DB_PORT
-          value: 5432
+          value: "5432"
         - name: DB_USER
           valueFrom:
             secretKeyRef:

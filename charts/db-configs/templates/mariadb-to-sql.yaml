@@ -10,9 +10,9 @@ spec:
       containers:
       - env:
         - name: DB_SERVER
-          value: mariadb.db
+          value: "mariadb.db"
         - name: DB_PORT
-          value: 3306
+          value: "3306"
         - name: DB_USER
           value: 'root'
         - name: DB_PASS
