@@ -27,7 +27,7 @@ spec:
         - name: DB_USER
           valueFrom:
             secretKeyRef:
-              key: USER
+              key: user
               name: postgres-superuser
         - name: DB_PASS
           valueFrom:
