@@ -13,6 +13,10 @@ spec:
   strategy:
     type: Recreate
   template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: postgres-to-sql
+        app.kubernetes.io/name: postgres-to-sql
     spec:
       containers:
       - env:
