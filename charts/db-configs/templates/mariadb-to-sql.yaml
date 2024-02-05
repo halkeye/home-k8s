@@ -38,12 +38,14 @@ spec:
         image: databack/mysql-backup:1.0.0-rc2
         imagePullPolicy: IfNotPresent
         name: mariadb-to-sql
+        args:
+          - backup
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
             drop:
             - ALL
-          readOnlyRootFilesystem: true
+          readOnlyRootFilesystem: false
         volumeMounts:
         - mountPath: /backup
           name: backup
