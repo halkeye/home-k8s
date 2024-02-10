@@ -6,7 +6,7 @@ appVersion: "1.0"
 
 dependencies:
   - name: argo-cd
-    version: 6.0.3
+    version: 6.0.5
     repository: https://argoproj.github.io/argo-helm
 maintainers:
   - name: halkeye
