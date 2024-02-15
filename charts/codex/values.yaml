@@ -4,7 +4,7 @@ app-template:
       containers:
         main:
           image:
-            repository:   ajslater/codex
+            repository: ajslater/codex
             tag: 1.4.3
           env:
             TZ: America/Vancouver

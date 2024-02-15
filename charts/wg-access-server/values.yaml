@@ -59,7 +59,7 @@ app-template:
     wireguard:
       enabled: true
       controller: main
-      type:  LoadBalancer
+      type: LoadBalancer
       ports:
         wireguard:
           enabled: true
@@ -153,7 +153,7 @@ app-template:
               #  - example.com
               # This is an advanced feature that allows you to define OIDC claim mapping expressions.
               # This feature is used to define wg-access-server admins based off a claim in your OIDC token.
-              # A JSON-like object of claimKey: claimValue pairs as returned by the issuer is passed to the evaluation function. 
+              # A JSON-like object of claimKey: claimValue pairs as returned by the issuer is passed to the evaluation function.
               # See https://github.com/Knetic/govaluate/blob/9aa49832a739dcd78a5542ff189fb82c3e423116/MANUAL.md for the syntax.
               claimMapping:
                 admin: "'WireguardAdmins' in groups"
