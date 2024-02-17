@@ -16,7 +16,7 @@ app-template:
               spec:
                 httpGet:
                   path: /healthz
-                  port: *port
+                  port: http
                 initialDelaySeconds: 0
                 periodSeconds: 10
                 timeoutSeconds: 1
