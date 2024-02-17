@@ -8,7 +8,7 @@ app-template:
             tag: v0.24.3
           env:
             TZ: America/Vancouver
-            STASH_PORT: &port "9999"
+            STASH_PORT: "9999"
           probes:
             liveness: &probes
               enabled: true
@@ -16,7 +16,7 @@ app-template:
               spec:
                 httpGet:
                   path: /healthz
-                  port: http
+                  port: 9999
                 initialDelaySeconds: 0
                 periodSeconds: 10
                 timeoutSeconds: 1
@@ -46,7 +46,7 @@ app-template:
     main:
       ports:
         http:
-          port: *port
+          port: 9999
   ingress:
     main:
       enabled: true
