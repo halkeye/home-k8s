@@ -63,6 +63,30 @@ app-template:
             requests:
               <<: *resources
               cpu: 10m
+        exportarr:
+          image:
+            repository: ghcr.io/onedr0p/exportarr
+            tag: v1.6.1@sha256:60cf3d44aa0b7dea2a65160b2e2e373c1ae38cd6b12a45fe81b8afa45ac31c22
+          args:
+            - prowlarr
+          env:
+            PORT: 9707
+            URL: http://localhost:6767
+            APIKEY:
+              valueFrom:
+                secretKeyRef:
+                  name: prowlarr-secret
+                  key: PROWLARR__API_KEY
+          resources:
+            requests:
+              cpu: 10m
+            limits:
+              memory: 128Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
       pod:
         securityContext:
           runAsUser: 1026
@@ -75,14 +99,23 @@ app-template:
       ports:
         http:
           port: *port
+        metrics:
+          port: 9707
+  serviceMonitor:
+    main:
+      enabled: true
+      endpoints:
+        - port: metrics
+          scheme: http
+          path: /metrics
+          interval: 1h
+          scrapeTimeout: 1m
   ingress:
     main:
       enabled: true
       annotations:
-        cert-manager.io/cluster-issuer: acme-letsencrypt-prod
         hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/prowlarr.png
         gethomepage.dev/enabled: "true"
-        gethomepage.dev/description: Series Management
         gethomepage.dev/group: Media Fetchers
         gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/prowlarr.png
         gethomepage.dev/name: Prowlarr
@@ -93,10 +126,6 @@ app-template:
               service:
                 name: main
                 port: http
-      tls:
-        - hosts:
-            - *host
-          secretName: prowlarr-tls-certificate
   persistence:
     config:
       enabled: true

@@ -62,6 +62,30 @@ app-template:
             requests:
               <<: *resources
               cpu: 10m
+        exportarr:
+          image:
+            repository: ghcr.io/onedr0p/exportarr
+            tag: v1.6.1@sha256:60cf3d44aa0b7dea2a65160b2e2e373c1ae38cd6b12a45fe81b8afa45ac31c22
+          args:
+            - readarr
+          env:
+            PORT: 9707
+            URL: http://localhost:6767
+            APIKEY:
+              valueFrom:
+                secretKeyRef:
+                  name: readarr-secret
+                  key: READARR__API_KEY
+          resources:
+            requests:
+              cpu: 10m
+            limits:
+              memory: 128Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
       pod:
         securityContext:
           runAsUser: 1026
