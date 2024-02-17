@@ -83,8 +83,6 @@ app-template:
         gethomepage.dev/group: Media Fetchers
         gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/lidarr.png
         gethomepage.dev/name: Lidarr
-        gethomepage.dev/widget.type: "lidarr"
-        gethomepage.dev/widget.url: "https://lidarr.g4v.dev"
       hosts:
         - host: &host "lidarr.g4v.dev"
           paths:
