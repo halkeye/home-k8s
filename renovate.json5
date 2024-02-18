@@ -10,7 +10,8 @@
     ":automergeDigest",
     ":automergeBranch",
     ":timezone(America/Vancouver)",
-    "helpers:pinGitHubActionDigests"
+    "helpers:pinGitHubActionDigests",
+    "github>halkeye/home-k8s//.github/renovate/grafanaDashboards.json5",
   ],
   "packageRules": [
     {
