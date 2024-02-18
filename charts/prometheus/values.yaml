@@ -341,8 +341,9 @@ kube-prometheus-stack:
         check_for_plugin_updates: false
         reporting_enabled: false
       auth:
+        disable_login_form: true
         signout_redirect_url: https://auth.g4v.dev/application/o/grafana/end-session/
-        oauth_auto_login: false
+        oauth_auto_login: true
         oauth_allow_insecure_email_lookup: true
       auth.anonymous:
         enabled: true
