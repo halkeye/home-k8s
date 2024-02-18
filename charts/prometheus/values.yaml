@@ -162,6 +162,14 @@ kube-prometheus-stack:
           editable: true
           options:
             path: /var/lib/grafana/dashboards/kubernetes
+        - name: network
+          orgId: 1
+          folder: Kubernetes
+          type: file
+          disableDeletion: false
+          editable: true
+          options:
+            path: /var/lib/grafana/dashboards/network
     plugins:
       - grafana-clock-panel
       - grafana-piechart-panel
