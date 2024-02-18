@@ -351,6 +351,7 @@ kube-prometheus-stack:
         org_role: Viewer
         hide_version: true
       auth.generic_oauth:
+        auto_login: true
         name: authentik
         enabled: true
         scopes: openid email profile
