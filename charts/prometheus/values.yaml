@@ -304,6 +304,11 @@ kube-prometheus-stack:
           gnetId: 4475
           revision: 5
           datasource: Prometheus
+        argocd:
+          # renovate: depName="ArgoCD"
+          gnetId: 14584
+          revision: 1
+          datasource: Prometheus
     sidecar:
       dashboards:
         enabled: true
