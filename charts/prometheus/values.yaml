@@ -190,10 +190,12 @@ kube-prometheus-stack:
               value: Prometheus
       mediafetchers:
         radarr:
+          # renovate: depName="Radarr v3"
           gnetId: 12896
           revision: 1
           datasource: Prometheus
         sonarr:
+          # renovate: depName="Sonarr v3"
           gnetId: 12530
           revision: 1
           datasource: Prometheus
@@ -252,8 +254,8 @@ kube-prometheus-stack:
         cert-manager:
           url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/cert-manager/dashboards/cert-manager.json
           datasource: Prometheus
-        # renovate: depName="Adguard Exporter"
         adguard:
+          # renovate: depName="Adguard Exporter"
           gnetId: 13330
           revision: 3
           datasource: Prometheus
@@ -297,18 +299,18 @@ kube-prometheus-stack:
           revision: 9
           datasource: Prometheus
       default:
-        # renovate: depName="Prometheus NUT Exporter"
         nut:
+          # renovate: depName="Prometheus NUT Exporter"
           gnetId: 14371
           revision: 1
           datasource: Prometheus
-        # renovate: depName="Alertmanager"
         alertmanager:
+          # renovate: depName="Alertmanager"
           gnetId: 9578
           revision: 4
           datasource: Prometheus
-        # renovate: depName="Traefik"
         traefik:
+          # renovate: depName="Traefik"
           gnetId: 4475
           revision: 5
           datasource: Prometheus
