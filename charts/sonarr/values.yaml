@@ -70,7 +70,7 @@ app-template:
             - sonarr
           env:
             PORT: 9707
-            URL: http://localhost:6767
+            URL: http://localhost:80
             APIKEY:
               valueFrom:
                 secretKeyRef:
