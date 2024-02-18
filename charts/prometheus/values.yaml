@@ -51,8 +51,6 @@ kube-prometheus-stack:
               matchers:
               - severity =~ "none"
             - receiver: 'discord'
-      #configMaps:
-      #  - alertmanager-config-overrides
   prometheus:
     enabled: true
     prometheusSpec:
