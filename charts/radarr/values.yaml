@@ -5,7 +5,7 @@ app-template:
         main:
           image:
             repository: ghcr.io/onedr0p/radarr
-            tag: 5.2.6.8376
+            tag: 5.3.6.8612
           env:
             TZ: America/Vancouver
             # https://github.com/Radarr/Radarr/issues/7030#issuecomment-1039689518
