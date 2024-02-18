@@ -270,6 +270,7 @@ kube-prometheus-stack:
       GF_SERVER_ROOT_URL: https://grafana.h.g4v.dev
       GF_EXPLORE_ENABLED: true
       GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: natel-discrete-panel,pr0ps-trackmap-panel,panodata-map-panel
+    envFromSecret: grafana-secrets
     grafana.ini:
       analytics:
         check_for_updates: false
