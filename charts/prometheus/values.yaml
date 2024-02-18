@@ -236,9 +236,9 @@ kube-prometheus-stack:
           revision: 21
           datasource: Prometheus
         kubernetes-volumes:
-          # renovate: depName="K8s / Storage / Volumes / Cluster"
-          gnetId: 11454
-          revision: 14
+          # renovate: depName="kubernetes-persistent-volumes"
+          gnetId: 13646
+          revision: 2
           datasource: Prometheus
         node-exporter-full:
           # renovate: depName="Node Exporter Full"
