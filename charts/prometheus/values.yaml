@@ -147,7 +147,8 @@ kube-prometheus-stack:
           gnetId: 13502
           revision: 25
           datasource:
-            - { name: DS_PROMETHEUS, value: Prometheus }
+            - name: DS_PROMETHEUS
+              value: Prometheus
         node-exporter-full:
           # renovate: depName="Node Exporter Full"
           gnetId: 1860
@@ -256,8 +257,8 @@ kube-prometheus-stack:
           revision: 3
           datasource: Prometheus
         exportarr:
-           url: https://raw.githubusercontent.com/onedr0p/exportarr/master/examples/grafana/dashboard2.json
-           token: ''
+          url: https://raw.githubusercontent.com/onedr0p/exportarr/master/examples/grafana/dashboard2.json
+          token: ''
     sidecar:
       dashboards:
         enabled: true
