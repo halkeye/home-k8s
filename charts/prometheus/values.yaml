@@ -164,7 +164,7 @@ kube-prometheus-stack:
             path: /var/lib/grafana/dashboards/kubernetes
         - name: network
           orgId: 1
-          folder: Kubernetes
+          folder: Network
           type: file
           disableDeletion: false
           editable: true
