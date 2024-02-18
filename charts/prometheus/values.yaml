@@ -1,3 +1,4 @@
+authentik: {}
 kube-prometheus-stack:
   prometheus-node-exporter:
     tolerations:
