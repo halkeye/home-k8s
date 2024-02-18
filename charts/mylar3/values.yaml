@@ -23,6 +23,8 @@ app-template:
               cpu: 15m
       pod:
         securityContext:
+          runAsUser: 0
+          runAsGroup: 0
           runAsNonRoot: false
           fsGroup: 1026
           fsGroupChangePolicy: OnRootMismatch
