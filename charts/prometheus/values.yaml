@@ -202,7 +202,7 @@ kube-prometheus-stack:
           token: ''
       data:
         cloudnative-pg:
-          url: https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/docs/src/samples/monitoring/grafana-dashboard.json
+          url: https://github.com/cloudnative-pg/charts/blob/c939e3e114ae4c3a5b7190577aeae6c625ef8d48/charts/cloudnative-pg/monitoring/grafana-dashboard.json
           datasource: Prometheus
       kubernetes:
         kubernetes-api-server:
