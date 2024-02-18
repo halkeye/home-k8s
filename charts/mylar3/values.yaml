@@ -8,6 +8,8 @@ app-template:
             tag: version-v0.7.6@sha256:0dbc84954e0b3d13cf42f5b1f42e845cb0d211d9d627642e5b9101a49cb6c0b0
           env:
             TZ: America/Vancouver
+            UID: 1026
+            GID: 100
           securityContext:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: false
@@ -21,10 +23,8 @@ app-template:
               cpu: 15m
       pod:
         securityContext:
-          runAsUser: 1026
-          runAsGroup: 100
-          runAsNonRoot: true
-          fsGroup: 100
+          runAsNonRoot: false
+          fsGroup: 1026
           fsGroupChangePolicy: OnRootMismatch
   service:
     main:
