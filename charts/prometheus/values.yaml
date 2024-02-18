@@ -195,7 +195,7 @@ kube-prometheus-stack:
         sonarr:
           # renovate: depName="Sonarr v3"
           gnetId: 12530
-          revision: 1
+          revision: 2
           datasource: Prometheus
         exportarr:
           url: https://raw.githubusercontent.com/onedr0p/exportarr/933ed39eba6ecbadfec8d7a9f9f71a07c05d56cb/examples/grafana/dashboard2.json
