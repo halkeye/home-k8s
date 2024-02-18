@@ -22,12 +22,13 @@ kube-prometheus-stack:
       configMaps:
         - alertmanager-config-overrides
   prometheus:
+    enabled: true
     prometheusSpec:
       ruleSelectorNilUsesHelmValues: false
       serviceMonitorSelectorNilUsesHelmValues: false
       podMonitorSelectorNilUsesHelmValues: false
       probeSelectorNilUsesHelmValues: false
-      extraScrapeConfigs: |-
+      additionalScrapeConfigs:
         - job_name: nut-synology
           scheme: https
           metrics_path: /ups_metrics
