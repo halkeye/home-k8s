@@ -202,13 +202,13 @@ kube-prometheus-stack:
           token: ''
       data:
         cloudnative-pg:
-          url: https://github.com/cloudnative-pg/charts/blob/c939e3e114ae4c3a5b7190577aeae6c625ef8d48/charts/cloudnative-pg/monitoring/grafana-dashboard.json
+          url: https://raw.githubusercontent.com/cloudnative-pg/charts/c939e3e114ae4c3a5b7190577aeae6c625ef8d48/charts/cloudnative-pg/monitoring/grafana-dashboard.json
           datasource: Prometheus
       kubernetes:
         kubernetes-api-server:
           # renovate: depName="Kubernetes / System / API Server"
           gnetId: 16761
-          revision: 16
+          revision: 1
           datasource: Prometheus
         kubernetes-coredns:
           # renovate: depName="Kubernetes / System / CoreDNS"
