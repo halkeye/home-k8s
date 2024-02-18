@@ -98,6 +98,17 @@ app-template:
       ports:
         http:
           port: *port
+        metrics:
+          port: 9707
+  serviceMonitor:
+    main:
+      enabled: true
+      endpoints:
+        - port: metrics
+          scheme: http
+          path: /metrics
+          interval: 1h
+          scrapeTimeout: 1m
   ingress:
     main:
       enabled: true
