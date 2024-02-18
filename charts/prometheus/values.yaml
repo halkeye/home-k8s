@@ -108,6 +108,8 @@ kube-prometheus-stack:
             - prometheus.h.g4v.dev
   grafana:
     enabled: true
+    podAnnotations:
+      reloader.stakater.com/auto: "true"
     ingress:
       enabled: true
       annotations:
@@ -128,20 +130,70 @@ kube-prometheus-stack:
           folder: ""
           type: file
           disableDeletion: false
-          editable: false
+          editable: true
           options:
             path: /var/lib/grafana/dashboards/default
     plugins:
+      - grafana-clock-panel
       - grafana-piechart-panel
+      - grafana-worldmap-panel
+      - natel-discrete-panel
+      - pr0ps-trackmap-panel
+      - vonage-status-panel
     dashboards:
       default:
+        minio:
+          # renovate: depName="MinIO Dashboard"
+          gnetId: 13502
+          revision: 25
+          datasource:
+            - { name: DS_PROMETHEUS, value: Prometheus }
+        node-exporter-full:
+          # renovate: depName="Node Exporter Full"
+          gnetId: 1860
+          revision: 33
+          datasource: Prometheus
+        node-feature-discovery:
+          url: https://raw.githubusercontent.com/kubernetes-sigs/node-feature-discovery/master/examples/grafana-dashboard.json
+          datasource: Prometheus
+        kubernetes-api-server:
+          # renovate: depName="Kubernetes / System / API Server"
+          gnetId: 16761
+          revision: 16
+          datasource: Prometheus
+        kubernetes-coredns:
+          # renovate: depName="Kubernetes / System / CoreDNS"
+          gnetId: 15762
+          revision: 17
+          datasource: Prometheus
+        kubernetes-global:
+          # renovate: depName="Kubernetes / Views / Global"
+          gnetId: 15757
+          revision: 37
+          datasource: Prometheus
+        kubernetes-namespaces:
+          # renovate: depName="Kubernetes / Views / Namespaces"
+          gnetId: 15758
+          revision: 34
+          datasource: Prometheus
+        kubernetes-nodes:
+          # renovate: depName="Kubernetes / Views / Nodes"
+          gnetId: 15759
+          revision: 29
+          datasource: Prometheus
+        kubernetes-pods:
+          # renovate: depName="Kubernetes / Views / Pods"
+          gNetId: 15760
+          revision: 21
+          datasource: Prometheus
+        kubernetes-volumes:
+          # renovate: depName="K8s / Storage / Volumes / Cluster"
+          gnetId: 11454
+          revision: 14
+          datasource: Prometheus
         prometheus:
           gnetId: 3662
           revision: 2
-          datasource: Prometheus
-        node-exporter-full:
-          gnetId: 1860
-          revision: 28
           datasource: Prometheus
         kubernetes-cluster-monitoring-315:
           gnetId: 315
@@ -217,7 +269,6 @@ kube-prometheus-stack:
       GF_DEFAULT_INSTANCE_NAME: grafana-home
       GF_SERVER_ROOT_URL: https://grafana.h.g4v.dev
       GF_EXPLORE_ENABLED: true
-      GF_FEATURE_TOGGLES_ENABLE: publicDashboards
       GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: natel-discrete-panel,pr0ps-trackmap-panel,panodata-map-panel
     grafana.ini:
       analytics:
