@@ -1,0 +1,19 @@
+kind: Probe
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: probes
+spec:
+  module: icmp
+  prober:
+    url: blackbox-exporter.monitoring.svc.cluster.local.:9115
+  targets:
+    staticConfig:
+      static:
+        # Inform IP
+        - 157.230.204.74
+        # Nas
+        - 172.16.10.10
+        # Adguard
+        - 172.16.10.9
+        # Printer
+        - 172.16.10.4
