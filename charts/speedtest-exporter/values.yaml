@@ -36,3 +36,9 @@ app-template:
           path: /metrics
           interval: 60m
           scrapeTimeout: 1m
+  persistence:
+    tmp:
+      enabled: true
+      type: emptyDir
+      globalMounts:
+        - path: /home/speedtest/.config/
