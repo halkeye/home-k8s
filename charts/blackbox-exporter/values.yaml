@@ -1,4 +1,5 @@
 prometheus-blackbox-exporter:
+  fullnameOverride: blackbox-exporter
   podSecurityContext:
     sysctls:
       - name: net.ipv4.ping_group_range
