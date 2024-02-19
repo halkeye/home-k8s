@@ -8,11 +8,6 @@ app-template:
             tag: 2023.5.14-77f2efc
           env:
             TZ: America/Vancouver
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            capabilities:
-              drop: ["ALL"]
           resources:
             limits:
               memory: 50Mi
@@ -40,9 +35,3 @@ app-template:
               service:
                 name: main
                 port: http
-  persistence:
-    tmp:
-      enabled: true
-      type: emptyDir
-      globalMounts:
-        - path: /var/cache/nginx/client_temp
