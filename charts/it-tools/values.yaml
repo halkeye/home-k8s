@@ -40,14 +40,3 @@ app-template:
               service:
                 name: main
                 port: http
-  persistence:
-    config:
-      enabled: true
-      type: persistentVolumeClaim
-      accessMode: ReadWriteOnce
-      size: 1Gi
-      storageClass: synology-iscsi
-      globalMounts:
-        - path: /app/config
-    tmp:
-      type: emptyDir
