@@ -1,0 +1,65 @@
+app-template:
+  controllers:
+    main:
+      containers:
+        main:
+          image:
+            repository: ghcr.io/prymitive/karma
+            tag: v0.118@sha256:f116547287c662263e03b6a82e1deb18157c3a213787506ceb38bb7d24298844
+          env:
+            TZ: America/Vancouver
+            ALERTMANAGER_URI: http://alertmanager-operated.monitoring.svc.cluster.local.:9093
+          probes:
+            liveness: &probes
+              enabled: true
+              custom: true
+              spec:
+                httpGet:
+                  path: /health
+                  port: 8080
+                initialDelaySeconds: 0
+                periodSeconds: 10
+                timeoutSeconds: 1
+                failureThreshold: 3
+            readiness: *probes
+            startup:
+              enabled: false
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            limits: &resources
+              memory: 128Mi
+            requests:
+              <<: *resources
+              cpu: 10m
+      pod:
+        securityContext:
+          runAsUser: 568
+          runAsGroup: 568
+          runAsNonRoot: true
+          fsGroup: 568
+          fsGroupChangePolicy: OnRootMismatch
+  service:
+    main:
+      ports:
+        http:
+          port: 8080
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/karma.png
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: Media Fetchers
+        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/karma.png
+        gethomepage.dev/name: Overseerr
+      hosts:
+        - host: &host karma.h.g4v.dev
+          paths:
+            - path: /
+              service:
+                name: main
+                port: http
