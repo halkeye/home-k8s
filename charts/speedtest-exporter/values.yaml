@@ -31,7 +31,7 @@ app-template:
     main:
       enabled: true
       endpoints:
-        - port: metrics
+        - port: http
           scheme: http
           path: /metrics
           interval: 60m
