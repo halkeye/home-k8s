@@ -53,9 +53,9 @@ app-template:
       annotations:
         hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/karma.png
         gethomepage.dev/enabled: "true"
-        gethomepage.dev/group: Media Fetchers
+        gethomepage.dev/group: Monitoring
         gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/karma.png
-        gethomepage.dev/name: Overseerr
+        gethomepage.dev/name: Karma
       hosts:
         - host: &host karma.h.g4v.dev
           paths:

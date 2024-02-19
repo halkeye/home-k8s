@@ -15,7 +15,7 @@ kube-prometheus-stack:
         hajimari.io/appName: "Alert Manager"
         hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/alertmanager.png
         gethomepage.dev/enabled: "true"
-        gethomepage.dev/group: Kubernetes
+        gethomepage.dev/group: Monitoring
         gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/alertmanager.png
         gethomepage.dev/name: Alert Manager
       hosts:
@@ -65,7 +65,7 @@ kube-prometheus-stack:
         hajimari.io/appName: Prometheus
         hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/prometheus.png
         gethomepage.dev/enabled: "true"
-        gethomepage.dev/group: Kubernetes
+        gethomepage.dev/group: Monitoring
         gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/prometheus.png
         gethomepage.dev/name: Prometheus
       hosts:
@@ -80,7 +80,7 @@ kube-prometheus-stack:
         hajimari.io/appName: Grafana
         hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/grafana.png
         gethomepage.dev/enabled: "true"
-        gethomepage.dev/group: Kubernetes
+        gethomepage.dev/group: Monitoring
         gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/grafana.png
         gethomepage.dev/name: Grafana
       hosts:
