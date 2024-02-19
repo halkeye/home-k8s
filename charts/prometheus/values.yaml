@@ -1,5 +1,7 @@
 authentik: {}
 kube-prometheus-stack:
+  kubelet:
+    enabled: false
   prometheus-node-exporter:
     tolerations:
       - effect: NoSchedule
