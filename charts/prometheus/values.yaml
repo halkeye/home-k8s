@@ -65,6 +65,11 @@ kube-prometheus-stack:
           scheme: http
           static_configs:
           - targets: ['172.16.10.10:9000']
+        - job_name: nas-syncthing-job
+          bearer_token: '{{ .Values.nas_syncthings_key }}'
+          scheme: https
+          static_configs:
+          - targets: ['syncthing.nas.g4v.dev']
     ingress:
       enabled: true
       annotations:
