@@ -170,6 +170,10 @@ kube-prometheus-stack:
           datasource:
             - name: DS_PROMETHEUS
               value: Prometheus
+        syncthing:
+          # renovate: depName="Syncthing"
+          gnetId: 19560
+          revision: 1
       mediafetchers:
         radarr:
           # renovate: depName="Radarr v3"
