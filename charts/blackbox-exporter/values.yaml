@@ -1,3 +1,4 @@
+fullnameOverride: blackbox-exporter
 prometheus-blackbox-exporter:
   fullnameOverride: blackbox-exporter
   podSecurityContext:
