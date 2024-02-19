@@ -1,0 +1,44 @@
+app-template:
+  controllers:
+    main:
+      containers:
+        main:
+          image:
+            repository: golift/unifi-poller
+            tag: v2.9.5
+          env:
+            TZ: America/Vancouver
+          envFrom:
+            - secretRef:
+              name: "{{.Release.Name}}-secret"
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            requests:
+              cpu: 15m
+              memory: 50Mi
+            limits:
+              memory: 100Mi
+  service:
+    main:
+      ports:
+        http:
+          port: 9130
+  serviceMonitor:
+    main:
+      enabled: true
+      endpoints:
+        - port: http
+          scheme: http
+          path: /metrics
+          interval: 2m
+          scrapeTimeout: 30s
+  #persistence:
+  #  tmp:
+  #    enabled: true
+  #    type: emptyDir
+  #    globalMounts:
+  #      - path: /home/speedtest/.config/
