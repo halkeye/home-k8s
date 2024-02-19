@@ -8,9 +8,18 @@ app-template:
             tag: v2.9.5
           env:
             TZ: America/Vancouver
-          envFrom:
-            - secretRef:
-              name: "{{.Release.Name}}-secret"
+            UP_UNIFI_DEFAULT_USER:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{.Release.Name}}-secret"
+                  key: UP_UNIFI_DEFAULT_USER
+            UP_UNIFI_DEFAULT_PASS:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{.Release.Name}}-secret"
+                  key: UP_UNIFI_DEFAULT_PASS
+            UP_UNIFI_DEFAULT_URL: "https://unifi.g4v.dev"
+            UP_INFLUXDB_DISABLE: true
           securityContext:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
