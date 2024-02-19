@@ -52,7 +52,6 @@ app-template:
     main:
       enabled: true
       annotations:
-        cert-manager.io/cluster-issuer: acme-letsencrypt-prod
         hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/overseerr.png
         gethomepage.dev/enabled: "true"
         gethomepage.dev/group: Media Fetchers
@@ -65,10 +64,6 @@ app-template:
               service:
                 name: main
                 port: http
-      tls:
-        - hosts:
-            - *host
-          secretName: overseerr-tls-certificate
   persistence:
     config:
       enabled: true
