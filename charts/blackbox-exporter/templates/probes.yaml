@@ -12,8 +12,8 @@ spec:
         # Inform IP
         - 157.230.204.74
         # Nas
-        - 172.16.10.10
+        - synologynas.dhcp.home
         # Adguard
-        - 172.16.10.9
+        - adguard.dhcp.home
         # Printer
-        - 172.16.10.4
+        - printer.dhcp.home
