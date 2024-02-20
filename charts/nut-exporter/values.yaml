@@ -1,0 +1,45 @@
+fullnameOverride: nut-exporter
+app-template:
+  fullnameOverride: nut-exporter
+  controllers:
+    main:
+      strategy: RollingUpdate
+      containers:
+        main:
+          image:
+            repository: ghcr.io/druggeri/nut_exporter
+            tag: "3.1.1"
+          env:
+            TZ: America/Vancouver
+            NUT_EXPORTER_PASSWORD:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{.Release.Name}}-secret"
+                  key: NUT_EXPORTER_PASSWORD
+          args:
+            - "--nut.server=172.16.10.10"
+            - "--nut.username=monuser"
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              cpu: 100m
+              memory: 100Mi
+  service:
+    main:
+      ports:
+        http:
+          port: 9199
+  serviceMonitor:
+    main:
+      enabled: true
+      endpoints:
+        - port: http
+          scheme: http
+          path: /metrics
