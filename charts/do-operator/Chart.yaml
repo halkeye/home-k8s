@@ -1,0 +1,14 @@
+apiVersion: v2
+name: do-operator
+type: application
+version: 0.1.0
+appVersion: "1.0"
+
+dependencies:
+- name: do-operator
+  version: 0.1.7
+  repository: https://charts.support.tools/
+maintainers:
+  - name: halkeye
+    url: https://www.gavinmogan.com
+    email: helm@gavinmogan.com
