@@ -19,7 +19,7 @@ metadata:
 spec:
   role: immich
   database: immich       # This references the Postgres CR
-  scretName: immich
+  secretName: immich
   privileges: OWNER     # Can be OWNER/READ/WRITE
   secretTemplate:
     DB_URL: {{ `postgresql://{{.Role}}:{{.Password}}@{{.Host}}/{{.Database}}?sslmode=no-verify` }}
