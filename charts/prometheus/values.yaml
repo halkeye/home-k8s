@@ -170,6 +170,7 @@ kube-prometheus-stack:
               prometheusType: Prometheus
           - name: Alertmanager
             type: alertmanager
+            isDefault: false
             access: proxy
             url: http://alertmanager-operated.monitoring.svc.cluster.local:9093
             jsonData:
