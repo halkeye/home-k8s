@@ -6,7 +6,7 @@ spec:
   instances: 2
   monitoring:
     enablePodMonitor: true
-  imageName: ghcr.io/halkeye/postgres-16:16-15
+  imageName: ghcr.io/halkeye/postgres-16:16-18
   # tensorchord/pgvecto-rs:pg16-v0.1.11
   postgresql:
     shared_preload_libraries:
