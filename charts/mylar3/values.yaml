@@ -46,10 +46,15 @@ app-template:
       enabled: true
       type: persistentVolumeClaim
       accessMode: ReadWriteOnce
-      size: 1Gi
+      size: 10Gi
       storageClass: synology-iscsi
       globalMounts:
         - path: /config
+    cache:
+      enabled: true
+      type: emptyDir
+      globalMounts:
+        - path: /config/mylar/cache
     torrents:
       type: nfs
       server: 172.16.10.10
