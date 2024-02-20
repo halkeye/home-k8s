@@ -93,7 +93,7 @@ app-template:
             DB_URL:
               valueFrom:
                 secretKeyRef:
-                  name: immich-db-secret-immich-db-user
+                  name: immich-immich-user
                   key: POSTGRES_URL
       persistence:
         library:
@@ -165,7 +165,7 @@ app-template:
             DB_URL:
               valueFrom:
                 secretKeyRef:
-                  name: immich-db-secret-immich-db-user
+                  name: immich-immich-user
                   key: POSTGRES_URL
       probes:
         liveness: &server_probes
@@ -234,7 +234,7 @@ app-template:
             DB_URL:
               valueFrom:
                 secretKeyRef:
-                  name: immich-db-secret-immich-db-user
+                  name: immich-immich-user
                   key: POSTGRES_URL
           probes:
             liveness: &machine_probes

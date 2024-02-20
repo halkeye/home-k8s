@@ -10,3 +10,16 @@ spec:
   privileges: OWNER     # Can be OWNER/READ/WRITE
   secretTemplate:
     DB_URL: {{ `postgresql://{{.Role}}:{{.Password}}@{{.Host}}/{{.Database}}?sslmode=no-verify` }}
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: immich-user
+  namespace: immich
+spec:
+  role: immich
+  database: immich       # This references the Postgres CR
+  scretName: immich
+  privileges: OWNER     # Can be OWNER/READ/WRITE
+  secretTemplate:
+    DB_URL: {{ `postgresql://{{.Role}}:{{.Password}}@{{.Host}}/{{.Database}}?sslmode=no-verify` }}
