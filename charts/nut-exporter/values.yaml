@@ -43,3 +43,6 @@ app-template:
         - port: http
           scheme: http
           path: /ups_metrics
+        - port: http
+          scheme: http
+          path: /metrics
