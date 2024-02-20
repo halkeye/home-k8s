@@ -42,4 +42,4 @@ app-template:
       endpoints:
         - port: http
           scheme: http
-          path: /metrics
+          path: /ups_metrics
