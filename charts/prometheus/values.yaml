@@ -313,10 +313,10 @@ kube-prometheus-stack:
           datasource: Prometheus
       default:
         nut:
-          # renovate: depName="Prometheus NUT Exporter"
-          gnetId: 19308
-          revision: 2
-          datasource: Prometheus
+          url: https://raw.githubusercontent.com/halkeye/home-k8s/main/charts/prometheus/dashboards/nut-exporter.json
+          datasource:
+            - name: DS_PROMETHEUS
+              value: Prometheus
         alertmanager:
           # renovate: depName="Alertmanager"
           gnetId: 9578
