@@ -20,6 +20,8 @@ spec:
     spec:
       containers:
       - env:
+        - name: DB_DUMP_SAFECHARS
+          value: "true"
         - name: DB_DEFAULT
           value: "postgres"
         - name: DB_SERVER
