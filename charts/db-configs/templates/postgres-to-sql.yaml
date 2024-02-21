@@ -23,7 +23,7 @@ spec:
         - name: PG_DUMP_PATH
           value: "/usr/libexec/postgresql16/pg_dump"
         - name: PGDUMP_OPTS
-          value: "-fc"
+          value: "--clean --if-exists"
         - name: DB_DUMP_SAFECHARS
           value: "true"
         - name: DB_DEFAULT
