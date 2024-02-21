@@ -21,7 +21,7 @@ spec:
       containers:
       - env:
         - name: PG_DUMP_PATH
-          value: "/usr/libexec/postgresql15/pg_dump"
+          value: "/usr/libexec/postgresql16/pg_dump"
         - name: DB_DUMP_SAFECHARS
           value: "true"
         - name: DB_DEFAULT
@@ -42,7 +42,7 @@ spec:
               name: postgres-superuser
         - name: DB_DUMP_BY_SCHEMA
           value: "true"
-        image: ghcr.io/halkeye/postgres-backup:sha-2c1b89e
+        image: ghcr.io/halkeye/postgres-backup:sha-4874ef3
         imagePullPolicy: IfNotPresent
         name: postgres-to-sql
         securityContext:
