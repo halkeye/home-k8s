@@ -20,6 +20,8 @@ spec:
     spec:
       containers:
       - env:
+        - name: DB_DEFAULT
+          value: "postgres"
         - name: DB_SERVER
           value: "postgres-rw.db"
         - name: DB_PORT
@@ -36,7 +38,7 @@ spec:
               name: postgres-superuser
         - name: DB_DUMP_BY_SCHEMA
           value: "true"
-        image: ghcr.io/halkeye/postgres-backup:sha-53e24d3
+        image: ghcr.io/halkeye/postgres-backup:sha-ab11f9e
         imagePullPolicy: IfNotPresent
         name: postgres-to-sql
         securityContext:
