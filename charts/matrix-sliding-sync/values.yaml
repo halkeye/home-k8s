@@ -3,6 +3,9 @@ app-template:
     main:
       containers:
         main:
+          annotations:
+            prometheus.io/scrape: "true"
+            prometheus.io/port: "2112"
           image:
             repository: ghcr.io/matrix-org/sliding-sync
             pullPolicy: IfNotPresent
@@ -29,15 +32,15 @@ app-template:
           port: 8008
         metrics:
           port: 2112
-  serviceMonitor:
-    main:
-      enabled: true
-      endpoints:
-        - port: metrics
-          scheme: http
-          path: /metrics
-          interval: 30s
-          timeout: 10s
+  #serviceMonitor:
+  #  main:
+  #    enabled: true
+  #    endpoints:
+  #      - port: metrics
+  #        scheme: http
+  #        path: /metrics
+  #        interval: 30s
+  #        timeout: 10s
   ingress:
     main:
       enabled: true
