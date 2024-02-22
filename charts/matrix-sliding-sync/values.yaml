@@ -1,0 +1,52 @@
+app-template:
+  controllers:
+    main:
+      containers:
+        main:
+          image:
+            repository: ghcr.io/matrix-org/sliding-sync
+            pullPolicy: IfNotPresent
+            tag: v0.99.15@sha256:f18ee0462a982331024a6e9c0e86cb955fe4e008888c5ee1690dcee8419a3b5e
+          env:
+            TZ: America/Vancouver
+            SYNCV3_SERVER: "https://matrix.g4v.dev"
+            #SYNCV3_DB:
+            #  valueFrom:
+            #    secretKeyRef:
+            #      name: lidarr-db-secret-lidarr
+            #      key: DB_URL
+            SYNCV3_SECRET:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: SYNCV3_SECRET
+            SYNCV3_PROM: ":2112"
+  service:
+    main:
+      ports:
+        http:
+          port: *port
+        metrics:
+          port: 2112
+  serviceMonitor:
+    main:
+      enabled: true
+      endpoints:
+        - port: metrics
+          scheme: http
+          path: /metrics
+          interval: 30s
+          timeout: 10s
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        hajimari.io/enabled: "false"
+        gethomepage.dev/enabled: "false"
+      hosts:
+        - host: &host matrix-sliding-sync.g4v.dev
+          paths:
+            - path: /
+              service:
+                name: main
+                port: http

@@ -1,0 +1,10 @@
+apiVersion: databases.digitalocean.com/v1alpha1
+kind: DatabaseUser
+metadata:
+  name: matrix-sliding-sync-user
+spec:
+  databaseCluster:
+    apiGroup: databases.digitalocean.com
+    kind: DatabaseCluster
+    name: dok8s-sfo2
+  username: matrix_sliding_sync
