@@ -5,6 +5,6 @@ metadata:
 spec:
   databaseCluster:
     apiGroup: databases.digitalocean.com
-    kind: DatabaseCluster
+    kind: DatabaseClusterReference
     name: dok8s-sfo2
   username: matrix_sliding_sync
