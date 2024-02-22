@@ -9,6 +9,7 @@ app-template:
             tag: v0.99.15@sha256:f18ee0462a982331024a6e9c0e86cb955fe4e008888c5ee1690dcee8419a3b5e
           env:
             TZ: America/Vancouver
+            SYNCV3_BINDADDR: "0.0.0.0:8008"
             SYNCV3_SERVER: "https://matrix.g4v.dev"
             #SYNCV3_DB:
             #  valueFrom:
@@ -25,7 +26,7 @@ app-template:
     main:
       ports:
         http:
-          port: *port
+          port: 8008
         metrics:
           port: 2112
   serviceMonitor:
