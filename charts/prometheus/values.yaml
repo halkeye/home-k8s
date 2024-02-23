@@ -163,7 +163,7 @@ kube-prometheus-stack:
           - name: Prometheus
             type: prometheus
             uid: prometheus
-            isDefault: true
+            isDefault: false
             access: proxy
             url: http://prometheus-operated.monitoring.svc.cluster.local:9090
             jsonData:
