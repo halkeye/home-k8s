@@ -367,7 +367,7 @@ kube-prometheus-stack:
           datasource: Prometheus
       default:
         nut:
-          url: https://raw.githubusercontent.com/halkeye/home-k8s/main/charts/prometheus/dashboards/nut-exporter.json
+          url: https://raw.githubusercontent.com/halkeye/home-k8s/main/charts/nut-exporter/dashboard-nut-exporter.json
           datasource:
             - name: DS_PROMETHEUS
               value: Prometheus
