@@ -1,4 +1,9 @@
 traefik:
+  metrics:
+    service:
+      enabled: true
+    serviceMonitor:
+      interval: 30s
   ingressClass:
     enabled: true
     isDefaultClass: true
