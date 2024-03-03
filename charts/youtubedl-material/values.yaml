@@ -12,9 +12,9 @@ app-template:
             HOME: /tmp
           resources:
             limits:
-              memory: 50Mi
+              memory: 1Gi
             requests:
-              memory: 10Mi
+              memory: 1Gi
               cpu: 10m
           securityContext:
             allowPrivilegeEscalation: false
