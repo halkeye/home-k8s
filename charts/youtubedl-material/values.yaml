@@ -21,6 +21,13 @@ app-template:
             readOnlyRootFilesystem: true
             capabilities:
               drop: ["ALL"]
+          probes:
+            liveness:
+              enabled: false
+            readiness:
+              enabled: false
+            startup:
+              enabled: false
       pod:
         securityContext:
           runAsUser: 1026
