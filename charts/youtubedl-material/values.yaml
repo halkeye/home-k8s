@@ -10,6 +10,8 @@ app-template:
           env:
             TZ: America/Vancouver
             HOME: /tmp
+            UID: 1026
+            GID: 100
           resources:
             limits:
               memory: 1Gi
@@ -30,9 +32,6 @@ app-template:
               enabled: false
       pod:
         securityContext:
-          runAsUser: 1026
-          runAsGroup: 100
-          runAsNonRoot: true
           fsGroup: 100
           fsGroupChangePolicy: OnRootMismatch
   service:
