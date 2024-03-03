@@ -3,7 +3,6 @@ app-template:
     main:
       containers:
         main:
-          command: ["/usr/bin/npm", "start"]
           image:
             repository: ghcr.io/tzahi12345/youtubedl-material
             tag: nightly-2024-02-27
