@@ -9,6 +9,7 @@ app-template:
             tag: 4.3.2
           env:
             TZ: America/Vancouver
+            HOME: /tmp
           resources:
             limits:
               memory: 50Mi
@@ -80,3 +81,8 @@ app-template:
       type: emptyDir
       globalMounts:
         - path: /app/pm2
+    tmp:
+      enabled: true
+      type: emptyDir
+      globalMounts:
+        - path: /tmp
