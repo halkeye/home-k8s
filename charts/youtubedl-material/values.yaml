@@ -18,12 +18,6 @@ app-template:
             requests:
               memory: 1Gi
               cpu: 10m
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: false
-            capabilities:
-              drop: ["ALL"]
-              add: ["CAP_CHOWN"]
           probes:
             liveness:
               enabled: false
@@ -31,11 +25,6 @@ app-template:
               enabled: false
             startup:
               enabled: false
-      pod:
-        securityContext:
-          runAsUser: 0
-          fsGroup: 100
-          fsGroupChangePolicy: OnRootMismatch
   service:
     main:
       ports:
