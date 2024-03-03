@@ -23,6 +23,7 @@ app-template:
             readOnlyRootFilesystem: false
             capabilities:
               drop: ["ALL"]
+              add: ["CAP_CHOWN"]
           probes:
             liveness:
               enabled: false
