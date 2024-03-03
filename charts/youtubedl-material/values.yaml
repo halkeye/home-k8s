@@ -58,7 +58,9 @@ app-template:
     data:
       enabled: true
       server: 172.16.10.10
+      size: 1Gi
       path: /volume1/Apps/youtubedl
+      accessMode: ReadWriteMany
       globalMounts:
         - path: /app/audio
           subpath: audio
