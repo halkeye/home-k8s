@@ -15,14 +15,18 @@ app-template:
             requests:
               memory: 10Mi
               cpu: 10m
-      probes:
-        liveness:
-          enabled: false
-        readiness:
-          enabled: false
-        startup:
-          enabled: false
-
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+      pod:
+        securityContext:
+          runAsUser: 1026
+          runAsGroup: 100
+          runAsNonRoot: true
+          fsGroup: 100
+          fsGroupChangePolicy: OnRootMismatch
   service:
     main:
       ports:
