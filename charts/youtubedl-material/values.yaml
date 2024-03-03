@@ -6,7 +6,7 @@ app-template:
           command: ["/usr/bin/npm", "start"]
           image:
             repository: ghcr.io/tzahi12345/youtubedl-material
-            tag: 4.3.2
+            tag: nightly-2024-02-27
           env:
             TZ: America/Vancouver
             HOME: /tmp
