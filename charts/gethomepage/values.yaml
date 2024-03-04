@@ -67,6 +67,16 @@ homepage:
           - Plex:
               href: https://app.plex.tv/desktop/
               icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/plex.png
+      - Communications:
+          - Element:
+              href: https://chat.g4v.dev
+              icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/element.png
+          - SchildiChat:
+              href: https://chat2.g4v.dev
+              icon: https://schildi.chat/img/SchildiChat_nopadding.svg
+          - Element:
+              href: https://fluffychat.g4v.dev
+              icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/fluffychat.png
       - Home:
           - Unifi:
               href: https://unifi.g4v.dev
