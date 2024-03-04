@@ -57,4 +57,4 @@ app-template:
       enabled: true
       type: emptyDir
       globalMounts:
-        - path: /var/cache/nginx
+        - path: /tmp
