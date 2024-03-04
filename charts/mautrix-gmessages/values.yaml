@@ -34,7 +34,7 @@ app-template:
             MAUTRIX_DB_URI:
               valueFrom:
                 secretKeyRef:
-                  name: mautrix-gmessage-user-credentials
+                  name: mautrix-gmessages-user-credentials
                   key: private_uri
           command:
             - "/usr/bin/mautrix-gmessages"
