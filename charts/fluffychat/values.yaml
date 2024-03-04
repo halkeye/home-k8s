@@ -49,3 +49,9 @@ app-template:
               service:
                 name: main
                 port: http
+  persistence:
+    tmp:
+      enabled: true
+      type: emptyDir
+      globalMounts:
+        - path: /var/cache/nginx
