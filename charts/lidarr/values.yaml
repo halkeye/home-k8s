@@ -113,7 +113,6 @@ app-template:
       annotations:
         hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/lidarr.png
         gethomepage.dev/enabled: "true"
-        gethomepage.dev/description: Movies Management
         gethomepage.dev/group: Media Fetchers
         gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/lidarr.png
         gethomepage.dev/name: Lidarr
