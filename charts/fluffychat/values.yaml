@@ -19,6 +19,8 @@ app-template:
               cpu: 10m
       pod:
         securityContext:
+          runAsUser: 1000
+          runAsGroup: 1000
           runAsNonRoot: true
   service:
     main:
