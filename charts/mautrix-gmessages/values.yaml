@@ -55,7 +55,7 @@ app-template:
               custom: true
               spec:
                 httpGet:
-                  path: /ping/_matrix/mau/live
+                  path: /_matrix/mau/live
                   port: 29336
                 initialDelaySeconds: 0
                 periodSeconds: 10
@@ -66,7 +66,7 @@ app-template:
               custom: true
               spec:
                 httpGet:
-                  path: /ping/_matrix/mau/ready
+                  path: /_matrix/mau/ready
                   port: 29336
                 initialDelaySeconds: 0
                 periodSeconds: 10
