@@ -222,7 +222,7 @@ app-template:
                   # {{.FullName}} - Full name provided by the phone
                   # {{.FirstName}} - First name provided by the phone
                   # {{.PhoneNumber}} - Formatted phone number provided by the phone
-                  displayname_template: "{{`"{{or .FullName .PhoneNumber}}"`}}"
+                  displayname_template: {{`"{{or .FullName .PhoneNumber}}"`}}
                   # Should the bridge create a space for each logged-in user and add bridged rooms to it?
                   personal_filtering_spaces: true
                   # Should the bridge send a read receipt from the bridge bot when a message has been sent to the phone?
