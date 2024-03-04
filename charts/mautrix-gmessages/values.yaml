@@ -24,6 +24,8 @@ app-template:
             - -c
             - |-
                 cat /secrets/config.yaml | envsubst > /data/config.yaml
+                find /secrets
+                find /data
       containers:
         main:
           image:
@@ -39,6 +41,8 @@ app-template:
           command:
             - "/usr/bin/mautrix-gmessages"
             - "--no-update"
+            - "-c"
+            - "/data/config.yaml"
           probes:
             liveness:
               enabled: true
