@@ -10,8 +10,7 @@ app-template:
         reloader.stakater.com/auto: "true"
       type: deployment
       replica: 1
-      strategy:
-        type: Recreate
+      strategy: Recreate
       initContainers:
         01-init:
           image:
