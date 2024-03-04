@@ -1,9 +1,9 @@
-provisioning_shared_secret: "foo"
-login_shared_secret: "login_shared_secret"
-as_token: "This value is generated when generating the registration"
-hs_token: "This value is generated when generating the registration"
-
 app-template:
+  provisioning_shared_secret: "foo"
+  login_shared_secret: "login_shared_secret"
+  as_token: "This value is generated when generating the registration"
+  hs_token: "This value is generated when generating the registration"
+
   controllers:
     main:
       annotations:
@@ -19,6 +19,11 @@ app-template:
             tag: 1.25.4
           env:
             TZ: America/Vancouver
+            MAUTRIX_DB_URI:
+              valueFrom:
+                secretKeyRef:
+                  name: mautrix-gmessages-user-credentials
+                  key: private_uri
           command:
             - bash
             - -c
