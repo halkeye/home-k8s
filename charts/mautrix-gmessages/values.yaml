@@ -34,7 +34,8 @@ app-template:
                 secretKeyRef:
                   name: mautrix-gmessage-user-credentials
                   key: private_uri
-          args:
+          command:
+            - "/usr/bin/mautrix-gmessages"
             - "--no-update"
           probes:
             liveness:
@@ -61,6 +62,18 @@ app-template:
                 failureThreshold: 3
             startup:
               enabled: false
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+      pod:
+        securityContext:
+          runAsUser: 1337
+          runAsGroup: 1337
+          runAsNonRoot: true
+          fsGroup: 1337
+          fsGroupChangePolicy: OnRootMismatch
   service:
     main:
       publishNotReadyAddresses: true
