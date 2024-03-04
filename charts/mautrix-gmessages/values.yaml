@@ -8,7 +8,10 @@ app-template:
     main:
       annotations:
         reloader.stakater.com/auto: "true"
-      type: statefulset
+      type: deployment
+      replica: 1
+      strategy:
+        type: Recreate
       initContainers:
         01-init:
           image:
