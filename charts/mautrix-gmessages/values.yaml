@@ -12,8 +12,9 @@ app-template:
       initContainers:
         01-init:
           image:
-            repository: dock.mau.dev/mautrix/gmessages
-            tag: 04828bef39406a6f27377b739eed391d96f72ec3-amd64
+            # probably already downloaded, and includes envsubst
+            repository: nginx
+            tag: 1.25.4
           env:
             TZ: America/Vancouver
           command:
