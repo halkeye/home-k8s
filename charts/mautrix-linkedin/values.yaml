@@ -76,9 +76,6 @@ app-template:
   persistence:
     data:
       enabled: true
-      type: emptyDir
-    secrets:
-      enabled: true
       type: secret
       name: "{{ .Release.Name }}-secret"
 
