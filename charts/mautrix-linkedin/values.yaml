@@ -87,7 +87,7 @@ app-template:
               # Homeserver details
               homeserver:
                   # The address that this appservice can use to connect to the homeserver.
-                  address: https://g4v.dev
+                  address: https://matrix.g4v.dev
                   # The domain of the homeserver (for MXIDs, etc).
                   domain: g4v.dev
                   # Whether or not to verify the SSL certificate of the homeserver.
