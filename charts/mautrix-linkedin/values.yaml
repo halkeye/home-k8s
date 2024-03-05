@@ -32,7 +32,7 @@ app-template:
       containers:
         main:
           image:
-            repository: beeper/linkedin
+            repository: ghcr.io/beeper/linkedin
             tag: 75c3bcbe80718fa2c147dff28a6829af817082ed
           env:
             TZ: America/Vancouver
