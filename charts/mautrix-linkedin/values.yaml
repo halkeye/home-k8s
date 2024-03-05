@@ -3,6 +3,7 @@ app-template:
   login_shared_secret: "login_shared_secret"
   as_token: "This value is generated when generating the registration"
   hs_token: "This value is generated when generating the registration"
+  db_uri: ""
 
   controllers:
     main:
@@ -11,24 +12,6 @@ app-template:
       type: deployment
       replica: 1
       strategy: Recreate
-      initContainers:
-        01-init:
-          image:
-            # probably already downloaded, and includes envsubst
-            repository: nginx
-            tag: 1.25.4
-          env:
-            TZ: America/Vancouver
-            MAUTRIX_DB_URI:
-              valueFrom:
-                secretKeyRef:
-                  name: mautrix-linkedin-user-credentials
-                  key: private_uri
-          command:
-            - bash
-            - -c
-            - |-
-                cat /secrets/config.yaml | envsubst > /data/config.yaml
       containers:
         main:
           image:
@@ -145,7 +128,7 @@ app-template:
                   # Format examples:
                   #   SQLite:   sqlite:filename.db
                   #   Postgres: postgres://username:password@hostname/dbname
-                  database: "$MAUTRIX_DB_URI"
+                  database: "{{ .Values.db_uri }}"
                   # Additional arguments for asyncpg.create_pool() or sqlite3.connect()
                   # https://magicstack.github.io/asyncpg/current/api/index.html#asyncpg.pool.create_pool
                   # https://docs.python.org/3/library/sqlite3.html#sqlite3.connect
