@@ -5,7 +5,7 @@ app-template:
         main:
           image:
             repository: ghcr.io/halkeye/fluffychat
-            tag: latest
+            tag: 20240306
             # repository: ghcr.io/krille-chan/fluffychat
             # tag: v1.18.0
           securityContext:
