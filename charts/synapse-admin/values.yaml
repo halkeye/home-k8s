@@ -1,0 +1,37 @@
+app-template:
+  controllers:
+    main:
+      enabled: true
+      containers:
+        main:
+          image:
+            repository: awesometechnologies/synapse-admin
+            tag: 0.9.1
+  ingress:
+    main:
+      enabled: true
+      className: tailscale
+      annotations:
+        hajimari.io/enabled: "true"
+        hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/adminer.png
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: Tools
+        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/adminer.png
+        gethomepage.dev/name: Synapse Admin
+      hosts:
+        - host: &host "synapse-admin"
+          paths:
+            - path: /
+              service:
+                name: main
+                port: http
+      tls:
+        - hosts:
+            - *host
+            - synapse-admin.taildba47.ts.net
+  service:
+    main:
+      enabled: true
+      ports:
+        http:
+          port: 80
