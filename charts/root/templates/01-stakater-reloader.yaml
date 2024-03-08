@@ -21,7 +21,7 @@ spec:
         targetRevision: HEAD
         helm:
           releaseName: reloader
-          values: |
+          valuesObject:
             fullnameOverride: reloader
             reloader:
               fullnameOverride: reloader
