@@ -5,11 +5,11 @@ metadata:
 type: kubernetes.io/basic-auth
 stringData:
   dbname: '*'
-  host: {{ (index .Values "ext-postgres-operator").postgres.host }}
-  jdbc-uri: jdbc:postgresql://{{ (index .Values "ext-postgres-operator").postgres.host }}:5432/*?password={{ (index .Values "ext-postgres-operator").postgres.password }}&user={{ (index .Values "ext-postgres-operator").postgres.user }}
-  password: {{ (index .Values "ext-postgres-operator").postgres.password | quote }}
-  pgpass: {{ (index .Values "ext-postgres-operator").postgres.host }}:5432:*:{{ (index .Values "ext-postgres-operator").postgres.user }}:{{ (index .Values "ext-postgres-operator").postgres.password | quote }}
+  host: {{ .Values.postgres.host }}
+  jdbc-uri: jdbc:postgresql://{{ .Values.postgres.host }}:5432/*?password={{ .Values.postgres.password }}&user={{ .Values.postgres.user }}
+  password: {{ .Values.postgres.password | quote }}
+  pgpass: {{ .Values.postgres.host }}:5432:*:{{ .Values.postgres.user }}:{{ .Values.postgres.password | quote }}
   port: "5432"
-  uri: postgresql://{{ (index .Values "ext-postgres-operator").postgres.user }}:{{ (index .Values "ext-postgres-operator").postgres.password }}@{{ (index .Values "ext-postgres-operator").postgres.host }}:5432/*
-  user: {{ (index .Values "ext-postgres-operator").postgres.user | quote }}
-  username: {{ (index .Values "ext-postgres-operator").postgres.user | quote }}
+  uri: postgresql://{{ .Values.postgres.user }}:{{ .Values.postgres.password }}@{{ .Values.postgres.host }}:5432/*
+  user: {{ .Values.postgres.user | quote }}
+  username: {{ .Values.postgres.user | quote }}
