@@ -1,25 +1,39 @@
 apiVersion: argoproj.io/v1alpha1
-kind: Application
+kind: ApplicationSet
 metadata:
   name: reloader-controller
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
-  destination:
-    namespace: reloader
-    server: https://kubernetes.default.svc
-  project: default
-  source:
-    path: charts/reloader-operator
-    repoURL: https://github.com/halkeye/home-k8s
-    targetRevision: HEAD
-    helm:
-      valueFiles:
-        - values.yaml
-  syncPolicy:
-    automated:
-      selfHeal: true
-    syncOptions:
-    - CreateNamespace=true
-    - ServerSideApply=true
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - clusters: {}
+  template:
+    metadata:
+      name: '{{.nameNormalized}}-reloader'
+    spec:
+      project: default
+      source:
+        path: charts/reloader-operator
+        repoURL: https://github.com/halkeye/home-k8s
+        targetRevision: HEAD
+        helm:
+          releaseName: reloader
+          values: |
+            fullnameOverride: reloader
+            reloader:
+              fullnameOverride: reloader
+          valueFiles:
+            - values.yaml
+      destination:
+        server: '{{.server}}'
+        namespace: reloader
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+        syncOptions:
+        - CreateNamespace=true
+        - ServerSideApply=true
