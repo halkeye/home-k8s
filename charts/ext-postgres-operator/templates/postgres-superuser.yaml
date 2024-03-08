@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: superuser-secret
+type: kubernetes.io/basic-auth
+stringData:
+  dbname: '*'
+  host: {{ (index .Values "ext-postgres-operator").postgres.host }}
+  jdbc-uri: jdbc:postgresql://{{ (index .Values "ext-postgres-operator").postgres.host }}:5432/*?password={{ (index .Values "ext-postgres-operator").postgres.password }}&user={{ (index .Values "ext-postgres-operator").postgres.user }}
+  password: {{ (index .Values "ext-postgres-operator").postgres.password | quote }}
+  pgpass: {{ (index .Values "ext-postgres-operator").postgres.host }}:5432:*:{{ (index .Values "ext-postgres-operator").postgres.user }}:{{ (index .Values "ext-postgres-operator").postgres.password | quote }}
+  port: "5432"
+  uri: postgresql://{{ (index .Values "ext-postgres-operator").postgres.user }}:{{ (index .Values "ext-postgres-operator").postgres.password }}@{{ (index .Values "ext-postgres-operator").postgres.host }}:5432/*
+  user: {{ (index .Values "ext-postgres-operator").postgres.user | quote }}
+  username: {{ (index .Values "ext-postgres-operator").postgres.user | quote }}

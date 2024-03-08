@@ -1,0 +1,11 @@
+apiVersion: v2
+name: db-configs
+version: 0.0.0
+dependencies:
+- name: ext-postgres-operator
+  version: 1.2.6
+  repository: https://movetokube.github.io/postgres-operator/
+maintainers:
+  - name: halkeye
+    url: https://www.gavinmogan.com
+    email: helm@gavinmogan.com
