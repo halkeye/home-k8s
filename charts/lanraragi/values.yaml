@@ -109,3 +109,4 @@ app-template:
         - path: /tmp
         - path: /thumbs
         - path: /content
+        - path: /home/koyomi/perl5
