@@ -6,7 +6,7 @@ app-template:
           image:
             # repository: mrcas/kapowarr
             # tag: v1.0.0-beta-4
-            repository: ghcr.io/halkeye/kapowarr:3
+            repository: ghcr.io/halkeye/kapowarr
             tag: 3
           env:
             TZ: America/Vancouver
