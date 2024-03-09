@@ -65,12 +65,12 @@ app-template:
   persistence:
     config:
       enabled: true
+      type: persistentVolumeClaim
+      accessMode: ReadWriteOnce
+      size: 10Gi
       storageClass: synology-iscsi
       globalMounts:
-        - /app/db
-    tmp:
-      enabled: true
-      type: emptyDir
+        - path: /app/db
     torrents:
       type: nfs
       server: 172.16.10.10
@@ -83,21 +83,9 @@ app-template:
       path: /volume1/Apps/nzbget
       globalMounts:
         - path: /nzb-downloads
-    tv:
+    comics:
       type: nfs
       server: 172.16.10.10
-      path: /volume1/TV
+      path: /volume1/Comics
       globalMounts:
-        - path: /tv
-    webseries:
-      type: nfs
-      server: 172.16.10.10
-      path: /volume1/Webseries
-      globalMounts:
-        - path: /webseries
-    anime:
-      type: nfs
-      server: 172.16.10.10
-      path: /volume1/Anime
-      globalMounts:
-        - path: /anime
+        - path: /comics
