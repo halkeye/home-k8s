@@ -17,7 +17,7 @@ app-template:
               enabled: false
           securityContext:
             allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
+            readOnlyRootFilesystem: false
             capabilities:
               drop: ["ALL"]
           resources:
@@ -63,10 +63,6 @@ app-template:
       storageClass: synology-iscsi
       globalMounts:
         - path: /home/suwayomi/.local/share/Tachidesk
-    tmp:
-      type: emptyDir
-      globalMounts:
-        - path: /home/suwayomi/startup
     comics:
       type: nfs
       server: 172.16.10.10
