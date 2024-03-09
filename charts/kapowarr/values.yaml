@@ -15,7 +15,7 @@ app-template:
               spec:
                 httpGet:
                   path: /ping
-                  port: *port
+                  port: 5656
                 initialDelaySeconds: 0
                 periodSeconds: 10
                 timeoutSeconds: 1
