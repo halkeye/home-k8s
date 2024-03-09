@@ -65,6 +65,8 @@ app-template:
         - path: /home/suwayomi/.local/share/Tachidesk
     tmp:
       type: emptyDir
+      globalMounts:
+        - path: /home/suwayomi/startup
     comics:
       type: nfs
       server: 172.16.10.10
