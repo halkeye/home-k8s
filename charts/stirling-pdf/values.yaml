@@ -7,7 +7,10 @@ app-template:
             repository: frooodle/s-pdf
             tag: 0.22.1
           command:
-            - stirlingpdfuser
+            - java
+            - -Dfile.encoding=UTF-8
+            - -jar
+            - /app.jar
           env:
             DOCKER_ENABLE_SECURITY: 'false'
           probes:
