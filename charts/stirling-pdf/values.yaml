@@ -6,6 +6,8 @@ app-template:
           image:
             repository: frooodle/s-pdf
             tag: 0.22.1
+          command:
+            - stirlingpdfuser
           env:
             DOCKER_ENABLE_SECURITY: 'false'
           probes:
