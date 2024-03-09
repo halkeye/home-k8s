@@ -28,7 +28,7 @@ app-template:
               enabled: false
           securityContext:
             allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
+            readOnlyRootFilesystem: false
             capabilities:
               drop: ["ALL"]
           resources:
@@ -74,11 +74,6 @@ app-template:
       storageClass: synology-iscsi
       globalMounts:
         - path: /home/koyomi/lanraragi/database
-    tmp:
-      type: emptyDir
-      globalMounts:
-        - path: /tmp
-        - path: /run/s6
     comics:
       type: nfs
       server: 172.16.10.10
