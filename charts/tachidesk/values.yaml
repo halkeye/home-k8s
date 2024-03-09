@@ -42,10 +42,10 @@ app-template:
     main:
       enabled: true
       annotations:
-        hajimari.io/icon: https://raw.githubusercontent.com/Suwayomi/Tachidesk-JUI/blob/master/resources/icon.png
+        hajimari.io/icon: https://raw.githubusercontent.com/Suwayomi/Tachidesk-JUI/master/resources/icon.png
         gethomepage.dev/enabled: "true"
         gethomepage.dev/group: Media Fetchers
-        gethomepage.dev/icon: https://raw.githubusercontent.com/Suwayomi/Tachidesk-JUI/blob/master/resources/icon.png
+        gethomepage.dev/icon: https://raw.githubusercontent.com/Suwayomi/Tachidesk-JUI/master/resources/icon.png
         gethomepage.dev/name: Tachidesk
       hosts:
         - host: &host tachidesk.g4v.dev
