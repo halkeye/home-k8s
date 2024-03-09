@@ -23,7 +23,7 @@ app-template:
             LRR_REDIS_ADDRESS: '{{ printf "%s-redis-master" .Release.Name }}'
             LRR_TEMP_DIRECTORY: "/tmp"
             LRR_THUMB_DIRECTORY: "/thumbs"
-            LRR_DATA_DIRECTORY: "/content"
+            LRR_DATA_DIRECTORY: "/comics"
             HYPNOTOAD_FOREGROUND: "true"
 
           command:
@@ -110,5 +110,4 @@ app-template:
       globalMounts:
         - path: /tmp
         - path: /thumbs
-        - path: /content
         - path: /home/koyomi/perl5
