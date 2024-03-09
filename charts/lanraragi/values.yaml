@@ -24,10 +24,12 @@ app-template:
             LRR_TEMP_DIRECTORY: "/tmp"
             LRR_THUMB_DIRECTORY: "/thumbs"
             LRR_DATA_DIRECTORY: "/content"
+            HYPNOTOAD_FOREGROUND: "true"
 
           command:
             - perl
             - /home/koyomi/lanraragi/script/launcher.pl
+            - -m
             - -f
             - /home/koyomi/lanraragi/script/lanraragi
           probes:
