@@ -1,0 +1,73 @@
+app-template:
+  controllers:
+    main:
+      containers:
+        main:
+          image:
+            repository: ghcr.io/suwayomi/tachidesk
+            tag: v1.0.0
+          env:
+            TZ: America/Vancouver
+            BIND_PORT: &port 4567
+          probes:
+            liveness: &probes
+              enabled: false
+            readiness: *probes
+            startup:
+              enabled: false
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            limits: &resources
+              memory: 2Gi
+            requests:
+              <<: *resources
+              cpu: 10m
+      pod:
+        securityContext:
+          runAsUser: 1026
+          runAsGroup: 100
+          runAsNonRoot: true
+          fsGroup: 100
+          fsGroupChangePolicy: OnRootMismatch
+  service:
+    main:
+      ports:
+        http:
+          port: *port
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        hajimari.io/icon: https://raw.githubusercontent.com/Suwayomi/Tachidesk-JUI/blob/master/resources/icon.png
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: Media Fetchers
+        gethomepage.dev/icon: https://raw.githubusercontent.com/Suwayomi/Tachidesk-JUI/blob/master/resources/icon.png
+        gethomepage.dev/name: Tachidesk
+      hosts:
+        - host: &host tachidesk.g4v.dev
+          paths:
+            - path: /
+              service:
+                name: main
+                port: http
+  persistence:
+    config:
+      enabled: true
+      type: persistentVolumeClaim
+      accessMode: ReadWriteOnce
+      size: 1Gi
+      storageClass: synology-iscsi
+      globalMounts:
+        - path: /home/suwayomi/.local/share/Tachidesk
+    tmp:
+      type: emptyDir
+    comics:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Comics
+      globalMounts:
+        - path: /comics
