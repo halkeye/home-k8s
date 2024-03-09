@@ -9,6 +9,8 @@ app-template:
           env:
             TZ: America/Vancouver
             LOG_LEVEL: "info"
+            LRR_UID: "1026"
+            LRR_GID: "100"
           probes:
             liveness: &probes
               enabled: true
@@ -37,9 +39,9 @@ app-template:
               cpu: 10m
       pod:
         securityContext:
-          runAsUser: 1026
-          runAsGroup: 100
-          runAsNonRoot: true
+          runAsUser: 0
+          runAsGroup: 0
+          runAsNonRoot: false
           fsGroup: 100
           fsGroupChangePolicy: OnRootMismatch
   service:
