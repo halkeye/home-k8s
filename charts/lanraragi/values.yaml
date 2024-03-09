@@ -21,6 +21,10 @@ app-template:
             MOJO_REVERSE_PROXY: "1"
             HOME: "/home/koyomi"
             LRR_REDIS_ADDRESS: '{{ printf "%s-redis-master" .Release.Name }}'
+            LRR_TEMP_DIRECTORY: "/tmp"
+            LRR_THUMB_DIRECTORY: "/thumbs"
+            LRR_DATA_DIRECTORY: "/content"
+
           command:
             - perl
             - /home/koyomi/lanraragi/script/launcher.pl
@@ -98,3 +102,10 @@ app-template:
       path: /volume1/Comics
       globalMounts:
         - path: /home/koyomi/lanraragi/content
+    tmp:
+      enabled: true
+      type: emptyDir
+      globalMounts:
+        - path: /tmp
+        - path: /thumbs
+        - path: /content
