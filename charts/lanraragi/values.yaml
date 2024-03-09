@@ -27,10 +27,7 @@ app-template:
             HYPNOTOAD_FOREGROUND: "true"
 
           command:
-            - perl
-            - /home/koyomi/lanraragi/script/launcher.pl
-            - -m
-            - -f
+            - morbo
             - /home/koyomi/lanraragi/script/lanraragi
           probes:
             liveness: &probes
