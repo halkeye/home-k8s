@@ -1,3 +1,9 @@
+redis:
+  enabled: true
+  architecture: standalone
+  auth:
+    enabled: false
+
 app-template:
   controllers:
     main:
@@ -14,6 +20,7 @@ app-template:
             # Allow Mojo to automatically pick up the X-Forwarded-For and X-Forwarded-Proto headers
             MOJO_REVERSE_PROXY: "1"
             HOME: "/home/koyomi"
+            LRR_REDIS_ADDRESS: '{{ printf "%s-redis-master" .Release.Name }}'
           command:
             - perl
             - /home/koyomi/lanraragi/script/launcher.pl

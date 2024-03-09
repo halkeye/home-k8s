@@ -8,6 +8,9 @@ dependencies:
 - name: app-template
   version: 2.6.0
   repository: https://bjw-s.github.io/helm-charts
+- name: redis
+  repository: https://charts.bitnami.com/bitnami
+  version: 18.19.1
 maintainers:
   - name: halkeye
     url: https://www.gavinmogan.com
