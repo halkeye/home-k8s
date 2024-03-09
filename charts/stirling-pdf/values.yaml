@@ -5,7 +5,7 @@ app-template:
         main:
           image:
             repository: frooodle/s-pdf
-            tag: 0.21.0
+            tag: 0.22.1
           env:
             DOCKER_ENABLE_SECURITY: 'false'
           probes:
