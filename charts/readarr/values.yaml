@@ -5,7 +5,7 @@ app-template:
         main:
           image:
             repository: ghcr.io/onedr0p/readarr-develop
-            tag: 0.3.18.2411
+            tag: 0.3.19.2437
           env:
             TZ: America/Vancouver
             COMPlus_EnableDiagnostics: "0"
