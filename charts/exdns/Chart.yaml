@@ -6,7 +6,7 @@ appVersion: "1.0"
 
 dependencies:
 - name: k8s-gateway
-  version: 2.3.0
+  version: 2.4.0
   repository: https://ori-edge.github.io/k8s_gateway/
 maintainers:
   - name: halkeye

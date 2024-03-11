@@ -50,7 +50,7 @@ app-template:
           image:
             repository: ghcr.io/immich-app/immich-server
             pullPolicy: IfNotPresent
-            tag: v1.98.1
+            tag: v1.98.2
           command: "/bin/sh"
           args:
             - "./start-microservices.sh"
@@ -121,7 +121,7 @@ app-template:
           image:
             repository: ghcr.io/immich-app/immich-server
             pullPolicy: IfNotPresent
-            tag: v1.98.1
+            tag: v1.98.2
           command: "/bin/sh"
           args:
             - "./start-server.sh"
@@ -192,7 +192,7 @@ app-template:
         main:
           image:
             repository: ghcr.io/immich-app/immich-machine-learning
-            tag: v1.98.1
+            tag: v1.98.2
             pullPolicy: IfNotPresent
           env:
             TRANSFORMERS_CACHE: /cache
