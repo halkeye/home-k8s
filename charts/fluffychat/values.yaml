@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.0.1/charts/library/common/values.schema.json
 app-template:
   controllers:
     main:
@@ -28,6 +29,7 @@ app-template:
           runAsNonRoot: true
   service:
     main:
+      controller: main
       ports:
         http:
           port: 8080
@@ -45,13 +47,13 @@ app-template:
           paths:
             - path: /
               service:
-                name: main
+                identifier: main
                 port: http
         - host: &host chat3.g4v.dev
           paths:
             - path: /
               service:
-                name: main
+                identifier: main
                 port: http
   persistence:
     tmp:

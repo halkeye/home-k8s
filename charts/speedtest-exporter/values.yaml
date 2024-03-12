@@ -24,12 +24,14 @@ app-template:
               memory: 100Mi
   service:
     main:
+      controller: main
       ports:
         http:
           port: 9798
   serviceMonitor:
     main:
       enabled: true
+      serviceName: main
       endpoints:
         - port: http
           scheme: http

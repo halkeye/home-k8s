@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.0.1/charts/library/common/values.schema.json
 redis:
   enabled: true
   architecture: standalone
@@ -95,25 +96,21 @@ app-template:
                 secretKeyRef:
                   name: immich-immich-user
                   key: POSTGRES_URL
-      persistence:
-        library:
-          enabled: true
-          mountPath: /usr/src/app/upload
-      probes:
-        liveness: &micro_probes
-          enabled: true
-          custom: true
-          spec:
-            httpGet:
-              path: /server-info/ping
-              port: 3001
-            initialDelaySeconds: 0
-            periodSeconds: 10
-            timeoutSeconds: 1
-            failureThreshold: 3
-        readiness: *micro_probes
-        startup:
-          enabled: false
+          probes:
+            liveness: &micro_probes
+              enabled: true
+              custom: true
+              spec:
+                httpGet:
+                  path: /server-info/ping
+                  port: 3001
+                initialDelaySeconds: 0
+                periodSeconds: 10
+                timeoutSeconds: 1
+                failureThreshold: 3
+            readiness: *micro_probes
+            startup:
+              enabled: false
 
     main:
       containers:
@@ -167,25 +164,21 @@ app-template:
                 secretKeyRef:
                   name: immich-immich-user
                   key: POSTGRES_URL
-      probes:
-        liveness: &server_probes
-          enabled: true
-          custom: true
-          spec:
-            httpGet:
-              path: /server-info/ping
-              port: 3001
-            initialDelaySeconds: 0
-            periodSeconds: 10
-            timeoutSeconds: 1
-            failureThreshold: 3
-        readiness: *server_probes
-        startup:
-          enabled: false
-      persistence:
-        library:
-          enabled: true
-          mountPath: /usr/src/app/upload
+          probes:
+            liveness: &server_probes
+              enabled: true
+              custom: true
+              spec:
+                httpGet:
+                  path: /server-info/ping
+                  port: 3001
+                initialDelaySeconds: 0
+                periodSeconds: 10
+                timeoutSeconds: 1
+                failureThreshold: 3
+            readiness: *server_probes
+            startup:
+              enabled: false
 
     machine-learning:
       containers:
@@ -296,10 +289,8 @@ app-template:
   persistence:
     machine-learning-cache:
       enabled: true
-      size: 10Gi
       # Optional: Set this to pvc to avoid downloading the ML models every start.
       type: emptyDir
-      accessMode: ReadWriteMany
       # storageClass: your-class
       advancedMounts:
         machine-learning:
@@ -345,5 +336,5 @@ app-template:
             - path: /
               pathType: Prefix
               service:
-                name: main
-                port:
+                identifier: main
+                port: http

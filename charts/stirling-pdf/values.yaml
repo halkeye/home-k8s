@@ -44,6 +44,7 @@ app-template:
           fsGroupChangePolicy: OnRootMismatch
   service:
     main:
+      controller: main
       ports:
         http:
           port: 8080
@@ -61,11 +62,9 @@ app-template:
           paths:
             - path: /
               service:
-                name: main
+                identifier: main
                 port: http
   persistence:
-    config:
-      enabled: false
     configs:
       enabled: true
       type: persistentVolumeClaim
