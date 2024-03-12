@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.0.1/charts/library/common/values.schema.json
 app-template:
   controllers:
     main:
@@ -95,6 +96,7 @@ app-template:
           fsGroupChangePolicy: OnRootMismatch
   service:
     main:
+      controller: main
       ports:
         http:
           port: *port
@@ -103,6 +105,7 @@ app-template:
   serviceMonitor:
     main:
       enabled: true
+      serviceName: main
       endpoints:
         - port: metrics
           scheme: http
@@ -123,7 +126,7 @@ app-template:
           paths:
             - path: /
               service:
-                name: main
+                identifier: main
                 port: http
   persistence:
     config:

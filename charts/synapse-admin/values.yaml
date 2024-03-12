@@ -23,7 +23,7 @@ app-template:
           paths:
             - path: /
               service:
-                name: main
+                identifier: main
                 port: http
       tls:
         - hosts:
@@ -32,6 +32,7 @@ app-template:
   service:
     main:
       enabled: true
+      controller: main
       ports:
         http:
           port: 80
