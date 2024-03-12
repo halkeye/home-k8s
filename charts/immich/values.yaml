@@ -64,23 +64,23 @@ app-template:
             DB_HOSTNAME:
               valueFrom:
                 secretKeyRef:
-                  name: "{{ .Release.Name }}-secret"
-                  key: DB_HOSTNAME
+                  name: immich-immich-user
+                  key: HOST
             DB_USERNAME:
               valueFrom:
                 secretKeyRef:
-                  name: "{{ .Release.Name }}-secret"
-                  key: DB_USERNAME
+                  name: immich-immich-user
+                  key: LOGIN
             DB_DATABASE_NAME:
               valueFrom:
                 secretKeyRef:
-                  name: "{{ .Release.Name }}-secret"
-                  key: DB_DATABASE_NAME
+                  name: immich-immich-user
+                  key: DATABASE_NAME
             DB_PASSWORD:
               valueFrom:
                 secretKeyRef:
-                  name: "{{ .Release.Name }}-secret"
-                  key: DB_PASSWORD
+                  name: immich-immich-user
+                  key: PASSWORD
             IMMICH_MACHINE_LEARNING_URL:
               valueFrom:
                 secretKeyRef:
@@ -142,8 +142,8 @@ app-template:
             DB_DATABASE_NAME:
               valueFrom:
                 secretKeyRef:
-                  name: "{{ .Release.Name }}-secret"
-                  key: DB_DATABASE_NAME
+                  name: immich-immich-user
+                  key: DATABASE_NAME
             DB_PASSWORD:
               valueFrom:
                 secretKeyRef:
@@ -197,23 +197,23 @@ app-template:
             DB_HOSTNAME:
               valueFrom:
                 secretKeyRef:
-                  name: "{{ .Release.Name }}-secret"
-                  key: DB_HOSTNAME
+                  name: immich-immich-user
+                  key: HOST
             DB_USERNAME:
               valueFrom:
                 secretKeyRef:
-                  name: "{{ .Release.Name }}-secret"
-                  key: DB_USERNAME
+                  name: immich-immich-user
+                  key: LOGIN
             DB_DATABASE_NAME:
               valueFrom:
                 secretKeyRef:
-                  name: "{{ .Release.Name }}-secret"
-                  key: DB_DATABASE_NAME
+                  name: immich-immich-user
+                  key: DATABASE_NAME
             DB_PASSWORD:
               valueFrom:
                 secretKeyRef:
-                  name: "{{ .Release.Name }}-secret"
-                  key: DB_PASSWORD
+                  name: immich-immich-user
+                  key: PASSWORD
             IMMICH_MACHINE_LEARNING_URL:
               valueFrom:
                 secretKeyRef:
