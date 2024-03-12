@@ -97,18 +97,10 @@ app-template:
                   name: immich-immich-user
                   key: POSTGRES_URL
           probes:
-            liveness: &micro_probes
-              enabled: true
-              custom: true
-              spec:
-                httpGet:
-                  path: /server-info/ping
-                  port: 3002
-                initialDelaySeconds: 0
-                periodSeconds: 10
-                timeoutSeconds: 1
-                failureThreshold: 3
-            readiness: *micro_probes
+            liveness:
+              enabled: false
+            readiness:
+              enabled: false
             startup:
               enabled: false
 
