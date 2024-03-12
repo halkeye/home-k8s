@@ -103,7 +103,7 @@ app-template:
               spec:
                 httpGet:
                   path: /server-info/ping
-                  port: 3001
+                  port: 3002
                 initialDelaySeconds: 0
                 periodSeconds: 10
                 timeoutSeconds: 1
