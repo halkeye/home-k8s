@@ -7,7 +7,7 @@ app-template:
       containers:
         main:
           image:
-            repository:  ghcr.io/nginxinc/nginx-s3-gateway/nginx-oss-s3-gateway
+            repository: ghcr.io/nginxinc/nginx-s3-gateway/nginx-oss-s3-gateway
             tag: unprivileged-oss-20230518
           env:
             S3_BUCKET_NAME: not-the-plants
@@ -22,7 +22,7 @@ app-template:
             PROVIDE_INDEX_PAGE: "true"
           envFrom:
             - secretRef:
-                name: not-the-plants-secret
+                name: "{{.Release.Name}}-secret"
           probes:
             liveness: &probes
               enabled: true
