@@ -83,6 +83,9 @@ homepage:
           - "Alertmanager (dok8s)":
               href: https://prometheus-alertmanager.taildba47.ts.net
               icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/alertmanager.png
+          - "Grafana (dok8s)":
+              href: https://stats.g4v.dev/
+              icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/grafana.png
       - Home:
           - Unifi:
               href: https://unifi.g4v.dev
