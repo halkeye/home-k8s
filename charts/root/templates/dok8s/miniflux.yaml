@@ -7,7 +7,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "20"
 spec:
   destination:
-    namespace: matrix
+    namespace: miniflux
     server: https://6280be86-f269-4fd1-a692-92d18aaf6595.k8s.ondigitalocean.com
   project: default
   source:
