@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: miniflux
+  name: not-the-plants
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "20"
@@ -11,7 +11,7 @@ spec:
     server: https://6280be86-f269-4fd1-a692-92d18aaf6595.k8s.ondigitalocean.com
   project: default
   source:
-    path: charts/miniflux
+    path: charts/not-the-plants
     repoURL: https://github.com/halkeye/home-k8s
     targetRevision: HEAD
     helm:
