@@ -118,13 +118,11 @@ kube-prometheus-stack:
           static_configs:
             - targets: ['traefik.nas.g4v.dev:8000']
         - job_name: nas-node
-          params:
-            _scheme: ['https']
+          scheme: https
           static_configs:
             - targets: ['node-exporter.nas.g4v.dev:443']
         - job_name: nut-exporter
-          params:
-            _scheme: ['https']
+          scheme: https
           static_configs:
             - targets: ['nut-exporter.nas.g4v.dev:443']
     ingress:
