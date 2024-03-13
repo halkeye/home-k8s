@@ -1,0 +1,10 @@
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: miniflux
+  namespace: miniflux
+spec:
+  role: miniflux
+  database: miniflux
+  secretName: miniflux-db-secret
+  privileges: OWNER
