@@ -18,23 +18,6 @@ spec:
       valueFiles:
         - values.yaml
         - secrets://values-secrets.yaml
-      valuesObject:
-        app-template:
-          controllers:
-            main:
-              containers:
-                main:
-                  env:
-                    S3_BUCKET_NAME: not-the-plants
-          ingress:
-            main:
-              hosts:
-                - host: &host "not-the-plants.g4v.dev"
-                  paths:
-                    - path: /
-                      service:
-                        identifier: main
-                        port: http
   syncPolicy:
     automated:
       selfHeal: true
