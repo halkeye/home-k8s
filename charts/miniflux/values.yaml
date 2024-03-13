@@ -47,6 +47,7 @@ app-template:
             readOnlyRootFilesystem: true
             capabilities:
               drop: ["ALL"]
+          resources:
             limits: &resources
               memory: 256Mi
             requests:
