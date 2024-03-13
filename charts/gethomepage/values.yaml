@@ -76,6 +76,13 @@ homepage:
           - Element:
               href: https://fluffychat.g4v.dev
               icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/fluffychat.png
+      - Monitoring:
+          - "Prometheus (dok8s)":
+              href: https://prometheus-server.taildba47.ts.net
+              icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/prometheus.png
+          - "Alertmanager (dok8s)":
+              href: https://prometheus-alertmanager.taildba47.ts.net
+              icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/alertmanager.png
       - Home:
           - Unifi:
               href: https://unifi.g4v.dev
