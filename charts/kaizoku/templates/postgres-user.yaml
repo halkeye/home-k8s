@@ -1,0 +1,11 @@
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: kaizoku-user
+spec:
+  role: kaizoku
+  database: kaizoku       # This references the Postgres CR
+  secretName: kaizoku-secret
+  privileges: OWNER     # Can be OWNER/READ/WRITE
+  secretTemplate:
+    DB_URL: {{ `postgresql://{{.Role}}:{{.Password}}@{{.Host}}/{{.Database}}?sslmode=no-verify` }}
