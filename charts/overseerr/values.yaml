@@ -46,7 +46,7 @@ app-template:
           fsGroupChangePolicy: OnRootMismatch
   service:
     main:
-      controller: overseerr
+      controller: main
       ports:
         http:
           port: *port
