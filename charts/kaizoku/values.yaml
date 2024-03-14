@@ -15,7 +15,7 @@ app-template:
             repository: ghcr.io/oae/kaizoku
             tag: v1.6.1
           env:
-            REDIS_URL: '{{ printf "%s-redis-master" .Release.Name }}'
+            REDIS_HOST: '{{ printf "%s-redis-master" .Release.Name }}'
             REDIS_PORT: "6379"
             KAIZOKU_PORT: "3000"
             DATABASE_URL:
