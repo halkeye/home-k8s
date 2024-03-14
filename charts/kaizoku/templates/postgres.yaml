@@ -4,4 +4,4 @@ metadata:
   name: kaizoku
 spec:
   database: kaizoku
-  dropOnDelete: false
+  dropOnDelete: true
