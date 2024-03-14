@@ -29,7 +29,7 @@ app-template:
   ingress:
     kaizoku:
       enabled: true
-      className: traefik-ingress
+      className: ""
       annotations:
         hajimari.io/enabled: "true"
         hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/kaizoku.png
