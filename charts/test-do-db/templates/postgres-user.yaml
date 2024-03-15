@@ -2,7 +2,6 @@ apiVersion: db.movetokube.com/v1alpha1
 kind: PostgresUser
 metadata:
   name: testdb
-  namespace: testdb
 spec:
   role: testdb
   database: testdb
