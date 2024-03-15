@@ -1,9 +1,0 @@
-apiVersion: db.movetokube.com/v1alpha1
-kind: PostgresUser
-metadata:
-  name: testdb
-spec:
-  role: testdb
-  database: testdb
-  secretName: testdb-db-secret
-  privileges: OWNER
