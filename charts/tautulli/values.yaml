@@ -73,3 +73,6 @@ app-template:
       storageClass: do-block-storage
       globalMounts:
         - path: /app/config
+    tmp:
+      enabled: true
+      type: emptyDir
