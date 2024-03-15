@@ -54,9 +54,9 @@ app-template:
       annotations:
         hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/tautulli.png
         gethomepage.dev/enabled: "true"
-        gethomepage.dev/group: Media Fetchers
         gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/tautulli.png
-        gethomepage.dev/name: Overseerr
+        gethomepage.dev/name: Tautulli
+        nginx.ingress.kubernetes.io/proxy-body-size: "1024M"
       hosts:
         - host: &host plexstats.g4v.dev
           paths:
