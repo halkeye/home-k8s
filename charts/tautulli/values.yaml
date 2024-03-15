@@ -16,7 +16,7 @@ app-template:
               spec:
                 httpGet:
                   path: /status
-                  port: *port
+                  port: 8181
                 initialDelaySeconds: 0
                 periodSeconds: 10
                 timeoutSeconds: 1
