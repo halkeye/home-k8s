@@ -168,10 +168,10 @@ app-template:
               # Appservice bot details.
               bot:
                   # Username of the appservice bot.
-                  username: instagrambot
+                  username: metabot
                   # Display name and avatar for bot. Set to "remove" to remove display name/avatar, leave empty
                   # to leave display name/avatar as-is.
-                  displayname: Instagram bridge bot
+                  displayname: Meta bridge bot
                   # You can use mxc://maunium.net/JxjlbZUlCPULEeHZSwleUXQv for an Instagram avatar,
                   # or mxc://maunium.net/ygtkteZsXnGJLJHRchUwYWak for Facebook Messenger
                   avatar: mxc://maunium.net/JxjlbZUlCPULEeHZSwleUXQv
