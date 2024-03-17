@@ -40,11 +40,6 @@ app-template:
             tag: v0.2.0
           env:
             TZ: America/Vancouver
-            MAUTRIX_DB_URI:
-              valueFrom:
-                secretKeyRef:
-                  name: mautrix-meta-db-secret-mautrix-meta
-                  key: private_uri
           command:
             - "/usr/bin/mautrix-meta"
             - "--no-update"
