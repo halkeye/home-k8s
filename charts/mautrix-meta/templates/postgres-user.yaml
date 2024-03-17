@@ -1,9 +1,0 @@
-apiVersion: db.movetokube.com/v1alpha1
-kind: PostgresUser
-metadata:
-  name: mautrix-meta
-spec:
-  role: mautrix-meta
-  database: mautrix-meta
-  secretName: mautrix-meta-db-secret
-  privileges: OWNER

@@ -1,7 +1,7 @@
 apiVersion: db.movetokube.com/v1alpha1
 kind: Postgres
 metadata:
-  name: mautrix-meta
+  name: "{{ .Release.Name }}"
 spec:
-  database: mautrix-meta
+  database: "{{ .Release.Name }}"
   dropOnDelete: true

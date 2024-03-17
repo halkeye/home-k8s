@@ -23,7 +23,7 @@ app-template:
             MAUTRIX_DB_URI:
               valueFrom:
                 secretKeyRef:
-                  name: mautrix-meta-db-secret-mautrix-meta
+                  name: "{{.Release.Name }}-db-secret-{{.Release.Name }}"
                   key: POSTGRES_URL
           command:
             - bash
@@ -134,7 +134,7 @@ app-template:
           # Changing these values requires regeneration of the registration.
           appservice:
               # The address that the homeserver can use to connect to this appservice.
-              address: "http://mautrix-meta.{{ .Release.Namespace }}.svc.cluster.local.:29336"
+              address: "http://{{ .Release.Name }}.{{ .Release.Namespace }}.svc.cluster.local.:29336"
 
               # The hostname and port where this appservice should listen.
               hostname: 0.0.0.0
@@ -159,14 +159,14 @@ app-template:
                   max_conn_lifetime: null
 
               # The unique ID of this appservice.
-              id: meta
+              id: instagram
               # Appservice bot details.
               bot:
                   # Username of the appservice bot.
-                  username: metabot
+                  username: instagrambot
                   # Display name and avatar for bot. Set to "remove" to remove display name/avatar, leave empty
                   # to leave display name/avatar as-is.
-                  displayname: Meta bridge bot
+                  displayname: Instagram bridge bot
                   # You can use mxc://maunium.net/JxjlbZUlCPULEeHZSwleUXQv for an Instagram avatar,
                   # or mxc://maunium.net/ygtkteZsXnGJLJHRchUwYWak for Facebook Messenger
                   avatar: mxc://maunium.net/JxjlbZUlCPULEeHZSwleUXQv
