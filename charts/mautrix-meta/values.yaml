@@ -159,7 +159,7 @@ app-template:
                   max_conn_lifetime: null
 
               # The unique ID of this appservice.
-              id: instagram
+              id: meta
               # Appservice bot details.
               bot:
                   # Username of the appservice bot.
