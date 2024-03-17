@@ -23,8 +23,8 @@ app-template:
             MAUTRIX_DB_URI:
               valueFrom:
                 secretKeyRef:
-                  name: mautrix-meta-user-credentials
-                  key: private_uri
+                  name: mautrix-meta-db-secret-mautrix-meta
+                  key: POSTGRES_URL
           command:
             - bash
             - -c
