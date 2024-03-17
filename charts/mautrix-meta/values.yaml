@@ -43,7 +43,7 @@ app-template:
             MAUTRIX_DB_URI:
               valueFrom:
                 secretKeyRef:
-                  name: mautrix-meta-user-credentials
+                  name: mautrix-meta-db-secret-mautrix-meta
                   key: private_uri
           command:
             - "/usr/bin/mautrix-meta"
