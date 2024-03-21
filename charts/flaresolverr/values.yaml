@@ -15,6 +15,7 @@ app-template:
             PORT: 80
             PROMETHEUS_ENABLED: true
             PROMETHEUS_PORT: 8080
+            LOG_LEVEL: debug
           probes:
             liveness: &probes
               enabled: true
@@ -30,10 +31,10 @@ app-template:
             readiness: *probes
           resources:
             limits: &resources
-              memory: 1Gi
+              memory: 2Gi
             requests:
               <<: *resources
-              cpu: 10m
+              cpu: 20m
   service:
     flaresolverr:
       controller: flaresolverr
