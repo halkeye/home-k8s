@@ -1,0 +1,70 @@
+app-template:
+  controllers:
+    main:
+      containers:
+        main:
+          image:
+            repository: kizaing/kavita
+            tag: 0.7.8
+          env:
+            TZ: America/Vancouver
+            COMPlus_EnableDiagnostics: "0"
+          resources:
+            requests:
+              cpu: 50m
+              memory: 300Mi
+            limits:
+              cpu: 500m
+              memory: 700Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }
+      pod:
+        securityContext:
+          runAsUser: 1026
+          runAsGroup: 100
+          runAsNonRoot: true
+          fsGroup: 100
+          fsGroupChangePolicy: OnRootMismatch
+  service:
+    main:
+      ports:
+        http:
+          port: 5000
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/kavita.png
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: Media
+        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/kavita.png
+        gethomepage.dev/name: Kavita
+      hosts:
+        - host: &host "kavita.g4v.dev"
+          paths:
+            - path: /
+              service:
+                name: main
+                port: http
+  persistence:
+    config:
+      enabled: true
+      #type: emptyDir
+      type: persistentVolumeClaim
+      storageClass: synology-iscsi
+      globalMounts:
+        - path: /kavita/config
+    books:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Books
+      globalMounts:
+        - path: /books
+    comics:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Comics
+      globalMounts:
+        - path: /comics
