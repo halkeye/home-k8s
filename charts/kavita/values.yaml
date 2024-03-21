@@ -58,7 +58,7 @@ app-template:
       type: persistentVolumeClaim
       storageClass: synology-iscsi
       accessMode: ReadWriteOnce
-      size: 1Gb
+      size: 5Gi
       globalMounts:
         - path: /kavita/config
     comics:
