@@ -171,3 +171,9 @@ app-template:
       path: "/volume1/Comedian Specials"
       globalMounts:
         - path: /comedian-specials
+    downloads:
+      type: nfs
+      server: 172.16.10.10
+      path: "/volume1/Downloads"
+      globalMounts:
+        - path: /downloads

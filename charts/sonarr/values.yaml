@@ -165,3 +165,9 @@ app-template:
       path: /volume1/Anime
       globalMounts:
         - path: /anime
+    downloads:
+      type: nfs
+      server: 172.16.10.10
+      path: "/volume1/Downloads"
+      globalMounts:
+        - path: /downloads
