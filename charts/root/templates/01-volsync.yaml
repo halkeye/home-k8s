@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: volsync-operator
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - clusters: {}
+  template:
+    metadata:
+      name: '{{.nameNormalized}}-operator'
+    spec:
+      project: default
+      source:
+        path: charts/volsync-operator
+        repoURL: https://github.com/halkeye/home-k8s
+        targetRevision: HEAD
+        helm:
+          releaseName: volsync
+          valuesObject:
+            fullnameOverride: volsync
+            volsync:
+              fullnameOverride: volsync
+          valueFiles:
+            - values.yaml
+      destination:
+        server: '{{.server}}'
+        namespace: volsync
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+        syncOptions:
+        - CreateNamespace=true
+        - ServerSideApply=true
