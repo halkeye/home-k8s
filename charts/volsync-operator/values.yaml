@@ -1,2 +1,4 @@
 ---
-volsync: {}
+volsync:
+  metrics:
+    disableAuth: true
