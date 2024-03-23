@@ -77,4 +77,4 @@ app-template:
     config2:
       enabled: true
       type: persistentVolumeClaim
-      existingClaim: "{{.Release.Name}}-nfs-config"
+      existingClaim: "kavita-nfs-config"
