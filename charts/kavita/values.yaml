@@ -63,7 +63,7 @@ app-template:
       accessMode: ReadWriteOnce
       size: 5Gi
       globalMounts:
-        - path: /kavita/config-old
+        - path: /kavita/config
     comics:
       type: nfs
       server: 172.16.10.10
@@ -81,4 +81,4 @@ app-template:
       type: persistentVolumeClaim
       existingClaim: "kavita-nfs-config"
       globalMounts:
-        - path: /kavita/config
+        - path: /kavita/config-nfs
