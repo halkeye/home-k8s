@@ -1,8 +1,10 @@
 app-template:
   controllers:
-    main:
+    kavita:
+      type: statefulset
+      strategy: RollingUpdate
       containers:
-        main:
+        kavita:
           image:
             repository: jvmilazz0/kavita
             tag: 0.7.14
@@ -30,14 +32,14 @@ app-template:
           fsGroupChangePolicy: OnRootMismatch
 
   service:
-    main:
-      controller: main
+    kavita:
+      controller: kavita
       ports:
         http:
           port: 5000
 
   ingress:
-    main:
+    kavita:
       enabled: true
       annotations:
         hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/kavita.png
@@ -50,7 +52,7 @@ app-template:
           paths:
             - path: /
               service:
-                identifier: main
+                identifier: kavita
                 port: http
 
   persistence:
