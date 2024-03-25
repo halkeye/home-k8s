@@ -37,7 +37,7 @@ app-template:
             limits: &resources
               memory: 2Gi
             requests:
-              <<: *resources
+              memory: 256Mi
               cpu: 10m
       pod:
         securityContext:
