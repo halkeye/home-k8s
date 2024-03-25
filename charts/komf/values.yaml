@@ -28,10 +28,10 @@ app-template:
               drop: ["ALL"]
           resources:
             limits: &resources
-              memory: 2Gi
+              memory: 4Gi
             requests:
               <<: *resources
-              cpu: 10m
+              cpu: 15m
       pod:
         securityContext:
           runAsUser: 1026
