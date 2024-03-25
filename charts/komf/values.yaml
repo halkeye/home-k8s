@@ -78,6 +78,19 @@ app-template:
         - path: /config/application.yml
           readOnly: true
           subPath: application.yml
+    comics:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Comics
+      globalMounts:
+        - path: /comics
+    manga:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Manga
+      globalMounts:
+        - path: /manga
+
   secrets:
     secret:
       enabled: true
