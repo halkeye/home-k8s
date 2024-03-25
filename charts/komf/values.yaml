@@ -124,17 +124,9 @@ app-template:
                     - "ja-ro"
                   orderBooks: false # will order books using parsed volume or chapter number. works only with COMIC_INFO
                   languageValue: # set default language for series. Must use BCP 47 format e.g. "en"
-              2:
-                libraryType: "COMIC" # Can be "MANGA", "NOVEL" or "COMIC". Hint to help better match book numbers
-                updateModes: [ API, COMIC_INFO ] # can use multiple options at once. available options are API, COMIC_INFO
-                aggregate: true # if enabled will search and aggregate metadata from all configured providers
-                mergeTags: true # if true and aggregate is enabled will merge tags from all providers
-                mergeGenres: true # if true and aggregate is enabled will merge genres from all providers
-                bookCovers: true #update book thumbnails
-                seriesCovers: true #update series thumbnails
-                postProcessing:
-                  seriesTitle: true #update series title
-                  seriesTitleLanguage: "en" # series title update language. If empty chose first matching title
+              library:
+                2:
+                  libraryType: "COMIC" # Can be "MANGA", "NOVEL" or "COMIC". Hint to help better match book numbers
 
           database:
             file: ./database.sqlite # database file location.
