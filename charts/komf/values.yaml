@@ -102,7 +102,7 @@ app-template:
             eventListener:
               enabled: true # if disabled will not connect to kavita and won't pick up newly added entries
               libraries: # listen to all events if empty
-                - Manga
+                - 1
             notifications:
               libraries: [ ]  # Will send notifications if any notification source is enabled. If empty will send notifications for all libraries
             metadataUpdate:
