@@ -16,10 +16,6 @@ app-template:
             tag: "0.33.0@sha256:074cd429b3cc452b26ca4aba2760ee0c5dae5f85d3ae1cb16b50b6f602ce1e80"
           env:
             TZ: America/Vancouver
-          args:
-            - --media-server
-            - kavita
-            - --verbose
           probes:
             liveness: &probes
               enabled: false
@@ -32,7 +28,7 @@ app-template:
               drop: ["ALL"]
           resources:
             limits: &resources
-              memory: 4Gi
+              memory: 5Gi
             requests:
               <<: *resources
               cpu: 15m
@@ -98,7 +94,7 @@ app-template:
             metadataUpdate:
               default:
                 libraryType: "MANGA" # Can be "MANGA", "NOVEL" or "COMIC". Hint to help better match book numbers
-                updateModes: [ API ] # can use multiple options at once. available options are API, COMIC_INFO
+                updateModes: [ API, COMIC_INFO ] # can use multiple options at once. available options are API, COMIC_INFO
                 aggregate: true # if enabled will search and aggregate metadata from all configured providers
                 mergeTags: true # if true and aggregate is enabled will merge tags from all providers
                 mergeGenres: true # if true and aggregate is enabled will merge genres from all providers
@@ -175,4 +171,4 @@ app-template:
           server:
             port: 8085 # or env:KOMF_SERVER_PORT
 
-          logLevel: DEBUG # or env:KOMF_LOG_LEVEL 
+          logLevel: INFO # or env:KOMF_LOG_LEVEL 
