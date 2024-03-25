@@ -1,9 +1,9 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.0.1/charts/library/common/values.schema.json
 app-template:
   controllers:
-    main:
+    kobodl:
       containers:
-        main:
+        kobodl:
           image:
             repository: ghcr.io/subdavis/kobodl
             tag: latest@sha256:a28db847f5769a344561f2f6ec23e59bb03a46a238caff45c0a86b67fe8dd08b
@@ -38,8 +38,8 @@ app-template:
           fsGroup: 101
           fsGroupChangePolicy: OnRootMismatch
   service:
-    main:
-      controller: main
+    kobodl:
+      controller: kobodl
       ports:
         http:
           port: 5000
@@ -47,18 +47,34 @@ app-template:
     main:
       enabled: true
       annotations:
-        hajimari.io/icon: book
+        hajimari.io/icon: mdi:book
         gethomepage.dev/enabled: "true"
         gethomepage.dev/group: Media Fetchers
-        gethomepage.dev/icon: book
+        gethomepage.dev/icon: mdi:book
         gethomepage.dev/name: Kobodl
       hosts:
         - host: &host "kobodl.g4v.dev"
           paths:
             - path: /
               service:
-                identifier: main
+                identifier: kobodl
                 port: http
+    tailscale:
+      enabled: true
+      className: tailscale
+      annotations:
+        hajimari.io/enabled: "false"
+        gethomepage.dev/enabled: "false"
+      hosts:
+        - host: "kobodl"
+          paths:
+            - path: /
+              service:
+                identifier: kobodl
+                port: http
+      tls:
+        - hosts:
+            - kobodl.taildba47.ts.net
   persistence:
     config:
       enabled: true
