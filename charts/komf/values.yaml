@@ -5,6 +5,8 @@ app-template:
 
   controllers:
     komf:
+      annotations:
+        reloader.stakater.com/auto: "true"
       containers:
         komf:
           image:
