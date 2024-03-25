@@ -137,7 +137,7 @@ app-template:
 
           metadataProviders:
             malClientId: "{{.Values.MalClientId}}" # required for mal provider. See https://myanimelist.net/forum/?topicid=1973077 env:KOMF_METADATA_PROVIDERS_MAL_CLIENT_ID
-            comicVineApiKey: # required for comicVine provider https://comicvine.gamespot.com/api/ env:KOMF_METADATA_PROVIDERS_COMIC_VINE_API_KEY
+            comicVineApiKey: "{{.Values.ComicVine}}" # required for comicVine provider https://comicvine.gamespot.com/api/ env:KOMF_METADATA_PROVIDERS_COMIC_VINE_API_KEY
             defaultProviders:
               mangaUpdates:
                 priority: 10
