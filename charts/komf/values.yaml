@@ -101,7 +101,8 @@ app-template:
             apiKey: "{{.Values.KavitaApiKey}}" #or env:KOMF_KAVITA_API_KEY
             eventListener:
               enabled: true # if disabled will not connect to kavita and won't pick up newly added entries
-              libraries: [ ] # listen to all events if empty
+              libraries: # listen to all events if empty
+                - Manga
             notifications:
               libraries: [ ]  # Will send notifications if any notification source is enabled. If empty will send notifications for all libraries
             metadataUpdate:
