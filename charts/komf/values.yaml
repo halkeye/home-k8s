@@ -170,4 +170,4 @@ app-template:
           server:
             port: 8085 # or env:KOMF_SERVER_PORT
 
-          logLevel: INFO # or env:KOMF_LOG_LEVEL 
+          logLevel: DEBUG # or env:KOMF_LOG_LEVEL 
