@@ -2,6 +2,8 @@
 app-template:
   controllers:
     main:
+      type: statefulset
+      strategy: RollingUpdate
       containers:
         main:
           image:

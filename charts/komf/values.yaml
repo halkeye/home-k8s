@@ -5,6 +5,8 @@ app-template:
 
   controllers:
     komf:
+      type: statefulset
+      strategy: RollingUpdate
       annotations:
         reloader.stakater.com/auto: "true"
       containers:
