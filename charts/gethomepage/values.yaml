@@ -19,7 +19,6 @@ homepage:
     main:
       enabled: true
       annotations:
-        cert-manager.io/cluster-issuer: acme-letsencrypt-prod
         gethomepage.dev/enabled: 'false'
         hajimari.io/enable: 'false'
       hosts:
@@ -31,11 +30,6 @@ homepage:
           paths:
             - path: /
               pathType: Prefix
-      tls:
-        - secretName: gethomepage-tls-certificate
-          hosts:
-            - gethomepage.g4v.dev
-            - dash.g4v.dev
   # The service account is necessary to allow discovery of other services
   serviceAccount:
     create: true

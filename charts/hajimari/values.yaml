@@ -5,7 +5,6 @@ hajimari:
     main:
       enabled: true
       annotations:
-        cert-manager.io/cluster-issuer: acme-letsencrypt-prod
         gethomepage.dev/enabled: 'false'
         hajimari.io/enable: 'false'
       hosts:
@@ -17,11 +16,6 @@ hajimari:
           paths:
             - path: /
               pathType: Prefix
-      tls:
-        - secretName: hajimari-tls-certificate
-          hosts:
-            - *host
-            - hajimari.g4v.dev
   hajimari:
     defaultEnable: true
     namespaceSelector:

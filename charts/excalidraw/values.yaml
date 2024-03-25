@@ -2,7 +2,6 @@ excalidraw:
   ingress:
     enabled: true
     annotations:
-      cert-manager.io/cluster-issuer: acme-letsencrypt-prod
       hajimari.io/appName: excalidraw
       hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/excalidraw.png
       gethomepage.dev/enabled: "true"
@@ -14,7 +13,3 @@ excalidraw:
         paths:
           - path: /
             pathType: Prefix
-    tls:
-      - secretName: excalidraw-tls-certificate
-        hosts:
-          - *host

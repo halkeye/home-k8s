@@ -1,7 +1,6 @@
 kubeview:
   ingress:
     annotations:
-      cert-manager.io/cluster-issuer: acme-letsencrypt-prod
       hajimari.io/appName: Kubeview
       gethomepage.dev/enabled: "true"
       gethomepage.dev/group: Kubernetes

@@ -3,7 +3,6 @@ openspeedtest:
     enabled: true
     annotations:
       nginx.ingress.kubernetes.io/proxy-body-size: 50m
-      cert-manager.io/cluster-issuer: acme-letsencrypt-prod
       hajimari.io/appName: Speedtest
       hajimari.io/icon: speedometer
     hosts:
@@ -11,7 +10,3 @@ openspeedtest:
         paths:
           - path: /
             pathType: Prefix
-    tls:
-      - secretName: speedtest-tls-certificate
-        hosts:
-          - *host
