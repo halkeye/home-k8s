@@ -74,6 +74,7 @@ app-template:
                 port: http
       tls:
         - hosts:
+            - kobodl
             - kobodl.taildba47.ts.net
   persistence:
     config:
