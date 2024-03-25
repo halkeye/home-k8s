@@ -12,7 +12,7 @@ spec:
     - clusters: {}
   template:
     metadata:
-      name: '{{.nameNormalized}}-operator'
+      name: '{{.nameNormalized}}-volsync-operator'
     spec:
       project: default
       source:
