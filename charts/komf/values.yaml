@@ -16,6 +16,10 @@ app-template:
             tag: "0.33.0@sha256:074cd429b3cc452b26ca4aba2760ee0c5dae5f85d3ae1cb16b50b6f602ce1e80"
           env:
             TZ: America/Vancouver
+          args:
+            - --media-server
+            - kavita
+            - --verbose
           probes:
             liveness: &probes
               enabled: false
