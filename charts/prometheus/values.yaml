@@ -307,8 +307,8 @@ kube-prometheus-stack:
       network:
         blackbox-exporter:
           # renovate: depName="Prometheus Blackbox Exporter"
-          gnetId: 7587
-          revision: 3
+          gnetId: 14928
+          revision: 6
           datasource: Prometheus
         cert-manager:
           url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/cert-manager/dashboards/cert-manager.json
