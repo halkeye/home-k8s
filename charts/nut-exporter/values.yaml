@@ -47,12 +47,6 @@ app-template:
         - port: http
           scheme: http
           path: /ups_metrics
-          metricRelabelings:
-            - action: labeldrop
-              regex: (pod)
         - port: http
           scheme: http
           path: /metrics
-          metricRelabelings:
-            - action: labeldrop
-              regex: (pod)
