@@ -11,6 +11,8 @@ argo-cd:
     clusterAdminAccess: true
     metrics:
       enabled: true
+      rules:
+        enabled: true
       serviceMonitor:
         enabled: true
   dex:
