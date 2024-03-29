@@ -9,7 +9,7 @@ app-template:
         main:
           image:
             repository: "ebrianne/adguard-exporter"
-            tag: "sha256:03b2fda733121eb7de3310362bc1b5bc0a7b2d93aca6946a6b5c31e97f4cd85b"
+            tag: "v1.14"
           envFrom:
             - secretRef:
                 name: "{{.Release.Name}}-secret"
