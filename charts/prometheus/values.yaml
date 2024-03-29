@@ -299,6 +299,11 @@ kube-prometheus-stack:
         node-feature-discovery:
           url: https://raw.githubusercontent.com/kubernetes-sigs/node-feature-discovery/master/examples/grafana-dashboard.json
           datasource: Prometheus
+        cluster-monitoring:
+          # renovate: depName="Cluster Monitoring for Kubernetes"
+          gnetId: 10000
+          revision: 1
+          datasource: Prometheus
       network:
         blackbox-exporter:
           # renovate: depName="Prometheus Blackbox Exporter"
