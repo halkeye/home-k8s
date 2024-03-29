@@ -4,7 +4,8 @@ app-template:
   controllers:
     main:
       type: statefulset
-      strategy: RollingUpdate
+      annotations:
+        reloader.stakater.com/auto: "true"
       containers:
         main:
           image:
@@ -39,3 +40,6 @@ app-template:
         - port: http
           scheme: http
           path: /metrics
+          metricRelabelings:
+            - action: labeldrop
+              regex: (pod)

@@ -4,7 +4,9 @@ app-template:
   fullnameOverride: nut-exporter
   controllers:
     main:
-      strategy: RollingUpdate
+      type: statefulset
+      annotations:
+        reloader.stakater.com/auto: "true"
       containers:
         main:
           image:
@@ -46,6 +48,12 @@ app-template:
         - port: http
           scheme: http
           path: /ups_metrics
+          metricRelabelings:
+            - action: labeldrop
+              regex: (pod)
         - port: http
           scheme: http
           path: /metrics
+          metricRelabelings:
+            - action: labeldrop
+              regex: (pod)
