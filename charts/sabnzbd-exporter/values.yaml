@@ -3,7 +3,6 @@ app-template:
   fullnameOverride: sabnzbd-exporter
   controllers:
     main:
-      type: statefulset
       annotations:
         reloader.stakater.com/auto: "true"
       containers:

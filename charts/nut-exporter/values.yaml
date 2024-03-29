@@ -4,7 +4,6 @@ app-template:
   fullnameOverride: nut-exporter
   controllers:
     main:
-      type: statefulset
       annotations:
         reloader.stakater.com/auto: "true"
       containers:
