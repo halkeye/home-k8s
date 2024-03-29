@@ -11,5 +11,4 @@ spec:
       protocol: TCP
       name: metrics
   selector:
-    matchLabels:
-      app: {{ .Release.Name }}
+    app: {{ .Release.Name }}
