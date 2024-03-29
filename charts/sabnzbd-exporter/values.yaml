@@ -1,0 +1,42 @@
+fullnameOverride: sabnzbd-exporter
+app-template:
+  fullnameOverride: sabnzbd-exporter
+  controllers:
+    main:
+      type: statefulset
+      strategy: RollingUpdate
+      containers:
+        main:
+          image:
+            repository: "ghcr.io/onedr0p/exportarr"
+            tag: "v2.0.0@sha256:760327e885a9bb5b818b56e8a6f818c9570eeaa9484bed122028adbf80bcaeb9"
+          env:
+            URL: https://sabnzbd.nas.g4v.dev/
+          args:
+            - sabnzbd
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              cpu: 100m
+              memory: 100Mi
+  service:
+    main:
+      controller: main
+      ports:
+        http:
+          port: 9712
+  serviceMonitor:
+    main:
+      enabled: true
+      serviceName: main
+      endpoints:
+        - port: http
+          scheme: http
+          path: /metrics
