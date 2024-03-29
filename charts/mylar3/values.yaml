@@ -52,23 +52,11 @@ app-template:
       storageClass: synology-iscsi
       globalMounts:
         - path: /config
-    cache:
-      enabled: true
-      type: emptyDir
-      globalMounts:
-        - path: /config/mylar/cache
-    torrents:
-      type: nfs
-      server: 172.16.10.10
-      path: /volume1/Apps/torrents
-      globalMounts:
-        - path: /torrents
-    nzbdownloads:
-      type: nfs
-      server: 172.16.10.10
-      path: /volume1/Apps/nzbget
-      globalMounts:
-        - path: /nzb-downloads
+    # cache:
+    #   enabled: true
+    #   type: emptyDir
+    #   globalMounts:
+    #     - path: /config/mylar/cache
     comics:
       type: nfs
       server: 172.16.10.10
