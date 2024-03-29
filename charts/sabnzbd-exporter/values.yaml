@@ -36,7 +36,7 @@ app-template:
   serviceMonitor:
     main:
       enabled: true
-      serviceName: main
+      serviceName: "{{ include "bjw-s.common.lib.chart.names.fullname" }"
       endpoints:
         - port: http
           scheme: http
