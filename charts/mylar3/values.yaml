@@ -63,6 +63,12 @@ app-template:
       path: /volume1/Comics
       globalMounts:
         - path: /comics
+    manga:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Manga
+      globalMounts:
+        - path: /manga
     downloads:
       type: nfs
       server: 172.16.10.10
