@@ -8,8 +8,8 @@ app-template:
       containers:
         main:
           image:
-            repository: "ghcr.io/axsuul/plex-media-server-exporter"
-            tag: "1.1.3"
+            repository: "ghcr.io/jsclayton/prometheus-plex-exporter"
+            tag: "latest@sha256:ebb7c4cb360ab430b3db5011e4e35c8fbff60d5b32510c6f5d2fbd5a581b4511"
           envFrom:
             - secretRef:
                 name: "{{.Release.Name}}-secret"
@@ -25,12 +25,19 @@ app-template:
             limits:
               cpu: 100m
               memory: 100Mi
+      pod:
+        securityContext:
+          runAsUser: 100
+          runAsGroup: 100
+          runAsNonRoot: true
+          fsGroup: 100
+          fsGroupChangePolicy: OnRootMismatch
   service:
     main:
       controller: main
       ports:
         http:
-          port: 9594
+          port: 9000
   serviceMonitor:
     main:
       enabled: true
