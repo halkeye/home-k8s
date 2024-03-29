@@ -93,16 +93,6 @@ kube-prometheus-stack:
           metrics_path: /metrics
           static_configs:
           - targets: ['nzbget-exporter.nas.g4v.dev']
-        - job_name: plex
-          scheme: https
-          metrics_path: /metrics
-          static_configs:
-          - targets: ['plex-exporter.nas.g4v.dev']
-        - job_name: adguard
-          scheme: https
-          metrics_path: /metrics
-          static_configs:
-          - targets: ['adguard-exporter.nas.g4v.dev']
         - job_name: minio-job
           bearer_token: '{{ .Values.minio_bearer_token }}'
           metrics_path: /minio/v2/metrics/cluster
@@ -377,6 +367,11 @@ kube-prometheus-stack:
           revision: 9
           datasource: Prometheus
       default:
+        plex:
+          url: https://raw.githubusercontent.com/axsuul/plex-media-server-exporter/ec31dee7de8a6622000710c70ba4a3595f8f7e0e/examples/grafana/dashboard.json
+          datasource:
+            - name: DS_PROMETHEUS
+              value: Prometheus
         nut:
           url: https://raw.githubusercontent.com/halkeye/home-k8s/main/charts/nut-exporter/dashboard-nut-exporter.json
           datasource:
