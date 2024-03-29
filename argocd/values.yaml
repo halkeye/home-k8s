@@ -52,7 +52,7 @@ argo-cd:
         enabled: true
     ingress:
       enabled: true
-      ingressClassName: cloudflare-tunnel
+      ingressClassName: ""
       annotations:
         hajimari.io/enable: 'false'
         gethomepage.dev/enabled: 'false'
