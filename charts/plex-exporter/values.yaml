@@ -3,6 +3,8 @@ app-template:
   fullnameOverride: plex-exporter
   controllers:
     main:
+      annotations:
+        reloader.stakater.com/auto: "true"
       type: statefulset
       strategy: RollingUpdate
       containers:
