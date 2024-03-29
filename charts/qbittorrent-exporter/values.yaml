@@ -1,0 +1,41 @@
+fullnameOverride: qbittorrent-exporter
+app-template:
+  fullnameOverride: qbittorrent-exporter
+  controllers:
+    main:
+      type: statefulset
+      strategy: RollingUpdate
+      containers:
+        main:
+          image:
+            repository: "ghcr.io/esanchezm/prometheus-qbittorrent-exporter"
+            tag: "v1.5.1"
+          envFrom:
+            - secretRef:
+                name: "{{.Release.Name}}-secret"
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              cpu: 100m
+              memory: 100Mi
+  service:
+    main:
+      controller: main
+      ports:
+        http:
+          port: 8000
+  serviceMonitor:
+    main:
+      enabled: true
+      serviceName: main
+      endpoints:
+        - port: http
+          scheme: http
+          path: /metrics
