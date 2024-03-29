@@ -383,6 +383,11 @@ kube-prometheus-stack:
           gnetId: 14584
           revision: 1
           datasource: Prometheus
+        alertmanager2:
+          # renovate: depName="OPEN ALERTS OF ALERTMANAGER"
+          gnetId: 12947
+          revision: 1
+          datasource: Prometheus
     sidecar:
       dashboards:
         enabled: true
