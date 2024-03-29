@@ -1,0 +1,41 @@
+fullnameOverride: adguard-exporter
+app-template:
+  fullnameOverride: adguard-exporter
+  controllers:
+    main:
+      type: statefulset
+      strategy: RollingUpdate
+      containers:
+        main:
+          image:
+            repository: "ebrianne/adguard-exporter"
+            tag: "sha256:03b2fda733121eb7de3310362bc1b5bc0a7b2d93aca6946a6b5c31e97f4cd85b"
+          envFrom:
+            - secretRef:
+                name: "{{.Release.Name}}-secret"
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              cpu: 100m
+              memory: 100Mi
+  service:
+    main:
+      controller: main
+      ports:
+        http:
+          port: 9617
+  serviceMonitor:
+    main:
+      enabled: true
+      serviceName: main
+      endpoints:
+        - port: http
+          scheme: http
+          path: /metrics
