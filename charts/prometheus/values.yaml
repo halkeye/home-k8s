@@ -314,10 +314,10 @@ kube-prometheus-stack:
           url: https://raw.githubusercontent.com/monitoring-mixins/website/master/assets/cert-manager/dashboards/cert-manager.json
           datasource: Prometheus
         adguard:
-          # renovate: depName="Adguard Exporter"
-          gnetId: 13330
-          revision: 3
-          datasource: Prometheus
+          url: https://raw.githubusercontent.com/halkeye/home-k8s/main/charts/adguard-exporter/dashboard-adguard-exporter.json
+          datasource:
+            - name: DS_PROMETHEUS
+              value: Prometheus
         unifi-insights:
           # renovate: depName="UniFi-Poller: Client Insights - Prometheus"
           gnetId: 11315
