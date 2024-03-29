@@ -1,6 +1,6 @@
-fullnameOverride: adguard-exporter
+fullnameOverride: plex-exporter
 app-template:
-  fullnameOverride: adguard-exporter
+  fullnameOverride: plex-exporter
   controllers:
     main:
       type: statefulset
