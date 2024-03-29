@@ -83,16 +83,6 @@ kube-prometheus-stack:
       podMonitorSelectorNilUsesHelmValues: false
       probeSelectorNilUsesHelmValues: false
       additionalScrapeConfigs:
-        - job_name: qbittorrent
-          scheme: https
-          metrics_path: /metrics
-          static_configs:
-          - targets: ['qbittorrent-exporter.nas.g4v.dev']
-        - job_name: nzbget
-          scheme: https
-          metrics_path: /metrics
-          static_configs:
-          - targets: ['nzbget-exporter.nas.g4v.dev']
         - job_name: minio-job
           bearer_token: '{{ .Values.minio_bearer_token }}'
           metrics_path: /minio/v2/metrics/cluster
@@ -111,10 +101,6 @@ kube-prometheus-stack:
           scheme: https
           static_configs:
             - targets: ['node-exporter.nas.g4v.dev:443']
-        - job_name: nut-exporter
-          scheme: https
-          static_configs:
-            - targets: ['nut-exporter.nas.g4v.dev:443']
     ingress:
       enabled: true
       annotations:
