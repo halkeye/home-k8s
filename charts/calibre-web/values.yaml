@@ -15,8 +15,7 @@ app-template:
           securityContext:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: false
-            capabilities:
-              drop: ["ALL"]
+            capabilities: {}
           resources:
             limits: &resources
               memory: 2Gi
