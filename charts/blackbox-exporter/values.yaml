@@ -65,10 +65,10 @@ prometheus-blackbox-exporter:
       - name: rfbridge
         url: 172.16.10.178
         module: icmp
-      - name: RokuExpress4k
+      - name: rokuexpress4k
         url: rokuexpress4k.dhcp.home
         module: icmp
-      - name: Blinds Controller
+      - name: blinds_controller_1
         url: blinds_controller_1.dhcp.home
         module: icmp
     defaults:
