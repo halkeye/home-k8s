@@ -47,7 +47,7 @@ prometheus-blackbox-exporter:
     enabled: true
     targets:
       # Inform IP
-      - name: informer_ip
+      - name: informer-ip
         url: 157.230.204.74
         module: icmp
       # Nas
