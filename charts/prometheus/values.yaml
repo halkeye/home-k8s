@@ -193,7 +193,7 @@ kube-prometheus-stack:
       - pr0ps-trackmap-panel
       - vonage-status-panel
     datasources:
-      datasources.yaml:
+      datasource.yaml:
         apiVersion: 1
         deleteDatasources:
           - name: Alertmanager
@@ -211,6 +211,7 @@ kube-prometheus-stack:
               prometheusType: Prometheus
           - name: Alertmanager
             type: alertmanager
+            uid: alertmanager
             isDefault: false
             access: proxy
             url: http://alertmanager-operated.monitoring.svc.cluster.local:9093
