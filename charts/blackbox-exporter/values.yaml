@@ -68,7 +68,7 @@ prometheus-blackbox-exporter:
       - name: rokuexpress4k
         url: rokuexpress4k.dhcp.home
         module: icmp
-      - name: blinds_controller_1
+      - name: blinds-controller-1
         url: blinds_controller_1.dhcp.home
         module: icmp
     defaults:
