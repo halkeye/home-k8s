@@ -1,8 +1,7 @@
 app-template:
   controllers:
     calibre-web:
-      type: statefulset
-      strategy: RollingUpdate
+      strategy: Recreate
       containers:
         calibre-web:
           image:

@@ -238,7 +238,6 @@ app-template:
               enabled: false
 
     typesense:
-      type: statefulset
       strategy: RollingUpdate
       containers:
         main:

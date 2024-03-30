@@ -1,8 +1,7 @@
 app-template:
   controllers:
     kavita:
-      type: statefulset
-      strategy: RollingUpdate
+      strategy: Recreate
       containers:
         kavita:
           image:
