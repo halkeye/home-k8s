@@ -57,6 +57,6 @@ app-template:
         - path: /config
     books:
       type: persistentVolumeClaim
-      existingClaim: "calibre-web-nfs-books"
+      existingClaim: "calibre-web-books"
       globalMounts:
         - path: /books
