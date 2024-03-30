@@ -1,18 +1,18 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: {{.Release.Name}}-books
+  name: {{.Release.Name}}-config
 spec:
-  storageClassName: nfs-rwmany
+  storageClassName: nfs-rwonce
   capacity:
     storage: 10Gi
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   mountOptions:
     - hard
     - nfsvers=4.1
   nfs:
     server: 172.16.10.10
-    path: "/volume1/Books"
+    path: "/volume1/Apps/calibre-web"
     readOnly: false
 
