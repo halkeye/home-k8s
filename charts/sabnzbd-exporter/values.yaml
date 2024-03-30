@@ -12,6 +12,8 @@ app-template:
             tag: "v2.0.0@sha256:760327e885a9bb5b818b56e8a6f818c9570eeaa9484bed122028adbf80bcaeb9"
           args:
             - sabnzbd
+          env:
+            PORT: "9707"
           envFrom:
             - secretRef:
                 name: "{{.Release.Name}}-secret"
@@ -34,9 +36,9 @@ app-template:
               spec:
                 httpGet:
                   path: /metrics
-                  port: 9712
+                  port: 9707
                 initialDelaySeconds: 0
-                periodSeconds: 10
+                periodSeconds: 30
                 timeoutSeconds: 1
                 failureThreshold: 3
             readiness: *probes
@@ -46,7 +48,7 @@ app-template:
       controller: main
       ports:
         http:
-          port: 9712
+          port: 9707
   serviceMonitor:
     main:
       enabled: true
