@@ -330,11 +330,6 @@ kube-prometheus-stack:
           datasource:
             - name: DS_PROMETHEUS
               value: Prometheus
-        external-dns:
-          # renovate: depName="External-dns"
-          gnetId: 15038
-          revision: 3
-          datasource: Prometheus
         speedtest-exporter-hub:
           # renovate: depName="Speedtest Exporter"
           gnetId: 16541
