@@ -6,7 +6,7 @@ app-template:
         calibre-web:
           image:
             repository: linuxserver/calibre-web
-            tag: 0.6.21@sha256:94c3ddfcdb6c7d3088e1c0c0e065411826d1f1ba0604936b8d51053ef726709f
+            tag: 0.6.21
           env:
             TZ: America/Vancouver
             DOCKER_MODS: ghcr.io/halkeye-docker/calibre-web-nginx-vouch:main
