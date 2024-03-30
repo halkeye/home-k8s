@@ -101,6 +101,14 @@ kube-prometheus-stack:
           scheme: https
           static_configs:
             - targets: ['node-exporter.nas.g4v.dev:443']
+        - job_name: nas-cadvisor
+          scheme: https
+          static_configs:
+            - targets: ['cadvisor.nas.g4v.dev:443']
+        - job_name: nas-smartctl
+          scheme: https
+          static_configs:
+            - targets: ['smartctl-exporter.nas.g4v.dev:443']
     ingress:
       enabled: true
       annotations:
@@ -233,6 +241,11 @@ kube-prometheus-stack:
           datasource:
             - name: DS_PROMETHEUS
               value: Prometheus
+        smartctl:
+          url: https://raw.githubusercontent.com/blesswinsamuel/grafana-dashboards/f72e55aa53242d4470ac65777dbfed318dd3188e/dashboards/dist/smartctl.json
+          datasource:
+            - name: DS_PROMETHEUS
+              value: Prometheus
       mediafetchers:
         radarr:
           # renovate: depName="Radarr v3"
@@ -303,6 +316,11 @@ kube-prometheus-stack:
         cluster-monitoring:
           # renovate: depName="Cluster Monitoring for Kubernetes"
           gnetId: 10000
+          revision: 1
+          datasource: Prometheus
+        cadvisor:
+          # renovate: depName="Cadvisor"
+          gnetId: 14282
           revision: 1
           datasource: Prometheus
       network:
