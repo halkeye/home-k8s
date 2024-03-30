@@ -1,6 +1,6 @@
-fullnameOverride: plex-auto-languages-exporter
+fullnameOverride: plex-auto-languages
 app-template:
-  fullnameOverride: plex-auto-languages-exporter
+  fullnameOverride: plex-auto-languages
   controllers:
     plex-auto-language:
       annotations:
