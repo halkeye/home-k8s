@@ -27,7 +27,7 @@ app-template:
       controller: calibre-web
       ports:
         http:
-          port: 8083
+          port: 8080
   ingress:
     calibre-web:
       enabled: true
