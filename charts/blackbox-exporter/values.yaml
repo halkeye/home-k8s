@@ -1,6 +1,9 @@
 fullnameOverride: blackbox-exporter
 prometheus-blackbox-exporter:
   fullnameOverride: blackbox-exporter
+  securityContext:
+    capabilities:
+      add: ["NET_RAW"]
   podSecurityContext:
     sysctls:
       - name: net.ipv4.ping_group_range
@@ -42,6 +45,32 @@ prometheus-blackbox-exporter:
       memory: 64M
   serviceMonitor:
     enabled: true
+    targets:
+      # Inform IP
+      - name: informer_ip
+        url: 157.230.204.74
+        module: icmp
+      # Nas
+      - name: nas
+        url: synologynas.dhcp.home
+        module: icmp
+      # Adguard
+      - name: adguard
+        url: adguard.dhcp.home
+        module: icmp
+      # Printer
+      - name: adguard
+        url: printer.dhcp.home
+        module: icmp
+      - name: rfbridge
+        url: 172.16.10.178
+        module: icmp
+      - name: RokuExpress4k
+        url: rokuexpress4k.dhcp.home
+        module: icmp
+      - name: Blinds Controller
+        url: blinds_controller_1.dhcp.home
+        module: icmp
     defaults:
       labels:
         release: prometheus
@@ -60,7 +89,7 @@ prometheus-blackbox-exporter:
           severity: critical
         annotations:
           description: |-
-            The SSL certificate for {{"{{ $labels.target }}"}} will expire in less than 3 days
+            The SSL certificate for {{"{{ $labels.instance }}"}} will expire in less than 3 days
       - alert: BlackboxSslCertificateExpired
         expr: probe_ssl_earliest_cert_expiry - time() <= 0
         for: 15m
@@ -68,7 +97,7 @@ prometheus-blackbox-exporter:
           severity: critical
         annotations:
           description: |-
-            The SSL certificate for {{"{{ $labels.target }}"}} has expired
+            The SSL certificate for {{"{{ $labels.instance }}"}} has expired
       - alert: BlackboxProbeFailed
         expr: probe_success == 0
         for: 5m
@@ -76,10 +105,10 @@ prometheus-blackbox-exporter:
           severity: critical
         annotations:
           description: |-
-            The host {{"{{ $labels.target }}"}} is currently unreachable
+            The host {{"{{ $labels.instance }}"}} is currently unreachable
       - alert: SlowResponseTime
         annotations:
-          message: The response time for {{"{{ $labels.target }}"}} has been greater than 30 seconds for 5 minutes.
+          message: The response time for {{"{{ $labels.instance }}"}} has been greater than 30 seconds for 5 minutes.
         expr: probe_duration_seconds > 30
         for: 5m
         labels:
