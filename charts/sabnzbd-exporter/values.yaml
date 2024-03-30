@@ -27,6 +27,20 @@ app-template:
             limits:
               cpu: 100m
               memory: 100Mi
+          probes:
+            liveness: &probes
+              enabled: true
+              custom: true
+              spec:
+                httpGet:
+                  path: /metrics
+                  port: 9712
+                initialDelaySeconds: 0
+                periodSeconds: 10
+                timeoutSeconds: 1
+                failureThreshold: 3
+            readiness: *probes
+            startup: *probes
   service:
     main:
       controller: main
