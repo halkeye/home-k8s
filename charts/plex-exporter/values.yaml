@@ -5,7 +5,6 @@ app-template:
     main:
       annotations:
         reloader.stakater.com/auto: "true"
-      type: statefulset
       strategy: RollingUpdate
       containers:
         main:
