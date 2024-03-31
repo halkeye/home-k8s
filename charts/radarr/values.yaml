@@ -130,8 +130,9 @@ app-template:
                 port: http
   persistence:
     config:
-      enabled: true
-      type: emptyDir
+      type: nfs
+      server: 172.16.10.10
+      path: "/volume1/Apps/radarr"
     tmp:
       enabled: true
       type: emptyDir
