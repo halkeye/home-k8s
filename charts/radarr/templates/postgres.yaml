@@ -1,7 +1,7 @@
 apiVersion: db.movetokube.com/v1alpha1
 kind: Postgres
 metadata:
-  name: radarr
+  name: {{ .Release.Name }}
 spec:
-  database: radarr
+  database: {{ .Release.Name }}
   dropOnDelete: true

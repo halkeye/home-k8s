@@ -1,10 +1,9 @@
 apiVersion: db.movetokube.com/v1alpha1
 kind: PostgresUser
 metadata:
-  name: radarr
-  namespace: radarr
+  name: {{ .Release.Name }}
 spec:
-  role: radarr
-  database: radarr
-  secretName: radarr-db-secret
+  role: {{ .Release.Name }}
+  database: {{ .Release.Name }}
+  secretName: {{ .Release.Name }}-db-secret
   privileges: OWNER

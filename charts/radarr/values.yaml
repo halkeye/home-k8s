@@ -3,7 +3,7 @@ app-template:
   controllers:
     main:
       containers:
-        main:
+        radarr:
           image:
             repository: ghcr.io/onedr0p/radarr
             tag: 5.3.6.8612
@@ -12,7 +12,7 @@ app-template:
             # https://github.com/Radarr/Radarr/issues/7030#issuecomment-1039689518
             # https://github.com/dotnet/runtime/issues/9336
             COMPlus_EnableDiagnostics: "0"
-            RADARR__INSTANCE_NAME: radarr
+            RADARR__INSTANCE_NAME: "{{ .Release.Name }}"
             RADARR__PORT: &port 80
             RADARR__LOG_LEVEL: info
             RADARR__AUTHENTICATION_METHOD: External
@@ -20,23 +20,23 @@ app-template:
             RADARR__POSTGRES_HOST:
               valueFrom:
                 secretKeyRef:
-                  name: radarr-db-secret-radarr
+                  name: "{{.Release.Name}}-db-secret-radarr"
                   key: HOST
-            RADARR__POSTGRES_MAIN_DB: "radarr_main"
-            RADARR__POSTGRES_LOG_DB: "radarr_log"
+            RADARR__POSTGRES_MAIN_DB: "{{.Release.Name}}_main"
+            RADARR__POSTGRES_LOG_DB: "{{.Release.Name}}_log"
             RADARR__POSTGRES_USER:
               valueFrom:
                 secretKeyRef:
-                  name: radarr-db-secret-radarr
+                  name: "{{.Release.Name}}-db-secret-radarr"
                   key: LOGIN
             RADARR__POSTGRES_PASSWORD:
               valueFrom:
                 secretKeyRef:
-                  name: radarr-db-secret-radarr
+                  name: "{{.Release.Name}}-db-secret-radarr"
                   key: PASSWORD
           envFrom:
             - secretRef:
-                name: radarr-secret
+                name: "{{.Release.Name}}-secret"
           probes:
             liveness: &probes
               enabled: true
@@ -75,7 +75,7 @@ app-template:
             APIKEY:
               valueFrom:
                 secretKeyRef:
-                  name: radarr-secret
+                  name: "{{.Release.Name}}-secret"
                   key: RADARR__API_KEY
           resources:
             requests:
@@ -132,7 +132,7 @@ app-template:
     config:
       type: nfs
       server: 172.16.10.10
-      path: "/volume1/Apps/radarr"
+      path: "/volume1/Apps/{{ .Release.Name }}"
     tmp:
       enabled: true
       type: emptyDir
