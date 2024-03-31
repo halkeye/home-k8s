@@ -21,10 +21,10 @@ app-template:
           resources:
             requests:
               cpu: 5m
-              memory: 128Mi
+              memory: 256Mi
             limits:
               cpu: 5m
-              memory: 128Mi
+              memory: 256Mi
           probes:
             liveness:
               enabled: false
