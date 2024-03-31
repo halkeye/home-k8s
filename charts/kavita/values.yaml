@@ -75,15 +75,3 @@ app-template:
       path: /volume1/Manga
       globalMounts:
         - path: /manga
-    config2:
-      enabled: true
-      type: persistentVolumeClaim
-      existingClaim: "kavita-nfs-config"
-      globalMounts:
-        - path: /kavita/config-nfs
-    config3:
-      enabled: true
-      type: persistentVolumeClaim
-      storageClass: nas-apps
-      accessMode: ReadWriteOnce
-      size: 10Gi
