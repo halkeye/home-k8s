@@ -10,8 +10,8 @@ app-template:
       containers:
         main:
           image:
-            repository: "ghcr.io/jsclayton/prometheus-plex-exporter"
-            tag: "latest@sha256:ebb7c4cb360ab430b3db5011e4e35c8fbff60d5b32510c6f5d2fbd5a581b4511"
+            repository: "ghcr.io/halkeye/prometheus-plex-exporter"
+            tag: "v0.1.0"
           envFrom:
             - secretRef:
                 name: "{{.Release.Name}}-secret"
