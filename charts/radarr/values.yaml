@@ -132,7 +132,7 @@ app-template:
     config:
       type: nfs
       server: 172.16.10.10
-      path: "/volume1/Apps/{{ .Release.Name }}"
+      path: "/volume1/Apps/radarr"
     tmp:
       enabled: true
       type: emptyDir
