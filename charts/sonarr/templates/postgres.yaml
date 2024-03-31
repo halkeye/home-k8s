@@ -1,7 +1,7 @@
 apiVersion: db.movetokube.com/v1alpha1
 kind: Postgres
 metadata:
-  name: sonarr
+  name: {{ .Release.Name }}
 spec:
-  database: sonarr
+  database: {{ .Release.Name }}
   dropOnDelete: true

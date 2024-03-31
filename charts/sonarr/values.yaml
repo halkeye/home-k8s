@@ -3,7 +3,7 @@ app-template:
   controllers:
     main:
       containers:
-        main:
+        sonarr:
           image:
             repository: ghcr.io/onedr0p/sonarr
             tag: 4.0.2.1183@sha256:bbfcda0754272515ce12972924652699934074b46b11d27bc515c8ea5fb870f5
@@ -12,7 +12,7 @@ app-template:
             # https://github.com/Radarr/Radarr/issues/7030#issuecomment-1039689518
             # https://github.com/dotnet/runtime/issues/9336
             COMPlus_EnableDiagnostics: "0"
-            SONARR__INSTANCE_NAME: sonarr
+            SONARR__INSTANCE_NAME: "{{ .Release.Name }}"
             SONARR__PORT: &port 80
             SONARR__LOG_LEVEL: info
             SONARR__AUTHENTICATION_METHOD: External
@@ -20,23 +20,23 @@ app-template:
             SONARR__POSTGRES_HOST:
               valueFrom:
                 secretKeyRef:
-                  name: sonarr-db-secret-sonarr
+                  name: "{{ .Release.Name }}-db-secret-sonarr"
                   key: HOST
-            SONARR__POSTGRES_MAIN_DB: "sonarr_main"
-            SONARR__POSTGRES_LOG_DB: "sonarr_log"
+            SONARR__POSTGRES_MAIN_DB: "{{ .Release.Name }}_main"
+            SONARR__POSTGRES_LOG_DB: "{{ .Release.Name }}_log"
             SONARR__POSTGRES_USER:
               valueFrom:
                 secretKeyRef:
-                  name: sonarr-db-secret-sonarr
+                  name: "{{.Release.Name}}-db-secret-sonarr"
                   key: LOGIN
             SONARR__POSTGRES_PASSWORD:
               valueFrom:
                 secretKeyRef:
-                  name: sonarr-db-secret-sonarr
+                  name: "{{.Release.Name}}-db-secret-sonarr"
                   key: PASSWORD
           envFrom:
             - secretRef:
-                name: sonarr-secret
+                name: "{{.Release.Name}}-secret"
           probes:
             liveness: &probes
               enabled: true
@@ -75,7 +75,7 @@ app-template:
             APIKEY:
               valueFrom:
                 secretKeyRef:
-                  name: sonarr-secret
+                  name: "{{.Release.Name}}-secret"
                   key: SONARR__API_KEY
           resources:
             requests:
@@ -129,10 +129,16 @@ app-template:
                 identifier: main
                 port: http
   persistence:
-    config:
+    config2:
       type: nfs
       server: 172.16.10.10
       path: "/volume1/Apps/sonarr"
+    config:
+      enabled: true
+      type: persistentVolumeClaim
+      storageClass: nas-apps
+      accessMode: ReadWriteMany
+      size: 10Gi
     tmp:
       enabled: true
       type: emptyDir
