@@ -29,7 +29,7 @@ app-template:
       controller: lazylibrarian
       ports:
         http:
-          port: *port
+          port: 5299
   ingress:
     main:
       enabled: true
