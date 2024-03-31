@@ -1,0 +1,85 @@
+app-template:
+  controllers:
+    main:
+      strategy: Recreate
+      containers:
+        lazylibrarian:
+          image:
+            repository: linuxserver/lazylibrarian
+            tag: version-0cf75c74
+          env:
+            TZ: America/Vancouver
+            LOG_LEVEL: "info"
+            PUID: "1026"
+            PGID: "100"
+          probes:
+            liveness: &probes
+              enabled: false
+            readiness: *probes
+            startup: *probes
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
+  service:
+    main:
+      controller: lazylibrarian
+      ports:
+        http:
+          port: *port
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/lazylibrarian.png
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: Media Fetchers
+        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/lazylibrarian.png
+        gethomepage.dev/name: Lazy Librarian
+      hosts:
+        - host: &host lazylibrarian.g4v.dev
+          paths:
+            - path: /
+              service:
+                identifier: main
+                port: http
+  persistence:
+    config:
+      enabled: true
+      type: persistentVolumeClaim
+      accessMode: ReadWriteOnce
+      size: 1Gi
+      storageClass: synology-iscsi
+    config2:
+      type: custom
+      volumeSpec:
+        nfs:
+          server: 172.16.10.10
+          path: /volume1/Apps/lazylibrarian
+        mountOptions:
+          - nfsvers=4.1
+          - tcp
+          - intr
+          - nodiratime
+          - noatime
+    comics:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Comics
+    manga:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Manga
+    books:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Books
+    downloads:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Downloads
+      globalMounts:
+        - path: /downloads
