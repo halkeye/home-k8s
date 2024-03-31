@@ -7,7 +7,7 @@ app-template:
         reloader.stakater.com/auto: "true"
       strategy: RollingUpdate
       containers:
-        main:
+        plex-exporter:
           image:
             repository: "ghcr.io/halkeye/prometheus-plex-exporter"
             tag: "v0.1.0"
@@ -42,7 +42,7 @@ app-template:
   serviceMonitor:
     main:
       enabled: true
-      serviceName: main
+      serviceName: '{{ include "bjw-s.common.lib.chart.names.fullname" $ }}'
       endpoints:
         - port: http
           scheme: http
