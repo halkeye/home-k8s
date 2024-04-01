@@ -1,0 +1,6 @@
+synology-csi:
+  volumeSnapshotClasses:
+    delete:
+      deletionPolicy: Delete
+    retain:
+      deletionPolicy: Retain
