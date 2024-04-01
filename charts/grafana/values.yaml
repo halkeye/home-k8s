@@ -281,10 +281,15 @@ grafana:
         gnetId: 9578
         revision: 4
         datasource: Prometheus
-      traefik:
+      traefik-standalone:
         # renovate: depName="Traefik"
         gnetId: 4475
         revision: 5
+        datasource: Prometheus
+      traefik-kubernetes:
+        # renovate: depName="Traefik Official Kubernetes Dashboard"
+        gnetId: 17347
+        revision: 7
         datasource: Prometheus
       argocd:
         # renovate: depName="ArgoCD"
