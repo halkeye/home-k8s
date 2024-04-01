@@ -15,8 +15,6 @@ traefik:
     kubernetesIngress:
       publishedService:
         enabled: true
-    kubernetesCRD:
-      enabled: false
   ingressRoute:
     dashboard:
       # -- Create an IngressRoute for the dashboard
@@ -35,7 +33,7 @@ traefik:
     ipFamilyPolicy: "PreferDualStack"
   logs:
     general:
-      level: INFO
+      level: DEBUG
   tlsStore:
     default:
       defaultCertificate:
