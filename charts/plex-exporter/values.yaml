@@ -10,7 +10,7 @@ app-template:
         plex-exporter:
           image:
             repository: "ghcr.io/halkeye/prometheus-plex-exporter"
-            tag: "v0.1.0"
+            tag: "v0.2.0"
           envFrom:
             - secretRef:
                 name: "{{.Release.Name}}-secret"
