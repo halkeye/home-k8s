@@ -449,7 +449,7 @@ kube-prometheus-stack:
         # Optionally map user groups to Grafana roles
         role_attribute_path: contains(groups[*], 'Grafana Admins') && 'Admin' || contains(groups[*], 'Grafana Editors') && 'Editor' || 'Viewer'
   kubeProxy:
-    enabled: false
+    enabled: true
   defaultRules:
     rules:
       kubeControllerManager: false
