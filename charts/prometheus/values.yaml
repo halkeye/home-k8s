@@ -113,7 +113,7 @@ kube-prometheus-stack:
       hosts:
         - prometheus.h.g4v.dev
   grafana:
-    enabled: true
+    enabled: false
     podAnnotations:
       reloader.stakater.com/auto: "true"
     ingress:
