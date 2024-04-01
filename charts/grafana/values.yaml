@@ -57,6 +57,14 @@ grafana:
         editable: true
         options:
           path: /var/lib/grafana/dashboards/mediafetchers
+      - name: observability
+        orgId: 1
+        folder: Observability
+        type: file
+        disableDeletion: false
+        editable: true
+        options:
+          path: /var/lib/grafana/dashboards/observability
       - name: kubernetes
         orgId: 1
         folder: Kubernetes
@@ -144,6 +152,7 @@ grafana:
       cloudnative-pg:
         url: https://raw.githubusercontent.com/cloudnative-pg/charts/c939e3e114ae4c3a5b7190577aeae6c625ef8d48/charts/cloudnative-pg/monitoring/grafana-dashboard.json
         datasource: Prometheus
+    observability:
       prometheus:
         # renovate: depName="Prometheus"
         gnetId: 19105
@@ -152,8 +161,8 @@ grafana:
     kubernetes:
       kubernetes-api-server:
         # renovate: depName="Kubernetes / System / API Server"
-        gnetId: 16761
-        revision: 1
+        gnetId: 15761
+        revision: 16
         datasource: Prometheus
       kubernetes-coredns:
         # renovate: depName="Kubernetes / System / CoreDNS"
