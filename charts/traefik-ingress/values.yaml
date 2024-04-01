@@ -15,6 +15,8 @@ traefik:
     kubernetesIngress:
       publishedService:
         enabled: true
+    kubernetesCRD:
+      enabled: false
   ingressRoute:
     dashboard:
       # -- Create an IngressRoute for the dashboard
