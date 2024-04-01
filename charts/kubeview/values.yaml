@@ -1,7 +1,0 @@
-kubeview:
-  ingress:
-    annotations:
-      hajimari.io/appName: Kubeview
-      gethomepage.dev/enabled: "true"
-      gethomepage.dev/group: Kubernetes
-      gethomepage.dev/name: Kubeview
