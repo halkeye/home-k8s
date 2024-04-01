@@ -7,7 +7,6 @@ k8s-gateway:
   watchedResources:
     - Ingress
   extraZonePlugins:
-    - name: log
     - name: errors
     # Serves a /health endpoint on :8080, required for livenessProbe
     - name: health
