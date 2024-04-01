@@ -190,7 +190,7 @@ kube-prometheus-stack:
   prometheusOperator:
     kubeletService:
       name: kubelet
-      enabled: false
+      enabled: true
     admissionWebhooks:
       annotations:
         argocd.argoproj.io/hook: PreSync
