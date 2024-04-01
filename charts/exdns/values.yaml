@@ -21,8 +21,6 @@ k8s-gateway:
     - name: forward
       parameters: g4v.dev 1.1.1.1:53 8.8.8.8:53
     - name: forward
-      parameters: rxresume.g4v.dev 1.1.1.1:53 8.8.8.8:53
-    - name: forward
       parameters: . /etc/resolv.conf
     - name: loop
     - name: reload
