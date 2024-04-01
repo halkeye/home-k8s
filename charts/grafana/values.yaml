@@ -130,7 +130,7 @@ grafana:
           - name: DS_PROMETHEUS
             value: Prometheus
       smartctl:
-        url: https://raw.githubusercontent.com/blesswinsamuel/grafana-dashboards/f72e55aa53242d4470ac65777dbfed318dd3188e/dashboards/dist/smartctl.json
+        url: https://raw.githubusercontent.com/blesswinsamuel/grafana-dashboards/0801c90f5923f5118fb0d6b1231daf08d590f6c8/dashboards/dist/smartctl.json
         datasource:
           - name: DS_PROMETHEUS
             value: Prometheus
