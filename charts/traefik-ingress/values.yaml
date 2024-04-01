@@ -1,9 +1,11 @@
 traefik:
   metrics:
-    service:
-      enabled: true
-    serviceMonitor:
-      interval: 30s
+    prometheus:
+      service:
+        enabled: true
+    #   disableapicheck: true
+    #   servicemonitor:
+    #     interval: 30s
   ingressClass:
     enabled: true
     isDefaultClass: true
