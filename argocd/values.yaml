@@ -1,4 +1,5 @@
 argo-cd:
+  fullnameOverride: argocd
   createClusterRoles: true
   createAggregateRoles: true
   notifications:
