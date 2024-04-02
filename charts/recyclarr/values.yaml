@@ -37,6 +37,8 @@ app-template:
   persistence:
     tmp:
       type: emptyDir
+    config:
+      type: emptyDir
     # config:
     #   enabled: true
     #   type: persistentVolumeClaim
