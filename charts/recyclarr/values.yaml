@@ -1,0 +1,45 @@
+app-template:
+  controllers:
+    main:
+      strategy: Recreate
+      containers:
+        overseerr:
+          image:
+            repository: ghcr.io/recyclarr/recyclarr
+            tag: 6.0.2
+          env:
+            TZ: America/Vancouver
+          probes:
+            liveness:
+              enabled: false
+            readiness:
+              enabled: false
+            startup:
+              enabled: false
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            limits: &resources
+              memory: 256Mi
+            requests:
+              memory: 256Mi
+              cpu: 10m
+      pod:
+        securityContext:
+          runAsUser: 568
+          runAsGroup: 568
+          runAsNonRoot: true
+          fsGroup: 568
+          fsGroupChangePolicy: OnRootMismatch
+  # persistence:
+    # config:
+    #   enabled: true
+    #   type: persistentVolumeClaim
+    #   accessMode: ReadWriteOnce
+    #   size: 1Gi
+    #   storageClass: synology-iscsi
+    #   globalMounts:
+    #     - path: /app/config
