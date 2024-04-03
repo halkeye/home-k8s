@@ -1,14 +1,24 @@
 app-template:
   controllers:
     main:
-      strategy: Recreate
+      type: cronjob
+      annotations:
+        reloader.stakater.com/auto: "true"
+      cronjob:
+        schedule: "@daily"
       containers:
-        overseerr:
+        recyclarr:
           image:
             repository: ghcr.io/recyclarr/recyclarr
             tag: 6.0.2
+          args:
+            - sync
           env:
+            COMPlus_EnableDiagnostics: "0"
             TZ: America/Vancouver
+          envFrom:
+            - secretRef:
+                name: "{{.Release.Name}}-secret"
           probes:
             liveness:
               enabled: false
@@ -34,16 +44,110 @@ app-template:
           runAsNonRoot: true
           fsGroup: 568
           fsGroupChangePolicy: OnRootMismatch
+  configMaps:
+    config:
+      data:
+        anime-radarr.yaml: |-
+          # Instance Definition: https://recyclarr.dev/wiki/yaml/config-reference/basic/
+          radarr:
+            anime-radarr:
+              # Set the URL/API Key to your actual instance
+              base_url: http://anime-radarr.anime-radarr:80
+              api_key: !env_var RADARR_API_KEY
+              delete_old_custom_formats: true
+              replace_existing_custom_formats: true
+              # Quality Definition Settings
+              quality_definition:
+                type: anime
+              media_naming:
+                series: default
+                season: default
+                episodes:
+                  rename: true
+                  standard: default
+                  daily: default
+                  anime: default
+              include:
+                # Comment out any of the following includes to disable them
+                - template: radarr-quality-definition-movie
+                - template: radarr-quality-profile-anime
+                - template: radarr-custom-formats-anime
+              # Custom Formats: https://recyclarr.dev/wiki/yaml/config-reference/custom-formats/
+              custom_formats:
+                - trash_ids:
+                    - 064af5f084a0a24458cc8ecd3220f93f # Uncensored
+                  quality_profiles:
+                    - name: Remux-1080p - Anime
+                      score: 0 # Adjust scoring as desired
+                - trash_ids:
+                    - a5d148168c4506b55cf53984107c396e # 10bit
+                  quality_profiles:
+                    - name: Remux-1080p - Anime
+                      score: 0 # Adjust scoring as desired
+                - trash_ids:
+                    - 4a3b087eea2ce012fcc1ce319259a3be # Anime Dual Audio
+                  quality_profiles:
+                    - name: Remux-1080p - Anime
+                      # If you want to prefer Dual Audio within the same tier give the CF a score of 10,
+                      # if you want it to be preferred a tier above give the CF a score of 101, and
+                      # if you want to prefer it over any tiers give the CF a score of 2000.
+                      score: 101 # Adjust scoring as desired
+        anime-sonarr.yaml: |-
+          # Instance Definition: https://recyclarr.dev/wiki/yaml/config-reference/basic/
+          sonarr:
+            anime-sonarr-v4:
+              # Set the URL/API Key to your actual instance
+              base_url: http://anime-sonarr.anime-sonarr:80
+              api_key: !env_var SONARR_API_KEY
+              delete_old_custom_formats: true
+              replace_existing_custom_formats: true
+              # Quality Definition Settings
+              quality_definition:
+                type: anime
+              media_naming:
+                series: default
+                season: default
+                episodes:
+                  rename: true
+                  standard: default
+                  daily: default
+                  anime: default
+              include:
+                # Comment out any of the following includes to disable them
+                - template: sonarr-quality-definition-anime
+                - template: sonarr-v4-quality-profile-anime
+                - template: sonarr-v4-custom-formats-anime
+              # Custom Formats: https://recyclarr.dev/wiki/yaml/config-reference/custom-formats/
+              custom_formats:
+                - trash_ids:
+                    - 026d5aadd1a6b4e550b134cb6c72b3ca # Uncensored
+                  quality_profiles:
+                    - name: Remux-1080p - Anime
+                      score: 0 # Adjust scoring as desired
+                - trash_ids:
+                    - b2550eb333d27b75833e25b8c2557b38 # 10bit
+                  quality_profiles:
+                    - name: Remux-1080p - Anime
+                      score: 0 # Adjust scoring as desired
+                - trash_ids:
+                    - 418f50b10f1907201b6cfdf881f467b7 # Anime Dual Audio
+                  quality_profiles:
+                    - name: Remux-1080p - Anime
+                      # If you want to prefer Dual Audio within the same tier give the CF a score of 10,
+                      # if you want it to be preferred a tier above give the CF a score of 101, and
+                      # if you want to prefer it over any tiers give the CF a score of 2000.
+                      score: 101 # Adjust scoring as desired
+
+
   persistence:
     tmp:
       type: emptyDir
     config:
       type: emptyDir
-    # config:
-    #   enabled: true
-    #   type: persistentVolumeClaim
-    #   accessMode: ReadWriteOnce
-    #   size: 1Gi
-    #   storageClass: synology-iscsi
-    #   globalMounts:
-    #     - path: /app/config
+    configs:
+      enabled: true
+      type: configMap
+      name: recyclarr-configmap
+      globalMounts:
+        - path: /config/configs
+          readOnly: true
