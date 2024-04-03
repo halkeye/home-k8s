@@ -1,0 +1,44 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: home-k8s
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - list:
+        elements:
+          - name: anime-radarr
+            chart: radarr
+          - name: anime-sonarr
+            chart: sonarr
+          - name: recyclarr
+  template:
+    metadata:
+      name: "{{.name}}"
+      namespace: argocd
+      annotations:
+        argocd.argoproj.io/sync-wave: '{{dig "syncwave" "20" . }}'
+    spec:
+      destination:
+        namespace: "{{.name | normalize}}"
+        server: '{{dig "server" "https://kubernetes.default.svc" . }}'
+      project: default
+      source:
+        path: 'charts/{{dig "chart" .name .}}'
+        repoURL: https://github.com/halkeye/home-k8s
+        targetRevision: HEAD
+        helm:
+          valueFiles:
+            - values.yaml
+            - secrets://values-secrets.yaml
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
+          - Prune=true
