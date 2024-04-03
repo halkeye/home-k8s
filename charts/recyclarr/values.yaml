@@ -61,7 +61,7 @@ app-template:
                 type: anime
               media_naming:
                 folder: default
-                episodes:
+                movie:
                   rename: true
                   standard: default
               include:
