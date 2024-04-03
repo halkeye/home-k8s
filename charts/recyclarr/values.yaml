@@ -147,7 +147,7 @@ app-template:
     configs:
       enabled: true
       type: configMap
-      name: recyclarr-configmap
+      name: "{{ .Release.Name }}-config"
       globalMounts:
         - path: /config/configs
           readOnly: true
