@@ -129,16 +129,12 @@ app-template:
                 identifier: main
                 port: http
   persistence:
-    config3:
-      type: nfs
-      server: 172.16.10.10
-      path: "/volume1/Apps/radarr"
-    # config:
-    #   enabled: true
-    #   type: persistentVolumeClaim
-    #   storageClass: nas-apps
-    #   accessMode: ReadWriteOnce
-    #   size: 10Gi
+    config:
+      enabled: true
+      type: persistentVolumeClaim
+      storageClass: nas-apps
+      accessMode: ReadWriteMany
+      size: 10Gi
     tmp:
       enabled: true
       type: emptyDir
