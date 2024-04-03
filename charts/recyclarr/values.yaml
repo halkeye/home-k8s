@@ -89,6 +89,18 @@ app-template:
                       # if you want it to be preferred a tier above give the CF a score of 101, and
                       # if you want to prefer it over any tiers give the CF a score of 2000.
                       score: 101 # Adjust scoring as desired
+        radarr.yaml: |-
+          # Instance Definition: https://recyclarr.dev/wiki/yaml/config-reference/basic/
+          radarr:
+            radarr:
+              # Set the URL/API Key to your actual instance
+              base_url: http://radarr.radarr:80
+              api_key: !env_var RADARR_API_KEY
+              media_naming:
+                folder: default
+                movie:
+                  rename: true
+                  standard: default
         anime-sonarr.yaml: |-
           # Instance Definition: https://recyclarr.dev/wiki/yaml/config-reference/basic/
           sonarr:
@@ -134,6 +146,22 @@ app-template:
                       # if you want it to be preferred a tier above give the CF a score of 101, and
                       # if you want to prefer it over any tiers give the CF a score of 2000.
                       score: 101 # Adjust scoring as desired
+        sonarr.yaml: |-
+          # Instance Definition: https://recyclarr.dev/wiki/yaml/config-reference/basic/
+          sonarr:
+            sonarr-v4:
+              # Set the URL/API Key to your actual instance
+              base_url: http://sonarr.sonarr:80
+              api_key: !env_var SONARR_API_KEY
+              media_naming:
+                series: default
+                season: default
+                episodes:
+                  rename: true
+                  standard: default
+                  daily: default
+                  anime: default
+
 
 
   persistence:
