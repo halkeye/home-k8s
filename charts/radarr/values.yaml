@@ -20,19 +20,19 @@ app-template:
             RADARR__POSTGRES_HOST:
               valueFrom:
                 secretKeyRef:
-                  name: "{{.Release.Name}}-db-secret-radarr"
+                  name: "{{.Release.Name}}-db-secret-{{.Release.Name}}"
                   key: HOST
             RADARR__POSTGRES_MAIN_DB: "{{.Release.Name}}_main"
             RADARR__POSTGRES_LOG_DB: "{{.Release.Name}}_log"
             RADARR__POSTGRES_USER:
               valueFrom:
                 secretKeyRef:
-                  name: "{{.Release.Name}}-db-secret-radarr"
+                  name: "{{.Release.Name}}-db-secret-{{.Release.Name}}"
                   key: LOGIN
             RADARR__POSTGRES_PASSWORD:
               valueFrom:
                 secretKeyRef:
-                  name: "{{.Release.Name}}-db-secret-radarr"
+                  name: "{{.Release.Name}}-db-secret-{{.Release.Name}}"
                   key: PASSWORD
           envFrom:
             - secretRef:
@@ -133,12 +133,12 @@ app-template:
       type: nfs
       server: 172.16.10.10
       path: "/volume1/Apps/radarr"
-    config:
-      enabled: true
-      type: persistentVolumeClaim
-      storageClass: nas-apps
-      accessMode: ReadWriteOnce
-      size: 10Gi
+    # config:
+    #   enabled: true
+    #   type: persistentVolumeClaim
+    #   storageClass: nas-apps
+    #   accessMode: ReadWriteOnce
+    #   size: 10Gi
     tmp:
       enabled: true
       type: emptyDir
