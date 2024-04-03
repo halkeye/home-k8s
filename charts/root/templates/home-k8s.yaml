@@ -12,9 +12,12 @@ spec:
         elements:
           - name: anime-radarr
             chart: radarr
+          - name: radarr
           - name: anime-sonarr
             chart: sonarr
+          - name: sonarr
           - name: recyclarr
+          - name: grafana
   template:
     metadata:
       name: "{{.name}}"
