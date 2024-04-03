@@ -60,13 +60,10 @@ app-template:
               quality_definition:
                 type: anime
               media_naming:
-                series: default
-                season: default
+                folder: default
                 episodes:
                   rename: true
                   standard: default
-                  daily: default
-                  anime: default
               include:
                 # Comment out any of the following includes to disable them
                 - template: radarr-quality-definition-movie
