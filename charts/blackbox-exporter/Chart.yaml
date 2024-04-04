@@ -6,7 +6,7 @@ appVersion: "1.0"
 
 dependencies:
 - name: prometheus-blackbox-exporter
-  version: 8.12.0
+  version: 8.13.0
   repository: https://prometheus-community.github.io/helm-charts
 maintainers:
   - name: halkeye
