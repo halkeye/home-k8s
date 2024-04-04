@@ -162,8 +162,6 @@ app-template:
                   daily: default
                   anime: default
 
-
-
   persistence:
     tmp:
       type: emptyDir
