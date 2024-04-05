@@ -5,7 +5,7 @@ app-template:
         main:
           image:
             repository: frooodle/s-pdf
-            tag: 0.22.7
+            tag: 0.22.8
           command:
             - java
             - -Dfile.encoding=UTF-8
