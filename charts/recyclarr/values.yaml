@@ -173,7 +173,7 @@ app-template:
                   quality_profiles:
                     - name: 720p HD Bluray + WEB
 
-              - trash_ids:
+                - trash_ids:
                   # Streaming Services
                   - b3b3a6ac74ecbd56bcdbefa4799fb9df # AMZN
                   - 40e9380490e748672c2522eaaeb692f7 # ATVP
