@@ -1,0 +1,96 @@
+app-template:
+  controllers:
+    main:
+      strategy: RollingUpdate
+      annotations:
+        reloader.stakater.com/auto: "true"
+      containers:
+        libmedium:
+          image:
+            repository: realaravinth/libmedium
+            tag: master@sha256:c5e82cc00eb85cda0e9db4b72b229f66b5be76b88ffe55b4117bd01102910cf3
+          env:
+            TZ: America/Vancouver
+            LOG_LEVEL: "info"
+          probes:
+            liveness: &probes
+              enabled: false
+            readiness: *probes
+            startup: *probes
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            requests:
+              cpu: 5m
+              memory: 256Mi
+            limits:
+              cpu: 50m
+              memory: 256Mi
+      pod:
+        securityContext:
+          runAsUser: 568
+          runAsGroup: 568
+          runAsNonRoot: true
+          fsGroup: 568
+          fsGroupChangePolicy: OnRootMismatch
+  service:
+    main:
+      controller: main
+      ports:
+        http:
+          port: 7000
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        hajimari.io/enabled: "false"
+        gethomepage.dev/enabled: "false"
+        nginx.ingress.kubernetes.io/auth-signin: "https://vouch.do.g4v.dev/login?url=$scheme://$http_host$request_uri&lasso-failcount=$auth_resp_failcount&X-Vouch-Token=$auth_resp_jwt&error=$auth_resp_err"
+        nginx.ingress.kubernetes.io/auth-url: https://vouch.do.g4v.dev
+        nginx.ingress.kubernetes.io/auth-response-headers: X-Vouch-User
+        nginx.ingress.kubernetes.io/auth-snippet: |
+          # these return values are used by the @error401 call
+          auth_request_set $auth_resp_jwt $upstream_http_x_vouch_jwt;
+          auth_request_set $auth_resp_err $upstream_http_x_vouch_err;
+          auth_request_set $auth_resp_failcount $upstream_http_x_vouch_failcount;
+      hosts:
+        - host: &host libmedium.g4v.dev
+          paths:
+            - path: /
+              service:
+                identifier: main
+                port: http
+  persistence:
+    config:
+      enabled: true
+      type: configMap
+      name: "{{.Release.Name}}-configmap"
+      globalMounts:
+        - path: /etc/libmedium/config.toml
+          subPath: config.toml
+          readOnly: true
+    cache:
+      enabled: true
+      type: emptyDir
+  configMaps:
+    config:
+      data:
+        config.toml: |-
+          debug = true
+          source_code = "https://github.com/realaravinth/libmedium"
+          cache = "/cache"
+
+          [server]
+          # The port at which you want authentication to listen to
+          # takes a number, choose from 1000-10000 if you dont know what you are doing
+          port = 7000
+          #IP address. Enter 0.0.0.0 to listen on all availale addresses
+          ip= "0.0.0.0"
+          # enter your hostname, eg: example.com
+          domain = "g4v.dev"
+          allow_registration = false
+          proxy_has_tls = false
+          #workers = 2
