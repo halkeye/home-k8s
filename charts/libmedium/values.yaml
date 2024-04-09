@@ -12,6 +12,7 @@ app-template:
           env:
             TZ: America/Vancouver
             LOG_LEVEL: "info"
+            PORT: "7000"
           probes:
             liveness: &probes
               enabled: false
