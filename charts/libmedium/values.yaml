@@ -67,7 +67,7 @@ app-template:
     config:
       enabled: true
       type: configMap
-      name: "{{.Release.Name}}-configmap"
+      name: "{{.Release.Name}}-config"
       globalMounts:
         - path: /etc/libmedium/config.toml
           subPath: config.toml
