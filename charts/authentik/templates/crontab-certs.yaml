@@ -51,10 +51,9 @@ spec:
               - /certs/tls.key
               - --name
               - tls
-
             env:
             {{- with (concat .Values.authentik.global.env .Values.authentik.server.env) }}
-              {{- toYaml . | nindent 12 }}
+              {{- toYaml . | nindent 14 }}
             {{- end }}
             - name: AUTHENTIK_LISTEN__HTTP
               value: {{ printf "0.0.0.0:%v" .Values.authentik.server.containerPorts.http | quote }}
@@ -62,32 +61,28 @@ spec:
               value: {{ printf "0.0.0.0:%v" .Values.authentik.server.containerPorts.https | quote }}
             - name: AUTHENTIK_LISTEN__METRICS
               value: {{ printf "0.0.0.0:%v" .Values.authentik.server.containerPorts.metrics | quote }}
-          envFrom:
-            - secretRef:
-                name: {{ template "authentik.fullname" .Subcharts.authentik }}
-            {{- with (concat .Values.authentik.global.envFrom .Values.authentik.server.envFrom) }}
-              {{- toYaml . | nindent 12 }}
+            envFrom:
+              - secretRef:
+                  name: {{ template "authentik.fullname" .Subcharts.authentik }}
+              {{- with (concat .Values.authentik.global.envFrom .Values.authentik.server.envFrom) }}
+                {{- toYaml . | nindent 14 }}
+              {{- end }}
+            {{- if or .Values.authentik.geoip.enabled .Values.authentik.global.volumeMounts .Values.authentik.server.volumeMounts }}
+            volumeMounts:
+              {{- with .Values.authentik.global.volumeMounts }}
+                {{- toYaml . | nindent 14 }}
+              {{- end }}
+              {{- with .Values.authentik.server.volumeMounts }}
+                {{- toYaml . | nindent 14 }}
+              {{- end }}
             {{- end }}
-          {{- if or .Values.authentik.geoip.enabled .Values.authentik.global.volumeMounts .Values.authentik.server.volumeMounts }}
-          volumeMounts:
-            {{- with .Values.authentik.global.volumeMounts }}
-              {{- toYaml . | nindent 12 }}
-            {{- end }}
-            {{- with .Values.authentik.server.volumeMounts }}
-              {{- toYaml . | nindent 12 }}
-            {{- end }}
+          {{- if or .Values.authentik.global.volumes .Values.authentik.server.volumes }}
+          volumes:
+          {{- with .Values.authentik.global.volumes }}
+            {{- toYaml . | nindent 10 }}
           {{- end }}
-      {{- if or .Values.authentik.geoip.enabled .Values.authentik.global.volumes .Values.authentik.server.volumes }}
-      volumes:
-      {{- with .Values.authentik.global.volumes }}
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.authentik.server.volumes }}
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- if .Values.authentik.geoip.enabled }}
-        - name: geoip-db
-          emptyDir: {}
-      {{- end }}
-      {{- end }}
+          {{- with .Values.authentik.server.volumes }}
+            {{- toYaml . | nindent 10 }}
+          {{- end }}
+          {{- end }}
 
