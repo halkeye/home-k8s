@@ -3,7 +3,6 @@ authentik:
     enabled: true
 
   authentik:
-    log_level: trace
     # This sends anonymous usage-data, stack traces on errors and
     # performance data to sentry.beryju.org, and is fully opt-in
     error_reporting:
