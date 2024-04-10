@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ template "authentik.server.fullname" .Subcharts.authentik }}-outpost
+  name: {{ template "authentik.fullname" .Subcharts.authentik }}-outpost
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "authentik.labels" (dict "context" .Subcharts.authentik "component" "outpost") | nindent 4 }}
@@ -25,3 +25,7 @@ spec:
                             name: ak-outpost-authentik-embedded-outpost
                             port:
                                 number: 9000
+    tls:
+      - hosts:
+        - auth.g4v.dev
+        secretName: authentik-tls
