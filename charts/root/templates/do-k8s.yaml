@@ -12,6 +12,7 @@ spec:
         elements:
           - name: libmedium
           - name: it-tools
+          - name: authentik
   template:
     metadata:
       name: "{{.name}}"
