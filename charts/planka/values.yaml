@@ -6,7 +6,7 @@ app-template:
         main:
           image:
             repository: ghcr.io/plankanban/planka
-            tag: 1.16.2@sha256:ff44c41bb1658e0cfeaf9332d3e391671fd18dcdb37eb12ab9abd33caf0c8fec
+            tag: 1.16.3@sha256:92b2e58052dc87c454ad481967ab1fdbeb7a79061ff449bde2aa36922d561d48
           env:
             TZ: America/Vancouver
             BASE_URL: https://planka.g4v.dev
