@@ -1,3 +1,6 @@
+authentik:
+  GRAFANA_CLIENT_ID:
+  GRAFANA_CLIENT_SECRET:
 grafana:
   enabled: false
   podAnnotations:
