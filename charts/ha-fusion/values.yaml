@@ -17,7 +17,7 @@ app-template:
               spec:
                 httpGet:
                   path: /
-                  port: http
+                  port: 5050
                 initialDelaySeconds: 0
                 periodSeconds: 10
                 timeoutSeconds: 1
