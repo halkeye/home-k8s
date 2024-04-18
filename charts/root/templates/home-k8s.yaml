@@ -18,6 +18,9 @@ spec:
           - name: sonarr
           - name: recyclarr
           - name: grafana
+          - name: ha-fusion
+          - name: hajimari
+          - name: overseerr
   template:
     metadata:
       name: "{{.name}}"
