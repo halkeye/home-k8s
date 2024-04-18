@@ -9,7 +9,7 @@ app-template:
             tag: 2024.2.1
           env:
             TZ: America/Vancouver
-            HASS_URL: http://homeassistant.dhcp.home:8123
+            HASS_URL: https://home.g4v.dev
           probes:
             liveness: &probes
               enabled: true
