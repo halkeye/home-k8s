@@ -147,10 +147,10 @@ app-template:
                 threshold: 0.7
           go2rtc:
             streams:
-              frigate_frontdoor: http://172.16.10.109.local:8081
+              frigate_frontdoor: http://172.16.10.109:8081
           cameras:
             frigate_frontdoor:
               ffmpeg:
                 inputs:
-                  - path: http://172.16.10.109.local:8081
+                  - path: http://172.16.10.109:8081
                     roles: ["detect"]
