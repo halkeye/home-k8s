@@ -28,7 +28,7 @@ app-template:
             readOnlyRootFilesystem: false
             capabilities:
               drop: ["ALL"]
-              add: ["CHOWN", "DAC_OVERRIDE"]
+              add: ["CHOWN", "DAC_OVERRIDE", "FOWNER"]
           resources:
             limits: &resources
               memory: 8Gi
