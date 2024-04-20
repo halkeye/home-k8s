@@ -187,6 +187,10 @@ kube-prometheus-stack:
             targetLabel: kubernetes_node
   defaultRules:
     rules:
+      disabled:
+        # my limits are bad anyways, so don't alert me cause i went over
+        KubeMemoryOvercommit: true
+
       kubeControllerManager: false
       kubeProxy: false
       kubeSchedulerAlerting: false
