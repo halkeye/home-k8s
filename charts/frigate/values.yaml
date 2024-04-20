@@ -74,7 +74,7 @@ app-template:
         - path: /media
     config-file:
       type: configMap
-      name: "{{.Release.Name}}-configmap"
+      name: "{{.Release.Name}}-config"
       globalMounts:
         - path: /config/config.yml
           subPath: config.yml
