@@ -26,18 +26,18 @@ app-template:
           securityContext:
             allowPrivilegeEscalation: true
             readOnlyRootFilesystem: false
-            capabilities:
-              drop: ["ALL"]
-              add: 
-                # Bypass file read, write, and execute permission checks.
-                # chmod
-                - DAC_OVERRIDE
-                # chmod
-                - FOWNER
-                # might have grabbed the wrong one for chmod, don't want to remove it to see if chown is used
-                - CHOWN
-                # s6-applyuidgid
-                - SETUID
+            # capabilities:
+            #   drop: ["ALL"]
+            #   add:
+            #     # Bypass file read, write, and execute permission checks.
+            #     # chmod
+            #     - DAC_OVERRIDE
+            #     # chmod
+            #     - FOWNER
+            #     # might have grabbed the wrong one for chmod, don't want to remove it to see if chown is used
+            #     - CHOWN
+            #     # s6-applyuidgid
+            #     - SETUID
           resources:
             limits: &resources
               memory: 8Gi
