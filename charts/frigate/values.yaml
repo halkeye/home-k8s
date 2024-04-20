@@ -104,7 +104,7 @@ app-template:
   configMaps:
     config:
       data:
-        config.yaml: |-
+        config.yml: |-
           ---
           logger:
             default: info
