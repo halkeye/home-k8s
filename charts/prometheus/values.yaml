@@ -186,10 +186,11 @@ kube-prometheus-stack:
             sourceLabels: ["__meta_kubernetes_pod_node_name"]
             targetLabel: kubernetes_node
   defaultRules:
+    disabled:
+      # my limits are bad anyways, so don't alert me cause i went over
+      KubeMemoryOvercommit: true
+      KubeMemoryQuotaOvercommit: true
     rules:
-      disabled:
-        # my limits are bad anyways, so don't alert me cause i went over
-        KubeMemoryOvercommit: true
 
       kubeControllerManager: false
       kubeProxy: false
