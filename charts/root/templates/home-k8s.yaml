@@ -21,6 +21,7 @@ spec:
           - name: ha-fusion
           - name: hajimari
           - name: overseerr
+          - name: frigate
   template:
     metadata:
       name: "{{.name}}"
