@@ -28,6 +28,7 @@ app-template:
             readOnlyRootFilesystem: false
             capabilities:
               drop: ["ALL"]
+              add: ["CHOWN"]
           resources:
             limits: &resources
               memory: 8Gi
