@@ -38,11 +38,11 @@ app-template:
             #     - CHOWN
             #     # s6-applyuidgid
             #     - SETUID
-          resources:
-            limits: &resources
-              memory: 8Gi
-            requests:
-              cpu: 100m
+          # resources:
+          #   limits: &resources
+          #     memory: 8Gi
+          #   requests:
+          #     cpu: 100m
       pod:
         securityContext:
           runAsUser: 0
