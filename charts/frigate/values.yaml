@@ -151,16 +151,16 @@ app-template:
                 threshold: 0.7
           go2rtc:
             streams:
-              #frigate_frontdoor: http://172.16.10.109:8081
-              frigate_rpi: rtsp://172.16.10.139:8554/camera
+              # rpi: rtsp://172.16.10.139:8554/camera
+              frontdoor: rtsp://frontdoorcamera.dhcp.home:8554/camera
           cameras:
-            # frigate_frontdoor:
-            #   ffmpeg:
-            #     inputs:
-            #       - path: http://172.16.10.109:8081
-            #         roles: ["detect"]
-            frigate_frontdoor:
+            frontdoor:
               ffmpeg:
                 inputs:
-                  - path: rtsp://172.16.10.139:8554/camera
+                  - path: rtsp://frontdoorcamera.dhcp.home:8554/camera
                     roles: ["detect"]
+            # rpi:
+            #   ffmpeg:
+            #     inputs:
+            #       - path: rtsp://172.16.10.139:8554/camera
+            #         roles: ["detect"]
