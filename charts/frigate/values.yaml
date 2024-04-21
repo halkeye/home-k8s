@@ -107,7 +107,7 @@ app-template:
         config.yml: |-
           ---
           logger:
-            default: info
+            default: debug
           mqtt:
             enabled: false
             # host:
