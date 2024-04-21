@@ -147,7 +147,6 @@ app-template:
                 threshold: 0.7
           go2rtc:
             streams:
-              # rpi: rtsp://172.16.10.139:8554/camera
               frontdoor: rtsp://frontdoorcamera.dhcp.home:8554/camera
           cameras:
             frontdoor:
@@ -155,8 +154,3 @@ app-template:
                 inputs:
                   - path: rtsp://frontdoorcamera.dhcp.home:8554/camera
                     roles: ["detect"]
-            # rpi:
-            #   ffmpeg:
-            #     inputs:
-            #       - path: rtsp://172.16.10.139:8554/camera
-            #         roles: ["detect"]
