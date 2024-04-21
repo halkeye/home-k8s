@@ -1,8 +1,4 @@
 app-template:
-  defaultPodOptions:
-    annotations:
-      foo: bar
-      checksum/configMaps: "no-checksum-as-it-reloads-itself"
   controllers:
     main:
       containers:
