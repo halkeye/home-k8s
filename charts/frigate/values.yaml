@@ -121,12 +121,6 @@ app-template:
               type: edgetpu
               device: usb
 
-          webrtc:
-            candidates:
-              - 172.16.10.5:8555
-              - 172.16.10.6:8555
-              - stun:8555
-
           ffmpeg:
             global_args: ["-hide_banner", "-loglevel", "warning"]
             # hwaccel_args: ["-hwaccel", "vaapi", "-hwaccel_device", "/dev/dri/renderD128", "-hwaccel_output_format", "yuv420p"]
@@ -157,6 +151,11 @@ app-template:
           go2rtc:
             streams:
               raspberrypi: rtsp://raspberrypi.dhcp.home:8554/cam
+            webrtc:
+              candidates:
+                - 172.16.10.5:8555
+                - 172.16.10.6:8555
+                - stun:8555
 
           cameras:
             raspberrypi:
