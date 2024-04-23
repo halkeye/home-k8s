@@ -24,8 +24,7 @@ app-template:
             startup:
               enabled: false
           securityContext:
-            allowPrivilegeEscalation: true
-            readOnlyRootFilesystem: false
+            privileged: true
           resources:
             limits: &resources
               memory: 8Gi
