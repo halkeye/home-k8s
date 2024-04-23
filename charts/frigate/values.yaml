@@ -26,30 +26,14 @@ app-template:
           securityContext:
             allowPrivilegeEscalation: true
             readOnlyRootFilesystem: false
-            # capabilities:
-            #   drop: ["ALL"]
-            #   add:
-            #     # Bypass file read, write, and execute permission checks.
-            #     # chmod
-            #     - DAC_OVERRIDE
-            #     # chmod
-            #     - FOWNER
-            #     # might have grabbed the wrong one for chmod, don't want to remove it to see if chown is used
-            #     - CHOWN
-            #     # s6-applyuidgid
-            #     - SETUID
-          # resources:
-          #   limits: &resources
-          #     memory: 8Gi
-          #   requests:
-          #     cpu: 100m
-      pod:
-        securityContext:
-          runAsUser: 0
-          runAsGroup: 0
-          runAsNonRoot: false
-          fsGroup: 0
-          fsGroupChangePolicy: OnRootMismatch
+          resources:
+            limits: &resources
+              memory: 8Gi
+            requests:
+              cpu: 100m
+  defaultPodOptions:
+    nodeSelector:
+      google.feature.node.kubernetes.io/coral: "true"
   service:
     main:
       controller: main
@@ -116,10 +100,10 @@ app-template:
             # password: "{FRIGATE_MQTT_PASSWORD}"
           database:
             path: /data/frigate.db
-          # detectors:
-          #   coral:
-          #     type: edgetpu
-          #     device: usb
+          detectors:
+            coral:
+              type: edgetpu
+              device: usb
           ffmpeg:
             global_args: ["-hide_banner", "-loglevel", "warning"]
             # hwaccel_args: ["-hwaccel", "vaapi", "-hwaccel_device", "/dev/dri/renderD128", "-hwaccel_output_format", "yuv420p"]
@@ -147,10 +131,10 @@ app-template:
                 threshold: 0.7
           go2rtc:
             streams:
-              frontdoor: rtsp://frontdoorcamera.dhcp.home:8554/camera
+              frontdoor: rtsp://172.16.10.139:8554/cam
           cameras:
             frontdoor:
               ffmpeg:
                 inputs:
-                  - path: rtsp://frontdoorcamera.dhcp.home:8554/camera
+                  - path: rtsp://172.16.10.139:8554/cam
                     roles: ["detect"]
