@@ -131,10 +131,10 @@ app-template:
                 threshold: 0.7
           go2rtc:
             streams:
-              frontdoor: rtsp://172.16.10.139:8554/cam
+              raspberrypi: rtsp://raspberrypi.dhcp.home:8554/cam
           cameras:
-            frontdoor:
+            raspberrypi:
               ffmpeg:
                 inputs:
-                  - path: rtsp://172.16.10.139:8554/cam
+                  - path: rtsp://raspberrypi.dhcp.home:8554/cam
                     roles: ["detect"]
