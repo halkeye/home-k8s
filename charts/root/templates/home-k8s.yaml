@@ -12,17 +12,18 @@ spec:
         elements:
           - name: anime-radarr
             chart: radarr
-          - name: radarr
           - name: anime-sonarr
             chart: sonarr
-          - name: sonarr
-          - name: recyclarr
+
+          - name: frigate
           - name: grafana
           - name: ha-fusion
           - name: hajimari
           - name: overseerr
+          - name: radarr
+          - name: recyclarr
+          - name: sonarr
           - name: tautulli
-          - name: frigate
           - name: wg-access-server
           - name: youtubedl-material
   template:
