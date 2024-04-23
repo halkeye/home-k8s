@@ -1,6 +1,6 @@
 app-template:
   controllers:
-    main:
+    frigate:
       containers:
         frigate:
           image:
@@ -35,10 +35,28 @@ app-template:
       google.feature.node.kubernetes.io/coral: "true"
   service:
     main:
-      controller: main
+      controller: frigate
       ports:
         http:
           port: 5000
+        rtsp:
+          port: 8554
+    external-rtsp:
+      enabled: true
+      controller: frigate
+      type: LoadBalancer
+      externalTrafficPolicy: Cluster
+      ports:
+        rtsp-tcp:
+          enabled: true
+          port: 8554
+          protocol: TCP
+          targetPort: 8554
+        rtsp-udp:
+          enabled: true
+          port: 8554
+          protocol: UDP
+          targetPort: 8554
   ingress:
     main:
       enabled: true
@@ -89,8 +107,6 @@ app-template:
       data:
         config.yml: |-
           ---
-          logger:
-            default: debug
           mqtt:
             enabled: false
             # host:
@@ -106,20 +122,26 @@ app-template:
           ffmpeg:
             global_args: ["-hide_banner", "-loglevel", "warning"]
             # hwaccel_args: ["-hwaccel", "vaapi", "-hwaccel_device", "/dev/dri/renderD128", "-hwaccel_output_format", "yuv420p"]
+
+          objects:
+            track:
+              - person
+              - cat
+              - dog
           snapshots:
             enabled: true
             timestamp: false
             bounding_box: true
             retain:
-              default: 1
+              default: 2
           record:
             enabled: true
             retain:
-              days: 1
+              days: 5
               mode: all
             events:
               retain:
-                default: 1
+                default: 2
                 mode: active_objects
           objects:
             track: ["person"]
