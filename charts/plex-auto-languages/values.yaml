@@ -23,7 +23,7 @@ app-template:
               cpu: 5m
               memory: 512Mi
             limits:
-              cpu: 15m
+              cpu: 20m
               memory: 512Mi
           probes:
             liveness:
