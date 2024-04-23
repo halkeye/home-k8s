@@ -22,7 +22,6 @@ spec:
           - name: hajimari
           - name: overseerr
           - name: tautulli
-          - name: tautulli-exporter
           - name: frigate
           - name: wg-access-server
           - name: youtubedl-material
