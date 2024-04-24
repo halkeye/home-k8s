@@ -150,7 +150,7 @@ app-template:
 
           go2rtc:
             streams:
-              raspberrypi: ffmpeg:rtsp://raspberrypi.dhcp.home:8554/cam
+              raspberrypi: rtsp://raspberrypi.dhcp.home:8554/cam
             # webrtc:
             #   candidates:
             #     - 172.16.10.5:8555
@@ -161,6 +161,5 @@ app-template:
             raspberrypi:
               ffmpeg:
                 inputs:
-                  - path: rtsp://127.0.0.1:8554/raspberrypi
-                    input_args: preset-rtsp-restream
+                  - path: rtsp://raspberrypi.dhcp.home:8554/cam
                     roles: ["detect"]
