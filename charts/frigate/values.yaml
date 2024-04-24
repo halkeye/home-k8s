@@ -161,6 +161,6 @@ app-template:
             raspberrypi:
               ffmpeg:
                 inputs:
-                  - path: rtsp://locahost:8554/raspberrypi
+                  - path: rtsp://localhost:8554/raspberrypi
                     input_args: preset-rtsp-restream
                     roles: ["detect"]
