@@ -153,6 +153,10 @@ app-template:
             streams:
               # raspberrypi: rtsp://raspberrypi.dhcp.home:8554/picam_h264
               webcam: rtsp://raspberrypi.dhcp.home:8554/cam
+            candidates:
+              - 172.16.10.5:8555
+              - 172.16.10.6:8555
+              - stun:8555
 
           cameras:
             # frontdoor_raspberrypi:
@@ -163,5 +167,10 @@ app-template:
             frontdoor_webcam:
               ffmpeg:
                 inputs:
-                  - path: rtsp://raspberrypi.dhcp.home:8554/cam
-                    roles: ["detect"]
+                  # - path: rtsp://raspberrypi.dhcp.home:8554/cam
+                  #   roles: ["detect"]
+                  - path: rtsp://localhost:8554/webcam
+                    input_args: preset-rtsp-restream
+                    roles:
+                      - record
+                      - detect
