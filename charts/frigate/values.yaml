@@ -57,6 +57,22 @@ app-template:
           port: 8554
           protocol: UDP
           targetPort: 8554
+    external-webrtc:
+      enabled: true
+      controller: frigate
+      type: LoadBalancer
+      externalTrafficPolicy: Cluster
+      ports:
+        rtsp-tcp:
+          enabled: true
+          port: 8555
+          protocol: TCP
+          targetPort: 8555
+        rtsp-udp:
+          enabled: true
+          port: 8555
+          protocol: UDP
+          targetPort: 8555
   ingress:
     main:
       enabled: true
