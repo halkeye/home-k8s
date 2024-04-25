@@ -150,7 +150,8 @@ app-template:
 
           go2rtc:
             streams:
-              raspberrypi: rtsp://raspberrypi.dhcp.home:8554/cam
+              webcam: rtsp://raspberrypi.dhcp.home:8554/cam
+              raspberrypi: rtsp://raspberrypi.dhcp.home:8554/picam_h264
             # webrtc:
             #   candidates:
             #     - 172.16.10.5:8555
@@ -158,7 +159,12 @@ app-template:
             #     - stun:8555
 
           cameras:
-            raspberrypi:
+            frontdoor_raspberrypi:
+              ffmpeg:
+                inputs:
+                  - path: rtsp://raspberrypi.dhcp.home:8554/picam_h264
+                    roles: ["detect"]
+            frontdoor_webcam:
               ffmpeg:
                 inputs:
                   - path: rtsp://raspberrypi.dhcp.home:8554/cam
