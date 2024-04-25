@@ -176,7 +176,7 @@ app-template:
             candidates:
               - 172.16.10.5:8555
               - 172.16.10.6:8555
-              - {FRIGATE_KUBE_HOST_IP}:8555
+              - "{FRIGATE_KUBE_HOST_IP}:8555"
               - stun:8555
 
           cameras:
