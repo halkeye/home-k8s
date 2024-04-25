@@ -8,6 +8,10 @@ app-template:
             tag: 0.13.2@sha256:2906991ccad85035b176941f9dedfd35088ff710c39d45ef1baa9a49f2b16734
           env:
             TZ: America/Vancouver
+            FRIGATE_KUBE_HOST_IP:
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
           probes:
             liveness: &probes
               enabled: true
@@ -168,10 +172,11 @@ app-template:
           go2rtc:
             streams:
               # raspberrypi: rtsp://raspberrypi.dhcp.home:8554/picam_h264
-              webcam: rtsp://raspberrypi.dhcp.home:8554/cam
+              webcam: rtsp://raspberrypi.dhcp.home:8554/cam?mp4
             candidates:
               - 172.16.10.5:8555
               - 172.16.10.6:8555
+              - {FRIGATE_KUBE_HOST_IP}:8555
               - stun:8555
 
           cameras:
@@ -185,7 +190,7 @@ app-template:
                 inputs:
                   # - path: rtsp://raspberrypi.dhcp.home:8554/cam
                   #   roles: ["detect"]
-                  - path: rtsp://localhost:8554/webcam
+                  - path: rtsp://127.0.0.1:8554/webcam
                     input_args: preset-rtsp-restream
                     roles:
                       - record
