@@ -6,7 +6,7 @@ appVersion: "1.0"
 
 dependencies:
 - name: ingress-nginx
-  version: 4.10.0
+  version: 4.10.1
   repository: https://kubernetes.github.io/ingress-nginx
 maintainers:
   - name: halkeye
