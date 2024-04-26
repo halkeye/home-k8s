@@ -15,6 +15,7 @@ spec:
           - name: anime-sonarr
             chart: sonarr
 
+          - name: blackbox-exporter
           - name: frigate
           - name: grafana
           - name: ha-fusion
