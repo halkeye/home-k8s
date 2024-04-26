@@ -59,7 +59,7 @@ prometheus-blackbox-exporter:
         url: adguard.dhcp.home
         module: icmp
       # Printer
-      - name: adguard
+      - name: printer
         url: printer.dhcp.home
         module: icmp
       - name: rfbridge
