@@ -139,7 +139,7 @@ app-template:
           # Changing these values requires regeneration of the registration.
           appservice:
               # The address that the homeserver can use to connect to this appservice.
-              address: "http://mautrix-gmessages.{{ .Release.Namespace }}.svc.cluster.local.:29336"
+              address: "http://{{ .Release.Name }}.{{ .Release.Namespace }}.svc.cluster.local.:29336"
 
               # The hostname and port where this appservice should listen.
               hostname: 0.0.0.0
