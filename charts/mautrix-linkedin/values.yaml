@@ -4,7 +4,6 @@ app-template:
   login_shared_secret: "login_shared_secret"
   as_token: "This value is generated when generating the registration"
   hs_token: "This value is generated when generating the registration"
-  db_uri: ""
 
   controllers:
     main:
@@ -13,6 +12,27 @@ app-template:
       type: deployment
       replicas: 1
       strategy: Recreate
+      initContainers:
+        01-init:
+          image:
+            # probably already downloaded, and includes envsubst
+            repository: nginx
+            tag: 1.26.0
+          env:
+            TZ: America/Vancouver
+            MAUTRIX_DB_URI:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{.Release.Name }}-db-secret-{{.Release.Name }}"
+                  key: POSTGRES_URL
+          command:
+            - bash
+            - -c
+            - |-
+                cat /secrets/config.yaml | envsubst > /data/config.yaml
+                find /secrets
+                find /data
+                cat /data/config.yaml
       containers:
         main:
           image:
@@ -20,6 +40,11 @@ app-template:
             tag: 75c3bcbe80718fa2c147dff28a6829af817082ed
           env:
             TZ: America/Vancouver
+            MAUTRIX_DB_URI:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{.Release.Name}}-db-secret-{{.Release.Name}}"
+                  key: POSTGRES_URL
           command:
             - python3
             - -m
@@ -73,6 +98,9 @@ app-template:
 
   persistence:
     data:
+      enabled: true
+      type: emptyDir
+    secrets:
       enabled: true
       type: secret
       name: "{{ .Release.Name }}-secret"
