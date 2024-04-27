@@ -10,10 +10,18 @@ spec:
   generators:
     - list:
         elements:
-          - name: libmedium
-          - name: it-tools
           - name: authentik
+          - name: fluffychat
+          - name: it-tools
+          - name: libmedium
           - name: matrix-sliding-sync
+          - name: mautrix-gmessages
+          - name: mautrix-googlechat
+          - name: mautrix-instagram
+          - name: mautrix-linkedin
+          - name: miniflux
+          - name: not-the-plants
+          - name: synapse-admin
   template:
     metadata:
       name: "{{.name}}"
