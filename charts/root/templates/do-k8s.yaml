@@ -13,6 +13,7 @@ spec:
           - name: libmedium
           - name: it-tools
           - name: authentik
+          - name: matrix-sliding-sync
   template:
     metadata:
       name: "{{.name}}"
