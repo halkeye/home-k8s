@@ -16,9 +16,13 @@ spec:
           - name: libmedium
           - name: matrix-sliding-sync
           - name: mautrix-gmessages
+            namespace: matrix
           - name: mautrix-googlechat
+            namespace: matrix
           - name: mautrix-instagram
+            namespace: matrix
           - name: mautrix-linkedin
+            namespace: matrix
           - name: miniflux
           - name: not-the-plants
           - name: synapse-admin
@@ -30,7 +34,7 @@ spec:
         argocd.argoproj.io/sync-wave: '{{dig "syncwave" "20" . }}'
     spec:
       destination:
-        namespace: "{{.name | normalize}}"
+        namespace: '{{- if index . "namespace" -}}{{ .namespace | normalize }}{{- else }}{{ .name | normalize }}{{ end }}'
         server: '{{dig "server" "https://6280be86-f269-4fd1-a692-92d18aaf6595.k8s.ondigitalocean.com" . }}'
       project: default
       source:

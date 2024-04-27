@@ -46,9 +46,9 @@ app-template:
                   name: "{{.Release.Name}}-db-secret-{{.Release.Name}}"
                   key: POSTGRES_URL
           command:
-            - "/usr/bin/mautrix-googlechat"
-            - "--no-update"
-            - "-c"
+            - "python3"
+            - "-m"
+            - "mautrix_googlechat"
             - "/data/config.yaml"
           probes:
             liveness:
