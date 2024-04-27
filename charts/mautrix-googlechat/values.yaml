@@ -163,7 +163,7 @@ app-template:
                   max_size: 10
 
               # The unique ID of this appservice.
-              id: googlechat
+              id: googlechatbot
               # Username of the appservice bot.
               bot_username: googlechatbot
               # Display name and avatar for bot. Set to "remove" to remove display name/avatar, leave empty
