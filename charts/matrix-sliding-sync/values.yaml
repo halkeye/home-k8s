@@ -18,7 +18,7 @@ app-template:
             SYNCV3_DB:
               valueFrom:
                 secretKeyRef:
-                  name: matrix-sliding-sync-user-credentials
+                  name: "{{.Release.Name}}-user-credentials"
                   key: private_uri
             SYNCV3_SECRET:
               valueFrom:
