@@ -58,7 +58,7 @@ app-template:
               spec:
                 httpGet:
                   path: /_matrix/mau/live
-                  port: 29336
+                  port: 29320
                 initialDelaySeconds: 0
                 periodSeconds: 10
                 timeoutSeconds: 1
@@ -69,7 +69,7 @@ app-template:
               spec:
                 httpGet:
                   path: /_matrix/mau/ready
-                  port: 29336
+                  port: 29320
                 initialDelaySeconds: 0
                 periodSeconds: 10
                 timeoutSeconds: 1
@@ -94,7 +94,7 @@ app-template:
       publishNotReadyAddresses: true
       ports:
         http:
-          port: 29336
+          port: 29320
 
   persistence:
     data:
