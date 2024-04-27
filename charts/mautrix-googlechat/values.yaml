@@ -49,6 +49,7 @@ app-template:
             - "python3"
             - "-m"
             - "mautrix_googlechat"
+            - "-c"
             - "/data/config.yaml"
           probes:
             liveness:
