@@ -4,6 +4,6 @@ metadata:
   name: "{{ .Release.Name }}"
 spec:
   role: "{{ .Release.Name }}"
-  database: "mautrix_linkedin"
+  database: "{{ .Release.Name }}"
   secretName: "{{ .Release.Name }}-db-secret"
   privileges: OWNER
