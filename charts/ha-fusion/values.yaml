@@ -6,7 +6,7 @@ app-template:
         overseerr:
           image:
             repository: ghcr.io/matt8707/ha-fusion
-            tag: 2024.4.0
+            tag: 2024.5.0
           env:
             TZ: America/Vancouver
             HASS_URL: https://home.g4v.dev
