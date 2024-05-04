@@ -1,2 +1,3 @@
 gha-runner-scale-set-controller:
   githubConfigSecret: pre-defined-secret
+  githubConfigUrl: https://github.com/halkeye/home-terraform
