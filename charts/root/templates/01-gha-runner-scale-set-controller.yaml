@@ -15,9 +15,6 @@ spec:
     repoURL: https://github.com/halkeye/home-k8s
     targetRevision: HEAD
     helm:
-      releaseName: arc-runner-set
-      valuesObject:
-        fullnameOverride: arc-runner-set
       valueFiles:
         - values.yaml
         - secrets://values-secrets.yaml
