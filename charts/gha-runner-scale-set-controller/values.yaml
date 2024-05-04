@@ -1,9 +1,9 @@
 gha-runner-scale-set-controller:
   flags:
-    watchSingleNamespace: "arc-systems"
+    watchSingleNamespace: "arc-runners"
 gha-runner-scale-set:
   runnerScaleSetName: arc-runner-set
   githubConfigUrl: https://github.com/halkeye/home-terraform
   controllerServiceAccount:
-    namespace: arc-systems
+    namespace: arc-runners
     name: arc-runner-set-gha-rs-controller
