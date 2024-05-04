@@ -1,0 +1,9 @@
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: RunnerDeployment
+metadata:
+  name: repository-home-terraform
+spec:
+  replicas: 1
+  template:
+    spec:
+      repository: halkeye/home-terraform
