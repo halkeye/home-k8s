@@ -1,3 +1,6 @@
 gha-runner-scale-set:
   runnerScaleSetName: arc-runner-set
   githubConfigUrl: https://github.com/halkeye/home-terraform
+  controllerServiceAccount:
+    namespace: arc-systems
+    name: arc-runner-set-gha-rs-controller
