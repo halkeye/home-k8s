@@ -18,7 +18,6 @@ spec:
           - name: blackbox-exporter
           - name: frigate
           - name: grafana
-          - name: ha-fusion
           - name: hajimari
           - name: overseerr
           - name: radarr
