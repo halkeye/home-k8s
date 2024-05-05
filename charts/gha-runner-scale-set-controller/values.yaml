@@ -7,3 +7,5 @@ gha-runner-scale-set:
   controllerServiceAccount:
     namespace: arc-runners
     name: arc-runner-set-gha-rs-controller
+  containerMode:
+    type: "dind"  ## type can be set to dind or kubernetes
