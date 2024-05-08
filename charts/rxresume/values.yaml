@@ -13,7 +13,7 @@ app-template:
         main:
           image:
             repository: amruthpillai/reactive-resume
-            tag: v4.1.0
+            tag: v4.1.1
           env:
             NODE_ENV: production
             PUBLIC_URL: https://rxresume.taildba47.ts.net
