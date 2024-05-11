@@ -55,7 +55,7 @@ data:
         exec: trace
       streams:
         # raspberrypi: rtsp://raspberrypi.dhcp.home:8554/picam_h264
-        webcam: rtsp://raspberrypi.dhcp.home:8554/cam?mp4
+        # webcam: rtsp://raspberrypi.dhcp.home:8554/cam?mp4
         frontdoor: rtsp://frigate:frigate123@AMC06459DF44FA44C2.dhcp.home:554/cam/realmonitor?channel=1&subtype=0
       candidates:
         - 172.16.10.5:8555
@@ -84,13 +84,11 @@ data:
       #     inputs:
       #       - path: rtsp://raspberrypi.dhcp.home:8554/picam_h264
       #         roles: ["detect"]
-      frontdoor_webcam:
-        ffmpeg:
-          inputs:
-            # - path: rtsp://raspberrypi.dhcp.home:8554/cam
-            #   roles: ["detect"]
-            - path: rtsp://127.0.0.1:8554/webcam
-              input_args: preset-rtsp-restream
-              roles:
-                - record
-                - detect
+      # frontdoor_webcam:
+      #   ffmpeg:
+      #     inputs:
+      #       - path: rtsp://127.0.0.1:8554/webcam
+      #         input_args: preset-rtsp-restream
+      #         roles:
+      #           - record
+      #           - detect
