@@ -113,8 +113,6 @@ app-template:
       name: "{{.Release.Name}}-config"
       globalMounts:
         - path: /configmap/
-          subPath: config.yml
-          readOnly: true
     cache:
       type: emptyDir
       medium: Memory
