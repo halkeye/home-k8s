@@ -52,7 +52,7 @@ democratic-csi:
         username: admin
         password: password
         allowInsecure: true
-        # should be uniqe across all installs to the same nas
+        # should be unique across all installs to the same nas
         session: "democratic-csi"
         serialize: true
 
