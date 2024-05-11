@@ -67,7 +67,7 @@ data:
       frontdoor:
         onvif:
           host: AMC06459DF44FA44C2.dhcp.home
-          port: 37777
+          port: 80
           user: frigate
           password: frigate123
         ffmpeg:
