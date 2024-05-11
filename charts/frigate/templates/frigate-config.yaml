@@ -25,7 +25,7 @@ data:
       # hwaccel_args: ["-hwaccel", "vaapi", "-hwaccel_device", "/dev/dri/renderD128", "-hwaccel_output_format", "yuv420p"]
 
     logger:
-      default: debug
+      default: info
 
     objects:
       track:
