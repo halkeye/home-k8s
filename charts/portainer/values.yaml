@@ -1,6 +1,6 @@
 portainer:
   image:
-    repostiory: portainer/portainer-ce
+    repository: portainer/portainer-ce
     tag: 2.19.4
   ingress:
     enabled: true
