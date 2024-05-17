@@ -1,7 +1,6 @@
 external-dns:
   nameOverride: externaldns-internal-technitium
   fullnameOverride: externaldns-internal-technitium
-  txtPrefix: "k8s."
   domainFilters:
     - g4v.dev
   serviceMonitor:
