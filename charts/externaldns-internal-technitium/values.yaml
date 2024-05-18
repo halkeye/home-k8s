@@ -4,6 +4,7 @@ external-dns:
   policy: sync
   domainFilters:
     - g4v.dev
+    - h.g4v.dev
   serviceMonitor:
     enabled: true
   sources:
