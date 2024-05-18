@@ -13,7 +13,7 @@ external-dns:
     name: rfc2136
   env:
     - name: EXTERNAL_DNS_RFC2136_HOST
-      value: "138.197.133.161"
+      value: "172.16.10.3"
     - name: EXTERNAL_DNS_RFC2136_PORT
       value: "53"
     - name: EXTERNAL_DNS_RFC2136_ZONE
