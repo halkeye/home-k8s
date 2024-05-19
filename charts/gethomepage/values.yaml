@@ -20,7 +20,6 @@ homepage:
       enabled: true
       annotations:
         gethomepage.dev/enabled: 'false'
-        hajimari.io/enable: 'false'
       hosts:
         - host: dash.g4v.dev
           paths:

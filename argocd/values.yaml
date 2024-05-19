@@ -55,7 +55,6 @@ argo-cd:
       enabled: true
       ingressClassName: ""
       annotations:
-        hajimari.io/enable: 'false'
         gethomepage.dev/enabled: 'false'
       hostname: argocd-webhooks.g4v.dev
   server:
@@ -67,8 +66,6 @@ argo-cd:
       enabled: true
       annotations:
         cert-manager.io/cluster-issuer: acme-letsencrypt-prod
-        hajimari.io/appName: "ArgoCD"
-        hajimari.io/icon: "robot"
       hostname: argocd.h.g4v.dev
     configManagementPlugins: |
       - name: sops

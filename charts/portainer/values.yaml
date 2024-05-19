@@ -5,8 +5,6 @@ portainer:
   ingress:
     enabled: true
     annotations:
-      hajimari.io/appName: Portainer
-      hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/portainer.png
       gethomepage.dev/enabled: "true"
       gethomepage.dev/name: Portainer
       gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/portainer.png

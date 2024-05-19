@@ -47,7 +47,6 @@ app-template:
     main:
       enabled: true
       annotations:
-        hajimari.io/enabled: "false"
         gethomepage.dev/enabled: "false"
         # This should be the in-cluster DNS name for the authentik outpost service
         # as when the external URL is specified here, nginx will overwrite some crucial headers

@@ -20,7 +20,6 @@ spec:
           - name: blackbox-exporter
           - name: frigate
           - name: grafana
-          - name: hajimari
           - name: overseerr
           - name: radarr
           - name: recyclarr

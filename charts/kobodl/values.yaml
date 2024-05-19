@@ -47,7 +47,6 @@ app-template:
     main:
       enabled: true
       annotations:
-        hajimari.io/icon: mdi:book
         gethomepage.dev/enabled: "true"
         gethomepage.dev/group: Media Fetchers
         gethomepage.dev/icon: mdi:book
@@ -63,7 +62,6 @@ app-template:
       enabled: true
       className: tailscale
       annotations:
-        hajimari.io/enabled: "false"
         gethomepage.dev/enabled: "false"
       hosts:
         - host: "kobodl"

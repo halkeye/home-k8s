@@ -312,8 +312,6 @@ app-template:
     main:
       enabled: true
       annotations:
-        hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/immich.png
-        hajimari.io/appName: Immich
         gethomepage.dev/enabled: "true"
         gethomepage.dev/group: Media
         gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/immich.png

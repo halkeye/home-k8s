@@ -71,7 +71,6 @@ app-template:
     main:
       enabled: true
       annotations:
-        hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/wireguard.png
         gethomepage.dev/enabled: "true"
         gethomepage.dev/group: VPN
         gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/wireguard.png

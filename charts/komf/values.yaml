@@ -48,7 +48,6 @@ app-template:
     main:
       enabled: true
       annotations:
-        hajimari.io/enabled: "false"
         gethomepage.dev/enabled: "false"
       hosts:
         - host: &host komf.g4v.dev

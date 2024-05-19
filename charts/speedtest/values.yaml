@@ -3,8 +3,6 @@ openspeedtest:
     enabled: true
     annotations:
       nginx.ingress.kubernetes.io/proxy-body-size: 50m
-      hajimari.io/appName: Speedtest
-      hajimari.io/icon: speedometer
     hosts:
       - host: &host speedtest.h.g4v.dev
         paths:
