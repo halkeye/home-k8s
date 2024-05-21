@@ -37,7 +37,7 @@ app-template:
         main:
           image:
             repository: ghcr.io/halkeye/docker-mautrix-whatsapp
-            tag: 1.0.3
+            tag: 1.0.4
           env:
             TZ: America/Vancouver
             MAUTRIX_DB_URI:
