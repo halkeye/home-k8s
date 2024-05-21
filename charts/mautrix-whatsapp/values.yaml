@@ -45,7 +45,7 @@ app-template:
                 secretKeyRef:
                   name: "{{.Release.Name}}-db-secret-{{.Release.Name}}"
                   key: POSTGRES_URL
-          command:
+          args:
             - "--no-update"
             - "-c"
             - "/data/config.yaml"
