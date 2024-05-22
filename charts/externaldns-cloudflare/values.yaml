@@ -1,0 +1,21 @@
+external-dns:
+  nameOverride: externaldns-cloudflare
+  fullnameOverride: externaldns-cloudflare
+  policy: sync
+  domainFilters:
+    - g4v.dev
+  serviceMonitor:
+    enabled: true
+  sources:
+    - ingress
+  provider:
+    name: cloudflare
+  extraArgs:
+    - --zone-id-filter=1149a58ecdccdb198c1dd82faaaa1b3c
+    - --cloudflare-proxied
+  env:
+    - name: CF_API_TOKEN
+      valueFrom:
+        secretKeyRef:
+          name: "{{.Release.Name}}-secrets"
+          key: CF_API_TOKEN
