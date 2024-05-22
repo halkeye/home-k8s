@@ -17,5 +17,5 @@ external-dns:
     - name: CF_API_TOKEN
       valueFrom:
         secretKeyRef:
-          name: "{{.Release.Name}}-secrets"
+          name: externaldns-cloudflare-secrets
           key: CF_API_TOKEN
