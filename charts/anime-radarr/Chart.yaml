@@ -1,13 +1,13 @@
 apiVersion: v2
-name: anime-sonarr
+name: anime-radarr
 type: application
 version: 0.1.0
 appVersion: "1.0"
 
 dependencies:
-- name: sonarr
+- name: radarr
   version: 0.1.0
-  repository: file://../sonarr
+  repository: file://../radarr
 maintainers:
   - name: halkeye
     url: https://www.gavinmogan.com

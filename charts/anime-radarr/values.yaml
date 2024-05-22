@@ -1,4 +1,4 @@
-sonarr:
+radarr:
   app-template:
     ingress:
       main:
