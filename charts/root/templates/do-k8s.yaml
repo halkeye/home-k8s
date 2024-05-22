@@ -27,6 +27,7 @@ spec:
           - name: miniflux
           - name: not-the-plants
           - name: synapse-admin
+          - name: externaldns-cloudflare
   template:
     metadata:
       name: "{{.name}}"

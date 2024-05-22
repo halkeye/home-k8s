@@ -5,7 +5,7 @@ external-dns:
   domainFilters:
     - g4v.dev
   serviceMonitor:
-    enabled: true
+    enabled: false
   sources:
     - ingress
   provider:
