@@ -24,6 +24,8 @@ spec:
             namespace: matrix
           - name: mautrix-whatsapp
             namespace: matrix
+          - name: mautrix-telegram
+            namespace: matrix
           - name: miniflux
           - name: not-the-plants
           - name: synapse-admin

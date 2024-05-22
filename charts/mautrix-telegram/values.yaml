@@ -50,7 +50,7 @@ app-template:
           command:
             - python3
             - -m
-            - telegram_matrix
+            - mautrix_telegram
             - -c
             - /data/config.yaml
           probes:
