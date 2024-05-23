@@ -133,7 +133,7 @@ argo-cd:
         value: /helm-secrets-private-keys/key.txt
     initContainers:
       - name: custom-tools
-        image: alpine:3.19
+        image: alpine:3.20
         command: ["/bin/sh", "-c"]
         env:
           - name: HELM_SECRETS_VERSION
