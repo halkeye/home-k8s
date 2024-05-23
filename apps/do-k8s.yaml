@@ -30,6 +30,7 @@ spec:
           - name: not-the-plants
           - name: synapse-admin
           - name: externaldns-cloudflare
+          - name: joinmobilizon
   template:
     metadata:
       name: "{{.name}}"
