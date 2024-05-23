@@ -104,8 +104,8 @@ app-template:
           [nodemailer]
           smtp_server = {{ .Values.smtp_server | quote }}
           smtp_port = "25"
-          smtp_username = ""
-          smtp_password = ""
+          smtp_username = "disabled"
+          smtp_password = "disabled"
 
           [sendgrid]
           api_key = ""
