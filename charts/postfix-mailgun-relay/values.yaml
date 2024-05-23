@@ -1,0 +1,4 @@
+mail:
+  nameOverride: postfix-mailgun-relay
+  fullnameOverride: postfix-mailgun-relay
+
