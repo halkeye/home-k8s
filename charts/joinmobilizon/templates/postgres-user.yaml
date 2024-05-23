@@ -7,3 +7,5 @@ spec:
   database: {{ .Release.Name }}
   secretName: "{{ .Release.Name }}-db-secret"
   privileges: OWNER
+  secretTemplate:
+    DB_URL: {{ `postgresql://{{.Role}}:{{.Password}}@{{.Host}}/{{.Database}}?sslmode=no-verify` }}
