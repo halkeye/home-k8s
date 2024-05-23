@@ -5,7 +5,7 @@ app-template:
       containers:
         gathio:
           image:
-            repository: ghcr.io/halkeye/docker-gathio:v1.4.1-2
+            repository: ghcr.io/halkeye/docker-gathio
             tag: v1.4.1-2
           probes:
             liveness: &probes
