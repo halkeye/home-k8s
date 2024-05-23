@@ -1,0 +1,93 @@
+app-template:
+  controllers:
+    main:
+      strategy: Recreate
+      containers:
+        joinmobilizon:
+          image:
+            repository: docker.io/framasoft/mobilizon
+            tag: 4.1.0
+          env:
+            # The name for your instance
+            MOBILIZON_INSTANCE_NAME: G4V Events
+            # Your domain
+            MOBILIZON_INSTANCE_HOST: events.g4v.dev
+            MOBILIZON_INSTANCE_EMAIL: mobilizon@g4v.dev
+            MOBILIZON_REPLY_EMAIL: no-reply@g4v.dev
+            # Whether registrations are opened or closed. Can be changed in the admin settings UI as well.
+            # Make sure to moderate actively your instance if registrations are opened.
+            MOBILIZON_INSTANCE_REGISTRATIONS_OPEN: "false"
+            MOBILIZON_DATABASE_USERNAME:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: LOGIN
+            MOBILIZON_DATABASE_PASSWORD:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: PASSWORD
+            MOBILIZON_DATABASE_DBNAME: "{{ .Release.Name }}"
+            MOBILIZON_DATABASE_HOST:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: HOST
+            MOBILIZON_DATABASE_PORT: 
+            MOBILIZON_DATABASE_SSL: "true"
+            MOBILIZON_SMTP_PORT: 25
+            MOBILIZON_SMTP_SSL: "false"
+            MOBILIZON_SMTP_TLS: "never"
+          probes:
+            liveness: &probes
+              enabled: false
+            readiness: *probes
+            startup:
+              enabled: false
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            limits: &resources
+              memory: 2Gi
+            requests:
+              memory: 256Mi
+              cpu: 10m
+      pod:
+        securityContext:
+          runAsUser: 568
+          runAsGroup: 568
+          runAsNonRoot: true
+          fsGroup: 568
+          fsGroupChangePolicy: OnRootMismatch
+  service:
+    main:
+      controller: main
+      ports:
+        http:
+          port: 4000
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        gethomepage.dev/enabled: "false"
+      hosts:
+        - host: &host events.g4v.dev
+          paths:
+            - path: /
+              service:
+                identifier: main
+                port: http
+  persistence:
+    data:
+      enabled: true
+      type: persistentVolumeClaim
+      accessMode: ReadWriteOnce
+      size: 10Gi
+      storageClass: do-block-storage
+      globalMounts:
+        - path: /var/lib/mobilizon/uploads
+    tmp:
+      type: emptyDir
