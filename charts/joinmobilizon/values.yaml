@@ -28,12 +28,6 @@ app-template:
                   name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
                   key: PASSWORD
             MOBILIZON_DATABASE_DBNAME: "{{ .Release.Name }}"
-            MOBILIZON_DATABASE_HOST:
-              valueFrom:
-                secretKeyRef:
-                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
-                  key: HOST
-            MOBILIZON_DATABASE_PORT: "25060"
             MOBILIZON_DATABASE_SSL: "true"
             MOBILIZON_SMTP_PORT: 25
             MOBILIZON_SMTP_SSL: "false"
