@@ -27,6 +27,7 @@ app-template:
             - -c
             - |-
                 cat /secrets/config.yaml | envsubst > /config/config.yaml
+                cat /config/config.yaml
         02-migrate:
           image:
             repository: ghcr.io/matrix-org/matrix-authentication-service
