@@ -3,6 +3,7 @@ app-template:
   secrets_encryption: ""
   matrix_secret: ""
   secrets_keys: []
+  clients_synapse_client_secret: ""
 
   controllers:
     main:
@@ -185,6 +186,10 @@ app-template:
               - ::1/128
             public_base: http://[::]:8080/
             issuer: http://[::]:8080/
+          clients:
+            - client_id: 0000000000000000000SYNAPSE
+              client_auth_method: client_secret_basic
+              client_secret: {{ .Values.clients_synapse_client_secret | quote }}
           database:
             uri: "$DB_URI"
             max_connections: 10
