@@ -162,32 +162,32 @@ app-template:
           # Homeserver details.
           http:
             listeners:
-            - name: web
-              resources:
-              - name: discovery
-              - name: human
-              - name: oauth
-              - name: compat
-              - name: graphql
-                playground: true
-              - name: assets
-              binds:
-              - address: '[::]:8080'
+              - name: web
+                resources:
+                  - name: discovery
+                  - name: human
+                  - name: oauth
+                  - name: compat
+                  - name: graphql
+                    playground: true
+                  - name: assets
+                binds:
+                  - address: '[::]:8080'
               proxy_protocol: false
-            - name: internal
-              resources:
-              - name: health
-              binds:
-              - host: localhost
-                port: 8081
-              proxy_protocol: false
+              - name: internal
+                resources:
+                  - name: health
+                binds:
+                  - host: localhost
+                    port: 8081
+                proxy_protocol: false
             trusted_proxies:
-            - 192.128.0.0/16
-            - 172.16.0.0/12
-            - 10.0.0.0/10
-            - 127.0.0.1/8
-            - fd00::/8
-            - ::1/128
+              - 192.128.0.0/16
+              - 172.16.0.0/12
+              - 10.0.0.0/10
+              - 127.0.0.1/8
+              - fd00::/8
+              - ::1/128
             public_base: http://[::]:8080/
             issuer: http://[::]:8080/
           database:
@@ -203,12 +203,12 @@ app-template:
             transport: blackhole
           secrets:
             encryption: {{ .Values.secrets_encryption | quote }}
-            keys: {{ .Values.secrets_keys | toYaml | nindent 6 }}
+            keys: {{- .Values.secrets_keys | toYaml | nindent 6 }}
           passwords:
             enabled: true
             schemes:
-            - version: 1
-              algorithm: argon2id
+              - version: 1
+                algorithm: argon2id
           matrix:
             homeserver: localhost:8008
             secret: {{ .Values.matrix_secret | quote }}
