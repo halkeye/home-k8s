@@ -1,0 +1,204 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.0.1/charts/library/common/values.schema.json
+app-template:
+  secrets_encryption: ""
+  matrix_secret: ""
+  secrets_keys: []
+
+  controllers:
+    main:
+      annotations:
+        reloader.stakater.com/auto: "true"
+      type: deployment
+      replicas: 1
+      strategy: Recreate
+      initContainers:
+        01-init:
+          image:
+            repository: cirocosta/alpine-envsubst
+            tag: latest
+          env:
+            DB_URI:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{.Release.Name }}-db-secret-{{.Release.Name }}"
+                  key: POSTGRES_URL
+          command:
+            - bash
+            - -c
+            - |-
+                cat /secrets/config.yaml | envsubst > /config/config.yaml
+        02-migrate:
+          image:
+            repository: ghcr.io/matrix-org/matrix-authentication-service
+            tag: sha-206d45b
+          env:
+            MAS_CONFIG: "/config/mas-config.yaml"
+          command:
+            - /usr/local/bin/mas-cli
+            - database
+            - migrate
+        03-config-sync:
+          image:
+            repository: ghcr.io/matrix-org/matrix-authentication-service
+            tag: sha-206d45b
+          env:
+            MAS_CONFIG: "/config/mas-config.yaml"
+          command:
+            - /usr/local/bin/mas-cli
+            - config
+            - sync
+      containers:
+        main:
+          image:
+            repository: ghcr.io/matrix-org/matrix-authentication-service
+            tag: sha-206d45b
+          env:
+            TZ: America/Vancouver
+          args:
+            - "--no-update"
+            - "-c"
+            - "/data/config.yaml"
+          probes:
+            liveness:
+              enabled: true
+              custom: true
+              spec:
+                httpGet:
+                  path: /health
+                  port: 8081
+                initialDelaySeconds: 0
+                periodSeconds: 10
+                timeoutSeconds: 1
+                failureThreshold: 3
+            readiness:
+              enabled: true
+              custom: true
+              spec:
+                httpGet:
+                  path: /health
+                  port: 8081
+                initialDelaySeconds: 0
+                periodSeconds: 10
+                timeoutSeconds: 1
+                failureThreshold: 3
+            startup:
+              enabled: false
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+      pod:
+        securityContext:
+          runAsUser: 1337
+          runAsGroup: 1337
+          runAsNonRoot: true
+          fsGroup: 1337
+          fsGroupChangePolicy: OnRootMismatch
+
+  service:
+    main:
+      controller: main
+      ports:
+        http:
+          port: 8080
+        internal:
+          port: 8081
+        metrics:
+          port: 9100
+
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        gethomepage.dev/enabled: "false"
+      hosts:
+        - host: matrix-auth.g4v.dev
+          paths:
+            - path: /l
+              service:
+                identifier: main
+                port: http
+        - host: matrix.g4v.dev
+          paths:
+            - path: /_matrix/client/v3/logout
+              service:
+                identifier: main
+                port: http
+            - path: /_matrix/client/v3/login
+              service:
+                identifier: main
+                port: http
+            - path: /_matrix/client/v3/refresh
+              service:
+                identifier: main
+                port: http
+
+  persistence:
+    config:
+      enabled: true
+      type: emptyDir
+    secrets:
+      enabled: true
+      type: secret
+      name: "{{ .Release.Name }}-secret"
+
+  secrets:
+    secret:
+      enabled: true
+      stringData:
+        config.yaml: |-
+          # Homeserver details.
+          http:
+            listeners:
+            - name: web
+              resources:
+              - name: discovery
+              - name: human
+              - name: oauth
+              - name: compat
+              - name: graphql
+                playground: true
+              - name: assets
+              binds:
+              - address: '[::]:8080'
+              proxy_protocol: false
+            - name: internal
+              resources:
+              - name: health
+              binds:
+              - host: localhost
+                port: 8081
+              proxy_protocol: false
+            trusted_proxies:
+            - 192.128.0.0/16
+            - 172.16.0.0/12
+            - 10.0.0.0/10
+            - 127.0.0.1/8
+            - fd00::/8
+            - ::1/128
+            public_base: http://[::]:8080/
+            issuer: http://[::]:8080/
+          database:
+            uri: $DB_URI
+            max_connections: 10
+            min_connections: 0
+            connect_timeout: 30
+            idle_timeout: 600
+            max_lifetime: 1800
+          email:
+            from: '"Authentication Service" <no-reply@g4v.dev>'
+            reply_to: '"Authentication Service" <no-reply@g4v.dev>'
+            transport: blackhole
+          secrets:
+            encryption: {{ .Values.secrets_encryption | quote }}
+            keys: {{ .Values.secrets_keys | toYaml | nindent 6 }}
+          passwords:
+            enabled: true
+            schemes:
+            - version: 1
+              algorithm: argon2id
+          matrix:
+            homeserver: localhost:8008
+            secret: {{ .Values.matrix_secret | quote }}
+            endpoint: http://localhost:8008/
