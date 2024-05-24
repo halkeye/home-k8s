@@ -25,15 +25,13 @@ app-template:
           command:
             - sh
             - -c
-            - |-
-                cat /secrets/config.yaml | envsubst > /config/config.yaml
-                cat /config/config.yaml
+            - cat /secrets/config.yaml | envsubst > /config/config.yaml
         20-check:
           image:
             repository: ghcr.io/matrix-org/matrix-authentication-service
             tag: sha-206d45b
           env:
-            MAS_CONFIG: "/config/mas-config.yaml"
+            MAS_CONFIG: "/config/config.yaml"
           command:
             - /usr/local/bin/mas-cli
             - config
@@ -43,7 +41,7 @@ app-template:
             repository: ghcr.io/matrix-org/matrix-authentication-service
             tag: sha-206d45b
           env:
-            MAS_CONFIG: "/config/mas-config.yaml"
+            MAS_CONFIG: "/config/config.yaml"
           command:
             - /usr/local/bin/mas-cli
             - database
@@ -53,7 +51,7 @@ app-template:
             repository: ghcr.io/matrix-org/matrix-authentication-service
             tag: sha-206d45b
           env:
-            MAS_CONFIG: "/config/mas-config.yaml"
+            MAS_CONFIG: "/config/config.yaml"
           command:
             - /usr/local/bin/mas-cli
             - config
