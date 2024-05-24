@@ -173,7 +173,7 @@ app-template:
                   - name: assets
                 binds:
                   - address: '[::]:8080'
-              proxy_protocol: false
+                proxy_protocol: false
               - name: internal
                 resources:
                   - name: health
@@ -213,3 +213,4 @@ app-template:
             homeserver: localhost:8008
             secret: {{ .Values.matrix_secret | quote }}
             endpoint: http://localhost:8008/
+
