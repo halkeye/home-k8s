@@ -28,7 +28,17 @@ app-template:
             - |-
                 cat /secrets/config.yaml | envsubst > /config/config.yaml
                 cat /config/config.yaml
-        02-migrate:
+        20-check:
+          image:
+            repository: ghcr.io/matrix-org/matrix-authentication-service
+            tag: sha-206d45b
+          env:
+            MAS_CONFIG: "/config/mas-config.yaml"
+          command:
+            - /usr/local/bin/mas-cli
+            - config
+            - check
+        30-migrate:
           image:
             repository: ghcr.io/matrix-org/matrix-authentication-service
             tag: sha-206d45b
@@ -38,7 +48,7 @@ app-template:
             - /usr/local/bin/mas-cli
             - database
             - migrate
-        03-config-sync:
+        40-config-sync:
           image:
             repository: ghcr.io/matrix-org/matrix-authentication-service
             tag: sha-206d45b
@@ -181,7 +191,7 @@ app-template:
             public_base: http://[::]:8080/
             issuer: http://[::]:8080/
           database:
-            uri: $DB_URI
+            uri: "$DB_URI"
             max_connections: 10
             min_connections: 0
             connect_timeout: 30
