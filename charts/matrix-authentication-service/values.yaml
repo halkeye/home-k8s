@@ -63,10 +63,7 @@ app-template:
             tag: sha-206d45b
           env:
             TZ: America/Vancouver
-          args:
-            - "--no-update"
-            - "-c"
-            - "/data/config.yaml"
+            MAS_CONFIG: "/config/config.yaml"
           probes:
             liveness:
               enabled: true
