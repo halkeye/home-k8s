@@ -1,9 +1,10 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.0.1/charts/library/common/values.schema.json
 app-template:
   secrets_encryption: ""
   matrix_secret: ""
   secrets_keys: []
   clients_synapse_client_secret: ""
+  authentik_client_id: ""
+  authentik_client_secret: ""
 
   controllers:
     main:
@@ -213,4 +214,22 @@ app-template:
             homeserver: g4v.dev
             secret: {{ .Values.matrix_secret | quote }}
             endpoint: http://synapse.matrix.svc.cluster.local.:8443
-
+          upstream_oauth2:
+            providers:
+              - id: 01HFRQFT5QFMJFGF01P7JAV2ME
+                human_name: Authentik
+                issuer: "https://auth.g4v.dev/application/o/synapse/"
+                client_id: {{ .Values.authentik_client_id | quote }}
+                client_secret: {{ .Values.authentik_client_secret | quote }}
+                scope: "openid profile email"
+                claims_imports:
+                  localpart:
+                    action: require
+                    template: {{`"{{ user.preferred_username }}"`}}
+                  displayname:
+                    action: suggest
+                    template: {{`"{{ user.name }}"`}}
+                  email:
+                    action: suggest
+                    template: {{`"{{ user.email }}"`}}
+                    set_email_verification: always
