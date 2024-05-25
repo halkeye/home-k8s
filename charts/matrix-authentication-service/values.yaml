@@ -27,7 +27,9 @@ app-template:
           command:
             - sh
             - -c
-            - cat /secrets/config.yaml | envsubst > /config/config.yaml
+            - |-
+              cat /secrets/config.yaml | envsubst > /config/config.yaml
+              cat /config/config.yaml
         20-check:
           image:
             repository: ghcr.io/matrix-org/matrix-authentication-service
@@ -221,6 +223,7 @@ app-template:
                 issuer: "https://auth.g4v.dev/application/o/synapse/"
                 client_id: {{ .Values.authentik_client_id | quote }}
                 client_secret: {{ .Values.authentik_client_secret | quote }}
+                token_endpoint_auth_method: ""
                 scope: "openid profile email"
                 claims_imports:
                   localpart:
