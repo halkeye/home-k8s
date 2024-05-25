@@ -210,7 +210,7 @@ app-template:
               - version: 1
                 algorithm: argon2id
           matrix:
-            homeserver: localhost:8008
+            homeserver: g4v.dev
             secret: {{ .Values.matrix_secret | quote }}
-            endpoint: http://localhost:8008/
+            endpoint: http://synapse.matrix.svc.cluster.local.:8443
 
