@@ -224,6 +224,7 @@ app-template:
                 client_id: {{ .Values.authentik_client_id | quote }}
                 client_secret: {{ .Values.authentik_client_secret | quote }}
                 token_endpoint_auth_method: "client_secret_jwt"
+                token_endpoint_auth_signing_alg: RS256
                 scope: "openid profile email"
                 claims_imports:
                   localpart:
