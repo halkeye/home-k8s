@@ -207,7 +207,7 @@ app-template:
             encryption: {{ .Values.secrets_encryption | quote }}
             keys: {{- .Values.secrets_keys | toYaml | nindent 6 }}
           passwords:
-            enabled: true
+            enabled: false
             schemes:
               - version: 1
                 algorithm: argon2id
