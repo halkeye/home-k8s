@@ -29,7 +29,6 @@ app-template:
             - -c
             - |-
               cat /secrets/config.yaml | envsubst > /config/config.yaml
-              cat /config/config.yaml
         20-check:
           image:
             repository: ghcr.io/matrix-org/matrix-authentication-service
@@ -76,7 +75,7 @@ app-template:
                 httpGet:
                   path: /health
                   port: 8081
-                initialDelaySeconds: 0
+                initialDelaySeconds: 10
                 periodSeconds: 10
                 timeoutSeconds: 1
                 failureThreshold: 3
@@ -87,7 +86,7 @@ app-template:
                 httpGet:
                   path: /health
                   port: 8081
-                initialDelaySeconds: 0
+                initialDelaySeconds: 10
                 periodSeconds: 10
                 timeoutSeconds: 1
                 failureThreshold: 3
@@ -176,9 +175,9 @@ app-template:
               - name: internal
                 resources:
                   - name: health
+                  - name: prometheus
                 binds:
-                  - host: localhost
-                    port: 8081
+                  - address: '[::]:8081'
                 proxy_protocol: false
             trusted_proxies:
               - 192.128.0.0/16
@@ -187,8 +186,8 @@ app-template:
               - 127.0.0.1/8
               - fd00::/8
               - ::1/128
-            public_base: http://[::]:8080/
-            issuer: http://[::]:8080/
+            public_base: https://matrix-auth.g4v.dev
+            issuer: https://matrix-auth.g4v.dev
           clients:
             - client_id: 0000000000000000000SYNAPSE
               client_auth_method: client_secret_basic
