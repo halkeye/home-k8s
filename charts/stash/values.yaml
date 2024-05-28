@@ -60,8 +60,8 @@ app-template:
     config:
       enabled: true
       type: persistentVolumeClaim
-      accessMode: ReadWriteOnce
-      size: 1Gi
-      storageClass: synology-iscsi
+      storageClass: nas-apps
+      accessMode: ReadWriteMany
+      size: 10Gi
       globalMounts:
         - path: /root/.stash
