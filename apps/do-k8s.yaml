@@ -26,8 +26,8 @@ spec:
             namespace: matrix
           - name: mautrix-telegram
             namespace: matrix
-          - name: matrix-authentication-service
-            namespace: matrix
+          # - name: matrix-authentication-service
+          #   namespace: matrix
           - name: miniflux
           - name: not-the-plants
           - name: synapse-admin
