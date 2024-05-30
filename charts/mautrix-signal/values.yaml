@@ -27,11 +27,7 @@ app-template:
           command:
             - bash
             - -c
-            - |-
-                cat /secrets/config.yaml | envsubst > /data/config.yaml
-                find /secrets
-                find /data
-                cat /data/config.yaml
+            - cat /secrets/config.yaml | envsubst > /data/config.yaml
       containers:
         main:
           image:
