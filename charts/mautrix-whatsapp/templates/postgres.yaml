@@ -4,4 +4,4 @@ metadata:
   name: "{{ .Release.Name }}"
 spec:
   database: "mautrix_whatsapp"
-  dropOnDelete: true
+  dropOnDelete: false

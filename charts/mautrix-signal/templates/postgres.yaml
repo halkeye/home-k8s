@@ -4,4 +4,4 @@ metadata:
   name: "{{ .Release.Name }}"
 spec:
   database: "mautrix_signal"
-  dropOnDelete: true
+  dropOnDelete: false
