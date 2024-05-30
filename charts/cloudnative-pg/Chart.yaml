@@ -3,7 +3,7 @@ name: cloudnative-pg
 version: 0.0.0
 dependencies:
   - name: cloudnative-pg
-    version: 0.21.2
+    version: 0.21.3
     repository: https://cloudnative-pg.github.io/charts
 maintainers:
   - name: halkeye
