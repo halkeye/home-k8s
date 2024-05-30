@@ -15,9 +15,8 @@ app-template:
       initContainers:
         01-init:
           image:
-            # probably already downloaded, and includes envsubst
-            repository: nginx
-            tag: 1.26.0
+            repository: ghcr.io/halkeye/docker-mautrix-whatsapp
+            tag: 0.10.7-8
           env:
             TZ: America/Vancouver
             MAUTRIX_DB_URI:
@@ -37,7 +36,7 @@ app-template:
         main:
           image:
             repository: ghcr.io/halkeye/docker-mautrix-whatsapp
-            tag: 0.10.7-7
+            tag: 0.10.7-8
           env:
             TZ: America/Vancouver
             MAUTRIX_DB_URI:

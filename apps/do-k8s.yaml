@@ -14,18 +14,13 @@ spec:
           - name: it-tools
           - name: libmedium
           - name: matrix-sliding-sync
-          - name: mautrix-gmessages
-            namespace: matrix
-          - name: mautrix-googlechat
-            namespace: matrix
-          - name: mautrix-instagram
-            namespace: matrix
-          - name: mautrix-linkedin
-            namespace: matrix
-          - name: mautrix-whatsapp
-            namespace: matrix
-          - name: mautrix-telegram
-            namespace: matrix
+          - { namespace: matrix, name: mautrix-gmessages }
+          - { namespace: matrix, name: mautrix-googlechat }
+          - { namespace: matrix, name: mautrix-instagram }
+          - { namespace: matrix, name: mautrix-linkedin }
+          - { namespace: matrix, name: mautrix-signal }
+          - { namespace: matrix, name: mautrix-telegram }
+          - { namespace: matrix, name: mautrix-whatsapp }
           # - name: matrix-authentication-service
           #   namespace: matrix
           - name: miniflux
