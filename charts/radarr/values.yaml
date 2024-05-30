@@ -119,7 +119,7 @@ app-template:
         gethomepage.dev/enabled: "true"
         gethomepage.dev/group: Media Fetchers
         gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/radarr.png
-        gethomepage.dev/name: "{{ .Release.Name || title }}"
+        gethomepage.dev/name: '{{ .Release.Name | title | replace "-" " " }}'
       hosts:
         - host: &host "{{ .Release.Name }}.g4v.dev"
           paths:
