@@ -16,7 +16,7 @@ app-template:
         01-init:
           image:
             repository: ghcr.io/halkeye/docker-mautrix-whatsapp
-            tag: 0.10.7-8
+            tag: 0.10.7-9
           env:
             TZ: America/Vancouver
             MAUTRIX_DB_URI:
@@ -36,7 +36,7 @@ app-template:
         main:
           image:
             repository: ghcr.io/halkeye/docker-mautrix-whatsapp
-            tag: 0.10.7-8
+            tag: 0.10.7-9
           env:
             TZ: America/Vancouver
             MAUTRIX_DB_URI:
