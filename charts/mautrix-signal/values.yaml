@@ -46,7 +46,7 @@ app-template:
             - "/data/config.yaml"
           probes:
             liveness:
-              enabled: true
+              enabled: false
               custom: true
               spec:
                 httpGet:
@@ -57,7 +57,7 @@ app-template:
                 timeoutSeconds: 1
                 failureThreshold: 3
             readiness:
-              enabled: true
+              enabled: false
               custom: true
               spec:
                 httpGet:
