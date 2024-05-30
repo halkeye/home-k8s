@@ -1,4 +1,3 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.0.1/charts/library/common/values.schema.json
 app-template:
   provisioning_shared_secret: "foo"
   login_shared_secret: "login_shared_secret"
@@ -220,7 +219,7 @@ app-template:
               # {{.FullName}} - Full name provided by the phone
               # {{.FirstName}} - First name provided by the phone
               # {{.PhoneNumber}} - Formatted phone number provided by the phone
-              displayname_template: {{`"{{or .FullName .PhoneNumber}}"`}}
+              displayname_template: {{`"{{or .FullName .PhoneNumber}} (GMessage)"`}}
               # Should the bridge create a space for each logged-in user and add bridged rooms to it?
               personal_filtering_spaces: true
               # Should the bridge send a read receipt from the bridge bot when a message has been sent to the phone?
