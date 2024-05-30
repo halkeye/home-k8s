@@ -388,7 +388,7 @@ app-template:
               permissions:
                   "*": relay
                   "g4v.dev": user
-                  "@admin:g4v.dev": admin
+                  "@halkeye:g4v.dev": admin
 
               # Settings for relay mode
               relay:

@@ -27,11 +27,7 @@ app-template:
           command:
             - bash
             - -c
-            - |-
-                cat /secrets/config.yaml | envsubst > /data/config.yaml
-                find /secrets
-                find /data
-                cat /data/config.yaml
+            - cat /secrets/config.yaml | envsubst > /data/config.yaml
       containers:
         main:
           image:
@@ -50,7 +46,7 @@ app-template:
             - "/data/config.yaml"
           probes:
             liveness:
-              enabled: false
+              enabled: true
               custom: true
               spec:
                 httpGet:
@@ -61,7 +57,7 @@ app-template:
                 timeoutSeconds: 1
                 failureThreshold: 3
             readiness:
-              enabled: false
+              enabled: true
               custom: true
               spec:
                 httpGet:
@@ -175,6 +171,7 @@ app-template:
               # Whether or not to receive ephemeral events via appservice transactions.
               # Requires MSC2409 support (i.e. Synapse 1.22+).
               ephemeral_events: true
+
               # Should incoming events be handled asynchronously?
               # This may be necessary for large public instances with lots of messages going through.
               # However, messages will not be guaranteed to be bridged in the same order they were sent in.
