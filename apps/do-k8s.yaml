@@ -21,8 +21,7 @@ spec:
           - { namespace: matrix, name: mautrix-signal }
           - { namespace: matrix, name: mautrix-telegram }
           - { namespace: matrix, name: mautrix-whatsapp }
-          # - name: matrix-authentication-service
-          #   namespace: matrix
+          # - { namespace: matrix, name: matrix-authentication-service }
           - name: miniflux
           - name: not-the-plants
           - name: synapse-admin
