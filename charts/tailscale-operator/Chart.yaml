@@ -25,7 +25,7 @@ appVersion: "1.0.0"
 
 dependencies:
   - name: tailscale-operator
-    version: 1.66.3
+    version: 1.66.4
     repository: https://pkgs.tailscale.com/helmcharts/
     # repository: git+https://github.com/tailscale/tailscale@cmd/k8s-operator/deploy/chart?ref=v1.58.2&&sparse=0
 
