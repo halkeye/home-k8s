@@ -1,0 +1,80 @@
+app-template:
+  controllers:
+    main:
+      strategy: Recreate
+      containers:
+        vaultwarden:
+          image:
+            repository: vaultwarden/server
+            tag: 1.30.5@sha256:edb8e2bab9cbca22e555638294db9b3657ffbb6e5d149a29d7ccdb243e3c71e0
+          env:
+            PUSH_ENABLED: true
+            DOMAIN: "https://bitwarden.g4v.dev"
+            TZ: "America/Vancouver"
+            SIGNUPS_ALLOWED: "false"
+            WEBSOCKET_ENABLED: "true"
+            WEBSOCKET_ADDRESS: 0.0.0.0
+            WEBSOCKET_PORT: 3012
+          probes:
+            liveness: &probes
+              enabled: true
+              custom: true
+              spec:
+                httpGet:
+                  path: /alive
+                  port: 80
+                initialDelaySeconds: 0
+                periodSeconds: 10
+                timeoutSeconds: 1
+                failureThreshold: 3
+            readiness: *probes
+            startup:
+              enabled: false
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              memory: 2Gi
+      pod:
+        securityContext:
+          runAsUser: 568
+          runAsGroup: 568
+          runAsNonRoot: true
+          fsGroup: 568
+          fsGroupChangePolicy: OnRootMismatch
+  service:
+    main:
+      controller: main
+      ports:
+        http:
+          port: 80
+        ws:
+          port: 3012
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: Security
+        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/vaultwarden.png
+        gethomepage.dev/name: Vault Warden
+      hosts:
+        - host: bitwarden.g4v.dev
+          paths:
+            - path: /
+              service:
+                identifier: main
+                port: http
+            - path: /notifications/hub
+              service:
+                identifier: main
+                port: ws
+  persistence:
+    config:
+      type: emptyDir
