@@ -15,6 +15,9 @@ app-template:
             WEBSOCKET_ENABLED: "true"
             WEBSOCKET_ADDRESS: 0.0.0.0
             WEBSOCKET_PORT: 3012
+          envFrom:
+            - secretRef:
+                name: "{{.Release.Name}}-secret"
           probes:
             liveness: &probes
               enabled: true
