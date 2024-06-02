@@ -10,6 +10,7 @@ spec:
   generators:
     - list:
         elements:
+          - { namespace: bitwarden, name: vaultwarden }
           - name: authentik
           - name: it-tools
           - name: libmedium
