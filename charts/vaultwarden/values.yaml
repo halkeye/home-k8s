@@ -15,6 +15,7 @@ app-template:
             WEBSOCKET_ENABLED: "true"
             WEBSOCKET_ADDRESS: 0.0.0.0
             WEBSOCKET_PORT: 3012
+            ROCKET_PORT: 8000
             DATA_FOLDER: data
             ICON_CACHE_FOLDER: data/icon_cache
             ATTACHMENTS_FOLDER: data/attachments
@@ -28,7 +29,7 @@ app-template:
               spec:
                 httpGet:
                   path: /alive
-                  port: 80
+                  port: 8000
                 initialDelaySeconds: 0
                 periodSeconds: 10
                 timeoutSeconds: 1
@@ -59,7 +60,7 @@ app-template:
       controller: main
       ports:
         http:
-          port: 80
+          port: 8000
         ws:
           port: 3012
   ingress:
