@@ -10,7 +10,6 @@ app-template:
           env:
             TZ: America/Vancouver
             TIMEZONE: America/Vancouver
-            CONTAINER_PRESERVE_OWNER: ".*"
             CONTAINER_CACHE: /data/container_cache
             CONTAINER_PATCHES: /data/container_patches
             CONTAINER_URL_FETCH_RETRY: "50"
@@ -20,8 +19,6 @@ app-template:
             FOUNDRY_PROTOCOL: "4"
             FOUNDRY_PROXY_PORT: "80"
             FOUNDRY_PROXY_SSL: "true"
-            FOUNDRY_UID: "421"
-            FOUNDRY_GID: "421"
             FOUNDRY_COMPRESS_WEBSOCKET: "true"
             FOUNDRY_TELEMETRY: "false"
           envFrom:
@@ -52,13 +49,6 @@ app-template:
               cpu: 10m
             limits:
               memory: 4Gi
-      pod:
-        securityContext:
-          runAsUser: 421
-          runAsGroup: 421
-          runAsNonRoot: true
-          fsGroup: 421
-          fsGroupChangePolicy: OnRootMismatch
   service:
     main:
       controller: main
