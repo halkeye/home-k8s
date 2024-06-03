@@ -19,6 +19,8 @@ app-template:
             FOUNDRY_PROTOCOL: "4"
             FOUNDRY_PROXY_PORT: "80"
             FOUNDRY_PROXY_SSL: "true"
+            FOUNDRY_UID: "421"
+            FOUNDRY_GID: "421"
             FOUNDRY_COMPRESS_WEBSOCKET: "true"
             FOUNDRY_TELEMETRY: "false"
           envFrom:
