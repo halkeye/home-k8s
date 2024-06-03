@@ -28,9 +28,6 @@ app-template:
               enabled: true
               custom: true
               spec:
-                exec:
-                  command:
-                    - /home/foundry/check_health.sh
                 initialDelaySeconds: 0
                 periodSeconds: 10
                 timeoutSeconds: 1
