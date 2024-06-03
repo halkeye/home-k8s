@@ -17,7 +17,6 @@ app-template:
             CONTAINER_VERBOSE: "true"
             FOUNDRY_MINIFY_STATIC_FILES: "true"
             FOUNDRY_PROTOCOL: "4"
-            FOUNDRY_PROXY_PORT: "80"
             FOUNDRY_PROXY_SSL: "true"
             FOUNDRY_COMPRESS_WEBSOCKET: "true"
             FOUNDRY_TELEMETRY: "false"
@@ -54,7 +53,7 @@ app-template:
       controller: main
       ports:
         http:
-          port: 80
+          port: 30000
   ingress:
     main:
       enabled: true
