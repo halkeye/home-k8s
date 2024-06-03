@@ -30,7 +30,7 @@ app-template:
               spec:
                 exec:
                   command:
-                    - /home/foundry/src/check_health.sh
+                    - /home/foundry/check_health.sh
                 initialDelaySeconds: 0
                 periodSeconds: 10
                 timeoutSeconds: 1
