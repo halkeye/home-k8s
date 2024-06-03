@@ -31,9 +31,7 @@ app-template:
               spec:
                 exec:
                   command:
-                    - /bin/sh
-                    - -c
-                    - 'cd /tmp; exec /home/foundry/src/check_health.sh'
+                    - /home/foundry/src/check_health.sh
                 initialDelaySeconds: 0
                 periodSeconds: 10
                 timeoutSeconds: 1
@@ -43,7 +41,7 @@ app-template:
               enabled: false
           securityContext:
             allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
+            readOnlyRootFilesystem: false
             capabilities:
               drop: ["ALL"]
           resources:
@@ -53,10 +51,10 @@ app-template:
               memory: 4Gi
       pod:
         securityContext:
-          runAsUser: 568
-          runAsGroup: 568
+          runAsUser: 421
+          runAsGroup: 421
           runAsNonRoot: true
-          fsGroup: 568
+          fsGroup: 421
           fsGroupChangePolicy: OnRootMismatch
   service:
     main:
