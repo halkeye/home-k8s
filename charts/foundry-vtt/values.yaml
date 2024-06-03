@@ -31,7 +31,9 @@ app-template:
               spec:
                 exec:
                   command:
-                    - src/check_health.sh
+                    - /bin/sh
+                    - -c
+                    - 'cd /tmp; exec /home/foundry/src/check_health.sh'
                 initialDelaySeconds: 0
                 periodSeconds: 10
                 timeoutSeconds: 1
