@@ -1,7 +1,6 @@
 app-template:
   controllers:
     main:
-      strategy: Recreate
       containers:
         vaultwarden:
           image:
