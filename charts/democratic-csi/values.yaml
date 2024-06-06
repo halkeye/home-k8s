@@ -82,7 +82,7 @@ democratic-csi:
         # See https://github.com/democratic-csi/democratic-csi/blob/master/docs/storage-class-parameters.md
         lunTemplate:
           # can be static value or handlebars template
-          # description: "{{ parameters.[csi.storage.k8s.io/pvc/namespace] }}-{{ parameters.[csi.storage.k8s.io/pvc/name] }}"
+          description: "{{ parameters.[csi.storage.k8s.io/pvc/namespace] }}-{{ parameters.[csi.storage.k8s.io/pvc/name] }}"
           type: "BLUN"
 
         lunSnapshotTemplate:
