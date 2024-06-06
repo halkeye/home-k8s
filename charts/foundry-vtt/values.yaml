@@ -1,0 +1,72 @@
+app-template:
+  controllers:
+    main:
+      strategy: Recreate
+      containers:
+        foundryvtt:
+          image:
+            repository: felddy/foundryvtt
+            tag: "12.325.0"
+          env:
+            TZ: America/Vancouver
+            TIMEZONE: America/Vancouver
+            CONTAINER_CACHE: /data/container_cache
+            CONTAINER_PATCHES: /data/container_patches
+            CONTAINER_URL_FETCH_RETRY: "50"
+            #CONTAINER_PRESERVE_CONFIG: "true"
+            CONTAINER_VERBOSE: "true"
+            FOUNDRY_MINIFY_STATIC_FILES: "true"
+            FOUNDRY_PROTOCOL: "4"
+            FOUNDRY_PROXY_SSL: "true"
+            FOUNDRY_COMPRESS_WEBSOCKET: "true"
+            FOUNDRY_TELEMETRY: "false"
+          envFrom:
+            - secretRef:
+                name: "{{.Release.Name}}-secret"
+          probes:
+            liveness: &probes
+              enabled: false
+            readiness: *probes
+            startup:
+              enabled: false
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: false
+            capabilities:
+              drop: []
+          resources:
+            requests:
+              cpu: 10m
+            limits:
+              memory: 4Gi
+  service:
+    main:
+      controller: main
+      ports:
+        http:
+          port: 30000
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/foundry-vtt.png
+        gethomepage.dev/name: Foundry VTT
+        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+        nginx.ingress.kubernetes.io/proxy-body-size: 10m
+      hosts:
+        - host: vtt.g4v.dev
+          paths:
+            - path: /
+              service:
+                identifier: main
+                port: http
+  persistence:
+    data:
+      enabled: true
+      type: persistentVolumeClaim
+      accessMode: ReadWriteOnce
+      size: 8Gi
+      storageClass: do-block-storage
+    tmp:
+      type: emptyDir

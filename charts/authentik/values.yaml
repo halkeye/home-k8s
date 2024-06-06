@@ -15,6 +15,10 @@ authentik:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt
         kubernetes.io/tls-acme: "true"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: Security
+        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/authentik.png
+        gethomepage.dev/name: Authentik
       hosts:
         - auth.g4v.dev
       tls:
