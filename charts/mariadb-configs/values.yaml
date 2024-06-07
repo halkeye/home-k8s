@@ -1,5 +1,0 @@
-mariadb-configs:
-  metrics:
-    enabled: false
-    serviceMonitor:
-      enabled: false
