@@ -17,7 +17,11 @@ spec:
 
           - name: externaldns-internal-technitium
 
+          # Exporters
           - name: blackbox-exporter
+          - name: bambulabs-exporter
+
+          # App
           - name: frigate
           - name: grafana
           - name: overseerr

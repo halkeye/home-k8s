@@ -30,7 +30,7 @@ app-template:
       controller: main
       ports:
         http:
-          port: 9100
+          port: 9101
   serviceMonitor:
     main:
       enabled: true
