@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/monitoring.coreos.com/prometheusrule_v1.json
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: {{ .Release.Name }}-rules
+spec:
+  groups:
+    - name: {{ .Release.Name }}.rules
+      rules:
+        - alert: PrinterHasErrors
+          annotations:
+            description: {{"Printer has errors."}}
+            summary: Printer has errors
+          expr: |
+            print_error_metric{service="bambulabs-exporter"} > 0 or mc_print_error_code_metric{service="bambulabs-exporter"} > 0
+          for: 2m
+          labels:
+            severity: critical
