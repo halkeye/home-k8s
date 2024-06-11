@@ -8,6 +8,10 @@ app-template:
             tag: v24.05.1
           env:
             TZ: America/Vancouver
+            DISPLAY_WIDTH: "2048"
+            DISPLAY_HEIGHT: "1536"
+            FF_OPEN_URL: http://homeassistant.dhcp.home:8123/dashboard-ipad/0
+            FF_KIOSK: 1
           probes:
             liveness:
               enabled: false
@@ -34,7 +38,7 @@ app-template:
         gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/firefox.png
         gethomepage.dev/name: Firefox Home Assistant
       hosts:
-        - host: &host firefox-homeassistant.g4v.dev
+        - host: firefox-homeassistant.g4v.dev
           paths:
             - path: /
               service:

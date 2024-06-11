@@ -23,6 +23,7 @@ spec:
 
           # App
           - name: frigate
+          - name: firefox-homeassistant
           - name: grafana
           - name: overseerr
           - name: radarr
