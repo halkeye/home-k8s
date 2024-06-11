@@ -25,15 +25,6 @@ app-template:
           primary: true
           port: 3001
           protocol: HTTP
-    microservices:
-      controller: microservices
-      type: ClusterIP
-      ports:
-        http:
-          enabled: true
-          primary: true
-          port: 3001
-          protocol: HTTP
     machine-learning:
       controller: machine-learning
       type: ClusterIP
@@ -45,65 +36,6 @@ app-template:
           protocol: HTTP
 
   controllers:
-    microservices:
-      containers:
-        main:
-          image:
-            repository: ghcr.io/immich-app/immich-server
-            pullPolicy: IfNotPresent
-            tag: v1.106.1
-          command: "/bin/sh"
-          args:
-            - "./start-microservices.sh"
-          env:
-            REDIS_HOSTNAME:
-              valueFrom:
-                secretKeyRef:
-                  name: "{{ .Release.Name }}-secret"
-                  key: REDIS_HOSTNAME
-            DB_HOSTNAME:
-              valueFrom:
-                secretKeyRef:
-                  name: immich-immich-user
-                  key: HOST
-            DB_USERNAME:
-              valueFrom:
-                secretKeyRef:
-                  name: immich-immich-user
-                  key: LOGIN
-            DB_DATABASE_NAME:
-              valueFrom:
-                secretKeyRef:
-                  name: immich-immich-user
-                  key: DATABASE_NAME
-            DB_PASSWORD:
-              valueFrom:
-                secretKeyRef:
-                  name: immich-immich-user
-                  key: PASSWORD
-            IMMICH_MACHINE_LEARNING_URL:
-              valueFrom:
-                secretKeyRef:
-                  name: "{{ .Release.Name }}-secret"
-                  key: IMMICH_MACHINE_LEARNING_URL
-            TYPESENSE_API_KEY:
-              valueFrom:
-                secretKeyRef:
-                  name: "{{ .Release.Name }}-secret"
-                  key: TYPESENSE_API_KEY
-            DB_URL:
-              valueFrom:
-                secretKeyRef:
-                  name: immich-immich-user
-                  key: POSTGRES_URL
-          probes:
-            liveness:
-              enabled: false
-            readiness:
-              enabled: false
-            startup:
-              enabled: false
-
     main:
       containers:
         main:
@@ -111,11 +43,8 @@ app-template:
             repository: ghcr.io/immich-app/immich-server
             pullPolicy: IfNotPresent
             tag: v1.106.1
-          command: "/bin/sh"
-          args:
-            - "./start-server.sh"
           env:
-            SERVER_PORT: 3001
+            IMMICH_PORT: 3001
             REDIS_HOSTNAME:
               valueFrom:
                 secretKeyRef:
