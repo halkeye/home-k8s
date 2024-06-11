@@ -22,9 +22,10 @@ spec:
           - name: bambulabs-exporter
 
           # App
-          - name: frigate
           - name: firefox-homeassistant
+          - name: frigate
           - name: grafana
+          - name: immich
           - name: overseerr
           - name: radarr
           - name: recyclarr
