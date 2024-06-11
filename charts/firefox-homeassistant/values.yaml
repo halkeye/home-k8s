@@ -27,6 +27,7 @@ app-template:
           port: 5800
     vnc:
       controller: main
+      type: LoadBalancer
       ports:
         http:
           port: 5900
