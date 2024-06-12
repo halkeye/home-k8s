@@ -31,6 +31,10 @@ app-template:
       controller: main
       type: LoadBalancer
       externalTrafficPolicy: Local
+      annoations:
+        service.beta.kubernetes.io/do-loadbalancer-name: "dok8s-mumble"
+        external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
+        external-dns.alpha.kubernetes.io/hostname: "mumble.halkeye.net"
       ports:
         http:
           port: 80
