@@ -27,15 +27,15 @@ app-template:
         external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
         external-dns.alpha.kubernetes.io/hostname: "teamspeak.halkeye.net"
       ports:
-        serverquery_raw:
+        serverquery-raw:
           enabled: true
           port: 10011
           protocol: TCP
-        serverquery_ssh:
+        serverquery-ssh:
           enabled: true
           port: 10022
           protocol: TCP
-        webquery_https:
+        webquery-https:
           enabled: true
           port: 10443
           protocol: TCP
