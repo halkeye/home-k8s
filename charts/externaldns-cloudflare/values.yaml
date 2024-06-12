@@ -4,6 +4,10 @@ external-dns:
   policy: sync
   domainFilters:
     - g4v.dev
+    - halkeye.net
+    - kodekoan.com
+    - gavinmogan.com
+    - saltystories.ca
   serviceMonitor:
     enabled: false
   sources:
