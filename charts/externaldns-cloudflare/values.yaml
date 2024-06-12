@@ -12,7 +12,6 @@ external-dns:
   provider:
     name: cloudflare
   extraArgs:
-    - --zone-id-filter=1149a58ecdccdb198c1dd82faaaa1b3c
     - --cloudflare-proxied
   env:
     - name: CF_API_TOKEN
