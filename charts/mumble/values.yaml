@@ -2,37 +2,7 @@ app-template:
   controllers:
     main:
       strategy: Recreate
-      initContainers:
-        01-setup:
-          image:
-            repository: ghcr.io/andrewmichaelsmith/mmproxy/mmproxy
-            tag: "14"
-          securityContext:
-            privileged: true
-          command: [ "/bin/bash", "-cx" ]
-          args:
-            # Source: https://github.com/cloudflare/mmproxy
-            - echo 1 > /proc/sys/net/ipv4/conf/eth0/route_localnet;
-              iptables -t mangle -I PREROUTING -m mark --mark 123 -m comment --comment mmproxy -j CONNMARK --save-mark;
-              ip6tables -t mangle -I PREROUTING -m mark --mark 123 -m comment --comment mmproxy -j CONNMARK --save-mark;
-              iptables -t mangle -I OUTPUT -m connmark --mark 123 -m comment --comment mmproxy -j CONNMARK --restore-mark;
-              ip6tables -t mangle -I OUTPUT -m connmark --mark 123 -m comment --comment mmproxy -j CONNMARK --restore-mark;
-              ip rule add fwmark 123 lookup 100;
-              ip -6 rule add fwmark 123 lookup 100;
-              ip route add local 0.0.0.0/0 dev lo table 100;
-              ip -6 route add local ::/0 dev lo table 100;
-              exit 0 ; # XXX hack
       containers:
-        mmproxy:
-          securityContext:
-            privileged: true
-          image:
-            repository: ghcr.io/andrewmichaelsmith/mmproxy/mmproxy
-            tag: "14"
-          command: [ "/bin/bash", "-cx" ]
-          args:
-            - echo "0.0.0.0/0" > allowed-networks.txt;
-              /mmproxy/mmproxy --allowed-networks allowed-networks.txt -l 0.0.0.0:64738 -4 127.0.0.1:64739 -6 [::1]:64739;
         mumble:
           image:
             repository: mumblevoip/mumble-server
@@ -61,7 +31,7 @@ app-template:
       type: LoadBalancer
       externalTrafficPolicy: Local
       annotations:
-        service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
+        service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "false"
         service.beta.kubernetes.io/do-loadbalancer-name: "dok8s-mumble"
         external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
         external-dns.alpha.kubernetes.io/hostname: "mumble.halkeye.net"
