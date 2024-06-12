@@ -11,6 +11,7 @@ app-template:
             TZ: America/Vancouver
             MUMBLE_CONFIG_sslCert: /certs/tls.crt
             MUMBLE_CONFIG_sslKey: /certs/tls.key
+            MUMBLE_CONFIG_registerName: "Halkeye's Wholesome Server"
           securityContext:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
