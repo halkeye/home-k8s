@@ -3,7 +3,9 @@ kind: Certificate
 metadata:
   name: "{{.Release.Name}}-certificate"
 spec:
-  commonName: 'mumble.g4v.dev'
+  commonName: 'mumble.halkeye.net'
+  dnsNames:
+  - 'mumble.halkeye.net'
   issuerRef:
     kind: ClusterIssuer
     name: acme-letsencrypt-prod
