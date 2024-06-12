@@ -5,10 +5,10 @@ app-template:
       initContainers:
         01-setup:
           image:
-            repository: docker pull ghcr.io/andrewmichaelsmith/mmproxy/mmproxy
-            tag: 14
+            repository: ghcr.io/andrewmichaelsmith/mmproxy/mmproxy
+            tag: "14"
           securityContext:
-            privileged: True
+            privileged: true
           command: [ "/bin/bash", "-cx" ]
           args:
             # Source: https://github.com/cloudflare/mmproxy
@@ -25,10 +25,10 @@ app-template:
       containers:
         mmproxy:
           securityContext:
-            privileged: True
+            privileged: true
           image:
-            repository: docker pull ghcr.io/andrewmichaelsmith/mmproxy/mmproxy
-            tag: 14
+            repository: ghcr.io/andrewmichaelsmith/mmproxy/mmproxy
+            tag: "14"
           command: [ "/bin/bash", "-cx" ]
           args:
             - echo "0.0.0.0/0" > allowed-networks.txt;
