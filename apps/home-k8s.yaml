@@ -27,6 +27,7 @@ spec:
           - name: grafana
           - name: immich
           - name: overseerr
+          - name: planka
           - name: radarr
           - name: recyclarr
           - name: sonarr
