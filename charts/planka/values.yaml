@@ -7,6 +7,10 @@ app-template:
           image:
             repository: ghcr.io/plankanban/planka
             tag: 1.18.0@sha256:34b420072ed7e3caacbd9363d26ffd2e20082a16336b44475b19de83a28df097
+          command:
+            - /bin/sh
+            - -c
+            - sleep 1000
           env:
             TZ: America/Vancouver
             BASE_URL: https://planka.g4v.dev
