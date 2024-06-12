@@ -8,6 +8,7 @@ external-dns:
     enabled: false
   sources:
     - ingress
+    - service
   provider:
     name: cloudflare
   extraArgs:
