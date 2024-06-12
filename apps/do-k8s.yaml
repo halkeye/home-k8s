@@ -10,13 +10,7 @@ spec:
   generators:
     - list:
         elements:
-          - { namespace: bitwarden, name: vaultwarden }
-          - name: authentik
-          - name: externaldns-cloudflare
-          - name: foundry-vtt
-          - name: gathio
-          - name: it-tools
-          - name: libmedium
+          # matrix
           # - { namespace: matrix, name: matrix-authentication-service }
           - { namespace: matrix, name: mautrix-gmessages }
           - { namespace: matrix, name: mautrix-googlechat }
@@ -26,10 +20,19 @@ spec:
           - { namespace: matrix, name: mautrix-telegram }
           - { namespace: matrix, name: mautrix-whatsapp }
           - name: matrix-sliding-sync
-          - name: miniflux
-          - name: mumble
-          - name: not-the-plants
           - name: synapse-admin
+
+          # Apps
+          - { namespace: bitwarden, name: vaultwarden }
+          - name: authentik
+          - name: externaldns-cloudflare
+          - name: foundry-vtt
+          - name: gathio
+          - name: it-tools
+          - name: libmedium
+          - name: miniflux
+          - name: not-the-plants
+          - name: teamspeak
   template:
     metadata:
       name: "{{.name}}"
