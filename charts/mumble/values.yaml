@@ -9,13 +9,15 @@ app-template:
             tag: v1.4.287-4@sha256:dd6cbd5dc981dc0433edebd7f9aee220431d23600b9ef7109dbe24b0feae6ad1
           env:
             TZ: America/Vancouver
+            MUMBLE_CONFIG_sslCert: /certs/tls.crt
+            MUMBLE_CONFIG_sslKey: /certs/tls.key
           securityContext:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
             capabilities:
               drop: ["ALL"]
           resources:
-            limits: &resources
+            limits:
               memory: 2Gi
             requests:
               memory: 256Mi
@@ -31,7 +33,7 @@ app-template:
       controller: main
       type: LoadBalancer
       externalTrafficPolicy: Local
-      annoations:
+      annotations:
         service.beta.kubernetes.io/do-loadbalancer-name: "dok8s-mumble"
         external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
         external-dns.alpha.kubernetes.io/hostname: "mumble.halkeye.net"
@@ -54,3 +56,7 @@ app-template:
       size: 2Gi
       globalMounts:
         - path: /data
+    certs:
+      enabled: true
+      type: secret
+      name: "{{ .Release.Name }}-tls"
