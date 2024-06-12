@@ -43,11 +43,6 @@ app-template:
             MUMBLE_CONFIG_sslKey: /certs/tls.key
             MUMBLE_CONFIG_registerName: "Halkeye's Wholesome Server"
             MUMBLE_CONFIG_port: "64739"
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            capabilities:
-              drop: ["ALL"]
           resources:
             limits:
               memory: 2Gi
