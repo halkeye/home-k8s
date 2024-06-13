@@ -89,14 +89,6 @@ homepage:
           - Proxmox:
               href: https://172.16.10.145:8006/
               icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/proxmox.png
-          - AdguardHome Carbon:
-              href: http://172.16.10.9/
-              icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/adguard-home.png
-              widget:
-                type: adguard
-                url: http://172.16.10.9/
-                username: "{{HOMEPAGE_VAR_ADGUARD_USERNAME}}"
-                password: "{{HOMEPAGE_VAR_ADGUARD_PASSWORD}}"
     widgets:
       # show the kubernetes widget, with the cluster summary and individual nodes
       - kubernetes:
