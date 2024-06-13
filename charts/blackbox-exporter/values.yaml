@@ -54,9 +54,9 @@ prometheus-blackbox-exporter:
       - name: nas
         url: synologynas.dhcp.home
         module: icmp
-      # Adguard
-      - name: adguard
-        url: adguard.dhcp.home
+      # Home DNS
+      - name: home-dns
+        url: home-dns.dhcp.home
         module: icmp
       # Printer
       - name: printer
