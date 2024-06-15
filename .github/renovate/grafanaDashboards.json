@@ -26,9 +26,16 @@
   ],
   "packageRules": [
     {
-      "addLabels": ["renovate/grafana-dashboard"],
-      "matchDatasources": ["grafana-dashboards", "custom.grafana-dashboards"],
-      "matchUpdateTypes": ["major"],
+      "addLabels": [
+        "renovate/grafana-dashboard"
+      ],
+      "matchDatasources": [
+        "grafana-dashboards",
+        "custom.grafana-dashboards"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ],
       "semanticCommitScope": "grafana-dashboards",
       "semanticCommitType": "",
       "commitMessageTopic": "dashboard {{depName}}",

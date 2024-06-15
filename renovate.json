@@ -20,11 +20,14 @@
         "Process custom dependencies"
       ],
       "fileMatch": [
-        "(^|/)charts/.+\\.ya?ml(?:\\.j2)?$"
+        "(^|/)charts/.+\\.ya?ml(?:\\.j2)?$",
+        "charts/system-upgrade-controller/templates/agent.yaml",
+        "charts/system-upgrade-controller/templates/server.yaml"
       ],
       "matchStrings": [
-        "version: \"(?<currentValue>.+?)\" # renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)"
+        "(?<indentation>\\s+)version: \"(?<currentValue>.+?)\" # renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)"
       ],
+      "autoReplaceStringTemplate": "{{{indentation}}}version: \"{{{newValue}}}\" # renovate: datasource={{{datasource}}} depName={{{depName}}}",
       "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}"
     }
   ],
