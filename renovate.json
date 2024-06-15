@@ -23,7 +23,7 @@
         "(^|/)charts/.+\\.ya?ml(?:\\.j2)?$"
       ],
       "matchStrings": [
-        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\n.+/(?<currentValue>(v|\\d)[^/]+)"
+        "version: \"(?<currentValue>.+?)\" # renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)"
       ],
       "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}"
     }
