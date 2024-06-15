@@ -290,7 +290,7 @@ grafana:
       traefik-kubernetes:
         # renovate: depName="Traefik Official Kubernetes Dashboard"
         gnetId: 17347
-        revision: 7
+        revision: 8
         datasource: Prometheus
       argocd:
         # renovate: depName="ArgoCD"
