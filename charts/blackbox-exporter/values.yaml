@@ -52,7 +52,7 @@ prometheus-blackbox-exporter:
         module: icmp
       # Nas
       - name: nas
-        url: synologynas.dhcp.home
+        url: synology.dhcp.home
         module: icmp
       # Home DNS
       - name: home-dns
