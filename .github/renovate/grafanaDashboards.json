@@ -15,7 +15,9 @@
       "description": "Process Grafana dashboards",
       "fileMatch": [
         "(^|/)charts\\/prometheus\\/values\\.ya?ml(\\.j2)?$",
-        "(^|/)charts\\/grafana\\/values\\.ya?ml(\\.j2)?$"
+        "(^|/)charts\\/grafana\\/values\\.ya?ml(\\.j2)?$",
+        "charts\\/prometheus\\/values\\.ya?ml(\\.j2)?$",
+        "charts\\/grafana\\/values\\.ya?ml(\\.j2)?$"
       ],
       "matchStrings": [
         "depName=\"(?<depName>.*)\"\\n(?<indentation>\\s+)gnetId: (?<packageName>\\d+)\\n.+revision: (?<currentValue>\\d+)"
