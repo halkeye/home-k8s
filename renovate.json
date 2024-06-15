@@ -11,7 +11,7 @@
     ":automergeBranch",
     ":timezone(America/Vancouver)",
     "helpers:pinGitHubActionDigests",
-    "github>halkeye/home-k8s//.github/renovate/grafanaDashboards.json5"
+    "github>halkeye/home-k8s//.github/renovate/grafanaDashboards.json"
   ],
   "customManagers": [
     {
