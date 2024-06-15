@@ -11,13 +11,14 @@
     ":automergeBranch",
     ":timezone(America/Vancouver)",
     "helpers:pinGitHubActionDigests",
-    "github>halkeye/home-k8s//.github/renovate/grafanaDashboards.json5",
+    "github>halkeye/home-k8s//.github/renovate/grafanaDashboards.json5"
   ],
-  "packageRules": [
-    "customManagers": [
+  "customManagers": [
     {
       "customType": "regex",
-      "description": ["Process custom dependencies"],
+      "description": [
+        "Process custom dependencies"
+      ],
       "fileMatch": [
         "(^|/)charts/.+\\.ya?ml(?:\\.j2)?$"
       ],
@@ -25,7 +26,9 @@
         "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\n.+/(?<currentValue>(v|\\d)[^/]+)"
       ],
       "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}"
-    },
+    }
+  ],
+  "packageRules": [
     {
       "matchPackagePatterns": [
         "*"
