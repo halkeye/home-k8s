@@ -10,16 +10,18 @@ spec:
   generators:
     - list:
         elements:
-          - name: anime-radarr
-            chart: radarr
-          - name: anime-sonarr
-            chart: sonarr
-
+          # "system"
           - name: externaldns-internal-technitium
 
           # Exporters
           - name: blackbox-exporter
           - name: bambulabs-exporter
+
+          # Apps but extra
+          - name: anime-radarr
+            chart: radarr
+          - name: anime-sonarr
+            chart: sonarr
 
           # App
           - name: firefox-homeassistant
@@ -62,3 +64,8 @@ spec:
           - CreateNamespace=true
           - ServerSideApply=true
           - Prune=true
+      ignoreDifferences:
+        - group: ""
+          kind: Service
+          jqPathExpressions:
+            - .status.loadBalancer.ingress[].ipMode
