@@ -12,6 +12,7 @@ spec:
         elements:
           # "system"
           - name: externaldns-internal-technitium
+          - { name: csi-rclone-reloaded, namespace: kube-system }
 
           # Exporters
           - name: blackbox-exporter
