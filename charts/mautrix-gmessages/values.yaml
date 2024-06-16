@@ -36,7 +36,7 @@ app-template:
         main:
           image:
             repository: dock.mau.dev/mautrix/gmessages
-            tag: v0.4.1
+            tag: v0.4.2
           env:
             TZ: America/Vancouver
             MAUTRIX_DB_URI:
