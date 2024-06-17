@@ -73,8 +73,8 @@ app-template:
       storageClass: synology-iscsi
       globalMounts:
         - path: /iscsi
-    config-rclone:
-      enabled: true
-      existingClaim: "{{ .Release.Name }}-rclone"
-      globalMounts:
-        - path: /rclone
+    # config-rclone:
+    #   enabled: true
+    #   existingClaim: "{{ .Release.Name }}-rclone"
+    #   globalMounts:
+    #     - path: /rclone
