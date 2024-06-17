@@ -1,0 +1,26 @@
+localpv-provisioner:
+  rbac:
+    create: true
+  hostpathClass:
+    enabled: true
+    name: openebs-hostpath
+    isDefaultClass: false
+
+openebs-crds:
+  csi:
+    volumeSnapshots:
+      enabled: true
+      keep: true
+
+zfs-localpv:
+  enabled: false
+
+lvm-localpv:
+  enabled: false
+
+engines:
+  local:
+    lvm:
+      enabled: false
+    zfs:
+      enabled: false

@@ -11,7 +11,25 @@
     ":automergeBranch",
     ":timezone(America/Vancouver)",
     "helpers:pinGitHubActionDigests",
-    "github>halkeye/home-k8s//.github/renovate/grafanaDashboards.json5",
+    "github>halkeye/home-k8s//.github/renovate/grafanaDashboards.json"
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": [
+        "Process custom dependencies"
+      ],
+      "fileMatch": [
+        "(^|/)charts/.+\\.ya?ml(?:\\.j2)?$",
+        "charts/system-upgrade-controller/templates/agent.yaml",
+        "charts/system-upgrade-controller/templates/server.yaml"
+      ],
+      "matchStrings": [
+        "(?<indentation>\\s+)version: \"(?<currentValue>.+?)\" # renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)"
+      ],
+      "autoReplaceStringTemplate": "{{{indentation}}}version: \"{{{newValue}}}\" # renovate: datasource={{{datasource}}} depName={{{depName}}}",
+      "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}"
+    }
   ],
   "packageRules": [
     {

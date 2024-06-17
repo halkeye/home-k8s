@@ -50,7 +50,7 @@ app-template:
         gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/stash.png
         gethomepage.dev/name: Stash
       hosts:
-        - host: &host stash.g4v.dev
+        - host: stash.g4v.dev
           paths:
             - path: /
               service:
@@ -73,3 +73,8 @@ app-template:
       storageClass: synology-iscsi
       globalMounts:
         - path: /iscsi
+    config-rclone:
+      enabled: true
+      existingClaim: "{{ .Release.Name }}-rclone"
+      globalMounts:
+        - path: /rclone

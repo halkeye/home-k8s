@@ -14,9 +14,8 @@ app-template:
       initContainers:
         01-init:
           image:
-            # probably already downloaded, and includes envsubst
-            repository: nginx
-            tag: 1.27.0
+            repository: ghcr.io/halkeye/docker-mautrix-gmessages
+            tag: "0.4.2-2"
           env:
             TZ: America/Vancouver
             MAUTRIX_DB_URI:
@@ -27,16 +26,12 @@ app-template:
           command:
             - bash
             - -c
-            - |-
-                cat /secrets/config.yaml | envsubst > /data/config.yaml
-                find /secrets
-                find /data
-                cat /data/config.yaml
+            - cat /secrets/config.yaml | envsubst > /data/config.yaml
       containers:
         main:
           image:
-            repository: dock.mau.dev/mautrix/gmessages
-            tag: v0.4.1
+            repository: ghcr.io/halkeye/docker-mautrix-gmessages
+            tag: "0.4.2-2"
           env:
             TZ: America/Vancouver
             MAUTRIX_DB_URI:

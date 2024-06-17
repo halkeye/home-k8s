@@ -168,7 +168,7 @@ grafana:
       kubernetes-coredns:
         # renovate: depName="Kubernetes / System / CoreDNS"
         gnetId: 15762
-        revision: 17
+        revision: 18
         datasource: Prometheus
       kubernetes-global:
         # renovate: depName="Kubernetes / Views / Global"
@@ -198,7 +198,7 @@ grafana:
       node-exporter-full:
         # renovate: depName="Node Exporter Full"
         gnetId: 1860
-        revision: 36
+        revision: 37
         datasource: Prometheus
       node-feature-discovery:
         url: https://raw.githubusercontent.com/kubernetes-sigs/node-feature-discovery/master/examples/grafana-dashboard.json
@@ -290,7 +290,7 @@ grafana:
       traefik-kubernetes:
         # renovate: depName="Traefik Official Kubernetes Dashboard"
         gnetId: 17347
-        revision: 7
+        revision: 8
         datasource: Prometheus
       argocd:
         # renovate: depName="ArgoCD"
