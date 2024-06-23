@@ -46,7 +46,7 @@ app-template:
                 httpGet:
                   path: /ping
                   port: *port
-                initialDelaySeconds: 0
+                initialDelaySeconds: 15
                 periodSeconds: 10
                 timeoutSeconds: 1
                 failureThreshold: 3
