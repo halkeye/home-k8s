@@ -77,7 +77,7 @@ app-template:
               valueFrom:
                 secretKeyRef:
                   name: prowlarr-secret
-                  key: PROWLARR__API_KEY
+                  key: PROWLARR__AUTH__APIKEY
           resources:
             requests:
               cpu: 10m
