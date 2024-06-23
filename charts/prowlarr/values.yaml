@@ -11,29 +11,30 @@ app-template:
             # https://github.com/Radarr/Radarr/issues/7030#issuecomment-1039689518
             # https://github.com/dotnet/runtime/issues/9336
             COMPlus_EnableDiagnostics: "0"
-            PROWLARR__INSTANCE_NAME: Prowlarr
-            PROWLARR__LOG_LEVEL: info
-            PROWLARR__AUTHENTICATION_METHOD: External
+            PROWLARR__APP__INSTANCENAME: Prowlarr
+            PROWLARR__LOG__LEVEL: info
+            PROWLARR__AUTH__METHOD: External
+            PROWLARR__AUTH__REQUIRED: DisabledForLocalAddresses
             PROWLARR__THEME: auto
             TZ: America/Vancouver
-            PROWLARR__POSTGRES_USER:
+            PROWLARR__POSTGRES__USER:
               valueFrom:
                 secretKeyRef:
                   name: prowlarr-db-secret-prowlarr
                   key: LOGIN
-            PROWLARR__POSTGRES_PASSWORD:
+            PROWLARR__POSTGRES__PASSWORD:
               valueFrom:
                 secretKeyRef:
                   name: prowlarr-db-secret-prowlarr
                   key: PASSWORD
-            PROWLARR__POSTGRES_PORT: "5432"
-            PROWLARR__POSTGRES_HOST:
+            PROWLARR__POSTGRES__PORT: "5432"
+            PROWLARR__POSTGRES__HOST:
               valueFrom:
                 secretKeyRef:
                   name: prowlarr-db-secret-prowlarr
                   key: HOST
-            PROWLARR__POSTGRES_MAIN_DB: "prowlarr_main"
-            PROWLARR__POSTGRES_LOG_DB: "prowlarr_log"
+            PROWLARR__POSTGRES__MAINDB: "prowlarr_main"
+            PROWLARR__POSTGRES__LOGDB: "prowlarr_log"
           envFrom:
             - secretRef:
                 name: prowlarr-secret
