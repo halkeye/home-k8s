@@ -222,8 +222,7 @@ app-template:
               # and is therefore prone to race conditions.
               sync_direct_chat_list: false
               # Servers to always allow double puppeting from
-              double_puppet_server_map:
-                  g4v.dev: https://g4v.dev
+              double_puppet_server_map: {}
               # Allow using double puppeting from any server with a valid client .well-known file.
               double_puppet_allow_discovery: false
               # Shared secret for https://github.com/devture/matrix-synapse-shared-secret-auth
