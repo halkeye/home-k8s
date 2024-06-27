@@ -3,7 +3,7 @@ name: mongodb-operator
 version: 0.0.0
 dependencies:
   - name: community-operator
-    version: 0.9.0
+    version: 0.10.0
     repository: https://mongodb.github.io/helm-charts/
 maintainers:
   - name: halkeye
