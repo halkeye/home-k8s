@@ -15,7 +15,7 @@ app-template:
         01-init:
           image:
             repository: ghcr.io/halkeye/docker-mautrix-signal
-            tag: 0.6.1-3
+            tag: v0.6.2.7
           env:
             TZ: America/Vancouver
             MAUTRIX_DB_URI:

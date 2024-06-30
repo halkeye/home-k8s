@@ -6,7 +6,7 @@ app-template:
         gathio:
           image:
             repository: ghcr.io/halkeye/docker-gathio
-            tag: v1.4.1-2
+            tag: v1.4.1.15
           probes:
             liveness: &probes
               enabled: false
@@ -18,7 +18,7 @@ app-template:
             capabilities:
               drop: ["ALL"]
           resources:
-            limits: &resources
+            limits:
               memory: 2Gi
             requests:
               memory: 256Mi
@@ -42,7 +42,7 @@ app-template:
       annotations:
         gethomepage.dev/enabled: "false"
       hosts:
-        - host: &host events.g4v.dev
+        - host: events.g4v.dev
           paths:
             - path: /
               service:
