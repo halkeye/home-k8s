@@ -42,7 +42,7 @@ app-template:
           image:
             repository: ghcr.io/immich-app/immich-server
             pullPolicy: IfNotPresent
-            tag: v1.106.4
+            tag: v1.107.0
           env:
             IMMICH_PORT: 3001
             REDIS_HOSTNAME:
