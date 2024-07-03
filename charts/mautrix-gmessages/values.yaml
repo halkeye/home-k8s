@@ -15,7 +15,7 @@ app-template:
         01-init:
           image:
             repository: ghcr.io/halkeye/docker-mautrix-gmessages
-            tag: v0.4.2.16
+            tag: v0.4.2.17
           env:
             TZ: America/Vancouver
             MAUTRIX_DB_URI:
