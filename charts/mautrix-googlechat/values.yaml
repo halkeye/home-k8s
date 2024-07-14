@@ -244,14 +244,14 @@ app-template:
                   allow: true
                   # Default to encryption, force-enable encryption in all portals the bridge creates
                   # This will cause the bridge bot to be in private chats for the encryption to work properly.
-                  default: true
+                  default: false
                   # Whether to use MSC2409/MSC3202 instead of /sync long polling for receiving encryption-related data.
                   appservice: false
                   # Require encryption, drop any unencrypted messages.
                   require: false
                   # Enable key sharing? If enabled, key requests for rooms where users are in will be fulfilled.
                   # You must use a client that supports requesting keys from other users to use this feature.
-                  allow_key_sharing: false
+                  allow_key_sharing: true
                   # Options for deleting megolm sessions from the bridge.
                   delete_keys:
                       # Beeper-specific: delete outbound sessions when hungryserv confirms
