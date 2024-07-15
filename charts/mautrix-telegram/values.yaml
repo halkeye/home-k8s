@@ -128,7 +128,7 @@ app-template:
           # Homeserver details
           homeserver:
               # The address that this appservice can use to connect to the homeserver.
-              address: "http://synapse.{{ .Release.Namespace }}.svc.cluster.local.:8443"
+              address: "http://synapse.{{ .Release.Namespace }}.svc.cluster.local.:8008"
               # The domain of the homeserver (for MXIDs, etc).
               domain: g4v.dev
               # Whether or not to verify the SSL certificate of the homeserver.

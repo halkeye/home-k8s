@@ -214,7 +214,7 @@ app-template:
           matrix:
             homeserver: g4v.dev
             secret: {{ .Values.matrix_secret | quote }}
-            endpoint: http://synapse.matrix.svc.cluster.local.:8443
+            endpoint: http://synapse.matrix.svc.cluster.local.:8008
           upstream_oauth2:
             providers:
               - id: 01HFRQFT5QFMJFGF01P7JAV2ME
