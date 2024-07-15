@@ -128,28 +128,28 @@ matrix-synapse:
       - name: SYNAPSE_SHARED_SECRET
         valueFrom:
           secretKeyRef:
-            key: redis-password
-            name: synapse-redis
+            key: synapse-secrets
+            name: SYNAPSE_SHARED_SECRET
       - name: SSO_CLIENT_ID
         valueFrom:
           secretKeyRef:
-            key: redis-password
-            name: synapse-redis
+            key: synapse-secrets
+            name: SSO_CLIENT_ID
       - name: SSO_CLIENT_SECRET
         valueFrom:
           secretKeyRef:
-            key: redis-password
-            name: synapse-redis
+            key: synapse-secrets
+            name: SSO_CLIENT_SECRET
       - name: S3_ACCESS_KEY_ID
         valueFrom:
           secretKeyRef:
-            key: redis-password
-            name: synapse-redis
+            key: synapse-secrets
+            name: S3_ACCESS_KEY_ID
       - name: S3_SECRET_ACCESS_KEY
         valueFrom:
           secretKeyRef:
-            key: redis-password
-            name: synapse-redis
+            key: synapse-secrets
+            name: S3_SECRET_ACCESS_KEY
 
     extraCommands:
       - apt-get update && apt-get install -y --no-install-recommends git gettext-base
@@ -161,6 +161,41 @@ matrix-synapse:
 
   workers:
     default:
+      extraVolumes:
+      - name: appservices
+        secret:
+          secretName: synapse-appservice-registrations
+
+      extraVolumeMounts:
+        - name: appservices
+          mountPath: /synapse/config/appservices
+
+      extraEnv:
+        - name: SYNAPSE_SHARED_SECRET
+          valueFrom:
+            secretKeyRef:
+              key: synapse-secrets
+              name: SYNAPSE_SHARED_SECRET
+        - name: SSO_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              key: synapse-secrets
+              name: SSO_CLIENT_ID
+        - name: SSO_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              key: synapse-secrets
+              name: SSO_CLIENT_SECRET
+        - name: S3_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              key: synapse-secrets
+              name: S3_ACCESS_KEY_ID
+        - name: S3_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              key: synapse-secrets
+              name: S3_SECRET_ACCESS_KEY
       extraCommands:
         - apt-get update && apt-get install -y --no-install-recommends git gettext-base
         - pip install https://github.com/t2bot/synapse-simple-antispam/archive/refs/heads/master.zip#egg=synapse-simple-antispam
