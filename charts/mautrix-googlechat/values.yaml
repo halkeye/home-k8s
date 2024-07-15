@@ -222,9 +222,10 @@ app-template:
               # and is therefore prone to race conditions.
               sync_direct_chat_list: false
               # Servers to always allow double puppeting from
-              double_puppet_server_map: {}
+              double_puppet_server_map:
+                g4v.dev: "http://synapse.{{ .Release.Namespace }}.svc.cluster.local.:8008"
               # Allow using double puppeting from any server with a valid client .well-known file.
-              double_puppet_allow_discovery: false
+              double_puppet_allow_discovery: true
               # Shared secret for https://github.com/devture/matrix-synapse-shared-secret-auth
               #
               # If set, custom puppets will be enabled automatically for local users
