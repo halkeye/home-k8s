@@ -93,6 +93,17 @@ stringData:
     rate_limited: false
     sender_localpart: ROKbdIBE3ofXRLjbCYUv486PGSraJ45f6jQ9gYNfoH6ahaOY7Rih0mvMtZRvAVSB
     url: http://mautrix-linkedin.matrix.svc.cluster.local.:29336
+  mautrix-linkedin-doublepuppet.yaml: |
+    as_token: {{ .Values.extraSecrets.mautrix_linkedin_doublepuppet_as_token }}
+    hs_token: {{ .Values.extraSecrets.mautrix_linkedin_doublepuppet_hs_token }}
+    id: mautrix-linkedin-doublepuppet
+    namespaces:
+      users:
+      - exclusive: false
+        regex: '@.*:g4v\.dev'
+    rate_limited: false
+    sender_localpart: htyMx291O7Gr94EkIo4MZQMYwopLa8UqsXdJ1y6jMbMcy5i5ZC0YOpYZ8JWr5JID
+    url: null
   signal-registration.yaml: |
     as_token: {{ .Values.extraSecrets.signal_registration_as_token }}
     hs_token: {{ .Values.extraSecrets.signal_registration_hs_token }}
