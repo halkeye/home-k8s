@@ -198,7 +198,7 @@ matrix-synapse:
       - apt-get update && apt-get install -y --no-install-recommends git gettext-base
       - pip install https://github.com/t2bot/synapse-simple-antispam/archive/refs/heads/master.zip#egg=synapse-simple-antispam
       - pip install https://github.com/devture/matrix-synapse-shared-secret-auth/archive/refs/tags/2.0.3.zip
-      - pip install https://github.com/matrix-org/synapse-s3-storage-provider/archive/refs/heads/v1.4.0.zip
+      - pip install https://github.com/matrix-org/synapse-s3-storage-provider/archive/refs/tags/v1.4.0.zip
       - "cat /synapse/config/conf.d/secrets.yaml | envsubst > /synapse/config/conf.d/secrets2.yaml"
       - "mv /synapse/config/conf.d/secrets2.yaml /synapse/config/conf.d/secrets.yaml"
 
