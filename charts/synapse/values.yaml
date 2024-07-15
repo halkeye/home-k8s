@@ -1,4 +1,6 @@
+fullnameOverride: synapse
 matrix-synapse:
+  fullnameOverride: synapse
   image:
     repository: ghcr.io/element-hq/synapse
     tag: v1.110.0
