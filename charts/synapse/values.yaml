@@ -160,6 +160,12 @@ matrix-synapse:
       - "mv /synapse/config/conf.d/secrets2.yaml /synapse/config/conf.d/secrets.yaml"
 
   workers:
+    default:
+      extraCommands:
+        - apt-get update && apt-get install -y --no-install-recommends git gettext-base
+        - pip install https://github.com/t2bot/synapse-simple-antispam/archive/refs/heads/master.zip#egg=synapse-simple-antispam
+        - pip install https://github.com/devture/matrix-synapse-shared-secret-auth/archive/refs/tags/2.0.3.zip
+        - pip install https://github.com/matrix-org/synapse-s3-storage-provider/archive/refs/tags/v1.4.0.zip
     generic_worker:
       enabled: true
       replicaCount: 2
