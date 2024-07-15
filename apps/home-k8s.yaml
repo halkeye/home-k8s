@@ -38,6 +38,7 @@ spec:
           - name: tautulli
           - name: wg-access-server
           - name: youtubedl-material
+          - { name: synapse, namespace: matrix }
   template:
     metadata:
       name: "{{.name}}"

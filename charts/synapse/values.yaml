@@ -154,8 +154,8 @@ matrix-synapse:
     extraVolumeMounts:
       - name: appservices
         mountPath: /synapse/config/appservices
-      - name: spamcheck
-        mountPath: /usr/local/lib/python3.7/site-packages/company
+      # - name: spamcheck
+      #   mountPath: /usr/local/lib/python3.7/site-packages/company
 
     extraEnv:
       - name: SYNAPSE_SHARED_SECRET
