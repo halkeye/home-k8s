@@ -43,8 +43,8 @@ stringData:
     sender_localpart: 01X9cfMqwFl8Zrfh01Y2L4yqNLCtZGFG
     url: http://mautrix-gmessages.matrix.svc.cluster.local.:29336
   mautrix-gmessages-doublepuppet.yaml: |
-    as_token: {{ .Values.extraSecrets.googlechat_doublepuppet_as_token }}
-    hs_token: {{ .Values.extraSecrets.googlechat_doublepuppet_hs_token }}
+    as_token: {{ .Values.extraSecrets.mautrix_gmessages_doublepuppet_as_token }}
+    hs_token: {{ .Values.extraSecrets.mautrix_gmessages_doublepuppet_hs_token }}
     id: mautrix-gmessages-doublepuppet
     namespaces:
       users:
