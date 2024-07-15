@@ -37,7 +37,7 @@ app-template:
         main:
           image:
             repository: dock.mau.dev/mautrix/googlechat
-            tag: v0.5.1
+            tag: a83d9c106702035edb050262de17110622e4be3f-amd64
           env:
             TZ: America/Vancouver
             MAUTRIX_DB_URI:
