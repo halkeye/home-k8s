@@ -1,6 +1,6 @@
 element-web:
   ingress:
-    enabled: false
+    enabled: true
     hosts:
       - chat.g4v.dev
   defaultServer:

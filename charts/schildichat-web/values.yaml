@@ -3,7 +3,7 @@ element-web:
     repository: "ghcr.io/schildichat/schildichat-web"
     tag: "latest@sha256:a87f572878059851c38e0b18f5548aea8f3fbff744c09efe17d5cb06e5aa5cb2"
   ingress:
-    enabled: false
+    enabled: true
     hosts:
       - chat2.g4v.dev
   defaultServer:
