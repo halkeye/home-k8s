@@ -190,6 +190,9 @@ matrix-synapse:
 
     extraCommands:
       #apt-get update && apt-get install -y --no-install-recommends git
+      - apt-get update && apt-get install -y --no-install-recommends envsubst
+      - python --version
+      - find /usr/local/lib/
       #pip install https://github.com/t2bot/synapse-simple-antispam/archive/refs/heads/master.zip#egg=synapse-simple-antispam
       #pip install https://github.com/devture/matrix-synapse-shared-secret-auth/archive/refs/tags/2.0.2.zip
       #pip install https://github.com/matrix-org/synapse-s3-storage-provider/archive/refs/heads/main.zip
