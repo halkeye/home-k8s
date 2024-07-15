@@ -17,8 +17,8 @@ stringData:
     sender_localpart: googlechatbot
     url: http://mautrix-googlechat.matrix.svc.cluster.local:29320
   googlechat-doublepuppet.yaml: |
-    as_token: {{ .Values.extraSecrets.telegram_doublepuppet_as_token }}
-    hs_token: {{ .Values.extraSecrets.telegram_doublepuppet_hs_token }}
+    as_token: {{ .Values.extraSecrets.googlechat_doublepuppet_as_token }}
+    hs_token: {{ .Values.extraSecrets.googlechat_doublepuppet_hs_token }}
     id: googlechatbot-doublepuppet
     namespaces:
       users:
