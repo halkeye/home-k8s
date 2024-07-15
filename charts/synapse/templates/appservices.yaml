@@ -1,0 +1,165 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: synapse-appservice-registrations
+type: Opaque
+stringData:
+  googlechat-registration.yaml: |
+    as_token: {{ .Values.extraSecrets.googlechat_registration_as_token }}
+    hs_token: {{ .Values.extraSecrets.googlechat_registration_hs_token }}
+    id: googlechatbot
+    namespaces:
+      users:
+      - exclusive: true
+        group_id: +googlechat:g4v.dev
+        regex: '@googlechat_.+:g4v.dev'
+    rate_limited: false
+    sender_localpart: googlechatbot
+    url: http://mautrix-googlechat.matrix.svc.cluster.local:29320
+  googlechat-doublepuppet.yaml: |
+    as_token: {{ .Values.extraSecrets.telegram_doublepuppet_as_token }}
+    hs_token: {{ .Values.extraSecrets.telegram_doublepuppet_hs_token }}
+    id: googlechatbot-doublepuppet
+    namespaces:
+      users:
+      - exclusive: false
+        regex: '@.*:g4v\.dev'
+    rate_limited: false
+    sender_localpart: EYXftK8gu5HukwIgCrb69R3xhtsjilEMcMgqFjsvl91L6CHMBeA0cA8m5ODhhpBC
+    url: null
+  mautrix-gmessages.yaml: |
+    as_token: {{ .Values.extraSecrets.mautrix_gmessages_as_token }}
+    hs_token: {{ .Values.extraSecrets.mautrix_gmessages_hs_token }}
+    de.sorunome.msc2409.push_ephemeral: true
+    id: gmessages
+    namespaces:
+      users:
+      - exclusive: true
+        regex: ^@gmessagesbot:g4v\.dev$
+      - exclusive: true
+        regex: ^@gmessages_.*:g4v\.dev$
+    push_ephemeral: true
+    rate_limited: false
+    sender_localpart: 01X9cfMqwFl8Zrfh01Y2L4yqNLCtZGFG
+    url: http://mautrix-gmessages.matrix.svc.cluster.local.:29336
+  mautrix-gmessages-doublepuppet.yaml: |
+    as_token: {{ .Values.extraSecrets.googlechat_doublepuppet_as_token }}
+    hs_token: {{ .Values.extraSecrets.googlechat_doublepuppet_hs_token }}
+    id: mautrix-gmessages-doublepuppet
+    namespaces:
+      users:
+      - exclusive: false
+        regex: '@.*:g4v\.dev'
+    rate_limited: false
+    sender_localpart: 167r6wr81kEl7mOaqYRImjPxKL7M14ZrWAylfY8W9vQb6Z9G9kfG6c53LDU13oqp
+    url: null
+  mautrix-instagram.yaml: |
+    as_token: {{ .Values.extraSecrets.mautrix_instagram_as_token }}
+    hs_token: {{ .Values.extraSecrets.mautrix_instagram_hs_token }}
+    de.sorunome.msc2409.push_ephemeral: true
+    id: instagram
+    namespaces:
+      users:
+      - exclusive: true
+        regex: ^@instagrambot:g4v\.dev$
+      - exclusive: true
+        regex: ^@instagram_.*:g4v\.dev$
+    push_ephemeral: true
+    rate_limited: false
+    sender_localpart: 01X9cfMqwFl8Zrfh01Y2L4yqNLCtZGFG
+    url: http://mautrix-instagram.matrix.svc.cluster.local.:29336
+  mautrix-instagram-doublepuppet.yaml: |
+    as_token: {{ .Values.extraSecrets.mautrix_instagram_doublepuppet_as_token }}
+    hs_token: {{ .Values.extraSecrets.mautrix_instagram_doublepuppet_hs_token }}
+    id: mautrix-instagram-doublepuppet
+    namespaces:
+      users:
+      - exclusive: false
+        regex: '@.*:g4v\.dev'
+    rate_limited: false
+    sender_localpart: UUtZjPSUkXQEPuuYRoP2iPzx7SefOTbJv3sJLMKBec40qPRUhyH5MRkJLOArQhDp
+    url: null
+  mautrix-linkedin.yaml: |
+    as_token: {{ .Values.extraSecrets.mautrix_linkedin_as_token }}
+    hs_token: {{ .Values.extraSecrets.mautrix_linkedin_hs_token }}
+    id: linkedin
+    namespaces:
+      aliases: []
+      users:
+      - exclusive: true
+        regex: ^@linkedinbot:g4v\.dev$
+      - exclusive: true
+        regex: ^@linkedin_.*:g4v\.dev$
+    rate_limited: false
+    sender_localpart: ROKbdIBE3ofXRLjbCYUv486PGSraJ45f6jQ9gYNfoH6ahaOY7Rih0mvMtZRvAVSB
+    url: http://mautrix-linkedin.matrix.svc.cluster.local.:29336
+  signal-registration.yaml: |
+    as_token: {{ .Values.extraSecrets.signal_registration_as_token }}
+    hs_token: {{ .Values.extraSecrets.signal_registration_hs_token }}
+    id: signal
+    namespaces:
+      users:
+      - exclusive: true
+        group_id: +signal:g4v.dev
+        regex: '@signal_.+:g4v.dev'
+    rate_limited: false
+    sender_localpart: signalbot
+    url: http://mautrix-signal.matrix.svc.cluster.local.:29328
+  signal-doublepuppet.yaml: |
+    as_token: {{ .Values.extraSecrets.signal_doublepuppet_as_token }}
+    hs_token: {{ .Values.extraSecrets.signal_doublepuppet_hs_token }}
+    id: signal-doublepuppet
+    namespaces:
+      users:
+      - exclusive: false
+        regex: '@.*:g4v\.dev'
+    rate_limited: false
+    sender_localpart: d31ZSuzGQo2rqdgWfu4VZEBEbC0KdEoz4Tc8zcPjADRzCObYOiOSbF6Q5oAZBPgU
+    url: null
+  telegram-registration.yaml: |
+    as_token: {{ .Values.extraSecrets.telegram_registration_as_token }}
+    hs_token: {{ .Values.extraSecrets.telegram_registration_hs_token }}
+    id: telegram
+    namespaces:
+      aliases:
+      - exclusive: true
+        regex: '#telegram_.+:g4v.dev'
+      users:
+      - exclusive: true
+        regex: '@telegram_.+:g4v.dev'
+    rate_limited: false
+    sender_localpart: telegrambot
+    url: http://mautrix-telegram.matrix.svc.cluster.local:29317
+  telegram-doublepuppet.yaml: |
+    as_token: {{ .Values.extraSecrets.telegram_doublepuppet_as_token }}
+    hs_token: {{ .Values.extraSecrets.telegram_doublepuppet_hs_token }}
+    id: telegram-doublepuppet
+    namespaces:
+      users:
+      - exclusive: false
+        regex: '@.*:g4v\.dev'
+    rate_limited: false
+    sender_localpart: d123c923-f409-40dd-b3af-bdee3123999a
+    url: null
+  whatsapp-registration.yaml: |
+    as_token: {{ .Values.extraSecrets.whatsapp_registration_as_token }}
+    hs_token: {{ .Values.extraSecrets.whatsapp_registration_hs_token }}
+    id: whatsapp
+    namespaces:
+      users:
+      - exclusive: true
+        regex: ^@whatsapp_[0-9]+:g4v.dev$
+    rate_limited: false
+    sender_localpart: whatsappbot
+    url: http://mautrix-whatsapp.matrix.svc.cluster.local:29318
+  whatsapp-doublepuppet.yaml: |
+    as_token: {{ .Values.extraSecrets.whatsapp_doublepuppet_as_token }}
+    hs_token: {{ .Values.extraSecrets.whatsapp_doublepuppet_hs_token }}
+    id: whatsapp-doublepuppet
+    namespaces:
+      users:
+      - exclusive: false
+        regex: '@.*:g4v\.dev'
+    rate_limited: false
+    sender_localpart: FePgh8IgCtl1SPkDJwDHahjdcDr5arWtzZ5f7w0vshCQhxEji4edR0YG64Cd8SUX
+    url: null

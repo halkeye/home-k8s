@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: matrix-synapse-signingkey
+type: Opaque
+stringData:
+  signing.key: {{ .Values.extraSecrets.signing_key | default "" }}
+
