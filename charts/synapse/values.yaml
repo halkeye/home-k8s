@@ -17,7 +17,7 @@ matrix-synapse:
     csHosts:
       - matrix.g4v.dev
     hosts:
-      - g4v.dev
+      - matrix.g4v.dev
     includeUnderscoreSynapse: false
 
   externalPostgresql:
