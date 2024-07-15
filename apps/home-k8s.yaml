@@ -47,7 +47,7 @@ spec:
         argocd.argoproj.io/sync-wave: '{{dig "syncwave" "20" . }}'
     spec:
       destination:
-        namespace: "{{.name | normalize}}"
+        namespace: '{{- if index . "namespace" -}}{{ .namespace | normalize }}{{- else }}{{ .name | normalize }}{{ end }}'
         server: '{{dig "server" "https://kubernetes.default.svc" . }}'
       project: default
       source:
