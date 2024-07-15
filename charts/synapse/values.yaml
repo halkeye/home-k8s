@@ -64,138 +64,50 @@ matrix-synapse:
         - https://chat.g4v.dev
         - https://chat2.g4v.dev
         - https://g4v.dev
-    modules:
-      - module: shared_secret_authenticator.SharedSecretAuthProvider
-        config:
-          shared_secret: "$SYNAPSE_SHARED_SECRET"
     presence:
       enabled: true
 
-    oidc_providers:
-      - idp_id: sso
-        idp_name: SSO
-        discover: true
-        issuer: https://auth.g4v.dev/application/o/synapse/
-        client_id: "$SSO_CLIENT_ID"
-        client_secret: "$SSO_CLIENT_SECRET"
-        scopes:
-          - openid
-          - profile
-          - email
-        user_mapping_provider:
-          config:
-              localpart_template: "{{ user.preferred_username }}"
-              display_name_template: "{{ user.name|capitalize }}"
-
-    media_storage_providers:
-        - module: s3_storage_provider.S3StorageProviderBackend
-          store_local: true
-          store_remote: true
-          store_synchronous: true
-          config:
-            bucket: g4v-matrix-media
-            # All of the below options are optional, for use with non-AWS S3-like
-            # services, or to specify access tokens here instead of some external method.
-            region_name: sfo3
-            endpoint_url: https://sfo3.digitaloceanspaces.com
-            access_key_id: "$S3_ACCESS_KEY_ID" 
-            secret_access_key: "$S3_SECRET_ACCESS_KEY"
-
-        - module: file_system
-          # Whether to write new local files.
-          store_local: true
-          # Whether to write new remote media
-          store_remote: true
-          # Whether to block upload requests waiting for write to this
-          # provider to complete
-          store_synchronous: true
-          config:
-            directory: /synapse/data
-
   synapse:
     extraVolumes:
-    - name: appservices
-      secret:
-        secretName: synapse-appservice-registrations
+      - name: appservices
+        secret:
+          secretName: synapse-appservice-registrations
+      - name: extra-config
+        secret:
+          secretName: synapse-extra-config
 
     extraVolumeMounts:
       - name: appservices
         mountPath: /synapse/config/appservices
-
-    extraEnv:
-      - name: SYNAPSE_SHARED_SECRET
-        valueFrom:
-          secretKeyRef:
-            name: synapse-secrets
-            key: SYNAPSE_SHARED_SECRET
-      - name: SSO_CLIENT_ID
-        valueFrom:
-          secretKeyRef:
-            name: synapse-secrets
-            key: SSO_CLIENT_ID
-      - name: SSO_CLIENT_SECRET
-        valueFrom:
-          secretKeyRef:
-            name: synapse-secrets
-            key: SSO_CLIENT_SECRET
-      - name: S3_ACCESS_KEY_ID
-        valueFrom:
-          secretKeyRef:
-            name: synapse-secrets
-            key: S3_ACCESS_KEY_ID
-      - name: S3_SECRET_ACCESS_KEY
-        valueFrom:
-          secretKeyRef:
-            name: synapse-secrets
-            key: S3_SECRET_ACCESS_KEY
+      - name: extra-config
+        subPath: extraConfig.yaml
+        mountPath: /synapse/config/conf.d/extraConfig.yaml
 
     extraCommands:
-      - apt-get update && apt-get install -y --no-install-recommends git gettext-base
+      # - apt-get update && apt-get install -y --no-install-recommends git
       - pip install https://github.com/t2bot/synapse-simple-antispam/archive/refs/heads/master.zip#egg=synapse-simple-antispam
       - pip install https://github.com/devture/matrix-synapse-shared-secret-auth/archive/refs/tags/2.0.3.zip
       - pip install https://github.com/matrix-org/synapse-s3-storage-provider/archive/refs/tags/v1.4.0.zip
-      - "cat /synapse/config/conf.d/secrets.yaml | envsubst > /synapse/config/conf.d/secrets2.yaml"
-      - "mv /synapse/config/conf.d/secrets2.yaml /synapse/config/conf.d/secrets.yaml"
 
   workers:
     default:
       volumes:
-      - name: appservices
-        secret:
-          secretName: synapse-appservice-registrations
+        - name: appservices
+          secret:
+            secretName: synapse-appservice-registrations
+        - name: extra-config
+          secret:
+            secretName: synapse-extra-config
 
       volumeMounts:
         - name: appservices
           mountPath: /synapse/config/appservices
+        - name: extra-config
+          subPath: extraConfig.yaml
+          mountPath: /synapse/config/conf.d/extraConfig.yaml
 
-      extraEnv:
-        - name: SYNAPSE_SHARED_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: synapse-secrets
-              key: SYNAPSE_SHARED_SECRET
-        - name: SSO_CLIENT_ID
-          valueFrom:
-            secretKeyRef:
-              name: synapse-secrets
-              key: SSO_CLIENT_ID
-        - name: SSO_CLIENT_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: synapse-secrets
-              key: SSO_CLIENT_SECRET
-        - name: S3_ACCESS_KEY_ID
-          valueFrom:
-            secretKeyRef:
-              name: synapse-secrets
-              key: S3_ACCESS_KEY_ID
-        - name: S3_SECRET_ACCESS_KEY
-          valueFrom:
-            secretKeyRef:
-              name: synapse-secrets
-              key: S3_SECRET_ACCESS_KEY
       extraCommands:
-        - apt-get update && apt-get install -y --no-install-recommends git gettext-base
+        # - apt-get update && apt-get install -y --no-install-recommends git gettext-base
         - pip install https://github.com/t2bot/synapse-simple-antispam/archive/refs/heads/master.zip#egg=synapse-simple-antispam
         - pip install https://github.com/devture/matrix-synapse-shared-secret-auth/archive/refs/tags/2.0.3.zip
         - pip install https://github.com/matrix-org/synapse-s3-storage-provider/archive/refs/tags/v1.4.0.zip
