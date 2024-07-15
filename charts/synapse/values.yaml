@@ -119,45 +119,10 @@ matrix-synapse:
     - name: appservices
       secret:
         secretName: synapse-appservice-registrations
-    - name: synapse-simple-antispam
-      flexVolume:
-        driver: ananace/git-live
-        options:
-          repo: https://github.com/t2bot/synapse-simple-antispam
-          interval: 1d
-        readOnly: true
-    - name: matrix-synapse-shared-secret-auth
-      flexVolume:
-        driver: ananace/git-live
-        options:
-          repo: https://github.com/devture/matrix-synapse-shared-secret-auth
-          interval: 1d
-          branch: 2.0.3
-        readOnly: true
-    - name: synapse-s3-storage-provider
-      flexVolume:
-        driver: ananace/git-live
-        options:
-          repo: https://github.com/matrix-org/synapse-s3-storage-provider
-          interval: 1d
-          branch: v1.4.0
-        readOnly: true
 
     extraVolumeMounts:
       - name: appservices
         mountPath: /synapse/config/appservices
-      - name: synapse-simple-antispam
-        mountPath: /python-packages/synapse_simple_antispam
-      - name: matrix-synapse-shared-secret-auth
-        mountPath: /python-packages/shared_secret_authenticator
-      - name: synapse-s3-storage-provider
-        mountPath: /python-packages/s3_storage_provider
-      # - name: synapse-simple-antispam
-      #   mountPath: /usr/local/lib/python3.11/site-packages/synapse_simple_antispam
-      # - name: matrix-synapse-shared-secret-auth
-      #   mountPath: /usr/local/lib/python3.11/site-packages/shared_secret_authenticator
-      # - name: synapse-s3-storage-provider
-      #   mountPath: /usr/local/lib/python3.11/site-packages/s3_storage_provider
 
     extraEnv:
       - name: SYNAPSE_SHARED_SECRET
