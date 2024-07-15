@@ -117,7 +117,7 @@ app-template:
               # The domain of the homeserver (also known as server_name, used for MXIDs, etc).
               domain: g4v.dev
 
-             # Whether or not to verify the SSL certificate of the homeserver.
+              # Whether or not to verify the SSL certificate of the homeserver.
               # Only applies if address starts with https://
               verify_ssl: true
               # What software is the homeserver running?
@@ -222,8 +222,8 @@ app-template:
               # and is therefore prone to race conditions.
               sync_direct_chat_list: false
               # Servers to always allow double puppeting from
-              double_puppet_server_map:
-                g4v.dev: "http://synapse.{{ .Release.Namespace }}.svc.cluster.local.:8008"
+              # double_puppet_server_map:
+              #   g4v.dev: "http://synapse.{{ .Release.Namespace }}.svc.cluster.local.:8008"
               # Allow using double puppeting from any server with a valid client .well-known file.
               double_puppet_allow_discovery: true
               # Shared secret for https://github.com/devture/matrix-synapse-shared-secret-auth
