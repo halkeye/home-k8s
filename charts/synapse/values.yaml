@@ -161,12 +161,12 @@ matrix-synapse:
 
   workers:
     default:
-      extraVolumes:
+      volumes:
       - name: appservices
         secret:
           secretName: synapse-appservice-registrations
 
-      extraVolumeMounts:
+      volumeMounts:
         - name: appservices
           mountPath: /synapse/config/appservices
 
