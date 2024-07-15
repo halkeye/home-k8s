@@ -18,8 +18,6 @@ matrix-synapse:
       - matrix.g4v.dev
     hosts:
       - g4v.dev
-    wkHosts:
-      - matrix-wk.g4v.dev
     includeUnderscoreSynapse: false
 
   externalPostgresql:
@@ -40,12 +38,6 @@ matrix-synapse:
 
   persistence:
     enabled: false
-
-  wellknown:
-    enabled: false
-    image:
-      repository: ghcr.io/rtsp/docker-lighttpd
-      tag: 1.4.76
 
   extraConfig:
     email:
