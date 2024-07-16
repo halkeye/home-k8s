@@ -4,7 +4,7 @@ element-web:
     hosts:
       - chat.g4v.dev
   defaultServer:
-    url: 'https://g4v.dev'
+    url: 'https://matrix.g4v.dev'
     name: 'g4v.dev'
   config:
     disable_guests: true
