@@ -55,6 +55,7 @@ homeserver:
     - /config/mautrix-gmessages.yaml
     - /config/mautrix-gmessages-doublepuppet.yaml
     - /config/mautrix-linkedin.yaml
+    - /config/mautrix-linkedin-doublepuppet.yaml
     - /config/mautrix-instagram.yaml
     - /config/mautrix-instagram-doublepuppet.yaml
   enable_group_creation: true
