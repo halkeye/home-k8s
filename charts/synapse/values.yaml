@@ -57,6 +57,7 @@ matrix-synapse:
       - /synapse/config/appservices/mautrix-gmessages.yaml
       - /synapse/config/appservices/mautrix-gmessages-doublepuppet.yaml
       - /synapse/config/appservices/mautrix-linkedin.yaml
+      - /synapse/config/appservices/mautrix-linkedin-doublepuppet.yaml
       - /synapse/config/appservices/mautrix-instagram.yaml
       - /synapse/config/appservices/mautrix-instagram-doublepuppet.yaml
     sso:
