@@ -18,7 +18,7 @@ matrix-synapse:
       external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
     includeUnderscoreSynapse: false
     csPaths:
-      - path: /_synapse/client/oidc/callback
+      - path: /_synapse/client/oidc
         pathType: Prefix
         backend:
           service:
