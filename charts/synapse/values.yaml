@@ -45,6 +45,37 @@ matrix-synapse:
       smtp_host: postfix.smtp.svc.cluster.local
       smtp_port: 25
     max_upload_size: 500M
+    
+    # Maximum number of pixels that will be thumbnailed
+    max_image_pixels: 32M
+
+    url_preview_enabled: true
+
+    url_preview_ip_range_blacklist:
+      - "127.0.0.0/8"
+      - "10.0.0.0/8"
+      - "172.16.0.0/12"
+      - "192.168.0.0/16"
+      - "100.64.0.0/10"
+      - "169.254.0.0/16"
+      - "::1/128"
+      - "fe80::/64"
+      - "fc00::/7"
+
+    url_preview_url_blacklist:
+      # blacklist any URL with a username in its URI
+      - username: "*"
+      # blacklist all *.google.com URLs
+      - netloc: "google.com"
+      - netloc: "*.google.com"
+      # blacklist all plain HTTP URLs
+      - scheme: "http"
+      # blacklist http(s)://www.acme.com/foo
+      - netloc: "www.acme.com"
+        path: "/foo"
+      # blacklist any URL with a literal IPv4 address
+      - netloc: '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$'
+
     app_service_config_files:
       - /synapse/config/appservices/whatsapp-registration.yaml
       - /synapse/config/appservices/whatsapp-doublepuppet.yaml
@@ -64,6 +95,7 @@ matrix-synapse:
       client_whitelist:
         - https://chat.g4v.dev
         - https://chat2.g4v.dev
+        - https://matrix.g4v.dev
         - https://g4v.dev
     presence:
       enabled: true
