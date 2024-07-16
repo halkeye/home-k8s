@@ -18,7 +18,13 @@ matrix-synapse:
       external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
     includeUnderscoreSynapse: false
     csPaths:
-      - "/_synapse/client/oidc/callback"
+      - path: /_synapse/client/oidc/callback
+        pathType: Prefix
+        backend:
+          service:
+            name: synapse
+            port: 8008
+
 
   externalPostgresql:
     database: synapse
