@@ -23,7 +23,8 @@ matrix-synapse:
         backend:
           service:
             name: synapse
-            port: 8008
+            port:
+              number: 8008
 
 
   externalPostgresql:
