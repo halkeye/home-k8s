@@ -50,10 +50,11 @@
       ],
       "versioning": "loose",
       "matchPackagePatterns": [
-        "changedetection",
-        "plex",
-        "qbittorrent",
-        "prowlarr"
+        "prowlarr-develop",
+        "docker-gathio",
+        "docker-mautrix-signal",
+        "docker-mautrix-whatsapp",
+        "docker-mautrix-gmessages"
       ]
     },
     {
