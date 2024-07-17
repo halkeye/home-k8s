@@ -39,7 +39,7 @@ app-template:
         main:
           image:
             repository: dock.mau.dev/mautrix/telegram
-            tag: v0.15.1
+            tag: v0.15.2
           env:
             TZ: America/Vancouver
             MAUTRIX_DB_URI:
