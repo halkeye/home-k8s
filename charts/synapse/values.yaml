@@ -36,7 +36,7 @@ matrix-synapse:
   redis:
     enabled: true
     auth:
-     enabled: true
+      enabled: true
 
   signingkey:
     job:
@@ -54,7 +54,7 @@ matrix-synapse:
       smtp_host: postfix.smtp.svc.cluster.local
       smtp_port: 25
     max_upload_size: 500M
-    
+
     # Maximum number of pixels that will be thumbnailed
     max_image_pixels: 32M
 
