@@ -2,10 +2,13 @@ app-template:
   controllers:
     main:
       type: cronjob
+      revisionHistoryLimit: 1
       annotations:
         reloader.stakater.com/auto: "true"
       cronjob:
         schedule: "@daily"
+        successfulJobsHistory: 1
+        failedJobsHistory: 2
       containers:
         recyclarr:
           image:
