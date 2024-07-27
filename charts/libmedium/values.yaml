@@ -8,7 +8,7 @@ app-template:
         libmedium:
           image:
             repository: realaravinth/libmedium
-            tag: master@sha256:63d69a1fd87588028f9fdf26256ec11fc06ecb90fcdd6ee007cd20a1808e1b14
+            tag: latest@sha256:3faadb44342b3de9d95e946038ef3e6f4cfe862e844225fa4e1afc6787787b53
           env:
             TZ: America/Vancouver
             LOG_LEVEL: "info"
