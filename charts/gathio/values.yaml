@@ -18,9 +18,10 @@ app-template:
             capabilities:
               drop: ["ALL"]
           resources:
-            limits:
-              memory: 2Gi
             requests:
+              memory: 256Mi
+              cpu: 10m
+            limits:
               memory: 256Mi
               cpu: 10m
       pod:

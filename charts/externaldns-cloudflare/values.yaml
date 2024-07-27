@@ -2,6 +2,13 @@ external-dns:
   nameOverride: externaldns-cloudflare
   fullnameOverride: externaldns-cloudflare
   policy: sync
+  resources:
+    limits:
+      cpu: 10m
+      memory: 100Mi
+    requests:
+      cpu: 10m
+      memory: 100Mi
   domainFilters:
     - g4v.dev
     - halkeye.net

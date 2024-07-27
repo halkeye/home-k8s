@@ -73,6 +73,12 @@ app-template:
             readOnlyRootFilesystem: true
             capabilities:
               drop: ["ALL"]
+          resources:
+            limits:
+              memory: 100Mi
+            requests:
+              cpu: 10m
+              memory: 100Mi
       pod:
         securityContext:
           runAsUser: 1337

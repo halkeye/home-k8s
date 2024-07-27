@@ -36,8 +36,10 @@ app-template:
           resources:
             requests:
               cpu: 10m
+              memory: 1Gi
             limits:
-              memory: 4Gi
+              cpu: 10m
+              memory: 2Gi
   service:
     main:
       controller: main

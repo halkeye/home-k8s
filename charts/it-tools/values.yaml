@@ -10,11 +10,11 @@ app-template:
           env:
             TZ: America/Vancouver
           resources:
-            limits:
-              memory: 50Mi
             requests:
-              memory: 10Mi
+              memory: 100Mi
               cpu: 10m
+            limits:
+              memory: 500Mi
   service:
     main:
       controller: main

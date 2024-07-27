@@ -47,11 +47,11 @@ app-template:
             capabilities:
               drop: ["ALL"]
           resources:
-            limits: &resources
-              memory: 256Mi
             requests:
-              <<: *resources
               cpu: 10m
+              memory: 100Mi
+            limits:
+              memory: 100Mi
       pod:
         securityContext:
           runAsUser: 568

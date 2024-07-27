@@ -1,8 +1,15 @@
 ---
 ext-postgres-operator:
-    fullnameOverride: ext-postgres-operator
-    postgres:
-        host: ""
-        default_database: ""
-        user: ""
-        password: ""
+  fullnameOverride: ext-postgres-operator
+  postgres:
+      host: ""
+      default_database: ""
+      user: ""
+      password: ""
+  resources:
+    limits:
+      cpu: 10m
+      memory: 100Mi
+    requests:
+      cpu: 10m
+      memory: 100Mi
