@@ -37,7 +37,7 @@ app-template:
         main:
           image:
             repository: ghcr.io/beeper/linkedin
-            tag: 45cf608ea6a4b8076f72b601dfa5d5a14b8c17be 
+            tag: 45cf608ea6a4b8076f72b601dfa5d5a14b8c17be
           env:
             TZ: America/Vancouver
             MAUTRIX_DB_URI:
