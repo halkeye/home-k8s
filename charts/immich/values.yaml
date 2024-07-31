@@ -42,7 +42,7 @@ app-template:
           image:
             repository: ghcr.io/immich-app/immich-server
             pullPolicy: IfNotPresent
-            tag: v1.110.0
+            tag: v1.111.0
           env:
             IMMICH_PORT: 3001
             REDIS_HOSTNAME:
@@ -106,7 +106,7 @@ app-template:
         main:
           image:
             repository: ghcr.io/immich-app/immich-machine-learning
-            tag: v1.110.0
+            tag: v1.111.0
             pullPolicy: IfNotPresent
           env:
             TRANSFORMERS_CACHE: /cache
