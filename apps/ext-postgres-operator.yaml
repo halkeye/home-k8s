@@ -20,7 +20,6 @@ spec:
         repoURL: https://github.com/halkeye/home-k8s
         targetRevision: HEAD
         helm:
-          releaseName: reloader
           valueFiles:
             - values.yaml
             - 'secrets://values-{{.nameNormalized}}-secrets.yaml'
