@@ -5,10 +5,18 @@ app-template:
       containers:
         tautulli:
           image:
-            repository: ghcr.io/onedr0p/tautulli
-            tag: 2.13.4@sha256:633a57b2f8634feb67811064ec3fa52f40a70641be927fdfda6f5d91ebbd5d73
+            repository: tautulli/tautulli
+            tag: v2.14.4
           env:
             TZ: America/Vancouver
+          command: ["python", "Tautulli.py"]
+          args:
+            - "--config"
+            - "/config/config.ini"
+            - "--datadir"
+            - "/config"
+            - "--port"
+            - "8181"
           probes:
             liveness: &probes
               enabled: true
@@ -78,7 +86,7 @@ app-template:
         gethomepage.dev/name: Tautulli
         nginx.ingress.kubernetes.io/proxy-body-size: "1024M"
       hosts:
-        - host: &host plexstats.g4v.dev
+        - host: plexstats.g4v.dev
           paths:
             - path: /
               service:
