@@ -16,20 +16,20 @@ app-template:
             SONARR__PORT: &port 80
             SONARR__LOG_LEVEL: info
             SONARR__AUTHENTICATION_METHOD: External
-            SONARR__POSTGRES_PORT: "5432"
-            SONARR__POSTGRES_HOST:
+            SONARR__POSTGRES__PORT: "5432"
+            SONARR__POSTGRES__HOST:
               valueFrom:
                 secretKeyRef:
                   name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
                   key: HOST
-            SONARR__POSTGRES_MAIN_DB: "{{ .Release.Name }}_main"
-            SONARR__POSTGRES_LOG_DB: "{{ .Release.Name }}_log"
-            SONARR__POSTGRES_USER:
+            SONARR__POSTGRES__MAINDB: "{{ .Release.Name }}_main"
+            SONARR__POSTGRES__LOGDB: "{{ .Release.Name }}_log"
+            SONARR__POSTGRES__USER:
               valueFrom:
                 secretKeyRef:
                   name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
                   key: LOGIN
-            SONARR__POSTGRES_PASSWORD:
+            SONARR__POSTGRES__PASSWORD:
               valueFrom:
                 secretKeyRef:
                   name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
@@ -76,7 +76,7 @@ app-template:
               valueFrom:
                 secretKeyRef:
                   name: "{{.Release.Name}}-secret"
-                  key: SONARR__API_KEY
+                  key: SONARR__AUTH__APIKEY
           resources:
             requests:
               cpu: 10m
