@@ -58,11 +58,11 @@ app-template:
             capabilities:
               drop: ["ALL"]
           resources:
-            limits: &resources
-              memory: 1Gi
+            limits:
+              memory: 2Gi
             requests:
-              <<: *resources
-              cpu: 10m
+              memory: 1Gi
+              cpu: 15m
         exportarr:
           image:
             repository: ghcr.io/onedr0p/exportarr
