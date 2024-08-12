@@ -160,6 +160,11 @@ grafana:
         revision: 3
         datasource: Prometheus
     kubernetes:
+      oom-and-restarts:
+        # renovate: depName="OOM and restarts"
+        gnetId: 16718
+        revision: 1
+        datasource: Prometheus
       kubernetes-api-server:
         # renovate: depName="Kubernetes / System / API Server"
         gnetId: 15761
