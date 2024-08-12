@@ -62,7 +62,7 @@ app-template:
               memory: 4Gi
             requests:
               memory: 2Gi
-              cpu: 15m
+              cpu: 30m
         exportarr:
           image:
             repository: ghcr.io/onedr0p/exportarr
