@@ -59,9 +59,9 @@ app-template:
               drop: ["ALL"]
           resources:
             limits:
-              memory: 2Gi
+              memory: 4Gi
             requests:
-              memory: 1Gi
+              memory: 2Gi
               cpu: 15m
         exportarr:
           image:
