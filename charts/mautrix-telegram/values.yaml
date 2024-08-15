@@ -19,7 +19,7 @@ app-template:
           image:
             # probably already downloaded, and includes envsubst
             repository: nginx
-            tag: 1.27.0
+            tag: 1.27.1
           env:
             TZ: America/Vancouver
             MAUTRIX_DB_URI:
