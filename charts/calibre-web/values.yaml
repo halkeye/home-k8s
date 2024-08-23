@@ -6,7 +6,7 @@ app-template:
         calibre-web:
           image:
             repository: linuxserver/calibre-web
-            tag: 0.6.21
+            tag: version-0.6.23
           env:
             TZ: America/Vancouver
             DOCKER_MODS: ghcr.io/halkeye-docker/calibre-web-nginx-vouch:main
@@ -17,7 +17,7 @@ app-template:
             readOnlyRootFilesystem: false
             capabilities: {}
           resources:
-            limits: &resources
+            limits:
               memory: 2Gi
             requests:
               memory: 256Mi
@@ -37,7 +37,7 @@ app-template:
         gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/calibre-web.png
         gethomepage.dev/name: Calibre Web
       hosts:
-        - host: &host books.g4v.dev
+        - host: books.g4v.dev
           paths:
             - path: /
               service:
