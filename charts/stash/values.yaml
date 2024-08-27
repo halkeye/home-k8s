@@ -34,7 +34,7 @@ app-template:
               memory: 2Gi
             requests:
               <<: *resources
-              cpu: 10m
+              cpu: 50m
   service:
     main:
       controller: main
