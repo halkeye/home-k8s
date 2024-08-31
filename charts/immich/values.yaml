@@ -42,7 +42,7 @@ app-template:
           image:
             repository: ghcr.io/immich-app/immich-server
             pullPolicy: IfNotPresent
-            tag: v1.113.0
+            tag: v1.112.1
           env:
             IMMICH_LOG_LEVEL: "debug"
             IMMICH_TRUSTED_PROXIES: "0.0.0.0"
@@ -108,7 +108,7 @@ app-template:
         main:
           image:
             repository: ghcr.io/immich-app/immich-machine-learning
-            tag: v1.113.0
+            tag: v1.112.1
             pullPolicy: IfNotPresent
           env:
             TRANSFORMERS_CACHE: /cache
