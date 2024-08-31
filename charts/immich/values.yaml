@@ -44,6 +44,8 @@ app-template:
             pullPolicy: IfNotPresent
             tag: v1.113.0
           env:
+            IMMICH_LOG_LEVEL: "debug"
+            IMMICH_TRUSTED_PROXIES: "0.0.0.0"
             IMMICH_PORT: 3001
             REDIS_HOSTNAME:
               valueFrom:
