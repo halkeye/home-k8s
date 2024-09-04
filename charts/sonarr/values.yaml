@@ -12,10 +12,11 @@ app-template:
             # https://github.com/Radarr/Radarr/issues/7030#issuecomment-1039689518
             # https://github.com/dotnet/runtime/issues/9336
             COMPlus_EnableDiagnostics: "0"
-            SONARR__INSTANCE_NAME: "{{ .Release.Name }}"
+            SONARR__INSTANCENAME: "{{ .Release.Name }}"
             SONARR__PORT: &port 80
-            SONARR__LOG_LEVEL: info
-            SONARR__AUTHENTICATION_METHOD: External
+            SONARR__LOG__LEVEL: info
+            SONARR__AUTHENTICATION__METHOD: External
+            SONARR__AUTH__REQUIRED: DisabledForLocalAddresses
             SONARR__POSTGRES__PORT: "5432"
             SONARR__POSTGRES__HOST:
               valueFrom:
