@@ -36,9 +36,16 @@ app-template:
           protocol: HTTP
 
   controllers:
-    main:
-      initContainers:
-        01-migrations:
+    migrations:
+      type: job
+      revisionHistoryLimit: 1
+      job:
+        backoffLimit: 0
+        # 2 days
+        ttlSecondsAfterFinished: 172800
+      containers:
+        migrations:
+          restartPolicy: Never
           image:
             repository: ghcr.io/immich-app/immich-server
             pullPolicy: IfNotPresent
@@ -53,6 +60,7 @@ app-template:
             - npm
             - run
             - typeorm:migrations:run
+    main:
       containers:
         main:
           image:
