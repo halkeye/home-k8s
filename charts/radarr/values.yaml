@@ -12,24 +12,25 @@ app-template:
             # https://github.com/Radarr/Radarr/issues/7030#issuecomment-1039689518
             # https://github.com/dotnet/runtime/issues/9336
             COMPlus_EnableDiagnostics: "0"
-            RADARR__INSTANCE_NAME: "{{ .Release.Name }}"
+            RADARR__INSTANCENAME: "{{ .Release.Name }}"
             RADARR__PORT: &port 80
-            RADARR__LOG_LEVEL: info
-            RADARR__AUTHENTICATION_METHOD: External
-            RADARR__POSTGRES_PORT: "5432"
-            RADARR__POSTGRES_HOST:
+            RADARR__LOG__LEVEL: info
+            RADARR__AUTHENTICATION__METHOD: External
+            RADARR__AUTH__REQUIRED: DisabledForLocalAddresses
+            RADARR__POSTGRES__PORT: "5432"
+            RADARR__POSTGRES__HOST:
               valueFrom:
                 secretKeyRef:
                   name: "{{.Release.Name}}-db-secret-{{.Release.Name}}"
                   key: HOST
-            RADARR__POSTGRES_MAIN_DB: "{{.Release.Name}}_main"
-            RADARR__POSTGRES_LOG_DB: "{{.Release.Name}}_log"
-            RADARR__POSTGRES_USER:
+            RADARR__POSTGRES__MAINDB: "{{.Release.Name}}_main"
+            RADARR__POSTGRES__LOGDB: "{{.Release.Name}}_log"
+            RADARR__POSTGRES__USER:
               valueFrom:
                 secretKeyRef:
                   name: "{{.Release.Name}}-db-secret-{{.Release.Name}}"
                   key: LOGIN
-            RADARR__POSTGRES_PASSWORD:
+            RADARR__POSTGRES__PASSWORD:
               valueFrom:
                 secretKeyRef:
                   name: "{{.Release.Name}}-db-secret-{{.Release.Name}}"
