@@ -68,7 +68,6 @@ app-template:
             pullPolicy: IfNotPresent
             tag: v1.113.0
           env:
-            IMMICH_LOG_LEVEL: "debug"
             DB_SKIP_MIGRATIONS: "true"
             IMMICH_TRUSTED_PROXIES: "0.0.0.0"
             IMMICH_PORT: 3001
@@ -77,26 +76,6 @@ app-template:
                 secretKeyRef:
                   name: "{{ .Release.Name }}-secret"
                   key: REDIS_HOSTNAME
-            # DB_HOSTNAME:
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: immich-immich-user
-            #       key: HOST
-            # DB_USERNAME:
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: immich-immich-user
-            #       key: LOGIN
-            # DB_DATABASE_NAME:
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: immich-immich-user
-            #       key: DATABASE_NAME
-            # DB_PASSWORD:
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: immich-immich-user
-            #       key: PASSWORD
             IMMICH_MACHINE_LEARNING_URL:
               valueFrom:
                 secretKeyRef:
@@ -111,7 +90,7 @@ app-template:
               valueFrom:
                 secretKeyRef:
                   name: immich-immich-user
-                  key: DB_LOGGING_URL
+                  key: DB_URL
           probes:
             liveness: &server_probes
               enabled: true
@@ -142,26 +121,6 @@ app-template:
                 secretKeyRef:
                   name: "{{ .Release.Name }}-secret"
                   key: REDIS_HOSTNAME
-            # DB_HOSTNAME:
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: immich-immich-user
-            #       key: HOST
-            # DB_USERNAME:
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: immich-immich-user
-            #       key: LOGIN
-            # DB_DATABASE_NAME:
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: immich-immich-user
-            #       key: DATABASE_NAME
-            # DB_PASSWORD:
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: immich-immich-user
-            #       key: PASSWORD
             IMMICH_MACHINE_LEARNING_URL:
               valueFrom:
                 secretKeyRef:
