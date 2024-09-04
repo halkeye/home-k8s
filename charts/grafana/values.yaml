@@ -246,8 +246,8 @@ grafana:
             value: Prometheus
       speedtest-exporter-hub:
         # renovate: depName="Speedtest Exporter"
-        gnetId: 13665
-        revision: 4
+        gnetId: 16541
+        revision: 1
         datasource:
           - name: datasource
             value: Prometheus
