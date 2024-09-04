@@ -10,24 +10,24 @@ app-template:
           env:
             TZ: America/Vancouver
             COMPlus_EnableDiagnostics: "0"
-            LIDARR__INSTANCE_NAME: lidarr
+            LIDARR__INSTANCENAME: lidarr
             LIDARR__PORT: &port 80
-            LIDARR__LOG_LEVEL: info
+            LIDARR__LOG__LEVEL: info
             LIDARR__AUTHENTICATION_METHOD: External
-            LIDARR__POSTGRES_PORT: "5432"
-            LIDARR__POSTGRES_HOST:
+            LIDARR__POSTGRES__PORT: "5432"
+            LIDARR__POSTGRES__HOST:
               valueFrom:
                 secretKeyRef:
                   name: lidarr-db-secret-lidarr
                   key: HOST
-            LIDARR__POSTGRES_MAIN_DB: "lidarr_main"
-            LIDARR__POSTGRES_LOG_DB: "lidarr_log"
-            LIDARR__POSTGRES_USER:
+            LIDARR__POSTGRES__MAINDB: "lidarr_main"
+            LIDARR__POSTGRES__LOGDB: "lidarr_log"
+            LIDARR__POSTGRES__USER:
               valueFrom:
                 secretKeyRef:
                   name: lidarr-db-secret-lidarr
                   key: LOGIN
-            LIDARR__POSTGRES_PASSWORD:
+            LIDARR__POSTGRES__PASSWORD:
               valueFrom:
                 secretKeyRef:
                   name: lidarr-db-secret-lidarr
