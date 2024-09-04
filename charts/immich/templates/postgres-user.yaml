@@ -10,3 +10,4 @@ spec:
   privileges: OWNER     # Can be OWNER/READ/WRITE
   secretTemplate:
     DB_URL: {{ `postgresql://{{.Role}}:{{.Password}}@{{.Host}}/{{.Database}}?sslmode=no-verify` }}
+    DB_LOGGING_URL: {{ `postgresql://{{.Role}}:{{.Password}}@{{.Host}}/{{.Database}}?sslmode=no-verify&logging=true` }}

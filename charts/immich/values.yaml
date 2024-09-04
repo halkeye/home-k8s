@@ -45,6 +45,7 @@ app-template:
             tag: v1.113.0
           env:
             IMMICH_LOG_LEVEL: "debug"
+            DB_SKIP_MIGRATIONS: "true"
             IMMICH_TRUSTED_PROXIES: "0.0.0.0"
             IMMICH_PORT: 3001
             REDIS_HOSTNAME:
@@ -86,7 +87,7 @@ app-template:
               valueFrom:
                 secretKeyRef:
                   name: immich-immich-user
-                  key: POSTGRES_URL
+                  key: DB_LOGGING_URL
           probes:
             liveness: &server_probes
               enabled: true
