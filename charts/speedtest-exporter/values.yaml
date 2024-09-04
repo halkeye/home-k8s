@@ -9,8 +9,9 @@ app-template:
       containers:
         main:
           image:
-            repository: ghcr.io/miguelndecarvalho/speedtest-exporter
-            tag: v3.5.4
+            repository: ghcr.io/danopstech/speedtest_exporter
+            tag: v0.0.5
+          args: ["-port", "9798"]
           env:
             TZ: America/Vancouver
           securityContext:
@@ -24,6 +25,20 @@ app-template:
               memory: 50Mi
             limits:
               memory: 100Mi
+          probes:
+            liveness: &probes
+              enabled: true
+              custom: true
+              spec:
+                httpGet:
+                  path: /health
+                  port: 9798
+                initialDelaySeconds: 0
+                periodSeconds: 10
+                timeoutSeconds: 1
+                failureThreshold: 3
+            readiness: *probes
+            startup: *probes
   service:
     main:
       controller: main
@@ -40,9 +55,3 @@ app-template:
           path: /metrics
           interval: 60m
           scrapeTimeout: 1m
-  persistence:
-    tmp:
-      enabled: true
-      type: emptyDir
-      globalMounts:
-        - path: /home/speedtest/.config/
