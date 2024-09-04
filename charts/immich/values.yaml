@@ -45,7 +45,6 @@ app-template:
         ttlSecondsAfterFinished: 172800
       containers:
         migrations:
-          restartPolicy: Never
           image:
             repository: ghcr.io/immich-app/immich-server
             pullPolicy: IfNotPresent
