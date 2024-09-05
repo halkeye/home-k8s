@@ -25,13 +25,14 @@ spec:
             chart: sonarr
 
           # App
-          - name: music-assistant
           - name: firefox-homeassistant
           - name: frigate
           - name: grafana
           - name: immich
+          - name: music-assistant
           - name: overseerr
           - name: planka
+          - name: podgrab
           - name: radarr
           - name: recyclarr
           - name: sonarr

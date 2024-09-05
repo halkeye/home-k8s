@@ -67,7 +67,7 @@ app-template:
       accessMode: ReadWriteOnce
       size: 1Gi
       storageClass: synology-iscsi
-    podcasts:
+    assets:
       type: nfs
       server: 172.16.10.10
       path: /volume1/Audio/Podcasts
