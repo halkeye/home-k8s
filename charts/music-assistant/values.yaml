@@ -68,7 +68,7 @@ app-template:
       size: 1Gi
       storageClass: synology-iscsi
       globalMounts:
-        - path: /data2
+        - path: /data
     music:
       type: nfs
       server: 172.16.10.10
