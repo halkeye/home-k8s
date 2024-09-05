@@ -39,6 +39,19 @@ app-template:
       ports:
         http:
           port: 8095
+        internal:
+          port: 8123
+    stream:
+      enabled: true
+      controller: music-assistant
+      type: LoadBalancer
+      externalTrafficPolicy: Cluster
+      ports:
+        stream:
+          enabled: true
+          port: 8097
+          protocol: TCP
+          targetPort: 8097
   ingress:
     main:
       enabled: true
