@@ -2,6 +2,8 @@ app-template:
   controllers:
     music-assistant:
       strategy: Recreate
+      pod:
+        hostNetwork: true
       containers:
         music-assistant:
           image:
@@ -10,14 +12,14 @@ app-template:
           env:
             TZ: America/Vancouver
             LOG_LEVEL: "info"
-          # securityContext:
-          #   privileged: true
-          #   capabilities:
-          #     add:
-          #       - SYS_ADMIN
-          #       - CAP_SYSLOG
-          #       - NET_BIND_SERVICE
-          #       - DAC_READ_SEARCH
+          securityContext:
+            privileged: true
+            capabilities:
+              add:
+                - SYS_ADMIN
+                - CAP_SYSLOG
+                - NET_BIND_SERVICE
+                - DAC_READ_SEARCH
           probes:
             liveness:
               enabled: true
