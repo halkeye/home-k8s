@@ -1,0 +1,79 @@
+app-template:
+  controllers:
+    music-assistant:
+      strategy: Recreate
+      containers:
+        music-assistant:
+          image:
+            repository: ghcr.io/music-assistant/server
+            tag: 2.2.2
+          env:
+            TZ: America/Vancouver
+            LOG_LEVEL: "info"
+          probes:
+            liveness:
+              enabled: true
+            readiness:
+              enabled: true
+            startup:
+              enabled: true
+              spec:
+                failureThreshold: 30
+                periodSeconds: 5
+          resources:
+            requests:
+              cpu: 47m
+              memory: 512Mi
+            limits:
+              memory: 1024Mi
+      pod:
+        securityContext:
+          runAsUser: 1000
+          runAsGroup: 1000
+          runAsNonRoot: true
+          fsGroup: 1000
+          fsGroupChangePolicy: OnRootMismatch
+  service:
+    music-assistant:
+      controller: music-assistant
+      ports:
+        http:
+          port: 8095
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: Media
+        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/music-assistant.png
+        gethomepage.dev/name: Music Assistant
+      hosts:
+        - host: music.g4v.dev
+          paths:
+            - path: /
+              service:
+                identifier: music-assistant
+                port: http
+  persistence:
+    data:
+      enabled: true
+      type: persistentVolumeClaim
+      accessMode: ReadWriteOnce
+      size: 1Gi
+      storageClass: synology-iscsi
+    music:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Audio/Music
+    podcasts:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Audio/Podcasts
+    comedians:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Audio/comedians
+    books:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Audio/Audio Books/
