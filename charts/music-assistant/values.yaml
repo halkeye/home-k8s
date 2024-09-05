@@ -10,6 +10,11 @@ app-template:
           env:
             TZ: America/Vancouver
             LOG_LEVEL: "info"
+          securityContext:
+            capabilities:
+              add:
+                - SYS_ADMIN
+                - DAC_READ_SEARCH
           probes:
             liveness:
               enabled: true
