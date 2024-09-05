@@ -72,7 +72,7 @@ app-template:
     comedians:
       type: nfs
       server: 172.16.10.10
-      path: /volume1/Audio/comedians
+      path: /volume1/Audio/Comedians
     books:
       type: nfs
       server: 172.16.10.10

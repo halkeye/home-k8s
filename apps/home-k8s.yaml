@@ -25,6 +25,7 @@ spec:
             chart: sonarr
 
           # App
+          - name: music-assistant
           - name: firefox-homeassistant
           - name: frigate
           - name: grafana
