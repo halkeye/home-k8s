@@ -26,13 +26,6 @@ app-template:
               memory: 512Mi
             limits:
               memory: 1024Mi
-      pod:
-        securityContext:
-          runAsUser: 1000
-          runAsGroup: 1000
-          runAsNonRoot: true
-          fsGroup: 1000
-          fsGroupChangePolicy: OnRootMismatch
   service:
     music-assistant:
       controller: music-assistant
