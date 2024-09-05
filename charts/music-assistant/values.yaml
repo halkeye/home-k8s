@@ -74,6 +74,8 @@ app-template:
       accessMode: ReadWriteOnce
       size: 1Gi
       storageClass: synology-iscsi
+      globalMounts:
+        - path: /data2
     music:
       type: nfs
       server: 172.16.10.10
