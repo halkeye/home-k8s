@@ -11,9 +11,12 @@ app-template:
             TZ: America/Vancouver
             LOG_LEVEL: "info"
           securityContext:
+            privileged: true
             capabilities:
               add:
                 - SYS_ADMIN
+                - CAP_SYSLOG
+                - NET_BIND_SERVICE
                 - DAC_READ_SEARCH
           probes:
             liveness:
