@@ -5,8 +5,8 @@ app-template:
       containers:
         main:
           image:
-            repository: ghcr.io/onedr0p/lidarr-develop
-            tag: 2.5.2.4316
+            repository: ghcr.io/crutonjohn/lidarr-plugins
+            tag: 2.6.0.4343
           env:
             TZ: America/Vancouver
             COMPlus_EnableDiagnostics: "0"
