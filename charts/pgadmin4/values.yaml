@@ -69,14 +69,14 @@ app-template:
       storageClass: synology-iscsi
       globalMounts:
         - path: /var/lib/pgadmin
-    configMap:
+    configmap:
       enabled: true
       type: configMap
       name: "{{ .Release.Name }}-config"
       globalMounts:
         - path: /config
           readOnly: true
-    superUserPass:
+    superuserpass:
       enabled: true
       type: secret
       name: postgres-superuser
