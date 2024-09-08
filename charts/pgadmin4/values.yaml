@@ -1,7 +1,6 @@
 app-template:
   controllers:
     main:
-      strategy: Recreate
       pod:
         securityContext:
           runAsUser: 5050
@@ -109,6 +108,7 @@ app-template:
                   'OAUTH2_DISPLAY_NAME': 'G4V',
                   'OAUTH2_CLIENT_ID': clientId,
                   'OAUTH2_CLIENT_SECRET': clientSecret,
+                  'OAUTH2_SERVER_METADATA_URL': os.environ["PGADMIN_OIDC_METADATA_URL"],
                   'OAUTH2_TOKEN_URL': os.environ["PGADMIN_OIDC_TOKEN_URL"],
                   'OAUTH2_AUTHORIZATION_URL': os.environ["PGADMIN_OIDC_AUTHORIZATION_URL"],
                   'OAUTH2_API_BASE_URL': os.environ["PGADMIN_OIDC_API_BASE_URL"],
