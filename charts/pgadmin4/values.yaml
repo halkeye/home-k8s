@@ -101,7 +101,7 @@ app-template:
           clientId = os.path.expandvars('$PGADMIN_OIDC_CLIENT_ID')
           clientSecret = os.path.expandvars('$PGADMIN_OIDC_CLIENT_SECRET')
 
-          MASTER_PASSWORD_REQUIRED = False
+          MASTER_PASSWORD_REQUIRED = True
           AUTHENTICATION_SOURCES = ['oauth2']
           OAUTH2_AUTO_CREATE_USER = True
           OAUTH2_CONFIG = [
