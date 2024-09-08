@@ -1,0 +1,126 @@
+app-template:
+  controllers:
+    main:
+      strategy: Recreate
+      containers:
+        pgadmin4:
+          image:
+            repository: dpage/pgadmin4
+            tag: 8.11@sha256:822dd7a1fa68601f70b3e06445c9cb52b134862b0c43f0f7a96ab6ac44a592a4
+          env:
+            TZ: America/Vancouver
+            LOG_LEVEL: "info"
+            PGADMIN_SERVER_JSON_FILE: "/config/servers.json"
+          envFrom:
+            - secretRef:
+                name: "{{.Release.Name}}-secret"
+          probes:
+            liveness:
+              enabled: false
+            readiness:
+              enabled: false
+            startup:
+              enabled: false
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            limits:
+              memory: 500Mi
+            requests:
+              memory: 100Mi
+              cpu: 50m
+      pod:
+        securityContext:
+          runAsUser: 568
+          runAsGroup: 568
+          runAsNonRoot: true
+          fsGroup: 568
+          fsGroupChangePolicy: OnRootMismatch
+  service:
+    main:
+      controller: main
+      ports:
+        http:
+          port: 80
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: Kubernetes
+        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/pgadmin4.png
+        gethomepage.dev/name: Postgres
+      hosts:
+        - host: pgadmin4.g4v.dev
+          paths:
+            - path: /
+              service:
+                identifier: main
+                port: http
+  persistence:
+    config:
+      enabled: true
+      type: persistentVolumeClaim
+      accessMode: ReadWriteOnce
+      size: 1Gi
+      storageClass: synology-iscsi
+      globalMounts:
+        - path: /var/lib/pgadmin
+    configMap:
+      enabled: true
+      type: configMap
+      name: "{{ .Release.Name }}-config"
+      globalMounts:
+        - path: /config
+          readOnly: true
+    superUserPass:
+      enabled: true
+      type: secret
+      name: postgres-superuser
+      globalMounts:
+        - path: /secrets/pgpassfile
+          readOnly: true
+          subPath: password
+  configMaps:
+    config:
+      data:
+        config_local.py: |-
+          import os
+
+          clientId = os.path.expandvars('$PGADMIN_OIDC_CLIENT_ID')
+          clientSecret = os.path.expandvars('$PGADMIN_OIDC_CLIENT_SECRET')
+
+          OAUTH2_CONFIG = [
+              {
+                  'OAUTH2_NAME': 'oidc',
+                  'OAUTH2_DISPLAY_NAME': 'G4V',
+                  'OAUTH2_CLIENT_ID': clientId,
+                  'OAUTH2_CLIENT_SECRET': clientSecret,
+                  'OAUTH2_TOKEN_URL': os.enviorn["PGADMIN_OIDC_TOKEN_URL"],
+                  'OAUTH2_AUTHORIZATION_URL': os.enviorn["PGADMIN_OIDC_AUTHORIZATION_URL"],
+                  'OAUTH2_USERINFO_ENDPOINT': os.enviorn["PGADMIN_OIDC_USERINFO_URL"],
+                  'OAUTH2_LOGOUT_URL': os.enviorn["PGADMIN_OIDC_LOGOUT_URL"],
+                  'OAUTH2_SCOPE': 'openid email profile',
+                  'OAUTH2_ICON': 'fa-lock',
+                  'OAUTH2_BUTTON_COLOR': '#000000'
+              }
+          ]
+        servers.json: |-
+          {
+            "Servers": {
+                "1": {
+                    "Name": "postgres-rw",
+                    "Group": "home",
+                    "Port": 5432,
+                    "Username": "postgres",
+                    "PassFile": "/secrets/pgpassfile",
+                    "Host": "postgres-rw.db",
+                    "SSLMode": "prefer",
+                    "MaintenanceDB": "postgres"
+                }
+            }
+          }
+
