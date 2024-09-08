@@ -76,6 +76,9 @@ app-template:
       globalMounts:
         - path: /config
           readOnly: true
+        - path: /pgadmin4/config_local.py
+          subPath: config_local.py
+          readOnly: true
     superuserpass:
       enabled: true
       type: secret

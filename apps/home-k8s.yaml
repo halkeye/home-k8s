@@ -40,6 +40,8 @@ spec:
           - name: tautulli
           - name: wg-access-server
           - name: youtubedl-material
+
+          - { name: "pgadmin4", namespace: "db" }
   template:
     metadata:
       name: "{{.name}}"
