@@ -2,6 +2,12 @@ app-template:
   controllers:
     main:
       strategy: Recreate
+      pod:
+        securityContext:
+          runAsUser: 5050
+          runAsGroup: 5050
+          fsGroup: 5050
+          fsGroupChangePolicy: OnRootMismatch
       containers:
         pgadmin4:
           image:
@@ -26,6 +32,11 @@ app-template:
             readOnlyRootFilesystem: false
             capabilities:
               drop: ["ALL"]
+              # https://stackoverflow.com/questions/68231806/sh-python3-operation-not-permitted-kubernetes
+              # The culprit is this: https://github.com/postgres/pgadmin4/blob/master/Dockerfile#L190setcap
+              # setcap CAP_NET_BIND_SERVICE=+eip /usr/bin/python3.8
+              # Either allow NET_BIND_SERVICE for your pod, or build a custom container where you remove this capability from /usr/bin/python3.8.
+              add: ["NET_BIND_SERVICE"]
           resources:
             limits:
               memory: 500Mi
