@@ -8,6 +8,8 @@ app-template:
           runAsGroup: 5050
           fsGroup: 5050
           fsGroupChangePolicy: OnRootMismatch
+      annotations:
+        reloader.stakater.com/auto: "true"
       containers:
         pgadmin4:
           image:
@@ -100,6 +102,7 @@ app-template:
           clientId = os.path.expandvars('$PGADMIN_OIDC_CLIENT_ID')
           clientSecret = os.path.expandvars('$PGADMIN_OIDC_CLIENT_SECRET')
 
+          AUTHENTICATION_SOURCES = ['oauth2']
           OAUTH2_CONFIG = [
               {
                   'OAUTH2_NAME': 'oidc',
