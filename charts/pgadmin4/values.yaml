@@ -126,6 +126,7 @@ app-template:
                     "Name": "postgres-rw",
                     "Group": "home",
                     "Port": 5432,
+                    "Shared": true,
                     "Username": "postgres",
                     "PassFile": "/secrets/pgpassfile",
                     "Host": "postgres-rw.db",
