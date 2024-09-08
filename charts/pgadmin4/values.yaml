@@ -37,12 +37,12 @@ app-template:
               # setcap CAP_NET_BIND_SERVICE=+eip /usr/bin/python3.8
               # Either allow NET_BIND_SERVICE for your pod, or build a custom container where you remove this capability from /usr/bin/python3.8.
               add: ["NET_BIND_SERVICE"]
-          # resources:
-          #   limits:
-          #     memory: 1024Mi
-          #   requests:
-          #     memory: 200Mi
-          #     cpu: 50m
+          resources:
+            limits:
+              memory: 500Mi
+            requests:
+              memory: 100Mi
+              cpu: 15m
   service:
     main:
       controller: main
