@@ -32,13 +32,6 @@ app-template:
             requests:
               memory: 100Mi
               cpu: 50m
-      pod:
-        securityContext:
-          runAsUser: 568
-          runAsGroup: 568
-          runAsNonRoot: true
-          fsGroup: 568
-          fsGroupChangePolicy: OnRootMismatch
   service:
     main:
       controller: main
