@@ -111,6 +111,7 @@ app-template:
                   'OAUTH2_CLIENT_SECRET': clientSecret,
                   'OAUTH2_TOKEN_URL': os.environ["PGADMIN_OIDC_TOKEN_URL"],
                   'OAUTH2_AUTHORIZATION_URL': os.environ["PGADMIN_OIDC_AUTHORIZATION_URL"],
+                  'OAUTH2_API_BASE_URL': os.environ["PGADMIN_OIDC_API_BASE_URL"],
                   'OAUTH2_USERINFO_ENDPOINT': os.environ["PGADMIN_OIDC_USERINFO_URL"],
                   'OAUTH2_LOGOUT_URL': os.environ["PGADMIN_OIDC_LOGOUT_URL"],
                   'OAUTH2_SCOPE': 'openid email profile',
