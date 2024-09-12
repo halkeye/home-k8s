@@ -12,7 +12,7 @@ app-template:
         komf:
           image:
             repository: sndxr/komf
-            tag: "1.0.2@sha256:9da6db81b7cd0124a1b18b17619388f9dcef44c5745c9da476e355beb61bad74"
+            tag: "1.0.3@sha256:70ecffe572d33f4e9d65fffcad0a8e30aea3e02e3ce7285026451a266c11b005"
           env:
             TZ: America/Vancouver
           probes:
