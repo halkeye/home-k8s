@@ -98,6 +98,9 @@ app-template:
     data:
       enabled: true
       type: emptyDir
+    tmp:
+      enabled: true
+      type: emptyDir
     secrets:
       enabled: true
       type: secret
