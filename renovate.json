@@ -68,6 +68,12 @@
         "linuxserver/calibre-web"
       ],
       "allowedVersions": "/^version-[0-9]{2}\\.[0-9]{2}\\.[0-9]{2}$/"
+    },
+    {
+      "matchCurrentVersion": "<9.0.0",
+      "matchPackageNames": [
+        "lmscommunity/logitechmediaserver"
+      ]
     }
   ]
 }

@@ -1,0 +1,82 @@
+app-template:
+  controllers:
+    main:
+      containers:
+        lms:
+          image:
+            repository: lmscommunity/logitechmediaserver
+            tag: 8.5.3
+          env:
+            TZ: America/Vancouver
+            AUDIO_DIR: /music
+            PLAYLIST_DIR: /playlists
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            requests:
+              memory: 250Mi
+              cpu: 15m
+            limits:
+              memory: 4096Mi
+      pod:
+        securityContext:
+          runAsUser: 568
+          runAsGroup: 568
+          runAsNonRoot: true
+          fsGroup: 568
+          fsGroupChangePolicy: OnRootMismatch
+  service:
+    main:
+      controller: main
+      type: LoadBalancer
+      externalTrafficPolicy: Local
+      ports:
+        http:
+          port: 9000
+        cli:
+          enabled: true
+          port: 9090
+          protocol: TCP
+        slimproto:
+          enabled: true
+          port: 3483
+          protocol: TCP
+        slimproto-udp:
+          enabled: true
+          port: 3483
+          protocol: UDP
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: Media
+        gethomepage.dev/icon: https://github.com/walkxcode/dashboard-icons/blob/main/png/universal-media-server.png?raw=true
+        gethomepage.dev/name: Lyrion Music Server
+      hosts:
+        - host: lms.g4v.dev
+          paths:
+            - path: /
+              service:
+                identifier: main
+                port: http
+  persistence:
+    config:
+      enabled: true
+      type: persistentVolumeClaim
+      accessMode: ReadWriteOnce
+      size: 1Gi
+      storageClass: synology-iscsi
+    tmp:
+      type: emptyDir
+    music:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Audio/Music
+    playlists:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Audio/Playlists
