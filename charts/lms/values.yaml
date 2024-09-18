@@ -13,6 +13,26 @@ app-template:
             TZ: America/Vancouver
             AUDIO_DIR: /music
             PLAYLIST_DIR: /playlists
+          probes:
+            liveness:
+              enabled: true
+              custom: true
+              spec:
+                exec:
+                  command:
+                    - timeout
+                    - 10s
+                    - bash
+                    - -c
+                    - ':> /dev/tcp/127.0.0.1/9000 || exit 1'
+                initialDelaySeconds: 90
+                periodSeconds: 10
+                timeoutSeconds: 1
+                failureThreshold: 3
+            readiness:
+              enabled: false
+            startup:
+              enabled: false
           securityContext:
             privileged: true
             capabilities:
