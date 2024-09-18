@@ -6,7 +6,7 @@ app-template:
         kavita:
           image:
             repository: jvmilazz0/kavita
-            tag: 0.8.2
+            tag: 0.8.3
           env:
             TZ: America/Vancouver
             COMPlus_EnableDiagnostics: "0"
