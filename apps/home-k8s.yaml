@@ -29,6 +29,7 @@ spec:
           - name: frigate
           - name: grafana
           - name: immich
+          - name: lms
           - name: music-assistant
           - name: overseerr
           - name: planka
