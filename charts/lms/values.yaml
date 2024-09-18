@@ -10,24 +10,12 @@ app-template:
             TZ: America/Vancouver
             AUDIO_DIR: /music
             PLAYLIST_DIR: /playlists
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            capabilities:
-              drop: ["ALL"]
           resources:
             requests:
               memory: 250Mi
               cpu: 15m
             limits:
               memory: 4096Mi
-      pod:
-        securityContext:
-          runAsUser: 568
-          runAsGroup: 568
-          runAsNonRoot: true
-          fsGroup: 568
-          fsGroupChangePolicy: OnRootMismatch
   service:
     main:
       controller: main
