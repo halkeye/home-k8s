@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.4.0/charts/library/common/values.schema.json
 app-template:
   controllers:
     main:
@@ -50,15 +51,21 @@ app-template:
   service:
     main:
       controller: main
-      type: LoadBalancer
-      externalTrafficPolicy: Local
       ports:
         http:
           port: 9000
+    cli:
+      controller: main
+      ports:
         cli:
           enabled: true
           port: 9090
           protocol: TCP
+    slimproto:
+      controller: main
+      type: LoadBalancer
+      loadBalancerIP: 172.16.10.5
+      ports:
         slimproto:
           enabled: true
           port: 3483
@@ -71,7 +78,7 @@ app-template:
     main:
       enabled: true
       annotations:
-        gethomepage.dev/enabled: "true"
+        gethomepage.dev/enabled: 'true'
         gethomepage.dev/group: Media
         gethomepage.dev/icon: https://github.com/walkxcode/dashboard-icons/blob/main/png/universal-media-server.png?raw=true
         gethomepage.dev/name: Lyrion Music Server
