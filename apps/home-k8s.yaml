@@ -13,6 +13,7 @@ spec:
           # "system"
           - name: externaldns-internal-technitium
           - { name: csi-rclone-reloaded, namespace: kube-system }
+          - name: traefik-forward-auth
 
           # Exporters
           - name: blackbox-exporter
@@ -30,7 +31,6 @@ spec:
           - name: grafana
           - name: immich
           - name: lms
-          - name: music-assistant
           - name: overseerr
           - name: planka
           - name: podgrab
