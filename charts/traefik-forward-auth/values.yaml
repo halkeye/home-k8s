@@ -1,0 +1,69 @@
+app-template:
+  controllers:
+    main:
+      annotations:
+        reloader.stakater.com/auto: "true"
+      strategy: RollingUpdate
+      containers:
+        traefik-forward-auth:
+          image:
+            repository: thomseddon/traefik-forward-auth
+            tag: v2.2.0
+          env:
+            AUTH_HOST: traefik-forward-auth.g4v.dev
+            DOMAIN: g4v.dev
+            COOKIE_DOMAIN: g4v.dev
+            INSECURE_COOKIE: "false"
+            URL_PATH: /_oauth
+            LOG_LEVEL: info
+            # 1 week
+            LIFETIME: "604800"
+          envFrom:
+            - secretRef:
+                name: traefik-forward-auth
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            requests:
+              cpu: 5m
+              memory: 10Mi
+            limits:
+              memory: 50Mi
+          probes:
+            liveness:
+              enabled: true
+            readiness:
+              enabled: true
+            startup:
+              enabled: true
+      pod:
+        securityContext:
+          runAsUser: 568
+          runAsGroup: 568
+          runAsNonRoot: true
+          fsGroup: 568
+          fsGroupChangePolicy: OnRootMismatch
+
+
+  service:
+    app:
+      controller: traefik-forward-auth
+      ports:
+        http:
+          port: 4181
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.middlewares: traefik-ingress-sso@kubernetescrd
+      hosts:
+        - host: traefik-forward-auth.g4v.dev
+          paths:
+            - path: /
+              service:
+                identifier: main
+                port: http
