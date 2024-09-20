@@ -20,7 +20,7 @@ app-template:
             LIFETIME: '604800'
           envFrom:
             - secretRef:
-                name: traefik-forward-auth
+                name: traefik-forward-auth-secret
           securityContext:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
