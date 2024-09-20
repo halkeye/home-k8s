@@ -11,8 +11,8 @@ traefik:
     isDefaultClass: true
     name: traefik-ingress
   podAnnotations:
-    prometheus.io/port: "8082"
-    prometheus.io/scrape: "true"
+    prometheus.io/port: '8082'
+    prometheus.io/scrape: 'true'
   providers:
     kubernetesIngress:
       publishedService:
@@ -20,19 +20,21 @@ traefik:
   ingressRoute:
     dashboard:
       # -- Create an IngressRoute for the dashboard
-      enabled: false
-  priorityClassName: "system-cluster-critical"
+      enabled: true
+      ingressRoute: true
+      matchRule: Host(`traefik.h.g4v.dev`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
+  priorityClassName: 'system-cluster-critical'
   tolerations:
-  - key: "CriticalAddonsOnly"
-    operator: "Exists"
-  - key: "node-role.kubernetes.io/control-plane"
-    operator: "Exists"
-    effect: "NoSchedule"
-  - key: "node-role.kubernetes.io/master"
-    operator: "Exists"
-    effect: "NoSchedule"
+    - key: 'CriticalAddonsOnly'
+      operator: 'Exists'
+    - key: 'node-role.kubernetes.io/control-plane'
+      operator: 'Exists'
+      effect: 'NoSchedule'
+    - key: 'node-role.kubernetes.io/master'
+      operator: 'Exists'
+      effect: 'NoSchedule'
   service:
-    ipFamilyPolicy: "PreferDualStack"
+    ipFamilyPolicy: 'PreferDualStack'
   logs:
     general:
       level: DEBUG
@@ -43,5 +45,5 @@ traefik:
 cert:
   commonName: '*.h.g4v.dev'
   dnsNames:
-  - '*.g4v.dev'
-  - '*.h.g4v.dev'
+    - '*.g4v.dev'
+    - '*.h.g4v.dev'
