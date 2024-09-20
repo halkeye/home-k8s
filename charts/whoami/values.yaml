@@ -1,0 +1,61 @@
+app-template:
+  controllers:
+    main:
+      containers:
+        whoami:
+          image:
+            repository: containous/whoami
+            tag: v1.5.0
+          probes:
+            liveness: &probes
+              enabled: true
+              custom: true
+              spec:
+                httpGet:
+                  path: /health
+                  port: 80
+                initialDelaySeconds: 0
+                periodSeconds: 10
+                timeoutSeconds: 1
+                failureThreshold: 3
+            readiness: *probes
+            startup:
+              enabled: false
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ['ALL']
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 100m
+              memory: 32Mi
+      pod:
+        securityContext:
+          runAsUser: 568
+          runAsGroup: 568
+          runAsNonRoot: true
+          fsGroup: 568
+          fsGroupChangePolicy: OnRootMismatch
+  service:
+    main:
+      controller: main
+      ports:
+        http:
+          port: 80
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        gethomepage.dev/enabled: 'false'
+        traefik.ingress.kubernetes.io/router.middlewares: traefik-forward-auth
+      hosts:
+        - host: whoami.g4v.dev
+          paths:
+            - path: /
+              service:
+                identifier: main
+                port: http
