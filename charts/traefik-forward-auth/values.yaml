@@ -2,7 +2,7 @@ app-template:
   controllers:
     main:
       annotations:
-        reloader.stakater.com/auto: "true"
+        reloader.stakater.com/auto: 'true'
       strategy: RollingUpdate
       containers:
         traefik-forward-auth:
@@ -13,11 +13,11 @@ app-template:
             AUTH_HOST: traefik-forward-auth.g4v.dev
             DOMAIN: g4v.dev
             COOKIE_DOMAIN: g4v.dev
-            INSECURE_COOKIE: "false"
+            INSECURE_COOKIE: 'false'
             URL_PATH: /_oauth
             LOG_LEVEL: info
             # 1 week
-            LIFETIME: "604800"
+            LIFETIME: '604800'
           envFrom:
             - secretRef:
                 name: traefik-forward-auth
@@ -25,7 +25,7 @@ app-template:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
             capabilities:
-              drop: ["ALL"]
+              drop: ['ALL']
           resources:
             requests:
               cpu: 5m
@@ -47,10 +47,9 @@ app-template:
           fsGroup: 568
           fsGroupChangePolicy: OnRootMismatch
 
-
   service:
-    app:
-      controller: traefik-forward-auth
+    main:
+      controller: main
       ports:
         http:
           port: 4181
