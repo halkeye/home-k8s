@@ -52,7 +52,7 @@ app-template:
       annotations:
         gethomepage.dev/enabled: 'false'
         traefik.ingress.kubernetes.io/router.entrypoints: 'websecure'
-        traefik.ingress.kubernetes.io/router.middlewares: 'traefik-forward-auth@kubernetescrd'
+        traefik.ingress.kubernetes.io/router.middlewares: 'traefik-forward-auth-sso@kubernetescrd'
       hosts:
         - host: whoami.g4v.dev
           paths:
