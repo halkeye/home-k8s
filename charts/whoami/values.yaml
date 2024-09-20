@@ -4,8 +4,8 @@ app-template:
       containers:
         whoami:
           image:
-            repository: containous/whoami
-            tag: v1.5.0
+            repository: traefik/whoami
+            tag: v1.9.0
           probes:
             liveness: &probes
               enabled: true
@@ -51,7 +51,8 @@ app-template:
       enabled: true
       annotations:
         gethomepage.dev/enabled: 'false'
-        traefik.ingress.kubernetes.io/router.middlewares: traefik-forward-auth
+        traefik.ingress.kubernetes.io/router.entrypoints: 'websecure'
+        traefik.ingress.kubernetes.io/router.middlewares: 'traefik-forward-auth@kubernetescrd'
       hosts:
         - host: whoami.g4v.dev
           paths:
