@@ -22,7 +22,9 @@ traefik:
       # -- Create an IngressRoute for the dashboard
       enabled: true
       ingressRoute: true
-      matchRule: Host(`traefik.h.g4v.dev`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
+      # matchRule: Host(`traefik.h.g4v.dev`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
+      annoations:
+      fake: thing
   priorityClassName: 'system-cluster-critical'
   tolerations:
     - key: 'CriticalAddonsOnly'
