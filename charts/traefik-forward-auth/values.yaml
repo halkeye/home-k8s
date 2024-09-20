@@ -15,7 +15,7 @@ app-template:
             COOKIE_DOMAIN: g4v.dev
             INSECURE_COOKIE: 'false'
             URL_PATH: /_oauth
-            LOG_LEVEL: info
+            LOG_LEVEL: debug
             # 1 week
             LIFETIME: '604800'
           envFrom:
