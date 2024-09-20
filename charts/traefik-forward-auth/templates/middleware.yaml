@@ -9,6 +9,7 @@ metadata:
 spec:
   forwardAuth:
     address: http://{{ .Release.Name }}.{{ .Release.Namespace }}.svc.cluster.local.:4181
+    trustForwardHeader: true
     authResponseHeaders:
       - X-Forwarded-User
       - X-authentik-username
@@ -22,4 +23,3 @@ spec:
       - X-authentik-meta-provider
       - X-authentik-meta-app
       - X-authentik-meta-version
-    trustForwardHeader: true
