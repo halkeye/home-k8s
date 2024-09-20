@@ -5,7 +5,7 @@ app-template:
         whoami:
           image:
             repository: traefik/whoami
-            tag: v1.9.0
+            tag: v1.10.3
           probes:
             liveness: &probes
               enabled: true
