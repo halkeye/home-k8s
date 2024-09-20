@@ -6,7 +6,7 @@ metadata:
   namespace: argocd
 spec:
   goTemplate: true
-  goTemplateOptions: ["missingkey=error"]
+  goTemplateOptions: ['missingkey=error']
   generators:
     - list:
         elements:
@@ -40,12 +40,13 @@ spec:
           - name: stash
           - name: tautulli
           - name: wg-access-server
+          - name: whoami
           - name: youtubedl-material
 
-          - { name: "pgadmin4", namespace: "db" }
+          - { name: 'pgadmin4', namespace: 'db' }
   template:
     metadata:
-      name: "{{.name}}"
+      name: '{{.name}}'
       namespace: argocd
       annotations:
         argocd.argoproj.io/sync-wave: '{{dig "syncwave" "20" . }}'
@@ -71,7 +72,7 @@ spec:
           - ServerSideApply=true
           - Prune=true
       ignoreDifferences:
-        - group: ""
+        - group: ''
           kind: Service
           jqPathExpressions:
             - .status.loadBalancer.ingress[].ipMode
