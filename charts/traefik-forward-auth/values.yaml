@@ -11,7 +11,6 @@ app-template:
             tag: v2.2.0
           env:
             AUTH_HOST: traefik-forward-auth.g4v.dev
-            DOMAIN: g4v.dev
             COOKIE_DOMAIN: g4v.dev
             INSECURE_COOKIE: 'false'
             URL_PATH: /_oauth
