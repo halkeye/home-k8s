@@ -1,0 +1,49 @@
+app-template:
+  controllers:
+    main:
+      strategy: Recreate
+      containers:
+        app:
+          image:
+            repository: ghcr.io/meeb/bandcampsync
+            tag: sha256:2ef14de010171482df37e798872208c394aff57861bc3dbda0a8d6c5a2854036
+          env:
+            TZ: America/Vancouver
+          command:
+            - bandcampsync-service
+          probes:
+            liveness:
+              enabled: true
+            readiness:
+              enabled: true
+            startup:
+              enabled: true
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ['ALL']
+          resources:
+            limits:
+              memory: 1Gi
+            requests:
+              memory: 256Mi
+              cpu: 10m
+      pod:
+        securityContext:
+          runAsUser: 1026
+          runAsGroup: 100
+          runAsNonRoot: true
+          fsGroup: 100
+          fsGroupChangePolicy: OnRootMismatch
+  persistence:
+    tmp:
+      type: emptyDir
+    config:
+      enabled: true
+      type: secret
+      name: '{{ .Release.Name }}-secret'
+    downloads:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Audio/Music
