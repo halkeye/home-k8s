@@ -26,6 +26,7 @@ spec:
             chart: sonarr
 
           # App
+          - name: bandcampsync
           - name: firefox-homeassistant
           - name: frigate
           - name: grafana
