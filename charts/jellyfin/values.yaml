@@ -89,3 +89,27 @@ app-template:
       path: /volume1/Movies
       globalMounts:
         - path: /movies
+    audio:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Audio
+      globalMounts:
+        - path: /audio
+    webseries:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Webseries
+      globalMounts:
+        - path: /webseries
+    webseries-movies:
+      type: nfs
+      server: 172.16.10.10
+      path: '/volume1/Webseries Movies'
+      globalMounts:
+        - path: /webseries-movies
+    comedian-specials:
+      type: nfs
+      server: 172.16.10.10
+      path: '/volume1/Comedian Specials'
+      globalMounts:
+        - path: /comedian-specials
