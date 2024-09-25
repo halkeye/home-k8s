@@ -1,12 +1,16 @@
 app-template:
   controllers:
     main:
+      type: cronjob
+      revisionHistoryLimit: 1
+      annotations:
+        reloader.stakater.com/auto: 'true'
       cronjob:
         schedule: '@hourly'
         successfulJobsHistory: 10
         failedJobsHistory: 5
       containers:
-        jellyplex-watched:
+        jellyplexwatched:
           image:
             repository: luigi311/jellyplex-watched
             tag: latest@sha256:0887c621a3ffd6ce46a3e94566ec0fcb8853493bd921428e0263f0444ef878ba
