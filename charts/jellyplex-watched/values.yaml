@@ -1,0 +1,59 @@
+app-template:
+  controllers:
+    main:
+      cronjob:
+        schedule: '@hourly'
+        successfulJobsHistory: 10
+        failedJobsHistory: 5
+      containers:
+        jellyplex-watched:
+          image:
+            repository: luigi311/jellyplex-watched
+            tag: latest@sha256:0887c621a3ffd6ce46a3e94566ec0fcb8853493bd921428e0263f0444ef878ba
+          env:
+            TZ: America/Vancouver
+            ## Do not mark any shows/movies as played and instead just output to log if they would of been marked.
+            DRYRUN: 'True'
+            ## Additional logging information
+            DEBUG: 'True'
+            ## Debugging level, "info" is default, "debug" is more verbose
+            DEBUG_LEVEL: 'debug'
+            ## If set to true then the script will only run once and then exit
+            RUN_ONLY_ONCE: 'True'
+            ## How often to run the script in seconds
+            SLEEP_DURATION: '3600'
+            ## Log file where all output will be written to
+            LOGFILE: '/data/log.txt'
+            ## Mark file where all shows/movies that have been marked as played will be written to
+            MARK_FILE: '/data/mark.txt'
+            ## Timeout for requests for jellyfin
+            REQUEST_TIMEOUT: 300
+            ## Generate guids
+            ## Generating guids is a slow process, so this is a way to speed up the process
+            ## by using the location only, useful when using same files on multiple servers
+            GENERATE_GUIDS: 'True'
+            ## Generate locations
+            ## Generating locations is a slow process, so this is a way to speed up the process
+            ## by using the guid only, useful when using different files on multiple servers
+            GENERATE_LOCATIONS: 'True'
+            ## Max threads for processing
+            MAX_THREADS: 32
+            ## Skip hostname validation for ssl certificates.
+            ## Set to True if running into ssl certificate errors
+            SSL_BYPASS: 'False'
+            ## control the direction of syncing. e.g. SYNC_FROM_PLEX_TO_JELLYFIN set to true will cause the updates from plex
+            ## to be updated in jellyfin. SYNC_FROM_PLEX_TO_PLEX set to true will sync updates between multiple plex servers
+            SYNC_FROM_PLEX_TO_JELLYFIN: 'True'
+            SYNC_FROM_JELLYFIN_TO_PLEX: 'True'
+            SYNC_FROM_PLEX_TO_PLEX: 'False'
+            SYNC_FROM_JELLYFIN_TO_JELLYFIN: 'False'
+          envFrom:
+            - secretRef:
+                name: '{{.Release.Name}}-secret'
+  persistence:
+    data:
+      enabled: true
+      type: persistentVolumeClaim
+      accessMode: ReadWriteOnce
+      size: 1Gi
+      storageClass: synology-iscsi
