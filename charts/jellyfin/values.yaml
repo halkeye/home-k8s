@@ -16,33 +16,10 @@ app-template:
           probes:
             liveness:
               enabled: true
-              custom: true
-              spec:
-                httpGet:
-                  path: /health
-                  port: 8096
-                initialDelaySeconds: 0
-                periodSeconds: 10
-                timeoutSeconds: 1
-                failureThreshold: 3
             readiness:
               enabled: true
-              custom: true
-              spec:
-                httpGet:
-                  path: /health
-                  port: 8096
-                initialDelaySeconds: 0
-                periodSeconds: 10
-                timeoutSeconds: 1
-                failureThreshold: 3
             startup:
               enabled: false
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            capabilities:
-              drop: ['ALL']
           resources:
             limits:
               memory: 4Gi
