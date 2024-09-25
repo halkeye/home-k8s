@@ -9,6 +9,30 @@ app-template:
             tag: unstable@sha256:07eac22560954b2388b368bab567f1b489a5dc07f056ab30940c3edb36478db3
           env:
             TZ: America/Vancouver
+            POSTGRES_PORT: 5432
+            POSTGRES_DB:
+              valueFrom:
+                secretKeyRef:
+                  name: '{{ .Release.Name }}-db-secret-{{ .Release.Name }}'
+                  key: DATABASE_NAME
+            POSTGRES_IP:
+              valueFrom:
+                secretKeyRef:
+                  name: '{{ .Release.Name }}-db-secret-{{ .Release.Name }}'
+                  key: HOST
+            POSTGRES_PASSWORD:
+              valueFrom:
+                secretKeyRef:
+                  name: '{{ .Release.Name }}-db-secret-{{ .Release.Name }}'
+                  key: PASSWORD
+            POSTGRES_USER:
+              valueFrom:
+                secretKeyRef:
+                  name: '{{ .Release.Name }}-db-secret-{{ .Release.Name }}'
+                  key: PASSWORD
+          envFrom:
+            - secretRef:
+                name: '{{.Release.Name}}-secret'
           probes:
             liveness:
               enabled: true
