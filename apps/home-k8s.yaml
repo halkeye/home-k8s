@@ -31,10 +31,12 @@ spec:
           - name: frigate
           - name: grafana
           - name: immich
+          - name: jellyfin
+          - name: jellyplex-watched
+          - name: jellystat
           - name: lms
           - name: overseerr
           - name: planka
-          - name: jellyfin
           - name: podgrab
           - name: radarr
           - name: recyclarr
