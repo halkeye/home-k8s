@@ -35,7 +35,6 @@ spec:
           - name: overseerr
           - name: planka
           - name: jellyfin
-          - name: jellystat
           - name: podgrab
           - name: radarr
           - name: recyclarr
