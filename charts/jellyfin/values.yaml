@@ -8,7 +8,7 @@ app-template:
             repository: ghcr.io/jellyfin/jellyfin
             tag: 10.9.11@sha256:fc1b51f4be3fba725e42dae2022d9c6a5b069acce01bef04d32fdee025dc511e
           env:
-            DOTNET_SYSTEM_IO_DISABLEFILELOCKING: "true"
+            DOTNET_SYSTEM_IO_DISABLEFILELOCKING: 'true'
             JELLYFIN_FFmpeg__probesize: 50000000
             JELLYFIN_FFmpeg__analyzeduration: 50000000
             JELLYFIN_PublishedServerUrl: 172.16.10.5
@@ -25,14 +25,24 @@ app-template:
                 periodSeconds: 10
                 timeoutSeconds: 1
                 failureThreshold: 3
-            readiness: *probes
+            readiness:
+              enabled: true
+              custom: true
+              spec:
+                httpGet:
+                  path: /health
+                  port: 8096
+                initialDelaySeconds: 0
+                periodSeconds: 10
+                timeoutSeconds: 1
+                failureThreshold: 3
             startup:
               enabled: false
           securityContext:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
             capabilities:
-              drop: ["ALL"]
+              drop: ['ALL']
           resources:
             limits:
               memory: 4Gi
@@ -52,7 +62,7 @@ app-template:
     main:
       enabled: true
       annotations:
-        gethomepage.dev/enabled: "true"
+        gethomepage.dev/enabled: 'true'
         gethomepage.dev/group: Media
         gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/jellyfin.png
         gethomepage.dev/name: Jellyfin
@@ -85,7 +95,7 @@ app-template:
     anime-movies:
       type: nfs
       server: 172.16.10.10
-      path: "/volume1/Anime Movies"
+      path: '/volume1/Anime Movies'
       globalMounts:
         - path: /anime-movies
     tv:
