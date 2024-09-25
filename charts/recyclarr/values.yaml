@@ -4,9 +4,9 @@ app-template:
       type: cronjob
       revisionHistoryLimit: 1
       annotations:
-        reloader.stakater.com/auto: "true"
+        reloader.stakater.com/auto: 'true'
       cronjob:
-        schedule: "@daily"
+        schedule: '@daily'
         successfulJobsHistory: 1
         failedJobsHistory: 2
       containers:
@@ -17,11 +17,11 @@ app-template:
           args:
             - sync
           env:
-            COMPlus_EnableDiagnostics: "0"
+            COMPlus_EnableDiagnostics: '0'
             TZ: America/Vancouver
           envFrom:
             - secretRef:
-                name: "{{.Release.Name}}-secret"
+                name: '{{.Release.Name}}-secret'
           probes:
             liveness:
               enabled: false
@@ -33,7 +33,7 @@ app-template:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
             capabilities:
-              drop: ["ALL"]
+              drop: ['ALL']
           resources:
             limits: &resources
               memory: 256Mi
@@ -55,7 +55,7 @@ app-template:
     configs:
       enabled: true
       type: configMap
-      name: "{{ .Release.Name }}-config"
+      name: '{{ .Release.Name }}-config'
       globalMounts:
         - path: /config/configs
           readOnly: true

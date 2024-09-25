@@ -11,6 +11,7 @@ app-template:
             TZ: America/Vancouver
             POSTGRES_PORT: 5432
             POSTGRES_DB: 'jellystat'
+            POSTGRES_ROLE: 'jellystat-group'
             POSTGRES_IP:
               valueFrom:
                 secretKeyRef:
