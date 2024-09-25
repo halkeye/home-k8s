@@ -29,7 +29,7 @@ app-template:
               valueFrom:
                 secretKeyRef:
                   name: '{{ .Release.Name }}-db-secret-{{ .Release.Name }}'
-                  key: PASSWORD
+                  key: LOGIN
           envFrom:
             - secretRef:
                 name: '{{.Release.Name}}-secret'
