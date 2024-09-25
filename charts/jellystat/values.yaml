@@ -1,0 +1,45 @@
+app-template:
+  controllers:
+    main:
+      strategy: Recreate
+      containers:
+        jellystat:
+          image:
+            repository: docker.io/cyfershepard/jellystat
+            tag: unstable@sha256:07eac22560954b2388b368bab567f1b489a5dc07f056ab30940c3edb36478db3
+          env:
+            TZ: America/Vancouver
+          probes:
+            liveness:
+              enabled: true
+            readiness:
+              enabled: true
+            startup:
+              enabled: true
+  service:
+    main:
+      controller: main
+      ports:
+        http:
+          port: 3000
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        gethomepage.dev/enabled: 'true'
+        gethomepage.dev/group: Monitoring
+        gethomepage.dev/name: Jelly Stats
+      hosts:
+        - host: jellystat.g4v.dev
+          paths:
+            - path: /
+              service:
+                identifier: main
+                port: http
+  persistence:
+    backend:
+      type: emptyDir
+      globalMounts:
+        - path: /app/backend/backup-data
+    tmp:
+      type: emptyDir
