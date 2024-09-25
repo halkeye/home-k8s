@@ -55,16 +55,8 @@ app-template:
       enabled: true
       type: persistentVolumeClaim
       accessMode: ReadWriteOnce
-      size: 1Gi
-      storageClass: synology-iscsi
-    jellyfin-metadata:
-      enabled: true
-      type: persistentVolumeClaim
-      storageClass: nas-apps
-      accessMode: ReadWriteMany
       size: 10Gi
-      globalMounts:
-        - path: /config/metadata
+      storageClass: synology-iscsi
     transcode:
       enabled: true
       type: emptyDir
