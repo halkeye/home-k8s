@@ -49,15 +49,15 @@ app-template:
             requests:
               memory: 512Mi
               cpu: 100m
-    service:
-      main:
-        controller: main
-        type: LoadBalancer
-        loadBalancerIP: 172.16.10.5
-        externalTrafficPolicy: Local
-        ports:
-          http:
-            port: 8096
+  service:
+    main:
+      controller: main
+      type: LoadBalancer
+      loadBalancerIP: 172.16.10.5
+      externalTrafficPolicy: Local
+      ports:
+        http:
+          port: 8096
   ingress:
     main:
       enabled: true
