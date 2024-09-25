@@ -10,11 +10,7 @@ app-template:
           env:
             TZ: America/Vancouver
             POSTGRES_PORT: 5432
-            POSTGRES_DB:
-              valueFrom:
-                secretKeyRef:
-                  name: '{{ .Release.Name }}-db-secret-{{ .Release.Name }}'
-                  key: DATABASE_NAME
+            POSTGRES_DB: 'jellystat'
             POSTGRES_IP:
               valueFrom:
                 secretKeyRef:
