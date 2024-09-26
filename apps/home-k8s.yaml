@@ -45,6 +45,7 @@ spec:
           - name: tautulli
           - name: wg-access-server
           - name: whoami
+          - name: zap2xml
           - name: youtubedl-material
 
           - { name: 'pgadmin4', namespace: 'db' }
