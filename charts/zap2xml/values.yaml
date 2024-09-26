@@ -13,12 +13,8 @@ app-template:
       containers:
         zap2xml:
           image:
-            repository: sparticuz/zap2xml
-            tag: latest@sha256:d630bab96119d7c18149c1935f70a5b428495b1e8aa6c7662032ee754ec8039f
-          command:
-            - '/bin/sh'
-            - '-c'
-            - "cat /zap2xml.pl | sed 's/tvlistings.zap2it.com/tvschedule.zap2it.com/g' | perl - -u $USERNAME -p $PASSWORD -U -o /data/$XMLTV_FILENAME $OPT_ARGS"
+            repository: ghcr.io/kj4ezj/zap2xml
+            tag: v0.1.4
           env:
             TZ: America/Vancouver
             OPT_ARGS: '-I -D -F -a -c /data/cache'
