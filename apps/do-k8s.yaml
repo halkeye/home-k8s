@@ -27,6 +27,7 @@ spec:
 
           # Apps
           - { namespace: bitwarden, name: vaultwarden }
+
           - name: authentik
           - name: externaldns-cloudflare
           - name: foundry-vtt
@@ -35,6 +36,7 @@ spec:
           - name: libmedium
           - name: miniflux
           - name: not-the-plants
+          - name: string-is
           - name: teamspeak
   template:
     metadata:
