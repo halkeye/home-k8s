@@ -5,8 +5,8 @@ app-template:
       containers:
         main:
           image:
-            repository: ghcr.io/jellyfin/jellyfin
-            tag: 10.9.11@sha256:fc1b51f4be3fba725e42dae2022d9c6a5b069acce01bef04d32fdee025dc511e
+            repository: ghcr.io/halkeye/docker-jellyfin
+            tag: v10.9.11.3
           env:
             DOTNET_SYSTEM_IO_DISABLEFILELOCKING: 'true'
             JELLYFIN_FFmpeg__probesize: 50000000
@@ -117,4 +117,4 @@ app-template:
       enabled: true
       type: nfs
       server: 172.16.10.10
-      path: "/volume1/Apps/zap2xml"
+      path: '/volume1/Apps/zap2xml'
