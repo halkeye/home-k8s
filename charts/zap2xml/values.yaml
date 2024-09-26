@@ -6,22 +6,22 @@ app-template:
       annotations:
         reloader.stakater.com/auto: 'true'
       cronjob:
-        schedule: "0 */12 * * *"
+        schedule: '0 */12 * * *'
         ttlSecondsAfterFinished: 86400
         successfulJobsHistory: 3
         failedJobsHistory: 2
       containers:
         zap2xml:
           image:
-            repository: shuaiscott/zap2xml
-            tag: latest@sha256:ffcb45211ac8f2eeaa7e7b323625d6261ee8e223e0169f082cd2101a9b77317f
+            repository: sparticuz/zap2xml
+            tag: latest@sha256:d630bab96119d7c18149c1935f70a5b428495b1e8aa6c7662032ee754ec8039f
           command:
-            - "/bin/sh"
-            - "-c"
+            - '/bin/sh'
+            - '-c'
             - "cat /zap2xml.pl | sed 's/tvlistings.zap2it.com/tvschedule.zap2it.com/g' | perl - -u $USERNAME -p $PASSWORD -U -o /data/$XMLTV_FILENAME $OPT_ARGS"
           env:
             TZ: America/Vancouver
-            OPT_ARGS: '-I -D -c /data/cache'
+            OPT_ARGS: '-I -D -F -a -c /data/cache'
           envFrom:
             - secretRef:
                 name: '{{.Release.Name}}-secret'
@@ -30,4 +30,4 @@ app-template:
       enabled: true
       type: nfs
       server: 172.16.10.10
-      path: "/volume1/Apps/zap2xml"
+      path: '/volume1/Apps/zap2xml'
