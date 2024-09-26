@@ -13,8 +13,8 @@ app-template:
       containers:
         zap2xml:
           image:
-            repository: ghcr.io/kj4ezj/zap2xml
-            tag: v0.1.4
+            repository: ghcr.io/halkeye/zap2xml
+            tag: d463cfd27bba9921b6c8d3e4fa4cea5d40be7b39
           env:
             TZ: America/Vancouver
             OPT_ARGS: '-I -D -F -a -c /data/cache'
