@@ -113,3 +113,8 @@ app-template:
       path: '/volume1/Comedian Specials'
       globalMounts:
         - path: /comedian-specials
+    zap2xml:
+      enabled: true
+      type: nfs
+      server: 172.16.10.10
+      path: "/volume1/Apps/zap2xml"
