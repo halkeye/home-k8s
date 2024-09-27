@@ -14,7 +14,7 @@ app-template:
         zap2xml:
           image:
             repository: ghcr.io/halkeye/zap2xml
-            tag: d463cfd27bba9921b6c8d3e4fa4cea5d40be7b39
+            tag: 832d18726fd087524749b27b1fa93089e35bc355
           env:
             TZ: America/Vancouver
             OPT_ARGS: '-I -D -F -a -c /data/cache'
