@@ -15,10 +15,12 @@ app-template:
           image:
             repository: ghcr.io/halkeye/zap2xml
             tag: 36540b7ccca1b71427be3ab3ecc9d2e5b21713a1
+          command:
+            - sh
+            - -c
+            - /zap2xml.pl -u "$USERNAME" -p "$PASSWORD" -U -o "/data/xmltv.xml" -c "/data/cache" -I -D -F -a
           env:
             TZ: America/Vancouver
-            OPT_ARGS: '-I -D -F -a -c /data/cache'
-            SLEEPTIME: 0
           envFrom:
             - secretRef:
                 name: '{{.Release.Name}}-secret'
