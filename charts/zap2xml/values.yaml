@@ -14,7 +14,7 @@ app-template:
         zap2xml:
           image:
             repository: ghcr.io/halkeye/zap2xml
-            tag: 2ad819cd3b7d39e687fe0274b7c15ac3a438246e
+            tag: 29f9bf340d95dae32ccc4fa9af6875ad5d3f0733
           command:
             - sh
             - -c
