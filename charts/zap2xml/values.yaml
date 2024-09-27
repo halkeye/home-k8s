@@ -18,6 +18,7 @@ app-template:
           env:
             TZ: America/Vancouver
             OPT_ARGS: '-I -D -F -a -c /data/cache'
+            SLEEPTIME: 0
           envFrom:
             - secretRef:
                 name: '{{.Release.Name}}-secret'
