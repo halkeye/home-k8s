@@ -164,7 +164,7 @@ app-template:
       enabled: true
       type: configMap
       name: '{{ .Release.Name }}-config'
-    secret:
+    secrets:
       enabled: true
       type: secret
       name: '{{ .Release.Name }}-secret'
