@@ -21,8 +21,8 @@ app-template:
             - -c
             - |
               cp /configmap/config.yml /app/config/
-              cp -n /secrets/servers.yml /app/config/
-              cp -n /secrets/.pytrakt.json /app/config/
+              cp /secrets/servers.yml /app/config/
+              cp /secrets/.pytrakt.json /app/config/
       containers:
         app:
           image:
