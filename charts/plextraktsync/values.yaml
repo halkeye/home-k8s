@@ -18,7 +18,7 @@ app-template:
             TZ: America/Vancouver
           command:
             - cp
-            - /configMap/config.yml
+            - /configmap/config.yml
             - /app/config/config.yml
       containers:
         app:
@@ -73,7 +73,7 @@ app-template:
       storageClass: synology-iscsi
       globalMounts:
         - path: /app/config/
-    configMap:
+    configmap:
       enabled: true
       type: configMap
       name: '{{ .Release.Name }}-config'
