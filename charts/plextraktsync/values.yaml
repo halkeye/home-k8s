@@ -21,8 +21,8 @@ app-template:
             - -c
             - |
               cp /configmap/config.yml /app/config/
-              cp /secrets/servers.yml /app/config/
-              cp /secrets/.pytrakt.json /app/config/
+              cp -n /secrets/servers.yml /app/config/
+              cp -n /secrets/.pytrakt.json /app/config/
       containers:
         app:
           image:
@@ -94,7 +94,7 @@ app-template:
             rating_priority: plex
 
             plex_to_trakt:
-              collection: true
+              collection: false
               # Clear collected state of items not present in Plex
               clear_collected: false
               ratings: true
@@ -134,9 +134,9 @@ app-template:
             # true to scrobble only what's watched by you, false for all your PMS users
             username_filter: true
             # Show the progress bar of played media in terminal
-            media_progressbar: true
+            media_progressbar: false
             # Clients to ignore when listening Play events
-            ignore_clients: ~
+            # ignore_clients: ~
 
           xbmc-providers:
             movies: imdb
