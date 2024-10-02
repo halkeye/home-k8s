@@ -1,0 +1,73 @@
+app-template:
+  controllers:
+    main:
+      annotations:
+        reloader.stakater.com/auto: 'true'
+      pod:
+        securityContext:
+          runAsUser: 1000
+          runAsGroup: 1000
+          fsGroup: 1000
+          fsGroupChangePolicy: 'OnRootMismatch'
+      containers:
+        app:
+          image:
+            repository: ghcr.io/taxel/plextraktsync
+            tag: 0.31.14
+          args:
+            - watch
+          env:
+            TZ: America/Vancouver
+          envFrom:
+            - secretRef:
+                name: '{{.Release.Name}}-secret'
+  configMaps:
+    config:
+      data:
+        config.yml: |-
+          cache:
+            path: $PTS_CACHE_DIR/trakt_cache
+
+          libraries:
+            - "Movies"
+            - "TV Shows"
+
+          logging:
+            append: false
+            debug: false
+            filename: /dev/stdout
+
+          sync:
+            plex_to_trakt:
+              collection: false
+              ratings: true
+              watched_status: true
+            trakt_to_plex:
+              liked_lists: false
+              ratings: true
+              watched_status: true
+              watchlist: false
+
+          watch:
+            add_collection: false
+            remove_collection: false
+            scrobble_threshold: 90
+            username_filter: true
+  persistence:
+    data:
+      enabled: true
+      type: persistentVolumeClaim
+      accessMode: ReadWriteOnce
+      size: 1Gi
+      storageClass: synology-iscsi
+      globalMounts:
+        - path: /app/config/
+          readOnly: true
+    config:
+      enabled: true
+      type: configMap
+      name: '{{ .Release.Name }}-config'
+      globalMounts:
+        - path: /app/config/config.yml
+          subPath: config.yml
+          readOnly: true
