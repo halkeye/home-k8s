@@ -9,6 +9,17 @@ app-template:
           runAsGroup: 1000
           fsGroup: 1000
           fsGroupChangePolicy: 'OnRootMismatch'
+      initContainers:
+        01-init:
+          image:
+            repository: ghcr.io/taxel/plextraktsync
+            tag: 0.31.14
+          env:
+            TZ: America/Vancouver
+          command:
+            - cp
+            - /configMap/config.yml
+            - /app/config/config.yml
       containers:
         app:
           image:
@@ -62,12 +73,7 @@ app-template:
       storageClass: synology-iscsi
       globalMounts:
         - path: /app/config/
-          readOnly: true
-    config:
+    configMap:
       enabled: true
       type: configMap
       name: '{{ .Release.Name }}-config'
-      globalMounts:
-        - path: /app/config/config.yml
-          subPath: config.yml
-          readOnly: true
