@@ -21,18 +21,8 @@ app-template:
             - -c
             - |
               cp /configmap/config.yml /app/config/
-              cp -n /secret/servers.yml /app/config/
-              cp -n /secret/.pytrakt.json /app/config/
-        01-secrets:
-          image:
-            repository: ghcr.io/taxel/plextraktsync
-            tag: 0.31.14
-          env:
-            TZ: America/Vancouver
-          command:
-            - cp
-            - /secrets/.pytrakt.json
-            - /app/config/
+              cp -n /secrets/servers.yml /app/config/
+              cp -n /secrets/.pytrakt.json /app/config/
       containers:
         app:
           image:
