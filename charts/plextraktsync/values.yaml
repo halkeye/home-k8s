@@ -47,7 +47,7 @@ app-template:
             - "TV Shows"
 
           config:
-            dotenv_override: true
+            dotenv_override: false
 
           plex:
             timeout: 30
