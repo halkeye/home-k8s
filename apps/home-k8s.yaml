@@ -37,6 +37,7 @@ spec:
           - name: lms
           - name: overseerr
           - name: planka
+          - name: plextraktsync
           - name: podgrab
           - name: radarr
           - name: recyclarr
@@ -45,8 +46,8 @@ spec:
           - name: tautulli
           - name: wg-access-server
           - name: whoami
-          - name: zap2xml
           - name: youtubedl-material
+          - name: zap2xml
 
           - { name: 'pgadmin4', namespace: 'db' }
   template:
