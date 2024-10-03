@@ -1,0 +1,66 @@
+app-template:
+  controllers:
+    main:
+      strategy: Recreate
+      containers:
+        wizarr:
+          image:
+            repository: ghcr.io/wizarrrr/wizarr
+            tag: 4.1.1
+          env:
+            TZ: America/Vancouver
+            APP_URL: https://gitshub-invites.g4v.dev
+          probes:
+            liveness:
+              enabled: true
+            readiness:
+              enabled: true
+            startup:
+              enabled: false
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ['ALL']
+          resources:
+            limits:
+              memory: 2Gi
+            requests:
+              memory: 256Mi
+              cpu: 10m
+      pod:
+        securityContext:
+          runAsUser: 568
+          runAsGroup: 568
+          runAsNonRoot: true
+          fsGroup: 568
+          fsGroupChangePolicy: OnRootMismatch
+  service:
+    main:
+      controller: main
+      ports:
+        http:
+          port: 5690
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        gethomepage.dev/enabled: 'false'
+      hosts:
+        - host: gitshub-invites.g4v.dev
+          paths:
+            - path: /
+              service:
+                identifier: main
+                port: http
+  persistence:
+    data:
+      enabled: true
+      type: persistentVolumeClaim
+      accessMode: ReadWriteOnce
+      size: 1Gi
+      storageClass: synology-iscsi
+      globalMounts:
+        - path: /data/database
+    tmp:
+      type: emptyDir
