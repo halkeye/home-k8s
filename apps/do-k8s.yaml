@@ -6,7 +6,7 @@ metadata:
   namespace: argocd
 spec:
   goTemplate: true
-  goTemplateOptions: ["missingkey=error"]
+  goTemplateOptions: ['missingkey=error']
   generators:
     - list:
         elements:
@@ -38,9 +38,10 @@ spec:
           - name: not-the-plants
           - name: string-is
           - name: teamspeak
+          - name: wizarr
   template:
     metadata:
-      name: "{{.name}}"
+      name: '{{.name}}'
       namespace: argocd
       annotations:
         argocd.argoproj.io/sync-wave: '{{dig "syncwave" "20" . }}'
@@ -66,7 +67,7 @@ spec:
           - ServerSideApply=true
           - Prune=true
       ignoreDifferences:
-        - group: ""
+        - group: ''
           kind: Service
           jqPathExpressions:
             - .status.loadBalancer.ingress[].ipMode
