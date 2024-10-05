@@ -25,7 +25,7 @@ appVersion: "1.0.0"
 
 dependencies:
 - name: traefik
-  version: 32.0.0
+  version: 32.1.0
   repository: https://helm.traefik.io/traefik
 maintainers:
   - name: halkeye
