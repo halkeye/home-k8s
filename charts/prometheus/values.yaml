@@ -108,10 +108,9 @@ kube-prometheus-stack:
           metrics_path: /api/prometheus
           authorization:
             credentials: '{{ .Values.homeassistant_key }}'
-          scheme: https
+          scheme: http
           static_configs:
             - targets: ['homeassistant.dhcp.home:8123']
-
     ingress:
       enabled: true
       annotations:
