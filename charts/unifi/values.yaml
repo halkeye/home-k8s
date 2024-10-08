@@ -1,0 +1,85 @@
+app-template:
+  controllers:
+    main:
+      strategy: Recreate
+      containers:
+        unifi:
+          image:
+            repository: jacobalberty/unifi
+            tag: v8.4.62@sha256:a107953e86227abd2fee4eff85c674337a0c08f704b14d7fe5c707f3ee4fd19e
+          env:
+            TZ: America/Vancouver
+            RUNAS_UID0: 'false'
+            UNIFI_UID: '999'
+            UNIFI_GID: '999'
+            UNIFI_STDOUT: 'true'
+            JVM_INIT_HEAP_SIZE:
+            JVM_MAX_HEAP_SIZE: 1024M
+          resources:
+            requests:
+              memory: 2Gi
+              cpu: 50m
+  service:
+    main:
+      controller: main
+      type: LoadBalancer
+      externalTrafficPolicy: Local
+      annotations:
+        service.beta.kubernetes.io/do-loadbalancer-name: 'dok8s-unifi'
+        external-dns.alpha.kubernetes.io/cloudflare-proxied: 'false'
+      ports:
+        http:
+          port: 8443
+          protocol: HTTPS
+        controller:
+          enabled: true
+          port: 8080
+          protocol: TCP
+        portal-http:
+          enabled: false
+          port: 8880
+          protocol: HTTP
+        portal-https:
+          enabled: false
+          port: 8843
+          protocol: HTTPS
+        speedtest:
+          enabled: true
+          port: 6789
+          protocol: TCP
+        stun:
+          enabled: true
+          port: 3478
+          protocol: UDP
+        syslog:
+          enabled: true
+          port: 5514
+          protocol: UDP
+        discovery:
+          enabled: true
+          port: 10001
+          protocol: UDP
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        nginx.ingress.kubernetes.io/proxy-body-size: '0'
+        nginx.ingress.kubernetes.io/proxy-read-timeout: '600'
+        nginx.ingress.kubernetes.io/proxy-send-timeout: '600'
+        nginx.ingress.kubernetes.io/force-ssl-redirect: 'true'
+        nginx.ingress.kubernetes.io/backend-protocol: 'HTTPS'
+        external-dns.alpha.kubernetes.io/cloudflare-proxied: 'false'
+      hosts:
+        - host: unifi.g4v.dev
+          paths:
+            - path: /
+              service:
+                identifier: main
+                port: http
+  persistence:
+    data:
+      enabled: true
+      accessMode: ReadWriteOnce
+      size: 5Gi
+      globalMounts:
+        - path: /unifi
