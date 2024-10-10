@@ -41,6 +41,7 @@ spec:
           - name: podgrab
           - name: radarr
           - name: recyclarr
+          - name: searxng
           - name: sonarr
           - name: stash
           - name: tautulli
