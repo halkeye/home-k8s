@@ -21,7 +21,7 @@ app-template:
               valueFrom:
                 resourceFieldRef:
                   containerName: app
-                  resource: limits.cpu # not defined, so will use node allocatable
+                  resource: limits.cpu
             UWSGI_THREADS: *cpu
           envFrom:
             - secretRef:
@@ -33,7 +33,7 @@ app-template:
               spec:
                 httpGet:
                   path: /healthz
-                  port: &port 8080
+                  port: 8080
                 periodSeconds: 10
                 timeoutSeconds: 1
                 failureThreshold: 3
@@ -56,7 +56,8 @@ app-template:
           runAsNonRoot: true
           runAsUser: 977
           runAsGroup: 977
-          seccompProfile: { type: RuntimeDefault }
+          seccompProfile:
+            type: RuntimeDefault
         topologySpreadConstraints:
           - maxSkew: 1
             topologyKey: kubernetes.io/hostname
