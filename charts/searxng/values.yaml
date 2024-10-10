@@ -50,21 +50,20 @@ app-template:
               memory: 2Gi
             requests:
               cpu: 10m
-      defaultPodOptions:
-        automountServiceAccountToken: false
-        securityContext:
-          runAsNonRoot: true
-          runAsUser: 977
-          runAsGroup: 977
-          seccompProfile:
-            type: RuntimeDefault
-        topologySpreadConstraints:
-          - maxSkew: 1
-            topologyKey: kubernetes.io/hostname
-            whenUnsatisfiable: DoNotSchedule
-            labelSelector:
-              matchLabels:
-                app.kubernetes.io/name: searxng
+  defaultPodOptions:
+    securityContext:
+      runAsNonRoot: true
+      runAsUser: 977
+      runAsGroup: 977
+      seccompProfile:
+        type: RuntimeDefault
+    topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: searxng
   service:
     main:
       controller: main
@@ -105,10 +104,10 @@ app-template:
         - path: /etc/searxng/limiter.toml
           subPath: limiter.toml
           readOnly: true
-      tmp:
-        type: emptyDir
-        globalMounts:
-          - path: /etc/searxng
+    tmp:
+      type: emptyDir
+      globalMounts:
+        - path: /etc/searxng
   configMaps:
     config:
       data:
