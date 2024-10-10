@@ -58,7 +58,7 @@ app-template:
         traefik.ingress.kubernetes.io/router.entrypoints: 'websecure'
         traefik.ingress.kubernetes.io/router.middlewares: 'traefik-ingress-authentik@kubernetescrd'
       hosts:
-        - host: 'whoami.{{ .Values.global.privateDomainName }}'
+        - host: 'whoami-{{ .Values.global.privateDomainName }}'
           paths:
             - path: /
               service:
