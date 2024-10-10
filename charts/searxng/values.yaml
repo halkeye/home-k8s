@@ -158,13 +158,13 @@ app-template:
 
           search:
             autocomplete: duckduckgo
-            default_lang: en-CA
+            default_lang: en
 
           general:
             instance_name: G4V Search
 
           ui:
-            default_locale: en-CA
+            default_locale: en
 
           enabled_plugins:
             - Basic Calculator
