@@ -164,7 +164,7 @@ app-template:
             default_lang: en-CA
 
           general:
-            instance_name: G4V
+            instance_name: G4V Search
 
           ui:
             default_locale: en-CA
