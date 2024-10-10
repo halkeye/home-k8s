@@ -46,7 +46,6 @@ spec:
           - name: stash
           - name: tautulli
           - name: wg-access-server
-          - name: whoami
           - name: youtubedl-material
           - name: zap2xml
 

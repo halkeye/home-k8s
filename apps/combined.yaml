@@ -6,7 +6,7 @@ metadata:
   namespace: argocd
 spec:
   goTemplate: true
-  goTemplateOptions: ["missingkey=error"]
+  goTemplateOptions: ['missingkey=error']
   generators:
     - matrix:
         generators:
@@ -15,9 +15,10 @@ spec:
               elements:
                 - appname: postfix-mailgun-relay
                   namespace: smtp
+                - appname: whoami
   template:
     metadata:
-      name: "{{.nameNormalized}}-{{.appname}}"
+      name: '{{.nameNormalized}}-{{.appname}}'
       namespace: argocd
       annotations:
         argocd.argoproj.io/sync-wave: '{{dig "syncwave" "20" . }}'
@@ -34,6 +35,9 @@ spec:
           valueFiles:
             - values.yaml
             - secrets://values-secrets.yaml
+          values: |
+            global:
+              privateDomainName: {{ index .metadata.annotations "private-domain" }}
       syncPolicy:
         automated:
           selfHeal: true
