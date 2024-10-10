@@ -157,7 +157,7 @@ app-template:
             method: GET
 
           redis:
-            url: redis://redis:6379
+            url: redis://{{.Release.Name}}-redis-master:6379
 
           search:
             autocomplete: duckduckgo
