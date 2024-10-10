@@ -60,6 +60,9 @@ spec:
           valueFiles:
             - values.yaml
             - secrets://values-secrets.yaml
+          values: |
+            global:
+              privateDomainName: do.g4v.dev
       syncPolicy:
         automated:
           selfHeal: true
