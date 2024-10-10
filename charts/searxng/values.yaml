@@ -1,7 +1,6 @@
+redis:
+  enabled: true
 app-template:
-  redis:
-    enabled: true
-
   controllers:
     main:
       strategy: RollingUpdate
