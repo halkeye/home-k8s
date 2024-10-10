@@ -1,8 +1,6 @@
 app-template:
   redis:
     enabled: true
-    auth:
-      enabled: false
 
   controllers:
     main:
