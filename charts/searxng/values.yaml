@@ -20,7 +20,7 @@ app-template:
             UWSGI_WORKERS: &cpu
               valueFrom:
                 resourceFieldRef:
-                  containerName: app
+                  containerName: searxng
                   divisor: 1
                   resource: limits.cpu
             UWSGI_THREADS: *cpu
