@@ -18,6 +18,12 @@ spec:
           # Exporters
           - name: blackbox-exporter
           - name: bambulabs-exporter
+          - name: plex-exporter
+          - name: nut-exporter
+          - name: qbittorrent-exporter
+          - name: sabnzbd-exporter
+          - name: speedtest-exporter
+          - name: unifi-poller
 
           # Apps but extra
           - name: anime-radarr
@@ -27,6 +33,8 @@ spec:
 
           # App
           - name: bandcampsync
+          - name: bazarr
+          - name: calibre-web
           - name: firefox-homeassistant
           - name: frigate
           - name: grafana
@@ -35,16 +43,28 @@ spec:
           - name: jellyfin
           - name: jellyplex-watched
           - name: jellystat
+          - name: kavita
+          - name: kobodl
+          - name: komf
+          - name: komga
+          - name: lidarr
           - name: lms
+          - name: mylar3
           - name: overseerr
-          - name: planka
+          - name: planka # probably should move to do-k8s
+          - name: plex-auto-language
           - name: plextraktsync
           - name: podgrab
+          - name: prowlarr
           - name: radarr
+          - name: readarr
           - name: recyclarr
-          - name: searxng
+          - name: rxresume
           - name: sonarr
+          - name: speedtest
           - name: stash
+          - name: stirling-pdf
+          - name: tachidesk
           - name: tautulli
           - name: wg-access-server
           - name: youtubedl-material
