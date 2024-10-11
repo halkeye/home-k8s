@@ -48,7 +48,7 @@ spec:
           - name: mylar3
           - name: overseerr
           - name: planka # probably should move to do-k8s
-          - name: plex-auto-language
+          - name: plex-auto-languages
           - name: plextraktsync
           - name: podgrab
           - name: prowlarr
