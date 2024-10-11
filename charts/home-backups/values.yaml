@@ -1,7 +1,8 @@
 anchors:
   image: &image
     repository: ghcr.io/halkeye/docker-backup-scripts
-    tag: main@sha256:43fe3ff9c8d3dfc6d06f51db13066d1c5a04424bf9f0287c43ed0ea106edcbc0
+    tag: main
+    pullPolicy: Always
 app-template:
   controllers:
     backup-unifi-home:
