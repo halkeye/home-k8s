@@ -40,9 +40,6 @@ spec:
           - name: grafana
           # - name: home-backups
           - name: immich
-          - name: jellyfin
-          - name: jellyplex-watched
-          - name: jellystat
           - name: kavita
           - name: kobodl
           - name: komf
