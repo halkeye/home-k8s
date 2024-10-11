@@ -21,6 +21,7 @@ app-template:
             TZ: America/Vancouver
             BACKUP_DIR: /volume1/Backups/unifi/home
             UNIFI_SITE_ID: 1xtf5px1
+            DEBUG: 'true'
           envFrom:
             - secretRef:
                 name: '{{.Release.Name}}-secret'
