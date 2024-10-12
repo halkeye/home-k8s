@@ -1,4 +1,7 @@
 ---
 tailscale-operator:
+  image:
+    repository: tailscale/k8s-operator
+    tag: v1.74.1
   proxyConfig:
     defaultTags: "tag:home-k8s"
