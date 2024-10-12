@@ -32,6 +32,7 @@ spec:
             chart: sonarr
 
           # App
+          - name: audiobookshelf
           - name: bandcampsync
           - name: bazarr
           - name: calibre-web
