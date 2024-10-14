@@ -21,7 +21,7 @@ app-template:
               cpu: 50m
         unifibackup:
           image:
-            repository: gebn/unifibackup:v2.2.4
+            repository: gebn/unifibackup
             tag: v2.2.4
           command:
             - /unifibackup
