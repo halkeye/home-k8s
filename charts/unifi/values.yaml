@@ -19,6 +19,23 @@ app-template:
             requests:
               memory: 2Gi
               cpu: 50m
+        unifibackup:
+          image:
+            repository: gebn/unifibackup:v2.2.4
+            tag: v2.2.4
+          command:
+            - /unifibackup
+            - --bucket
+            - 'fakebucket'
+          env:
+            TZ: America/Vancouver
+          envFrom:
+            - secretRef:
+                name: '{{.Release.Name}}-secret'
+          resources:
+            requests:
+              memory: 2Gi
+              cpu: 50m
   service:
     main:
       controller: main
