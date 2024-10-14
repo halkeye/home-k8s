@@ -36,10 +36,11 @@ spec:
           - name: libmedium
           - name: miniflux
           - name: not-the-plants
+          - name: plex-discord-media-updates
+          - name: searxng
           - name: string-is
           - name: teamspeak
           - name: unifi
-          - name: searxng
           - name: wizarr
   template:
     metadata:
