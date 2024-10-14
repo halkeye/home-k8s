@@ -13,7 +13,7 @@ app-template:
         plex-discord-media-updates:
           image:
             repository: ghcr.io/halkeye/plex-discord-media-updates
-            tag: 0.0.3
+            tag: v0.0.3
           args:
             - sync
           env:
