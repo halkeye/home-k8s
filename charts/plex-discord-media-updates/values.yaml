@@ -13,9 +13,7 @@ app-template:
         plex-discord-media-updates:
           image:
             repository: ghcr.io/halkeye/plex-discord-media-updates
-            tag: v0.0.3
-          args:
-            - sync
+            tag: v0.0.4
           env:
             TZ: America/Vancouver
           envFrom:
