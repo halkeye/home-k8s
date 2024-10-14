@@ -27,15 +27,16 @@ app-template:
             - /unifibackup
             - --bucket
             - 'fakebucket'
+            - --dir
+            - /unifi/backup/autobackup
           env:
             TZ: America/Vancouver
           envFrom:
             - secretRef:
                 name: '{{.Release.Name}}-secret'
-          resources:
-            requests:
-              memory: 2Gi
-              cpu: 50m
+          securityContext:
+            runAsUser: 999
+            runAsGroup: 999
   service:
     main:
       controller: main
