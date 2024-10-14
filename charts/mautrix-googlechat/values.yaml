@@ -226,7 +226,7 @@ app-template:
               # Whether or not to update the m.direct account data event when double puppeting is enabled.
               # Note that updating the m.direct event is not atomic (except with mautrix-asmux)
               # and is therefore prone to race conditions.
-              sync_direct_chat_list: false
+              sync_direct_chat_list: true
               # Servers to always allow double puppeting from
               # double_puppet_server_map:
               #   g4v.dev: "http://synapse.{{ .Release.Namespace }}.svc.cluster.local.:8008"

@@ -338,7 +338,7 @@ app-template:
               # Should the bridge update the m.direct account data event when double puppeting is enabled.
               # Note that updating the m.direct event is not atomic (except with mautrix-asmux)
               # and is therefore prone to race conditions.
-              sync_direct_chat_list: false
+              sync_direct_chat_list: true
               # Should the bridge use MSC2867 to bridge manual "mark as unread"s from
               # WhatsApp and set the unread status on initial backfill?
               # This will only work on clients that support the m.marked_unread or

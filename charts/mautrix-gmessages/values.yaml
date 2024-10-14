@@ -235,7 +235,7 @@ app-template:
               # Should the bridge update the m.direct account data event when double puppeting is enabled.
               # Note that updating the m.direct event is not atomic (except with mautrix-asmux)
               # and is therefore prone to race conditions.
-              sync_direct_chat_list: false
+              sync_direct_chat_list: true
               # Number of chats to sync when connecting to Google Messages.
               initial_chat_sync_count: 25
               # Backfill settings

@@ -265,7 +265,7 @@ app-template:
               # Whether or not to update the m.direct account data event when double puppeting is enabled.
               # Note that updating the m.direct event is not atomic (except with mautrix-asmux)
               # and is therefore prone to race conditions.
-              sync_direct_chat_list: false
+              sync_direct_chat_list: true
               # Servers to always allow double puppeting from
               double_puppet_server_map: {}
               # Allow using double puppeting from any server with a valid client .well-known file.
