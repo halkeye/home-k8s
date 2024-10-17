@@ -22,13 +22,14 @@ app-template:
         unifibackup:
           image:
             repository: ghcr.io/halkeye/unifibackup
-            tag: 1a94cda
+            tag: 'c2af442'
           command:
             - /unifibackup
             - --bucket
             - '$(S3_BUCKET)'
             - --dir
             - /unifi/data/backup/autobackup
+            - '--dual-stack-endpoint=false'
           env:
             TZ: America/Vancouver
           envFrom:
