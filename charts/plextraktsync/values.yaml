@@ -13,7 +13,7 @@ app-template:
         01-init:
           image:
             repository: ghcr.io/taxel/plextraktsync
-            tag: 0.31.14
+            tag: 0.32.0
           env:
             TZ: America/Vancouver
           command:
@@ -27,7 +27,7 @@ app-template:
         app:
           image:
             repository: ghcr.io/taxel/plextraktsync
-            tag: 0.31.14
+            tag: 0.32.0
           args:
             - watch
           env:
