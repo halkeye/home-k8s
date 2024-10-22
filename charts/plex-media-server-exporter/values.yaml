@@ -1,0 +1,43 @@
+fullnameOverride: plex-media-server-exporter
+app-template:
+  fullnameOverride: plex-media-server-exporter
+  controllers:
+    main:
+      annotations:
+        reloader.stakater.com/auto: "true"
+      containers:
+        main:
+          image:
+            repository: ghcr.io/axsuul/plex-media-server-exporter
+            tag: "1.1.3"
+          env:
+            TZ: America/Vancouver
+          envFrom:
+            - secretRef:
+                name: "{{.Release.Name}}-secret"
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              cpu: 100m
+              memory: 100Mi
+  service:
+    main:
+      controller: main
+      ports:
+        http:
+          port: 9594
+  serviceMonitor:
+    main:
+      enabled: 9594
+      serviceName: '{{ include "bjw-s.common.lib.chart.names.fullname" $ }}'
+      endpoints:
+        - port: http
+          scheme: http
+          path: /metrics
