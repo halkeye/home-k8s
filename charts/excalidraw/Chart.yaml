@@ -1,0 +1,7 @@
+apiVersion: v2
+name: excalidraw
+version: 0.0.0
+dependencies:
+  - name: excalidraw
+    version: 0.1.1
+    repository: https://pmoscode-helm.github.io/excalidraw/
