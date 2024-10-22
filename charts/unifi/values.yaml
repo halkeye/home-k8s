@@ -104,7 +104,7 @@ app-template:
       size: 5Gi
       globalMounts:
         - path: /unifi
-    kscb_rclone:
+    kscbrclone:
       enabled: true
       type: secret
       name: '{{ .Release.Name }}-secret'
