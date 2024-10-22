@@ -19,19 +19,15 @@ app-template:
             requests:
               memory: 2Gi
               cpu: 50m
-        unifibackup:
+        kscb:
           image:
-            repository: ghcr.io/halkeye/unifibackup
-            tag: 'c2af442'
-          command:
-            - /unifibackup
-            - --bucket
-            - '$(S3_BUCKET)'
-            - --dir
-            - /unifi/data/backup/autobackup
-            - '--dual-stack-endpoint=false'
+            repository: dkruyt/kscb
+            tag: 'latest'
+            pullPolicy: "Always"
           env:
             TZ: America/Vancouver
+            KSCB_SRC: "/unifi/data/backup/autobackup"
+            KSCB_DST: "digitalocean-s3:halkeye-unifi"
           envFrom:
             - secretRef:
                 name: '{{.Release.Name}}-secret'
@@ -95,6 +91,12 @@ app-template:
               service:
                 identifier: main
                 port: http
+  configMaps:
+    config:
+      data:
+        crontab: |-
+          0 3 * * * rclone sync "$KSCB_SRC" "$KSCB_DST/`hostname | cut -d'-' -f1`" -v --backup-dir="$KSCB_DST/`hostname | cut -d'-' -f1`-`date +%d`"
+          0 1 1 * * rclone sync "$KSCB_SRC" "$KSCB_DST/`hostname | cut -d'-' -f1`" -v
   persistence:
     data:
       enabled: true
@@ -102,3 +104,21 @@ app-template:
       size: 5Gi
       globalMounts:
         - path: /unifi
+    kscb_rclone:
+      enabled: true
+      type: secret
+      name: '{{ .Release.Name }}-secret'
+      advancedMounts:
+        main:
+          kscb:
+            - path: /config/rclone/rclone.conf
+              readOnly: true
+              subPath: rclone.conf
+    configs:
+      enabled: true
+      type: configMap
+      name: '{{ .Release.Name }}-config'
+      globalMounts:
+        - path: /crontab
+          subPath: crontab
+          readOnly: true
