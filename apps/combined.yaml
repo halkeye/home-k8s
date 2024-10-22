@@ -16,6 +16,7 @@ spec:
                 - appname: postfix-mailgun-relay
                   namespace: smtp
                 - appname: whoami
+                - appname: uptime-kuma
   template:
     metadata:
       name: '{{.nameNormalized}}-{{.appname}}'
