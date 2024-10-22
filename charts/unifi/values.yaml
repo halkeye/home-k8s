@@ -31,9 +31,6 @@ app-template:
           envFrom:
             - secretRef:
                 name: '{{.Release.Name}}-secret'
-          securityContext:
-            runAsUser: 999
-            runAsGroup: 999
   service:
     main:
       controller: main
