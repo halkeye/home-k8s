@@ -19,6 +19,7 @@ spec:
           - name: blackbox-exporter
           - name: bambulabs-exporter
           - name: plex-exporter
+          - name: plex-media-server-exporter
           - name: nut-exporter
           - name: qbittorrent-exporter
           - name: sabnzbd-exporter
