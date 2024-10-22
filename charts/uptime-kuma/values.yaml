@@ -1,0 +1,62 @@
+app-template:
+  controllers:
+    main:
+      strategy: Recreate
+      containers:
+        uptime-kuma:
+          image:
+            repository: louislam/uptime-kuma
+            tag: 1.23.15@sha256:d8b1b2151256bda3a99e822902fcbeb27b3eca6ef6d93fad25d2062b9fb61ad2
+          env:
+            TZ: America/Vancouver
+          probes:
+            liveness:
+              enabled: true
+            readiness:
+              enabled: true
+            startup:
+              enabled: true
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            limits:
+              memory: 150Mi
+            requests:
+              memory: 256Mi
+              cpu: 10m
+      pod:
+        securityContext:
+          runAsUser: 568
+          runAsGroup: 568
+          runAsNonRoot: true
+          fsGroup: 568
+          fsGroupChangePolicy: OnRootMismatch
+  service:
+    main:
+      controller: main
+      ports:
+        http:
+          port: 3001
+  ingress:
+    main:
+      enabled: true
+      hosts:
+        - host: 'status-{{ .Values.global.privateDomainName }}'
+          paths:
+            - path: /
+              service:
+                identifier: main
+                port: http
+  persistence:
+    config:
+      enabled: true
+      type: persistentVolumeClaim
+      accessMode: ReadWriteOnce
+      size: 1Gi
+      globalMounts:
+        - path: /app/data
+    tmp:
+      type: emptyDir
