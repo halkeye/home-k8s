@@ -59,7 +59,7 @@ app-template:
         nginx.ingress.kubernetes.io/auth-snippet: |
           proxy_set_header X-Forwarded-Host $http_host;
       hosts:
-        - host: &host libmedium.g4v.dev
+        - host: libmedium.g4v.dev
           paths:
             - path: /
               service:

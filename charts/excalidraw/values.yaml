@@ -1,4 +1,8 @@
 excalidraw:
+  image:
+    repository: excalidraw/excalidraw
+    pullPolicy: Always
+    tag: "latest"
   ingress:
     enabled: true
     annotations:
