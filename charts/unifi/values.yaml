@@ -27,7 +27,7 @@ app-template:
           env:
             TZ: America/Vancouver
             KSCB_SRC: "/unifi/data/backup/autobackup"
-            KSCB_DST: "digitalocean-s3:halkeye-unifi"
+            KSCB_DST: "halkeye-unifi"
           envFrom:
             - secretRef:
                 name: '{{.Release.Name}}-secret'
@@ -91,9 +91,9 @@ app-template:
   configMaps:
     config:
       data:
-        crontab: |-
-          0 3 * * * rclone sync "$KSCB_SRC" "$KSCB_DST/`hostname | cut -d'-' -f1`" -v --backup-dir="$KSCB_DST/`hostname | cut -d'-' -f1`-`date +%d`"
-          0 1 1 * * rclone sync "$KSCB_SRC" "$KSCB_DST/`hostname | cut -d'-' -f1`" -v
+        crontab: |
+          0 3 * * * rclone sync "$KSCB_SRC" "$KSCB_DST:unifi" -v --backup-dir="$KSCB_DST:unifi-old/$(date +%Y)-$(date +%m)"
+
   persistence:
     data:
       enabled: true
