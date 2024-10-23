@@ -6,7 +6,7 @@ app-template:
         jellystat:
           image:
             repository: docker.io/cyfershepard/jellystat
-            tag: unstable@sha256:d6e54060533f5cb806a00eca33d3252ba18d122bd974f5131e65495a6e6d8aa5
+            tag: unstable@sha256:ef6bcf7a7d5627ec0f7373e35f45fca3aa417b9cc70cc5b609d15017e47d073c
           env:
             TZ: America/Vancouver
             POSTGRES_PORT: 5432
