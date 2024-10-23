@@ -34,8 +34,8 @@ app-template:
               drop: ["ALL"]
           resources:
             requests:
-              memory: 512Mi
-              cpu: 10m
+              memory: 2Gi
+              cpu: 30m
       pod:
         securityContext:
           runAsUser: 568
