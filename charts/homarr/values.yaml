@@ -74,20 +74,13 @@ app-template:
       size: 50Mi
       globalMounts:
         - path: /app/data/configs
-    database:
+    data:
       enabled: true
       type: persistentVolumeClaim
       accessMode: ReadWriteOnce
-      size: 50Mi
+      size: 100Mi
       globalMounts:
-        - path: /app/database
-    icons:
-      enabled: true
-      type: persistentVolumeClaim
-      accessMode: ReadWriteOnce
-      size: 50Mi
-      globalMounts:
-        - path: /app/public/icons
+        - path: /data
     tmp:
       type: emptyDir
       globalMounts:
