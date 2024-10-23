@@ -1,0 +1,117 @@
+app-template:
+  controllers:
+    main:
+      type: cronjob
+      revisionHistoryLimit: 1
+      annotations:
+        reloader.stakater.com/auto: 'true'
+      pod:
+        restartPolicy: Never
+        securityContext:
+          runAsUser: 1026
+          runAsGroup: 100
+          runAsNonRoot: true
+          fsGroup: 100
+          fsGroupChangePolicy: OnRootMismatch
+      cronjob:
+        schedule: "0 */6 * * *"
+        concurrencyPolicy: Forbid
+        successfulJobsHistory: 1
+        failedJobsHistory: 1
+        activeDeadlineSeconds: 14400
+        ttlSecondsAfterFinished: 86400
+      containers:
+        main:
+          image:
+            repository: ghcr.io/jmbannon/ytdl-sub
+            tag: 2024.10.09
+          env:
+            TZ: America/Vancouver
+            ## Do not mark any shows/movies as played and instead just output to log if they would of been marked.
+          envFrom:
+            - secretRef:
+                name: '{{.Release.Name}}-secret'
+          command:
+            - bash
+            - -c
+          args:
+            - |
+              ytdl-sub --log-level=debug --config=/config/config.yaml sub /config/subscriptions.yaml
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            requests:
+              cpu: 10m
+              memory: 256Mi
+            limits:
+              # gpu.intel.com/i915: 1
+              memory: 2Gi
+  persistence:
+    workdir:
+      enabled: true
+      type: persistentVolumeClaim
+      storageClass: nas-apps
+      accessMode: ReadWriteMany
+      size: 10Gi
+      globalMounts:
+        - path: /workdir
+    config:
+      enabled: true
+      type: configMap
+      name: '{{ .Release.Name }}-config'
+      globalMounts:
+        - path: /config/config.yaml
+          subPath: config.yaml
+          readOnly: true
+        - path: /config/subscriptions.yaml
+          subPath: subscriptions.yaml
+          readOnly: true
+    dri:
+      enabled: true
+      type: hostPath
+      hostPath: /dev/dri
+    tmp:
+      enabled: true
+      type: emptyDir
+      globalMounts:
+        - path: /tmp
+          subPath: tmp
+        - path: /config
+          subPath: config
+    music:
+      enabled: true
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Audio/Music
+      globalMounts:
+        - path: /music
+    webseries:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Webseries
+      globalMounts:
+        - path: /webseries
+  configMaps:
+    config:
+      data:
+        subscriptions.yaml: |-
+          ---
+          __preset__:
+            overrides:
+              tv_show_directory: "/webseries"
+              music_directory: "/music"
+
+          YouTube Releases:
+            = Trace:
+              "Armin van Buuren": "https://www.youtube.com/@arminvanbuuren/releases"
+
+          YouTube Full Albums:
+            = Lofi:
+              "Game Chops": "https://www.youtube.com/playlist?list=PLBsm_SagFMmdWnCnrNtLjA9kzfrRkto4i"
+        config.yaml: |-
+          ---
+          configuration:
+            working_directory: "/workdir/"
