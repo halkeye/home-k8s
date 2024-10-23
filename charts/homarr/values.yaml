@@ -16,7 +16,6 @@ app-template:
             AUTH_OIDC_OWNER_GROUP: "Homarr Owners"
             AUTH_OIDC_AUTO_LOGIN: "true"
             AUTH_OIDC_SCOPE_OVERWRITE: "openid email profile groups"
-            DATABASE_URL: "file:/app/database/db.sqlite"
           envFrom:
             - secretRef:
                 name: "{{.Release.Name}}-secret"
