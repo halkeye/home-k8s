@@ -29,10 +29,11 @@ spec:
           - { namespace: bitwarden, name: vaultwarden }
 
           - name: authentik
-          - name: externaldns-cloudflare
           - name: excalidraw
+          - name: externaldns-cloudflare
           - name: foundry-vtt
           - name: gathio
+          - name: homarr
           - name: it-tools
           - name: libmedium
           - name: miniflux
