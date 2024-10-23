@@ -11,7 +11,7 @@ app-template:
             TZ: America/Vancouver
             CONSOLA_LEVEL: "5"
             AUTH_PROVIDER: "oidc"
-            AUTH_OIDC_URI: https://auth.g4v.dev/application/o/homarr/
+            AUTH_OIDC_URI: https://auth.g4v.dev/application/o/homarr
             AUTH_OIDC_CLIENT_NAME: Auth
             AUTH_OIDC_ADMIN_GROUP: "Homarr Admins"
             AUTH_OIDC_OWNER_GROUP: "Homarr Owners"
