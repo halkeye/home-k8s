@@ -9,12 +9,12 @@ app-template:
             tag: 0.15.6
           env:
             TZ: America/Vancouver
-            AUTH_PROVIDER: "credentials,oidc"
+            AUTH_PROVIDER: "oidc"
             AUTH_OIDC_URI: https://auth.g4v.dev/application/o/homarr
             AUTH_OIDC_CLIENT_NAME: Auth
             AUTH_OIDC_ADMIN_GROUP: "Homarr Admins"
             AUTH_OIDC_OWNER_GROUP: "Homarr Owners"
-            AUTH_OIDC_AUTO_LOGIN: "false"
+            AUTH_OIDC_AUTO_LOGIN: "true"
             AUTH_OIDC_SCOPE_OVERWRITE: "openid email profile groups"
           envFrom:
             - secretRef:
