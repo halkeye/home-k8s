@@ -85,3 +85,4 @@ app-template:
         - path: /tmp
         - path: /.cache
         - path: /.yarn
+        - path: /app/.next/cache
