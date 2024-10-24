@@ -19,7 +19,7 @@ app-template:
         successfulJobsHistory: 1
         failedJobsHistory: 1
         activeDeadlineSeconds: 14400
-        # ttlSecondsAfterFinished: 86400
+        ttlSecondsAfterFinished: 86400
       containers:
         main:
           image:
@@ -105,7 +105,7 @@ app-template:
               music_directory: "/music"
 
           YouTube Releases:
-            = Trace:
+            = Trace | Chunk Downloads:
               "Armin van Buuren": "https://www.youtube.com/@arminvanbuuren/releases"
 
           YouTube Full Albums:
