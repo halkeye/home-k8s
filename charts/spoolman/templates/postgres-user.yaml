@@ -7,3 +7,6 @@ spec:
   database: {{ .Release.Name }}
   secretName: {{ .Release.Name }}-db-secret
   privileges: OWNER
+  secretTemplate:
+    HOSTNAME_NO_PORT: {{ `{{.HostNoPort}}` }}
+    PORT: {{ `{{.Port}}` }}

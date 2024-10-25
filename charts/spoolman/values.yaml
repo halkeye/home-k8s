@@ -26,7 +26,12 @@ app-template:
               valueFrom:
                 secretKeyRef:
                   name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
-                  key: HOST
+                  key: HOSTNAME_NO_PORT
+            SPOOLMAN_DB_PORT:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: PORT
             SPOOLMAN_DB_USERNAME:
               valueFrom:
                 secretKeyRef:
