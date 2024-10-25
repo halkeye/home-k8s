@@ -3,7 +3,7 @@ app-template:
     main:
       strategy: Recreate
       containers:
-        bambu-connect:
+        octoeverywhere:
           image:
             repository: octoeverywhere/octoeverywhere
             tag: 3.6.1
@@ -12,13 +12,6 @@ app-template:
           envFrom:
             - secretRef:
                 name: "{{.Release.Name}}-secret"
-      pod:
-        securityContext:
-          runAsUser: 568
-          runAsGroup: 568
-          runAsNonRoot: true
-          fsGroup: 568
-          fsGroupChangePolicy: OnRootMismatch
   persistence:
     data:
       enabled: true

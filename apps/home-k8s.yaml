@@ -34,7 +34,6 @@ spec:
 
           # App
           - name: audiobookshelf
-          - name: bambu-connect
           - name: bandcampsync
           - name: bazarr
           - name: calibre-web
