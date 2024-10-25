@@ -16,7 +16,12 @@ app-template:
             - "7912"
           env:
             TZ: America/Vancouver
-            SPOOLMAN_DB_NAME: spoolman
+            SPOOLMAN_DB_TYPE: postgres
+            SPOOLMAN_DB_NAME:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: DATABASE_NAME
             SPOOLMAN_DB_HOST:
               valueFrom:
                 secretKeyRef:
