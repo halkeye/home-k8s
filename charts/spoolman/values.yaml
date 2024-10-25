@@ -84,4 +84,4 @@ app-template:
       enabled: true
       type: emptyDir
       globalMounts:
-        - path: /home/app/.local/share/spoolman/cache
+        - path: /home/app/.local/share/spoolman
