@@ -11,9 +11,9 @@ app-template:
             - uvicorn
             - spoolman.main:app
             - --host
-            - 0.0.0.0
+            - "0.0.0.0"
             - --port
-            - 7912
+            - "7912"
           env:
             TZ: America/Vancouver
             SPOOLMAN_DB_NAME: spoolman
