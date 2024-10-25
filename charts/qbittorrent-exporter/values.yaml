@@ -9,7 +9,7 @@ app-template:
         main:
           image:
             repository: "ghcr.io/esanchezm/prometheus-qbittorrent-exporter"
-            tag: "v1.5.1"
+            tag: "v1.6.0"
           envFrom:
             - secretRef:
                 name: "{{.Release.Name}}-secret"
