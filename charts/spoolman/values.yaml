@@ -1,0 +1,74 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.0.1/charts/library/common/values.schema.json
+app-template:
+  controllers:
+    main:
+      containers:
+        spoolman:
+          image:
+            repository: ghcr.io/donkie/spoolman
+            tag: 0.20.0
+          env:
+            TZ: America/Vancouver
+            SPOOLMAN_DB_NAME: spoolman
+            SPOOLMAN_DB_HOST:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: HOST
+            SPOOLMAN_DB_USERNAME:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: LOGIN
+            SPOOLMAN_DB_PASSWORD:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: PASSWORD
+          probes:
+            liveness:
+              enabled: true
+            readiness:
+              enabled: true
+            startup:
+              enabled: true
+              spec:
+                failureThreshold: 30
+                periodSeconds: 5
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            requests:
+              cpu: 25m
+              memory: 500M
+      pod:
+        securityContext:
+          runAsUser: 568
+          runAsGroup: 568
+          runAsNonRoot: true
+          fsGroup: 568
+          fsGroupChangePolicy: OnRootMismatch
+  service:
+    main:
+      controller: main
+      ports:
+        http:
+          port: 8000
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: 3D Printer
+        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/spoolman.png
+        gethomepage.dev/name: '{{ .Release.Name | title | replace "-" " " }}'
+      hosts:
+        - host: "{{ .Release.Name }}.g4v.dev"
+          paths:
+            - path: /
+              service:
+                identifier: main
+                port: http
