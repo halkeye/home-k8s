@@ -48,6 +48,7 @@ spec:
           - name: lidarr
           - name: lms
           - name: mylar3
+          - name: octoeverywhere
           - name: overseerr
           - name: planka # probably should move to do-k8s
           - name: plex-auto-languages
