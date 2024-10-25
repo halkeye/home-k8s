@@ -40,6 +40,7 @@ spec:
           - name: not-the-plants
           - name: plex-discord-media-updates
           - name: searxng
+          - name: spoolman
           - name: string-is
           - name: teamspeak
           - name: unifi
