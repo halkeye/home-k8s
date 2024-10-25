@@ -13,3 +13,7 @@ ext-postgres-operator:
     requests:
       cpu: 10m
       memory: 100Mi
+  image:
+    repository: ghcr.io/halkeye/postgres-operator
+    pullPolicy: IfNotPresent
+    tag: "master"
