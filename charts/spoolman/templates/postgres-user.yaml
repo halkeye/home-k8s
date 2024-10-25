@@ -1,12 +1,12 @@
 apiVersion: db.movetokube.com/v1alpha1
 kind: PostgresUser
 metadata:
-  name: {{ .Release.Name }}
+  name: "{{ .Release.Name }}"
 spec:
-  role: {{ .Release.Name }}
-  database: {{ .Release.Name }}
-  secretName: {{ .Release.Name }}-db-secret
+  role: "{{ .Release.Name }}"
+  database: "{{ .Release.Name }}"
+  secretName: "{{ .Release.Name }}-db-secret"
   privileges: OWNER
   secretTemplate:
-    HOSTNAME_NO_PORT: {{ `{{.HostNoPort}}` }}
-    PORT: {{ `{{.Port}}` }}
+    HOSTNAME_NO_PORT: "{{ `{{.HostNoPort}}` }}"
+    PORT: "{{ `{{.Port}}` }}"
