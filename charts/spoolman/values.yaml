@@ -56,7 +56,7 @@ app-template:
       controller: main
       ports:
         http:
-          port: 8000
+          port: 7912
   ingress:
     main:
       enabled: true
