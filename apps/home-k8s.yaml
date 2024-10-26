@@ -61,6 +61,7 @@ spec:
           - name: rxresume
           - name: sonarr
           - name: speedtest
+          - name: spoolman
           - name: stash
           - name: stirling-pdf
           - name: tachidesk
