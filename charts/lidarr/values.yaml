@@ -6,7 +6,7 @@ app-template:
         main:
           image:
             repository: ghcr.io/crutonjohn/lidarr-plugins
-            tag: 2.6.4.4400
+            tag: 2.8.0.4430
           env:
             TZ: America/Vancouver
             COMPlus_EnableDiagnostics: "0"
