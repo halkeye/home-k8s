@@ -1,12 +1,20 @@
-
-[ ] Remove cloudnative-pg-system
+# Finish
 [ ] Remove firefox-homeassistant
-[ ] Remove home version of excalidraw
-[ ] remove mongodb-operator
 [ ] remove spoolman
-[ ] remove octoeverywhere
 [ ] remove podgrab
-[ ] remove rxresume
+[X] remove rxresume
 [ ] remove speedtest
-[ ] remove tachidesk
 [ ] remove zap2xml
+
+# Remove
+[ ] remove mongodb-operator
+[ ] Remove MariaDB
+[ ] Remove cloudnative-pg-system
+
+# Decide
+[ ] remove octoeverywhere
+[ ] remove tachidesk
+
+# Migrate
+[ ] Remove home version of excalidraw
+[ ] Immich
