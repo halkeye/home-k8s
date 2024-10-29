@@ -38,6 +38,7 @@ spec:
           - name: libmedium
           - name: miniflux
           - name: not-the-plants
+          - name: planka
           - name: plex-discord-media-updates
           - name: searxng
           - name: string-is
