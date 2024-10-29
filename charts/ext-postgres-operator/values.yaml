@@ -17,5 +17,3 @@ ext-postgres-operator:
     repository: ghcr.io/halkeye/postgres-operator
     pullPolicy: IfNotPresent
     tag: "sha-8928a0e"
-  env:
-    DEBUG_LOG: "true"
