@@ -278,7 +278,7 @@ grafana:
           - name: DS_PROMETHEUS
             value: Prometheus
       plex-media-exporter:
-        url: https://raw.githubusercontent.com/axsuul/plex-media-server-exporter/ec31dee7de8a6622000710c70ba4a3595f8f7e0e/examples/grafana/dashboard.json 
+        url: https://raw.githubusercontent.com/axsuul/plex-media-server-exporter/ec31dee7de8a6622000710c70ba4a3595f8f7e0e/examples/grafana/dashboard.json
         datasource:
           - name: DS_PROMETHEUS
             value: Prometheus
