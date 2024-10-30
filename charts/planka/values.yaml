@@ -12,6 +12,7 @@ app-template:
             TZ: America/Vancouver
             BASE_URL: https://planka.g4v.dev
             WEBHOOKS: "[]"
+            PGSSLMODE: no-verify
             DATABASE_URL:
               valueFrom:
                 secretKeyRef:
