@@ -18,7 +18,7 @@ app-template:
             READARR__AUTHENTICATION__METHOD: External
             READARR__AUTHENTICATION__REQUIRED: DisabledForLocalAddresses
             READARR__POSTGRES__PORT: "6000"
-            READARR__POSTGRES_-HOST:
+            READARR__POSTGRES__HOST:
               valueFrom:
                 secretKeyRef:
                   name: readarr-db-secret-readarr
