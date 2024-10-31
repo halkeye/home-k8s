@@ -16,6 +16,6 @@ ext-postgres-operator:
   image:
     repository: ghcr.io/halkeye/postgres-operator
     pullPolicy: IfNotPresent
-    tag: "sha-b5e9726"
+    tag: "sha-09585cf"
   podAnnotations:
     reloader.stakater.com/auto: "true"
