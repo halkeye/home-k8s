@@ -99,10 +99,6 @@ kube-prometheus-stack:
           scheme: https
           static_configs:
             - targets: ['smartctl-exporter.nas.g4v.dev:443']
-        - job_name: flaresolverr
-          scheme: http
-          static_configs:
-            - targets: ['172.16.10.10:8192']
         - job_name: 'homeassistant'
           scrape_interval: 60s
           metrics_path: /api/prometheus

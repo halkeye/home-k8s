@@ -307,11 +307,6 @@ grafana:
         gnetId: 14584
         revision: 1
         datasource: Prometheus
-      flaresolvrr:
-        # renovate: depName="FlareSolverr"
-        gnetId: 19363
-        revision: 1
-        datasource: Prometheus
   sidecar:
     dashboards:
       enabled: true
