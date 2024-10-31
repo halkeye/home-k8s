@@ -149,6 +149,10 @@ grafana:
       exportarr:
         url: https://raw.githubusercontent.com/onedr0p/exportarr/933ed39eba6ecbadfec8d7a9f9f71a07c05d56cb/examples/grafana/dashboard2.json
         token: ''
+    data:
+      cloudnative-pg:
+        url: https://raw.githubusercontent.com/cloudnative-pg/charts/c939e3e114ae4c3a5b7190577aeae6c625ef8d48/charts/cloudnative-pg/monitoring/grafana-dashboard.json
+        datasource: Prometheus
     observability:
       prometheus:
         # renovate: depName="Prometheus"
