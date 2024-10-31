@@ -17,7 +17,7 @@ app-template:
             READARR__LOG__LEVEL: info
             READARR__AUTHENTICATION__METHOD: External
             READARR__AUTHENTICATION__REQUIRED: DisabledForLocalAddresses
-            READARR__POSTGRES__PORT: "5432"
+            READARR__POSTGRES__PORT: "6000"
             READARR__POSTGRES_-HOST:
               valueFrom:
                 secretKeyRef:
