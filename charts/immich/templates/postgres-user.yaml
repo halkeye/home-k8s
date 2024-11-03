@@ -9,5 +9,5 @@ spec:
   secretName: immich
   privileges: OWNER     # Can be OWNER/READ/WRITE
   secretTemplate:
-    DB_URL: {{ `postgresql://{{.Role}}:{{.Password}}@{{.Host}}/{{.Database}}?sslmode=no-verify` }}
-    DB_LOGGING_URL: {{ `postgresql://{{.Role}}:{{.Password}}@{{.Host}}/{{.Database}}?sslmode=no-verify&logging=true` }}
+    DB_URL: {{ `postgresql://{{.Role}}:{{.Password}}@{{.Host}}/{{.Database}}?{{ "" | mergeUriArgs }}` }}
+    DB_LOGGING_URL: {{ `postgresql://{{.Role}}:{{.Password}}@{{.Host}}/{{.Database}}?{{ "logging=true" | mergeUriArgs }}` }}
