@@ -8,7 +8,7 @@ app-template:
         homarr:
           image:
             repository: ghcr.io/ajnart/homarr
-            tag: 0.15.6
+            tag: 0.15.7
           env:
             TZ: America/Vancouver
             AUTH_PROVIDER: "oidc"
