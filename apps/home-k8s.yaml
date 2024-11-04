@@ -46,7 +46,6 @@ spec:
           - name: lidarr
           - name: lms
           - name: mylar3
-          - name: octoeverywhere
           - name: overseerr
           - name: plex-auto-languages
           - name: plextraktsync
