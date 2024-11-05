@@ -41,6 +41,7 @@ spec:
           - name: planka
           - name: plex-discord-media-updates
           - name: searxng
+          - name: stirling-pdf
           - name: string-is
           - name: teamspeak
           - name: unifi
