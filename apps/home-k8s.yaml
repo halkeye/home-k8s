@@ -55,7 +55,6 @@ spec:
           - name: recyclarr
           - name: sonarr
           - name: stash
-          - name: tachidesk
           - name: tautulli
           - name: wg-access-server
           - name: youtubedl-material
