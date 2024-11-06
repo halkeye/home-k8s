@@ -43,6 +43,7 @@ spec:
           - name: searxng
           - name: stirling-pdf
           - name: string-is
+          - name: tautulli
           - name: teamspeak
           - name: unifi
           - name: wizarr
