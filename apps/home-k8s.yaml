@@ -40,13 +40,10 @@ spec:
           - name: frigate
           - name: grafana
           - name: immich
-          - name: kavita
           - name: kobodl
-          - name: komf
           - name: lidarr
           - name: lms
           - name: mylar3
-          - name: overseerr
           - name: plex-auto-languages
           - name: plextraktsync
           - name: prowlarr
@@ -58,8 +55,6 @@ spec:
           - name: wg-access-server
           - name: youtubedl-material
           - name: ytdl-sub
-
-          - { name: 'pgadmin4', namespace: 'db' }
   template:
     metadata:
       name: '{{.name}}'
