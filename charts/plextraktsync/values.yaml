@@ -1,4 +1,9 @@
 app-template:
+  defaultPodOptions:
+    dnsConfig:
+      options:
+        - name: ndots
+          value: "1"
   controllers:
     main:
       annotations:
