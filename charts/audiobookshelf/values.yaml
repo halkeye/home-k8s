@@ -69,6 +69,7 @@ app-template:
       enabled: true
       type: persistentVolumeClaim
       accessMode: ReadWriteOnce
+      storageClass: nas-apps
       size: 10Gi
     tmp:
       type: emptyDir
