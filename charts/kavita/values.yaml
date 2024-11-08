@@ -57,7 +57,7 @@ app-template:
     config:
       enabled: true
       type: persistentVolumeClaim
-      storageClass: synology-iscsi
+      storageClass: nas-apps
       accessMode: ReadWriteOnce
       size: 5Gi
       globalMounts:

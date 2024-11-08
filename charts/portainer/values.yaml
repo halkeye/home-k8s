@@ -14,7 +14,7 @@ portainer:
           - path: "/"
   persistence:
     enabled: true
-    storageClass: synology-iscsi
+    storageClass: nas-apps
   service:
     annotations:
       tailscale.com/expose: "true"

@@ -57,7 +57,7 @@ app-template:
       type: persistentVolumeClaim
       accessMode: ReadWriteOnce
       size: 20Gi
-      storageClass: synology-iscsi
+      storageClass: nas-apps
     transcodes:
       enabled: true
       type: emptyDir

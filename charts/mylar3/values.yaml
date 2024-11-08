@@ -48,7 +48,7 @@ app-template:
       type: persistentVolumeClaim
       accessMode: ReadWriteOnce
       size: 10Gi
-      storageClass: synology-iscsi
+      storageClass: nas-apps
       globalMounts:
         - path: /config
     # cache:

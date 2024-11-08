@@ -63,4 +63,4 @@ app-template:
       type: persistentVolumeClaim
       accessMode: ReadWriteOnce
       size: 1Gi
-      storageClass: synology-iscsi
+      storageClass: nas-apps
