@@ -147,7 +147,6 @@ app-template:
       type: persistentVolumeClaim
       accessMode: ReadWriteOnce
       size: 1Gi
-      storageClass: synology-iscsi
       globalMounts:
         - path: /app/config/
     configmap:
