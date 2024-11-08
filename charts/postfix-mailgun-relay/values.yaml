@@ -2,6 +2,9 @@ mail:
   nameOverride: postfix-mailgun-relay
   fullnameOverride: postfix-mailgun-relay
 
+  persistence:
+    enabled: false
+
   resources:
     requests:
       cpu: 10m
