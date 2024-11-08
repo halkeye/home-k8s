@@ -16,10 +16,11 @@ spec:
           - name: traefik-forward-auth
 
           # Exporters
+          - { namespace: plex, name: plex-exporter }
+          - { namespace: plex, name: plex-media-server-exporter }
+
           - name: blackbox-exporter
           - name: bambulabs-exporter
-          - name: plex-exporter
-          - name: plex-media-server-exporter
           - name: nut-exporter
           - name: qbittorrent-exporter
           - name: sabnzbd-exporter
