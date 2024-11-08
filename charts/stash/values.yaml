@@ -65,16 +65,3 @@ app-template:
       size: 10Gi
       globalMounts:
         - path: /root/.stash
-    config-iscsi:
-      enabled: true
-      type: persistentVolumeClaim
-      accessMode: ReadWriteOnce
-      size: 10Gi
-      storageClass: synology-iscsi
-      globalMounts:
-        - path: /iscsi
-    # config-rclone:
-    #   enabled: true
-    #   existingClaim: "{{ .Release.Name }}-rclone"
-    #   globalMounts:
-    #     - path: /rclone
