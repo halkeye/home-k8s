@@ -28,6 +28,10 @@ spec:
           # Apps
           - { namespace: bitwarden, name: vaultwarden }
 
+          - { namespace: plex, name: plex-auto-languages }
+          - { namespace: plex, name: plex-discord-media-updates }
+          - { namespace: plex, name: plextraktsync }
+
           - name: authentik
           - name: excalidraw
           - name: externaldns-cloudflare
@@ -39,9 +43,6 @@ spec:
           - name: miniflux
           - name: not-the-plants
           - name: planka
-          - name: plex-auto-languages
-          - name: plex-discord-media-updates
-          - name: plextraktsync
           - name: searxng
           - name: stirling-pdf
           - name: string-is
