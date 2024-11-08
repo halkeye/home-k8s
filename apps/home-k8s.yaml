@@ -44,8 +44,6 @@ spec:
           - name: lidarr
           - name: lms
           - name: mylar3
-          - name: plex-auto-languages
-          - name: plextraktsync
           - name: prowlarr
           - name: radarr
           - name: readarr

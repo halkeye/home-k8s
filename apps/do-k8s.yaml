@@ -39,7 +39,9 @@ spec:
           - name: miniflux
           - name: not-the-plants
           - name: planka
+          - name: plex-auto-languages
           - name: plex-discord-media-updates
+          - name: plextraktsync
           - name: searxng
           - name: stirling-pdf
           - name: string-is
