@@ -4,6 +4,8 @@ app-template:
       options:
         - name: ndots
           value: "1"
+      nameservers:
+        - 8.8.8.8
   controllers:
     main:
       annotations:

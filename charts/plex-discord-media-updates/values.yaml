@@ -1,4 +1,11 @@
 app-template:
+  defaultPodOptions:
+    dnsConfig:
+      options:
+        - name: ndots
+          value: "1"
+      nameservers:
+        - 8.8.8.8
   controllers:
     main:
       type: cronjob
