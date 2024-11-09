@@ -1,1 +1,1 @@
-deps/k3s-ansible/roles/reset_proxmox_lxc
+../deps/k3s-ansible/roles/reset_proxmox_lxc

@@ -2,11 +2,30 @@
 - name: Pre tasks
   hosts: all
   pre_tasks:
+    - name: Set a hostname
+      become: true
+      ansible.builtin.hostname:
+        name: "{{ inventory_hostname }}"
+
     - name: Verify Ansible is version 2.11 or above. (If this fails you may need to update Ansible)
       ansible.builtin.assert:
         that: ansible_version.full is version_compare('2.11', '>=')
         msg: >
           "Ansible is out of date. See here for more info: https://docs.technotim.live/posts/ansible-automation/"
+    # # To use the sops_encrypt module on a remote host, you need to install SOPS on it:
+    # - name: Install SOPS on remote hosts
+    #   ansible.builtin.include_role:
+    #     name: community.sops.install
+    #   vars:
+    #     sops_version: 3.9.1
+
+    # # To use the lookup plugin, filter plugin, vars plugin, or the load_vars action,
+    # # you need SOPS installed on localhost:
+    # - name: Install SOPS on localhost
+    #   ansible.builtin.include_role:
+    #     name: community.sops.install
+    #   vars:
+    #     sops_install_on_localhost: true
 
 - name: Prepare Proxmox cluster
   hosts: proxmox

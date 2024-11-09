@@ -2,7 +2,7 @@
 SHELL = /bin/bash
 .DEFAULT_GOAL := site
 
-ANSIBLE_PLAYBOOK ?= $(VENV)/ansible-playbook -i inventory
+ANSIBLE_PLAYBOOK ?= $(VENV)/ansible-playbook
 ANSIBLE_DEBUG :=
 PLAYBOOK :=
 
@@ -26,10 +26,10 @@ sync: ## Synchronize ansible data
 
 .PHONY: run
 run: setup ## Run
-	ifeq ($(PLAYBOOK),)
-		echo "No playbook picked"
-		exit 1
-	endif
+	@if [ "$(PLAYBOOK)" = "" ]; then\
+		echo "Playbook not set";\
+		exit 1;\
+	fi
 	$(ANSIBLE_PLAYBOOK) $(PLAYBOOK).yml $(ANSIBLE_DEBUG)
 
 .PHONY: lint
@@ -45,8 +45,16 @@ debug: ANSIBLE_DEBUG+=-vvv
 debug: run ## Run in debug mode
 
 .PHONY: site
-site: PLAYBOOK=site
+site: PLAYBOOK+=site
 site: run ## Just update site
+
+.PHONY: reboot
+reboot: PLAYBOOK+=reboot
+reboot: run ## Just reboot
+
+.PHONY: reset
+reset: PLAYBOOK+=reset
+reset: run ## Reset all the things
 
 .PHONY: diff
 diff: ANSIBLE_DEBUG+=--check --diff

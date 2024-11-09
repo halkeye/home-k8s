@@ -1,1 +1,1 @@
-deps/k3s-ansible/roles/raspberrypi
+../deps/k3s-ansible/roles/raspberrypi

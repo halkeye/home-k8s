@@ -1,1 +1,1 @@
-deps/k3s-ansible/roles/k3s_agent
+../deps/k3s-ansible/roles/k3s_agent
