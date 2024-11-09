@@ -1,25 +1,32 @@
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cert-manager
+  name: democratic-csi
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
   destination:
-    namespace: cert-manager
+    namespace: democratic-csi-system
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: charts/cert-manager
+    path: charts/democratic-csi
     repoURL: https://github.com/halkeye/home-k8s
     targetRevision: HEAD
     helm:
       valueFiles:
         - values.yaml
+        - secrets://values-secrets.yaml
   syncPolicy:
     automated:
       selfHeal: true
     syncOptions:
-    - ServerSideApply=true
     - CreateNamespace=true
+    - ServerSideApply=true
+  ignoreDifferences:
+    - group: storage.k8s.io
+      kind: CSIDriver
+      jqPathExpressions:
+        - .spec.seLinuxMount

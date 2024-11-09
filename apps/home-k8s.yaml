@@ -12,20 +12,21 @@ spec:
         elements:
           # "system"
           - name: externaldns-internal-technitium
-          - { name: csi-rclone-reloaded, namespace: kube-system }
           - name: traefik-forward-auth
 
           # Exporters
           - { namespace: plex, name: plex-exporter }
           - { namespace: plex, name: plex-media-server-exporter }
 
-          - name: blackbox-exporter
-          - name: bambulabs-exporter
-          - name: nut-exporter
-          - name: qbittorrent-exporter
-          - name: sabnzbd-exporter
-          - name: speedtest-exporter
-          - name: unifi-poller
+          - { namespace: cloudflare, name: cloudflared }
+
+          - { namespace: monitoring, name: blackbox-exporter }
+          - { namespace: monitoring, name: bambulabs-exporter }
+          - { namespace: monitoring, name: nut-exporter }
+          - { namespace: monitoring, name: qbittorrent-exporter }
+          - { namespace: monitoring, name: sabnzbd-exporter }
+          - { namespace: monitoring, name: speedtest-exporter }
+          - { namespace: monitoring, name: unifi-poller }
 
           # Apps but extra
           - name: anime-radarr

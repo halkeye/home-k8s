@@ -1,31 +1,26 @@
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: traefik-ingress
+  name: cert-manager-config
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "5"
 spec:
   destination:
-    namespace: traefik-ingress
+    namespace: cert-manager
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: charts/traefik-ingress
+    path: charts/cert-manager-config
     repoURL: https://github.com/halkeye/home-k8s
     targetRevision: HEAD
     helm:
-      passCredentials: true
       valueFiles:
         - values.yaml
+        - secrets://values-secrets.yaml
   syncPolicy:
     automated:
       selfHeal: true
     syncOptions:
-    - ServerSideApply=true
     - CreateNamespace=true
-  ignoreDifferences:
-    - group: ""
-      kind: Service
-      jqPathExpressions:
-        - .status.loadBalancer.ingress[].ipMode

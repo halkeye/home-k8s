@@ -1,23 +1,25 @@
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: snapshot-controller
+  name: wildcard-certs
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/sync-wave: "10"
 spec:
   destination:
     namespace: kube-system
     server: https://kubernetes.default.svc
   project: default
   source:
-    chart: snapshot-controller
-    repoURL: https://democratic-csi.github.io/charts/
-    targetRevision: 0.2.4
-    helm: {}
+    path: charts/wildcard-certs
+    repoURL: https://github.com/halkeye/home-k8s
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values.yaml
   syncPolicy:
     automated:
       selfHeal: true
     syncOptions:
     - CreateNamespace=true
-    - ServerSideApply=true
