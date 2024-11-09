@@ -4,9 +4,9 @@ groot ansible_host=172.16.10.6
 rocketracoon ansible_host=172.16.10.7
 
 [node]
-starlord
-groot
-rocketracoon
+# starlord
+# groot
+# rocketracoon
 
 [k3s_cluster:children]
 master

@@ -1,2 +1,4 @@
 ---
-cilium_iface: ens18
+# calico_iface: ens18
+flannel_iface: ens18
+k3s_master_taint: false
