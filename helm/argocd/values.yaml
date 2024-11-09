@@ -83,9 +83,9 @@ argo-cd:
     volumes:
       - name: custom-tools
         emptyDir: {}
-      - name: helm-secrets-private-keys
+      - name: sops-key
         secret:
-          secretName: helm-secrets-private-keys
+          secretName: argocd-secret
     volumeMounts:
       - mountPath: /usr/local/bin/sops
         name: custom-tools
@@ -99,8 +99,9 @@ argo-cd:
       - mountPath: /usr/local/sbin/helm
         subPath: helm
         name: custom-tools
-      - mountPath: /helm-secrets-private-keys/
-        name: helm-secrets-private-keys
+      - mountPath: /helm-secrets-private-keys/key.txt
+        name: sops-key
+        subPath: sops.key.txt
       - mountPath: /custom-tools/
         name: custom-tools
     env:
