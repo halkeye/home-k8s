@@ -21,11 +21,7 @@ homepage:
       annotations:
         gethomepage.dev/enabled: 'false'
       hosts:
-        - host: dash.g4v.dev
-          paths:
-            - path: /
-              pathType: Prefix
-        - host: gethomepage.g4v.dev
+        - host: dash-{{ .Values.global.privateDomainName }}
           paths:
             - path: /
               pathType: Prefix
