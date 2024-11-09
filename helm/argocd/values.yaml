@@ -3,14 +3,12 @@ argo-cd:
   createClusterRoles: true
   createAggregateRoles: true
   notifications:
-    enabled: false # REMOVEME
     argocdUrl: &url https://argocd.h.g4v.dev
     metrics:
       enabled: true
       serviceMonitor:
         enabled: true
   controller:
-    replicas: 0 # REMOVEME
     clusterAdminAccess: true
     metrics:
       enabled: true
@@ -49,7 +47,6 @@ argo-cd:
       serviceMonitor:
         enabled: true
   applicationSet:
-    replicas: 0 # REMOVEME
     metrics:
       enabled: true
       serviceMonitor:
@@ -61,7 +58,6 @@ argo-cd:
         gethomepage.dev/enabled: 'false'
       hostname: argocd-webhooks.g4v.dev
   server:
-    replicas: 0 # REMOVEME
     metrics:
       enabled: true
       serviceMonitor:
@@ -80,7 +76,6 @@ argo-cd:
           command: ["/bin/sh", "-c"]
           args: ["cat *.yaml | yq"]
   repoServer:
-    replicas: 0 # REMOVEME
     metrics:
       enabled: true
       serviceMonitor:
