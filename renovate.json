@@ -20,6 +20,7 @@
         "Process custom dependencies"
       ],
       "fileMatch": [
+        "inventory/group_vars/all.yml",
         "(^|/)charts/.+\\.ya?ml(?:\\.j2)?$",
         "charts/system-upgrade-controller/templates/agent.yaml",
         "charts/system-upgrade-controller/templates/server.yaml"
