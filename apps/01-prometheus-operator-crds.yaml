@@ -24,3 +24,29 @@ spec:
     - ServerSideApply=true
     - CreateNamespace=true
     - PruneLast=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus-operator-crds
+  namespace: do-argocd
+spec:
+  destination:
+    namespace: monitoring
+    server: https://6280be86-f269-4fd1-a692-92d18aaf6595.k8s.ondigitalocean.com
+  project: default
+  source:
+    path: charts/prometheus-operator-crds
+    repoURL: https://github.com/halkeye/home-k8s
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values.yaml
+        - secrets://values-secrets.yaml
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+    - ServerSideApply=true
+    - CreateNamespace=true
+    - PruneLast=true

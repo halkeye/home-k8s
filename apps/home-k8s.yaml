@@ -11,7 +11,6 @@ spec:
     - list:
         elements:
           # "system"
-          - name: externaldns-internal-technitium
           - name: traefik-forward-auth
 
           # Exporters
