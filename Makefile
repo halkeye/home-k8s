@@ -63,6 +63,10 @@ diff: run ## Dry run and output diffs not run
 .PHONY: check
 check: diff
 
+.PHONY: olm
+olm:
+	operator-sdk olm install --version=v0.28.0
+
 .PHONY: help
 help:
 	@grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

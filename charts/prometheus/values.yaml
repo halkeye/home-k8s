@@ -1,5 +1,7 @@
 authentik: {}
 kube-prometheus-stack:
+  crds:
+    enabled: false
   alertmanager:
     ingress:
       enabled: true

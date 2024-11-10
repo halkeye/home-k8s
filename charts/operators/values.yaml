@@ -1,0 +1,10 @@
+subscriptions:
+  - name: patch-operator
+    namespace: patch-operator
+    channel: alpha
+    source: community-operators
+  # - name: prometheus
+  #   namespace: prometheus-operator
+  #   channel: preview
+  #   startingCSV: prometheusoperator.0.22.2
+  #   source: rh-operators
