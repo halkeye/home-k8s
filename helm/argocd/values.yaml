@@ -186,7 +186,7 @@ argo-cd:
     params:
       server.insecure: "true"
     cm:
-      exec.enabled: true
+      exec.enabled: false
       admin.enabled: "true"
       resource.customizations: |
         operators.coreos.com/Subscription:
