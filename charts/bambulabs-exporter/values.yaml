@@ -8,8 +8,8 @@ app-template:
       containers:
         main:
           image:
-            repository: "aetrius/bambulabs-exporter"
-            tag: "latest"
+            repository: "ghcr.io/aetrius/bambulabs-exporter/bambulabs-exporter"
+            tag: "main"
           envFrom:
             - secretRef:
                 name: "{{.Release.Name}}-secret"
