@@ -199,6 +199,7 @@ kube-prometheus-stack:
       KubeMemoryOvercommit: true
       KubeMemoryQuotaOvercommit: true
     rules:
+      etcd: false
       kubeControllerManager: false
       kubeProxy: false
       kubeSchedulerAlerting: false
