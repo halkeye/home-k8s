@@ -9,7 +9,7 @@ app-template:
         main:
           image:
             repository: "aetrius/bambulabs-exporter"
-            tag: "latest@sha256:dc28843ffca5522d8f848f1404b13f4cba7a7f9e23636074e52eb244bba6872b"
+            tag: "latest"
           envFrom:
             - secretRef:
                 name: "{{.Release.Name}}-secret"
