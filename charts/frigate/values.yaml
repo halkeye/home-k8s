@@ -34,7 +34,7 @@ app-template:
           securityContext:
             privileged: true
           resources:
-            limits: &resources
+            limits:
               memory: 8Gi
             requests:
               cpu: 100m
