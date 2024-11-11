@@ -151,9 +151,6 @@ kube-prometheus-stack:
   kubeApiServer:
     enabled: true
     serviceMonitor:
-      selector:
-        component: apiserver
-        provider: kubernetes
       metricRelabelings:
         - action: replace
           sourceLabels:
