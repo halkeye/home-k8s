@@ -51,6 +51,8 @@ app-template:
   service:
     main:
       controller: main
+      annotations:
+        metallb.universe.tf/allow-shared-ip: "{{.Release.Name}}"
       ports:
         http:
           port: 9000
