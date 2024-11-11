@@ -49,11 +49,14 @@ app-template:
           port: 5000
         rtsp:
           port: 8554
-    external-rtsp:
+    external-stream:
       enabled: true
       controller: frigate
       type: LoadBalancer
       externalTrafficPolicy: Cluster
+      annotations:
+        external-dns.alpha.kubernetes.io/hostname: external-frigate-stream.g4v.dev
+        metallb.universe.tf/allow-shared-ip: "{{.Release.Name}}"
       ports:
         rtsp-tcp:
           enabled: true
@@ -65,18 +68,12 @@ app-template:
           port: 8554
           protocol: UDP
           targetPort: 8554
-    external-webrtc:
-      enabled: true
-      controller: frigate
-      type: LoadBalancer
-      externalTrafficPolicy: Cluster
-      ports:
-        rtsp-tcp:
+        webrtc-tcp:
           enabled: true
           port: 8555
           protocol: TCP
           targetPort: 8555
-        rtsp-udp:
+        webrtc-udp:
           enabled: true
           port: 8555
           protocol: UDP
@@ -90,7 +87,7 @@ app-template:
         gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/frigate.png
         gethomepage.dev/name: Frigate
       hosts:
-        - host: &host frigate.g4v.dev
+        - host: frigate.g4v.dev
           paths:
             - path: /
               service:
