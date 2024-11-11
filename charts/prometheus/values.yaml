@@ -139,13 +139,6 @@ kube-prometheus-stack:
       kubeProxy: false
       kubeSchedulerAlerting: false
       kubeSchedulerRecording: false
-  prometheus-node-exporter:
-    resources:
-      requests:
-        cpu: 23m
-        memory: 64M
-      limits:
-        memory: 64M
   prometheus:
     monitor:
       enabled: true
@@ -160,7 +153,8 @@ kube-prometheus-stack:
     enabled: true
     serviceMonitor:
       selector:
-        k8s-app: kube-apiserver
+        component: apiserver
+        provider: kubernetes
       metricRelabelings:
         - action: replace
           sourceLabels:
@@ -175,16 +169,16 @@ kube-prometheus-stack:
         k8s-app: kube-controller-manager
   kubeEtcd:
     enabled: true
-    service:
-      selector:
-        k8s-app: kube-controller-manager
   kubeScheduler:
     enabled: true
-    service:
-      selector:
-        k8s-app: kube-scheduler
   prometheus-node-exporter:
     fullnameOverride: node-exporter
+    resources:
+      requests:
+        cpu: 23m
+        memory: 64M
+      limits:
+        memory: 64M
     prometheus:
       monitor:
         enabled: true
