@@ -169,7 +169,7 @@ app-template:
                 - key: kubernetes.io/arch
                   operator: NotIn
                   values:
-                  - arm
+                    - arm64
       containers:
         main:
           image:
