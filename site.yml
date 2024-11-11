@@ -85,3 +85,9 @@
         dest: ./kubeconfig
         flat: true
       when: ansible_hostname == hostvars[groups[group_name_master | default('master')][0]]['ansible_hostname']
+
+- name: Install ubuntu packages
+  become: true
+  ansible.builtin.apt:
+    name: "nfs-common jq"
+    state: present
