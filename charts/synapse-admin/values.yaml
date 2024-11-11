@@ -10,7 +10,6 @@ app-template:
   ingress:
     main:
       enabled: true
-      className: tailscale
       annotations:
         gethomepage.dev/enabled: "true"
         gethomepage.dev/group: Tools
