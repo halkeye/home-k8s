@@ -1,4 +1,4 @@
 ---
-# calico_iface: ens18
-flannel_iface: ens18
+# calico_iface: enp2s0
+flannel_iface: enp2s0
 k3s_master_taint: false

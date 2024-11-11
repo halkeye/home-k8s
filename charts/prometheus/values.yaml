@@ -208,6 +208,7 @@ kube-prometheus-stack:
       name: kubelet
       enabled: true
     admissionWebhooks:
+      enabled: false
       annotations:
         argocd.argoproj.io/hook: PreSync
         argocd.argoproj.io/hook-delete-policy: HookSucceeded

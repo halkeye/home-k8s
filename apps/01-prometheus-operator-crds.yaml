@@ -4,6 +4,8 @@ kind: Application
 metadata:
   name: prometheus-operator-crds
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   destination:
     namespace: monitoring
@@ -30,6 +32,8 @@ kind: Application
 metadata:
   name: prometheus-operator-crds
   namespace: do-argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   destination:
     namespace: monitoring

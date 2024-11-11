@@ -4,6 +4,8 @@ kind: Application
 metadata:
   name: prometheus
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   destination:
     namespace: monitoring
@@ -21,6 +23,6 @@ spec:
     automated:
       selfHeal: true
     syncOptions:
-    - ServerSideApply=true
+    - ServerSideApply=false
     - CreateNamespace=true
     - PruneLast=true
