@@ -160,6 +160,16 @@ app-template:
       annotations:
         reloader.stakater.com/auto: "true"
       strategy: RollingUpdate
+      pod:
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+              - matchExpressions:
+                - key: kubernetes.io/arch
+                  operator: NotIn
+                  values:
+                  - arm
       containers:
         main:
           image:
@@ -180,7 +190,7 @@ app-template:
               spec:
                 httpGet:
                   path: /health
-                  port: &port 8108
+                  port: 8108
                 initialDelaySeconds: 0
                 periodSeconds: 10
                 timeoutSeconds: 1
