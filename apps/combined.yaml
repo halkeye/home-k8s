@@ -16,7 +16,6 @@ spec:
                 - appname: postfix-mailgun-relay
                   namespace: smtp
 
-                - appname: gethomepage
                 - appname: uptime-kuma
                 - appname: whoami
   template:
