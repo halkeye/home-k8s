@@ -99,16 +99,8 @@ homepage:
       - search:
           provider: duckduckgo
           target: _blank
-      - unifi_console:
-          url: https://unifi.g4v.dev
-          username: "{{HOMEPAGE_VAR_UNIFI_USERNAME}}"
-          password: "{{HOMEPAGE_VAR_UNIFI_PASSWORD}}"
-          site: "{{HOMEPAGE_VAR_UNIFI_SITE}}"
     kubernetes:
       mode: cluster
     settings: {}
-  envFrom:
-    - secretRef:
-        name: "{{ .Release.Name }}-secret"
   env:
     TZ: America/Vancouver
