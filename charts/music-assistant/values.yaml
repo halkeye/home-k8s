@@ -8,7 +8,7 @@ app-template:
         music-assistant:
           image:
             repository: ghcr.io/music-assistant/server
-            tag: 2.3.2
+            tag: 2.3.3
           env:
             TZ: America/Vancouver
             LOG_LEVEL: "info"
