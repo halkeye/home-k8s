@@ -11,6 +11,11 @@ app-template:
             tag: 1.4.5
           env:
             TZ: America/Vancouver
+            APIKEY:
+              valueFrom:
+                secretKeyRef:
+                  name: bazarr-secret
+                  key: BAZARR__API_KEY
           securityContext:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
@@ -22,10 +27,27 @@ app-template:
             requests:
               <<: *resources
               cpu: 10m
+          probes:
+            liveness: &probes
+              enabled: true
+              custom: true
+              spec:
+                exec:
+                  command:
+                    - bash
+                    - -c
+                    - 'curl --fail http://localhost:6767/api/system/status --header "X-API-KEY: ${BAZARR__API_KEY}"'
+                initialDelaySeconds: 0
+                periodSeconds: 10
+                timeoutSeconds: 1
+                failureThreshold: 3
+            readiness: *probes
+            startup:
+              enabled: false
         exportarr:
           image:
             repository: ghcr.io/onedr0p/exportarr
-            tag: v2.0.1@sha256:727e7bc8f2f0934a2117978c59f4476b954018b849a010ea6cfb380bd6539644
+            tag: v2.0.1
           args:
             - bazarr
           env:
@@ -80,7 +102,7 @@ app-template:
         gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/bazarr.png
         gethomepage.dev/name: Bazarr
       hosts:
-        - host: &host bazarr.g4v.dev
+        - host: bazarr.g4v.dev
           paths:
             - path: /
               service:
