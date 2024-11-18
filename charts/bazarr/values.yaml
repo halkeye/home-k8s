@@ -11,7 +11,7 @@ app-template:
             tag: 1.4.5
           env:
             TZ: America/Vancouver
-            APIKEY:
+            BAZARR__API_KEY:
               valueFrom:
                 secretKeyRef:
                   name: bazarr-secret
@@ -36,7 +36,7 @@ app-template:
                   command:
                     - bash
                     - -c
-                    - 'curl --fail http://localhost:6767/api/system/status --header "X-API-KEY: ${BAZARR__API_KEY}"'
+                    - 'curl --qs --fail http://localhost:6767/api/system/status --header "X-API-KEY: ${BAZARR__API_KEY}"'
                 initialDelaySeconds: 0
                 periodSeconds: 10
                 timeoutSeconds: 1
