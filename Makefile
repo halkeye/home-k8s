@@ -11,6 +11,10 @@ pull: .gitmodules ## get all dependencies
 	git pull
 	git submodule update --init
 
+.PHONY: push
+push: ## git push
+	git push -u
+
 .PHONY: clean
 clean: clean-venv ## Delete all generated artefacts
 	find . -name "*.pyc" -exec $(RM) -rf {} \;
