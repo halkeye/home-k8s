@@ -1,0 +1,65 @@
+app-template:
+  controllers:
+    netalertx:
+      strategy: Recreate
+      pod:
+        hostNetwork: true
+      containers:
+        netalertx:
+          image:
+            repository: jokobsk/netalertx
+            tag: 24.10.31
+          env:
+            TZ: America/Vancouver
+            PORT: 20211
+          securityContext:
+            privileged: true
+            capabilities:
+              add:
+                - SYS_ADMIN
+                - CAP_SYSLOG
+                - NET_BIND_SERVICE
+                - DAC_READ_SEARCH
+          probes:
+            liveness:
+              enabled: false
+            readiness:
+              enabled: false
+            startup:
+              enabled: false
+              spec:
+                failureThreshold: 30
+                periodSeconds: 5
+          resources:
+            requests:
+              cpu: 47m
+              memory: 512Mi
+            limits:
+              memory: 1024Mi
+  service:
+    netalertx:
+      controller: netalertx
+      ports:
+        http:
+          port: 20211 
+  ingress:
+    main:
+      enabled: true
+      hosts:
+        - host: netalertx.g4v.dev
+          paths:
+            - path: /
+              service:
+                identifier: netalertx
+                port: http
+  persistence:
+    config:
+      enabled: true
+      type: persistentVolumeClaim
+      accessMode: ReadWriteOnce
+      size: 1Gi
+      storageClass: nas-apps
+      globalMounts:
+        - path: /app/config
+        - path: /app/db
+        - path: /app/front/api
