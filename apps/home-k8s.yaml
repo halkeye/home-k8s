@@ -45,6 +45,7 @@ spec:
           - name: lidarr
           - name: lms
           - name: mylar3
+          - name: netalertx
           - name: prowlarr
           - name: radarr
           - name: readarr

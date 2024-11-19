@@ -12,6 +12,8 @@ app-template:
           env:
             TZ: America/Vancouver
             PORT: 20211
+            SCAN_SUBNETS: 172.16.10.0/24
+            REPORT_DASHBOARD_URL: https://netalertx.g4v.dev
           securityContext:
             privileged: true
             capabilities:
