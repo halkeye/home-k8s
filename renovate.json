@@ -55,8 +55,7 @@
         "docker-gathio",
         "docker-mautrix-signal",
         "docker-mautrix-whatsapp",
-        "docker-mautrix-gmessages",
-        "docker-mautrix-telegram"
+        "docker-mautrix-gmessages"
       ]
     },
     {

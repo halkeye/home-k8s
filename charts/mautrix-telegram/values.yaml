@@ -38,8 +38,8 @@ app-template:
       containers:
         main:
           image:
-            repository: ghcr.io/halkeye/docker-mautrix-telegram
-            tag: v0.15.2.2
+            repository: dock.mau.dev/mautrix/telegram
+            tag: v0.15.2
           env:
             TZ: America/Vancouver
             MAUTRIX_DB_URI:
