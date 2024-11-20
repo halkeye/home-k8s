@@ -23,10 +23,11 @@ appConfigOverride:
   REPORT_DASHBOARD_URL: https://netalertx.g4v.dev
   ARPSCAN_RUN: "schedule"
   ARPSCAN_RUN_SCHD: "*/5 * * * *"
-  UNFIMP_RUN: "on_new_device"
+  UNFIMP_RUN: "once"
   UNFIMP_username: ""
   UNFIMP_password: ""
   UNFIMP_host: "unifi.g4v.dev"
+  UNFIMP_verifyssl: "true"
   UNFIMP_port: "443"
   UNFIMP_sites: ["default"]
 app-template:
