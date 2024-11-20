@@ -1,21 +1,20 @@
 appConfigOverride:
-  LOADED_PLUGINS:
-    - ARPSCAN
-    - CSVBCKP
-    - DBCLNP
-    - INTRNT
-    - MAINT
-    - NEWDEV
-    - NSLOOKUP
-    - NTFPRCS
-    - AVAHISCAN
-    - SMTP
-    - SYNC
-    - VNDRPDT
-    - WORKFLOWS
-    - MQTT
-    - UNFIMP
-    - WEBHOOK
+  # LOADED_PLUGINS:
+  #   - ARPSCAN
+  #   - CSVBCKP
+  #   - DBCLNP
+  #   - INTRNT
+  #   - MAINT
+  #   - NEWDEV
+  #   - NSLOOKUP
+  #   - NTFPRCS
+  #   - AVAHISCAN
+  #   - SMTP
+  #   - SYNC
+  #   - VNDRPDT
+  #   - WORKFLOWS
+  #   - UNFIMP
+  #   - WEBHOOK
   SCAN_SUBNETS:
     - "172.16.10.0/24"
   TIMEZONE: America/Vancouver
@@ -29,6 +28,12 @@ appConfigOverride:
   UNFIMP_verifyssl: "true"
   UNFIMP_port: "443"
   UNFIMP_sites: ["default"]
+  # WEBHOOK_RUN: "on_notification"
+  # WEBHOOK_URL: "https.discord"
+  # WEBHOOK_PAYLOAD: "text"
+  # WEBHOOK_REQUEST_METHOD: "GET"
+  # WEBHOOK_SIZE: "1024"
+  # WEBHOOK_SECRET: ""
 app-template:
   controllers:
     netalertx:
