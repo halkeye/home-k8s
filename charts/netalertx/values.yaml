@@ -1,20 +1,19 @@
 appConfigOverride:
-  # LOADED_PLUGINS:
-  #   - ARPSCAN
-  #   - CSVBCKP
-  #   - DBCLNP
-  #   - INTRNT
-  #   - MAINT
-  #   - NEWDEV
-  #   - NSLOOKUP
-  #   - NTFPRCS
-  #   - AVAHISCAN
-  #   - SMTP
-  #   - SYNC
-  #   - VNDRPDT
-  #   - WORKFLOWS
-  #   - UNFIMP
-  #   - WEBHOOK
+  LOADED_PLUGINS:
+    - ARPSCAN
+    - CSVBCKP
+    - DBCLNP
+    - INTRNT
+    - MAINT
+    - NEWDEV
+    - NSLOOKUP
+    - NTFPRCS
+    - AVAHISCAN
+    - SYNC
+    - VNDRPDT
+    - WORKFLOWS
+    - UNFIMP
+    - WEBHOOK
   SCAN_SUBNETS:
     - "172.16.10.0/24"
   TIMEZONE: America/Vancouver
