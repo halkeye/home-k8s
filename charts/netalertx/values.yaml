@@ -37,6 +37,8 @@ appConfigOverride:
 app-template:
   controllers:
     netalertx:
+      annotations:
+        reloader.stakater.com/auto: 'true'
       strategy: Recreate
       pod:
         hostNetwork: true
