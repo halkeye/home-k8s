@@ -5,7 +5,7 @@ app-template:
       containers:
         kavita:
           image:
-            repository: jvmilazz0/kavita
+            repository: ghcr.io/kareadita/kavita
             tag: 0.8.3
           env:
             TZ: America/Vancouver
