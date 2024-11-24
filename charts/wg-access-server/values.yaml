@@ -8,6 +8,14 @@ app-template:
   podAnnotations:
     reloader.stakater.com/auto: "true"
 
+  defaultPodOptions:
+    dnsConfig:
+      options:
+        - name: ndots
+          value: "1"
+      nameservers:
+        - 172.16.10.3
+
   controllers:
     main:
       containers:
@@ -99,6 +107,11 @@ app-template:
       # -- Secret stringData content. Helm template enabled.
       stringData:
         config.yaml: |-
+          dns:
+            enabled: true
+            domain: dhcp.home
+            upstream:
+              - 172.16.10.3
           wireguard:
             privateKey: "{{ .Values.appConfigs.wireguardPrivateKey }}"
           # You can disable the builtin admin account by leaving out 'adminPassword'. Requires another backend to be configured.
