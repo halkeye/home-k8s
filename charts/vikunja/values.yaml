@@ -35,20 +35,6 @@ vikunja:
     configMaps:
       config:
         enabled: true
-        data:
-          config.yml:
-            service:
-              enableregistration: false
-              auth:
-            openid:
-              enabled: true
-              redirecturl: "https://vikunja.g4v.dev/auth/openid/"
-              providers:
-                - name: authentik
-                  authurl: "https://auth.g4v.dev/application/o/vikunja"
-                  logouturl: "https://auth.g4v.dev/application/o/vikunja/end-session/"
-                  clientid: "" # copy from Authetik
-                  clientsecret: "" # copy from Authentik
 
     persistence:
       data:
