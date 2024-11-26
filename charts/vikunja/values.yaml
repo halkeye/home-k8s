@@ -1,0 +1,82 @@
+vikunja:
+  postgresql:
+    enabled: false
+  redis:
+    enabled: true
+  api:
+    env:
+      VIKUNJA_DATABASE_TYPE: "postgres"
+      VIKUNJA_DATABASE_NAME:
+        valueFrom:
+          secretKeyRef:
+            name: vikunja-db-secret-vikunja
+            key: LOGIN
+      VIKUNJA_DATABASE_USER:
+        valueFrom:
+          secretKeyRef:
+            name: vikunja-db-secret-vikunja
+            key: LOGIN
+      VIKUNJA_DATABASE_PASSWORD:
+        valueFrom:
+          secretKeyRef:
+            name: vikunja-db-secret-vikunja
+            key: PASSWORD
+      VIKUNJA_DATABASE_HOST:
+        valueFrom:
+          secretKeyRef:
+            name: vikunja-db-secret-vikunja
+            key: HOST
+      VIKUNJA_DATABASE_DATABASE:
+        valueFrom:
+          secretKeyRef:
+            name: vikunja-db-secret-vikunja
+            key: DATABASE_NAME
+      VIKUNJA_DATABASE_SSLMODE: "require"
+    configMaps:
+      config:
+        enabled: true
+        data:
+          config.yml:
+            service:
+              enableregistration: false
+              auth:
+            openid:
+              enabled: true
+              redirecturl: "https://vikunja.g4v.dev/auth/openid/"
+              providers:
+                - name: authentik
+                  authurl: "https://auth.g4v.dev/application/o/vikunja"
+                  logouturl: "https://auth.g4v.dev/application/o/vikunja/end-session/"
+                  clientid: "" # copy from Authetik
+                  clientsecret: "" # copy from Authentik
+
+    persistence:
+      data:
+        enabled: true
+        accessMode: ReadWriteOnce
+        size: 10Gi
+        mountPath: /app/vikunja/files
+
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          # proxy-body-size is set to 0 to remove the body limit on file uploads
+          nginx.ingress.kubernetes.io/proxy-body-size: "0"
+        hosts:
+          - host: vikunja.g4v.dev
+            paths:
+              - path: "/api/v1"
+  frontend:
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          # proxy-body-size is set to 0 to remove the body limit on file uploads
+          nginx.ingress.kubernetes.io/proxy-body-size: "0"
+        hosts:
+          # This is just an example. You should change this to your own domain.
+          - host: vikunja.g4v.dev
+            paths:
+              - path: "/"
+
