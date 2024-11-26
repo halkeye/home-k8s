@@ -5,6 +5,7 @@ vikunja:
     enabled: false
   api:
     env:
+      VIKUNJA_SERVICE_PUBLICURL: "https://tasks.g4v.dev"
       VIKUNJA_DATABASE_TYPE: "postgres"
       VIKUNJA_DATABASE_NAME:
         valueFrom:
@@ -50,7 +51,7 @@ vikunja:
           # proxy-body-size is set to 0 to remove the body limit on file uploads
           nginx.ingress.kubernetes.io/proxy-body-size: "0"
         hosts:
-          - host: vikunja.g4v.dev
+          - host: tasks.g4v.dev
             paths:
               - path: "/api/v1"
   frontend:
@@ -62,7 +63,7 @@ vikunja:
           nginx.ingress.kubernetes.io/proxy-body-size: "0"
         hosts:
           # This is just an example. You should change this to your own domain.
-          - host: vikunja.g4v.dev
+          - host: tasks.g4v.dev
             paths:
               - path: "/"
 
