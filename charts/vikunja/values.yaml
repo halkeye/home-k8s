@@ -55,6 +55,8 @@ vikunja:
             paths:
               - path: "/api/v1"
   frontend:
+    env:
+      VIKUNJA_API_URL: "https://tasks.g4v.dev/api/v1"
     ingress:
       main:
         enabled: true
