@@ -2,7 +2,7 @@ vikunja:
   postgresql:
     enabled: false
   redis:
-    enabled: true
+    enabled: false
   api:
     env:
       VIKUNJA_DATABASE_TYPE: "postgres"
