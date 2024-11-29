@@ -1,0 +1,14 @@
+apiVersion: v2
+name: kubetail
+type: application
+version: 0.1.0
+appVersion: "1.0"
+
+dependencies:
+- name: kubetail
+  version: 0.8.6
+  repository: https://kubetail-org.github.io/helm-charts/
+maintainers:
+  - name: halkeye
+    url: https://www.gavinmogan.com
+    email: helm@gavinmogan.com
