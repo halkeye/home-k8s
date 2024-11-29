@@ -1,6 +1,0 @@
-dependencies:
-- name: yourls
-  repository: https://charts.yourls.org/
-  version: 7.0.3
-digest: sha256:dddf361561314b222804268d7f21f4b06e5bd2da3286f4fc9625ded6c4acc702
-generated: "2024-11-28T17:55:39.131773086-08:00"

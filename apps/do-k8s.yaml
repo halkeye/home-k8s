@@ -51,7 +51,6 @@ spec:
           - name: unifi
           - name: vikunja
           - name: wizarr
-          - name: yourls
   template:
     metadata:
       name: '{{.name}}'
