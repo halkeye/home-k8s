@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../app-template.schema.json
 app-template:
   controllers:
     main:
