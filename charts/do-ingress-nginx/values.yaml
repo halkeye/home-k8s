@@ -59,7 +59,9 @@ ingress-nginx:
       repository: ghcr.io/tarampampam/error-pages
       tag: 3.3.0
     extraEnvs:
-    - name: TEMPLATE_NAME # Optional: change the default theme
-      value: l7-dark
-    - name: SHOW_DETAILS # Optional: enables the output of additional information on error pages
-      value: 'false'
+      # Optional: change the default theme
+      - name: TEMPLATE_NAME
+        value: l7-dark
+      # Optional: enables the output of additional information on error pages
+      - name: SHOW_DETAILS
+        value: 'false'
