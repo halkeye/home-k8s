@@ -82,12 +82,12 @@ app-template:
 
           OIDC_PATH=/var/www/html/user/plugins/oidc
           mkdir -p $OIDC_PATH && \
-          curl --fail -qsL https://github.com/joshp23/YOURLS-OIDC/archive/refs/tags/0.3.1.tar.gz | tar xvzf - -C $OIDC_PATH --strip-components=2 && \
+          curl --fail -qsL https://github.com/gsu-library/YOURLS-OIDC/archive/refs/tags/v1.0.0.tar.gz | tar xvzf - -C $OIDC_PATH --strip-components=1 && \
           cd $OIDC_PATH && \
           composer install
 
           CONFIG_PATH=/var/www/html/user/config.php
-          echo "define( 'OIDC_BASE_URL', getenv_container('OIDC_BASE_URL') );" >> $CONFIG_PATH
+          echo "define( 'OIDC_PROVIDER_URL', getenv_container('OIDC_PROVIDER_URL') );" >> $CONFIG_PATH
           echo "define( 'OIDC_CLIENT_NAME', getenv_container('OIDC_CLIENT_NAME') );" >> $CONFIG_PATH
           echo "define( 'OIDC_CLIENT_SECRET', getenv_container('OIDC_CLIENT_SECRET') );" >> $CONFIG_PATH
           echo "define( 'OIDC_BYPASS_YOURLS_AUTH', true );" >> $CONFIG_PATH
