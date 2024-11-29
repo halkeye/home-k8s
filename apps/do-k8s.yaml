@@ -10,6 +10,7 @@ spec:
   generators:
     - list:
         elements:
+          - { namespace: kube-system, name: do-ingress-nginx }
           # matrix
           # - { namespace: matrix, name: matrix-authentication-service }
           - { namespace: matrix, name: mautrix-gmessages }
