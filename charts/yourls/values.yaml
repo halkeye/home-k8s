@@ -85,3 +85,8 @@ app-template:
           curl --fail -qsL https://github.com/joshp23/YOURLS-OIDC/archive/refs/tags/0.3.1.tar.gz | tar xvzf - -C $OIDC_PATH --strip-components=2 && \
           cd $OIDC_PATH && \
           composer install
+
+          echo "define( 'OIDC_BASE_URL', getenv_container('OIDC_BASE_URL') );" >> user/config.php
+          echo "define( 'OIDC_CLIENT_NAME', getenv_container('OIDC_CLIENT_NAME') );" >> user/config.php
+          echo "define( 'OIDC_CLIENT_SECRET', getenv_container('OIDC_CLIENT_SECRET') );" >> user/config.php
+          echo "define( 'OIDC_BYPASS_YOURLS_AUTH', true );" >> user/config.php
