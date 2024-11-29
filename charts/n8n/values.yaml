@@ -12,6 +12,22 @@ app-template:
             tag: "1.70.1"
           env:
             TZ: America/Vancouver
+            # no questions on login
+            N8N_PERSONALIZATION_ENABLED: "false"
+            # no version notifications, renovate will take care of it
+            N8N_VERSION_NOTIFICATIONS_ENABLED: "false"
+            # Public API
+            N8N_PUBLIC_API_DISABLED: true
+            N8N_PUBLIC_API_SWAGGERUI_DISABLED: true
+            # User Management
+            N8N_DIAGONISTICS_ENABLED: false
+            N8N_HIRING_BANNER_ENABLED: false
+            N8N_USER_MANAGEMENT_DISABLED: true
+            # Metrics
+            N8N_METRICS: true
+            # Allow these node modules in code
+            NODE_FUNCTION_ALLOW_EXTERNAL: databricks/sql,axios
+            # Database
             DB_TYPE: postgresdb
             DB_POSTGRESDB_DATABASE:
               valueFrom:
