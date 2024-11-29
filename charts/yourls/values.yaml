@@ -26,6 +26,9 @@ yourls:
       php -r "unlink('composer-setup.php');"
       mv composer.phar /usr/local/bin/composer
 
+      apt update && apt install -y 7zip git
+
+      export COMPOSER_ALLOW_SUPERUSER=1
       OIDC_PATH=/usr/src/yourls/user/plugins/oidc
       mkdir -p $OIDC_PATH && \
       curl --fail -qsL https://github.com/joshp23/YOURLS-OIDC/archive/refs/tags/0.3.1.tar.gz | tar xvzf - -C $OIDC_PATH --strip-components=2 && \
