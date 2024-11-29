@@ -1,5 +1,7 @@
 # yaml-language-server: $schema=./values.schema.json
 yourls:
+  podAnnotations:
+    reloader.stakater.com/auto: "true"
   yourls:
     domain: yourls.g4v.dev
     scheme: https
