@@ -1,6 +1,0 @@
-do-operator:
-  doToken: ""
-  image:
-    repository: ghcr.io/halkeye/do-operator
-    tag: add-connection-uri-to-credentials
-    pullPolicy: Always
