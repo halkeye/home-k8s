@@ -6,7 +6,7 @@ app-template:
       containers:
         yourls:
           image:
-            repository: ghcr.io/sct/yourls
+            repository: yourls
             tag: 1.9.2-apache
           env:
             YOURLS_SITE: https://yourls.g4v.dev
