@@ -38,6 +38,7 @@ app-template:
                 secretKeyRef:
                   name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
                   key: HOST
+            DB_POSTGRESDB_SSL_ENABLED: "true"
           resources:
             limits:
               memory: 4Gi
