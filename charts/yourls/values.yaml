@@ -12,7 +12,7 @@ yourls:
     enabled: true
     hostname: yourls.g4v.dev
   metrics:
-    enabled: true
+    enabled: false
   mariadb:
     enabled: false
   externalDatabase: {}
