@@ -86,7 +86,8 @@ app-template:
           cd $OIDC_PATH && \
           composer install
 
-          echo "define( 'OIDC_BASE_URL', getenv_container('OIDC_BASE_URL') );" >> user/config.php
-          echo "define( 'OIDC_CLIENT_NAME', getenv_container('OIDC_CLIENT_NAME') );" >> user/config.php
-          echo "define( 'OIDC_CLIENT_SECRET', getenv_container('OIDC_CLIENT_SECRET') );" >> user/config.php
-          echo "define( 'OIDC_BYPASS_YOURLS_AUTH', true );" >> user/config.php
+          CONFIG_PATH=/var/www/html/user/config.php
+          echo "define( 'OIDC_BASE_URL', getenv_container('OIDC_BASE_URL') );" >> $CONFIG_PATH
+          echo "define( 'OIDC_CLIENT_NAME', getenv_container('OIDC_CLIENT_NAME') );" >> $CONFIG_PATH
+          echo "define( 'OIDC_CLIENT_SECRET', getenv_container('OIDC_CLIENT_SECRET') );" >> $CONFIG_PATH
+          echo "define( 'OIDC_BYPASS_YOURLS_AUTH', true );" >> $CONFIG_PATH
