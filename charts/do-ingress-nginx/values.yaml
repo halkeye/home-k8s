@@ -40,7 +40,7 @@ ingress-nginx:
         prometheus.io/scrape: "true"
         prometheus.io/port: "10254"
         # Name for DO UI
-        service.beta.kubernetes.io/do-loadbalancer-name: "dok8s-ingress-nginx"
+        service.beta.kubernetes.io/do-loadbalancer-name: "do.g4v.dev"
         # Based on https://github.com/digitalocean/digitalocean-cloud-controller-manager/blob/master/docs/controllers/services/examples/https-with-pass-through-nginx.yml
         service.beta.kubernetes.io/do-loadbalancer-protocol: "http"
         service.beta.kubernetes.io/do-loadbalancer-tls-ports: "443"
