@@ -79,7 +79,8 @@ app-template:
           apt update && apt install -y 7zip git
 
           export COMPOSER_ALLOW_SUPERUSER=1
-          OIDC_PATH=/usr/src/yourls/user/plugins/oidc
+
+          OIDC_PATH=/var/www/html/user/plugins/oidc
           mkdir -p $OIDC_PATH && \
           curl --fail -qsL https://github.com/joshp23/YOURLS-OIDC/archive/refs/tags/0.3.1.tar.gz | tar xvzf - -C $OIDC_PATH --strip-components=2 && \
           cd $OIDC_PATH && \
