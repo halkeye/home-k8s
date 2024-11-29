@@ -37,7 +37,7 @@ app-template:
               valueFrom:
                 secretKeyRef:
                   name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
-                  key: HOST
+                  key: PASSWORD
             DB_POSTGRESDB_SSL_ENABLED: "true"
             DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED: "false"
           resources:
