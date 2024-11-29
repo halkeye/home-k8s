@@ -91,3 +91,5 @@ app-template:
           echo "define( 'OIDC_CLIENT_NAME', getenv_container('OIDC_CLIENT_NAME') );" >> $CONFIG_PATH
           echo "define( 'OIDC_CLIENT_SECRET', getenv_container('OIDC_CLIENT_SECRET') );" >> $CONFIG_PATH
           echo "define( 'OIDC_BYPASS_YOURLS_AUTH', true );" >> $CONFIG_PATH
+
+          echo "\$yourls_user_passwords = ['halkeye'=> ''];" >> $CONFIG_PATH
