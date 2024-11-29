@@ -18,6 +18,7 @@ spec:
 
                 - appname: uptime-kuma
                 - appname: whoami
+                - appname: kubetail
   template:
     metadata:
       name: '{{.nameNormalized}}-{{.appname}}'
@@ -48,3 +49,8 @@ spec:
           - CreateNamespace=true
           - ServerSideApply=true
           - Prune=true
+      ignoreDifferences:
+        - group: apps
+          kind: DaemonSet
+          jqPathExpressions:
+            - .metadata.annotations

@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prometheus-operator-crds
+  name: home-prometheus-operator-crds
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "1"
@@ -30,8 +30,8 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prometheus-operator-crds
-  namespace: do-argocd
+  name: do-prometheus-operator-crds
+  namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
