@@ -15,6 +15,6 @@ yourls:
   customPostInitScripts:
     enable-plugins.sh: |
       #!/bin/bash
-      wget -O - https://github.com/joshp23/YOURLS-OIDC/archive/refs/tags/0.3.1.tar.gz | tar xvzf - -C /usr/src/yourls/user/plugins/oidc --strip-components=1 && \
+      curl --fail -qsL https://github.com/joshp23/YOURLS-OIDC/archive/refs/tags/0.3.1.tar.gz | tar xvzf - -C /usr/src/yourls/user/plugins/oidc --strip-components=1 && \
       cd /usr/src/yourls/user/plugins/oidc;
       composer install
