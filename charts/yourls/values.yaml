@@ -57,6 +57,7 @@ app-template:
     custom-postinit:
       enabled: true
       type: configMap
+      defaultMode: 755
       name: '{{ .Release.Name }}-config'
       globalMounts:
         - path: /docker-entrypoint-init.d
