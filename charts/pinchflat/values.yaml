@@ -6,7 +6,7 @@ app-template:
         pinchflat:
           image:
             repository: ghcr.io/kieraneglin/pinchflat
-            tag: v2024.10.30
+            tag: v2024.11.27
           env:
             TZ: America/Vancouver
             TZ_DATA_DIR: /tmp/elixir_tz_data
