@@ -82,7 +82,8 @@ app-template:
 
           OIDC_PATH=/var/www/html/user/plugins/oidc
           mkdir -p $OIDC_PATH && \
-          curl --fail -qsL https://github.com/gsu-library/YOURLS-OIDC/archive/refs/tags/v1.0.0.tar.gz | tar xvzf - -C $OIDC_PATH --strip-components=1 && \
+          # curl --fail -qsL https://github.com/gsu-library/YOURLS-OIDC/archive/refs/tags/v1.0.0.tar.gz | tar xvzf - -C $OIDC_PATH --strip-components=1 
+          curl --fail -qsL https://github.com/halkeye/YOURLS-OIDC/archive/refs/heads/patch-1.tar.gz | tar xvzf - -C $OIDC_PATH --strip-components=1 && \
           cd $OIDC_PATH && \
           composer install
 
