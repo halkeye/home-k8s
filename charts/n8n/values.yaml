@@ -56,6 +56,9 @@ app-template:
                   key: PASSWORD
             DB_POSTGRESDB_SSL_ENABLED: "true"
             DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED: "false"
+          envFrom:
+            - secretRef:
+                name: "{{.Release.Name}}-secret"
           resources:
             limits:
               memory: 4Gi
