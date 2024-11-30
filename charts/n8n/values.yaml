@@ -118,6 +118,6 @@ app-template:
       accessMode: ReadWriteOnce
       size: 20Gi
       globalMounts:
-        - path: /home/node/.n8n
+        - path: /home/node/.n8n-old
     tmp:
       type: emptyDir
