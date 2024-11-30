@@ -7,3 +7,4 @@ extends: default
 rules:
   document-start: disable
   line-length: disable
+  trailing-spaces: {}

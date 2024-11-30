@@ -21,10 +21,10 @@ kubetail:
           - host: "kubetail-{{ .Values.global.privateDomainName }}"
             http:
               paths:
-              - pathType: Prefix
-                path: "/"
-                backend:
-                  service:
-                    name: kubetail-server
-                    port:
-                      number: 7500
+                - pathType: Prefix
+                  path: "/"
+                  backend:
+                    service:
+                      name: kubetail-server
+                      port:
+                        number: 7500

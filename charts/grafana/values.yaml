@@ -26,62 +26,62 @@ grafana:
     dashboardproviders.yaml:
       apiVersion: 1
       providers:
-      - name: "default"
-        orgId: 1
-        folder: "default"
-        type: file
-        disableDeletion: false
-        editable: true
-        options:
-          path: /var/lib/grafana/dashboards/default
-      - name: data
-        orgId: 1
-        folder: Data
-        type: file
-        disableDeletion: false
-        editable: true
-        options:
-          path: /var/lib/grafana/dashboards/data
-      - name: storage
-        orgId: 1
-        folder: Storage
-        type: file
-        disableDeletion: false
-        editable: true
-        options:
-          path: /var/lib/grafana/dashboards/storage
-      - name: mediafetchers
-        orgId: 1
-        folder: Media Fetchers
-        type: file
-        disableDeletion: false
-        editable: true
-        options:
-          path: /var/lib/grafana/dashboards/mediafetchers
-      - name: observability
-        orgId: 1
-        folder: Observability
-        type: file
-        disableDeletion: false
-        editable: true
-        options:
-          path: /var/lib/grafana/dashboards/observability
-      - name: kubernetes
-        orgId: 1
-        folder: Kubernetes
-        type: file
-        disableDeletion: false
-        editable: true
-        options:
-          path: /var/lib/grafana/dashboards/kubernetes
-      - name: network
-        orgId: 1
-        folder: Network
-        type: file
-        disableDeletion: false
-        editable: true
-        options:
-          path: /var/lib/grafana/dashboards/network
+        - name: "default"
+          orgId: 1
+          folder: "default"
+          type: file
+          disableDeletion: false
+          editable: true
+          options:
+            path: /var/lib/grafana/dashboards/default
+        - name: data
+          orgId: 1
+          folder: Data
+          type: file
+          disableDeletion: false
+          editable: true
+          options:
+            path: /var/lib/grafana/dashboards/data
+        - name: storage
+          orgId: 1
+          folder: Storage
+          type: file
+          disableDeletion: false
+          editable: true
+          options:
+            path: /var/lib/grafana/dashboards/storage
+        - name: mediafetchers
+          orgId: 1
+          folder: Media Fetchers
+          type: file
+          disableDeletion: false
+          editable: true
+          options:
+            path: /var/lib/grafana/dashboards/mediafetchers
+        - name: observability
+          orgId: 1
+          folder: Observability
+          type: file
+          disableDeletion: false
+          editable: true
+          options:
+            path: /var/lib/grafana/dashboards/observability
+        - name: kubernetes
+          orgId: 1
+          folder: Kubernetes
+          type: file
+          disableDeletion: false
+          editable: true
+          options:
+            path: /var/lib/grafana/dashboards/kubernetes
+        - name: network
+          orgId: 1
+          folder: Network
+          type: file
+          disableDeletion: false
+          editable: true
+          options:
+            path: /var/lib/grafana/dashboards/network
   plugins:
     - grafana-clock-panel
     - grafana-piechart-panel

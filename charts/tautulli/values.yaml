@@ -107,14 +107,6 @@ app-template:
       type: emptyDir
       globalMounts:
         - path: /config/logs
-    # backups:
-    #   enabled: true
-    #   type: persistentVolumeClaim
-    #   storageClass: nas-apps
-    #   accessMode: ReadWriteMany
-    #   size: 10Gi
-    #   globalMounts:
-    #     - path: /config/backups
   serviceMonitor:
     main:
       enabled: false

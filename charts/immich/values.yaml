@@ -165,11 +165,11 @@ app-template:
           nodeAffinity:
             requiredDuringSchedulingIgnoredDuringExecution:
               nodeSelectorTerms:
-              - matchExpressions:
-                - key: kubernetes.io/arch
-                  operator: NotIn
-                  values:
-                    - arm64
+                - matchExpressions:
+                    - key: kubernetes.io/arch
+                      operator: NotIn
+                      values:
+                        - arm64
       containers:
         main:
           image:

@@ -6,6 +6,7 @@ appVersion: "1.0"
 
 dependencies:
 - name: radarr
+  version: 0.1.0
   repository: file://../radarr
 maintainers:
   - name: halkeye

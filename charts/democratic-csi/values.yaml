@@ -5,31 +5,31 @@ democratic-csi:
 
   # add note here about volume expansion requirements
   storageClasses:
-  - name: synology-iscsi
-    defaultClass: true
-    reclaimPolicy: Delete
-    volumeBindingMode: Immediate
-    allowVolumeExpansion: true
-    parameters:
-      # for block-based storage can be ext3, ext4, xfs
-      # for nfs should be nfs
-      fsType: ext4
+    - name: synology-iscsi
+      defaultClass: true
+      reclaimPolicy: Delete
+      volumeBindingMode: Immediate
+      allowVolumeExpansion: true
+      parameters:
+        # for block-based storage can be ext3, ext4, xfs
+        # for nfs should be nfs
+        fsType: ext4
 
-    mountOptions: []
-    secrets:
-      provisioner-secret:
-      controller-publish-secret:
-      node-stage-secret:
-      node-publish-secret:
-      controller-expand-secret:
+      mountOptions: []
+      secrets:
+        provisioner-secret:
+        controller-publish-secret:
+        node-stage-secret:
+        node-publish-secret:
+        controller-expand-secret:
 
   volumeSnapshotClasses:
-  - name: synology-iscsi
-    parameters:
-    annotations:
-      fake: so-argo-sync
-    secrets:
-      snapshotter-secret:
+    - name: synology-iscsi
+      parameters:
+      annotations:
+        fake: so-argo-sync
+      secrets:
+        snapshotter-secret:
 
 
   controller:

@@ -68,4 +68,3 @@ vikunja:
           - host: tasks.g4v.dev
             paths:
               - path: "/"
-
