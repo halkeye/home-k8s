@@ -81,7 +81,7 @@ app-template:
       controller: netalertx
       ports:
         http:
-          port: 20211 
+          port: 20211
   ingress:
     main:
       enabled: true

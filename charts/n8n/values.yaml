@@ -43,7 +43,7 @@ app-template:
               valueFrom:
                 secretKeyRef:
                   name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
-                  key: PORT 
+                  key: PORT
             DB_POSTGRESDB_USER:
               valueFrom:
                 secretKeyRef:
