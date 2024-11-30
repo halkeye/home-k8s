@@ -57,7 +57,7 @@ ingress-nginx:
     extraEnvs:
       # Optional: change the default theme
       - name: TEMPLATE_NAME
-        value: l7-dark
+        value: l7
       # Optional: enables the output of additional information on error pages
       - name: SHOW_DETAILS
         value: 'false'
