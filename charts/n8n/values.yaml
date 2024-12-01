@@ -9,7 +9,7 @@ app-template:
         n8n:
           image:
             repository: ghcr.io/halkeye/docker-n8n
-            tag: "1.70.1.11"
+            tag: "1.70.1.13"
           env:
             TZ: America/Vancouver
             # no questions on login
