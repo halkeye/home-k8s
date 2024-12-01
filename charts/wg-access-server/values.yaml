@@ -22,7 +22,7 @@ app-template:
         main:
           image:
             repository: ghcr.io/freifunkmuc/wg-access-server
-            tag: v0.12.1
+            tag: v0.13.0
           env:
             TZ: America/Vancouver
             WG_CONFIG: /config/config.yaml
