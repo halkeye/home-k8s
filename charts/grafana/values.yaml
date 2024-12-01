@@ -301,6 +301,11 @@ grafana:
         gnetId: 14584
         revision: 1
         datasource: Prometheus
+      vikunja:
+        # renovate: depName="Vikunja"
+        gnetId: 21928
+        revision: 1
+        datasource: Prometheus
   sidecar:
     dashboards:
       enabled: true
