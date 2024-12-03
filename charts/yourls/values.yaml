@@ -8,8 +8,8 @@ app-template:
       containers:
         yourls:
           image:
-            repository: yourls
-            tag: 1.9.2-apache
+            repository: ghcr.io/halkeye/docker-yourls
+            tag: 1.9.2.1
           env:
             YOURLS_SITE: https://yourls.g4v.dev
             YOURLS_USER: "superadmin"
@@ -56,44 +56,3 @@ app-template:
   persistence:
     tmp:
       type: emptyDir
-    custom-postinit:
-      enabled: true
-      type: configMap
-      defaultMode: 0755
-      name: '{{ .Release.Name }}-config'
-      globalMounts:
-        - path: /docker-entrypoint-init.d
-          readOnly: true
-  configMaps:
-    config:
-      data:
-        enable-plugins.sh: |
-          #!/bin/bash
-
-          php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-          php -r "if (hash_file('sha384', 'composer-setup.php') === 'dac665fdc30fdd8ec78b38b9800061b4150413ff2e3b6f88543c636f7cd84f6db9189d43a81e5503cda447da73c7e5b6') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-          php composer-setup.php
-          php -r "unlink('composer-setup.php');"
-          mv composer.phar /usr/local/bin/composer
-
-          apt update && apt install -y 7zip git
-
-          export COMPOSER_ALLOW_SUPERUSER=1
-
-          OIDC_PATH=/var/www/html/user/plugins/oidc
-          mkdir -p $OIDC_PATH && \
-          # curl --fail -qsL https://github.com/gsu-library/YOURLS-OIDC/archive/refs/tags/v1.0.0.tar.gz | tar xvzf - -C $OIDC_PATH --strip-components=1
-          curl --fail -qsL https://github.com/halkeye/YOURLS-OIDC/archive/refs/heads/patch-1.tar.gz | tar xvzf - -C $OIDC_PATH --strip-components=1 && \
-          cd $OIDC_PATH && \
-          composer install
-
-          CONFIG_PATH=/var/www/html/user/config.php
-          echo "define( 'OIDC_PROVIDER_URL', getenv_container('OIDC_PROVIDER_URL') );" >> $CONFIG_PATH
-          echo "define( 'OIDC_CLIENT_ID', getenv_container('OIDC_CLIENT_ID') );" >> $CONFIG_PATH
-          echo "define( 'OIDC_CLIENT_SECRET', getenv_container('OIDC_CLIENT_SECRET') );" >> $CONFIG_PATH
-          echo "define( 'OIDC_BYPASS_YOURLS_AUTH', true );" >> $CONFIG_PATH
-          echo "define( 'OIDC_SCOPES', ['email', 'openid', 'profile'] );" >> $CONFIG_PATH
-          echo "define( 'OIDC_USERNAME_FIELD', 'preferred_username' );" >> $CONFIG_PATH
-
-
-          echo "\$yourls_user_passwords = ['halkeye'=> ''];" >> $CONFIG_PATH

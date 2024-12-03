@@ -56,7 +56,8 @@
         "docker-mautrix-signal",
         "docker-mautrix-whatsapp",
         "docker-mautrix-gmessages",
-        "docker-n8n"
+        "docker-n8n",
+        "docker-yourls"
       ]
     },
     {
