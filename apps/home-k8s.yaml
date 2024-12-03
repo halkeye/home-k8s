@@ -41,10 +41,11 @@ spec:
           - name: frigate
           - name: grafana
           - name: immich
+          - name: kavita
           - name: kobodl
+          - name: komga
           - name: lidarr
           - name: lms
-          - name: kavita
           - name: mylar3
           - name: netalertx
           - name: prowlarr

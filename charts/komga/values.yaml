@@ -84,7 +84,6 @@ app-template:
     data:
       enabled: true
       type: persistentVolumeClaim
-      storageClass: synology-iscsi
       accessMode: ReadWriteOnce
       size: 1Gi
     books:
