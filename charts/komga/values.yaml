@@ -1,0 +1,101 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.0.1/charts/library/common/values.schema.json
+app-template:
+  oauth:
+    clientId: ""
+    clientSecret: ""
+  controllers:
+    main:
+      containers:
+        main:
+          image:
+            repository: gotson/komga
+            tag: 1.10.4
+          envFrom:
+            - secretRef:
+                name: "{{ .Release.Name }}-secret"
+          env:
+            TZ: America/Vancouver
+            SERVER_PORT: &port 8080
+            LOGGING_LEVEL_ROOT: INFO
+            LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY: INFO
+            KOMGA_CONFIGDIR: /data
+            KOMGA_OAUTH2_ACCOUNT_CREATION: "true"
+            SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_AUTHENTIK_PROVIDER: authentik
+            SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_AUTHENTIK_CLIENTNAME: Auth
+            SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_AUTHENTIK_SCOPE: openid,email,profile
+            SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_AUTHENTIK_AUTHORIZATIONGRANTTYPE: authorization_code
+            SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_AUTHENTIK_REDIRECTURI: "{baseUrl}/{action}/oauth2/code/{registrationId}"
+            SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_AUTHENTIK_ISSUERURL: "https://auth.g4v.dev/application/o/komga/"
+            SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_AUTHENTIK_AUTHORIZATIONURI: "https://auth.g4v.dev/application/o/authorize/"
+            SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_AUTHENTIK_TOKENURI: "https://auth.g4v.dev/application/o/token/"
+            SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_AUTHENTIK_JWKSETURI: "https://auth.g4v.dev/application/o/komga/jwks/"
+            SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_AUTHENTIK_USERINFOURI: "https://auth.g4v.dev/application/o/userinfo/"
+            SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_AUTHENTIK_USERNAMEATTRIBUTE: "preferred_username"
+          resources:
+            requests:
+              memory: 250Mi
+              cpu: 500m
+            limits:
+              memory: 1500Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+      pod:
+        securityContext:
+          runAsUser: 1026
+          runAsGroup: 100
+          runAsNonRoot: true
+          fsGroup: 100
+          fsGroupChangePolicy: OnRootMismatch
+  service:
+    main:
+      controller: main
+      ports:
+        http:
+          port: *port
+  secrets:
+    secret:
+      enabled: true
+      stringData:
+        SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_AUTHENTIK_CLIENTID: "{{.Values.oauth.clientId}}"
+        SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_AUTHENTIK_CLIENTSECRET: "{{.Values.oauth.clientSecret}}"
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/komga.png
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: Comics
+        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/komga.png
+        gethomepage.dev/name: Komga
+      hosts:
+        - host: &host "komga.g4v.dev"
+          paths:
+            - path: /
+              service:
+                identifier: main
+                port: http
+  persistence:
+    config:
+      enabled: true
+      type: emptyDir
+    data:
+      enabled: true
+      type: persistentVolumeClaim
+      storageClass: synology-iscsi
+      accessMode: ReadWriteOnce
+      size: 1Gi
+    books:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Books
+      globalMounts:
+        - path: /books
+    comics:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Comics
+      globalMounts:
+        - path: /comics
