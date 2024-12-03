@@ -9,7 +9,7 @@ app-template:
         yourls:
           image:
             repository: ghcr.io/halkeye/docker-yourls
-            tag: 1.9.2.1
+            tag: 1.9.2.2
           env:
             YOURLS_SITE: https://yourls.g4v.dev
             YOURLS_USER: "superadmin"
