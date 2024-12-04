@@ -40,6 +40,7 @@ spec:
           - name: gathio
           - name: homarr
           - name: it-tools
+          - name: kutt
           - name: libmedium
           - name: miniflux
           - name: n8n
