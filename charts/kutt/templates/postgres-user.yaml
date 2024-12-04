@@ -10,4 +10,4 @@ spec:
   secretTemplate:
     HOST_NO_PORT: "{{ `{{ .HostNoPort }}` }}"
     PORT: "{{ `{{ .Port }}` }}"
-    DB_URL: {{ `postgresql://{{.Role}}:{{.Password}}@{{.Host}}/{{.Database}}?{{ '' || mergeUriArgs }}` | quote }}
+    DB_URL: {{ `postgresql://{{.Role}}:{{.Password}}@{{.Host}}/{{.Database}}?{{ "" || mergeUriArgs }}` }}
