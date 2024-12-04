@@ -70,7 +70,7 @@ app-template:
                   name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
                   key: PASSWORD
             DB_SSL: true
-            DB_CONNECTION:
+            DB_URL:
               valueFrom:
                 secretKeyRef:
                   name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
