@@ -7,6 +7,10 @@ app-template:
       strategy: Recreate
       containers:
         kutt:
+          command:
+            - bash
+            - -c
+            - "sleep 99d"
           image:
             repository: ghcr.io/halkeye/kutt
             tag: sha-e8261b4
