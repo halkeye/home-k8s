@@ -1,0 +1,121 @@
+# yaml-language-server: $schema=../app-template.schema.json
+app-template:
+  controllers:
+    main:
+      strategy: Recreate
+      containers:
+        kutt:
+          image:
+            repository: kutt/kutt
+            tag: v2.7.4
+          env:
+            TZ: America/Vancouver
+            # App port to run on
+            PORT: 3000
+            # The name of the site where Kutt is hosted
+            SITE_NAME: G4V Links
+            # The domain that this website is on
+            DEFAULT_DOMAIN: kutt.g4v.dev
+            # Generated link length
+            LINK_LENGTH: 6
+            # Redis host and port
+            REDIS_HOST: "{{.Release.Name}}-redis-master"
+            REDIS_PORT: 6379
+            # Disable registration
+            DISALLOW_REGISTRATION: true
+            # Disable anonymous link creation
+            DISALLOW_ANONYMOUS_LINKS: true
+            # The daily limit for each user
+            USER_LIMIT_PER_DAY: 1000
+            # Create a cooldown for non-logged in users in minutes
+            # Set 0 to disable
+            NON_USER_COOLDOWN: 0
+            # Max number of visits for each link to have detailed stats
+            DEFAULT_MAX_STATS_PER_LINK: 5000
+            # Use HTTPS for links with custom domain
+            CUSTOM_DOMAIN_USE_HTTPS: true
+            # Invisible reCaptcha secret key
+            # Create one in https://www.google.com/recaptcha/intro/
+            RECAPTCHA_SITE_KEY:
+            RECAPTCHA_SECRET_KEY:
+            # Google Cloud API to prevent from users from submitting malware URLs.
+            # Get it from https://developers.google.com/safe-browsing/v4/get-started
+            GOOGLE_SAFE_BROWSING_KEY:
+            # Postgres database credential details
+            DB_HOST:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: HOST_NO_PORT
+            DB_PORT:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: PORT
+            DB_NAME:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: DATABASE_NAME
+            DB_USER: 
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: LOGIN
+            DB_PASSWORD: 
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: PASSWORD
+            DB_SSL: true
+          envFrom:
+            - secretRef:
+                name: "{{.Release.Name}}-secret"
+          probes:
+            liveness: &probes
+              enabled: true
+            readiness: *probes
+            startup:
+              enabled: false
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            limits:
+              memory: 2Gi
+            requests:
+              memory: 256Mi
+              cpu: 10m
+      pod:
+        securityContext:
+          runAsUser: 568
+          runAsGroup: 568
+          runAsNonRoot: true
+          fsGroup: 568
+          fsGroupChangePolicy: OnRootMismatch
+  service:
+    main:
+      controller: main
+      ports:
+        http:
+          port: 3000
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: Media Fetchers
+        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/kutt.png
+        gethomepage.dev/name: Overseerr
+      hosts:
+        - host: kutt.g4v.dev
+          paths:
+            - path: /
+              service:
+                identifier: main
+                port: http
+  persistence:
+    tmp:
+      type: emptyDir
