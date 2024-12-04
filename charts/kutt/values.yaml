@@ -9,7 +9,7 @@ app-template:
         kutt:
           image:
             repository: ghcr.io/halkeye/kutt
-            tag: sha-c83a22c
+            tag: sha-e8261b4
           env:
             TZ: America/Vancouver
             # App port to run on
