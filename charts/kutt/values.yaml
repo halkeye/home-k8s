@@ -6,8 +6,8 @@ app-template:
       containers:
         kutt:
           image:
-            repository: kutt/kutt
-            tag: v2.7.4
+            repository: ghcr.io/halkeye/kutt
+            tag: sha-c9faf62
           env:
             TZ: America/Vancouver
             # App port to run on
