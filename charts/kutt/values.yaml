@@ -79,6 +79,11 @@ app-template:
                 secretKeyRef:
                   name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
                   key: DB_URL
+            REDIS_PASSWORD:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-redis"
+                  key: redis-password
           envFrom:
             - secretRef:
                 name: "{{.Release.Name}}-secret"
