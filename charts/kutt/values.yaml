@@ -13,7 +13,7 @@ app-template:
             - "sleep 99d"
           image:
             repository: ghcr.io/halkeye/kutt
-            tag: sha-e8261b4
+            tag: sha-4dce890
           env:
             TZ: America/Vancouver
             # App port to run on
