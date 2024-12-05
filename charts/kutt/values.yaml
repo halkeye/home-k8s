@@ -7,10 +7,6 @@ app-template:
       strategy: Recreate
       containers:
         kutt:
-          command:
-            - bash
-            - -c
-            - "sleep 99d"
           image:
             repository: ghcr.io/halkeye/kutt
             tag: sha-4dce890
@@ -90,7 +86,7 @@ app-template:
                 name: "{{.Release.Name}}-secret"
           probes:
             liveness: &probes
-              enabled: false
+              enabled: true
             readiness: *probes
             startup:
               enabled: false
