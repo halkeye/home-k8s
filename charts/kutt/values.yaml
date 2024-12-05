@@ -22,6 +22,7 @@ app-template:
             SITE_NAME: G4V Links
             # The domain that this website is on
             DEFAULT_DOMAIN: kutt.g4v.dev
+            APP_URL: https://kutt.g4v.dev
             # Generated link length
             LINK_LENGTH: 6
             # Redis host and port
