@@ -63,12 +63,12 @@ app-template:
                 secretKeyRef:
                   name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
                   key: DATABASE_NAME
-            DB_USER: 
+            DB_USER:
               valueFrom:
                 secretKeyRef:
                   name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
                   key: LOGIN
-            DB_PASSWORD: 
+            DB_PASSWORD:
               valueFrom:
                 secretKeyRef:
                   name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
