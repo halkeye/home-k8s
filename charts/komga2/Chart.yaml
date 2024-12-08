@@ -1,0 +1,14 @@
+apiVersion: v2
+name: komga2
+type: application
+version: 0.1.0
+appVersion: "1.0"
+
+dependencies:
+- name: komga
+  version: 0.1.0
+  repository: file://../komga
+maintainers:
+  - name: halkeye
+    url: https://www.gavinmogan.com
+    email: helm@gavinmogan.com
