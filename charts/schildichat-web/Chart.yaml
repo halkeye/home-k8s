@@ -3,7 +3,7 @@ name: schildichat-web
 version: 1.0.0
 dependencies:
   - name: element-web
-    version: 1.3.37
+    version: 1.3.38
     repository: https://ananace.gitlab.io/charts
 maintainers:
   - name: halkeye
