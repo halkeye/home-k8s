@@ -6,11 +6,11 @@ data:
   config.yml: |-
     ---
     mqtt:
-      enabled: false
-      # host:
-      # topic_prefix: frigate
-      # user: "{FRIGATE_MQTT_USERNAME}"
-      # password: "{FRIGATE_MQTT_PASSWORD}"
+      enabled: true
+      host: mqtt.int.g4v.dev
+      topic_prefix: frigate
+      user: "{FRIGATE_MQTT_USERNAME}"
+      password: "{FRIGATE_MQTT_PASSWORD}"
     database:
       path: /data/frigate.db
 
@@ -54,11 +54,11 @@ data:
       log:
         exec: trace
       streams:
-        frontdoor: rtsp://frigate:frigate123@AMC06459DF44FA44C2.dhcp.home:554/cam/realmonitor?channel=1&subtype=0
+        frontdoor: rtsp://frigate:{CAMERA_PASSWORD}@AMC06459DF44FA44C2.dhcp.home:554/cam/realmonitor?channel=1&subtype=0
       candidates:
+        - "{FRIGATE_KUBE_HOST_IP}:8555"
         - external-frigate-stream.g4v.dev:8555
         - 172.16.10.50:8555
-        - "{FRIGATE_KUBE_HOST_IP}:8555"
         - stun:8555
 
     cameras:
@@ -67,26 +67,13 @@ data:
           host: AMC06459DF44FA44C2.dhcp.home
           port: 80
           user: frigate
-          password: frigate123
+          password: {CAMERA_PASSWORD}
         ffmpeg:
           inputs:
-            - path: rtsp://frigate:frigate123@AMC06459DF44FA44C2.dhcp.home:554/cam/realmonitor?channel=1&subtype=1
+            - path: rtsp://frigate:{CAMERA_PASSWORD}@AMC06459DF44FA44C2.dhcp.home:554/cam/realmonitor?channel=1&subtype=1
               roles:
                 - detect
                 - audio
-            - path: rtsp://frigate:frigate123@AMC06459DF44FA44C2.dhcp.home:554/live
+            - path: rtsp://frigate:{CAMERA_PASSWORD}@AMC06459DF44FA44C2.dhcp.home:554/live
               roles:
                 - record
-      # frontdoor_raspberrypi:
-      #   ffmpeg:
-      #     inputs:
-      #       - path: rtsp://raspberrypi.dhcp.home:8554/picam_h264
-      #         roles: ["detect"]
-      # frontdoor_webcam:
-      #   ffmpeg:
-      #     inputs:
-      #       - path: rtsp://127.0.0.1:8554/webcam
-      #         input_args: preset-rtsp-restream
-      #         roles:
-      #           - record
-      #           - detect
