@@ -63,11 +63,6 @@ data:
 
     cameras:
       frontdoor:
-        onvif:
-          host: AMC06459DF44FA44C2.dhcp.home
-          port: 80
-          user: frigate
-          password: {FRIGATE_RTSP_PASSWORD}
         ffmpeg:
           inputs:
             - path: rtsp://frigate:{FRIGATE_RTSP_PASSWORD}@AMC06459DF44FA44C2.dhcp.home:554/cam/realmonitor?channel=1&subtype=1
