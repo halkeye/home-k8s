@@ -54,7 +54,7 @@ data:
       log:
         exec: trace
       streams:
-        frontdoor: rtsp://frigate:{CAMERA_PASSWORD}@AMC06459DF44FA44C2.dhcp.home:554/cam/realmonitor?channel=1&subtype=0
+        frontdoor: rtsp://frigate:{FRIGATE_RTSP_PASSWORD}@AMC06459DF44FA44C2.dhcp.home:554/cam/realmonitor?channel=1&subtype=0
       candidates:
         - "{FRIGATE_KUBE_HOST_IP}:8555"
         - external-frigate-stream.g4v.dev:8555
@@ -67,13 +67,13 @@ data:
           host: AMC06459DF44FA44C2.dhcp.home
           port: 80
           user: frigate
-          password: {CAMERA_PASSWORD}
+          password: {FRIGATE_RTSP_PASSWORD}
         ffmpeg:
           inputs:
-            - path: rtsp://frigate:{CAMERA_PASSWORD}@AMC06459DF44FA44C2.dhcp.home:554/cam/realmonitor?channel=1&subtype=1
+            - path: rtsp://frigate:{FRIGATE_RTSP_PASSWORD}@AMC06459DF44FA44C2.dhcp.home:554/cam/realmonitor?channel=1&subtype=1
               roles:
                 - detect
                 - audio
-            - path: rtsp://frigate:{CAMERA_PASSWORD}@AMC06459DF44FA44C2.dhcp.home:554/live
+            - path: rtsp://frigate:{FRIGATE_RTSP_PASSWORD}@AMC06459DF44FA44C2.dhcp.home:554/live
               roles:
                 - record
