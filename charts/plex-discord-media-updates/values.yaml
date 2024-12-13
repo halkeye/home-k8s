@@ -13,7 +13,7 @@ app-template:
       annotations:
         reloader.stakater.com/auto: 'true'
       cronjob:
-        schedule: '@daily'
+        schedule: '0 2 * * *'
         successfulJobsHistory: 1
         failedJobsHistory: 2
       containers:
