@@ -8,7 +8,7 @@ app-template:
         wizarr:
           image:
             repository: ghcr.io/wizarrrr/wizarr
-            tag: 4.1.1
+            tag: 4.2.0
           env:
             TZ: America/Vancouver
             APP_URL: https://gitshub-invites.g4v.dev
