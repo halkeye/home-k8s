@@ -7,7 +7,7 @@ app-template:
         lazylibrarian:
           image:
             repository: linuxserver/lazylibrarian
-            tag: ccb0ccfc-ls103
+            tag: version-6e1a043a
           env:
             TZ: America/Vancouver
             LOG_LEVEL: "info"
