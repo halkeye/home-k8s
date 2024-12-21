@@ -6,7 +6,7 @@ app-template:
         foundryvtt:
           image:
             repository: felddy/foundryvtt
-            tag: "13.332.0"
+            tag: "13.334.0"
           env:
             TZ: America/Vancouver
             TIMEZONE: America/Vancouver
