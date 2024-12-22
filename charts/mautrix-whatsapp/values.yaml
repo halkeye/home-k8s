@@ -113,7 +113,7 @@ app-template:
         config.yaml: |-
           # Network-specific config options
           network:
-              displayname_template: "{{`'{{or .BusinessName .PushName .JID}} (WA)'`}}"
+              displayname_template: "{{`{{or .BusinessName .PushName .JID}} (WA)`}}"
 
           bridge:
               permissions:
