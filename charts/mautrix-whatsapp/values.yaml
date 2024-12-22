@@ -114,6 +114,8 @@ app-template:
           # Network-specific config options
           network:
               displayname_template: "{{`'{{or .BusinessName .PushName .JID}} (WA)'`}}"
+
+          bridge:
               permissions:
                 "*": relay
                 "g4v.dev": user
