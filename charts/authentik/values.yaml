@@ -2,6 +2,11 @@ authentik:
   redis:
     enabled: true
 
+  global:
+    image:
+      repository: ghcr.io/goauthentik/server
+      tag: "v2024.12.1"
+
   authentik:
     # This sends anonymous usage-data, stack traces on errors and
     # performance data to sentry.beryju.org, and is fully opt-in
