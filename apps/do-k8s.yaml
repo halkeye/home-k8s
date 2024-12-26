@@ -53,6 +53,7 @@ spec:
           - name: teamspeak
           - name: unifi
           - name: vikunja
+          - name: vouch
           - name: wizarr
           - name: yourls
   template:
