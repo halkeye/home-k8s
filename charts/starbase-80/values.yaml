@@ -14,7 +14,7 @@ app-template:
             LOGO: "https://halkeye.sfo2.digitaloceanspaces.com/auth/logo_i_guess.png"
           securityContext:
             allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
+            readOnlyRootFilesystem: false
             capabilities:
               drop: ["ALL"]
           resources:
@@ -23,10 +23,10 @@ app-template:
               cpu: 10m
       pod:
         securityContext:
-          runAsUser: 568
-          runAsGroup: 568
+          runAsUser: 0
+          runAsGroup: 0
           runAsNonRoot: true
-          fsGroup: 568
+          fsGroup: 0
           fsGroupChangePolicy: OnRootMismatch
   service:
     main:
