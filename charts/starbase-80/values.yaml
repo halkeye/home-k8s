@@ -2,7 +2,8 @@
 app-template:
   controllers:
     main:
-      strategy: Recreate
+      annotations:
+        reloader.stakater.com/auto: "true"
       containers:
         starbase-80:
           image:
