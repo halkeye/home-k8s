@@ -70,3 +70,6 @@ app-template:
       storageClass: do-block-storage
     tmp:
       type: emptyDir
+      globalMounts:
+        - path: /tmp
+        - path: /data/container_cache
