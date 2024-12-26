@@ -47,6 +47,7 @@ spec:
           - name: not-the-plants
           - name: planka
           - name: searxng
+          - name: starbase-80
           - name: stirling-pdf
           - name: string-is
           - name: tautulli
