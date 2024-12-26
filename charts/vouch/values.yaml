@@ -6,7 +6,7 @@ app-template:
         vouch:
           image:
             repository: quay.io/vouch/vouch-proxy
-            tag: "0.39"
+            tag: "0.41"
           env:
             TZ: America/Vancouver
           probes:
