@@ -12,22 +12,10 @@ app-template:
             TZ: America/Vancouver
             TITLE: "G4V Services"
             LOGO: "https://halkeye.sfo2.digitaloceanspaces.com/auth/logo_i_guess.png"
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: false
-            capabilities:
-              drop: ["ALL"]
           resources:
             requests:
               memory: 128Mi
               cpu: 10m
-      pod:
-        securityContext:
-          runAsUser: 0
-          runAsGroup: 0
-          runAsNonRoot: false
-          fsGroup: 0
-          fsGroupChangePolicy: OnRootMismatch
   service:
     main:
       controller: main
