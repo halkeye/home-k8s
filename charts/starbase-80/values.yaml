@@ -56,6 +56,8 @@ app-template:
   configMaps:
     config:
       data:
+        # add tautulli
+        # add unifi
         config.json: |-
           [
             {
@@ -68,10 +70,89 @@ app-template:
                   "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/authentik.png"
                 },
                 {
+                  "name": "Planka",
+                  "uri": "https://planka.g4v.dev",
+                  "description": "Project Tracking",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/planka.png"
+                },
+                {
+                  "name": "Vikunja",
+                  "uri": "https://vikunja.g4v.dev",
+                  "description": "Todo / Task list manager",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/vikunja.png"
+                },
+                {
+                  "name": "Searxng",
+                  "uri": "https://search.g4v.dev",
+                  "description": "Privacy Focused Search Engine",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/searxng.png"
+                },
+                {
+                  "name": "VPN",
+                  "uri": "https://vpn.g4v.dev",
+                  "description": "VPN Management",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/wireguard.png"
+                }
+              ]
+            },
+            {
+              "category": "Media",
+              "services": [
+                {
                   "name": "Calibre",
                   "uri": "https://books.g4v.dev",
                   "description": "eBook library",
                   "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/calibre-web.png"
+                },
+                {
+                  "name": "Audio Book Shelf",
+                  "uri": "https://audiobookshelf.g4v.dev",
+                  "description": "Podcasts and Audio Books",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/audiobookshelf.png"
+                },
+                {
+                  "name": "Komga",
+                  "uri": "https://komga.g4v.dev",
+                  "description": "Comics",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/komga.png"
+                },
+                {
+                  "name": "Miniflux",
+                  "uri": "https://miniflux.g4v.dev",
+                  "description": "RSS Reader",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/miniflux.png"
+                }
+              ]
+            },
+            {
+              "category": "Communication",
+              "services": [
+                {
+                  "name": "Element",
+                  "uri": "https://chat.g4v.dev",
+                  "description": "Matrix chat client",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/element.png"
+                }
+              ]
+            },
+            {
+              "category": "Photos",
+              "services": [
+                {
+                  "name": "Immich",
+                  "uri": "https://immich.g4v.dev",
+                  "description": "Photo hosting",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/immich.png"
+                }
+              ]
+            },
+            {
+              "category": "Monitoring",
+              "services": [
+                {
+                  "name": "Grafana",
+                  "uri": "https://stats.g4v.dev",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/grafana.png"
                 }
               ]
             },
@@ -82,13 +163,85 @@ app-template:
                   "name": "Home Assistant",
                   "uri": "http://home.g4v.dev",
                   "description": "Home automation",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/homeassistant.png"
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/home-assistant.png"
                 },
                 {
                   "name": "Synology",
                   "uri": "http://synology.dhcp.home:5000",
                   "description": "Network storage",
                   "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/synology.png"
+                }
+              ]
+            },
+            {
+              "category": "Other",
+              "services": [
+                {
+                  "name": "Whoami (home)",
+                  "uri": "https://whoami-h.g4v.dev",
+                  "description": "Browser Debug Info"
+                },
+                {
+                  "name": "Whoami (DO)",
+                  "uri": "https://whoami-h.g4v.dev",
+                  "description": "Browser Debug Info"
+                }
+              ]
+            },
+            {
+              "category": "Media Fetchers",
+              "services": [
+                {
+                  "name": "Overseerr",
+                  "uri": "https://overseerr.g4v.dev",
+                  "description": "Discover new media",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/overseerr.png"
+                },
+                {
+                  "name": "Radarr",
+                  "uri": "https://radarr.g4v.dev",
+                  "description": "Movies",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/radarr.png"
+                },
+                {
+                  "name": "Sonarr",
+                  "uri": "https://sonarr.g4v.dev",
+                  "description": "TV",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/sonarr.png"
+                },
+                {
+                  "name": "Lidarr",
+                  "uri": "https://lidarr.g4v.dev",
+                  "description": "Music",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/lidarr.png"
+                }
+              ]
+            },
+            {
+              "category": "Links",
+              "services": [
+                {
+                  "name": "Homarr",
+                  "uri": "https://homarr.g4v.dev",
+                  "description": "Personal Dashboard",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/homarr.png"
+                },
+                {
+                  "name": "Starbase-80",
+                  "uri": "https://starbase80.g4v.dev",
+                  "description": "Personal Dashboard"
+                },
+                {
+                  "name": "Kutt",
+                  "uri": "https://kutt.g4v.dev",
+                  "description": "Link Shortener",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/kutt.png"
+                },
+                {
+                  "name": "YourLS",
+                  "uri": "https://yourls.g4v.dev",
+                  "description": "Link Shortener",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/yourls.png"
                 }
               ]
             }
