@@ -15,6 +15,12 @@ app-template:
             tag: "1.2.3@sha256:478fc38f2282516526be5f8cc3cef1385148122991eac5288b2819b727e2ef67"
           env:
             TZ: America/Vancouver
+            KOMF_SERVER_PORT: "8085"
+            # optional jvm options. Example config for low memory usage. Runs guaranteed cleanup up every 3600000ms(1hour)
+            JAVA_TOOL_OPTIONS: "-XX:+UnlockExperimentalVMOptions -XX:+UseShenandoahGC -XX:ShenandoahGCHeuristics=compact -XX:ShenandoahGuaranteedGCInterval=3600000 -XX:TrimNativeHeapInterval=3600000"
+          envFrom:
+            - secretRef:
+                name: "{{.Release.Name}}-secret"
           probes:
             liveness: &probes
               enabled: false
@@ -65,14 +71,14 @@ app-template:
       storageClass: nas-apps
       globalMounts:
         - path: /config
-    configmap:
-      enabled: true
-      type: secret
-      name: "{{ .Release.Name }}-secret"
-      globalMounts:
-        - path: /config/application.yml
-          readOnly: true
-          subPath: application.yml
+    # configmap:
+    #   enabled: true
+    #   type: secret
+    #   name: "{{ .Release.Name }}-secret"
+    #   globalMounts:
+    #     - path: /config/application.yml
+    #       readOnly: true
+    #       subPath: application.yml
     comics:
       type: nfs
       server: 172.16.10.10
@@ -88,7 +94,7 @@ app-template:
 
   secrets:
     secret:
-      enabled: true
+      enabled: false
       stringData:
         application.yml: |-
           kavita:
