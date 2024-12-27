@@ -74,330 +74,204 @@ app-template:
       data:
         # add tautulli
         # add unifi
-        config.json: |-
-          [
-            {
-              "category": "Services",
-              "services": [
-                {
-                  "name": "Authentik",
-                  "uri": "https://auth.g4v.dev",
-                  "description": "Authentication",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/authentik.png"
-                },
-                {
-                  "name": "Planka",
-                  "uri": "https://planka.g4v.dev",
-                  "description": "Project Tracking",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/planka.png"
-                },
-                {
-                  "name": "Vikunja",
-                  "uri": "https://vikunja.g4v.dev",
-                  "description": "Todo / Task list manager",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/vikunja.png"
-                },
-                {
-                  "name": "Searxng",
-                  "uri": "https://search.g4v.dev",
-                  "description": "Privacy Focused Search Engine",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/searxng.png"
-                },
-                {
-                  "name": "VPN",
-                  "uri": "https://admin-vpn.g4v.dev",
-                  "description": "VPN Management",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/wireguard.png"
-                }
-              ]
-            },
-            {
-              "category": "Media",
-              "services": [
-                {
-                  "name": "Calibre",
-                  "uri": "https://books.g4v.dev",
-                  "description": "eBook library",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/calibre-web.png"
-                },
-                {
-                  "name": "Audio Book Shelf",
-                  "uri": "https://audiobookshelf.g4v.dev",
-                  "description": "Podcasts and Audio Books",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/audiobookshelf.png"
-                },
-                {
-                  "name": "Komga",
-                  "uri": "https://komga.g4v.dev",
-                  "description": "Comics",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/komga.png"
-                },
-                {
-                  "name": "Miniflux",
-                  "uri": "https://miniflux.g4v.dev",
-                  "description": "RSS Reader",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/miniflux.png"
-                },
-                {
-                  "name": "Lyrion Music Server",
-                  "uri": "https://lms.g4v.dev",
-                  "description": "(formerly Logitech Media Server) Music Player",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/lms.png"
-                }
-              ]
-            },
-            {
-              "category": "Communication",
-              "services": [
-                {
-                  "name": "Element",
-                  "uri": "https://chat.g4v.dev",
-                  "description": "Matrix chat client",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/element.png"
-                }
-              ]
-            },
-            {
-              "category": "Photos",
-              "services": [
-                {
-                  "name": "Immich",
-                  "uri": "https://immich.g4v.dev",
-                  "description": "Photo hosting",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/immich.png"
-                }
-              ]
-            },
-            {
-              "category": "Monitoring",
-              "services": [
-                {
-                  "name": "Grafana (DO)",
-                  "uri": "https://grafana.h.g4v.dev",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/grafana.png"
-                },
-                {
-                  "name": "AlertManager (DO)",
-                  "uri": "https://grafana.do.g4v.dev",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/alertmanager.png"
-                },
-                {
-                  "name": "Prometheus (DO)",
-                  "uri": "https://prometheus.do.g4v.dev",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/prometheus.png"
-                },
-                {
-                  "name": "Grafana (Home)",
-                  "uri": "https://grafana.h.g4v.dev",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/grafana.png"
-                },
-                {
-                  "name": "AlertManager (Home)",
-                  "uri": "https://grafana.do.g4v.dev",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/alertmanager.png"
-                },
-                {
-                  "name": "Prometheus (Home)",
-                  "uri": "https://prometheus.do.g4v.dev",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/prometheus.png"
-                }
-              ]
-            },
-            {
-              "category": "Devices",
-              "services": [
-                {
-                  "name": "Home Assistant",
-                  "uri": "http://home.g4v.dev",
-                  "description": "Home automation",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/home-assistant.png"
-                },
-                {
-                  "name": "Synology",
-                  "uri": "http://synology.dhcp.home:5000",
-                  "description": "Network storage",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/synology.png"
-                },
-                {
-                  "name": "Frigate",
-                  "uri": "https://frigate.g4v.dev",
-                  "description": "Cameras",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/frigate.png"
-                },
-                {
-                  "name": "NetAlertX",
-                  "uri": "https://netalertx.g4v.dev",
-                  "description": "Network Monitoring",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/netalertx.png"
-                }
-              ]
-            },
-            {
-              "category": "Other",
-              "services": [
-                {
-                  "name": "Status Pages (Home)",
-                  "uri": "https://status-h.g4v.dev",
-                  "description": "Status Pages",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/uptime-kuma.png"
-                },
-                {
-                  "name": "Status Pages (DO)",
-                  "uri": "https://status-do.g4v.dev",
-                  "description": "Status Pages",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/uptime-kuma.png"
-                },
-                {
-                  "name": "Whoami (Home)",
-                  "uri": "https://whoami-h.g4v.dev",
-                  "description": "Browser Debug Info"
-                },
-                {
-                  "name": "Whoami (DO)",
-                  "uri": "https://whoami-h.g4v.dev",
-                  "description": "Browser Debug Info"
-                }
-              ]
-            },
-            {
-              "category": "Media Fetchers",
-              "services": [
-                {
-                  "name": "Overseerr",
-                  "uri": "https://overseerr.g4v.dev",
-                  "description": "Discover new media",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/overseerr.png"
-                },
-                {
-                  "name": "Radarr",
-                  "uri": "https://radarr.g4v.dev",
-                  "description": "Movies",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/radarr.png"
-                },
-                {
-                  "name": "Anime Radarr",
-                  "uri": "https://anime-radarr.g4v.dev",
-                  "description": "Anime Movies",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/radarr.png"
-                },
-                {
-                  "name": "Sonarr",
-                  "uri": "https://sonarr.g4v.dev",
-                  "description": "TV",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/sonarr.png"
-                },
-                {
-                  "name": "Anime Sonarr",
-                  "uri": "https://anime-sonarr.g4v.dev",
-                  "description": "Anime",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/sonarr.png"
-                },
-                {
-                  "name": "Lidarr",
-                  "uri": "https://lidarr.g4v.dev",
-                  "description": "Music",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/lidarr.png"
-                },
-                {
-                  "name": "Readarr",
-                  "uri": "https://readarr.g4v.dev",
-                  "description": "Books (doesnt really work)",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/readarr.png"
-                },
-                {
-                  "name": "Mylar3",
-                  "uri": "https://mylar3.g4v.dev",
-                  "description": "Comics",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/mylar3.png"
-                },
-                {
-                  "name": "Lazy Librarian",
-                  "uri": "https://lazylibrarian.g4v.dev",
-                  "description": "Books, Audio, and Comics",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/lazylibrarian.png"
-                },
-                {
-                  "name": "Bazarr",
-                  "uri": "https://bazarr.g4v.dev",
-                  "description": "Subtitles",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/subtitles.png"
-                }
-              ]
-            },
-            {
-              "category": "Links",
-              "services": [
-                {
-                  "name": "Homarr",
-                  "uri": "https://homarr.g4v.dev",
-                  "description": "Personal Dashboard",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/homarr.png"
-                },
-                {
-                  "name": "Starbase-80",
-                  "uri": "https://starbase80.g4v.dev",
-                  "description": "Personal Dashboard"
-                },
-                {
-                  "name": "Kutt",
-                  "uri": "https://kutt.g4v.dev",
-                  "description": "Link Shortener",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/kutt.png"
-                },
-                {
-                  "name": "YourLS",
-                  "uri": "https://yourls.g4v.dev",
-                  "description": "Link Shortener",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/yourls.png"
-                }
-              ]
-            },
-            {
-              "category": "Downloaders",
-              "services": [
-                {
-                  "name": "QBittorrent",
-                  "uri": "https://qbittorrent.nas.g4v.dev",
-                  "description": "Download Torrents",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/qbittorrent.png"
-                },
-                {
-                  "name": "sabnzbd",
-                  "uri": "https://sabnzbd.nas.g4v.dev/",
-                  "description": "Download Usenet",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/sabnzbd.png"
-                },
-                {
-                  "name": "youtubedl",
-                  "uri": "https://youtubedl.g4v.dev/",
-                  "description": "Download Youtube",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/youtubedl.png"
-                },
-                {
-                  "name": "kobodl",
-                  "uri": "https://kobodl.g4v.dev/",
-                  "description": "Download Kobo Content",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/kobodl.png"
-                }
-              ]
-            },
-            {
-              "category": "Kubernetes",
-              "services": [
-                {
-                  "name": "ArgoCD",
-                  "uri": "https://argocd.h.g4v.dev",
-                  "description": "",
-                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/argocd.png"
-                },
-                {
-                  "name": "KubeTail (Home)",
-                  "uri": "https://kubetail-h.g4v.dev"
-                },
-                {
-                  "name": "KubeTail (DO)",
-                  "uri": "https://kubetail-do.g4v.dev"
-                }
-              ]
-            }
-          ]
+        config.json: "{{ .Values.starBaseConfig | toJson }}"
+
+  starBaseConfig:
+    - category: Services
+      services:
+      - description: Authentication
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/authentik.png
+        name: Authentik
+        uri: https://auth.g4v.dev
+      - description: Project Tracking
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/planka.png
+        name: Planka
+        uri: https://planka.g4v.dev
+      - description: Todo / Task list manager
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/vikunja.png
+        name: Vikunja
+        uri: https://vikunja.g4v.dev
+      - description: Privacy Focused Search Engine
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/searxng.png
+        name: Searxng
+        uri: https://search.g4v.dev
+      - description: VPN Management
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/wireguard.png
+        name: VPN
+        uri: https://admin-vpn.g4v.dev
+    - category: Media
+      services:
+      - description: eBook library
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/calibre-web.png
+        name: Calibre
+        uri: https://books.g4v.dev
+      - description: Podcasts and Audio Books
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/audiobookshelf.png
+        name: Audio Book Shelf
+        uri: https://audiobookshelf.g4v.dev
+      - description: Comics
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/komga.png
+        name: Komga
+        uri: https://komga.g4v.dev
+      - description: RSS Reader
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/miniflux.png
+        name: Miniflux
+        uri: https://miniflux.g4v.dev
+      - description: (formerly Logitech Media Server) Music Player
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/lms.png
+        name: Lyrion Music Server
+        uri: https://lms.g4v.dev
+    - category: Communication
+      services:
+      - description: Matrix chat client
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/element.png
+        name: Element
+        uri: https://chat.g4v.dev
+    - category: Photos
+      services:
+      - description: Photo hosting
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/immich.png
+        name: Immich
+        uri: https://immich.g4v.dev
+    - category: Monitoring
+      services:
+      - icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/grafana.png
+        name: Grafana (DO)
+        uri: https://grafana.h.g4v.dev
+      - icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/alertmanager.png
+        name: AlertManager (DO)
+        uri: https://grafana.do.g4v.dev
+      - icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/prometheus.png
+        name: Prometheus (DO)
+        uri: https://prometheus.do.g4v.dev
+      - icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/grafana.png
+        name: Grafana (Home)
+        uri: https://grafana.h.g4v.dev
+      - icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/alertmanager.png
+        name: AlertManager (Home)
+        uri: https://grafana.do.g4v.dev
+      - icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/prometheus.png
+        name: Prometheus (Home)
+        uri: https://prometheus.do.g4v.dev
+    - category: Devices
+      services:
+      - description: Home automation
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/home-assistant.png
+        name: Home Assistant
+        uri: http://home.g4v.dev
+      - description: Network storage
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/synology.png
+        name: Synology
+        uri: http://synology.dhcp.home:5000
+      - description: Cameras
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/frigate.png
+        name: Frigate
+        uri: https://frigate.g4v.dev
+      - description: Network Monitoring
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/netalertx.png
+        name: NetAlertX
+        uri: https://netalertx.g4v.dev
+    - category: Other
+      services:
+      - description: Status Pages
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/uptime-kuma.png
+        name: Status Pages (Home)
+        uri: https://status-h.g4v.dev
+      - description: Status Pages
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/uptime-kuma.png
+        name: Status Pages (DO)
+        uri: https://status-do.g4v.dev
+      - description: Browser Debug Info
+        name: Whoami (Home)
+        uri: https://whoami-h.g4v.dev
+      - description: Browser Debug Info
+        name: Whoami (DO)
+        uri: https://whoami-h.g4v.dev
+    - category: Media Fetchers
+      services:
+      - description: Discover new media
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/overseerr.png
+        name: Overseerr
+        uri: https://overseerr.g4v.dev
+      - description: Movies
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/radarr.png
+        name: Radarr
+        uri: https://radarr.g4v.dev
+      - description: Anime Movies
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/radarr.png
+        name: Anime Radarr
+        uri: https://anime-radarr.g4v.dev
+      - description: TV
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/sonarr.png
+        name: Sonarr
+        uri: https://sonarr.g4v.dev
+      - description: Anime
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/sonarr.png
+        name: Anime Sonarr
+        uri: https://anime-sonarr.g4v.dev
+      - description: Music
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/lidarr.png
+        name: Lidarr
+        uri: https://lidarr.g4v.dev
+      - description: Books (doesnt really work)
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/readarr.png
+        name: Readarr
+        uri: https://readarr.g4v.dev
+      - description: Comics
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/mylar3.png
+        name: Mylar3
+        uri: https://mylar3.g4v.dev
+      - description: Books, Audio, and Comics
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/lazylibrarian.png
+        name: Lazy Librarian
+        uri: https://lazylibrarian.g4v.dev
+      - description: Subtitles
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/subtitles.png
+        name: Bazarr
+        uri: https://bazarr.g4v.dev
+    - category: Links
+      services:
+      - description: Personal Dashboard
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/homarr.png
+        name: Homarr
+        uri: https://homarr.g4v.dev
+      - description: Personal Dashboard
+        name: Starbase-80
+        uri: https://starbase80.g4v.dev
+      - description: Link Shortener
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/kutt.png
+        name: Kutt
+        uri: https://kutt.g4v.dev
+      - description: Link Shortener
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/yourls.png
+        name: YourLS
+        uri: https://yourls.g4v.dev
+    - category: Downloaders
+      services:
+      - description: Download Torrents
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/qbittorrent.png
+        name: QBittorrent
+        uri: https://qbittorrent.nas.g4v.dev
+      - description: Download Usenet
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/sabnzbd.png
+        name: sabnzbd
+        uri: https://sabnzbd.nas.g4v.dev/
+      - description: Download Youtube
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/youtubedl.png
+        name: youtubedl
+        uri: https://youtubedl.g4v.dev/
+      - description: Download Kobo Content
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/kobodl.png
+        name: kobodl
+        uri: https://kobodl.g4v.dev/
+    - category: Kubernetes
+      services:
+      - description: ''
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/argocd.png
+        name: ArgoCD
+        uri: https://argocd.h.g4v.dev
+      - name: KubeTail (Home)
+        uri: https://kubetail-h.g4v.dev
+      - name: KubeTail (DO)
+        uri: https://kubetail-do.g4v.dev
+
