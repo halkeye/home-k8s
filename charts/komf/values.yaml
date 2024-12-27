@@ -71,14 +71,14 @@ app-template:
       storageClass: nas-apps
       globalMounts:
         - path: /config
-    # configmap:
-    #   enabled: true
-    #   type: secret
-    #   name: "{{ .Release.Name }}-secret"
-    #   globalMounts:
-    #     - path: /config/application.yml
-    #       readOnly: true
-    #       subPath: application.yml
+    configmap:
+      enabled: true
+      type: secret
+      name: "{{ .Release.Name }}-secret"
+      globalMounts:
+        - path: /config/application.yml
+          readOnly: true
+          subPath: application.yml
     comics:
       type: nfs
       server: 172.16.10.10
@@ -94,7 +94,7 @@ app-template:
 
   secrets:
     secret:
-      enabled: false
+      enabled: true
       stringData:
         application.yml: |-
           kavita:
