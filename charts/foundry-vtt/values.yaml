@@ -2,7 +2,7 @@ app-template:
   controllers:
     main:
       strategy: Recreate
-      replicas: 0
+      replicas: 1
       containers:
         foundryvtt:
           image:
