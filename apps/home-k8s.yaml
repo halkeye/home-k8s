@@ -42,6 +42,7 @@ spec:
           - name: grafana
           - name: immich
           - name: kobodl
+          - name: komf
           - name: komga
           - name: komga2
           - name: lazylibrarian
