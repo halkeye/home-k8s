@@ -99,7 +99,7 @@ app-template:
         application.yml: |-
           kavita:
             baseUri: "http://kavita.kavita.svc.cluster.local:5000" #or env:KOMF_KAVITA_BASE_URI
-            apiKey: "{{.Values.KavitaApiKey}}" #or env:KOMF_KAVITA_API_KEY
+            apiKey: "" #or env:KOMF_KAVITA_API_KEY
             eventListener:
               enabled: true # if disabled will not connect to kavita and won't pick up newly added entries
               libraries: # listen to all events if empty
@@ -133,8 +133,8 @@ app-template:
             file: ./database.sqlite # database file location.
 
           metadataProviders:
-            malClientId: "{{.Values.MalClientId}}" # required for mal provider. See https://myanimelist.net/forum/?topicid=1973077 env:KOMF_METADATA_PROVIDERS_MAL_CLIENT_ID
-            comicVineApiKey: "{{.Values.ComicVine}}" # required for comicVine provider https://comicvine.gamespot.com/api/ env:KOMF_METADATA_PROVIDERS_COMIC_VINE_API_KEY
+            malClientId: "" # required for mal provider. See https://myanimelist.net/forum/?topicid=1973077 env:KOMF_METADATA_PROVIDERS_MAL_CLIENT_ID
+            comicVineApiKey: "" # required for comicVine provider https://comicvine.gamespot.com/api/ env:KOMF_METADATA_PROVIDERS_COMIC_VINE_API_KEY
             defaultProviders:
               mangaUpdates:
                 priority: 10
