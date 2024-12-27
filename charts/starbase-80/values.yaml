@@ -274,4 +274,3 @@ app-template:
         uri: https://kubetail-h.g4v.dev
       - name: KubeTail (DO)
         uri: https://kubetail-do.g4v.dev
-
