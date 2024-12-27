@@ -41,7 +41,6 @@ spec:
           - name: frigate
           - name: grafana
           - name: immich
-          - name: kavita
           - name: kobodl
           - name: komga
           - name: komga2
