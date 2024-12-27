@@ -105,7 +105,7 @@ app-template:
                 },
                 {
                   "name": "VPN",
-                  "uri": "https://vpn.g4v.dev",
+                  "uri": "https://admin-vpn.g4v.dev",
                   "description": "VPN Management",
                   "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/wireguard.png"
                 }
@@ -137,6 +137,12 @@ app-template:
                   "uri": "https://miniflux.g4v.dev",
                   "description": "RSS Reader",
                   "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/miniflux.png"
+                },
+                {
+                  "name": "Lyrion Music Server",
+                  "uri": "https://lms.g4v.dev",
+                  "description": "(formerly Logitech Media Server) Music Player",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/lms.png"
                 }
               ]
             },
@@ -166,9 +172,34 @@ app-template:
               "category": "Monitoring",
               "services": [
                 {
-                  "name": "Grafana",
-                  "uri": "https://stats.g4v.dev",
+                  "name": "Grafana (DO)",
+                  "uri": "https://grafana.h.g4v.dev",
                   "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/grafana.png"
+                },
+                {
+                  "name": "AlertManager (DO)",
+                  "uri": "https://grafana.do.g4v.dev",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/alertmanager.png"
+                },
+                {
+                  "name": "Prometheus (DO)",
+                  "uri": "https://prometheus.do.g4v.dev",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/prometheus.png"
+                }
+                {
+                  "name": "Grafana (Home)",
+                  "uri": "https://grafana.h.g4v.dev",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/grafana.png"
+                },
+                {
+                  "name": "AlertManager (Home)",
+                  "uri": "https://grafana.do.g4v.dev",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/alertmanager.png"
+                },
+                {
+                  "name": "Prometheus (Home)",
+                  "uri": "https://prometheus.do.g4v.dev",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/prometheus.png"
                 }
               ]
             },
@@ -186,6 +217,18 @@ app-template:
                   "uri": "http://synology.dhcp.home:5000",
                   "description": "Network storage",
                   "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/synology.png"
+                },
+                {
+                  "name": "Frigate",
+                  "uri": "https://frigate.g4v.dev",
+                  "description": "Cameras",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/frigate.png"
+                },
+                {
+                  "name": "NetAlertX",
+                  "uri": "https://netalertx.g4v.dev",
+                  "description": "Network Monitoring",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/netalertx.png"
                 }
               ]
             },
@@ -193,7 +236,19 @@ app-template:
               "category": "Other",
               "services": [
                 {
-                  "name": "Whoami (home)",
+                  "name": "Status Pages (Home)",
+                  "uri": "https://status-h.g4v.dev",
+                  "description": "Status Pages"
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/uptime-kuma.png"
+                },
+                {
+                  "name": "Status Pages (DO)",
+                  "uri": "https://status-do.g4v.dev",
+                  "description": "Status Pages"
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/uptime-kuma.png"
+                },
+                {
+                  "name": "Whoami (Home)",
                   "uri": "https://whoami-h.g4v.dev",
                   "description": "Browser Debug Info"
                 },
@@ -220,9 +275,21 @@ app-template:
                   "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/radarr.png"
                 },
                 {
+                  "name": "Anime Radarr",
+                  "uri": "https://anime-radarr.g4v.dev",
+                  "description": "Anime Movies",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/radarr.png"
+                },
+                {
                   "name": "Sonarr",
                   "uri": "https://sonarr.g4v.dev",
                   "description": "TV",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/sonarr.png"
+                },
+                {
+                  "name": "Anime Sonarr",
+                  "uri": "https://anime-sonarr.g4v.dev",
+                  "description": "Anime",
                   "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/sonarr.png"
                 },
                 {
@@ -230,6 +297,30 @@ app-template:
                   "uri": "https://lidarr.g4v.dev",
                   "description": "Music",
                   "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/lidarr.png"
+                },
+                {
+                  "name": "Readarr",
+                  "uri": "https://readarr.g4v.dev",
+                  "description": "Books (doesnt really work)",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/readarr.png"
+                },
+                {
+                  "name": "Mylar3",
+                  "uri": "https://mylar3.g4v.dev",
+                  "description": "Comics",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/mylar3.png"
+                },
+                {
+                  "name": "Lazy Librarian",
+                  "uri": "https://lazylibrarian.g4v.dev",
+                  "description": "Books, Audio, and Comics",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/lazylibrarian.png"
+                },
+                {
+                  "name": "Bazarr",
+                  "uri": "https://bazarr.g4v.dev",
+                  "description": "Subtitles",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/subtitles.png"
                 }
               ]
             },
@@ -258,6 +349,54 @@ app-template:
                   "uri": "https://yourls.g4v.dev",
                   "description": "Link Shortener",
                   "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/yourls.png"
+                }
+              ]
+            },
+            {
+              "category": "Downloaders",
+              "services": [
+                {
+                  "name": "QBittorrent",
+                  "uri": "https://qbittorrent.nas.g4v.dev",
+                  "description": "Download Torrents",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/qbittorrent.png"
+                },
+                {
+                  "name": "sabnzbd",
+                  "uri": "https://sabnzbd.nas.g4v.dev/",
+                  "description": "Download Usenet",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/sabnzbd.png"
+                },
+                {
+                  "name": "youtubedl",
+                  "uri": "https://youtubedl.g4v.dev/",
+                  "description": "Download Youtube",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/youtubedl.png"
+                },
+                {
+                  "name": "kobodl",
+                  "uri": "https://kobodl.g4v.dev/",
+                  "description": "Download Kobo Content",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/kobodl.png"
+                }
+              ]
+            },
+            {
+              "category": "Kubernetes",
+              "services": [
+                {
+                  "name": "ArgoCD",
+                  "uri": "https://argocd.h.g4v.dev",
+                  "description": "",
+                  "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/argocd.png"
+                },
+                {
+                  "name": "KubeTail (Home)",
+                  "uri": "https://kubetail-h.g4v.dev"
+                },
+                {
+                  "name": "KubeTail (DO)",
+                  "uri": "https://kubetail-do.g4v.dev"
                 }
               ]
             }
