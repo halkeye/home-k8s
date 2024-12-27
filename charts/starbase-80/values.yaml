@@ -185,7 +185,7 @@ app-template:
                   "name": "Prometheus (DO)",
                   "uri": "https://prometheus.do.g4v.dev",
                   "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/prometheus.png"
-                }
+                },
                 {
                   "name": "Grafana (Home)",
                   "uri": "https://grafana.h.g4v.dev",
@@ -238,13 +238,13 @@ app-template:
                 {
                   "name": "Status Pages (Home)",
                   "uri": "https://status-h.g4v.dev",
-                  "description": "Status Pages"
+                  "description": "Status Pages",
                   "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/uptime-kuma.png"
                 },
                 {
                   "name": "Status Pages (DO)",
                   "uri": "https://status-do.g4v.dev",
-                  "description": "Status Pages"
+                  "description": "Status Pages",
                   "icon": "https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/uptime-kuma.png"
                 },
                 {
