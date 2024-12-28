@@ -6,7 +6,7 @@ app-template:
       containers:
         organizr:
           image:
-            repository: linuxserver/organizr
+            repository: ghcr.io/organizr/organizr
             tag: latest
           env:
             TZ: America/Vancouver
