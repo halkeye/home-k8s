@@ -50,6 +50,7 @@ spec:
           - name: lms
           - name: mylar3
           - name: netalertx
+          - name: organizr
           - name: prowlarr
           - name: radarr
           - name: readarr
