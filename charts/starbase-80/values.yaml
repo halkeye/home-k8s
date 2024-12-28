@@ -72,55 +72,94 @@ app-template:
   configMaps:
     config:
       data:
-        # add tautulli
+        # add tautulli/plexstats
         # add unifi
+        # add synapse-admin
         config.json: "{{ .Values.starBaseConfig | toJson }}"
 
   starBaseConfig:
     - category: Services
       services:
-      - description: Authentication
+      - name: Authentik
+        description: Authentication
         icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/authentik.png
-        name: Authentik
         uri: https://auth.g4v.dev
-      - description: Project Tracking
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/planka.png
-        name: Planka
-        uri: https://planka.g4v.dev
-      - description: Todo / Task list manager
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/vikunja.png
-        name: Vikunja
-        uri: https://vikunja.g4v.dev
-      - description: Privacy Focused Search Engine
+      - name: Bitwarden
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/bitwarden.png
+        description: Password Management
+        uri: https://bitwarden.g4v.dev
+      - name: Searxng
+        description: Privacy Focused Search Engine
         icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/searxng.png
-        name: Searxng
         uri: https://search.g4v.dev
-      - description: VPN Management
+      - name: VPN
+        description: VPN Management
         icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/wireguard.png
-        name: VPN
         uri: https://admin-vpn.g4v.dev
+      - name: Gathio
+        description: Events Management
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/gathio.png
+        uri: https://events.g4v.dev
+      - name: Lib Medium
+        description: A tool to proxy medium to avoid ads and tracking
+        uri: https://libmedium.g4v.dev
+      - name: Foundry VTT
+        description: Virtual Tabletop RPG UI
+        uri: https://vtt.g4v.dev
+      - name: N8N
+        description: No code automation service
+        uri: https://n8n.g4v.dev
+    - category: Productivity
+      services:
+      - name: Planka
+        description: Project Tracking
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/planka.png
+        uri: https://planka.g4v.dev
+      - name: Vikunja
+        description: Todo / Task list manager
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/vikunja.png
+        uri: https://tasks.g4v.dev
+      - name: Excalidraw
+        description: Diagram and Draw things
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/excalidraw.png
+        uri: https://draw.g4v.dev
+      - name: Stirling PDF
+        description: PDF Tools
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/stirling-pdf.png
+        uri: https://pdf.g4v.dev
+      - name: IT Tools
+        description: Useful tools for devs/it
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/it-tools.png
+        uri: https://it-tools.g4v.dev
+      - name: String.is
+        description: Own copy of strings.is
+        uri: https://string-is.g4v.dev
     - category: Media
       services:
-      - description: eBook library
+      - name: Calibre
+        description: eBook library
         icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/calibre-web.png
-        name: Calibre
         uri: https://books.g4v.dev
-      - description: Podcasts and Audio Books
+      - name: Audio Book Shelf
+        description: Podcasts and Audio Books
         icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/audiobookshelf.png
-        name: Audio Book Shelf
         uri: https://audiobookshelf.g4v.dev
-      - description: Comics
+      - name: Komga
+        description: Comics
         icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/komga.png
-        name: Komga
         uri: https://komga.g4v.dev
-      - description: RSS Reader
+      - name: Miniflux
+        description: RSS Reader
         icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/miniflux.png
-        name: Miniflux
         uri: https://miniflux.g4v.dev
-      - description: (formerly Logitech Media Server) Music Player
+      - name: Lyrion Music Server
+        description: (formerly Logitech Media Server) Music Player
         icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/openmediavault.png
-        name: Lyrion Music Server
         uri: https://lms.g4v.dev
+      - name: Wizarr
+        description: Is/was supposed to handle inviting people to plex? 
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/wizarr.png
+        uri: https://gitshub-invites.g4v.dev
     - category: Communication
       services:
       - description: Matrix chat client
@@ -137,13 +176,13 @@ app-template:
       services:
       - icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/grafana.png
         name: Grafana (DO)
-        uri: https://grafana.h.g4v.dev
+        uri: https://stats.g4v.dev
       - icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/alertmanager.png
         name: AlertManager (DO)
-        uri: https://grafana.do.g4v.dev
+        uri: prometheus-alertmanager.taildba47.ts.net
       - icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/prometheus.png
         name: Prometheus (DO)
-        uri: https://prometheus.do.g4v.dev
+        uri: https://prometheus-server.taildba47.ts.net
       - icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/grafana.png
         name: Grafana (Home)
         uri: https://grafana.h.g4v.dev
@@ -189,45 +228,45 @@ app-template:
         uri: https://whoami-h.g4v.dev
     - category: Media Fetchers
       services:
-      - description: Discover new media
+      - name: Overseerr
+        description: Discover new media
         icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/overseerr.png
-        name: Overseerr
         uri: https://overseerr.g4v.dev
-      - description: Movies
+      - name: Radarr
+        description: Movies
         icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/radarr.png
-        name: Radarr
         uri: https://radarr.g4v.dev
-      - description: Anime Movies
+      - name: Anime Radarr
+        description: Anime Movies
         icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/radarr.png
-        name: Anime Radarr
         uri: https://anime-radarr.g4v.dev
-      - description: TV
+      - name: Sonarr
+        description: TV
         icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/sonarr.png
-        name: Sonarr
         uri: https://sonarr.g4v.dev
-      - description: Anime
+      - name: Anime Sonarr
+        description: Anime
         icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/sonarr.png
-        name: Anime Sonarr
         uri: https://anime-sonarr.g4v.dev
-      - description: Music
+      - name: Lidarr
+        description: Music
         icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/lidarr.png
-        name: Lidarr
         uri: https://lidarr.g4v.dev
-      - description: Books (doesnt really work)
+      - name: Readarr
+        description: Books (doesnt really work)
         icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/readarr.png
-        name: Readarr
         uri: https://readarr.g4v.dev
-      - description: Comics
+      - name: Mylar3
+        description: Comics
         icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/mylar.png
-        name: Mylar3
         uri: https://mylar3.g4v.dev
-      - description: Books, Audio, and Comics
+      - name: Lazy Librarian
+        description: Books, Audio, and Comics
         icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/lazylibrarian.png
-        name: Lazy Librarian
         uri: https://lazylibrarian.g4v.dev
-      - description: Subtitles
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/subtitles.png
-        name: Bazarr
+      - name: Bazarr
+        description: Subtitles
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/bazarr.png
         uri: https://bazarr.g4v.dev
     - category: Links
       services:
@@ -274,3 +313,11 @@ app-template:
         uri: https://kubetail-h.g4v.dev
       - name: KubeTail (DO)
         uri: https://kubetail-do.g4v.dev
+    - category: Games
+      services:
+      - name: Not the plants (Itch)
+        description: Games Jam 2024 Game
+        uri: https://halkeye.itch.io/not-the-plants
+      - name: Not the plants (Backup Self Host)
+        description: Games Jam 2024 Game
+        uri: https://not-the-plants.g4v.dev
