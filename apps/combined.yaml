@@ -54,3 +54,7 @@ spec:
           kind: DaemonSet
           jqPathExpressions:
             - .metadata.annotations
+        - group: ""
+          kind: Deployment
+          jqPathExpressions:
+            - .spec.template.spec.hostUsers
