@@ -65,6 +65,7 @@ spec:
       name: '{{.name}}'
       namespace: argocd
       annotations:
+        argocd.argoproj.io/compare-options: ServerSideDiff=true
         argocd.argoproj.io/sync-wave: '{{dig "syncwave" "20" . }}'
     spec:
       destination:
