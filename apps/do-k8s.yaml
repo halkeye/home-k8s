@@ -22,7 +22,6 @@ spec:
           - { namespace: matrix, name: mautrix-whatsapp }
           - { namespace: matrix, name: synapse }
           - { namespace: matrix, name: element-web }
-          - { namespace: matrix, name: schildichat-web }
           - name: matrix-sliding-sync
           - name: synapse-admin
 
