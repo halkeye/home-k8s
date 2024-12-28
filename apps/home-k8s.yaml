@@ -50,7 +50,6 @@ spec:
           - name: lms
           - name: mylar3
           - name: netalertx
-          - name: organizr
           - name: prowlarr
           - name: radarr
           - name: readarr
@@ -65,7 +64,6 @@ spec:
       name: '{{.name}}'
       namespace: argocd
       annotations:
-        argocd.argoproj.io/compare-options: ServerSideDiff=true
         argocd.argoproj.io/sync-wave: '{{dig "syncwave" "20" . }}'
     spec:
       destination:
@@ -100,7 +98,7 @@ spec:
           kind: CSIDriver
           jqPathExpressions:
             - .spec.seLinuxMount
-        - group: ""
+        - group: "apps"
           kind: Deployment
           jqPathExpressions:
             - .spec.template.spec.hostUsers
