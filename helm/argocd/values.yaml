@@ -110,6 +110,9 @@ argo-cd:
     cm:
       exec.enabled: false
       admin.enabled: "true"
+      resource.customizations.ignoreDifferences.apps_Deployment: |
+        jqPathExpressions:
+          - .spec.template.spec.hostUsers
       resource.customizations: |
         operators.coreos.com/Subscription:
           health.lua: |

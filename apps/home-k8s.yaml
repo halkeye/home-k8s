@@ -98,7 +98,3 @@ spec:
           kind: CSIDriver
           jqPathExpressions:
             - .spec.seLinuxMount
-        - group: "apps"
-          kind: Deployment
-          jqPathExpressions:
-            - .spec.template.spec.hostUsers
