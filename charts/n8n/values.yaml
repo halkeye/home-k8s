@@ -101,7 +101,7 @@ app-template:
     webhooks:
       enabled: true
       hosts:
-        - host: n8n.g4v.dev
+        - host: n8n-webhooks.g4v.dev
           paths:
             - path: /webhook
               service:
