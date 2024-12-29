@@ -13,7 +13,8 @@ app-template:
             TZ: America/Vancouver
             BASE_URL: http://ideas.g4v.dev
             EMAIL_NOREPLY: noreply@g4v.dev
-            EMAIL_SMTP_HOST: postfix-mailgun-relay.smtp
+            EMAIL_SMTP_PORT: 587
+            EMAIL_SMTP_HOST: postfix-mailgun-relay.smtp.svc.cluster.local
             DATABASE_URL:
               valueFrom:
                 secretKeyRef:
