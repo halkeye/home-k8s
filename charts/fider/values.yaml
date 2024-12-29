@@ -1,5 +1,7 @@
 # yaml-language-server: $schema=../app-template.schema.json
+fullnameOverride: fider
 app-template:
+  fullnameOverride: fider
   controllers:
     main:
       containers:
@@ -53,7 +55,7 @@ app-template:
       annotations:
         gethomepage.dev/enabled: "false"
       hosts:
-        - host: ideas.g4v.dev
+        - host: ideas-{{ .Values.global.privateDomainName }}
           paths:
             - path: /
               service:
