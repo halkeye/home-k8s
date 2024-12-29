@@ -125,17 +125,6 @@ app-template:
               # 32 random bytes in hexadecimal encoding (64 chars) used to sign session cookies. It's generated randomly
               # if not present. Need to be set when running in HA setup (more than one replica)
               secret: "{{ .Values.appConfigs.sessionSecret }}"
-            simple:
-              # Users is a list of htpasswd encoded username:password pairs
-              # supports BCrypt, Sha, Ssha, Md5
-              # You can create a user using "htpasswd -nB <username>"
-              users: []
-            # HTTP Basic Authentication
-            basic:
-              # Users is a list of htpasswd encoded username:password pairs
-              # supports BCrypt, Sha, Ssha, Md5
-              # You can create a user using "htpasswd -nB <username>"
-              users: []
             oidc:
               # A name for the backend (is shown on the login page and possibly in the devices list of the 'all devices' admin page)
               name: "Auth"
