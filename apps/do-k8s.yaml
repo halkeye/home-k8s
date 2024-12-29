@@ -35,6 +35,7 @@ spec:
           - name: authentik
           - name: excalidraw
           - name: externaldns-cloudflare
+          - name: fider
           - name: foundry-vtt
           - name: gathio
           - name: homarr
