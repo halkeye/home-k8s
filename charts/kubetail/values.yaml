@@ -3,6 +3,10 @@ global:
 kubetail:
   fullnameOverride: kubetail
   kubetail:
+    agent:
+      daemonSet:
+        annotations:
+          fake: bar
     server:
       ingress:
         enabled: true

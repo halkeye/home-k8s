@@ -25,8 +25,3 @@ spec:
     syncOptions:
     - ServerSideApply=true
     - CreateNamespace=true
-  ignoreDifferences:
-    - group: ""
-      kind: Service
-      jqPathExpressions:
-        - .status.loadBalancer.ingress[].ipMode

@@ -49,8 +49,3 @@ spec:
           - CreateNamespace=true
           - ServerSideApply=true
           - Prune=true
-      ignoreDifferences:
-        - group: apps
-          kind: DaemonSet
-          jqPathExpressions:
-            - .metadata.annotations
