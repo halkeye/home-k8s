@@ -28,6 +28,7 @@ app-template:
             WG_CONFIG: /config/config.yaml
             WG_VPN_CIDRV6: 0
             WG_EXTERNAL_HOST: vpn.gavinmogan.com
+            WG_VPN_ALLOWED_IPS: 0.0.0.0/0, ::/0, 172.16.10.0/24
             WG_STORAGE:
               valueFrom:
                 secretKeyRef:
