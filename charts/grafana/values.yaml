@@ -245,6 +245,8 @@ grafana:
         datasource:
           - name: datasource
             value: Prometheus
+          - name: DS_PROMETHEUS
+            value: Prometheus
       unifi-network-sites:
         # renovate: depName="UniFi-Poller: Network Sites - Prometheus"
         gnetId: 11311
