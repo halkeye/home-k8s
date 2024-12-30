@@ -1,1 +1,2 @@
 external/** -linguist-vendored
+charts/values*-secrets.yaml diff=sopsdiffer
