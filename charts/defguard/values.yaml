@@ -138,7 +138,7 @@ app-template:
           env:
             TZ: America/Vancouver
             DEFGUARD_GATEWAY_NAME: Gateway-K8s
-            DEFGUARD_GRPC_URL: https://defguard-grpc.g4v.dev
+            DEFGUARD_GRPC_URL: https://defguard-grpc:50056
             DEFGUARD_USERSPACE: true
             # Database
             DEFGUARD_DB_HOST:
@@ -222,18 +222,23 @@ app-template:
               service:
                 identifier: app
                 port: http
-        - host: "defguard-grpc.g4v.dev"
-          paths:
-            - path: /
-              service:
-                identifier: grpc
-                port: grpc
-        - host: "defguard-enrollment-grpc.g4v.dev"
+    enrollment:
+      enabled: true
+      annotations:
+        gethomepage.dev/enabled: "false"
+      hosts:
+        - host: "defguard-enrollment.g4v.dev"
           paths:
             - path: /
               service:
                 identifier: proxy
                 port: http
+    enrollment-grpc:
+      enabled: true
+      annotations:
+        gethomepage.dev/enabled: "false"
+        traefik.ingress.kubernetes.io/service.serversscheme: h2c
+      hosts:
         - host: "defguard-enrollment-grpc.g4v.dev"
           paths:
             - path: /
