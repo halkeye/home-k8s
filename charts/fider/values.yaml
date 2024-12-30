@@ -11,7 +11,7 @@ app-template:
             tag: v0.24.0
           env:
             TZ: America/Vancouver
-            BASE_URL: http://ideas.g4v.dev
+            BASE_URL: http://ideas-{{ .Values.global.privateDomainName }}
             EMAIL_NOREPLY: noreply@g4v.dev
             EMAIL_SMTP_PORT: 587
             EMAIL_SMTP_HOST: postfix-mailgun-relay.smtp.svc.cluster.local
