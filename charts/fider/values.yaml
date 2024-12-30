@@ -15,6 +15,9 @@ app-template:
             EMAIL_NOREPLY: noreply@g4v.dev
             EMAIL_SMTP_PORT: 587
             EMAIL_SMTP_HOST: postfix-mailgun-relay.smtp.svc.cluster.local
+            EMAIL_SMTP_ENABLE_STARTTLS: 'false'
+            METRICS_ENABLED: "true"
+            METRICS_PORT: "4000"
             DATABASE_URL:
               valueFrom:
                 secretKeyRef:
