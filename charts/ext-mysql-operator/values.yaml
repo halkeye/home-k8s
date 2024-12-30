@@ -1,0 +1,9 @@
+---
+fullnameOverride: ext-mysql-operator
+mysql-operator:
+  fullnameOverride: ext-mysql-operator
+  controllerManager:
+    manager:
+      image:
+        repository: ghcr.io/nakamasato/mysql-operator
+        tag: v0.4.1
