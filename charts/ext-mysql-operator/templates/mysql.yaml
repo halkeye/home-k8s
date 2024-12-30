@@ -3,7 +3,8 @@ kind: MySQL
 metadata:
   name: {{ .Release.Name }}
 spec:
-  host: {{ printf "%s:%s" .Values.mysql.host .Values.mysql.port | quote }}
+  host: {{ .Values.mysql.host | quote }}
+  port: {{.Values.mysql.port | quote }}
   adminUser:
     name: {{.Release.Name}}-mysql-user
     type: k8s
