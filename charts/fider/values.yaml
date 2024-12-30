@@ -11,7 +11,7 @@ app-template:
             tag: v0.24.0
           env:
             TZ: America/Vancouver
-            BASE_URL: https://ideas-{{ .Values.global.privateDomainName }}
+            BASE_URL: https://ideas.g4v.dev
             EMAIL_NOREPLY: noreply@g4v.dev
             EMAIL_SMTP_PORT: 587
             EMAIL_SMTP_HOST: postfix-mailgun-relay.smtp.svc.cluster.local
@@ -60,7 +60,7 @@ app-template:
         gethomepage.dev/enabled: "false"
         external-dns.alpha.kubernetes.io/cloudflare-proxied: 'false'
       hosts:
-        - host: ideas-{{ .Values.global.privateDomainName }}
+        - host: ideas.g4v.dev
           paths:
             - path: /
               service:
