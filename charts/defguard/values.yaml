@@ -24,11 +24,6 @@ app-template:
             DEFGUARD_PROXY_URL: https://defguard-enrollment-grpc.g4v.dev
             DEFGUARD_URL: https://defguard.g4v.dev
             DEFGUARD_WEBAUTHN_RP_ID: defguard.g4v.dev
-            WG_STORAGE:
-              valueFrom:
-                secretKeyRef:
-                  name: "{{.Release.Name}}-db-secret-defguard"
-                  key: DB_URL
             # Database
             DEFGUARD_DB_HOST:
               valueFrom:
@@ -93,6 +88,32 @@ app-template:
             tag: 1.1.2
           env:
             TZ: America/Vancouver
+            # Database
+            DEFGUARD_DB_HOST:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: HOST_NO_PORT
+            DEFGUARD_DB_PORT:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: PORT
+            DEFGUARD_DB_USER:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: LOGIN
+            DEFGUARD_DB_PASSWORD:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: PASSWORD
+            DEFGUARD_DB_NAME:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: DATABASE_NAME
           probes:
             liveness: &probes-proxy
               enabled: true
@@ -119,6 +140,32 @@ app-template:
             DEFGUARD_GATEWAY_NAME: Gateway-K8s
             DEFGUARD_GRPC_URL: https://defguard-grpc.g4v.dev
             DEFGUARD_USERSPACE: true
+            # Database
+            DEFGUARD_DB_HOST:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: HOST_NO_PORT
+            DEFGUARD_DB_PORT:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: PORT
+            DEFGUARD_DB_USER:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: LOGIN
+            DEFGUARD_DB_PASSWORD:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: PASSWORD
+            DEFGUARD_DB_NAME:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: DATABASE_NAME
           envFrom:
             - secretRef:
                 name: "{{.Release.Name}}-secret"
