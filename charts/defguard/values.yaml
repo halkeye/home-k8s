@@ -135,10 +135,18 @@ app-template:
           image:
             repository: ghcr.io/defguard/gateway
             tag: 1.1.4
+          securityContext:
+            allowPrivilegeEscalation: true
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+              add:
+                - NET_ADMIN           # perform various network-related operations
+                - SYS_MODULE          # load and unload kernel modules
           env:
             TZ: America/Vancouver
             DEFGUARD_GATEWAY_NAME: Gateway-K8s
-            DEFGUARD_GRPC_URL: https://defguard-grpc:50056
+            DEFGUARD_GRPC_URL: https://defguard-grpc.svc.cluster.local:50056
             DEFGUARD_USERSPACE: true
             # Database
             DEFGUARD_DB_HOST:
