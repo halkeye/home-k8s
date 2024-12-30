@@ -38,6 +38,7 @@ spec:
           - name: bandcampsync
           - name: bazarr
           - name: calibre-web
+          - name: defguard
           - name: frigate
           - name: grafana
           - name: immich
