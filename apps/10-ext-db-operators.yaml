@@ -34,3 +34,39 @@ spec:
         syncOptions:
         - CreateNamespace=true
         - ServerSideApply=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: ext-mysql-operator
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+    - clusters: {}
+  template:
+    metadata:
+      name: '{{.nameNormalized}}-ext-mysql-operator'
+    spec:
+      project: default
+      source:
+        path: charts/ext-mysql-operator
+        repoURL: https://github.com/halkeye/home-k8s
+        targetRevision: HEAD
+        helm:
+          valueFiles:
+            - values.yaml
+            - 'secrets://values-{{.nameNormalized}}-secrets.yaml'
+      destination:
+        server: '{{.server}}'
+        namespace: ext-mysql-operator
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+        syncOptions:
+        - CreateNamespace=true
+        - ServerSideApply=true

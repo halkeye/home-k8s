@@ -2,6 +2,9 @@
 fullnameOverride: ext-mysql-operator
 mysql-operator:
   fullnameOverride: ext-mysql-operator
+  adminUserSecretType: k8s
+  ## fixme should be {{ .Release.Namespace }}
+  k8sSecretNamespace: ext-mysql-operator
   controllerManager:
     manager:
       image:
