@@ -1,0 +1,195 @@
+# yaml-language-server: $schema=../app-template.schema.json
+app-template:
+  podAnnotations:
+    reloader.stakater.com/auto: "true"
+
+  defaultPodOptions:
+    dnsConfig:
+      options:
+        - name: ndots
+          value: "1"
+      nameservers:
+        - 172.16.10.3
+
+  controllers:
+    defguard:
+      containers:
+        defguard:
+          image:
+            repository: ghcr.io/defguard/defguard
+            tag: 1.1.4
+          env:
+            TZ: America/Vancouver
+            DEFGUARD_ENROLLMENT_URL: https://defguard-enrollment.g4v.dev
+            DEFGUARD_PROXY_URL: https://defguard-enrollment-grpc.g4v.dev
+            DEFGUARD_URL: https://defguard.g4v.dev
+            DEFGUARD_WEBAUTHN_RP_ID: defguard.g4v.dev
+            WG_STORAGE:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{.Release.Name}}-db-secret-defguard"
+                  key: DB_URL
+            # Database
+            DEFGUARD_DB_HOST:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: HOST_NO_PORT
+            DEFGUARD_DB_PORT:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: PORT
+            DEFGUARD_DB_USER:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: LOGIN
+            DEFGUARD_DB_PASSWORD:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: PASSWORD
+            DEFGUARD_DB_NAME:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: DATABASE_NAME
+          envFrom:
+            - secretRef:
+                name: "{{.Release.Name}}-secret"
+          probes:
+            liveness: &probes
+              enabled: true
+              custom: true
+              spec:
+                httpGet:
+                  path: /api/v1/health
+                  port: 8000
+                initialDelaySeconds: 0
+                periodSeconds: 10
+                timeoutSeconds: 1
+                failureThreshold: 3
+            readiness: *probes
+          securityContext:
+            allowPrivilegeEscalation: true
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+              add:
+                - NET_ADMIN           # perform various network-related operations
+                - SYS_MODULE          # load and unload kernel modules
+          resources:
+            limits: &resources
+              memory: 1Gi
+            requests:
+              <<: *resources
+              cpu: 10m
+    proxy:
+      containers:
+        proxy:
+          image:
+            repository: ghcr.io/defguard/defguard-proxy
+            tag: 1.1.2
+          env:
+            TZ: America/Vancouver
+          probes:
+            liveness: &probes-proxy
+              enabled: true
+              custom: true
+              spec:
+                httpGet:
+                  path: /api/v1/health
+                  port: 8080
+                initialDelaySeconds: 0
+                periodSeconds: 10
+                timeoutSeconds: 1
+                failureThreshold: 3
+            readiness: *probes-proxy
+    gateway:
+      annotations:
+        reloader.stakater.com/auto: "true"
+      containers:
+        proxy:
+          image:
+            repository: ghcr.io/defguard/gateway
+            tag: 1.1.4
+          env:
+            TZ: America/Vancouver
+            DEFGUARD_GATEWAY_NAME: Gateway-K8s
+            DEFGUARD_GRPC_URL: https://defguard-grpc.g4v.dev
+            DEFGUARD_USERSPACE: true
+          envFrom:
+            - secretRef:
+                name: "{{.Release.Name}}-secret"
+  service:
+    app:
+      controller: defguard
+      primary: true
+      ports:
+        http:
+          port: 8000
+    grpc:
+      controller: defguard
+      annotations:
+        traefik.ingress.kubernetes.io/service.serversscheme: h2c
+      ports:
+        grpc:
+          port: 50055
+    proxy:
+      controller: proxy
+      ports:
+        http:
+          port: 8080
+    proxy-grpc:
+      controller: proxy
+      annotations:
+        traefik.ingress.kubernetes.io/service.serversscheme: h2c
+      ports:
+        grpc:
+          port: 50051
+    gateway:
+      controller: gateway
+      type: LoadBalancer
+      annotations:
+        external-dns.alpha.kubernetes.io/hostname: "defguard-wg.g4v.dev"
+      externalTrafficPolicy: Cluster
+      ports:
+        wireguard:
+          port: 50051
+          protocol: UDP
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: VPN
+        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/wireguard.png
+        gethomepage.dev/name: Wireguard
+        traefik.ingress.kubernetes.io/router.entrypoints: 'websecure'
+        traefik.ingress.kubernetes.io/router.middlewares: 'traefik-ingress-authentik@kubernetescrd'
+      hosts:
+        - host: "defguard.g4v.dev"
+          paths:
+            - path: /
+              service:
+                identifier: app
+                port: http
+        - host: "defguard-grpc.g4v.dev"
+          paths:
+            - path: /
+              service:
+                identifier: grpc
+                port: grpc
+        - host: "defguard-enrollment-grpc.g4v.dev"
+          paths:
+            - path: /
+              service:
+                identifier: proxy
+                port: http
+        - host: "defguard-enrollment-grpc.g4v.dev"
+          paths:
+            - path: /
+              service:
+                identifier: proxy-grpc
+                port: grpc
