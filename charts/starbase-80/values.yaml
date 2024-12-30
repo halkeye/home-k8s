@@ -106,8 +106,10 @@ app-template:
       - name: Foundry VTT
         description: Virtual Tabletop RPG UI
         uri: https://vtt.g4v.dev
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/foundry-vtt.png
       - name: N8N
         description: No code automation service
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/n8n.png
         uri: https://n8n.g4v.dev
     - category: Productivity
       services:
