@@ -79,3 +79,7 @@ app-template:
       storageClass: nas-apps
     tmp:
       type: emptyDir
+    logs:
+      type: emptyDir
+      globalMounts:
+        - path: /app/storage/logs/
