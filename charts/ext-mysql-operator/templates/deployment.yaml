@@ -35,7 +35,7 @@ spec:
         - --leader-elect
         - --admin-user-secret-type={{ .Values.adminUserSecretType | default "raw" }}
         {{- if eq .Values.adminUserSecretType "k8s" }}
-        - --k8s-secret-namespace={{ .Values.k8sSecretNamespace | default "default" }}
+        - --k8s-secret-namespace={{ .Values.k8sSecretNamespace | default .Release.Namespace }}
         {{- end }}
         command:
         - /manager
