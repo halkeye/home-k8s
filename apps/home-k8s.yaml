@@ -51,7 +51,6 @@ spec:
           - name: mylar3
           - name: netalertx
           - name: prowlarr
-          - name: pterodactyl
           - name: radarr
           - name: readarr
           - name: recyclarr
