@@ -79,7 +79,17 @@ app-template:
       storageClass: nas-apps
     tmp:
       type: emptyDir
+      globalMounts:
+        - path: /tmp
+    nginx:
+      type: emptyDir
+      globalMounts:
+        - path: /etc/nginx/http.d
+    cache:
+      type: emptyDir
+      globalMounts:
+        - path: /app/bootstrap/cache
     logs:
       type: emptyDir
       globalMounts:
-        - path: /app/storage/logs/
+        - path: /app/storage/logs
