@@ -36,7 +36,7 @@ app-template:
               enabled: false
           securityContext:
             allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
+            readOnlyRootFilesystem: false # updates nginx, cron, supervisor, etc
             capabilities:
               drop: ["ALL"]
           resources:
@@ -77,19 +77,3 @@ app-template:
       accessMode: ReadWriteOnce
       size: 1Gi
       storageClass: nas-apps
-    tmp:
-      type: emptyDir
-      globalMounts:
-        - path: /tmp
-    nginx:
-      type: emptyDir
-      globalMounts:
-        - path: /etc/nginx/http.d
-    cache:
-      type: emptyDir
-      globalMounts:
-        - path: /app/bootstrap/cache
-    logs:
-      type: emptyDir
-      globalMounts:
-        - path: /app/storage/logs
