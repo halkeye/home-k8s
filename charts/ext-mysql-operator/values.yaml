@@ -1,4 +1,4 @@
-nameOverride: ext-mysql-operator
+fullnameOverride: ext-mysql-operator
 # set gcp if you use GCP SecretManager
 # set k8s if you use Kubernetes secrets
 adminUserSecretType: k8s # set gcp if you use GCP SecretManager
