@@ -38,7 +38,6 @@ spec:
           - name: bandcampsync
           - name: bazarr
           - name: calibre-web
-          - name: defguard
           - name: frigate
           - name: grafana
           - name: immich
@@ -52,6 +51,7 @@ spec:
           - name: mylar3
           - name: netalertx
           - name: prowlarr
+          - name: pterodactyl
           - name: radarr
           - name: readarr
           - name: recyclarr
