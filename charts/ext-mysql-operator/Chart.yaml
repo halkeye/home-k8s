@@ -1,11 +1,6 @@
 apiVersion: v2
-name: ext-mysql-operator
-version: 0.0.0
-dependencies:
-  - name: mysql-operator
-    version: v0.4.1
-    repository: https://nakamasato.github.io/helm-charts
-maintainers:
-  - name: halkeye
-    url: https://www.gavinmogan.com
-    email: helm@gavinmogan.com
+appVersion: v0.4.1
+description: A Helm chart for Kubernetes
+name: mysql-operator
+type: application
+version: v0.4.1
