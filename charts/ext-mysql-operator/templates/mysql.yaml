@@ -1,13 +1,13 @@
 apiVersion: mysql.nakamasato.com/v1alpha1
 kind: MySQL
 metadata:
-  name: {{ .Release.Name }}
+  name: {{ include "chart.fullname" . }}
 spec:
   host: {{ .Values.mysql.host | quote }}
   port: {{.Values.mysql.port }}
   adminUser:
-    name: {{.Release.Name}}-mysql-user
+    name: {{ include "chart.fullname" . }}-mysql-user
     type: k8s
   adminPassword:
-    name: {{.Release.Name}}-mysql-password
+    name: {{ include "chart.fullname" . }}-mysql-password
     type: k8s
