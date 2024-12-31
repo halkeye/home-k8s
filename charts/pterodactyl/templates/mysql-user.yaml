@@ -1,0 +1,8 @@
+---
+apiVersion: mysql.nakamasato.com/v1alpha1
+kind: MySQLUser
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  mysqlName: {{ .Release.Name }}
+  host: '%'
