@@ -25,6 +25,7 @@ ingress-nginx:
     config:
       use-forwarded-headers: "true"
       use-proxy-protocol: "true"
+      annotations-risk-level: Critical
 
     service:
       type: LoadBalancer
