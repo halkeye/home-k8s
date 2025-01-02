@@ -16,12 +16,16 @@ app-template:
             AUTOBRR__LOG_LEVEL: INFO
             AUTOBRR__DATABASE_TYPE: postgres
             AUTOBRR__POSTGRES_DATABASE: "{{ .Release.Name }}"
-            AUTOBRR__POSTGRES_PORT: "5432"
+            AUTOBRR__POSTGRES_PORT:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: PORt
             AUTOBRR__POSTGRES_HOST:
               valueFrom:
                 secretKeyRef:
                   name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
-                  key: HOST
+                  key: HOST_NO_PORT
             AUTOBRR__POSTGRES_USER:
               valueFrom:
                 secretKeyRef:
@@ -91,4 +95,6 @@ app-template:
                 port: http
   persistence:
     tmp:
+      type: emptyDir
+    config:
       type: emptyDir
