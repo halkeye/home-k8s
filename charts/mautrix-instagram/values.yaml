@@ -163,9 +163,3 @@ app-template:
               writers:
                   - type: stdout
                     format: pretty-colored
-
-          encryption:
-              # Whether to enable encryption at all. If false, the bridge will not function in encrypted rooms.
-              allow: true
-              # Whether to force-enable encryption in all bridged rooms.
-              default: true
