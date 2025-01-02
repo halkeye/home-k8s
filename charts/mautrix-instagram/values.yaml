@@ -163,3 +163,8 @@ app-template:
               writers:
                   - type: stdout
                     format: pretty-colored
+
+          encryption:
+              allow: true
+              default: false
+              pickle_key: {{ .Values.encryption_pickle_key }}
