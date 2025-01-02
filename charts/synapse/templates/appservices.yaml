@@ -67,7 +67,7 @@ stringData:
     push_ephemeral: true
     rate_limited: false
     sender_localpart: 01X9cfMqwFl8Zrfh01Y2L4yqNLCtZGFG
-    url: http://mautrix-instagram.matrix.svc.cluster.local.:29336
+    url: http://mautrix-instagram.matrix.svc.cluster.local.:29319
   mautrix-instagram-doublepuppet.yaml: |
     as_token: {{ .Values.extraSecrets.mautrix_instagram_doublepuppet_as_token }}
     hs_token: {{ .Values.extraSecrets.mautrix_instagram_doublepuppet_hs_token }}
