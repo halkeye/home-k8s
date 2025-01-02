@@ -22,6 +22,8 @@ matrix-synapse:
       - matrix.g4v.dev
     wkHosts:
       - matrix.g4v.dev
+    csHosts:
+      - matrix.g4v.dev
     csPaths:
       - path: /_synapse/client/oidc
         pathType: Prefix
