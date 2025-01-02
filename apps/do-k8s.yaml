@@ -42,6 +42,7 @@ spec:
           - name: it-tools
           - name: kutt
           - name: libmedium
+          - name: microbin
           - name: miniflux
           - name: n8n
           - name: not-the-plants
