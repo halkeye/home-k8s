@@ -114,6 +114,8 @@ matrix-synapse:
       enabled: true
 
   synapse:
+    annotations:
+      reloader.stakater.com/auto: "true"
     extraVolumes:
       - name: appservices
         secret:
