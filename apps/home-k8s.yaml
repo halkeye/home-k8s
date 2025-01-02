@@ -35,6 +35,7 @@ spec:
 
           # App
           - name: audiobookshelf
+          - name: autobrr
           - name: bandcampsync
           - name: bazarr
           - name: calibre-web
