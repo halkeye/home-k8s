@@ -8,8 +8,8 @@ app-template:
       containers:
         microbin:
           image:
-            repository: ghcr.io/sct/microbin
-            tag: 1.33.2@sha256:714ea6db2bc007a2262d112bef7eec74972eb33d9c72bddb9cbd98b8742de950
+            repository: ghcr.io/vaskozl/microbin-bin
+            tag: 2.0.4
           env:
             TZ: America/Vancouver
             MICROBIN_PUBLIC_PATH: https://mb.g4v.dev
