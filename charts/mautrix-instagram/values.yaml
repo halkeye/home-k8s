@@ -142,7 +142,7 @@ app-template:
               hs_token: "{{ .Values.hs_token }}"
               # The unique ID of this appservice.
               id: instagram
-              username_template: instagram_{{.}}
+              username_template: {{`instagram_{{.}}`}}
               # Appservice bot details.
               bot:
                   username: instagrambot
