@@ -110,6 +110,7 @@ app-template:
         config.yaml: |-
           # Network-specific config options
           network:
+              mode: instagram
               displayname_template: "{{`{{ or .DisplayName .Username "Unknown user" }} (IG)`}}"
 
           bridge:
