@@ -3,6 +3,8 @@ app-template:
   controllers:
     main:
       strategy: Recreate
+      annotations:
+        reloader.stakater.com/auto: "true"
       containers:
         autobrrl:
           image:
@@ -13,7 +15,9 @@ app-template:
             AUTOBRR__CHECK_FOR_UPDATES: false
             AUTOBRR__HOST: 0.0.0.0
             AUTOBRR__PORT: 7474
-            AUTOBRR__LOG_LEVEL: INFO
+            AUTOBRR__LOG_LEVEL: DEBUG
+            AUTOBRR__OIDC_ENABLED: "true"
+            AUTOBRR__OIDC_REDIRECT_URL: "https://autobrr.g4v.dev/api/auth/oidc/callback"
             AUTOBRR__DATABASE_TYPE: postgres
             AUTOBRR__POSTGRES_DATABASE: "{{ .Release.Name }}"
             AUTOBRR__POSTGRES_PORT:
