@@ -1,0 +1,94 @@
+# yaml-language-server: $schema=../app-template.schema.json
+app-template:
+  controllers:
+    main:
+      strategy: Recreate
+      containers:
+        autobrrl:
+          image:
+            repository: ghcr.io/autobrr/autobrr
+            tag: v1.56.1@sha256:ece84c7032c2afef04b145be8f99e6a1e46971dece62328541ac36990b5270f4
+          env:
+            TZ: America/Vancouver
+            AUTOBRR__CHECK_FOR_UPDATES: false
+            AUTOBRR__HOST: 0.0.0.0
+            AUTOBRR__PORT: 7474
+            AUTOBRR__LOG_LEVEL: INFO
+            AUTOBRR__DATABASE_TYPE: postgres
+            AUTOBRR__POSTGRES_DATABASE: "{{ .Release.Name }}"
+            AUTOBRR__POSTGRES_PORT: "5432"
+            AUTOBRR__POSTGRES_HOST:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: HOST
+            AUTOBRR__POSTGRES_USER:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: LOGIN
+            AUTOBRR__POSTGRES_PASS:
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                  key: PASSWORD
+          envFrom:
+            - secretRef:
+                name: "{{.Release.Name}}-secret"
+          probes:
+            liveness: &probes
+              enabled: true
+              custom: true
+              spec:
+                httpGet:
+                  path: /api/healthz/liveness
+                  port: 7474
+                initialDelaySeconds: 0
+                periodSeconds: 10
+                timeoutSeconds: 1
+                failureThreshold: 3
+            readiness: *probes
+            startup:
+              enabled: false
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            limits:
+              memory: 64Mi
+            requests:
+              memory: 64Mi
+              cpu: 10m
+      pod:
+        securityContext:
+          runAsUser: 568
+          runAsGroup: 568
+          runAsNonRoot: true
+          fsGroup: 568
+          fsGroupChangePolicy: OnRootMismatch
+  service:
+    main:
+      controller: main
+      ports:
+        http:
+          port: 7474
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: Media Fetchers
+        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/autobrrl.png
+        gethomepage.dev/name: Autobrrl
+      hosts:
+        - host: autobrrl.g4v.dev
+          paths:
+            - path: /
+              service:
+                identifier: main
+                port: http
+  persistence:
+    tmp:
+      type: emptyDir
