@@ -17,6 +17,7 @@ app-template:
             AUTOBRR__PORT: 7474
             AUTOBRR__LOG_LEVEL: DEBUG
             AUTOBRR__OIDC_ENABLED: "true"
+            AUTOBRR__OIDC_ISSUER: "https://auth.g4v.dev/application/o/autobrr/"
             AUTOBRR__OIDC_REDIRECT_URL: "https://autobrr.g4v.dev/api/auth/oidc/callback"
             AUTOBRR__DATABASE_TYPE: postgres
             AUTOBRR__POSTGRES_DATABASE: "{{ .Release.Name }}"
