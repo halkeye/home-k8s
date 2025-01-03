@@ -1,4 +1,5 @@
 kube-prometheus-stack:
+  fullnameOverride: "prometheus"
   crds:
     enabled: false
   cleanPrometheusOperatorObjectNames: true
