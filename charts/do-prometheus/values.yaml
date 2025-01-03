@@ -1,5 +1,7 @@
 kube-prometheus-stack:
   fullnameOverride: "prometheus"
+  commonLabels:
+    cluster: do-k8s
   crds:
     enabled: false
   cleanPrometheusOperatorObjectNames: true
@@ -83,8 +85,6 @@ kube-prometheus-stack:
           targetLabel: kubernetes_node
     prometheusSpec:
       # logLevel: debug
-      externalLabels:
-        cluster: do-k8s
       enableAdminAPI: true
       enableRemoteWriteReceiver: true
       storageSpec:
