@@ -4,7 +4,6 @@ external-dns:
   policy: sync
   resources:
     limits:
-      cpu: 10m
       memory: 100Mi
     requests:
       cpu: 10m
