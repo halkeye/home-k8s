@@ -12,7 +12,7 @@ kube-prometheus-stack:
         gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/alertmanager.png
         gethomepage.dev/name: Alert Manager
       hosts:
-        - alertmanager.do.g4v.dev
+        - alertmanager-do.g4v.dev
     alertmanagerSpec: {}
     tplConfig: true
     stringConfig: |-
@@ -101,7 +101,7 @@ kube-prometheus-stack:
         gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/prometheus.png
         gethomepage.dev/name: Prometheus
       hosts:
-        - prometheus.do.g4v.dev
+        - prometheus-do.g4v.dev
   grafana:
     enabled: false
   additionalPrometheusRulesMap:
