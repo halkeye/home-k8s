@@ -107,6 +107,58 @@ kube-prometheus-stack:
         - prometheus-do.g4v.dev
   grafana:
     enabled: false
+  defaultRules:
+    disabled:
+      # my limits are bad anyways, so don't alert me cause i went over
+      KubeMemoryOvercommit: true
+      KubeMemoryQuotaOvercommit: true
+    rules:
+      etcd: false
+      kubeControllerManager: false
+      kubeProxy: false
+      kubeSchedulerAlerting: false
+      kubeSchedulerRecording: false
+  kubeControllerManager:
+    enabled: true
+    service:
+      selector:
+        k8s-app: kube-controller-manager
+  kubeEtcd:
+    enabled: true
+  kubeScheduler:
+    enabled: true
+  prometheus-node-exporter:
+    fullnameOverride: node-exporter
+    resources:
+      requests:
+        cpu: 23m
+        memory: 64M
+      limits:
+        memory: 64M
+    prometheus:
+      monitor:
+        enabled: true
+        relabelings:
+          - action: replace
+            regex: (.*)
+            replacement: $1
+            sourceLabels: ["__meta_kubernetes_pod_node_name"]
+            targetLabel: kubernetes_node
+  kube-state-metrics:
+    fullnameOverride: kube-state-metrics
+    metricLabelsAllowlist:
+      - pods=[*]
+      - deployments=[*]
+      - persistentvolumeclaims=[*]
+    prometheus:
+      monitor:
+        enabled: true
+        relabelings:
+          - action: replace
+            regex: (.*)
+            replacement: $1
+            sourceLabels: ["__meta_kubernetes_pod_node_name"]
+            targetLabel: kubernetes_node
   additionalPrometheusRulesMap:
     dockerhub-rules:
       groups:
