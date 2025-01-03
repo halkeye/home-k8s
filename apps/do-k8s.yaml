@@ -10,6 +10,8 @@ spec:
   generators:
     - list:
         elements:
+          - { namespace: monitoring, name: do-prometheus }
+
           - { namespace: kube-system, name: do-ingress-nginx }
           # matrix
           # - { namespace: matrix, name: matrix-authentication-service }
