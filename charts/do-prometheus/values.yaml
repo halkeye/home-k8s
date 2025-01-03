@@ -119,10 +119,7 @@ kube-prometheus-stack:
       kubeSchedulerAlerting: false
       kubeSchedulerRecording: false
   kubeControllerManager:
-    enabled: true
-    service:
-      selector:
-        k8s-app: kube-controller-manager
+    enabled: false
   kubeEtcd:
     enabled: true
   kubeScheduler:
