@@ -1,0 +1,127 @@
+kube-prometheus-stack:
+  crds:
+    enabled: false
+  cleanPrometheusOperatorObjectNames: true
+  alertmanager:
+    ingress:
+      enabled: true
+      annotations:
+        nginx.ingress.kubernetes.io/whitelist-source-range: "216.71.199.212/32"
+        gethomepage.dev/enabled: 'true'
+        gethomepage.dev/group: Monitoring
+        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/alertmanager.png
+        gethomepage.dev/name: Alert Manager
+      hosts:
+        - alertmanager.do.g4v.dev
+    alertmanagerSpec: {}
+    tplConfig: true
+    stringConfig: |-
+      templates:
+        - /etc/alertmanager/config/*.tmpl
+      receivers:
+        - name: 'null'
+        - name: 'discord'
+          discord_configs:
+            - webhook_url: {{ .Values.discord_api_url | quote }}
+              send_resolved: true
+              title: |-
+                {{`[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ if ne .CommonAnnotations.summary ""}}{{ .CommonAnnotations.summary }} {{ else if ne .CommonAnnotations.message ""}}{{ .CommonAnnotations.message }} {{ else if ne .CommonAnnotations.description ""}}{{ .CommonAnnotations.description }} {{ else }}{{ .CommonLabels.alertname }}{{ end }}`}}
+              message: >-
+                {{`{{ range .Alerts -}}`}}
+                {{"  **Alert:** {{ .Annotations.title }}{{ if .Labels.severity }} `{{ .Labels.severity }}`{{ end }}"}}
+                {{`{{ if ne .Annotations.summary ""}}**Summary:** {{ .Annotations.summary }} {{ else if ne .Annotations.message ""}}**Message:** {{ .Annotations.message }} {{ else if ne .Annotations.description ""}}**Description:** {{ .Annotations.description }}{{ end }}`}}
+                {{`  **Details:**`}}
+                {{"  {{ range .Labels.SortedPairs }} • {{ .Name }}: `{{ .Value }}`"}}
+                {{`  {{ end }}`}}
+                {{`{{ end }}`}}
+      route:
+        receiver: 'discord'
+        routes:
+          - receiver: "null"
+            matchers:
+            - alertname="Watchdog"
+            continue: false
+          - receiver: 'null'
+            matchers:
+            - severity =~ "none"
+          - receiver: 'discord'
+      inhibit_rules:
+        - source_matchers:
+          - severity="critical"
+          target_matchers:
+          - severity=~"warning|info"
+          equal:
+          - namespace
+          - alertname
+        - source_matchers:
+          - severity="warning"
+          target_matchers:
+          - severity="info"
+          equal:
+          - namespace
+          - alertname
+        - source_matchers:
+          - alertname="InfoInhibitor"
+          target_matchers:
+          - severity="info"
+          equal:
+          - namespace
+        - target_matchers:
+          - alertname="InfoInhibitor"
+  prometheus:
+    enabled: true
+    monitor:
+      enabled: true
+      relabelings:
+        - action: replace
+          regex: (.*)
+          replacement: $1
+          sourceLabels:
+            - __meta_kubernetes_pod_node_name
+          targetLabel: kubernetes_node
+    prometheusSpec:
+      enableAdminAPI: true
+      storageSpec:
+        volumeClaimTemplate:
+          spec:
+            resources:
+              requests:
+                storage: 10Gi
+      ruleSelectorNilUsesHelmValues: false
+      serviceMonitorSelectorNilUsesHelmValues: false
+      podMonitorSelectorNilUsesHelmValues: false
+      probeSelectorNilUsesHelmValues: false
+      additionalScrapeConfigs:
+    ingress:
+      enabled: true
+      annotations:
+        nginx.ingress.kubernetes.io/whitelist-source-range: "216.71.199.212/32"
+        gethomepage.dev/enabled: 'true'
+        gethomepage.dev/group: Monitoring
+        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/prometheus.png
+        gethomepage.dev/name: Prometheus
+      hosts:
+        - prometheus.do.g4v.dev
+  grafana:
+    enabled: false
+  additionalPrometheusRulesMap:
+    dockerhub-rules:
+      groups:
+        - name: dockerhub
+          rules:
+            - alert: DockerhubRateLimitRisk
+              annotations:
+                summary: Kubernetes cluster Dockerhub rate limit risk
+              expr: count(time() - container_last_seen{image=~"(docker.io).*",container!=""} < 30) > 100
+              labels:
+                severity: critical
+    oom-rules:
+      groups:
+        - name: oom
+          rules:
+            - alert: OomKilled
+              annotations:
+                summary: Container {{ $labels.container }} in pod {{ $labels.namespace }}/{{ $labels.pod }} has been OOMKilled {{ $value }} times in the last 10 minutes.
+              expr: (kube_pod_container_status_restarts_total - kube_pod_container_status_restarts_total offset 10m >= 1) and ignoring (reason) min_over_time(kube_pod_container_status_last_terminated_reason{reason="OOMKilled"}[10m]) == 1
+              labels:
+                severity: critical
