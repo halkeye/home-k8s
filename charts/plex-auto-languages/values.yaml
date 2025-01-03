@@ -27,10 +27,9 @@ app-template:
               drop: ["ALL"]
           resources:
             requests:
-              cpu: 5m
+              cpu: 10m
               memory: 512Mi
             limits:
-              cpu: 20m
               memory: 512Mi
           probes:
             liveness:
