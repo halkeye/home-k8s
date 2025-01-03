@@ -15,7 +15,7 @@ grafana:
       gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/grafana.png
       gethomepage.dev/name: Grafana
     hosts:
-      - grafana.h.g4v.dev
+      - stats.g4v.dev
   resources:
     requests:
       cpu: 23m
@@ -324,8 +324,8 @@ grafana:
       labelValue: ""
   env:
     GF_DATE_FORMATS_USE_BROWSER_LOCALE: true
-    GF_DEFAULT_INSTANCE_NAME: grafana-home
-    GF_SERVER_ROOT_URL: https://grafana.h.g4v.dev
+    GF_DEFAULT_INSTANCE_NAME: stats
+    GF_SERVER_ROOT_URL: https://stats.g4v.dev
     GF_EXPLORE_ENABLED: true
     GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: natel-discrete-panel,pr0ps-trackmap-panel,panodata-map-panel
   envFromSecret: grafana-secrets
