@@ -40,7 +40,6 @@ spec:
           - name: bazarr
           - name: calibre-web
           - name: frigate
-          - name: grafana
           - name: immich
           - name: kobodl
           - name: komf
