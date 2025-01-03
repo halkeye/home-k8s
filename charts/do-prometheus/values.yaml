@@ -84,6 +84,7 @@ kube-prometheus-stack:
     prometheusSpec:
       logLevel: debug
       enableAdminAPI: true
+      enableRemoteWriteReceiver: true
       storageSpec:
         volumeClaimTemplate:
           spec:
