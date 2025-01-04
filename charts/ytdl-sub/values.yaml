@@ -124,7 +124,6 @@ app-template:
         plex_yt_episodic_show:
           preset:
             - plex_tv_show_collection
-            - yt_video
             - season_by_year__episode_by_download_index
           download:
             download_strategy: "url"
