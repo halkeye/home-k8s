@@ -125,13 +125,6 @@ app-template:
           preset:
             - plex_tv_show_collection
             - season_by_year__episode_by_download_index
-          download:
-            download_strategy: "url"
-            playlist_thumbnails:
-              - name: "poster.jpg"
-                uid: "avatar_uncropped"
-              - name: "banner.jpg"
-                uid: "banner_uncropped"
   configMaps:
     config:
       data:
