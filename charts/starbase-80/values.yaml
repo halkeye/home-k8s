@@ -72,7 +72,6 @@ app-template:
   configMaps:
     config:
       data:
-        # add tautulli/plexstats
         # add unifi
         # add synapse-admin
         config.json: "{{ .Values.starBaseConfig | toJson }}"
@@ -166,6 +165,10 @@ app-template:
         description: Is/was supposed to handle inviting people to plex?
         icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/wizarr.png
         uri: https://gitshub-invites.g4v.dev
+      - name: Tautulli
+        description: Shows stats about plex usage
+        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/tautulli.png
+        uri: https://plexstats.g4v.dev
     - category: Communication
       services:
       - description: Matrix chat client
@@ -181,7 +184,7 @@ app-template:
     - category: Monitoring
       services:
       - icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/grafana.png
-        name: Grafana (DO)
+        name: Grafana
         uri: https://stats.g4v.dev
       - icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/alertmanager.png
         name: AlertManager (DO)
@@ -189,12 +192,9 @@ app-template:
       - icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/prometheus.png
         name: Prometheus (DO)
         uri: https://prometheus-server.taildba47.ts.net
-      - icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/grafana.png
-        name: Grafana (Home)
-        uri: https://grafana.h.g4v.dev
       - icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/alertmanager.png
         name: AlertManager (Home)
-        uri: https://grafana.do.g4v.dev
+        uri: https://alertmanager.do.g4v.dev
       - icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/prometheus.png
         name: Prometheus (Home)
         uri: https://prometheus.do.g4v.dev
