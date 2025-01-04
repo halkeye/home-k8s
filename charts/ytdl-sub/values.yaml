@@ -94,28 +94,49 @@ app-template:
       path: /volume1/Webseries
       globalMounts:
         - path: /webseries
+  configMapYamls:
+    # https://ytdl-sub.readthedocs.io/en/latest/config_reference/subscription_yaml.html
+    subscriptions.yaml:
+      __preset__:
+        overrides:
+          tv_show_directory: "/webseries"
+          music_directory: "/music"
+
+      plex_yt_episodic_show:
+        "DEEP SPACE DISCOUNTS": https://www.youtube.com/watch?v=7ezUoX21EyU&list=PLVxfQgDbQFHN7jfmmCA-Zw8L3IASyRgcr 
+
+      YouTube Releases:
+        = Trace | Chunk Downloads:
+          "Armin van Buuren": "https://www.youtube.com/@arminvanbuuren/releases"
+
+      YouTube Full Albums:
+        = Lofi | Chunk Downloads:
+          "Game Chops": "https://www.youtube.com/playlist?list=PLBsm_SagFMmdWnCnrNtLjA9kzfrRkto4i"
+        = Trace | Chunk Downloads:
+          "Above and Beyond Group Therapy": "https://www.youtube.com/playlist?list=PL6RLee9oArCArCAjnOtZ17dlVZQxaHG8G"
+          "Anjunadeep Edition": "https://www.youtube.com/playlist?list=PLOftnzGIKwJB1h6ErEcFJTObuqqGNZPXI"
+          "Anjunabeats": "https://www.youtube.com/playlist?list=PLDKkQBH8I6JDhqMbdtJcllcHu_0xkJWZC"
+
+    config.yaml:
+      configuration:
+        working_directory: "/workdir/"
+      presets:
+        plex_yt_episodic_show:
+          preset:
+            - plex_tv_show_collection
+            - yt_video
+            - season_by_year__episode_by_download_index
+          download:
+            download_strategy: "url"
+            playlist_thumbnails:
+              - name: "poster.jpg"
+                uid: "avatar_uncropped"
+              - name: "banner.jpg"
+                uid: "banner_uncropped"
   configMaps:
     config:
       data:
-        subscriptions.yaml: |-
-          ---
-          __preset__:
-            overrides:
-              tv_show_directory: "/webseries"
-              music_directory: "/music"
-
-          YouTube Releases:
-            = Trace | Chunk Downloads:
-              "Armin van Buuren": "https://www.youtube.com/@arminvanbuuren/releases"
-
-          YouTube Full Albums:
-            = Lofi | Chunk Downloads:
-              "Game Chops": "https://www.youtube.com/playlist?list=PLBsm_SagFMmdWnCnrNtLjA9kzfrRkto4i"
-            = Trace | Chunk Downloads:
-              "Above and Beyond Group Therapy": "https://www.youtube.com/playlist?list=PL6RLee9oArCArCAjnOtZ17dlVZQxaHG8G"
-              "Anjunadeep Edition": "https://www.youtube.com/playlist?list=PLOftnzGIKwJB1h6ErEcFJTObuqqGNZPXI"
-              "Anjunabeats": "https://www.youtube.com/playlist?list=PLDKkQBH8I6JDhqMbdtJcllcHu_0xkJWZC"
-        config.yaml: |-
-          ---
-          configuration:
-            working_directory: "/workdir/"
+        config.yaml: |
+          ---{{ index .Values.configMapYamls "config.yaml" | toYaml | nindent 2 }}
+        subscriptions.yaml: |
+          ---{{ index .Values.configMapYamls "subscriptions.yaml" | toYaml | nindent 2 }}
