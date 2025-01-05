@@ -34,7 +34,7 @@ app-template:
               cpu: 25m
               memory: 128Mi
             limits:
-              memory: 256Mi
+              memory: 1Gi
       pod:
         securityContext:
           runAsUser: 1026
