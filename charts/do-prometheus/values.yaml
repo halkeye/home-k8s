@@ -111,8 +111,6 @@ kube-prometheus-stack:
   grafana:
     enabled: false
   defaultRules:
-    additionalRuleLabels:
-      cluster: do-k8s
     disabled:
       # my limits are bad anyways, so don't alert me cause i went over
       KubeMemoryOvercommit: true
