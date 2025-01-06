@@ -93,10 +93,10 @@ app-template:
           scrapeTimeout: 10s
           basicAuth:
             username:
-              name: "{{.Release.Name}}-secret"
+              name: "vikunja-secret"
               key: VIKUNJA_METRICS_USERNAME
             password:
-              name: "{{.Release.Name}}-secret"
+              name: "vikunja-secret"
               key: VIKUNJA_METRICS_PASSWORD
   service:
     app:
