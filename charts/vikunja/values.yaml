@@ -24,7 +24,7 @@ app-template:
             VIKUNJA_MAILER_FROMEMAIL: "vikunja@$g4v.dev"
             VIKUNJA_MAILER_SKIPTLSVERIFY: true
             VIKUNJA_REDIS_ENABLED: true
-            VIKUNJA_REDIS_HOST: "{{.Release.Name}}-redis-master"
+            VIKUNJA_REDIS_HOST: "{{.Release.Name}}-redis-master:6379"
             VIKUNJA_REDIS_DB: 0
             VIKUNJA_REDIS_PASSWORD:
               valueFrom:
