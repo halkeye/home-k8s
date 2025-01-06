@@ -31,32 +31,14 @@ app-template:
                 timeoutSeconds: 1
                 failureThreshold: 3
             readiness: *probes
-    frontend:
-      containers:
-        app:
-          image:
-            repository: vikunja/frontend
-            tag: 0.22.1
-          env:
-            TZ: America/Vancouver
-          resources:
-            requests:
-              cpu: 50m
-              memory: 100Mi
-            limits:
-              memory: 500Mi
-          probes:
-            liveness: &probes
-              enabled: true
-            readiness: *probes
 
-    api:
+    app:
       annotations:
         reloader.stakater.com/auto: "true"
       containers:
         app:
           image:
-            repository: vikunja/api
+            repository: vikunja/vikunja
             tag: 0.24.6
           env:
             TZ: America/Vancouver
@@ -137,7 +119,7 @@ app-template:
             readiness: *probes
   serviceMonitor:
     app:
-      serviceName: api
+      serviceName: app
       endpoints:
         - port: http
           scheme: http
@@ -152,16 +134,11 @@ app-template:
               name: "vikunja-secret"
               key: VIKUNJA_METRICS_PASSWORD
   service:
-    api:
-      controller: api
+    app:
+      controller: app
       ports:
         http:
           port: 3456
-    frontend:
-      controller: frontend
-      ports:
-        http:
-          port: 80
     typesense:
       controller: typesense
       ports:
@@ -174,11 +151,7 @@ app-template:
           paths:
             - path: /
               service:
-                identifier: frontend
-                port: http
-            - path: /api
-              service:
-                identifier: api
+                identifier: app
                 port: http
   persistence:
     tmp:
