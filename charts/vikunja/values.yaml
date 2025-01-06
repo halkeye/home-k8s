@@ -57,7 +57,7 @@ app-template:
             VIKUNJA_MAILER_ENABLED: true
             VIKUNJA_MAILER_HOST: postfix-mailgun-relay.smtp.svc.cluster.local
             VIKUNJA_MAILER_PORT: 587
-            VIKUNJA_MAILER_FROMEMAIL: "vikunja@$g4v.dev"
+            VIKUNJA_MAILER_FROMEMAIL: "Vikunja No Reply <noreply@g4v.dev>"
             VIKUNJA_MAILER_SKIPTLSVERIFY: true
             VIKUNJA_REDIS_ENABLED: true
             VIKUNJA_REDIS_HOST: "{{.Release.Name}}-redis-master:6379"
