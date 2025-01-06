@@ -167,6 +167,6 @@ app-template:
       type: secret
       name: "{{.Release.Name}}-secret"
       globalMounts:
-        - path: /etc/vikunja/config.yaml
-          subPath: config.yaml
+        - path: /etc/vikunja/config.yml
+          subPath: config.yml
           readOnly: true
