@@ -92,7 +92,7 @@ kube-prometheus-stack:
           spec:
             resources:
               requests:
-                storage: 10Gi
+                storage: 50Gi
       ruleSelectorNilUsesHelmValues: false
       serviceMonitorSelectorNilUsesHelmValues: false
       podMonitorSelectorNilUsesHelmValues: false
