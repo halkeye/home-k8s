@@ -33,6 +33,7 @@ app-template:
                   key: redis-password
             VIKUNJA_KEYVALUE_TYPE: "redis"
             # Postgres
+            VIKUNJA_DATABASE_TYPE: "postgres"
             VIKUNJA_DATABASE_NAME:
               valueFrom:
                 secretKeyRef:
