@@ -9,7 +9,6 @@ dependencies:
     version: 3.6.0
     repository: https://bjw-s.github.io/helm-charts
   - name: redis
-    condition: redis.enabled
     repository: https://charts.bitnami.com/bitnami
     version: 20.6.1
 maintainers:
