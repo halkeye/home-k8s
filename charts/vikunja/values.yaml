@@ -5,6 +5,7 @@ vikunja:
     enabled: false
   api:
     env:
+      VIKUNJA_METRICS_ENABLED: true
       VIKUNJA_SERVICE_PUBLICURL: "https://tasks.g4v.dev"
       VIKUNJA_DATABASE_TYPE: "postgres"
       VIKUNJA_DATABASE_NAME:
