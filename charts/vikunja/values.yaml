@@ -60,6 +60,7 @@ app-template:
             VIKUNJA_MAILER_SKIPTLSVERIFY: true
             VIKUNJA_REDIS_ENABLED: true
             VIKUNJA_REDIS_HOST: "{{.Release.Name}}-redis-master:6379"
+            VIKUNJA_TYPESENSE_URL: "http://{{.Release.Name}}-typesense:8108"
             VIKUNJA_REDIS_DB: 0
             VIKUNJA_REDIS_PASSWORD:
               valueFrom:
