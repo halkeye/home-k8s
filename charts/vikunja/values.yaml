@@ -47,7 +47,7 @@ app-template:
             VIKUNJA_TYPESENSE_URL: "http://{{.Release.Name}}-typesense:8108"
             VIKUNJA_SERVICE_ENABLEREGISTRATION: false
             VIKUNJA_SERVICE_TIMEZONE: "America/Vancouver"
-            VIKUNJA_SERVICE_PUBLICURL: "https://tasks.g4v.dev" 
+            VIKUNJA_SERVICE_PUBLICURL: "https://tasks.g4v.dev"
             VIKUNJA_SERVICE_FRONTENDURL: "https://tasks.g4v.dev"
             VIKUNJA_SERVICE_ENABLEPUBLICTEAMS: true
             VIKUNJA_FILES_BASEPATH: /app/vikunja/files
