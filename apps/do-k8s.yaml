@@ -11,6 +11,7 @@ spec:
     - list:
         elements:
           - { namespace: monitoring, name: do-prometheus }
+          - { namespace: monitoring, name: mysqld-operator }
 
           - { namespace: kube-system, name: do-ingress-nginx }
           # matrix
