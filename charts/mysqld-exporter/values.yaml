@@ -13,6 +13,8 @@ app-template:
           args:
             - --mysqld.address
             - db-mysql-sfo2-06502-do-user-8094590-0.b.db.ondigitalocean.com:25060
+            - --mysqld.username
+            - exporter
           envFrom:
             - secretRef:
                 name: "{{.Release.Name}}-secret"
