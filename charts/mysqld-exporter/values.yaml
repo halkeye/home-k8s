@@ -1,0 +1,60 @@
+fullnameOverride: mysqld-exporter
+app-template:
+  fullnameOverride: mysqld-exporter
+  controllers:
+    main:
+      annotations:
+        reloader.stakater.com/auto: "true"
+      containers:
+        main:
+          image:
+            repository: "prom/mysqld-exporter"
+            tag: "v0.16.0"
+          args:
+            - -mysqld.address
+            - db-mysql-sfo2-06502-do-user-8094590-0.b.db.ondigitalocean.com:25060
+          envFrom:
+            - secretRef:
+                name: "{{.Release.Name}}-secret"
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            requests:
+              cpu: 10m
+              memory: 100Mi
+            limits:
+              cpu: 10m
+              memory: 100Mi
+          probes:
+            liveness: &probes
+              enabled: true
+              custom: true
+              spec:
+                httpGet:
+                  path: /metrics
+                  port: 9104
+                initialDelaySeconds: 0
+                periodSeconds: 30
+                timeoutSeconds: 1
+                failureThreshold: 3
+            readiness: *probes
+            startup: *probes
+  service:
+    main:
+      controller: main
+      ports:
+        http:
+          port: 9104
+  serviceMonitor:
+    main:
+      enabled: true
+      serviceName: 'mysqld'
+      endpoints:
+        - port: http
+          scheme: http
+          path: /metrics
+          interval: 30s
+          scrapeTimeout: 10s
