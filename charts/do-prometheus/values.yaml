@@ -5,6 +5,22 @@ kube-prometheus-stack:
   crds:
     enabled: false
   cleanPrometheusOperatorObjectNames: true
+  kubeApiServer:
+    serviceMonitor:
+      additionalLabels:
+        cluster: do-k8s
+  kubelet:
+    serviceMonitor:
+      additionalLabels:
+        cluster: do-k8s
+  coreDns:
+    serviceMonitor:
+      additionalLabels:
+        cluster: do-k8s
+  prometheusOperator:
+    serviceMonitor:
+      additionalLabels:
+        cluster: do-k8s
   alertmanager:
     ingress:
       enabled: true
@@ -76,8 +92,13 @@ kube-prometheus-stack:
           - alertname="InfoInhibitor"
   prometheus:
     enabled: true
+    serviceMonitor:
+      additionalLabels:
+        cluster: do-k8s
     monitor:
       enabled: true
+      additionalLabels:
+        cluster: do-k8s
       relabelings:
         - action: replace
           regex: (.*)
@@ -127,10 +148,19 @@ kube-prometheus-stack:
       kubeSchedulerRecording: false
   kubeControllerManager:
     enabled: false
+    serviceMonitor:
+      additionalLabels:
+        cluster: do-k8s
   kubeEtcd:
     enabled: true
+    serviceMonitor:
+      additionalLabels:
+        cluster: do-k8s
   kubeScheduler:
     enabled: true
+    serviceMonitor:
+      additionalLabels:
+        cluster: do-k8s
   prometheus-node-exporter:
     fullnameOverride: node-exporter
     resources:
@@ -157,6 +187,8 @@ kube-prometheus-stack:
     prometheus:
       monitor:
         enabled: true
+        additionalLabels:
+          cluster: do-k8s
         relabelings:
           - action: replace
             regex: (.*)
