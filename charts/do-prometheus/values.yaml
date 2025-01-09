@@ -1,10 +1,9 @@
 kube-prometheus-stack:
   fullnameOverride: "prometheus"
+  commonLabels:
+    cluster: do-k8s
   crds:
     enabled: false
-  prometheusOperator:
-    extraArgs:
-      - -labels=cluster=do-k8s
   cleanPrometheusOperatorObjectNames: true
   alertmanager:
     ingress:
@@ -91,6 +90,8 @@ kube-prometheus-stack:
       # logLevel: debug
       enableAdminAPI: true
       enableRemoteWriteReceiver: true
+      externalLabels:
+        cluster: do-k8s
       storageSpec:
         volumeClaimTemplate:
           spec:
