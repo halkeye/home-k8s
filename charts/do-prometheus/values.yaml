@@ -21,6 +21,9 @@ kube-prometheus-stack:
     serviceMonitor:
       additionalLabels:
         cluster: do-k8s
+      relabelings:
+        - targetLabel: cluster
+          replacement: "do-k8s"
   alertmanager:
     ingress:
       enabled: true
@@ -112,6 +115,9 @@ kube-prometheus-stack:
       enableRemoteWriteReceiver: true
       externalLabels:
         cluster: do-k8s
+      relabelings:
+        - targetLabel: cluster
+          replacement: "do-k8s"
       storageSpec:
         volumeClaimTemplate:
           spec:
