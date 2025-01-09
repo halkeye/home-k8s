@@ -4,7 +4,7 @@ kube-prometheus-stack:
     enabled: false
   prometheusOperator:
     extraArgs:
-      - --labels=cluster=do-k8s
+      - -labels=cluster=do-k8s
   cleanPrometheusOperatorObjectNames: true
   alertmanager:
     ingress:
