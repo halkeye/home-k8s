@@ -33,15 +33,6 @@ app-template:
           probes:
             liveness: &probes
               enabled: true
-              custom: true
-              spec:
-                httpGet:
-                  path: /metrics
-                  port: 9104
-                initialDelaySeconds: 0
-                periodSeconds: 30
-                timeoutSeconds: 1
-                failureThreshold: 3
             readiness: *probes
             startup: *probes
   service:
