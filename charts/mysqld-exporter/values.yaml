@@ -11,7 +11,7 @@ app-template:
             repository: "prom/mysqld-exporter"
             tag: "v0.16.0"
           args:
-            - -mysqld.address
+            - --mysqld.address
             - db-mysql-sfo2-06502-do-user-8094590-0.b.db.ondigitalocean.com:25060
           envFrom:
             - secretRef:
