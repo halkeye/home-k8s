@@ -48,7 +48,6 @@ spec:
           - name: libmedium
           - name: microbin
           - name: miniflux
-          - name: n8n
           - name: not-the-plants
           - name: planka
           - name: searxng
