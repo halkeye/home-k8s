@@ -28,7 +28,7 @@ spec:
         - name: {{ $fullName }}
           port: {{ $servicePort }}
     - kind: Rule
-      match: Host(`argocd.h.g4v.dev`) && Headers(`Content-Type`, `application/grpc`)
+      match: Host(`argocd.h.g4v.dev`) && Header(`Content-Type`, `application/grpc`)
       priority: 11
       services:
         - name: {{ $fullName }}
