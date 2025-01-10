@@ -68,7 +68,7 @@ argo-cd:
       serviceMonitor:
         enabled: true
     ingress:
-      enabled: true
+      enabled: false
       annotations:
         cert-manager.io/cluster-issuer: acme-letsencrypt-prod
       hostname: argocd.h.g4v.dev
