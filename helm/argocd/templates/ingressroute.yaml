@@ -22,7 +22,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`argocd.h.g4v.dev`) && Headers(`Content-Type`, `application/grpc`)`)
+      match: Host(`argocd.h.g4v.dev`)
       priority: 10
       services:
         - name: {{ $fullName }}
