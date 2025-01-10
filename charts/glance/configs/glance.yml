@@ -83,149 +83,149 @@ pages:
             groups:
               - title: Services
                 links:
-                - name: Authentik
+                - title: Authentik
                   url: https://auth.g4v.dev
-                - name: Bitwarden
+                - title: Bitwarden
                   url: https://bitwarden.g4v.dev
-                - name: Searxng
+                - title: Searxng
                   url: https://search.g4v.dev
-                - name: VPN
+                - title: VPN
                   url: https://admin-vpn.g4v.dev
-                - name: Gathio
+                - title: Gathio
                   url: https://events.g4v.dev
-                - name: Lib Medium
+                - title: Lib Medium
                   url: https://libmedium.g4v.dev
-                - name: Foundry VTT
+                - title: Foundry VTT
                   url: https://vtt.g4v.dev
-                - name: N8N
+                - title: N8N
                   url: https://n8n.g4v.dev
-                - name: Fider
+                - title: Fider
                   url: https://ideas.g4v.dev
               - title: Productivity
                 links:
-                - name: Planka
+                - title: Planka
                   url: https://planka.g4v.dev
-                - name: Vikunja
+                - title: Vikunja
                   url: https://tasks.g4v.dev
-                - name: Excalidraw
+                - title: Excalidraw
                   url: https://draw.g4v.dev
-                - name: Stirling PDF
+                - title: Stirling PDF
                   url: https://pdf.g4v.dev
-                - name: IT Tools
+                - title: IT Tools
                   url: https://it-tools.g4v.dev
-                - name: String.is
+                - title: String.is
                   url: https://string-is.g4v.dev
               - title: Media
                 links:
-                - name: Calibre
+                - title: Calibre
                   url: https://books.g4v.dev
-                - name: Audio Book Shelf
+                - title: Audio Book Shelf
                   url: https://audiobookshelf.g4v.dev
-                - name: Komga
+                - title: Komga
                   url: https://komga.g4v.dev
-                - name: Miniflux
+                - title: Miniflux
                   url: https://miniflux.g4v.dev
-                - name: Lyrion Music Server
+                - title: Lyrion Music Server
                   url: https://lms.g4v.dev
-                - name: Wizarr
+                - title: Wizarr
                   url: https://gitshub-invites.g4v.dev
-                - name: Tautulli
+                - title: Tautulli
                   url: https://plexstats.g4v.dev
               - title: Communication
                 links:
-                - name: Element
+                - title: Element
                   url: https://chat.g4v.dev
               - title: Photos
                 links:
-                - name: Immich
+                - title: Immich
                   url: https://immich.g4v.dev
               - title: Monitoring
                 links:
-                - name: Grafana
+                - title: Grafana
                   url: https://stats.g4v.dev
-                - name: AlertManager (DO)
+                - title: AlertManager (DO)
                   url: prometheus-alertmanager.taildba47.ts.net
-                - name: Prometheus (DO)
+                - title: Prometheus (DO)
                   url: https://prometheus-server.taildba47.ts.net
-                - name: AlertManager (Home)
+                - title: AlertManager (Home)
                   url: https://alertmanager.do.g4v.dev
-                - name: Prometheus (Home)
+                - title: Prometheus (Home)
                   url: https://prometheus.do.g4v.dev
               - title: Devices
                 links:
-                - name: Home Assistant
+                - title: Home Assistant
                   url: http://home.g4v.dev
-                - name: Synology
+                - title: Synology
                   url: http://synology.dhcp.home:5000
-                - name: Frigate
+                - title: Frigate
                   url: https://frigate.g4v.dev
-                - name: NetAlertX
+                - title: NetAlertX
                   url: https://netalertx.g4v.dev
               - title: Other
                 links:
-                - name: Status Pages (Home)
+                - title: Status Pages (Home)
                   url: https://status-h.g4v.dev
-                - name: Status Pages (DO)
+                - title: Status Pages (DO)
                   url: https://status-do.g4v.dev
-                - name: Whoami (Home)
+                - title: Whoami (Home)
                   url: https://whoami-h.g4v.dev
-                - name: Whoami (DO)
+                - title: Whoami (DO)
                   url: https://whoami-h.g4v.dev
               - title: Media Fetchers
                 links:
-                - name: Overseerr
+                - title: Overseerr
                   url: https://overseerr.g4v.dev
-                - name: Radarr
+                - title: Radarr
                   url: https://radarr.g4v.dev
-                - name: Anime Radarr
+                - title: Anime Radarr
                   url: https://anime-radarr.g4v.dev
-                - name: Sonarr
+                - title: Sonarr
                   url: https://sonarr.g4v.dev
-                - name: Anime Sonarr
+                - title: Anime Sonarr
                   url: https://anime-sonarr.g4v.dev
-                - name: Lidarr
+                - title: Lidarr
                   url: https://lidarr.g4v.dev
-                - name: Readarr
+                - title: Readarr
                   url: https://readarr.g4v.dev
-                - name: Mylar3
+                - title: Mylar3
                   url: https://mylar3.g4v.dev
-                - name: Lazy Librarian
+                - title: Lazy Librarian
                   url: https://lazylibrarian.g4v.dev
-                - name: Bazarr
+                - title: Bazarr
                   url: https://bazarr.g4v.dev
-                - name: Organizr
+                - title: Organizr
                   url: https://organizr.g4v.dev
               - title: Links
                 links:
-                - name: Homarr
+                - title: Homarr
                   url: https://homarr.g4v.dev
-                - name: Starbase-80
+                - title: Starbase-80
                   url: https://starbase80.g4v.dev
-                - name: Glance
+                - title: Glance
                   url: https://glance.g4v.dev
-                - name: YourLS
+                - title: YourLS
                   url: https://yourls.g4v.dev
               - title: Downloaders
                 links:
-                - name: QBittorrent
+                - title: QBittorrent
                   url: https://qbittorrent.nas.g4v.dev
-                - name: sabnzbd
+                - title: sabnzbd
                   url: https://sabnzbd.nas.g4v.dev/
-                - name: youtubedl
+                - title: youtubedl
                   url: https://youtubedl.g4v.dev/
-                - name: kobodl
+                - title: kobodl
                   url: https://kobodl.g4v.dev/
               - title: Kubernetes
                 links:
-                - name: ArgoCD
+                - title: ArgoCD
                   url: https://argocd.h.g4v.dev
-                - name: KubeTail (Home)
+                - title: KubeTail (Home)
                   url: https://kubetail-h.g4v.dev
-                - name: KubeTail (DO)
+                - title: KubeTail (DO)
                   url: https://kubetail-do.g4v.dev
               - title: Games
                 links:
-                - name: Not the plants (Itch)
+                - title: Not the plants (Itch)
                   url: https://halkeye.itch.io/not-the-plants
-                - name: Not the plants (Backup Self Host)
+                - title: Not the plants (Backup Self Host)
                   url: https://not-the-plants.g4v.dev
