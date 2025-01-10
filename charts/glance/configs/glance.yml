@@ -15,15 +15,11 @@ pages:
             collapse-after: 3
             cache: 10m
             feeds:
-              - url: http://feeds.macrumors.com/MacRumors-All
-                title: MacRumors
-              - url: https://www.phoronix.com/rss.php
-                title: Phoronix
               - url: https://www.gamingonlinux.com/article_rss.php
               - url: https://www.home-assistant.io/atom.xml
               - url: https://blog.gavinmogan.com/feed/feed.xml
               - url: https://prometheus.io/blog/feed.xml
-              - url: https://www.digitalocean.com/blog/feed.atom
+              - url: https://www.digitalocean.com/blog.atom
 
           - type: twitch-channels
             channels:
