@@ -1,0 +1,227 @@
+pages:
+  - name: Home
+    columns:
+      - size: small
+        widgets:
+          - type: calendar
+
+          - type: rss
+            limit: 10
+            collapse-after: 3
+            cache: 10m
+            feeds:
+              - url: http://feeds.macrumors.com/MacRumors-All
+                title: MacRumors
+              - url: https://www.phoronix.com/rss.php
+                title: Phoronix
+              - url: https://www.gamingonlinux.com/article_rss.php
+              - url: https://www.home-assistant.io/atom.xml
+              - url: https://blog.gavinmogan.com/feed/feed.xml
+              - url: https://prometheus.io/blog/feed.xml
+              - url: https://www.digitalocean.com/blog/feed.atom
+
+          - type: twitch-channels
+            channels:
+              - halkeye
+
+      - size: full
+        widgets:
+          - type: videos
+            channels:
+              - UC9CuvdOVfMPvKCiwdGKL3cQ # GameGrumps
+              - UCQD3awTLw9i8Xzh85FKsuJA # SovietWomble
+              - UCXq2nALoSbxLMehAvYTxt_A # TheGrumps
+              - UCoal_hpPIPAnWlG-kWHLheA # Drawfee
+              - UCUQo7nzH1sXVpzL92VesANw # DIYPerks
+              - UCNxrB1_wm8FCy_-VFB91UmQ # DeepBlueInk
+              - UCUW49KGPezggFi0PGyDvcvg # ZackFreedman
+              - UCF3cDM_hQMtIEJvEW1BZugg # ivanmirandawastaken
+              - UCpOlOeQjj7EsVnDh3zuCgsA # Adafruit
+              - UChIs72whgZI9w6d6FhwGGHA # Gamers Nexus
+              - UCI8iQa1hv7oV_Z8D35vVuSg # Hardware Unboxed
+              - UCv6J_jJa8GJqFwQNgNrMuww # ServeTheHome
+              - UCHnyfMqiRRG1u-2MsSQLbXA # Veritasium
+          - type: group
+            widgets:
+            - type: reddit
+              subreddit: selfhosted
+
+      - size: full
+        widgets:
+          - type: monitor
+            cache: 1m
+            title: Services
+            sites:
+              - title: Immich
+                icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/immich.png
+                url: https://immich.g4v.dev
+
+      - size: small
+        widgets:
+          - type: weather
+            location: Burnaby, British Columbia, Canada
+            hour-format: 24h
+
+          - type: markets
+            markets:
+              - symbol: DOCN
+                name: Digital Ocean
+
+          - type: repository
+            repository: halkeye/home-k8s
+            pull-requests-limit: 5
+            issues-limit: 3
+            commits-limit: 3
+
+      - size: full
+        widgets:
+          - type: bookmarks
+            groups:
+              - title: Services
+                links:
+                - name: Authentik
+                  url: https://auth.g4v.dev
+                - name: Bitwarden
+                  url: https://bitwarden.g4v.dev
+                - name: Searxng
+                  url: https://search.g4v.dev
+                - name: VPN
+                  url: https://admin-vpn.g4v.dev
+                - name: Gathio
+                  url: https://events.g4v.dev
+                - name: Lib Medium
+                  url: https://libmedium.g4v.dev
+                - name: Foundry VTT
+                  url: https://vtt.g4v.dev
+                - name: N8N
+                  url: https://n8n.g4v.dev
+                - name: Fider
+                  url: https://ideas.g4v.dev
+              - title: Productivity
+                links:
+                - name: Planka
+                  url: https://planka.g4v.dev
+                - name: Vikunja
+                  url: https://tasks.g4v.dev
+                - name: Excalidraw
+                  url: https://draw.g4v.dev
+                - name: Stirling PDF
+                  url: https://pdf.g4v.dev
+                - name: IT Tools
+                  url: https://it-tools.g4v.dev
+                - name: String.is
+                  url: https://string-is.g4v.dev
+              - title: Media
+                links:
+                - name: Calibre
+                  url: https://books.g4v.dev
+                - name: Audio Book Shelf
+                  url: https://audiobookshelf.g4v.dev
+                - name: Komga
+                  url: https://komga.g4v.dev
+                - name: Miniflux
+                  url: https://miniflux.g4v.dev
+                - name: Lyrion Music Server
+                  url: https://lms.g4v.dev
+                - name: Wizarr
+                  url: https://gitshub-invites.g4v.dev
+                - name: Tautulli
+                  url: https://plexstats.g4v.dev
+              - title: Communication
+                links:
+                  name: Element
+                  url: https://chat.g4v.dev
+              - title: Photos
+                links:
+                  name: Immich
+                  url: https://immich.g4v.dev
+              - title: Monitoring
+                links:
+                - name: Grafana
+                  url: https://stats.g4v.dev
+                - name: AlertManager (DO)
+                  url: prometheus-alertmanager.taildba47.ts.net
+                - name: Prometheus (DO)
+                  url: https://prometheus-server.taildba47.ts.net
+                - name: AlertManager (Home)
+                  url: https://alertmanager.do.g4v.dev
+                - name: Prometheus (Home)
+                  url: https://prometheus.do.g4v.dev
+              - title: Devices
+                links:
+                - name: Home Assistant
+                  url: http://home.g4v.dev
+                - name: Synology
+                  url: http://synology.dhcp.home:5000
+                - name: Frigate
+                  url: https://frigate.g4v.dev
+                - name: NetAlertX
+                  url: https://netalertx.g4v.dev
+              - title: Other
+                links:
+                - name: Status Pages (Home)
+                  url: https://status-h.g4v.dev
+                - name: Status Pages (DO)
+                  url: https://status-do.g4v.dev
+                - name: Whoami (Home)
+                  url: https://whoami-h.g4v.dev
+                - name: Whoami (DO)
+                  url: https://whoami-h.g4v.dev
+              - title: Media Fetchers
+                links:
+                - name: Overseerr
+                  url: https://overseerr.g4v.dev
+                - name: Radarr
+                  url: https://radarr.g4v.dev
+                - name: Anime Radarr
+                  url: https://anime-radarr.g4v.dev
+                - name: Sonarr
+                  url: https://sonarr.g4v.dev
+                - name: Anime Sonarr
+                  url: https://anime-sonarr.g4v.dev
+                - name: Lidarr
+                  url: https://lidarr.g4v.dev
+                - name: Readarr
+                  url: https://readarr.g4v.dev
+                - name: Mylar3
+                  url: https://mylar3.g4v.dev
+                - name: Lazy Librarian
+                  url: https://lazylibrarian.g4v.dev
+                - name: Bazarr
+                  url: https://bazarr.g4v.dev
+                - name: Organizr
+                  url: https://organizr.g4v.dev
+              - title: Links
+                links:
+                - name: Homarr
+                  url: https://homarr.g4v.dev
+                - name: Starbase-80
+                  url: https://starbase80.g4v.dev
+                - name: Glance
+                  url: https://glance.g4v.dev
+                - name: YourLS
+                  url: https://yourls.g4v.dev
+              - title: Downloaders
+                links:
+                - name: QBittorrent
+                  url: https://qbittorrent.nas.g4v.dev
+                - name: sabnzbd
+                  url: https://sabnzbd.nas.g4v.dev/
+                - name: youtubedl
+                  url: https://youtubedl.g4v.dev/
+                - name: kobodl
+                  url: https://kobodl.g4v.dev/
+              - title: Kubernetes
+                links:
+                - name: ArgoCD
+                  url: https://argocd.h.g4v.dev
+                - name: KubeTail (Home)
+                  url: https://kubetail-h.g4v.dev
+                - name: KubeTail (DO)
+                  url: https://kubetail-do.g4v.dev
+              - title: Games
+                links:
+                - name: Not the plants (Itch)
+                  url: https://halkeye.itch.io/not-the-plants
+                - name: Not the plants (Backup Self Host)
+                  url: https://not-the-plants.g4v.dev
