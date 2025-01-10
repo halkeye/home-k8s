@@ -90,3 +90,39 @@ spec:
           - CreateNamespace=true
           - ServerSideApply=true
           - Prune=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: do-k8s-kustomize
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ['missingkey=error']
+  generators:
+    - list:
+        elements:
+          - name: glance
+  template:
+    metadata:
+      name: '{{.name}}'
+      namespace: argocd
+      annotations:
+        argocd.argoproj.io/sync-wave: '{{dig "syncwave" "20" . }}'
+    spec:
+      destination:
+        namespace: '{{- if index . "namespace" -}}{{ .namespace | normalize }}{{- else }}{{ .name | normalize }}{{ end }}'
+        server: '{{dig "server" "https://6280be86-f269-4fd1-a692-92d18aaf6595.k8s.ondigitalocean.com" . }}'
+      project: default
+      source:
+        path: 'charts/{{dig "chart" .name .}}'
+        repoURL: https://github.com/halkeye/home-k8s
+        targetRevision: HEAD
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
+          - Prune=true

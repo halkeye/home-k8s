@@ -4,6 +4,11 @@ pages:
       - size: small
         widgets:
           - type: calendar
+          - type: clock
+            hour-format: 12h
+            timezones:
+              - timezone: America/New_York
+                label: New York
 
           - type: rss
             limit: 10
@@ -129,11 +134,11 @@ pages:
                   url: https://plexstats.g4v.dev
               - title: Communication
                 links:
-                  name: Element
+                - name: Element
                   url: https://chat.g4v.dev
               - title: Photos
                 links:
-                  name: Immich
+                - name: Immich
                   url: https://immich.g4v.dev
               - title: Monitoring
                 links:
