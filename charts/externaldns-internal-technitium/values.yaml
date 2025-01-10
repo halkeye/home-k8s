@@ -10,7 +10,12 @@ external-dns:
   sources:
     - service
     - ingress
-    - ingressroute
+    - ingressroutes
+    - ingressroutetcps
+    - ingressrouteudps
+    - ingressroutes
+    - ingressroutetcps
+    - ingressrouteudps
   provider:
     name: rfc2136
   env:
