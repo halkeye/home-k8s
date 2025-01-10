@@ -39,7 +39,7 @@ traefik:
     ipFamilyPolicy: 'PreferDualStack'
   logs:
     general:
-      level: INFO
+      level: DEBUG
   tlsStore:
     default:
       defaultCertificate:
