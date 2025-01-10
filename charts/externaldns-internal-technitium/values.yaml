@@ -12,8 +12,6 @@ external-dns:
     - ingress
     - gateway-httproute
     - gateway-grpcroute
-    - gateway-tcproute
-    - gateway-udproute
     - traefik-proxy
   provider:
     name: rfc2136
