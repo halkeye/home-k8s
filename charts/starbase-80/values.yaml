@@ -288,10 +288,6 @@ app-template:
         name: Starbase-80
         uri: https://starbase80.g4v.dev
       - description: Link Shortener
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/kutt.png
-        name: Kutt
-        uri: https://kutt.g4v.dev
-      - description: Link Shortener
         icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/yourls.png
         name: YourLS
         uri: https://yourls.g4v.dev
