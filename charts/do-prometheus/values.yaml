@@ -8,22 +8,26 @@ kube-prometheus-stack:
   kubeApiServer:
     serviceMonitor:
       relabelings:
-        - targetLabel: cluster
+        - action: replace
+          targetLabel: cluster
           replacement: "do-k8s"
   kubelet:
     serviceMonitor:
       relabelings:
-        - targetLabel: cluster
+        - action: replace
+          targetLabel: cluster
           replacement: "do-k8s"
   coreDns:
     serviceMonitor:
       relabelings:
-        - targetLabel: cluster
+        - action: replace
+          targetLabel: cluster
           replacement: "do-k8s"
   prometheusOperator:
     serviceMonitor:
       relabelings:
-        - targetLabel: cluster
+        - action: replace
+          targetLabel: cluster
           replacement: "do-k8s"
   alertmanager:
     ingress:
@@ -98,12 +102,14 @@ kube-prometheus-stack:
     enabled: true
     serviceMonitor:
       relabelings:
-        - targetLabel: cluster
+        - action: replace
+          targetLabel: cluster
           replacement: "do-k8s"
     monitor:
       enabled: true
       relabelings:
-        - targetLabel: cluster
+        - action: replace
+          targetLabel: cluster
           replacement: "do-k8s"
         - action: replace
           regex: (.*)
@@ -118,7 +124,8 @@ kube-prometheus-stack:
       externalLabels:
         cluster: do-k8s
       relabelings:
-        - targetLabel: cluster
+        - action: replace
+          targetLabel: cluster
           replacement: "do-k8s"
       storageSpec:
         volumeClaimTemplate:
@@ -158,19 +165,22 @@ kube-prometheus-stack:
     enabled: false
     serviceMonitor:
       relabelings:
-        - targetLabel: cluster
+        - action: replace
+          targetLabel: cluster
           replacement: "do-k8s"
   kubeEtcd:
     enabled: true
     serviceMonitor:
       relabelings:
-        - targetLabel: cluster
+        - action: replace
+          targetLabel: cluster
           replacement: "do-k8s"
   kubeScheduler:
     enabled: true
     serviceMonitor:
       relabelings:
-        - targetLabel: cluster
+        - action: replace
+          targetLabel: cluster
           replacement: "do-k8s"
   prometheus-node-exporter:
     fullnameOverride: node-exporter
@@ -184,7 +194,8 @@ kube-prometheus-stack:
       monitor:
         enabled: true
         relabelings:
-          - targetLabel: cluster
+          - action: replace
+            targetLabel: cluster
             replacement: "do-k8s"
           - action: replace
             regex: (.*)
@@ -201,7 +212,8 @@ kube-prometheus-stack:
       monitor:
         enabled: true
         relabelings:
-          - targetLabel: cluster
+          - action: replace
+            targetLabel: cluster
             replacement: "do-k8s"
           - action: replace
             regex: (.*)
