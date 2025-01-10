@@ -13,6 +13,8 @@ external-dns:
     - gateway-httproute
     - gateway-grpcroute
     - traefik-proxy
+  extraArgs:
+    - --traefik-disable-legacy
   provider:
     name: rfc2136
   env:
