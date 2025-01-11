@@ -6,9 +6,6 @@ kind: Kustomization
 helmGlobals:
   chartHome: ./charts/
 
-# resources:
-#   - ../../../../templates/gatus/guarded
-
 configMapGenerator:
   - name: glance-config
     files:
