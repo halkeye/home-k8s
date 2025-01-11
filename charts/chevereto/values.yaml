@@ -32,6 +32,10 @@ controllers:
           requests:
             memory: 256Mi
             cpu: 10m
+    pod:
+      securityContext:
+        fsGroup: 33
+        fsGroupChangePolicy: OnRootMismatch
 
 service:
   main:
