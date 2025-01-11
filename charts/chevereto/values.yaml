@@ -23,17 +23,6 @@ controllers:
         probes:
           liveness: &probes
             enabled: true
-            custom: true
-            spec:
-              exec:
-                command:
-                  - healthcheck.sh
-                  - --su-mysql
-                  - --connect
-              initialDelaySeconds: 0
-              periodSeconds: 10
-              timeoutSeconds: 5
-              failureThreshold: 3
           readiness: *probes
           startup:
             enabled: false
