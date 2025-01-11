@@ -103,12 +103,12 @@ persistence:
     server: 172.16.10.10
     path: /volume1/Audio/Music
     globalMounts:
-      - path: /music
+      - path: /downloads/music
   webseries:
     type: nfs
     server: 172.16.10.10
     path: /volume1/Webseries
     globalMounts:
-      - path: /webseries
+      - path: /downloads/webseries
   tmp:
     type: emptyDir
