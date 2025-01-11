@@ -81,6 +81,10 @@ ingress:
               port: http
 
 persistence:
+  yt-dlp:
+    type: emptyDir
+    globalMounts:
+      - path: /etc/yt-dlp
   config:
     enabled: true
     type: persistentVolumeClaim
