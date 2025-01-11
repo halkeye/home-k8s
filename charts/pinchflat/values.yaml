@@ -14,7 +14,7 @@ controllers:
       pinchflat:
         image:
           repository: ghcr.io/kieraneglin/pinchflat
-          tag: v2024.12.29
+          tag: v2024.12.31
         env:
           TZ: America/Vancouver
           TZ_DATA_DIR: /tmp/elixir_tz_data
