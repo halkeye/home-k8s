@@ -14,3 +14,4 @@ helmCharts:
     version: 3.6.0
     repo: https://bjw-s.github.io/helm-charts
     valuesFile: ./values.yaml
+    releaseName: pinchflat
