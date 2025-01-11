@@ -1,10 +1,10 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.5.1/charts/library/common/values.schema.json
 defaultPodOptions:
   securityContext:
-    runAsUser: 568
-    runAsGroup: 568
-    runAsNonRoot: true
-    fsGroup: 568
+    runAsUser: 0
+    runAsGroup: 0
+    runAsNonRoot: false
+    fsGroup: 0
     fsGroupChangePolicy: OnRootMismatch
 
 controllers:
@@ -45,7 +45,7 @@ controllers:
             enabled: false
         securityContext:
           allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
+          readOnlyRootFilesystem: false
           capabilities:
             drop: ["ALL"]
         resources:
