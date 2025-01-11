@@ -103,6 +103,7 @@ spec:
     - list:
         elements:
           - name: glance
+          - name: chevereto
   template:
     metadata:
       name: '{{.name}}'
