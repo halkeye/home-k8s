@@ -215,6 +215,8 @@ pages:
                   url: https://youtubedl.g4v.dev/
                 - title: kobodl
                   url: https://kobodl.g4v.dev/
+                - title: pinchflat
+                  url: https://pinchflat.g4v.dev/
               - title: Kubernetes
                 links:
                 - title: ArgoCD
