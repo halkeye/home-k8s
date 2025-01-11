@@ -26,7 +26,7 @@ controllers:
             custom: true
             spec:
               httpGet:
-                path: /
+                path: /server-status
                 port: 80
               initialDelaySeconds: 0
               periodSeconds: 10
