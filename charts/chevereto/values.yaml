@@ -60,13 +60,13 @@ ingress:
               port: http
 
 persistence:
-  app:
-    enabled: true
-    type: persistentVolumeClaim
-    accessMode: ReadWriteOnce
-    size: 10Gi
-    globalMounts:
-      - path: /var/www/html/
+  # app:
+  #   enabled: true
+  #   type: persistentVolumeClaim
+  #   accessMode: ReadWriteOnce
+  #   size: 10Gi
+  #   globalMounts:
+  #     - path: /var/www/html/
   images:
     enabled: true
     type: persistentVolumeClaim
