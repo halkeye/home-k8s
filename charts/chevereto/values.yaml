@@ -1,89 +1,92 @@
-# yaml-language-server: $schema=../app-template.schema.json
-app-template:
-  controllers:
-    main:
-      annotations:
-        reloader.stakater.com/auto: "true"
-      strategy: Recreate
-      containers:
-        chevereto:
-          image:
-            repository: ghcr.io/chevereto/chevereto
-            tag: 4.2.4
-          env:
-            TZ: America/Vancouver
-            CHEVERETO_HOSTNAME: img.g4v.dev
-            CHEVERETO_HOSTNAME_PATH: /
-            CHEVERETO_HTTPS: 0
-            CHEVERETO_SERVICING: server
-            CHEVERETO_MAX_POST_SIZE: 100M
-            CHEVERETO_MAX_UPLOAD_SIZE: 100M
-          envFrom:
-            - secretRef:
-                name: "{{.Release.Name}}-secret"
-          probes:
-            liveness: &probes
-              enabled: true
-              custom: true
-              spec:
-                httpGet:
-                  path: /
-                  port: 80
-                initialDelaySeconds: 0
-                periodSeconds: 10
-                timeoutSeconds: 1
-                failureThreshold: 3
-            readiness: *probes
-            startup:
-              enabled: false
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            capabilities:
-              drop: ["ALL"]
-          resources:
-            limits:
-              memory: 2Gi
-            requests:
-              memory: 256Mi
-              cpu: 10m
-      pod:
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.5.1/charts/library/common/values.schema.json
+defaultPodOptions:
+  securityContext:
+    runAsUser: 568
+    runAsGroup: 568
+    runAsNonRoot: true
+    fsGroup: 568
+    fsGroupChangePolicy: OnRootMismatch
+
+controllers:
+  main:
+    annotations:
+      reloader.stakater.com/auto: "true"
+    strategy: Recreate
+    containers:
+      chevereto:
+        image:
+          repository: ghcr.io/chevereto/chevereto
+          tag: 4.2.4
+        env:
+          TZ: America/Vancouver
+          CHEVERETO_HOSTNAME: img.g4v.dev
+          CHEVERETO_HOSTNAME_PATH: /
+          CHEVERETO_HTTPS: 0
+          CHEVERETO_SERVICING: server
+          CHEVERETO_MAX_POST_SIZE: 100M
+          CHEVERETO_MAX_UPLOAD_SIZE: 100M
+        envFrom:
+          - secretRef:
+              name: "{{.Release.Name}}-secret"
+        probes:
+          liveness: &probes
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /
+                port: 80
+              initialDelaySeconds: 0
+              periodSeconds: 10
+              timeoutSeconds: 1
+              failureThreshold: 3
+          readiness: *probes
+          startup:
+            enabled: false
         securityContext:
-          runAsUser: 568
-          runAsGroup: 568
-          runAsNonRoot: true
-          fsGroup: 568
-          fsGroupChangePolicy: OnRootMismatch
-  service:
-    main:
-      controller: main
-      ports:
-        http:
-          port: 80
-  ingress:
-    main:
-      enabled: true
-      hosts:
-        - host: img.g4v.dev
-          paths:
-            - path: /
-              service:
-                identifier: main
-                port: http
-  persistence:
-    app:
-      enabled: true
-      type: persistentVolumeClaim
-      accessMode: ReadWriteOnce
-      size: 10Gi
-      globalMounts:
-        - path: /var/www/html/
-    images:
-      enabled: true
-      type: persistentVolumeClaim
-      accessMode: ReadWriteOnce
-      size: 10Gi
-      globalMounts:
-        - path: /var/www/html/images/
-    tmp:
-      type: emptyDir
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+        resources:
+          limits:
+            memory: 2Gi
+          requests:
+            memory: 256Mi
+            cpu: 10m
+
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 80
+
+ingress:
+  main:
+    enabled: true
+    hosts:
+      - host: img.g4v.dev
+        paths:
+          - path: /
+            service:
+              identifier: main
+              port: http
+
+persistence:
+  app:
+    enabled: true
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    size: 10Gi
+    globalMounts:
+      - path: /var/www/html/
+  images:
+    enabled: true
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    size: 10Gi
+    globalMounts:
+      - path: /var/www/html/images/
+  tmp:
+    type: emptyDir
