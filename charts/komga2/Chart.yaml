@@ -7,7 +7,7 @@ appVersion: "1.0"
 dependencies:
 - name: komga
   version: 0.1.0
-  repository: git+https://github.com/halkeye/home-k8s@charts/komga?ref=main
+  repository: file://../komga
 maintainers:
   - name: halkeye
     url: https://www.gavinmogan.com
