@@ -5,7 +5,7 @@ controllers:
       reloader.stakater.com/auto: "true"
     strategy: Recreate
     containers:
-      chevereto:
+      bytestash:
         image:
           repository: ghcr.io/jordan-dalby/bytestash
           tag: 1.5.6
