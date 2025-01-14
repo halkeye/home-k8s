@@ -102,9 +102,9 @@ app-template:
           tv_show_directory: "/webseries"
           music_directory: "/music"
 
-      YouTube Releases:
-        = Trace | Chunk Downloads:
-          "Armin van Buuren": "https://www.youtube.com/@arminvanbuuren/releases"
+      # YouTube Releases:
+      #   = Trace | Chunk Downloads:
+      #     "Armin van Buuren": "https://www.youtube.com/@arminvanbuuren/releases"
 
       YouTube Full Albums:
         = Lofi | Chunk Downloads:
