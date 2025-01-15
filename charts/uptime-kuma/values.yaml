@@ -54,6 +54,10 @@ app-template:
           path: /metrics
           interval: 30s
           scrapeTimeout: 10s
+          basicAuth:
+            password:
+              name: uptime-kuma-servicemonitor
+              key: password
   ingress:
     main:
       enabled: true
