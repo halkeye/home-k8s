@@ -40,6 +40,16 @@ app-template:
       ports:
         http:
           port: 3001
+  serviceMonitor:
+    main:
+      enabled: true
+      serviceName: '{{ include "bjw-s.common.lib.chart.names.fullname" $ }}'
+      interval: 30
+      timeout: 10
+      endpoints:
+        - port: http
+          scheme: http
+          path: /metrics
   ingress:
     main:
       enabled: true
