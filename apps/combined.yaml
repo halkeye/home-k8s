@@ -16,7 +16,6 @@ spec:
                 - appname: postfix-mailgun-relay
                   namespace: smtp
 
-                - appname: uptime-kuma
                 - appname: whoami
                 - appname: kubetail
   template:
