@@ -52,8 +52,8 @@ app-template:
         - port: http
           scheme: http
           path: /metrics
-          interval: 30
-          scrapeTimeout: 10
+          interval: 30s
+          scrapeTimeout: 10s
   ingress:
     main:
       enabled: true
