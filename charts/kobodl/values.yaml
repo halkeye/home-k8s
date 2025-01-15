@@ -5,8 +5,10 @@ app-template:
       containers:
         kobodl:
           image:
-            repository: ghcr.io/subdavis/kobodl
-            tag: latest@sha256:a28db847f5769a344561f2f6ec23e59bb03a46a238caff45c0a86b67fe8dd08b
+            repository: ghcr.io/halkeye/kobo-book-downloader
+            tag: sha-34d0fdb
+            # repository: ghcr.io/subdavis/kobodl
+            # tag: latest@sha256:a28db847f5769a344561f2f6ec23e59bb03a46a238caff45c0a86b67fe8dd08b
           env:
             TZ: America/Vancouver
           args:
