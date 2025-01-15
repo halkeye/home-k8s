@@ -182,6 +182,13 @@ grafana:
         datasource:
           - name: DS_PROMETHEUS
             value: Prometheus
+      uptime-kuma:
+        # renovate: depName="Uptime Kuma"
+        gnetId: 18278
+        revision: 1
+        datasource:
+          - name: DS_PROMETHEUS
+            value: Prometheus
     kubernetes:
       oom-and-restarts:
         # renovate: depName="OOM and restarts"
