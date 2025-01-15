@@ -102,8 +102,9 @@ spec:
   generators:
     - list:
         elements:
-          - name: glance
+          - name: bytestash
           - name: chevereto
+          - name: glance
   template:
     metadata:
       name: '{{.name}}'

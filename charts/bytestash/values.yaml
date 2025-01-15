@@ -1,0 +1,66 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.5.1/charts/library/common/values.schema.json
+controllers:
+  main:
+    annotations:
+      reloader.stakater.com/auto: "true"
+    strategy: Recreate
+    containers:
+      bytestash:
+        image:
+          repository: ghcr.io/jordan-dalby/bytestash
+          tag: 1.5.6
+        env:
+          # See https://github.com/jordan-dalby/ByteStash/wiki/FAQ#environment-variables
+          TZ: America/Vancouver
+          BASE_PATH: ""
+          TOKEN_EXPIRY: 24h
+          ALLOW_NEW_ACCOUNTS: "true"
+          DEBUG: "true"
+          DISABLE_ACCOUNTS: "false"
+          DISABLE_INTERNAL_ACCOUNTS: "true"
+        envFrom:
+          - secretRef:
+              name: "{{.Release.Name}}-secret"
+        probes:
+          liveness: &probes
+            enabled: true
+          readiness: *probes
+          startup:
+            enabled: false
+        resources:
+          requests:
+            memory: 256Mi
+            cpu: 10m
+    pod:
+      securityContext:
+        fsGroup: 33
+        fsGroupChangePolicy: OnRootMismatch
+
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 5000
+
+ingress:
+  main:
+    enabled: true
+    hosts:
+      - host: bytestash.g4v.dev
+        paths:
+          - path: /
+            service:
+              identifier: main
+              port: http
+
+persistence:
+  data:
+    enabled: true
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    size: 10Gi
+    globalMounts:
+      - path: /data/snippets
+  tmp:
+    type: emptyDir

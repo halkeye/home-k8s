@@ -102,12 +102,9 @@ app-template:
           tv_show_directory: "/webseries"
           music_directory: "/music"
 
-      # plex_yt_episodic_show:
-      #   "DEEP SPACE DISCOUNTS": https://www.youtube.com/watch?v=7ezUoX21EyU&list=PLVxfQgDbQFHN7jfmmCA-Zw8L3IASyRgcr 
-
-      YouTube Releases:
-        = Trace | Chunk Downloads:
-          "Armin van Buuren": "https://www.youtube.com/@arminvanbuuren/releases"
+      # YouTube Releases:
+      #   = Trace | Chunk Downloads:
+      #     "Armin van Buuren": "https://www.youtube.com/@arminvanbuuren/releases"
 
       YouTube Full Albums:
         = Lofi | Chunk Downloads:
