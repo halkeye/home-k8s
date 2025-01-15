@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=../app-template.schema.json
 app-template:
   controllers:
     main:
@@ -47,12 +48,12 @@ app-template:
     main:
       enabled: true
       serviceName: '{{ include "bjw-s.common.lib.chart.names.fullname" $ }}'
-      interval: 30
-      timeout: 10
       endpoints:
         - port: http
           scheme: http
           path: /metrics
+          interval: 30
+          timeout: 10
   ingress:
     main:
       enabled: true
