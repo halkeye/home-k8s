@@ -55,6 +55,9 @@ app-template:
           interval: 30s
           scrapeTimeout: 10s
           basicAuth:
+            username:
+              name: uptime-kuma-servicemonitor
+              key: username
             password:
               name: uptime-kuma-servicemonitor
               key: password
