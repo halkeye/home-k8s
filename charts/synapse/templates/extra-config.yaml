@@ -26,11 +26,11 @@ stringData:
           store_remote: true
           store_synchronous: true
           config:
-            bucket: ""
+            bucket: "g4v-matrix-media"
             # All of the below options are optional, for use with non-AWS S3-like
             # services, or to specify access tokens here instead of some external method.
-            region_name: sfo3
-            endpoint_url: https://g4v-matrix-media.sfo3.digitaloceanspaces.com
+            region_name: "sfo3"
+            endpoint_url: "https://g4v-matrix-media.sfo3.digitaloceanspaces.com"
             access_key_id: {{ .Values.extraSecrets.s3_access_key_id | quote }}
             secret_access_key: {{ .Values.extraSecrets.s3_secret_access_key | quote }}
 
