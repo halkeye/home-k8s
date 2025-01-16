@@ -21,18 +21,18 @@ stringData:
               localpart_template: {{`"{{ user.preferred_username }}"`}}
               display_name_template: {{`"{{ user.name|capitalize }}"`}}
     media_storage_providers:
-        # - module: s3_storage_provider.S3StorageProviderBackend
-        #   store_local: true
-        #   store_remote: true
-        #   store_synchronous: true
-        #   config:
-        #     bucket: "g4v-matrix-media"
-        #     # All of the below options are optional, for use with non-AWS S3-like
-        #     # services, or to specify access tokens here instead of some external method.
-        #     region_name: "sfo3"
-        #     endpoint_url: "https://g4v-matrix-media.sfo3.digitaloceanspaces.com"
-        #     access_key_id: {{ .Values.extraSecrets.s3_access_key_id | quote }}
-        #     secret_access_key: {{ .Values.extraSecrets.s3_secret_access_key | quote }}
+        - module: s3_storage_provider.S3StorageProviderBackend
+          store_local: true
+          store_remote: true
+          store_synchronous: true
+          config:
+            bucket: "g4v-matrix-media"
+            # All of the below options are optional, for use with non-AWS S3-like
+            # services, or to specify access tokens here instead of some external method.
+            region_name: "sfo3"
+            endpoint_url: "https://sfo3.digitaloceanspaces.com"
+            access_key_id: {{ .Values.extraSecrets.s3_access_key_id | quote }}
+            secret_access_key: {{ .Values.extraSecrets.s3_secret_access_key | quote }}
 
         - module: file_system
           # Whether to write new local files.

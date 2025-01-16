@@ -138,6 +138,7 @@ matrix-synapse:
 
     extraCommands:
       # - apt-get update && apt-get install -y --no-install-recommends git
+      - pip install boto3==1.35.99
       - pip install https://github.com/matrix-org/synapse-s3-storage-provider/archive/refs/tags/v1.5.0.zip
 
   workers:
@@ -159,6 +160,7 @@ matrix-synapse:
 
       extraCommands:
         # - apt-get update && apt-get install -y --no-install-recommends git gettext-base
+        - pip install boto3==1.35.99
         - pip install https://github.com/matrix-org/synapse-s3-storage-provider/archive/refs/tags/v1.5.0.zip
     generic_worker:
       enabled: true
