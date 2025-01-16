@@ -14,6 +14,7 @@ matrix-synapse:
     annotations:
       nginx.ingress.kubernetes.io/enable-cors: 'true'
       nginx.ingress.kubernetes.io/cors-allow-origin: "https://synapse-admin.g4v.dev"
+      nginx.ingress.kubernetes.io/cors-allow-credentials: 'true'
       nginx.ingress.kubernetes.io/proxy-body-size: '500m'
       nginx.ingress.kubernetes.io/proxy-connect-timeout: '180'
       nginx.ingress.kubernetes.io/proxy-read-timeout: '180'
