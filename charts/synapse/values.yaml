@@ -12,6 +12,7 @@ matrix-synapse:
     enabled: true
     includeServerName: false
     annotations:
+      nginx.ingress.kubernetes.io/enable-cors: 'true'
       nginx.ingress.kubernetes.io/proxy-body-size: '500m'
       nginx.ingress.kubernetes.io/proxy-connect-timeout: '180'
       nginx.ingress.kubernetes.io/proxy-read-timeout: '180'
