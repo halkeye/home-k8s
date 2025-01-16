@@ -248,7 +248,7 @@ app-template:
               # See https://docs.mau.fi/bridges/general/end-to-bridge-encryption.html for more info.
               encryption:
                   # Allow encryption, work in group chat rooms with e2ee enabled
-                  allow: true
+                  allow: false
                   # Default to encryption, force-enable encryption in all portals the bridge creates
                   # This will cause the bridge bot to be in private chats for the encryption to work properly.
                   default: false
@@ -258,7 +258,7 @@ app-template:
                   require: false
                   # Enable key sharing? If enabled, key requests for rooms where users are in will be fulfilled.
                   # You must use a client that supports requesting keys from other users to use this feature.
-                  allow_key_sharing: true
+                  allow_key_sharing: false
                   # Options for deleting megolm sessions from the bridge.
                   delete_keys:
                       # Beeper-specific: delete outbound sessions when hungryserv confirms
