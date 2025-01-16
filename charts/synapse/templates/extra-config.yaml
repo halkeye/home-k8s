@@ -26,7 +26,7 @@ stringData:
           store_remote: true
           store_synchronous: true
           config:
-            bucket: g4v-matrix-media
+            bucket: ""
             # All of the below options are optional, for use with non-AWS S3-like
             # services, or to specify access tokens here instead of some external method.
             region_name: sfo3
