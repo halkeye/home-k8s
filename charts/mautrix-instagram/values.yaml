@@ -165,6 +165,6 @@ app-template:
                     format: pretty-colored
 
           encryption:
-              allow: true
+              allow: false
               default: false
               pickle_key: {{ .Values.encryption_pickle_key }}
