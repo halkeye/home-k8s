@@ -95,6 +95,9 @@ app-template:
           port: 29328
 
   persistence:
+    tmp:
+      enabled: true
+      type: emptyDir
     data:
       enabled: true
       type: emptyDir
