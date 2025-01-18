@@ -1,4 +1,9 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.5.1/charts/library/common/values.schema.json
+defaultPodOptions:
+  securityContext:
+    fsGroup: 100
+    fsGroupChangePolicy: OnRootMismatch
+
 controllers:
   main:
     strategy: Recreate
