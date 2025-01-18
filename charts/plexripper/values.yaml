@@ -17,17 +17,14 @@ controllers:
           tag: 0.28.0
         env:
           TZ: America/Vancouver
+          PUID: "1026"
+          PGID: "100"
         probes:
           liveness: &probes
             enabled: true
           readiness: *probes
           startup:
             enabled: false
-        securityContext:
-          allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
-          capabilities:
-            drop: ["ALL"]
         resources:
           limits:
             memory: 2Gi

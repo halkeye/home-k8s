@@ -103,6 +103,7 @@ spec:
     - list:
         elements:
           - name: pinchflat
+          - name: plexripper
   template:
     metadata:
       name: '{{.name}}'
