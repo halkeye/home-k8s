@@ -18,7 +18,7 @@ controllers:
         env:
           TZ: America/Vancouver
           TZ_DATA_DIR: /tmp/elixir_tz_data
-          FRONT_URL: kitchenowl.g4v.dev
+          FRONT_URL: https://kitchenowl.g4v.dev
           OPEN_REGISTRATION: false
           EMAIL_MANDATORY: false
           COLLECT_METRICS: false
