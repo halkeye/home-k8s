@@ -81,23 +81,23 @@ app-template:
       services:
       - name: Authentik
         description: Authentication
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/authentik.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/authentik.png
         uri: https://auth.g4v.dev
       - name: Bitwarden
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/bitwarden.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/bitwarden.png
         description: Password Management
         uri: https://bitwarden.g4v.dev
       - name: Searxng
         description: Privacy Focused Search Engine
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/searxng.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/searxng.png
         uri: https://search.g4v.dev
       - name: VPN
         description: VPN Management
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/wireguard.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/wireguard.png
         uri: https://admin-vpn.g4v.dev
       - name: Gathio
         description: Events Management
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/gathio.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/gathio.png
         uri: https://events.g4v.dev
       - name: Lib Medium
         description: A tool to proxy medium to avoid ads and tracking
@@ -105,36 +105,36 @@ app-template:
       - name: Foundry VTT
         description: Virtual Tabletop RPG UI
         uri: https://vtt.g4v.dev
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/foundry-vtt.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/foundry-vtt.png
       - name: N8N
         description: No code automation service
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/n8n.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/n8n.png
         uri: https://n8n.g4v.dev
       - name: Fider
         description: Ideas
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/fider.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/fider.png
         uri: https://ideas.g4v.dev
     - category: Productivity
       services:
       - name: Planka
         description: Project Tracking
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/planka.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/planka.png
         uri: https://planka.g4v.dev
       - name: Vikunja
         description: Todo / Task list manager
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/vikunja.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/vikunja.png
         uri: https://tasks.g4v.dev
       - name: Excalidraw
         description: Diagram and Draw things
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/excalidraw.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/excalidraw.png
         uri: https://draw.g4v.dev
       - name: Stirling PDF
         description: PDF Tools
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/stirling-pdf.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/stirling-pdf.png
         uri: https://pdf.g4v.dev
       - name: IT Tools
         description: Useful tools for devs/it
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/it-tools.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/it-tools.png
         uri: https://it-tools.g4v.dev
       - name: String.is
         description: Own copy of strings.is
@@ -143,87 +143,87 @@ app-template:
       services:
       - name: Calibre
         description: eBook library
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/calibre-web.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/calibre-web.png
         uri: https://books.g4v.dev
       - name: Audio Book Shelf
         description: Podcasts and Audio Books
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/audiobookshelf.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/audiobookshelf.png
         uri: https://audiobookshelf.g4v.dev
       - name: Komga
         description: Comics
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/komga.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/komga.png
         uri: https://komga.g4v.dev
       - name: Miniflux
         description: RSS Reader
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/miniflux.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/miniflux.png
         uri: https://miniflux.g4v.dev
       - name: Lyrion Music Server
         description: (formerly Logitech Media Server) Music Player
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/openmediavault.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/openmediavault.png
         uri: https://lms.g4v.dev
       - name: Wizarr
         description: Is/was supposed to handle inviting people to plex?
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/wizarr.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/wizarr.png
         uri: https://gitshub-invites.g4v.dev
       - name: Tautulli
         description: Shows stats about plex usage
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/tautulli.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/tautulli.png
         uri: https://plexstats.g4v.dev
     - category: Communication
       services:
       - description: Matrix chat client
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/element.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/element.png
         name: Element
         uri: https://chat.g4v.dev
     - category: Photos
       services:
       - description: Photo hosting
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/immich.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/immich.png
         name: Immich
         uri: https://immich.g4v.dev
     - category: Monitoring
       services:
-      - icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/grafana.png
+      - icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/grafana.png
         name: Grafana
         uri: https://stats.g4v.dev
-      - icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/alertmanager.png
+      - icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/alertmanager.png
         name: AlertManager (DO)
         uri: prometheus-alertmanager.taildba47.ts.net
-      - icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/prometheus.png
+      - icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/prometheus.png
         name: Prometheus (DO)
         uri: https://prometheus-server.taildba47.ts.net
-      - icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/alertmanager.png
+      - icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/alertmanager.png
         name: AlertManager (Home)
         uri: https://alertmanager.do.g4v.dev
-      - icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/prometheus.png
+      - icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/prometheus.png
         name: Prometheus (Home)
         uri: https://prometheus.do.g4v.dev
     - category: Devices
       services:
       - description: Home automation
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/home-assistant.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/home-assistant.png
         name: Home Assistant
         uri: http://home.g4v.dev
       - description: Network storage
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/synology.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/synology.png
         name: Synology
         uri: http://synology.dhcp.home:5000
       - description: Cameras
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/frigate.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/frigate.png
         name: Frigate
         uri: https://frigate.g4v.dev
       - description: Network Monitoring
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/netalertx.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/netalertx.png
         name: NetAlertX
         uri: https://netalertx.g4v.dev
     - category: Other
       services:
       - description: Status Pages
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/uptime-kuma.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/uptime-kuma.png
         name: Status Pages (Home)
         uri: https://status-h.g4v.dev
       - description: Status Pages
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/uptime-kuma.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/uptime-kuma.png
         name: Status Pages (DO)
         uri: https://status-do.g4v.dev
       - description: Browser Debug Info
@@ -236,53 +236,53 @@ app-template:
       services:
       - name: Overseerr
         description: Discover new media
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/overseerr.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/overseerr.png
         uri: https://overseerr.g4v.dev
       - name: Radarr
         description: Movies
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/radarr.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/radarr.png
         uri: https://radarr.g4v.dev
       - name: Anime Radarr
         description: Anime Movies
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/radarr.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/radarr.png
         uri: https://anime-radarr.g4v.dev
       - name: Sonarr
         description: TV
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/sonarr.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/sonarr.png
         uri: https://sonarr.g4v.dev
       - name: Anime Sonarr
         description: Anime
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/sonarr.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/sonarr.png
         uri: https://anime-sonarr.g4v.dev
       - name: Lidarr
         description: Music
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/lidarr.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/lidarr.png
         uri: https://lidarr.g4v.dev
       - name: Readarr
         description: Books (doesnt really work)
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/readarr.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/readarr.png
         uri: https://readarr.g4v.dev
       - name: Mylar3
         description: Comics
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/mylar.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/mylar.png
         uri: https://mylar3.g4v.dev
       - name: Lazy Librarian
         description: Books, Audio, and Comics
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/lazylibrarian.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/lazylibrarian.png
         uri: https://lazylibrarian.g4v.dev
       - name: Bazarr
         description: Subtitles
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/bazarr.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/bazarr.png
         uri: https://bazarr.g4v.dev
       - name: Organizr
         description: Media Dashboard
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/bazarr.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/bazarr.png
         uri: https://organizr.g4v.dev
     - category: Links
       services:
       - name: Homarr
         description: Personal Dashboard
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/homarr.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/homarr.png
         uri: https://homarr.g4v.dev
       - name: Starbase-80
         description: Personal Dashboard
@@ -290,37 +290,37 @@ app-template:
       - name: Glance
         description: Personal Dashboard
         uri: https://glance.g4v.dev
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/glance.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/glance.png
       - name: YourLS
         description: Link Shortener
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/yourls.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/yourls.png
         uri: https://yourls.g4v.dev
     - category: Downloaders
       services:
       - description: Download Torrents
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/qbittorrent.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/qbittorrent.png
         name: QBittorrent
         uri: https://qbittorrent.nas.g4v.dev
       - description: Download Usenet
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/sabnzbd.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/sabnzbd.png
         name: sabnzbd
         uri: https://sabnzbd.nas.g4v.dev/
       - description: Download Youtube
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/youtubedl.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/youtubedl.png
         name: youtubedl
         uri: https://youtubedl.g4v.dev/
       - description: Download Kobo Content
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/kobodl.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/kobodl.png
         name: kobodl
         uri: https://kobodl.g4v.dev/
       - name: pinchflat
         description: Download Youtube
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/pinchflat.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/pinchflat.png
         uri: https://pinchflat.g4v.dev/
     - category: Kubernetes
       services:
       - description: ''
-        icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/argocd.png
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/argo-cd.png
         name: ArgoCD
         uri: https://argocd.h.g4v.dev
       - name: KubeTail (Home)
