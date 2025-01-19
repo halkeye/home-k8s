@@ -6,6 +6,9 @@ kind: Kustomization
 helmGlobals:
   chartHome: ./charts/
 
+generators:
+  - ./secret-generator.yaml
+
 generatorOptions:
   disableNameSuffixHash: true
 
