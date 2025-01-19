@@ -105,6 +105,7 @@ spec:
           - name: bytestash
           - name: chevereto
           - name: glance
+          - name: kitchenowl
   template:
     metadata:
       name: '{{.name}}'

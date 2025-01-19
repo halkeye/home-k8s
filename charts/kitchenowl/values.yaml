@@ -109,6 +109,5 @@ persistence:
     type: persistentVolumeClaim
     accessMode: ReadWriteOnce
     size: 1Gi
-    storageClass: nas-apps
   tmp:
     type: emptyDir
