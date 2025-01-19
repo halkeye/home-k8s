@@ -18,18 +18,28 @@ controllers:
         env:
           TZ: America/Vancouver
           TZ_DATA_DIR: /tmp/elixir_tz_data
-          FRONT_URL: kitchenowl.${SECRET_DOMAIN}
+          FRONT_URL: kitchenowl.g4v.dev
           OPEN_REGISTRATION: false
           EMAIL_MANDATORY: false
           COLLECT_METRICS: false
           SKIP_UPGRADE_DEFAULT_ITEMS: false
+          OIDC_ISSUER: https://auth.g4v.dev/application/o/kitchenowl/
           STORAGE_PATH: "/data"
+          SMTP_FROM: noreply@g4v.dev
+          SMTP_REPLY_TO: noreply@g4v.dev
+          SMTP_PORT: 587
+          SMTP_HOST: postfix-mailgun-relay.smtp.svc.cluster.local
           DB_DRIVER: postgresql
           DB_HOST:
             valueFrom:
               secretKeyRef:
                 name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
-                key: HOST
+                key: HOST_NO_PORT
+          DB_PORT:
+            valueFrom:
+              secretKeyRef:
+                name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                key: PORT
           DB_NAME:
             valueFrom:
               secretKeyRef:
@@ -85,13 +95,6 @@ ingress:
       gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/kitchenowl.png
       gethomepage.dev/name: Kitchen Owl
       gethomepage.dev/description: Shopping list
-      traefik.ingress.kubernetes.io/router.entrypoints: 'websecure'
-      traefik.ingress.kubernetes.io/router.middlewares: 'traefik-ingress-authentik@kubernetescrd'
-      nginx.ingress.kubernetes.io/auth-url: http://ak-outpost-nginx.authentik.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
-      nginx.ingress.kubernetes.io/auth-signin: https://auth.g4v.dev/outpost.goauthentik.io/start?rd=$scheme://$http_host$escaped_request_uri
-      nginx.ingress.kubernetes.io/auth-response-headers: Set-Cookie,X-authentik-username,X-authentik-groups,X-authentik-email,X-authentik-name,X-authentik-uid
-      nginx.ingress.kubernetes.io/auth-snippet: |
-        proxy_set_header X-Forwarded-Host $http_host;
     hosts:
       - host: kitchenowl.g4v.dev
         paths:
