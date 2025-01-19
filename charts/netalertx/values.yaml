@@ -45,7 +45,7 @@ app-template:
         netalertx:
           image:
             repository: jokobsk/netalertx
-            tag: 25.1.8
+            tag: 25.1.19
           env:
             TZ: America/Vancouver
             PORT: 20211
