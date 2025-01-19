@@ -62,7 +62,8 @@ controllers:
           liveness: &probes
             enabled: true
           readiness: *probes
-          startup: *probes
+          startup:
+            enabled: false
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
