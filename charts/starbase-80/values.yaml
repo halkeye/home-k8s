@@ -335,3 +335,9 @@ app-template:
       - name: Not the plants (Backup Self Host)
         description: Games Jam 2024 Game
         uri: https://not-the-plants.g4v.dev
+    - category: Household
+      services:
+      - name: Kitchen Owl
+        description: Shopping lists, meal plans, etc
+        uri: https://kitchenowl.g4v.dev
+        icon: kitchenowl

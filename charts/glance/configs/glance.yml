@@ -231,3 +231,7 @@ pages:
                   url: https://halkeye.itch.io/not-the-plants
                 - title: Not the plants (Backup Self Host)
                   url: https://not-the-plants.g4v.dev
+              - title: Household
+                links:
+                - title: Kitchen Owl
+                  url: https://kitchenowl.g4v.dev
