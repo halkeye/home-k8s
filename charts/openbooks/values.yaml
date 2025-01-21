@@ -29,6 +29,7 @@ controllers:
           - --name=$(OPENBOOKS_IRC_NICK)
           - --useragent=$(OPENBOOKS_IRC_NICK)
           - --dir=/openbooks
+          - --debug
           - --persist
           - --log
           - --port=5228
@@ -90,7 +91,10 @@ persistence:
     globalMounts:
       - path: /openbooks/books
         subPath: downloads/openbooks
-  logs:
-    type: emptyDir
+  openbooks:
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    size: 1Gi
     globalMounts:
       - path: /openbooks/logs
+        subPath: logs
