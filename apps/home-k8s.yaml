@@ -102,6 +102,7 @@ spec:
   generators:
     - list:
         elements:
+          - name: openbooks
           - name: pinchflat
           - name: plexripper
   template:
