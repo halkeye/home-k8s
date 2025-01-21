@@ -10,6 +10,16 @@ defaultPodOptions:
 controllers:
   main:
     strategy: Recreate
+    pod:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/arch
+                    operator: NotIn
+                    values:
+                      - arm64
     containers:
       openbooks:
         image:
