@@ -31,6 +31,7 @@ controllers:
           - --dir=/openbooks
           - --persist
           - --log
+          - --port=5228
         env:
           TZ: America/Vancouver
         envFrom:
