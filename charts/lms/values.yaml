@@ -103,6 +103,10 @@ app-template:
       type: nfs
       server: 172.16.10.10
       path: /volume1/Audio/Music
+    comedians:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Audio/Comedians
     playlists:
       type: nfs
       server: 172.16.10.10
