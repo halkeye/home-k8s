@@ -1,0 +1,149 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.5.1/charts/library/common/values.schema.json
+defaultPodOptions:
+  securityContext:
+    fsGroup: 33
+    fsGroupChangePolicy: OnRootMismatch
+
+controllers:
+  main:
+    containers:
+      main:
+        image:
+          repository: quay.io/zknt/pixelfed
+          tag: 2025-01-18
+        env:
+          TZ: America/Vancouver
+          APP_NAME: "G4V Pixelfed"
+          APP_ENV: production
+          APP_URL: https://pixelfed.g4v.dev
+          APP_DOMAIN: "pixelfed.g4v.dev"
+          ADMIN_DOMAIN: "pixelfed.g4v.dev"
+          SESSION_DOMAIN: "pixelfed.g4v.dev"
+          TRUST_PROXIES: "*"
+        envFrom:
+          - secretRef:
+              name: "pixelfed-secret"
+        probes:
+          liveness: &probes
+            enabled: false
+          readiness: *probes
+          startup:
+            enabled: false
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+        resources:
+          limits:
+            memory: 500Mi
+          requests:
+            memory: 100Mi
+            cpu: 10m
+  worker:
+    pod:
+      securityContext:
+        runAsUser: 33
+        runAsGroup: 33
+        runAsNonRoot: true
+    containers:
+      main:
+        image:
+          repository: quay.io/zknt/pixelfed
+          tag: 2025-01-18
+        args:
+          # - /worker-entrypoint.sh
+          - php artisan horizon
+        env:
+          TZ: America/Vancouver
+        envFrom:
+          - secretRef:
+              name: "pixelfed-secret"
+        probes:
+          liveness: &probes
+            enabled: true
+            custom: true
+            spec:
+              exec:
+                command: 
+                  - php
+                  - artisan
+                  - horizon
+              initialDelaySeconds: 0
+              periodSeconds: 60
+              timeoutSeconds: 1
+              failureThreshold: 3
+          readiness: *probes
+          startup:
+            enabled: false
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+        resources:
+          limits:
+            memory: 500Mi
+          requests:
+            memory: 100Mi
+            cpu: 10m
+  migrations:
+    pod:
+      securityContext:
+        runAsUser: 33
+        runAsGroup: 33
+        runAsNonRoot: true
+    type: job
+    nameOverride: '{{ printf "pixelfed-migrations-%s" (.Values.controllers.migrations.containers.migrations.image.tag | replace "." "-") }}'
+    revisionHistoryLimit: 1
+    job:
+      backoffLimit: 0
+      # 2 days
+      ttlSecondsAfterFinished: 172800
+    containers:
+      migrations:
+        image:
+          repository: quay.io/zknt/pixelfed
+          tag: 2025-01-18
+        envFrom:
+          - secretRef:
+              name: "pixelfed-secret"
+        command:
+          - php 
+          - artisan 
+          - migrate
+
+serviceAccount:
+  create: true
+  name: pixelfed
+
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 80
+
+ingress:
+  main:
+    enabled: true
+    annotations:
+      gethomepage.dev/enabled: "true"
+      gethomepage.dev/group: Social Media
+      gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/pixelfed.png
+      gethomepage.dev/name: Pixel Fed
+    hosts:
+      - host: pixelfed.g4v.dev
+        paths:
+          - path: /
+            service:
+              identifier: main
+              port: http
+
+persistence:
+  storage:
+    type: persistentVolumeClaim
+    accessMode: ReadWriteMainy
+    size: 10Gi
+    globalMounts:
+      - path: /var/www/storage
