@@ -51,9 +51,10 @@ controllers:
         image:
           repository: quay.io/zknt/pixelfed
           tag: 2025-01-18
-        args:
-          # - /worker-entrypoint.sh
-          - php artisan horizon
+        command:
+          - php
+          - artisan
+          - horizon
         env:
           TZ: America/Vancouver
         envFrom:
@@ -66,9 +67,9 @@ controllers:
             spec:
               exec:
                 command: 
-                  - php
-                  - artisan
-                  - horizon
+                  - bash
+                  - -c
+                  - 'php artisan horizon:status | grep running'
               initialDelaySeconds: 0
               periodSeconds: 60
               timeoutSeconds: 1
@@ -112,6 +113,7 @@ controllers:
           - php 
           - artisan 
           - migrate
+          - --force
 
 serviceAccount:
   create: true
