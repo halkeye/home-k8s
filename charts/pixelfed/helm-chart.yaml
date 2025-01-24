@@ -1,0 +1,20 @@
+---
+apiVersion: builtin
+kind: HelmChartInflationGenerator
+metadata:
+  name: pixelfed
+name: app-template
+repo: https://bjw-s.github.io/helm-charts
+version: 3.6.1
+releaseName: pixelfed
+valuesFile: ./values.yaml
+---
+apiVersion: builtin
+kind: HelmChartInflationGenerator
+metadata:
+  name: redis
+name: redis
+repo: https://charts.bitnami.com/bitnami
+version: 20.6.3
+releaseName: redis
+valuesFile: ./redis-values.yaml

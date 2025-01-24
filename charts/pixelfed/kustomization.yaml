@@ -5,23 +5,13 @@ kind: Kustomization
 
 helmGlobals:
   chartHome: ./charts/
+
 generatorOptions:
   disableNameSuffixHash: true
 
 generators:
   - ../secret-generator.yaml
+  - ./helm-chart.yaml
 
 resources:
   - ./database.yaml
-
-helmCharts:
-  - name: app-template
-    version: 3.6.1
-    repo: https://bjw-s.github.io/helm-charts
-    valuesFile: ./values.yaml
-    releaseName: pixelfed
-  - name: redis
-    repo: https://charts.bitnami.com/bitnami
-    version: 20.6.3
-    valuesFile: ./redis-values.yaml
-    releaseName: redis
