@@ -122,6 +122,8 @@ spec:
         path: 'charts/{{dig "chart" .name .}}'
         repoURL: https://github.com/halkeye/home-k8s
         targetRevision: HEAD
+        kustomize:
+          namespace: '{{- if index . "namespace" -}}{{ .namespace | normalize }}{{- else }}{{ .name | normalize }}{{ end }}'
       syncPolicy:
         automated:
           selfHeal: true
