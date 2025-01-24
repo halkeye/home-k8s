@@ -106,6 +106,7 @@ spec:
           - name: chevereto
           - name: glance
           - name: kitchenowl
+          - name: pixelfed
   template:
     metadata:
       name: '{{.name}}'
