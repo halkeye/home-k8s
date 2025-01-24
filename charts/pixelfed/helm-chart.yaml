@@ -14,7 +14,7 @@ kind: HelmChartInflationGenerator
 metadata:
   name: redis
 name: redis
-repo: oci://registry-1.docker.io/bitnamicharts/redis
+repo: oci://registry-1.docker.io/bitnamicharts
 version: 20.6.3
 releaseName: redis
 valuesFile: ./redis-values.yaml
