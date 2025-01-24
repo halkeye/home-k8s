@@ -1,0 +1,22 @@
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: pixelfed
+spec:
+  database: pixelfed
+  dropOnDelete: true
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: pixelfed
+spec:
+  role: pixelfed
+  database: pixelfed
+  secretName: pixelfed-db-secret
+  privileges: OWNER
+  secretTemplate:
+    HOST_NO_PORT: "{{ .HostNoPort }}"
+    PORT: "{{ .Port }}"
+    

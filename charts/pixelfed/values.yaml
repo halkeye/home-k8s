@@ -34,6 +34,32 @@ controllers:
           ADMIN_DOMAIN: "pixelfed.g4v.dev"
           SESSION_DOMAIN: "pixelfed.g4v.dev"
           TRUST_PROXIES: "*"
+          DB_CONNECTION: pgsql
+          DB_HOST:
+            valueFrom:
+              secretKeyRef:
+                name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                key: HOST_NO_PORT
+          DB_PORT:
+            valueFrom:
+              secretKeyRef:
+                name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                key: PORT
+          DB_DATABASE:
+            valueFrom:
+              secretKeyRef:
+                name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                key: DATABASE_NAME
+          DB_USERNAME:
+            valueFrom:
+              secretKeyRef:
+                name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                key: ROLE
+          DB_PASSWORD:
+            valueFrom:
+              secretKeyRef:
+                name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                key: PASSWORD
         envFrom:
           - secretRef:
               name: "pixelfed-secret"
