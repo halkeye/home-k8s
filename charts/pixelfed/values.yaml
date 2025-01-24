@@ -143,7 +143,9 @@ ingress:
 persistence:
   storage:
     type: persistentVolumeClaim
-    accessMode: ReadWriteMany
+    accessMode: ReadWriteOnce
     size: 10Gi
-    globalMounts:
-      - path: /var/www/storage
+    advancedMounts:
+      main:
+        main:
+          - path: /var/www/storage
