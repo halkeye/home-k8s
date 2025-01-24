@@ -17,3 +17,8 @@ helmCharts:
     repo: https://bjw-s.github.io/helm-charts
     valuesFile: ./values.yaml
     releaseName: pixelfed
+  - name: redis
+    repo: https://charts.bitnami.com/bitnami
+    version: 20.6.3
+    valuesFile: ./redis-values.yaml
+    releaseName: redis
