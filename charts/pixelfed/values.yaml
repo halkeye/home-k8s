@@ -31,9 +31,7 @@ controllers:
             enabled: false
         securityContext:
           allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
-          capabilities:
-            drop: ["ALL"]
+          readOnlyRootFilesystem: false
         resources:
           limits:
             memory: 500Mi
