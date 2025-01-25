@@ -3,7 +3,7 @@ global:
 kubetail:
   fullnameOverride: kubetail
   kubetail:
-    agent:
+    clusterAgent:
       daemonSet:
         annotations:
           fake: bar
