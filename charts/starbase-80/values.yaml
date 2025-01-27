@@ -101,6 +101,7 @@ app-template:
         uri: https://events.g4v.dev
       - name: Lib Medium
         description: A tool to proxy medium to avoid ads and tracking
+        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/medium-dark.png
         uri: https://libmedium.g4v.dev
       - name: Foundry VTT
         description: Virtual Tabletop RPG UI
