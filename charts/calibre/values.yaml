@@ -69,6 +69,8 @@ persistence:
     type: persistentVolumeClaim
     accessMode: ReadWriteOnce
     size: 10Gi
+  tmp:
+    type: emptyDir
   books:
     type: nfs
     server: 172.16.10.10
