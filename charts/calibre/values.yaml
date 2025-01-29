@@ -17,18 +17,6 @@ controllers:
           readiness: *probes
           startup:
             enabled: false
-        securityContext:
-          allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: false
-          capabilities:
-            drop:
-              - ALL
-            add:
-              - seccomp:unconfined
-              - CAP_CHOWN
-              - CAP_DAC_OVERRIDE
-              - CAP_FSETID
-              - CAP_FOWNER
         resources:
           limits:
             memory: 2Gi
