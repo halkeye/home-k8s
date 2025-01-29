@@ -34,6 +34,10 @@ service:
     ports:
       http:
         port: 8080
+  content-server:
+    controller: main
+    type: LoadBalancer
+    ports:
       content-server:
         port: 8081
 
