@@ -116,7 +116,7 @@ app-template:
         main:
           image:
             repository: ghcr.io/immich-app/immich-machine-learning
-            tag: v1.125.3
+            tag: v1.125.6
             pullPolicy: IfNotPresent
           env:
             TRANSFORMERS_CACHE: /cache
