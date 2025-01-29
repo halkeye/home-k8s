@@ -34,7 +34,7 @@ service:
     ports:
       http:
         port: 8080
-      web:
+      content-server:
         port: 8081
 
 ingress:
@@ -52,6 +52,17 @@ ingress:
             service:
               identifier: main
               port: http
+  content-server:
+    enabled: true
+    annotations:
+      gethomepage.dev/enabled: "false"
+    hosts:
+      - host: calibre-content-server.g4v.dev
+        paths:
+          - path: /
+            service:
+              identifier: main
+              port: content-server
 
 persistence:
   config:
