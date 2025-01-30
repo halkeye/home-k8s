@@ -38,7 +38,7 @@ service:
     controller: main
     type: LoadBalancer
     ports:
-      content-server:
+      http:
         port: 8081
 
 ingress:
@@ -65,8 +65,8 @@ ingress:
         paths:
           - path: /
             service:
-              identifier: main
-              port: content-server
+              identifier: content-server
+              port: http
 
 persistence:
   config:
