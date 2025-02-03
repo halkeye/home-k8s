@@ -9,7 +9,7 @@ app-template:
         main:
           image:
             repository: gotson/komga
-            tag: 1.19.0
+            tag: 1.19.1
           envFrom:
             - secretRef:
                 name: "{{ .Release.Name }}-secret"
