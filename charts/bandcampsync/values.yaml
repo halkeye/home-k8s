@@ -6,7 +6,7 @@ app-template:
         app:
           image:
             repository: ghcr.io/meeb/bandcampsync
-            tag: latest@sha256:b3f570e80b94db6d61e81c67654d4c8900cf35426f6822e3bba60a0ed7670df9
+            tag: latest@sha256:e12a6ca03ab0459f5c4fafccdb63e9228d5c12e3410d671cfd2cae0c9ee25d74
           env:
             TZ: America/Vancouver
           command:
