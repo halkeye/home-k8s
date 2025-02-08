@@ -102,10 +102,11 @@ spec:
   generators:
     - list:
         elements:
+          - name: calibre
           - name: openbooks
           - name: pinchflat
           - name: plexripper
-          - name: calibre
+          - name: postiz
   template:
     metadata:
       name: '{{.name}}'
