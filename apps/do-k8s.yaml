@@ -103,7 +103,6 @@ spec:
     - list:
         elements:
           - name: bytestash
-          - name: chevereto
           - name: glance
           - name: kitchenowl
           - name: pixelfed
