@@ -1,0 +1,87 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.5.1/charts/library/common/values.schema.json
+defaultPodOptions:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                  - amd64
+controllers:
+  main:
+    annotations:
+      reloader.stakater.com/auto: "true"
+    strategy: Recreate
+    containers:
+      postiz:
+        image:
+          repository: ghcr.io/gitroomhq/postiz-app 
+          tag: v1.33.2-arm64
+        env:
+          TZ: America/Vancouver
+          EMAIL_PROVIDER: "nodemailer"
+          EMAIL_HOST: "postfix-mailgun-relay.smtp.svc.cluster.local"
+          EMAIL_PORT: "587"
+          EMAIL_SECURE: "false" 
+          EMAIL_FROM_NAME: "Postiz Emailer"
+          EMAIL_FROM_ADDRESS: "noreply@g4v.dev"
+          MAIN_URL: "https://postiz.g4v.dev"
+          FRONTEND_URL: "https://postiz.g4v.dev"
+          NEXT_PUBLIC_BACKEND_URL: "https://postiz.g4v.dev/api"
+          REDIS_URL: "redis://redis:6379"
+          BACKEND_INTERNAL_URL: "http://localhost:3000"
+          IS_GENERAL: "true" # Required for self-hosting.
+          STORAGE_PROVIDER: "local"
+          UPLOAD_DIRECTORY: "/uploads"
+          NEXT_PUBLIC_UPLOAD_DIRECTORY: "/uploads"
+          DATABASE_URL:
+            valueFrom:
+              secretKeyRef:
+                name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                key: POSTGRES_URL
+        envFrom:
+          - secretRef:
+              name: "postiz-secret"
+        probes:
+          liveness: &probes
+            enabled: true
+          readiness: *probes
+          startup:
+            enabled: false
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 5000
+
+ingress:
+  main:
+    enabled: true
+    annotations:
+      gethomepage.dev/enabled: "true"
+      gethomepage.dev/group: Social Media
+      gethomepage.dev/description: Your ultimate AI social media scheduling tool
+      gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/postiz.png
+      gethomepage.dev/name: postiz
+    hosts:
+      - host: postiz.g4v.dev
+        paths:
+          - path: /
+            service:
+              identifier: main
+              port: http
+
+persistence:
+  config:
+    enabled: true
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    size: 10Gi
+  uploads:
+    enabled: true
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    size: 10Gi
