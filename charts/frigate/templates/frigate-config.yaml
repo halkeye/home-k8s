@@ -45,10 +45,6 @@ data:
       retain:
         days: 5
         mode: all
-      events:
-        retain:
-          default: 2
-          mode: active_objects
 
     go2rtc:
       log:
