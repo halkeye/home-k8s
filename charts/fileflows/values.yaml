@@ -32,9 +32,9 @@ controllers:
             memory: 512M
         securityContext:
           allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
+          readOnlyRootFilesystem: false
           capabilities:
-            drop: ["ALL"]
+            drop: []
 service:
   main:
     controller: main
