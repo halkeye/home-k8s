@@ -76,3 +76,7 @@ persistence:
     type: emptyDir
     globalMounts:
       - path: /app/ManuallyAdded
+  dockermods:
+    type: emptyDir
+    globalMounts:
+      - path: /app/DockerMods
