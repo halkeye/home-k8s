@@ -24,6 +24,7 @@ ingress-nginx:
 
     config:
       use-forwarded-headers: "true"
+      use-proxy-protocol: "true" # do loadbalancer
       allow-snippet-annotations: "true"
       enable-real-ip: "true"
       compute-full-forwarded-for: "true"
