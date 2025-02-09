@@ -102,6 +102,7 @@ spec:
     - list:
         elements:
           - name: calibre
+          - name: fileflows
           - name: openbooks
           - name: pinchflat
           - name: plexripper

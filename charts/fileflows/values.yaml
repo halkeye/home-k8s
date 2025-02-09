@@ -72,3 +72,7 @@ persistence:
     type: emptyDir
     globalMounts:
       - path: /temp
+  manuallyadded:
+    type: emptyDir
+    globalMounts:
+      - path: /app/ManuallyAdded
