@@ -213,10 +213,6 @@ app-template:
         icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/frigate.png
         name: Frigate
         uri: https://frigate.g4v.dev
-      - description: Network Monitoring
-        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/netalertx.png
-        name: NetAlertX
-        uri: https://netalertx.g4v.dev
     - category: Other
       services:
       - description: Status Pages
