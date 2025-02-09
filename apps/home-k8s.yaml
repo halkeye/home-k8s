@@ -106,7 +106,6 @@ spec:
           - name: openbooks
           - name: pinchflat
           - name: plexripper
-          - name: postiz
   template:
     metadata:
       name: '{{.name}}'
