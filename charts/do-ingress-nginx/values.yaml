@@ -24,7 +24,9 @@ ingress-nginx:
 
     config:
       use-forwarded-headers: "true"
-      use-proxy-protocol: "true"
+      allow-snippet-annotations: "true"
+      enable-real-ip: "true"
+      compute-full-forwarded-for: "true"
       annotations-risk-level: Critical
       # https://github.com/kubernetes/ingress-nginx/issues/11176
       strict-validate-path-type: "false"
