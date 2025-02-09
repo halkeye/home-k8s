@@ -1,9 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.5.1/charts/library/common/values.schema.json
 defaultPodOptions:
   securityContext:
-    runAsUser: 1026
-    runAsGroup: 100
-    runAsNonRoot: true
     fsGroup: 100
     fsGroupChangePolicy: "OnRootMismatch"
 controllers:
@@ -18,6 +15,8 @@ controllers:
           tag: 25.01
         env:
           TZ: America/Vancouver
+          PUID: 1026
+          PGID: 100
         probes:
           liveness: &probes
             enabled: true
