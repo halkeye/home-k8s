@@ -37,6 +37,8 @@ service:
   content-server:
     controller: main
     type: LoadBalancer
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: calibre-content-server.g4v.dev
     ports:
       http:
         port: 8081
@@ -56,18 +58,6 @@ ingress:
             service:
               identifier: main
               port: http
-  content-server:
-    enabled: true
-    annotations:
-      gethomepage.dev/enabled: "false"
-    hosts:
-      - host: calibre-content-server.g4v.dev
-        paths:
-          - path: /
-            service:
-              identifier: content-server
-              port: http
-
 persistence:
   config:
     type: persistentVolumeClaim
