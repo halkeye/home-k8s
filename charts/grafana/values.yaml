@@ -207,7 +207,7 @@ grafana:
       kubernetes-coredns:
         # renovate: depName="Kubernetes / System / CoreDNS"
         gnetId: 15762
-        revision: 19
+        revision: 20
         datasource:
           - name: DS_PROMETHEUS
             value: Prometheus
