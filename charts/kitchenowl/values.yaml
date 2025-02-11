@@ -14,7 +14,7 @@ controllers:
       kitchenowl:
         image:
           repository: tombursch/kitchenowl
-          tag: v0.6.9
+          tag: v0.6.10
         env:
           TZ: America/Vancouver
           TZ_DATA_DIR: /tmp/elixir_tz_data
