@@ -104,6 +104,7 @@ spec:
         elements:
           - name: bytestash
           - name: glance
+          - name: hoarder
           - name: kitchenowl
           - name: pixelfed
   template:
