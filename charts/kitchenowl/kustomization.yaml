@@ -7,7 +7,7 @@ helmGlobals:
   chartHome: ./charts/
 
 generators:
-  - ./secret-generator.yaml
+  - ../secret-generator.yaml
 
 generatorOptions:
   disableNameSuffixHash: true
