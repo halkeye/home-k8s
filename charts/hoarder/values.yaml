@@ -37,6 +37,26 @@ controllers:
                 key: encryption_key
           NEXTAUTH_URL: https://hoarder.g4v.dev
           DISABLE_NEW_RELEASE_CHECK: true
+          OAUTH_WELLKNOWN_URL:
+            valueFrom:
+              secretKeyRef:
+                name: hoarder-secret
+                key: OAUTH_WELLKNOWN_URL
+          OAUTH_CLIENT_SECRET:
+            valueFrom:
+              secretKeyRef:
+                name: hoarder-secret
+                key: OAUTH_CLIENT_SECRET
+          OAUTH_CLIENT_ID:
+            valueFrom:
+              secretKeyRef:
+                name: hoarder-secret
+                key: OAUTH_CLIENT_ID
+          OAUTH_PROVIDER_NAME:
+            valueFrom:
+              secretKeyRef:
+                name: hoarder-secret
+                key: OAUTH_PROVIDER_NAME
         probes:
           liveness:
             enabled: true
@@ -128,7 +148,7 @@ service:
 ingress:
   app:
     hosts:
-      - host: hoarder.g4v.dev.dev
+      - host: hoarder.g4v.dev
         paths:
           - path: /
             service:
