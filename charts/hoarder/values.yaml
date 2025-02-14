@@ -18,6 +18,7 @@ controllers:
           repository: ghcr.io/hoarder-app/hoarder
           tag: 0.22.0
         env:
+          COREPACK_INTEGRITY_KEYS: 0 # until https://github.com/hoarder-app/hoarder/commit/c032f5065e5f1c62c0f57cd00462be4689178a23 is merged
           BROWSER_WEB_URL: http://hoarder-chrome:9222
           CRAWLER_DOWNLOAD_BANNER_IMAGE: true
           CRAWLER_ENABLE_ADBLOCKER: true
