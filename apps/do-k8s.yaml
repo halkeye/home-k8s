@@ -106,6 +106,7 @@ spec:
           - name: glance
           - name: hoarder
           - name: kitchenowl
+          - name: ollama
           - name: pixelfed
   template:
     metadata:
