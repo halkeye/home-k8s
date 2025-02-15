@@ -1,0 +1,36 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/library/common/values.schema.json
+---
+controllers:
+  main:
+    type: deployment
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      main:
+        image:
+          repository: docker.io/ollama/ollama
+          tag: 0.5.11-rocm
+        env:
+          TZ: ${TIMEZONE}
+          OLLAMA_HOST: 0.0.0.0
+          OLLAMA_ORIGINS: "*"
+          OLLAMA_MODELS: /models
+        resources:
+          requests:
+            cpu: 200m
+            memory: 4Gi
+          limits:
+            memory: 8Gi
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 11434
+persistence:
+  models:
+    enabled: true
+    type: persistentVolumeClaim
+    size: 50Gi
+    accessMode: ReadWriteOnce
