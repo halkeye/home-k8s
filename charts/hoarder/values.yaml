@@ -16,7 +16,7 @@ controllers:
       app:
         image:
           repository: ghcr.io/hoarder-app/hoarder
-          tag: latest@sha256:6645ea122e9f5a5d5f46472de5fc07e0ef4b75998257d3d44de7f57188cd9b7a
+          tag: latest@sha256:9847caf81f487a378b13c38bd1c8b4a771db41d5093a0fcb25907d4581f5c586
         env:
           COREPACK_INTEGRITY_KEYS: 0 # until https://github.com/hoarder-app/hoarder/commit/c032f5065e5f1c62c0f57cd00462be4689178a23 is merged
           BROWSER_WEB_URL: http://hoarder-chrome:9222
