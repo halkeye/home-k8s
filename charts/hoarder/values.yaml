@@ -119,6 +119,10 @@ controllers:
               topologyKey: kubernetes.io/hostname
     containers:
       app:
+        command:
+          - /bin/sh
+          - -c
+          - /bin/meilisearch --experimental-dumpless-upgrade
         image:
           repository: docker.io/getmeili/meilisearch
           tag: v1.13.0
