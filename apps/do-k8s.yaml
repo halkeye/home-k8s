@@ -103,7 +103,6 @@ spec:
     - list:
         elements:
           - name: bytestash
-          - name: glance
           - name: hoarder
           - name: kitchenowl
           - name: ollama

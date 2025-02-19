@@ -284,10 +284,6 @@ app-template:
       - name: Starbase-80
         description: Personal Dashboard
         uri: https://starbase80.g4v.dev
-      - name: Glance
-        description: Personal Dashboard
-        uri: https://glance.g4v.dev
-        icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/glance.png
       - name: YourLS
         description: Link Shortener
         icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/yourls.png
