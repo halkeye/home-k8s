@@ -9,7 +9,7 @@ app-template:
         main:
           image:
             repository: "prom/mysqld-exporter"
-            tag: "v0.16.0"
+            tag: "v0.17.0"
           args:
             - --mysqld.address
             - db-mysql-sfo2-06502-do-user-8094590-0.b.db.ondigitalocean.com:25060
