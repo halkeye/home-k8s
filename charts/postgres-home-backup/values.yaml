@@ -18,6 +18,7 @@ controllers:
           tag: sha-53e24d3
         env:
           TZ: America/Vancouver
+          DB_DUMP_DEBUG: "true"
           DB_DUMP_BY_SCHEMA: true
           DB_DEFAULT: postgres
         envFrom:
