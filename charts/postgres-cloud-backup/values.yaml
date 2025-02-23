@@ -15,7 +15,7 @@ controllers:
       postgres-cloud-backup:
         image:
           repository: ghcr.io/halkeye/postgres-backup
-          tag: sha-53e24d3
+          tag: sha-4874ef3
         env:
           TZ: America/Vancouver
           DB_DUMP_BY_SCHEMA: true
