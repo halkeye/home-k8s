@@ -1,5 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.5.1/charts/library/common/values.schema.json
+
 defaultPodOptions:
+  enableServiceLinks: false
   securityContext:
     runAsUser: 1026
     runAsGroup: 100
@@ -8,36 +10,36 @@ defaultPodOptions:
     fsGroupChangePolicy: OnRootMismatch
 controllers:
   main:
+    type: cronjob
     annotations:
       reloader.stakater.com/auto: "true"
-    strategy: Recreate
+    cronjob:
+      schedule: "@daily"
+      ttlSecondsAfterFinished: 43200
     containers:
-      postgres-home-backup:
+      main:
         image:
-          repository: ghcr.io/halkeye/postgres-backup
-          tag: sha-4874ef3
-        env:
-          TZ: America/Vancouver
-          DB_DUMP_BY_SCHEMA: true
-          DB_DEFAULT: postgres
+          repository: docker.io/prodrigestivill/postgres-backup-local
+          tag: 17@sha256:483fa15ecd998302bd312fc380cb1b3683a940881d9099d6dfe65bcc1e2714e8
+        command: ["/backup.sh"]
         envFrom:
           - secretRef:
               name: postgres-home-backup-secret
-        resources:
-          requests:
-            cpu: 20m
-            memory: 128M
-          limits:
-            memory: 512M
-        securityContext:
-          allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: false
-          capabilities:
-            drop: []
+        env:
+          - name: BACKUP_KEEP_DAYS
+            value: "7"
+          - name: BACKUP_KEEP_WEEKS
+            value: "4"
+          - name: BACKUP_KEEP_MONTHS
+            value: "6"
+          - name: BACKUP_KEEP_MINS
+            value: "7200"
+          - name: POSTGRES_EXTRA_OPTS
+            value: "-b -C -c -Z6"
 persistence:
   backups:
     type: nfs
     server: 172.16.10.10
     path: "/volume1/Backups/postgresql/homek8s"
     globalMounts:
-      - path: /backup
+      - path: /backups
