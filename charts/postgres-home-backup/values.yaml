@@ -19,6 +19,7 @@ controllers:
         env:
           TZ: America/Vancouver
           DB_DUMP_BY_SCHEMA: true
+          DB_DEFAULT: postgres
         envFrom:
           - secretRef:
               name: postgres-home-backup-secret
