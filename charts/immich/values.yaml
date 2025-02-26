@@ -11,10 +11,10 @@ app-template:
       enabled: true
       stringData:
         REDIS_HOSTNAME: '{{ printf "%s-redis-master" .Release.Name }}'
+        DB_HOSTNAME: "postgres-rw.db"
         DB_DATABASE_NAME: "immich"
         IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
         TYPESENSE_API_KEY: different-string-for-now
-        DB_VECTOR_EXTENSION: pgvector
   service:
     main:
       controller: main
@@ -51,7 +51,6 @@ app-template:
             pullPolicy: IfNotPresent
             tag: v1.126.1
           env:
-            DB_VECTOR_EXTENSION: pgvector
             DB_URL:
               valueFrom:
                 secretKeyRef:
@@ -72,7 +71,6 @@ app-template:
             tag: v1.126.1
           env:
             DB_SKIP_MIGRATIONS: "true"
-            DB_VECTOR_EXTENSION: pgvector
             IMMICH_TRUSTED_PROXIES: "0.0.0.0"
             IMMICH_PORT: 3001
             REDIS_HOSTNAME:
@@ -93,8 +91,7 @@ app-template:
             DB_URL:
               valueFrom:
                 secretKeyRef:
-                  name: "{{ .Release.Name }}-secret"
-                  # name: immich-immich-user
+                  name: immich-immich-user
                   key: DB_URL
           probes:
             liveness: &server_probes
@@ -123,7 +120,6 @@ app-template:
             pullPolicy: IfNotPresent
           env:
             TRANSFORMERS_CACHE: /cache
-            DB_VECTOR_EXTENSION: pgvector
             REDIS_HOSTNAME:
               valueFrom:
                 secretKeyRef:
