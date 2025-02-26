@@ -21,7 +21,7 @@ spec:
 
           - { namespace: monitoring, name: blackbox-exporter }
           - { namespace: monitoring, name: bambulabs-exporter }
-          - { namespace: monitoring, name: nut-exporter }
+          # - { namespace: monitoring, name: nut-exporter }
           - { namespace: monitoring, name: qbittorrent-exporter }
           - { namespace: monitoring, name: sabnzbd-exporter }
           - { namespace: monitoring, name: speedtest-exporter }
