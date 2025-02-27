@@ -180,9 +180,10 @@ persistence:
             subPath: hoarder
   meilisearch:
     enabled: true
-    type: persistentVolumeClaim
-    accessMode: ReadWriteOnce
-    size: 10Gi
+    type: emptyDir
+    # type: persistentVolumeClaim
+    # accessMode: ReadWriteOnce
+    # size: 10Gi
     advancedMounts:
       meilisearch:
         app:
