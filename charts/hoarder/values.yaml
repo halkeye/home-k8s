@@ -122,10 +122,11 @@ controllers:
         command:
           - /bin/sh
           - -c
-          - /bin/meilisearch --experimental-dumpless-upgrade
+          - /bin/meilisearch
+          # --experimental-dumpless-upgrade
         image:
           repository: docker.io/getmeili/meilisearch
-          tag: v1.13.0
+          tag: v1.13.1
         env:
           MEILI_NO_ANALYTICS: true
           MEILI_MASTER_KEY:
