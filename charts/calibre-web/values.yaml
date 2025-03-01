@@ -50,6 +50,20 @@ app-template:
               service:
                 identifier: calibre-web
                 port: http
+    kobosync:
+      enabled: true
+      hosts:
+        - host: books.g4v.dev
+          paths:
+            - path: /kobo/
+              service:
+                identifier: calibre-web
+                port: http
+            - path: /downloads/[0-9]+/kepub
+              pathType: ImplementationSpecific
+              service:
+                identifier: calibre-web
+                port: http
   persistence:
     config:
       enabled: true
