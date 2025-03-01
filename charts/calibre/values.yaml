@@ -42,6 +42,8 @@ service:
     ports:
       http:
         port: 8081
+      sync:
+        port: 9090
 
 ingress:
   main:
