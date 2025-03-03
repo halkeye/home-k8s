@@ -31,22 +31,22 @@ cluster_cidr: 10.52.0.0/16
 cilium_bgp: false
 
 # bgp parameters for cilium cni. only active when cilium_iface is defined and cilium_bgp is true.
-cilium_bgp_my_asn: "64513"
-cilium_bgp_peer_asn: "64512"
-cilium_bgp_peer_address: 172.16.30.1
+cilium_bgp_my_asn: "64500"
+cilium_bgp_peer_asn: "64501"
+cilium_bgp_peer_address: 172.16.0.1
 cilium_bgp_lb_cidr: 172.16.31.0/24 # cidr for cilium loadbalancer ipam
 
 # enable kube-vip ARP broadcasts
-kube_vip_arp: true
+kube_vip_arp: false
 
 # enable kube-vip BGP peering
-kube_vip_bgp: false
+kube_vip_bgp: true
 
 # bgp parameters for kube-vip
 kube_vip_bgp_routerid: "127.0.0.1"  # Defines the router ID for the BGP server
-kube_vip_bgp_as: "64513"  # Defines the AS for the BGP server
-kube_vip_bgp_peeraddress: "172.16.30.1"  # Defines the address for the BGP peer
-kube_vip_bgp_peeras: "64512"  # Defines the AS for the BGP peer
+kube_vip_bgp_as: "64500"  # Defines the AS for the BGP server
+kube_vip_bgp_peeraddress: "172.16.0.1"  # Defines the address for the BGP peer
+kube_vip_bgp_peeras: "64501"  # Defines the AS for the BGP peer
 
 # apiserver_endpoint is virtual ip-address which will be configured on each master
 apiserver_endpoint: 172.16.10.50
@@ -92,7 +92,7 @@ kube_vip_tag_version: v0.8.2 # renovate: datasource=github-releases depName=kube
 
 # kube-vip ip range for load balancer
 # (uncomment to use kube-vip for services instead of MetalLB)
-# kube_vip_lb_ip_range: "172.16.30.80-172.16.30.90"
+kube_vip_lb_ip_range: "172.16.10.200-172.16.10.250"
 
 # metallb type frr or native
 metal_lb_type: native
@@ -101,9 +101,9 @@ metal_lb_type: native
 metal_lb_mode: layer2
 
 # bgp options
-# metal_lb_bgp_my_asn: "64513"
-# metal_lb_bgp_peer_asn: "64512"
-# metal_lb_bgp_peer_address: "172.16.30.1"
+metal_lb_bgp_my_asn: "64500"
+metal_lb_bgp_peer_asn: "64501"
+metal_lb_bgp_peer_address: "172.16.0.1"
 
 # image tag for metal lb
 metal_lb_speaker_tag_version: v0.14.8 # renovate: datasource=github-releases depName=metallb/metallb

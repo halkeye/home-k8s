@@ -2,6 +2,8 @@
 #ENC[AES256_GCM,data:+YCRrBqKN4jfuzlqluCRYhwgGbz+WCwcKxUgUwn1RqAoxVW4KFEeCA==,iv:PlYHm9ei5k6pJlLrDsSP5o5F8Werei7XfJNhYkz9xZM=,tag:7EJCOGWT0soO/6ylrrep2Q==,type:comment]
 k3s_token: ENC[AES256_GCM,data:QzCYKbIH3umFn69+eBOTHt2CO2NB2RLSHCaZBA9mhh8/gP0hns8C6uKtcAJupTLEnILtWRxqXIdOzeH5VJPXjEk9BDzUc8g5EnmahLRnGMQeufPjqFSqTvkR9TXGPNV6dBo=,iv:hE2goc3bL+hCcXrGDAUIQoNS9M53hPatT3V3Pe725jc=,tag:k4OLVPY/SwPqCkflKEVbxg==,type:str]
 disabled_sops_github_token: ENC[AES256_GCM,data:UWRVK+7aM7+cZ4uJ9YcFfch/3N5XAU4ZYPKsmivCmavRlbhdxcHrZyyZiBawoYLzSQRiuzRv0ulKpQWZGZEnk7z5KagnHuRkTiXJwSKKIPDW/UFySbCfNS1Buhm7,iv:gxjLh/6YhihK1WU6isj56IK7DlDiDUnh6GYWJYmfJwQ=,tag:pLZVmmOCyA23zhqUBtIsZw==,type:str]
+ansible_become_pass: ENC[AES256_GCM,data:SLrKovUN0w==,iv:9nZfz+S68MpNrhiZp4rZTls6MT5eNlrQcEHGq8X4rDQ=,tag:LqXGo0oKUM5z6eg2JxW8/Q==,type:str]
+ansible_sudo_pass: ENC[AES256_GCM,data:aE6HuxcCgw==,iv:mXS4nuR6VRZJqsaFVP9a9OX3rLJi4858swl27Orrh0g=,tag:4L4AuKoUrAUSuUBMZ47uLQ==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -89,8 +91,8 @@ sops:
             by9RL2tKeWFQMkhZdXdTQkp1bDFhaTgKx0++cmLd1Rmbf9I8wkc7xoQfatQzXurD
             WEhNDDX/eK02FExnZOmpo4WHwOCiTqh7fW9DNIGjK9szQlFJelPB4w==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-11-11T00:12:56Z"
-    mac: ENC[AES256_GCM,data:ZLTH3y6TPDQhk8YJEv85S3jSFfIrJpyaJv+xkEBv1tfTCDTqkKYqtR3DrQTksi28OHnZ4ODcitIj10GJhewYjP0SdbtCi2d2F9GYJ0k9GJ8I+JQ0Wh8/vfR/y0sf9USTx4KJELID5zygeA1b+5CJGjIHqh8q2gDU0WoJ99ov0js=,iv:Y4qezCI+Buujg9hebkIkIjGw8Qy+2uJgiL5koW3ojqE=,tag:hsTuKRuTPWMbC2JzoTaVbg==,type:str]
+    lastmodified: "2025-03-03T17:48:02Z"
+    mac: ENC[AES256_GCM,data:rAeE1+GGQnU0NvGxx1GgWGhFX/QWBD81yuv7NJOz1sQfk7sFF3fWvA2cobKkKsFXI+kXwubCwEnBrw0OLGITZt7LC286mMunzf0Qm7GRO6/lTdKTwRPlssIzCDBeCbLPnjo+vt7jwkpt28H2FEWuuHGZHbctI+Ej8+Y6J012eDM=,iv:txxsNS6R+ltrqoPjdqU9Ik6RzCAsaiDAHr3ZPVFX3ow=,tag:PFhDtrIkf/Q1RKYhIAXzDg==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
-    version: 3.9.1
+    version: 3.9.4

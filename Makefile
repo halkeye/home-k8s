@@ -42,7 +42,7 @@ lint: setup ## Perform an ansible-lint linting
 
 .PHONY: vars
 vars: setup ## List all variables
-	$(VENV)/ansible $$(hostname) --vault-password-file .vault -c local -m ansible.builtin.setup
+	$(VENV)/ansible -b -m ansible.builtin.setup $${ANSIBLE_HOST:-all}
 
 .PHONY: debug
 debug: ANSIBLE_DEBUG+=-vvv
