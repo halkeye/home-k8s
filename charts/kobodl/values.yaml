@@ -67,20 +67,6 @@ app-template:
               service:
                 identifier: kobodl
                 port: http
-    tailscale:
-      enabled: true
-      annotations:
-        gethomepage.dev/enabled: "false"
-      hosts:
-        - host: "kobodl"
-          paths:
-            - path: /
-              service:
-                identifier: kobodl
-                port: http
-      tls:
-        - hosts:
-            - kobodl.g4v.dev
   persistence:
     config:
       enabled: true
