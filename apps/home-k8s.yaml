@@ -101,7 +101,6 @@ spec:
     - list:
         elements:
           - name: fileflows
-          - name: kubernetes-dashboard
           - name: openbooks
           - name: pinchflat
           - name: plexripper
