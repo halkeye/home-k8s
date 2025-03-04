@@ -45,7 +45,6 @@ spec:
           - name: komf
           - name: komga
           - name: komga2
-          - name: lazylibrarian
           - name: lidarr
           - name: lms
           - name: mylar3
@@ -101,7 +100,6 @@ spec:
   generators:
     - list:
         elements:
-          - name: calibre
           - name: fileflows
           - name: openbooks
           - name: pinchflat
