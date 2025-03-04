@@ -70,7 +70,7 @@ argo-cd:
     ingress:
       enabled: false
       annotations:
-        external-dns.alpha.kubernetes.io/target: 172.16.10.200
+        external-dns.alpha.kubernetes.io/target: 172.16.10.202
         cert-manager.io/cluster-issuer: acme-letsencrypt-prod
       hostname: argocd.h.g4v.dev
     configManagementPlugins: |
