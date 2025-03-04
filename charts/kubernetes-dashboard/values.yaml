@@ -42,7 +42,6 @@ api:
     # args:
     # - --system-banner="Welcome to the Kubernetes Dashboard"
     args:
-      - --enable-skip-login
       - --disable-settings-authorizer
       - --enable-insecure-login
       - --token-ttl=2592000
