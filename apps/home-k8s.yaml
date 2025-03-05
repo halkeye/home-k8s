@@ -57,7 +57,7 @@ spec:
           - name: uptime-kuma
           - name: wg-access-server
           - name: youtubedl-material
-          - name: ytdl-sub
+          # - name: ytdl-sub
   template:
     metadata:
       name: '{{.name}}'
