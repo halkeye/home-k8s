@@ -100,7 +100,6 @@ spec:
   generators:
     - list:
         elements:
-          - name: fileflows
           - name: openbooks
           - name: pinchflat
           - name: plexripper
