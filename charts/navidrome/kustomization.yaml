@@ -5,3 +5,4 @@ kind: Kustomization
 
 generators:
   - ./helm-generator.yaml
+  - ../secret-generator.yaml

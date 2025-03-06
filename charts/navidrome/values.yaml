@@ -22,6 +22,13 @@ controllers:
           TZ: America/Vancouver
           ND_DATAFOLDER: /config
           ND_ENABLEGRAVATAR: "true"
+          ND_COVERJPEGQUALITY: "100"
+          ND_DEFAULTTHEME: Dark
+          ND_IMAGECACHESIZE: "1GB"
+          ND_TRANSCODINGCACHESIZE: 5GB
+          ND_SEARCHFULLSTRING: "true"
+          ND_SUBSONICARTISTPARTICIPATIONS: "true"
+          ND_ENABLETRANSCODINGCONFIG: "true"
           ND_LOGLEVEL: info
           ND_MUSICFOLDER: /music
           ND_PORT: 8080
@@ -30,6 +37,9 @@ controllers:
           ND_REVERSEPROXYWHITELIST: 0.0.0.0/0
           ND_SCANSCHEDULE: "@every 1h"
           ND_SESSIONTIMEOUT: 24h
+        envFrom:
+          - secretRef:
+              name: navidrome-secrets
         probes:
           liveness:
             enabled: true
