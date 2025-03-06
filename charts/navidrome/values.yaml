@@ -47,7 +47,7 @@ service:
     controller: navidrome
     ports:
       http:
-        port: 3000
+        port: 8080
 
 ingress:
   navidrome:
