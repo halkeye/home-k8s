@@ -1,0 +1,87 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/library/common/values.schema.json
+defaultPodOptions:
+  enableServiceLinks: false
+  securityContext:
+    runAsUser: 1026
+    runAsGroup: 100
+    runAsNonRoot: true
+    fsGroup: 100
+    fsGroupChangePolicy: "OnRootMismatch"
+
+controllers:
+  navidrome:
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      navidrome:
+        image:
+          repository: ghcr.io/navidrome/navidrome
+          tag: 0.54.5
+        env:
+          TZ: America/Vancouver
+          ND_DATAFOLDER: /config
+          ND_ENABLEGRAVATAR: "true"
+          ND_LOGLEVEL: info
+          ND_MUSICFOLDER: /music
+          ND_PORT: 8080
+          ND_PROMETHEUS_ENABLED: "true"
+          ND_REVERSEPROXYUSERHEADER: X-authentik-username-
+          ND_REVERSEPROXYWHITELIST: 0.0.0.0/0
+          ND_SCANSCHEDULE: "@every 1h"
+          ND_SESSIONTIMEOUT: 24h
+        probes:
+          liveness:
+            enabled: true
+          readiness:
+            enabled: true
+        resources:
+          requests:
+            cpu: 10m
+            memory: 250Mi
+          limits:
+            memory: 1Gi
+
+service:
+  navidrome:
+    controller: navidrome
+    ports:
+      http:
+        port: 3000
+
+ingress:
+  navidrome:
+    annotations:
+      gethomepage.dev/enabled: "true"
+      gethomepage.dev/group: Media
+      gethomepage.dev/icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/navidrome.png
+      gethomepage.dev/name: Navidrome
+      traefik.ingress.kubernetes.io/router.entrypoints: 'websecure'
+      traefik.ingress.kubernetes.io/router.middlewares: 'traefik-ingress-authentik@kubernetescrd'
+      nginx.ingress.kubernetes.io/auth-url: http://ak-outpost-nginx.authentik.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
+      nginx.ingress.kubernetes.io/auth-signin: https://auth.g4v.dev/outpost.goauthentik.io/start?rd=$scheme://$http_host$escaped_request_uri
+      nginx.ingress.kubernetes.io/auth-response-headers: Set-Cookie,X-authentik-username,X-authentik-groups,X-authentik-email,X-authentik-name,X-authentik-uid
+      nginx.ingress.kubernetes.io/auth-snippet: |
+        proxy_set_header X-Forwarded-Host $http_host;
+    hosts:
+      - host: music.g4v.dev
+        paths:
+          - path: /
+            service:
+              identifier: navidrome
+              port: http
+
+persistence:
+  config:
+    enabled: true
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    size: 10Gi
+    globalMounts:
+      - path: /config
+  music:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Audio/Music
+    globalMounts:
+      - path: /music
