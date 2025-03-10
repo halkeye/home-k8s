@@ -6,7 +6,7 @@ app-template:
         gathio:
           image:
             repository: ghcr.io/halkeye/docker-gathio
-            tag: v1.5.0.16
+            tag: da15a6ec744281c6ae2b970c72d45b93f8a75109.17
           probes:
             liveness: &probes
               enabled: false
