@@ -7,7 +7,7 @@ app-template:
         whoami:
           image:
             repository: traefik/whoami
-            tag: v1.10.4
+            tag: v1.11.0
           env:
             WHOAMI_PORT_NUMBER: 8080
           probes:
