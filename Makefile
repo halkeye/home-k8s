@@ -52,6 +52,10 @@ debug: run ## Run in debug mode
 site: PLAYBOOK+=site
 site: run ## Just update site
 
+.PHONY: packages
+packages: PLAYBOOK+=packages
+packages: run ## Just update packages
+
 .PHONY: reboot
 reboot: PLAYBOOK+=reboot
 reboot: run ## Just reboot
