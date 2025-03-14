@@ -100,7 +100,7 @@ spec:
   generators:
     - list:
         elements:
-          - name: longhorn
+          - { name: longhorn, namespace: longhorn-system }
           - name: navidrome
           - name: openbooks
           - name: pinchflat

@@ -6,6 +6,3 @@ kind: Kustomization
 generators:
   - ./helm-generator.yaml
   - ../secret-generator.yaml
-
-resources:
-  - ./resources/snapshot.yaml
