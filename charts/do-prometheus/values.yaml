@@ -222,16 +222,6 @@ kube-prometheus-stack:
             sourceLabels: ["__meta_kubernetes_pod_node_name"]
             targetLabel: kubernetes_node
   additionalPrometheusRulesMap:
-    dockerhub-rules:
-      groups:
-        - name: dockerhub
-          rules:
-            - alert: DockerhubRateLimitRisk
-              annotations:
-                summary: Kubernetes cluster Dockerhub rate limit risk
-              expr: count(time() - container_last_seen{image=~"(docker.io).*",container!=""} < 30) > 100
-              labels:
-                severity: critical
     oom-rules:
       groups:
         - name: oom
