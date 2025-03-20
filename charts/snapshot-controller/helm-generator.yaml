@@ -1,0 +1,10 @@
+apiVersion: builtin
+kind: HelmChartInflationGenerator
+metadata:
+  name: snapshot-controller
+releaseName: snapshot-controller
+
+name: snapshot-controller
+version: 4.0.1
+repo: https://piraeus.io/helm-charts/
+valuesFile: ./values.yaml
