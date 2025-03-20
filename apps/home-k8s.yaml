@@ -101,11 +101,13 @@ spec:
     - list:
         elements:
           - { name: longhorn, namespace: longhorn-system }
+
           - name: navidrome
           - name: openbooks
           - name: pinchflat
           - name: plexripper
           - name: postgres-home-backup
+          - name: snapshot-controller
   template:
     metadata:
       name: '{{.name}}'
