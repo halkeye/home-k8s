@@ -102,6 +102,7 @@ spec:
         elements:
           - { name: longhorn, namespace: longhorn-system }
 
+          - name: minio
           - name: navidrome
           - name: openbooks
           - name: pinchflat
