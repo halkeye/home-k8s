@@ -95,3 +95,5 @@ persistence:
     storageClass: nas-apps
     accessMode: ReadWriteOnce
     size: 50Gi
+  tmp:
+    type: emptyDir
