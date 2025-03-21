@@ -28,6 +28,7 @@ controllers:
           MINIO_STORAGE_CLASS_RRS: EC:0
           MINIO_STORAGE_CLASS_STANDARD: EC:0
           MINIO_UPDATE: "off"
+          MINIO_HTTP_TRACE: "/tmp/minio.log"
         envFrom:
           - secretRef:
               name: minio-secret
