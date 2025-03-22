@@ -9,3 +9,4 @@ generators:
 
 resources:
   - ./resources/postgres17.yaml
+  - ./resources/scheduled-backup.yaml
