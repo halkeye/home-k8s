@@ -1,0 +1,10 @@
+apiVersion: builtin
+kind: HelmChartInflationGenerator
+metadata:
+  name: cloudnative-pg
+releaseName: cloudnative-pg
+
+name: cloudnative-pg
+version: 0.23.2
+repo: https://cloudnative-pg.github.io/charts/
+valuesFile: ./values.yaml
