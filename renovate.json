@@ -83,6 +83,12 @@
       "matchPackageNames": [
         "lmscommunity/logitechmediaserver"
       ]
+    },
+    {
+      "matchPackageNames": [
+        "/external-dns/"
+      ],
+      "enabled": false
     }
   ]
 }
