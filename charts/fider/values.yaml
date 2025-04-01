@@ -8,7 +8,7 @@ app-template:
         fider:
           image:
             repository: getfider/fider
-            tag: v0.24.0
+            tag: v0.25.0
           env:
             TZ: America/Vancouver
             BASE_URL: https://ideas.g4v.dev
