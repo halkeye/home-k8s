@@ -7,10 +7,6 @@ app-template:
           image:
             repository: jacobalberty/unifi
             tag: v9.0.114@sha256:d5c9f87e643854bec4d0c15f6cbeec75510a449a7ec46f1e223eded858add480
-          command:
-            - /bin/bash
-            - -c
-            - 'sleep 99d'
           env:
             TZ: America/Vancouver
             RUNAS_UID0: 'false'
@@ -102,7 +98,7 @@ app-template:
     data:
       enabled: true
       accessMode: ReadWriteOnce
-      size: 5Gi
+      size: 20Gi
       globalMounts:
         - path: /unifi
     kscbrclone:
