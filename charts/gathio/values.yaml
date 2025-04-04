@@ -7,6 +7,10 @@ app-template:
           image:
             repository: ghcr.io/lowercasename/gathio
             tag: "1.5.0"
+          command:
+            - npm
+            - run
+            - start
           probes:
             liveness: &probes
               enabled: false
@@ -23,7 +27,6 @@ app-template:
               cpu: 10m
             limits:
               memory: 256Mi
-              cpu: 10m
       pod:
         securityContext:
           runAsUser: 568
