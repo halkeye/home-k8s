@@ -1,0 +1,68 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  netbootxyz:
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      app:
+        image:
+          repository: ghcr.io/netbootxyz/netbootxyz
+          tag: "0.7.5-nbxyz1"
+        env:
+          TFTPD_OPTS: "--tftp-single-port" 
+          PGID: 1000
+          PUID: 1000
+          WEB_APP_PORT: 3000
+          NGINX_PORT: 80
+        probes:
+          liveness:
+            enabled: true
+          readiness:
+            enabled: true
+        resources:
+          requests:
+            cpu: 10m
+          limits:
+            memory: 1Gi
+
+service:
+  main:
+    type: LoadBalancer
+    loadBalancerIP: 172.16.10.204
+    controller: netbootxyz
+    ports:
+      web:
+        enabled: true
+        port: 80
+        targetPort: 80
+        protocol: HTTP
+      tftp:
+        enabled: true
+        port: 69
+        targetPort: 69
+        protocol: UDP
+  admin:
+    controller: netbootxyz
+    ports:
+      http:
+        port: 3000
+
+
+ingress:
+  app:
+    hosts:
+      - host: netbootxyz.g4v.dev
+        paths:
+          - path: /
+            service:
+              identifier: admin
+              port: http
+
+persistence:
+  config:
+    enabled: true
+    type: emptyDir
+  data:
+    enabled: true
+    type: emptyDir
