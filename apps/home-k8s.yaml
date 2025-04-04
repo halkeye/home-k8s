@@ -105,6 +105,7 @@ spec:
           - name: cloudnative-pg
           - name: minio
           - name: navidrome
+          - name: netbootxyz
           - name: openbooks
           - name: pinchflat
           - name: plexripper
