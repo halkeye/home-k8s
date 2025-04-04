@@ -5,6 +5,10 @@ redis:
   auth:
     enabled: false
     usePasswordFiles: false
+  master:
+    persistence:
+      enabled: false
+      storageClass: "longhorn"
 
 app-template:
   secrets:
