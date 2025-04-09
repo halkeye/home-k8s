@@ -9,7 +9,7 @@ controllers:
       main:
         image:
           repository: docker.io/ollama/ollama
-          tag: 0.6.4-rocm
+          tag: 0.6.5-rocm
         env:
           TZ: ${TIMEZONE}
           OLLAMA_HOST: 0.0.0.0
