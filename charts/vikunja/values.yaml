@@ -162,12 +162,16 @@ app-template:
       type: persistentVolumeClaim
       accessMode: ReadWriteOnce
       size: 10Gi
-      globalMounts:
-        - path: /app/vikunja/files
+      advancedMounts:
+        app:
+          app:
+          - path: /app/vikunja/files
     vikunja-config:
       type: secret
       name: "{{.Release.Name}}-secret"
-      globalMounts:
-        - path: /etc/vikunja/config.yml
-          subPath: config.yml
-          readOnly: true
+      advancedMounts:
+        app:
+          app:
+          - path: /etc/vikunja/config.yml
+            subPath: config.yml
+            readOnly: true
