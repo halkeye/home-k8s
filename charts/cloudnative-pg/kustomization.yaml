@@ -16,9 +16,7 @@ helmCharts:
     valuesFile: ./values-ext-postgres.yaml
 
 generators:
-  # - ./helm-generator.yaml
-  #  - ./helm-generator-ext-postgres.yaml
-  - ../secret-generator.yaml
+  - ./secret-generator.yaml
 
 resources:
   - ./resources/postgres17.yaml
