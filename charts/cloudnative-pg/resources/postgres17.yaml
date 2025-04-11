@@ -11,7 +11,7 @@ spec:
     storageClass: longhorn
   enableSuperuserAccess: true
   superuserSecret:
-    name: cloudnative-pg-secret
+    name: cloudnative-pg-auth-secrets
   monitoring:
     enablePodMonitor: true
 
