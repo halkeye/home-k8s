@@ -3,8 +3,21 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+helmCharts:
+  - name: cloudnative-pg
+    releaseName: cloudnative-pg
+    version: 0.23.2
+    repo: https://cloudnative-pg.github.io/charts/
+    valuesFile: ./values.yaml
+  - name: ext-postgres-operator
+    releaseName: ext-postgres-operator
+    version: 1.2.6
+    repo: https://movetokube.github.io/postgres-operator/
+    valuesFile: ./values-ext-postgres.yaml
+
 generators:
-  - ./helm-generator.yaml
+  # - ./helm-generator.yaml
+  #  - ./helm-generator-ext-postgres.yaml
   - ../secret-generator.yaml
 
 resources:

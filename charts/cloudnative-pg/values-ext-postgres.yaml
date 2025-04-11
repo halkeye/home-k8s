@@ -1,0 +1,16 @@
+podAnnotations:
+  reloader.stakater.com/auto: "true"
+resources:
+  limits:
+    cpu: 10m
+    memory: 100Mi
+  requests:
+    cpu: 10m
+    memory: 100Mi
+image:
+  repository: ghcr.io/halkeye/postgres-operator
+  pullPolicy: IfNotPresent
+  tag: "sha-410609e"
+env:
+  POSTGRES_INSTANCE: postgres17-rw 
+existingSecret: postgres-ext-operator
