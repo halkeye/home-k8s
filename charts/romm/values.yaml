@@ -43,7 +43,7 @@ controllers:
               secretKeyRef:
                 name: "romm-db-romm"
                 key: LOGIN
-          DB_PASSWORD:
+          DB_PASSWD:
             valueFrom:
               secretKeyRef:
                 name: "romm-db-romm"
