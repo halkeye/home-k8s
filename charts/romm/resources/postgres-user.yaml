@@ -1,7 +1,7 @@
 apiVersion: db.movetokube.com/v1alpha1
 kind: PostgresUser
 metadata:
-  name: room
+  name: romm
 spec:
   role: romm
   database: romm
