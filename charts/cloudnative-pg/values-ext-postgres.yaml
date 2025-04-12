@@ -12,6 +12,6 @@ image:
   pullPolicy: IfNotPresent
   tag: "sha-410609e"
 env:
-  POSTGRES_INSTANCE: postgres17-rw 
+  POSTGRES_INSTANCE: postgres17-rw
 existingSecret: cloudnative-pg-secrets
 fullnameOverride: cloudnative-pg-ext-operator

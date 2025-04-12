@@ -2,6 +2,8 @@ apiVersion: db.movetokube.com/v1alpha1
 kind: PostgresUser
 metadata:
   name: romm
+  annotations:
+    postgres.db.movetokube.com/instance: postgres17-rw
 spec:
   role: romm
   database: romm
