@@ -14,3 +14,4 @@ image:
 env:
   POSTGRES_INSTANCE: postgres17-rw 
 existingSecret: cloudnative-pg-secrets
+fullnameOverride: cloudnative-pg-ext-operator
