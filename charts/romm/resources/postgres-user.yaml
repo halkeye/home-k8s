@@ -7,3 +7,7 @@ spec:
   database: romm
   secretName: romm-db
   privileges: OWNER
+  secretTemplate:
+    HOST_NO_PORT: "{{ .HostNoPort }}"
+    PORT: "{{ .Port }}"
+    

@@ -27,7 +27,7 @@ controllers:
             valueFrom:
               secretKeyRef:
                 name: "romm-db-romm"
-                key: HOST
+                key: HOST_NO_PORT
           DB_PORT:
             valueFrom:
               secretKeyRef:
