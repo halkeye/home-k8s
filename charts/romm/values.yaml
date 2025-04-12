@@ -1,0 +1,111 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/library/common/values.schema.json
+defaultPodOptions:
+  securityContext:
+    runAsUser: 1000
+    runAsGroup: 1000
+    runAsNonRoot: true
+    fsGroup: 1000
+    fsGroupChangePolicy: "OnRootMismatch"
+
+controllers:
+  romm:
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      app:
+        image:
+          repository: ghcr.io/rommapp/romm
+          tag: 3.8.3@sha256:2e46fcd1e6ba23e63889a642e82a4a4fbf8b560104029cd17edcefa672600676
+        env:
+          TZ: America/Vancouver
+          DISABLE_USERPASS_LOGIN: true
+          ENABLE_SCHEDULED_RESCAN: true
+          SCHEDULED_RESCAN_CRON: "0 3 * * *"
+          ROMM_DB_DRIVER: postgresql
+          DB_HOST:
+            valueFrom:
+              secretKeyRef:
+                name: "romm-db-romm"
+                key: HOST
+          DB_PORT:
+            valueFrom:
+              secretKeyRef:
+                name: "romm-db-romm"
+                key: PORT
+          DB_NAME:
+            valueFrom:
+              secretKeyRef:
+                name: "romm-db-romm"
+                key: DATABASE_NAME
+          DB_USER:
+            valueFrom:
+              secretKeyRef:
+                name: "romm-db-romm"
+                key: LOGIN
+          DB_PASSWORD:
+            valueFrom:
+              secretKeyRef:
+                name: "romm-db-romm"
+                key: PASSWORD
+          ROMM_PORT: 8080
+          REDIS_HOST: romm-redis-master"
+          REDIS_PORT: 6379
+          OIDC_ENABLED: true
+          OIDC_PROVIDER: authentik
+        envFrom:
+          - secretRef:
+              name: romm-secret
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: false
+          capabilities: { drop: ["ALL"] }
+        resources:
+          requests:
+            cpu: 10m
+          limits:
+            memory: 3000Mi
+service:
+  app:
+    controller: romm
+    ports:
+      http:
+        port: 8080
+ingress:
+  app:
+    hosts:
+      - host: romm.g4v.dev
+        paths:
+          - path: /
+            service:
+              identifier: app
+              port: http
+
+persistence:
+  config:
+    type: emptyDir
+    globalMounts:
+      - path: /romm/config
+  data:
+    enabled: true
+    type: persistentVolumeClaim
+    storageClass: longhorn
+    accessMode: ReadWriteOnce
+    size: 10Gi
+    advancedMounts:
+      romm:
+        app:
+          - subPath: "resources"
+            path: "/romm/resources"
+          - subPath: "assets"
+            path: "/romm/assets"
+  tmp:
+    type: emptyDir
+    globalMounts:
+      - path: /tmp
+  games:
+    type: nfs
+    server: 172.16.10.10
+    path: "/volume1/Games"
+    globalMounts:
+      - path: /romm/library

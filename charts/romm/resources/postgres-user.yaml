@@ -1,0 +1,9 @@
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: room
+spec:
+  role: romm
+  database: romm
+  secretName: romm-db
+  privileges: OWNER
