@@ -249,7 +249,7 @@ grafana:
       node-exporter-full:
         # renovate: depName="Node Exporter Full"
         gnetId: 1860
-        revision: 38
+        revision: 39
         datasource:
           - name: DS_PROMETHEUS
             value: Prometheus
