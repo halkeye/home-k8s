@@ -118,6 +118,7 @@ app-template:
       sizeLimit: 4Gi
       globalMounts:
         - path: /dev/shm
+        - path: /tmp/cache
     usb:
       type: hostPath
       hostPath: /dev/bus/usb
