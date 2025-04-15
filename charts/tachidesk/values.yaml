@@ -5,7 +5,7 @@ app-template:
         main:
           image:
             repository: ghcr.io/suwayomi/tachidesk
-            tag: v1.1.1724
+            tag: v1.1.1725
           env:
             TZ: America/Vancouver
             BIND_PORT: &port 4567
