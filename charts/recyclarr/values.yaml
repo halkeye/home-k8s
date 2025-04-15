@@ -120,6 +120,8 @@ app-template:
                 movie:
                   rename: true
                   standard: default
+              include:
+                - template: radarr-quality-definition-movie
               quality_profiles:
                 - name: 720p HD Bluray + WEB
                   reset_unmatched_scores:
