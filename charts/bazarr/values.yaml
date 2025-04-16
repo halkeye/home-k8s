@@ -46,7 +46,7 @@ app-template:
               enabled: false
         exportarr:
           image:
-            repository: ghcr.io/home-operations/exportarr
+            repository: ghcr.io/onedr0p/exportarr:master
             tag: v2.1.0
           args:
             - bazarr
