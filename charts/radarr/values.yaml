@@ -8,7 +8,7 @@ app-template:
         radarr:
           image:
             repository: ghcr.io/home-operations/radarr
-            tag: 5.20.1.9773
+            tag: 5.22.2.9862
           env:
             TZ: America/Vancouver
             # https://github.com/Radarr/Radarr/issues/7030#issuecomment-1039689518
