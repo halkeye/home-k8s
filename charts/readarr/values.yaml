@@ -67,7 +67,7 @@ app-template:
               cpu: 10m
         exportarr:
           image:
-            repository: ghcr.io/onedr0p/exportarr
+            repository: ghcr.io/home-operations/exportarr
             tag: v2.1.0@sha256:ffe2065573db0f9717443143316eac6b335c37e6f6fea2f6a238ef3f134ee50a
           args:
             - readarr

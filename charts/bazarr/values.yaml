@@ -7,7 +7,7 @@ app-template:
       containers:
         bazarr:
           image:
-            repository: ghcr.io/onedr0p/bazarr
+            repository: ghcr.io/home-operations/bazarr
             tag: 1.5.1
           env:
             TZ: America/Vancouver
@@ -46,7 +46,7 @@ app-template:
               enabled: false
         exportarr:
           image:
-            repository: ghcr.io/onedr0p/exportarr
+            repository: ghcr.io/home-operations/exportarr
             tag: v2.1.0
           args:
             - bazarr
