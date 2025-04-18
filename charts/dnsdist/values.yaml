@@ -46,8 +46,9 @@ service:
     controller: dnsdist
     externalTrafficPolicy: Local
     type: LoadBalancer
+    loadBalancerIP: 172.16.10.205
     annotations:
-      metallb.universe.tf/loadBalancerIPs: 172.16.10.205
+      external-dns.alpha.kubernetes.io/target: 172.16.10.205
       metallb.universe.tf/allow-shared-ip: dnsdist
     ports:
       http-quic:
@@ -57,8 +58,9 @@ service:
     controller: dnsdist
     externalTrafficPolicy: Local
     type: LoadBalancer
+    loadBalancerIP: 172.16.10.205
     annotations:
-      metallb.universe.tf/loadBalancerIPs: 172.16.10.205
+      external-dns.alpha.kubernetes.io/target: 172.16.10.205
       metallb.universe.tf/allow-shared-ip: dnsdist
     ports:
       http-https:
@@ -68,8 +70,9 @@ service:
     controller: dnsdist
     externalTrafficPolicy: Local
     type: LoadBalancer
+    loadBalancerIP: 172.16.10.205
     annotations:
-      metallb.universe.tf/loadBalancerIPs: 172.16.10.205
+      external-dns.alpha.kubernetes.io/target: 172.16.10.205
       metallb.universe.tf/allow-shared-ip: dnsdist
     ports:
       http-https:
@@ -79,8 +82,9 @@ service:
     controller: dnsdist
     externalTrafficPolicy: Local
     type: LoadBalancer
+    loadBalancerIP: 172.16.10.205
     annotations:
-      metallb.universe.tf/loadBalancerIPs: 172.16.10.205
+      external-dns.alpha.kubernetes.io/target: 172.16.10.205
       metallb.universe.tf/allow-shared-ip: dnsdist
     ports:
       dns-udp:
@@ -90,8 +94,9 @@ service:
     controller: dnsdist
     externalTrafficPolicy: Local
     type: LoadBalancer
+    loadBalancerIP: 172.16.10.205
     annotations:
-      metallb.universe.tf/loadBalancerIPs: 172.16.10.205
+      external-dns.alpha.kubernetes.io/target: 172.16.10.205
       metallb.universe.tf/allow-shared-ip: dnsdist
     ports:
       dns-udp:

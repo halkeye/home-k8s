@@ -103,6 +103,7 @@ spec:
           - { name: longhorn, namespace: longhorn-system }
 
           - name: cloudnative-pg
+          - name: dnsdist
           - name: minio
           - name: navidrome
           - name: netbootxyz
