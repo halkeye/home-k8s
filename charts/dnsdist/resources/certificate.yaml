@@ -4,6 +4,8 @@ metadata:
   name: dnsdist
 spec:
   commonName: 'dnsdist.g4v.dev'
+  dnsNames:
+  - 'dnsdist.g4v.dev'
   issuerRef:
     kind: ClusterIssuer
     name: acme-letsencrypt-prod
