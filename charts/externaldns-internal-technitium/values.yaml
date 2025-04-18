@@ -2,9 +2,9 @@ external-dns:
   nameOverride: externaldns-internal-technitium
   fullnameOverride: externaldns-internal-technitium
   policy: sync
-  domainFilters:
-    - g4v.dev
-    - h.g4v.dev
+  # domainFilters:
+  #   - g4v.dev
+  #   - h.g4v.dev
   serviceMonitor:
     enabled: true
   sources:
