@@ -87,6 +87,7 @@ service:
     loadBalancerIP: 172.16.10.205
     annotations:
       external-dns.alpha.kubernetes.io/target: 172.16.10.205
+      external-dns.alpha.kubernetes.io/hostname: "dnsdist.g4v.dev"
       metallb.universe.tf/allow-shared-ip: dnsdist
     ports:
       dns-udp:
