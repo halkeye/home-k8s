@@ -2,6 +2,8 @@
 controllers:
   dnsdist:
     strategy: RollingUpdate
+    annotations:
+      reloader.stakater.com/auto: "true"
     containers:
       dnsdist:
         image:
