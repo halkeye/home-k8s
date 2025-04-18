@@ -6,7 +6,7 @@ appVersion: "1.0"
 
 dependencies:
 - name: kubetail
-  version: 0.9.11
+  version: 0.9.12
   repository: https://kubetail-org.github.io/helm-charts/
 maintainers:
   - name: halkeye
