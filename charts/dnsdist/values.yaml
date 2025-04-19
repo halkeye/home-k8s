@@ -2,6 +2,7 @@
 controllers:
   dnsdist:
     strategy: RollingUpdate
+    replicas: 2
     annotations:
       reloader.stakater.com/auto: "true"
     containers:
