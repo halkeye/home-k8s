@@ -5,7 +5,6 @@ kind: Kustomization
 
 generators:
   - ./helm-generator.yaml
-  - ../_shared/redis/helm-generator.yaml
   - ../secret-generator.yaml
 resources:
   - ./database.yaml
