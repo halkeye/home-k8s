@@ -1,0 +1,15 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+helmGlobals:
+  chartHome: ./charts/
+
+helmCharts:
+  - name: redis-operator
+    version: 0.15.9
+    repo: https://ot-container-kit.github.io/helm-charts/
+    valuesFile: ./values.yaml
+    releaseName: redis-operator
+
