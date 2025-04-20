@@ -30,7 +30,7 @@ controllers:
           MAIN_URL: "https://postiz.g4v.dev"
           FRONTEND_URL: "https://postiz.g4v.dev"
           NEXT_PUBLIC_BACKEND_URL: "https://postiz.g4v.dev/api"
-          REDIS_URL: "redis://redis-master:6379"
+          REDIS_URL: "redis://redis:6379"
           BACKEND_INTERNAL_URL: "http://localhost:3000"
           IS_GENERAL: "true" # Required for self-hosting.
           STORAGE_PROVIDER: "local"
