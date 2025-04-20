@@ -106,6 +106,7 @@ spec:
           - name: kitchenowl
           - name: ollama
           - name: pixelfed
+          - name: postiz
   template:
     metadata:
       name: '{{.name}}'
