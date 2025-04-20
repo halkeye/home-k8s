@@ -8,7 +8,7 @@ helmGlobals:
 
 helmCharts:
   - name: redis-operator
-    version: 0.15.9
+    version: 0.20.0
     repo: https://ot-container-kit.github.io/helm-charts/
     valuesFile: ./values.yaml
     releaseName: redis-operator
