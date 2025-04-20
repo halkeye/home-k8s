@@ -48,3 +48,44 @@ spec:
           - CreateNamespace=true
           - ServerSideApply=true
           - Prune=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: combined-kustomize
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ['missingkey=error']
+  generators:
+    - matrix:
+        generators:
+          - clusters: {}
+          - list:
+              elements:
+                - appname: redis-operator
+  template:
+    metadata:
+      name: '{{.nameNormalized}}-{{.appname}}'
+      namespace: argocd
+      annotations:
+        argocd.argoproj.io/sync-wave: '{{dig "syncwave" "20" . }}'
+    spec:
+      destination:
+        namespace: '{{- if index . "namespace" -}}{{ .namespace | normalize }}{{- else }}{{ .appname | normalize }}{{ end }}'
+        server: '{{.server}}'
+      project: default
+      source:
+        path: 'charts/{{dig "chart" .appname .}}'
+        repoURL: https://github.com/halkeye/home-k8s
+        targetRevision: HEAD
+        kustomize:
+          namespace: '{{- if index . "namespace" -}}{{ .namespace | normalize }}{{- else }}{{ .appname | normalize }}{{ end }}'
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
+          - Prune=true
