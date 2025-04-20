@@ -1,8 +1,8 @@
 apiVersion: builtin
 kind: HelmChartInflationGenerator
 metadata:
-  name: hoarder
-releaseName: hoarder
+  name: navidrome
+releaseName: navidrome
 
 name: app-template
 version: 3.6.1
