@@ -8,7 +8,7 @@ app-template:
         main:
           image:
             repository: ghcr.io/home-operations/readarr
-            tag: 0.4.14.2782
+            tag: 0.4.15.2787
           env:
             TZ: America/Vancouver
             COMPlus_EnableDiagnostics: "0"
@@ -68,7 +68,7 @@ app-template:
         exportarr:
           image:
             repository: ghcr.io/onedr0p/exportarr
-            tag: v2.1.0
+            tag: v2.2.0
           args:
             - readarr
           env:
