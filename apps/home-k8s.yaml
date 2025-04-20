@@ -54,7 +54,6 @@ spec:
           - name: recyclarr
           - name: sonarr
           - name: stash
-          - name: uptime-kuma
           - name: wg-access-server
           - name: youtubedl-material
           # - name: ytdl-sub
