@@ -18,9 +18,6 @@ sonarr:
     quality_definition:
       type: series
 
-    include:
-      - template: web-1080p-v4
-
     quality_profiles:
       # originally from sonarr-v4-quality-profile-web-1080p.yml
       - name: WEB-720p
