@@ -51,7 +51,6 @@ spec:
           - name: prowlarr
           - name: radarr
           - name: readarr
-          - name: recyclarr
           - name: sonarr
           - name: stash
           - name: wg-access-server
@@ -110,6 +109,7 @@ spec:
           - name: pinchflat
           - name: plexripper
           - name: postgres-home-backup
+          - name: recyclarr
           - name: romm
           - name: snapshot-controller
   template:
