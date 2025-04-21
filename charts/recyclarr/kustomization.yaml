@@ -16,6 +16,9 @@ helmCharts:
     valuesFile: ./values.yaml
     releaseName: recyclarr
 
+generators:
+  - ../secret-generator.yaml
+
 configMapGenerator:
   - name: recylarr-config
     files:
