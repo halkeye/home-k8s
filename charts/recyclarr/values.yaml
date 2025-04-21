@@ -84,6 +84,7 @@ app-template:
                 - template: radarr-quality-definition-movie
                 - template: radarr-quality-profile-anime
                 - template: radarr-custom-formats-anime
+                - template: anime-radarr
               # Custom Formats: https://recyclarr.dev/wiki/yaml/config-reference/custom-formats/
               custom_formats:
                 - trash_ids:
@@ -122,6 +123,10 @@ app-template:
                   standard: default
               include:
                 - template: radarr-quality-definition-movie
+                - template: hd-bluray-web
+                - template: remux-web-1080p
+                - template: sqp-1-1080p
+                - template: sqp-1-web-1080p
               quality_profiles:
                 - name: 720p HD Bluray + WEB
                   reset_unmatched_scores:
@@ -285,6 +290,9 @@ app-template:
 
               quality_definition:
                 type: series
+
+              include:
+                - template: web-1080p-v4
 
               quality_profiles:
                 # originally from sonarr-v4-quality-profile-web-1080p.yml
