@@ -17,7 +17,7 @@ helmCharts:
     releaseName: recyclarr
 
 configMapGenerator:
-  - name: recyclarr-configmap
+  - name: recylarr-config
     files:
       - ./resources/anime-radarr.yaml
       - ./resources/anime-sonarr.yaml
