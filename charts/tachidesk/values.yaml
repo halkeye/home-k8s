@@ -1,77 +1,78 @@
-app-template:
-  controllers:
-    main:
-      containers:
-        main:
-          image:
-            repository: ghcr.io/suwayomi/tachidesk
-            tag: v2.0.1727
-          env:
-            TZ: America/Vancouver
-            BIND_PORT: &port 4567
-          probes:
-            liveness: &probes
-              enabled: false
-            readiness: *probes
-            startup:
-              enabled: false
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: false
-            capabilities:
-              drop: ["ALL"]
-          resources:
-            limits: &resources
-              memory: 1Gi
-            requests:
-              <<: *resources
-              cpu: 10m
-      pod:
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  main:
+    containers:
+      main:
+        image:
+          repository: ghcr.io/suwayomi/tachidesk
+          tag: v2.0.1727
+        env:
+          TZ: America/Vancouver
+          BIND_PORT: &port 4567
+        probes:
+          liveness: &probes
+            enabled: false
+          readiness: *probes
+          startup:
+            enabled: false
         securityContext:
-          runAsUser: 1026
-          runAsGroup: 100
-          runAsNonRoot: true
-          fsGroup: 100
-          fsGroupChangePolicy: OnRootMismatch
-  service:
-    main:
-      controller: main
-      ports:
-        http:
-          port: *port
-  ingress:
-    main:
-      enabled: true
-      annotations:
-        gethomepage.dev/enabled: "true"
-        gethomepage.dev/group: Media Fetchers
-        gethomepage.dev/icon: https://raw.githubusercontent.com/Suwayomi/Tachidesk-JUI/master/resources/icon.png
-        gethomepage.dev/name: Tachidesk
-      hosts:
-        - host: &host tachidesk.g4v.dev
-          paths:
-            - path: /
-              service:
-                identifier: main
-                port: http
-  persistence:
-    config:
-      enabled: true
-      type: persistentVolumeClaim
-      accessMode: ReadWriteOnce
-      size: 1Gi
-      storageClass: nas-apps
-      globalMounts:
-        - path: /home/suwayomi/.local/share/Tachidesk
-    comics:
-      type: nfs
-      server: 172.16.10.10
-      path: /volume1/Comics
-      globalMounts:
-        - path: /comics
-    downloads:
-      type: nfs
-      server: 172.16.10.10
-      path: "/volume1/Downloads"
-      globalMounts:
-        - path: /downloads
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: false
+          capabilities:
+            drop: ["ALL"]
+        resources:
+          limits: &resources
+            memory: 1Gi
+          requests:
+            <<: *resources
+            cpu: 10m
+    pod:
+      securityContext:
+        runAsUser: 1026
+        runAsGroup: 100
+        runAsNonRoot: true
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: *port
+ingress:
+  main:
+    enabled: true
+    annotations:
+      gethomepage.dev/enabled: "true"
+      gethomepage.dev/group: Media Fetchers
+      gethomepage.dev/icon: https://raw.githubusercontent.com/Suwayomi/Tachidesk-JUI/master/resources/icon.png
+      gethomepage.dev/name: Tachidesk
+    hosts:
+      - host: tachidesk.g4v.dev
+        paths:
+          - path: /
+            service:
+              identifier: main
+              port: http
+persistence:
+  config:
+    enabled: true
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    size: 1Gi
+    storageClass: longhorn
+    globalMounts:
+      - path: /home/suwayomi/.local/share/Tachidesk
+  comics:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Comics
+    globalMounts:
+      - path: /comics
+  downloads:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Downloads
+    globalMounts:
+      - path: /downloads
