@@ -67,11 +67,9 @@ app-template:
       type: persistentVolumeClaim
       accessMode: ReadWriteOnce
       size: 10Gi
-      advancedMounts:
-        gathio:
-          app:
-            - subPath: "events"
-              path: "/app/public/events/"
+      globalMounts:
+        - subPath: "events"
+          path: "/app/public/events"
     tmp:
       type: emptyDir
 
