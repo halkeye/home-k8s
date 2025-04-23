@@ -106,7 +106,7 @@ app-template:
           mongodb_url = {{ .Values.mongodb_url | quote }}
 
           [nodemailer]
-          smtp_url = "smtp://{{ .Values.smtp_username }}:{{ .Values.smtp_password }}@{{ .Values.smtp_server }}:{{ .Values.smtp_port }}"
+          smtp_url = "smtp://{{ .Values.smtp_username }}:{{ .Values.smtp_password }}@{{ .Values.smtp_server }}:{{ .Values.smtp_port }}/?secure=false&logger=true&ignoreTLS=true&requireTLS=false"
 
           [sendgrid]
           api_key = ""
