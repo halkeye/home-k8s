@@ -45,6 +45,7 @@ app-template:
       enabled: true
       annotations:
         gethomepage.dev/enabled: "false"
+        nginx.ingress.kubernetes.io/proxy-body-size: '1024M'
       hosts:
         - host: events.g4v.dev
           paths:
