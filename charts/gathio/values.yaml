@@ -5,8 +5,8 @@ app-template:
       containers:
         gathio:
           image:
-            repository: ghcr.io/lowercasename/gathio
-            tag: "1.5.0"
+            repository: ghcr.io/halkeye/docker-gathio
+            tag: allow-nodemailer-url.21
           command:
             - npm
             - run
@@ -106,10 +106,7 @@ app-template:
           mongodb_url = {{ .Values.mongodb_url | quote }}
 
           [nodemailer]
-          smtp_server = {{ .Values.smtp_server | quote }}
-          smtp_port = {{ .Values.smtp_port | quote }}
-          smtp_username = {{ .Values.smtp_username | quote }}
-          smtp_password = {{ .Values.smtp_password | quote }}
+          smtp_url = smtp://{{ .Values.smtp_username }}:{{ .Values.smtp_password }}@{{ .Values.smtp_server }}:{{ .Values.smtp_port }}
 
           [sendgrid]
           api_key = ""
