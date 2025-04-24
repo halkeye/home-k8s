@@ -17,8 +17,9 @@ controllers:
     containers:
       postiz:
         image:
-          repository: ghcr.io/gitroomhq/postiz-app 
-          tag: v1.40.1-amd64
+          repository: ghcr.io/halkeye/docker-postiz
+          # tag: v1.40.1-amd64
+          tag: add-env-for-mastodon.5
         env:
           TZ: America/Vancouver
           EMAIL_PROVIDER: "nodemailer"
