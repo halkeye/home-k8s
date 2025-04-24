@@ -6,7 +6,7 @@ app-template:
         gathio:
           image:
             repository: ghcr.io/halkeye/docker-gathio
-            tag: allow-nodemailer-url.21
+            tag: fix-nodemailer.22
           command:
             - npm
             - run
