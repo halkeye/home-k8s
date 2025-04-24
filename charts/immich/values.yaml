@@ -64,7 +64,7 @@ app-template:
           command:
             - npm
             - run
-            - typeorm:migrations:run
+            - migrations:run
     main:
       annotations:
         reloader.stakater.com/auto: "true"
