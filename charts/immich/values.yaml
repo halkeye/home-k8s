@@ -54,7 +54,7 @@ app-template:
           image:
             repository: ghcr.io/immich-app/immich-server
             pullPolicy: IfNotPresent
-            tag: v1.132.0
+            tag: v1.132.1
           env:
             DB_URL:
               valueFrom:
@@ -73,7 +73,7 @@ app-template:
           image:
             repository: ghcr.io/immich-app/immich-server
             pullPolicy: IfNotPresent
-            tag: v1.132.0
+            tag: v1.132.1
           env:
             DB_SKIP_MIGRATIONS: "true"
             IMMICH_TRUSTED_PROXIES: "0.0.0.0"
