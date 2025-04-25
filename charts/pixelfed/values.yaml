@@ -32,6 +32,8 @@ controllers:
           DOCKER_APP_PHP_DISPLAY_ERRORS: on
           DOCKER_APP_PHP_ERROR_REPORTING: "E_ALL"
           TZ: America/Vancouver
+          MAX_PHOTO_SIZE: "150000"
+          APP_DEBUG: "true"
           APP_NAME: "G4V Pixelfed"
           APP_ENV: production
           APP_URL: https://pixelfed.g4v.dev
