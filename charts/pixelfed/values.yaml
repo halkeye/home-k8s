@@ -12,7 +12,7 @@ controllers:
           # repository: quay.io/zknt/pixelfed
           # tag: 2025-01-18
           repository: ghcr.io/halkeye/docker-pixelfed
-          tag: add-generic-oidc.3
+          tag: add-generic-oidc.2
         # command:
         #   - bash
         #   - -c
@@ -29,6 +29,8 @@ controllers:
         #     exec apache2-foreground
         env: &envVars
           ENTRYPOINT_SKIP_SCRIPTS: 01-permissions.sh
+          DOCKER_APP_PHP_DISPLAY_ERRORS: on
+          DOCKER_APP_PHP_ERROR_REPORTING: "E_ALL"
           TZ: America/Vancouver
           APP_NAME: "G4V Pixelfed"
           APP_ENV: production
@@ -121,7 +123,7 @@ controllers:
           # repository: quay.io/zknt/pixelfed
           # tag: 2025-01-18
           repository: ghcr.io/halkeye/docker-pixelfed
-          tag: add-generic-oidc.3
+          tag: add-generic-oidc.2
         command:
           - php
           - artisan
