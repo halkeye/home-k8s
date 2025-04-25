@@ -8,11 +8,11 @@ controllers:
   main:
     containers:
       main:
-        image:
+        image: &image
           # repository: quay.io/zknt/pixelfed
           # tag: 2025-01-18
           repository: ghcr.io/halkeye/docker-pixelfed
-          tag: add-generic-oidc.2
+          tag: add-generic-oidc.4
         # command:
         #   - bash
         #   - -c
@@ -120,10 +120,7 @@ controllers:
     containers:
       main:
         image:
-          # repository: quay.io/zknt/pixelfed
-          # tag: 2025-01-18
-          repository: ghcr.io/halkeye/docker-pixelfed
-          tag: add-generic-oidc.2
+          <<: *image
         command:
           - php
           - artisan
@@ -171,8 +168,7 @@ controllers:
     containers:
       migrations:
         image:
-          repository: quay.io/zknt/pixelfed
-          tag: 2025-01-18
+          <<: *image
         env:
           <<: *envVars
         envFrom:
