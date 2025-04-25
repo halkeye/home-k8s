@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/recyclarr/recyclarr/master/schemas/config-schema.json
 # Instance Definition: https://recyclarr.dev/wiki/yaml/config-reference/basic/
 sonarr:
   sonarr-v4:
@@ -14,6 +15,15 @@ sonarr:
         standard: default
         daily: default
         anime: default
+
+
+    include:
+      # Comment out any of the following includes to disable them
+      - template: sonarr-quality-definition-series
+      # Choose between the standard or alternative quality profile setup (choose one only)
+      - template: sonarr-v4-quality-profile-web-1080p
+      # - template: sonarr-v4-quality-profile-web-1080p-alternative
+      - template: sonarr-v4-custom-formats-web-1080p
 
     quality_definition:
       type: series
