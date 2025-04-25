@@ -25,7 +25,8 @@ controllers:
             gosu www-data php artisan instance:actor
             echo "++++ Start apache... ++++"
             source /etc/apache2/envvars
-            exec forego start -r
+            a2enmod rewrite remoteip proxy proxy_http && a2enconf remoteip
+            exec apache2-foreground
         env: &envVars
           TZ: America/Vancouver
           APP_NAME: "G4V Pixelfed"
@@ -54,6 +55,7 @@ controllers:
           MAIL_FROM_NAME: "Pixelfed"
           PF_ENABLE_CLOUD: "false"
           FILESYSTEM_CLOUD: "s3"
+          ENTRYPOINT_SKIP: "true"
           #AWS_ACCESS_KEY_ID:
           #AWS_SECRET_ACCESS_KEY:
           #AWS_DEFAULT_REGION:
