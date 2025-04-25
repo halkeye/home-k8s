@@ -10,9 +10,6 @@ helmCharts:
     valuesFile: ./values.yaml
     releaseName: teamspeak
 
-generators:
-  - ../secret-generator.yaml
-
 resources:
   - ./certificates.yaml
 
