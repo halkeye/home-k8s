@@ -195,6 +195,7 @@ ingress:
   main:
     enabled: true
     annotations:
+      nginx.ingress.kubernetes.io/proxy-body-size: '500m'
       external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
       gethomepage.dev/enabled: "true"
       gethomepage.dev/group: Social Media
