@@ -115,8 +115,10 @@ controllers:
     containers:
       main:
         image:
-          repository: quay.io/zknt/pixelfed
-          tag: 2025-01-18
+          # repository: quay.io/zknt/pixelfed
+          # tag: 2025-01-18
+          repository: ghcr.io/halkeye/docker-pixelfed
+          tag: add-generic-oidc.1
         command:
           - php
           - artisan
