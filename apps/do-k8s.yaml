@@ -107,6 +107,7 @@ spec:
           - name: ollama
           - name: pixelfed
           - name: postiz
+          - name: teamspeak
   template:
     metadata:
       name: '{{.name}}'
