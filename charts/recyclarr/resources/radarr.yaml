@@ -14,8 +14,13 @@ radarr:
       movie:
         rename: true
         standard: default
+
     include:
+      # Comment out any of the following includes to disable them
       - template: radarr-quality-definition-movie
+      - template: radarr-quality-profile-hd-bluray-web
+      - template: radarr-custom-formats-hd-bluray-web
+
     quality_profiles:
       - name: 720p HD Bluray + WEB
         reset_unmatched_scores:
