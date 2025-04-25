@@ -25,7 +25,7 @@ controllers:
             gosu www-data php artisan instance:actor
             echo "++++ Start apache... ++++"
             source /etc/apache2/envvars
-            dumb-init apache2 -DFOREGROUND
+            exec forego start -r
         env: &envVars
           TZ: America/Vancouver
           APP_NAME: "G4V Pixelfed"
