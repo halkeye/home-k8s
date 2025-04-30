@@ -24,7 +24,7 @@ controllers:
       plexripper:
         image:
           repository: plexripper/plexripper
-          tag: 0.31.0
+          tag: 0.31.1
         env:
           TZ: America/Vancouver
           PUID: "1026"
