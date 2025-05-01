@@ -6,5 +6,5 @@ releaseName: minio
 
 name: app-template
 version: 3.6.1
-repo: https://bjw-s.github.io/helm-charts
+repo: https://bjw-s-labs.github.io/helm-charts
 valuesFile: ./values.yaml

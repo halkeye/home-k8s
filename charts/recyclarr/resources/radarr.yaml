@@ -99,13 +99,13 @@ radarr:
         - f1b0bae9bc222dab32c1b38b5a7a1088 # TVer
         - 279bda7434fd9075786de274e6c3c202 # U-NEXT
         - 1b355ff093fd1064b75ea98c616881b1 # VIU
-        quality_profiles:
+        assign_scores_to:
           - name: 720p HD Bluray + WEB
             score: 0
       # Movie Versions
       - trash_ids:
           - 9f6cbff8cfe4ebbc1bde14c7b7bec0de # IMAX Enhanced
-        quality_profiles:
+        assign_scores_to:
           - name: 720p HD Bluray + WEB
             score: 0 # Uncomment this line to disable prioritised IMAX Enhanced releases
 
@@ -117,6 +117,5 @@ radarr:
           - 7357cf5161efbf8c4d5d0c30b4815ee2 # Obfuscated
           - 5c44f52a8714fdd79bb4d98e2673be1f # Retags
           - f537cf427b64c38c8e36298f657e4828 # Scene
-        quality_profiles:
+        assign_scores_to:
           - name: 720p HD Bluray + WEB
-

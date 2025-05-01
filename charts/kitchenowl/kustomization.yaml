@@ -18,6 +18,6 @@ resources:
 helmCharts:
   - name: app-template
     version: 3.7.3
-    repo: https://bjw-s.github.io/helm-charts
+    repo: https://bjw-s-labs.github.io/helm-charts
     valuesFile: ./values.yaml
     releaseName: kitchenowl

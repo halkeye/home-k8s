@@ -4,7 +4,7 @@
   "description": "App Template Sub chart",
   "properties": {
     "app-template": {
-      "$ref": "https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.5.1/charts/library/common/values.schema.json"
+      "$ref": "https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json"
     }
   }
 }
