@@ -58,19 +58,6 @@ service:
       http:
         port: 5656
 
-ingress:
-  main:
-    enabled: true
-    annotations:
-      gethomepage.dev/enabled: "false"
-    hosts:
-      - host: unpackerr.g4v.dev
-        paths:
-          - path: /
-            service:
-              identifier: main
-              port: http
-
 persistence:
   tmp:
     enabled: true
