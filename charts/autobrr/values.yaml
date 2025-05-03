@@ -66,9 +66,9 @@ app-template:
               drop: ["ALL"]
           resources:
             limits:
-              memory: 64Mi
+              memory: 300Mi
             requests:
-              memory: 64Mi
+              memory: 100Mi
               cpu: 10m
       pod:
         securityContext:
