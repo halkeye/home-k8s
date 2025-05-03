@@ -113,6 +113,7 @@ spec:
           - name: romm
           - name: snapshot-controller
           - name: tachidesk
+          - name: thelounge
   template:
     metadata:
       name: '{{.name}}'
