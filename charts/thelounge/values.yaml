@@ -70,7 +70,7 @@ persistence:
   config-js:
     enabled: true
     type: configMap
-    name: 'recylarr-config'
+    name: 'thelounge-config'
     globalMounts:
       - path: /config/config.js
         subPath: config.js
