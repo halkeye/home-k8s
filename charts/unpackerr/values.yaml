@@ -1,0 +1,92 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  main:
+    containers:
+      main:
+        image:
+          repository: ghcr.io/unpackerr/unpackerr
+          tag: 0.14.5
+        env:
+          TZ: America/Vancouver
+          UN_SONARR_0_URL: https://sonarr.g4v.dev
+          UN_SONARR_0_PROTOCOLS: torrent,usenet
+          UN_SONARR_1_URL: https://anime-sonarr.g4v.dev
+          UN_SONARR_1_PROTOCOLS: torrent,usenet
+          UN_RADARR_0_URL: https://radarr.g4v.dev
+          UN_RADARR_0_PROTOCOLS: torrent,usenet
+          UN_RADARR_1_URL: https://anime-radarr.g4v.dev
+          UN_RADARR_1_PROTOCOLS: torrent,usenet
+          UN_LIDARR_0_URL: https://lidarr.g4v.dev
+          UN_LIDARR_0_PROTOCOLS: torrent,usenet
+          UN_READARR_0_URL: https://readarr.g4v.dev
+          UN_READARR_0_PROTOCOLS: torrent,usenet
+        envFrom:
+          - secretRef:
+              name: unpackerr-secret
+        probes:
+          liveness:
+            enabled: true
+          readiness:
+            enabled: true
+          startup:
+            enabled: true
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+        resources:
+          requests:
+            cpu: 10m
+            memory: 500Mi
+
+    pod:
+      securityContext:
+        runAsUser: 1026
+        runAsGroup: 100
+        runAsNonRoot: true
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
+
+
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 5656
+
+ingress:
+  main:
+    enabled: true
+    annotations:
+      gethomepage.dev/enabled: "false"
+    hosts:
+      - host: unpackerr.g4v.dev
+        paths:
+          - path: /
+            service:
+              identifier: main
+              port: http
+
+persistence:
+  tmp:
+    enabled: true
+    type: emptyDir
+  downloads:
+    type: nfs
+    server: 172.16.10.10
+    path: "/volume1/Downloads"
+    globalMounts:
+      - path: /downloads
+
+serviceMonitor:
+  app:
+    serviceName: unpackerr
+    endpoints:
+      - port: http
+        scheme: http
+        path: /metrics
+        interval: 1m
+        scrapeTimeout: 10s
