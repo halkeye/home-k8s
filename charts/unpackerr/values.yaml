@@ -21,6 +21,7 @@ controllers:
           UN_LIDARR_0_PROTOCOLS: torrent,usenet
           UN_READARR_0_URL: https://readarr.g4v.dev
           UN_READARR_0_PROTOCOLS: torrent,usenet
+          UN_WEBSERVER_METRICS: "true"
         envFrom:
           - secretRef:
               name: unpackerr-secret
