@@ -70,8 +70,12 @@ ingress:
               port: http
 persistence:
   config:
+    type: emptyDir
+  config-js:
     enabled: true
-    type: persistentVolumeClaim
-    accessMode: ReadWriteOnce
-    size: 5Gi
-    storageClass: longhorn
+    type: configMap
+    name: 'recylarr-config'
+    globalMounts:
+      - path: /config/config.js
+        subPath: config.js
+        readOnly: true
