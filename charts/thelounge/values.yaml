@@ -10,6 +10,10 @@ controllers:
         env:
           TZ: America/Vancouver
           THELOUNGE_HOME: "/config"
+        command:
+          - bash
+          - -c
+          - sleep 99d
         probes:
           liveness:
             enabled: true
