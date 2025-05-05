@@ -102,6 +102,7 @@ spec:
     - list:
         elements:
           - name: bytestash
+          - name: do-k8s-tailscale-operator
           - name: hoarder
           - name: kitchenowl
           - name: ollama

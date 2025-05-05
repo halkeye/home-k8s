@@ -102,6 +102,7 @@ spec:
 
           - name: cloudnative-pg
           - name: dnsdist
+          - name: home-k8s-tailscale-operator
           - name: minio
           - name: navidrome
           - name: netbootxyz
