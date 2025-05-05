@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    tailscale.com/tailnet-ip: ollama-ollama.taildba47.ts.net
+    tailscale.com/tailnet-fqdn: ollama-ollama.taildba47.ts.net
   name: ollama
 spec:
   externalName: placeholder
