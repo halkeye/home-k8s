@@ -121,6 +121,7 @@ argo-cd:
       resource.customizations.ignoreDifferences._Service: |
         jqPathExpressions:
           - .status.loadBalancer.ingress[].ipMode
+          - .spec.externalName
       resource.customizations.ignoreDifferences.storage.k8s.io_CSIDriver: |
         jqPathExpressions:
           - .spec.seLinuxMount
