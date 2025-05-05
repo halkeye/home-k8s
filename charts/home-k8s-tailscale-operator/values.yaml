@@ -1,5 +1,5 @@
 operatorConfig:
   defaultTags:
-    - "tag:k8s-operator"
+    - "tag:home-k8s-operator"
 proxyConfig:
-  defaultTags: "tag:k8s"
+  defaultTags: "tag:home-k8s"
