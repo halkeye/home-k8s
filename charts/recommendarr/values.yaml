@@ -13,6 +13,9 @@ controllers:
           DOCKER_ENV: true
           PORT: 3000
           FORCE_SECURE_COOKIES: true
+        envFrom:
+          - secretRef:
+              name: "recommendarr-secret"
         probes:
           liveness:
             enabled: true
