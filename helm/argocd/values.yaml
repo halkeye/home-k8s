@@ -3,7 +3,7 @@ argo-cd:
     domain: argocd.h.g4v.dev
     image:
       repository: ghcr.io/halkeye/docker-argocd
-      tag: "v2.14.9.32"
+      tag: "v2.14.11.34"
   fullnameOverride: argocd
   createClusterRoles: true
   createAggregateRoles: true
