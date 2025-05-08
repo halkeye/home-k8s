@@ -114,6 +114,7 @@ spec:
           - name: recommendarr
           - name: recyclarr
           - name: romm
+          - name: slskd
           - name: snapshot-controller
           - name: tachidesk
           - name: thelounge
