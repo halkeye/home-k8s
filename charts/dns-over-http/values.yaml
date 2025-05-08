@@ -73,3 +73,10 @@ ingress:
 persistence:
   tmp:
     type: emptyDir
+  server:
+    type: configMap
+    name: dns-over-http-configmap
+    globalMounts:
+      - path: /server/doh-server.conf
+        subPath: doh-server.conf
+        readOnly: true
