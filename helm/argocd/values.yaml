@@ -137,6 +137,9 @@ argo-cd:
       resource.customizations.ignoreDifferences.batch_Job: |
         jqPathExpressions:
           - '.spec.template.spec.hostUsers'
+      resource.customizations.ignoreDifferences.apiextensions.k8s.io_CustomResourceDefinition: |
+        jqPathExpressions:
+          - '.spec.preserveUnknownFields'
       resource.customizations.ignoreDifferences.apps_DaemonSet: |
         jqPathExpressions:
           - '.spec.template.spec.hostUsers'
