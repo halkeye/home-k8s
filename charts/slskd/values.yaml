@@ -15,8 +15,6 @@ controllers:
           SLSKD_NO_AUTH: true
           SLSKD_NO_HTTPS: true
           SLSKD_SLSK_LISTEN_PORT: 50300
-          SLSKD_SLSK_USERNAME: empty
-          SLSKD_SLSK_PASSWORD: empty
         envFrom:
           - secretRef:
               name: slskd-secret
