@@ -9,7 +9,7 @@ controllers:
       main:
         image:
           repository: satishweb/doh-server
-          tag: v2.3.8-ubuntu
+          tag: v2.3.10-ubuntu
         command:
           - /server/doh-server
           - -conf
