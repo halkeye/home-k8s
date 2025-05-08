@@ -102,6 +102,7 @@ spec:
           - { name: home-k8s-tailscale-operator, namespace: tailscale }
 
           - name: cloudnative-pg
+          - name: dns-over-http
           - name: dnsdist
           - name: minio
           - name: navidrome
