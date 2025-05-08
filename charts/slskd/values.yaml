@@ -15,6 +15,7 @@ controllers:
           SLSKD_NO_AUTH: true
           SLSKD_NO_HTTPS: true
           SLSKD_SLSK_LISTEN_PORT: 50300
+          BETANIN_URL: https://beets.g4v.dev
         envFrom:
           - secretRef:
               name: slskd-secret
@@ -84,9 +85,13 @@ persistence:
   config-file:
     type: configMap
     name: slskd-config
+    defaultMode: 755
     globalMounts:
       - path: /config/slskd.yml
         subPath: slskd.yml
+        readOnly: true
+      - path: /config/slskd_to_betanin.sh
+        subPath: slskd_to_betanin.sh
         readOnly: true
   tmp:
     type: emptyDir

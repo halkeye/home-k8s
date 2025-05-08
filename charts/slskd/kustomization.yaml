@@ -23,3 +23,4 @@ configMapGenerator:
   - name: slskd-config
     files:
       - ./resources/slskd.yml
+      - ./resources/slskd_to_betanin.sh
