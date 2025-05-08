@@ -10,7 +10,7 @@ dependencies:
     repository: https://bjw-s-labs.github.io/helm-charts
   - name: redis
     repository: https://charts.bitnami.com/bitnami
-    version: 21.0.0
+    version: 21.0.2
 maintainers:
   - name: halkeye
     url: https://www.gavinmogan.com
