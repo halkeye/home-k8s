@@ -10,6 +10,10 @@ controllers:
         image:
           repository: satishweb/doh-server
           tag: v2.3.8-ubuntu
+        command:
+          - /server/doh-server
+          - -conf
+          - /server/doh-server.conf
         env:
           TZ: America/Vancouver
           UPSTREAM_DNS_SERVER: "udp:172.16.10.3:53"
