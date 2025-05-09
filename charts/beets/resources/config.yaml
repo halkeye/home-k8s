@@ -9,7 +9,7 @@ plugins:
   # https://github.com/florib779/beets-config/blob/master/plugins.yaml
   - albumtypes
   # - absubmit       # Lets you submit acoustic analysis results to the AcousticBrainz server.
-  - acousticbrainz  # Gets acoustic-analysis information from the AcousticBrainz project.
+  # - acousticbrainz  # Gets acoustic-analysis information from the AcousticBrainz project.
   - badfiles        # ToDo. Adds a beet bad command to check for missing and corrupt files.
   - bandcamp        # Beetcamp. Use bandcamp as an autotagger source for eg. artwork and lyrics.
   - bucket          # Groups your files into buckets folders representing ranges.
