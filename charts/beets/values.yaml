@@ -1,0 +1,86 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+defaultPodOptions:
+  securityContext:
+    runAsUser: 1026
+    runAsGroup: 100
+    runAsNonRoot: true
+    fsGroup: 100
+    fsGroupChangePolicy: "OnRootMismatch"
+
+controllers:
+  main:
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      app:
+        image:
+          repository: ghcr.io/home-operations/beets
+          tag: 2.3.0
+        env:
+          TZ: American/Vancouver
+          BETANIN_HOST: 0.0.0.0
+          BETANIN_PORT: 80
+        probes:
+          liveness:
+            enabled: true
+          readiness:
+            enabled: true
+          startup:
+            enabled: true
+            spec:
+              failureThreshold: 30
+              periodSeconds: 10
+        resources:
+          requests:
+            cpu: 10m
+          limits:
+            memory: 1Gi
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities: { drop: ["ALL"] }
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 80
+ingress:
+  main:
+    enabled: true
+    annotations:
+      gethomepage.dev/enabled: "false"
+    hosts:
+      - host: beets.g4v.dev
+        paths:
+          - path: /
+            service:
+              identifier: main
+              port: http
+persistence:
+  config:
+    type: emptyDir
+  tmp:
+    type: emptyDir
+  music:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Audio/Music
+  config-file:
+    type: configMap
+    name: beets-configmap
+    globalMounts:
+      - path: /config/.config/beets/config.yaml
+        subPath: config.yaml
+        readOnly: true
+  secret-file:
+    type: secret
+    name: beets-secret
+    globalMounts:
+      - path: /config/.config/beets/secrets.yaml
+        subPath: secrets.yaml
+        readOnly: true
+      - path: /config/.config/betanin/config.toml
+        subPath: config.toml
+        readOnly: true
