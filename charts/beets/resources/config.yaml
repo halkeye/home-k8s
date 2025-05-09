@@ -35,9 +35,9 @@ plugins:
   # - mbsubmit        # Provides an extra prompt choice during an import session that prints the tracks
   # -                 # of the current album in a format that is parseable by MusicBrainz’s track parser.
   - mbsync          # This plugin provides the mbsync command,
-  -                 # which lets you fetch metadata from MusicBrainz for albums and tracks that already have MusicBrainz IDs.
+                    # which lets you fetch metadata from MusicBrainz for albums and tracks that already have MusicBrainz IDs.
   - missing         # This plugin adds a new command, missing or miss,
-  -                 # which finds and lists, for every album in your collection, which or how many tracks are missing.
+                    # which finds and lists, for every album in your collection, which or how many tracks are missing.
   # - parentwork      # Fetches the work title, parent work title and parent work composer from MusicBrainz.
   # - permissions     # Set file permissions for imported music files and its directories. Permissions will be adjusted automatically on import.
   - replaygain      # This plugin adds support for ReplayGain, a technique for normalizing audio playback levels.
