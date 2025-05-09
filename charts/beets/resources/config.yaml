@@ -14,15 +14,13 @@ plugins:
   - bandcamp        # Beetcamp. Use bandcamp as an autotagger source for eg. artwork and lyrics.
   - bucket          # Groups your files into buckets folders representing ranges.
   - chroma          # Chromaprint/Acoustid Plugin.
-  - check           # Add checksum automatically.
   - convert         # Lets you transcoding audio and embedding album art.
-  - copyartifacts   # A plugin that moves non-music files during the import process.
+  - copyartifacts3  # A plugin that moves non-music files during the import process.
   - duplicates      # Adds a new command, duplicates or dup, which finds and lists duplicate tracks or albums in your collection.
-  - edit            # Lets you modify music metadata using your favorite text editor. ToDo: No config file yet.
+  # - edit            # Lets you modify music metadata using your favorite text editor. ToDo: No config file yet.
   - embedart        # Embed the album art directly into each file’s metadata.
   # - export          # Lets you get data from the items and export the content as JSON, CSV, or XML.
   - fetchart        # Retrieves album art images from various sources on the Web and stores them as image files.
-  - follow          # Get notifications about new releases from album artists in your Beets library using muspy.
   # - fromfilename    # The FromFilename plugin adds the ability to guess tags from the filenames.
   #                   # Use this plugin if your tracks have useful names (like “03 Call Me Maybe.mp3”) but their tags don’t reflect that.
   # - hook            # Lets you run commands in response to these events.
