@@ -21,7 +21,7 @@ controllers:
           - /bin/bash
           - -c
           - |
-            pip install -r requirements.txt
+            pip install -r /config/.config/beets/requirements.txt
             exec /usr/bin/catatonit -- /entrypoint.sh
         env:
           TZ: American/Vancouver
