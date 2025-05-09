@@ -85,7 +85,7 @@ persistence:
   config-file:
     type: configMap
     name: slskd-config
-    defaultMode: 755
+    defaultMode: 0755
     globalMounts:
       - path: /config/slskd.yml
         subPath: slskd.yml
