@@ -117,8 +117,8 @@ bandcamp:                           # Beetcamp. Uses the bandcamp URL as id (for
 
 ###################################################################################################
 
-library: /config/beets.db
-directory: /Music
+library: /tmp/beets.db
+directory: /music
 
 clutter: ["Thumbs.DB", ".DS_Store"]
 ignore_hidden: true
@@ -237,3 +237,6 @@ match:
   ignore_video_tracks: true
   track_length_grace: 10
   track_length_max: 30
+
+copyartifacts:
+  extensions: ".*"
