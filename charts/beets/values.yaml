@@ -15,14 +15,8 @@ controllers:
     containers:
       app:
         image:
-          repository: ghcr.io/home-operations/beets
-          tag: 2.3.0
-        command:
-          - /bin/bash
-          - -c
-          - |
-            pip install -r /config/.config/beets/requirements.txt
-            exec /usr/bin/catatonit -- /entrypoint.sh
+          repository: ghcr.io/halkeye/docker-beets
+          tag: 2.3.0.1
         env:
           TZ: American/Vancouver
           BETANIN_HOST: 0.0.0.0
@@ -79,9 +73,6 @@ persistence:
     globalMounts:
       - path: /config/.config/beets/config.yaml
         subPath: config.yaml
-        readOnly: true
-      - path: /config/.config/beets/requirements.txt
-        subPath: requirements.txt
         readOnly: true
   secret-file:
     type: secret
