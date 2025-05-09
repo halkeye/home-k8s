@@ -1,0 +1,23 @@
+# mp3val
+# flac
+# ffmpeg
+# gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly
+
+beets
+beets[inline]
+beets[convert]
+beets[web]
+beets[chroma]
+beets[duplicates]
+beets[albumtypes]
+beets[badfiles]
+beets[edit]
+beets[fetchart]
+beets[fromfilename]
+beets[importfeeds]
+beets[info]
+beets[lastgenre]
+beets[plexupdate]
+
+standard-aifc
+standard-sunau
