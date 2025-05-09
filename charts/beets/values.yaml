@@ -84,3 +84,6 @@ persistence:
       - path: /config/.config/betanin/config.toml
         subPath: config.toml
         readOnly: true
+      - path: /config/.local/share/betanin/secret_key
+        subPath: secret_key
+        readOnly: true

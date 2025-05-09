@@ -15,7 +15,7 @@ plugins:
   - bucket          # Groups your files into buckets folders representing ranges.
   - chroma          # Chromaprint/Acoustid Plugin.
   - convert         # Lets you transcoding audio and embedding album art.
-  - copyartifacts3  # A plugin that moves non-music files during the import process.
+  - copyartifacts   # A plugin that moves non-music files during the import process.
   - duplicates      # Adds a new command, duplicates or dup, which finds and lists duplicate tracks or albums in your collection.
   # - edit            # Lets you modify music metadata using your favorite text editor. ToDo: No config file yet.
   - embedart        # Embed the album art directly into each file’s metadata.
