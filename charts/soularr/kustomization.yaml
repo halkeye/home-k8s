@@ -22,5 +22,4 @@ generators:
 configMapGenerator:
   - name: soularr-config
     files:
-      - ./resources/soularr.yml
-      - ./resources/soularr_to_betanin.sh
+      - ./resources/config.ini
