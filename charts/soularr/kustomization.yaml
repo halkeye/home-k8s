@@ -1,0 +1,26 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+helmGlobals:
+  chartHome: ./charts/
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+helmCharts:
+  - name: app-template
+    version: 3.7.3
+    repo: https://bjw-s-labs.github.io/helm-charts
+    valuesFile: ./values.yaml
+    releaseName: soularr
+
+generators:
+  - ../secret-generator.yaml
+
+configMapGenerator:
+  - name: soularr-config
+    files:
+      - ./resources/soularr.yml
+      - ./resources/soularr_to_betanin.sh
