@@ -12,13 +12,13 @@ controllers:
           tag: allow-env-variables
           # repository: mrusse08/soularr
           # tag: latest@sha256:5186cd4bdaf6a1595f86d90fe99a61bb95b2baaf02998d00cbac32e52f1121b3
-        command:
-          - /bin/bash
-          - -c
-          - |
-            cp /config/config.ini /data/config.ini
-            sed -i -e "s/LIDARR_API_KEY/$LIDARR_API_KEY/g; s/SLSKD_API_KEY/$SLSKD_API_KEY/g;" /data/config.ini
-            exec tini -g -- /app/run.sh
+        # command:
+        #   - /bin/bash
+        #   - -c
+        #   - |
+        #     cp /config/config.ini /data/config.ini
+        #     sed -i -e "s/LIDARR_API_KEY/$LIDARR_API_KEY/g; s/SLSKD_API_KEY/$SLSKD_API_KEY/g;" /data/config.ini
+        #     exec tini -g -- /app/run.sh
         env:
           TZ: America/Vancouver
           IN_DOCKER: true
@@ -63,7 +63,7 @@ persistence:
     name: soularr-config
     defaultMode: 0755
     globalMounts:
-      - path: /config/config.ini
+      - path: /data/config.ini
         subPath: config.ini
         readOnly: true
   tmp:
