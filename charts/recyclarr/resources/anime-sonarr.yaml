@@ -3,7 +3,7 @@
 sonarr:
   anime-sonarr-v4:
     # Set the URL/API Key to your actual instance
-    base_url: http://anime-sonarr.anime-sonarr:80
+    base_url: https://anime-sonarr.g4v.dev:443
     api_key: !env_var SONARR_API_KEY
     delete_old_custom_formats: true
     replace_existing_custom_formats: true
