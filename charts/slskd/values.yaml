@@ -16,6 +16,7 @@ controllers:
           SLSKD_NO_HTTPS: true
           SLSKD_SLSK_LISTEN_PORT: 50300
           BETANIN_URL: https://beets.g4v.dev
+          SHELL: /bin/bash
         envFrom:
           - secretRef:
               name: slskd-secret

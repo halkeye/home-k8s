@@ -18,7 +18,7 @@ integration:
     to_betanin:
       on:
         - DownloadDirectoryComplete
-      run: /bin/sh /config/slskd_to_betanin.sh
+      run: /config/slskd_to_betanin.sh
 # shares:
 #   directories:
 #     - /music/shared
