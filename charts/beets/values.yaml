@@ -67,9 +67,10 @@ persistence:
     type: emptyDir
   tmp:
     type: emptyDir
+  betanin-data:
+    type: emptyDir
     globalMounts:
-    - path: /tmp
-    - path: /config/share/betanin/
+    - path: /config/.local/share/betanin
   music:
     type: nfs
     server: 172.16.10.10
