@@ -13,12 +13,12 @@ permissions:
   file:
     mode: 750
 remote_configuration: false
-integration:
-  scripts:
-    to_betanin:
-      on:
-        - DownloadDirectoryComplete
-      run: /config/slskd_to_betanin.sh
+# integration:
+#   scripts:
+#     to_betanin:
+#       on:
+#         - DownloadDirectoryComplete
+#       run: /config/slskd_to_betanin.sh
 # shares:
 #   directories:
 #     - /music/shared

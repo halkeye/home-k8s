@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# trying out native lidarr plugin for now
+exit 1
+
 #name=$(echo "$1" | sed 's/.*"localDirectoryName":"\/downloads\/slskd\/\([^"]*\)".*/\1/')
 name=$(echo "$1" | jq .localDirectoryName -r | sed 's/\/downloads\/slskd\///')
 
