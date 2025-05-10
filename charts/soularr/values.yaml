@@ -26,18 +26,10 @@ controllers:
           - secretRef:
               name: soularr-secret
         probes:
-          liveness: &probes
-            enabled: true
-            custom: true
-            spec:
-              httpGet:
-                path: /health
-                port: 5080
-              initialDelaySeconds: 0
-              periodSeconds: 10
-              timeoutSeconds: 1
-              failureThreshold: 3
-          readiness: *probes
+          liveness:
+            enabled: false
+          readiness:
+            enabled: false
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
