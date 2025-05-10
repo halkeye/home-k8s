@@ -16,11 +16,7 @@ controllers:
       app:
         image:
           repository: ghcr.io/halkeye/docker-beets
-          tag: 2.3.0.4
-        command:
-          - /bin/sh
-          - -c
-          - "sleep 99d"
+          tag: 2.3.0.6
         env:
           TZ: American/Vancouver
           BETANIN_HOST: 0.0.0.0
