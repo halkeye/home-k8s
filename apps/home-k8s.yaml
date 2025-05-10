@@ -117,7 +117,7 @@ spec:
           - name: romm
           - name: slskd
           - name: snapshot-controller
-          - name: soularr
+          # - name: soularr
           - name: tachidesk
           - name: thelounge
           - name: unpackerr
