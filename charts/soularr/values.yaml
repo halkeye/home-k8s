@@ -64,7 +64,7 @@ persistence:
   config:
     type: configMap
     name: soularr-config
-    defaultMode: 755
+    defaultMode: 0755
     globalMounts:
       - path: /config/config.ini
         subPath: config.ini
