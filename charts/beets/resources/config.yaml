@@ -97,6 +97,8 @@ lastfm:
 
 rewrite:
   artist .*宇多田ヒカル.*: Hikaru Utada
+  artist .*松浦亜弥.*: Aya Matsuura
+  artist .*新しい学校のリーダーズ.*: Atarashii Gakko!
 
 
 # Bandcamp ########################################################################################
