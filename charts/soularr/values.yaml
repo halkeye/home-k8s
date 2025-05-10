@@ -2,14 +2,9 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
   main:
-    type: cronjob
     revisionHistoryLimit: 1
     annotations:
       reloader.stakater.com/auto: 'true'
-    cronjob:
-      schedule: '*/5'
-      successfulJobsHistory: 1
-      failedJobsHistory: 2
     containers:
       main:
         image:
@@ -21,7 +16,7 @@ controllers:
           - |
             cp /config/config.ini /data/config.ini
             sed -i -e "s/LIDARR_API_KEY/$LIDARR_API_KEY/g; s/SLSKD_API_KEY/$SLSKD_API_KEY/g;" /data/config.ini
-            exec python -u /app/soularr.py
+            exec tini -g -- /app/run.sh
         env:
           TZ: America/Vancouver
           IN_DOCKER: true
