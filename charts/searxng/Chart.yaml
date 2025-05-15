@@ -11,7 +11,7 @@ dependencies:
   - name: redis
     condition: redis.enabled
     repository: https://charts.bitnami.com/bitnami
-    version: 21.1.1
+    version: 21.1.2
 maintainers:
   - name: halkeye
     url: https://www.gavinmogan.com
