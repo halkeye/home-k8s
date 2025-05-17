@@ -6,7 +6,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/suwayomi/tachidesk
-          tag: v2.0.1744
+          tag: v2.0.1747
         env:
           TZ: America/Vancouver
           BIND_PORT: &port 4567
