@@ -1,6 +1,0 @@
-sonarr:
-  app-template:
-    ingress:
-      main:
-        annotations:
-          gethomepage.dev/name: Anime Sonarr

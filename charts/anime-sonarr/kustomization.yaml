@@ -1,0 +1,24 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+helmGlobals:
+  chartHome: ./charts/
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+helmCharts:
+  - name: app-template
+    version: 4.0.1
+    repo: https://bjw-s-labs.github.io/helm-charts
+    valuesFile: ../sonarr/values.yaml
+    releaseName: anime-sonarr 
+
+generators:
+  - ../secret-generator.yaml
+
+resources:
+  - ./templates/postgres-user.yaml
+  - ./templates/postgres.yaml

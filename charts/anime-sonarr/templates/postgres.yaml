@@ -2,21 +2,21 @@
 apiVersion: db.movetokube.com/v1alpha1
 kind: Postgres
 metadata:
-  name: sonarr-log
+  name: anime-sonarr-log
   annotations:
     postgres.db.movetokube.com/instance: postgres17-rw
 spec:
-  database: sonarr_log
+  database: anime-sonarr_log
   dropOnDelete: false
-  masterRole: sonarr
+  masterRole: anime-sonarr
 ---
 apiVersion: db.movetokube.com/v1alpha1
 kind: Postgres
 metadata:
-  name: sonarr-main
+  name: anime-sonarr-main
   annotations:
     postgres.db.movetokube.com/instance: postgres17-rw
 spec:
-  database: sonarr_main
+  database: anime-sonarr_main
   dropOnDelete: false
-  masterRole: sonarr
+  masterRole: anime-sonarr

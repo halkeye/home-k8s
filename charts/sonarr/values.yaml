@@ -1,181 +1,180 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
-app-template:
-  controllers:
-    main:
-      annotations:
-        reloader.stakater.com/auto: "true"
-      containers:
-        sonarr:
-          image:
-            repository: ghcr.io/home-operations/sonarr
-            tag: 4.0.14.2938
-          env:
-            TZ: America/Vancouver
-            # https://github.com/Radarr/Radarr/issues/7030#issuecomment-1039689518
-            # https://github.com/dotnet/runtime/issues/9336
-            COMPlus_EnableDiagnostics: "0"
-            SONARR__INSTANCENAME: "{{ .Release.Name }}"
-            SONARR__LOG__LEVEL: info
-            SONARR__AUTHENTICATION__METHOD: External
-            SONARR__AUTH__REQUIRED: DisabledForLocalAddresses
-            SONARR__POSTGRES__PORT: "5432"
-            SONARR__POSTGRES__HOST:
-              valueFrom:
-                secretKeyRef:
-                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
-                  key: HOST
-            SONARR__POSTGRES__MAINDB: "{{ .Release.Name }}_main"
-            SONARR__POSTGRES__LOGDB: "{{ .Release.Name }}_log"
-            SONARR__POSTGRES__USER:
-              valueFrom:
-                secretKeyRef:
-                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
-                  key: LOGIN
-            SONARR__POSTGRES__PASSWORD:
-              valueFrom:
-                secretKeyRef:
-                  name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
-                  key: PASSWORD
-          envFrom:
-            - secretRef:
-                name: "{{.Release.Name}}-secret"
-          probes:
-            liveness: &probes
-              enabled: true
-              custom: true
-              spec:
-                httpGet:
-                  path: /ping
-                  port: 8989
-                initialDelaySeconds: 0
-                periodSeconds: 10
-                timeoutSeconds: 1
-                failureThreshold: 3
-            readiness: *probes
-            startup:
-              enabled: false
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            capabilities:
-              drop: ["ALL"]
-          resources:
-            limits:
-              memory: 4Gi
-            requests:
-              memory: 2Gi
-              cpu: 30m
-        exportarr:
-          image:
-            repository: ghcr.io/onedr0p/exportarr
-            tag: v2.2.0
-          args:
-            - sonarr
-          env:
-            PORT: 9707
-            URL: http://localhost:8989
-            APIKEY:
-              valueFrom:
-                secretKeyRef:
-                  name: "{{.Release.Name}}-secret"
-                  key: SONARR__AUTH__APIKEY
-          resources:
-            requests:
-              cpu: 10m
-            limits:
-              memory: 128Mi
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            capabilities:
-              drop: ["ALL"]
-      pod:
+controllers:
+  main:
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      sonarr:
+        image:
+          repository: ghcr.io/home-operations/sonarr
+          tag: 4.0.14.2938
+        env:
+          TZ: America/Vancouver
+          # https://github.com/Radarr/Radarr/issues/7030#issuecomment-1039689518
+          # https://github.com/dotnet/runtime/issues/9336
+          COMPlus_EnableDiagnostics: "0"
+          SONARR__INSTANCENAME: "{{ .Release.Name }}"
+          SONARR__LOG__LEVEL: info
+          SONARR__AUTHENTICATION__METHOD: External
+          SONARR__AUTH__REQUIRED: DisabledForLocalAddresses
+          SONARR__POSTGRES__PORT: "5432"
+          SONARR__POSTGRES__HOST:
+            valueFrom:
+              secretKeyRef:
+                name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                key: HOST
+          SONARR__POSTGRES__MAINDB: "{{ .Release.Name }}_main"
+          SONARR__POSTGRES__LOGDB: "{{ .Release.Name }}_log"
+          SONARR__POSTGRES__USER:
+            valueFrom:
+              secretKeyRef:
+                name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                key: LOGIN
+          SONARR__POSTGRES__PASSWORD:
+            valueFrom:
+              secretKeyRef:
+                name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                key: PASSWORD
+        envFrom:
+          - secretRef:
+              name: "{{.Release.Name}}-secret"
+        probes:
+          liveness: &probes
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /ping
+                port: 8989
+              initialDelaySeconds: 0
+              periodSeconds: 10
+              timeoutSeconds: 1
+              failureThreshold: 3
+          readiness: *probes
+          startup:
+            enabled: false
         securityContext:
-          runAsUser: 1026
-          runAsGroup: 100
-          runAsNonRoot: true
-          fsGroup: 100
-          fsGroupChangePolicy: OnRootMismatch
-  service:
-    main:
-      controller: main
-      ports:
-        http:
-          port: 8989
-        metrics:
-          port: 9707
-  serviceMonitor:
-    main:
-      enabled: true
-      serviceName: '{{ include "bjw-s.common.lib.chart.names.fullname" $ }}'
-      endpoints:
-        - port: metrics
-          scheme: http
-          path: /metrics
-          interval: 1m
-          scrapeTimeout: 1m
-  ingress:
-    main:
-      enabled: true
-      annotations:
-        gethomepage.dev/enabled: "true"
-        gethomepage.dev/group: Media Fetchers
-        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/sonarr.png
-        gethomepage.dev/name: '{{ .Release.Name | title | replace "-" " " }}'
-      hosts:
-        - host: "{{ .Release.Name }}.g4v.dev"
-          paths:
-            - path: /
-              service:
-                identifier: main
-                port: http
-  persistence:
-    config2:
-      type: nfs
-      server: 172.16.10.10
-      path: "/volume1/Apps/sonarr"
-    config:
-      enabled: true
-      type: persistentVolumeClaim
-      storageClass: nas-apps
-      accessMode: ReadWriteMany
-      size: 10Gi
-    tmp:
-      enabled: true
-      type: emptyDir
-    torrents:
-      type: nfs
-      server: 172.16.10.10
-      path: /volume1/Apps/torrents
-      globalMounts:
-        - path: /torrents
-    nzbdownloads:
-      type: nfs
-      server: 172.16.10.10
-      path: /volume1/Apps/nzbget
-      globalMounts:
-        - path: /nzb-downloads
-    tv:
-      type: nfs
-      server: 172.16.10.10
-      path: /volume1/TV
-      globalMounts:
-        - path: /tv
-    webseries:
-      type: nfs
-      server: 172.16.10.10
-      path: /volume1/Webseries
-      globalMounts:
-        - path: /webseries
-    anime:
-      type: nfs
-      server: 172.16.10.10
-      path: /volume1/Anime
-      globalMounts:
-        - path: /anime
-    downloads:
-      type: nfs
-      server: 172.16.10.10
-      path: "/volume1/Downloads"
-      globalMounts:
-        - path: /downloads
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+        resources:
+          limits:
+            memory: 4Gi
+          requests:
+            memory: 2Gi
+            cpu: 30m
+      exportarr:
+        image:
+          repository: ghcr.io/onedr0p/exportarr
+          tag: v2.2.0
+        args:
+          - sonarr
+        env:
+          PORT: 9707
+          URL: http://localhost:8989
+          APIKEY:
+            valueFrom:
+              secretKeyRef:
+                name: "{{.Release.Name}}-secret"
+                key: SONARR__AUTH__APIKEY
+        resources:
+          requests:
+            cpu: 10m
+          limits:
+            memory: 128Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+    pod:
+      securityContext:
+        runAsUser: 1026
+        runAsGroup: 100
+        runAsNonRoot: true
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 8989
+      metrics:
+        port: 9707
+serviceMonitor:
+  main:
+    enabled: true
+    serviceName: '{{ include "bjw-s.common.lib.chart.names.fullname" $ }}'
+    endpoints:
+      - port: metrics
+        scheme: http
+        path: /metrics
+        interval: 1m
+        scrapeTimeout: 1m
+ingress:
+  main:
+    enabled: true
+    annotations:
+      gethomepage.dev/enabled: "true"
+      gethomepage.dev/group: Media Fetchers
+      gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/sonarr.png
+      gethomepage.dev/name: '{{ .Release.Name | title | replace "-" " " }}'
+    hosts:
+      - host: "{{ .Release.Name }}.g4v.dev"
+        paths:
+          - path: /
+            service:
+              identifier: main
+              port: http
+persistence:
+  config2:
+    type: nfs
+    server: 172.16.10.10
+    path: "/volume1/Apps/sonarr"
+  config:
+    enabled: true
+    type: persistentVolumeClaim
+    storageClass: nas-apps
+    accessMode: ReadWriteMany
+    size: 10Gi
+  tmp:
+    enabled: true
+    type: emptyDir
+  torrents:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Apps/torrents
+    globalMounts:
+      - path: /torrents
+  nzbdownloads:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Apps/nzbget
+    globalMounts:
+      - path: /nzb-downloads
+  tv:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/TV
+    globalMounts:
+      - path: /tv
+  webseries:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Webseries
+    globalMounts:
+      - path: /webseries
+  anime:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Anime
+    globalMounts:
+      - path: /anime
+  downloads:
+    type: nfs
+    server: 172.16.10.10
+    path: "/volume1/Downloads"
+    globalMounts:
+      - path: /downloads
