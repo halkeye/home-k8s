@@ -14,4 +14,9 @@ helmCharts:
     version: 4.0.1
     repo: https://bjw-s-labs.github.io/helm-charts
     valuesFile: ./values.yaml
-    releaseName: pinchflat
+    releaseName: system-upgrade-controller
+
+resources:
+  - ./templates/agent.yaml
+  - ./templates/server.yaml
+
