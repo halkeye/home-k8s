@@ -101,7 +101,6 @@ spec:
           - { name: longhorn, namespace: longhorn-system }
           - { name: home-k8s-tailscale-operator, namespace: tailscale }
 
-          - name: beets
           - name: cloudnative-pg
           - name: dns-over-http
           - name: dnsdist
@@ -117,7 +116,6 @@ spec:
           - name: romm
           - name: slskd
           - name: snapshot-controller
-          # - name: soularr
           - name: tachidesk
           - name: thelounge
           - name: unpackerr
