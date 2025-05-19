@@ -16,9 +16,6 @@ helmCharts:
     valuesFile: values.yaml
     releaseName: sonarr 
 
-generators:
-  - ../secret-generator.yaml
-
 resources:
   - ./templates/postgres-user.yaml
   - ./templates/postgres.yaml
