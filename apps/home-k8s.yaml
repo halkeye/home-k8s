@@ -44,7 +44,6 @@ spec:
           - name: readarr
           - name: stash
           - name: wg-access-server
-          - name: youtubedl-material
           # - name: ytdl-sub
   template:
     metadata:
@@ -115,6 +114,7 @@ spec:
           - name: tachidesk
           - name: thelounge
           - name: unpackerr
+          - name: youtubedl-material
   template:
     metadata:
       name: '{{.name}}'
