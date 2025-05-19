@@ -78,6 +78,7 @@ app-template:
     data:
       enabled: true
       type: persistentVolumeClaim
+      suffix: data
       accessMode: ReadWriteOnce
       size: 1Gi
     manga:
