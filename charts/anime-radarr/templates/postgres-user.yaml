@@ -6,7 +6,7 @@ metadata:
     postgres.db.movetokube.com/instance: postgres17-rw
 spec:
   role: anime-radarr-group
-  database: anime-radarr_main
+  database: anime-radarr-main
   secretName: anime-radarr-db-secret
   privileges: OWNER
   secretTemplate:
