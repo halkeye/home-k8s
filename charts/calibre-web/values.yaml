@@ -69,6 +69,7 @@ app-template:
       enabled: true
       suffix: config
       type: persistentVolumeClaim
+      size: 10Gi
       existingClaim: "calibre-web-config"
       globalMounts:
         - path: /config
