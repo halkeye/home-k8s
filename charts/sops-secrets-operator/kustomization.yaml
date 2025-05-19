@@ -1,0 +1,17 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+helmGlobals:
+  chartHome: ./charts/
+
+helmCharts:
+  - name: sops-secrets-operator
+    version: 0.22.0
+    repo: https://isindir.github.io/sops-secrets-operator/
+    valuesFile: ./values.yaml
+    releaseName: sops-secrets-operator
+
+generators:
+  - ../secret-generator.yaml
