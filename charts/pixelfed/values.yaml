@@ -193,10 +193,6 @@ controllers:
           - migrate
           - --force
 
-serviceAccount:
-  create: true
-  name: pixelfed
-
 service:
   main:
     controller: main

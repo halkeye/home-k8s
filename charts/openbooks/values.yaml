@@ -56,10 +56,6 @@ controllers:
             memory: 100Mi
             cpu: 10m
 
-serviceAccount:
-  create: true
-  name: openbooks
-
 service:
   main:
     controller: main

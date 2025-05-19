@@ -45,10 +45,6 @@ controllers:
             memory: 256Mi
             cpu: 10m
 
-serviceAccount:
-  create: true
-  name: plexripper
-
 service:
   main:
     controller: main

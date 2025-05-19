@@ -76,10 +76,6 @@ controllers:
             memory: 100Mi
             cpu: 10m
 
-serviceAccount:
-  create: true
-  name: kitchenowl
-
 service:
   main:
     controller: main
