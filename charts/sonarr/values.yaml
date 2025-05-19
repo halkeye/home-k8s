@@ -15,7 +15,6 @@ app-template:
             # https://github.com/dotnet/runtime/issues/9336
             COMPlus_EnableDiagnostics: "0"
             SONARR__INSTANCENAME: "{{ .Release.Name }}"
-            SONARR__PORT: &port 80
             SONARR__LOG__LEVEL: info
             SONARR__AUTHENTICATION__METHOD: External
             SONARR__AUTH__REQUIRED: DisabledForLocalAddresses
@@ -47,7 +46,7 @@ app-template:
               spec:
                 httpGet:
                   path: /ping
-                  port: *port
+                  port: 8989
                 initialDelaySeconds: 0
                 periodSeconds: 10
                 timeoutSeconds: 1
@@ -74,7 +73,7 @@ app-template:
             - sonarr
           env:
             PORT: 9707
-            URL: http://localhost:80
+            URL: http://localhost:8989
             APIKEY:
               valueFrom:
                 secretKeyRef:
@@ -102,7 +101,7 @@ app-template:
       controller: main
       ports:
         http:
-          port: *port
+          port: 8989
         metrics:
           port: 9707
   serviceMonitor:
