@@ -2,9 +2,14 @@ apiVersion: db.movetokube.com/v1alpha1
 kind: PostgresUser
 metadata:
   name: lidarr
-  namespace: lidarr
+  annotations:
+    postgres.db.movetokube.com/instance: postgres17-rw
 spec:
-  role: lidarr
-  database: lidarr
+  role: lidarr-group
+  database: lidarr-main
   secretName: lidarr-db-secret
   privileges: OWNER
+  secretTemplate:
+    HOST_NO_PORT: "{{ .HostNoPort }}"
+    PORT: "{{ .Port }}"
+    
