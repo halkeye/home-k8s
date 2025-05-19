@@ -8,3 +8,5 @@ extraEnv:
   value: /etc/sops-age-key-file/key
 metrics:
   enabled: true
+rbac:
+  enabled: true

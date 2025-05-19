@@ -13,5 +13,16 @@ helmCharts:
     valuesFile: ./values.yaml
     releaseName: sops-secrets-operator
 
+patches:
+  - target:
+      group: rbac.authorization.k8s.io
+      version: v1
+      kind: ClusterRoleBinding
+      name: sops-secrets-operator
+    patch: |-
+      - op: replace
+        path: /subjects/0/namespace
+        value: sops-secrets-operator
+
 generators:
   - ../secret-generator.yaml
