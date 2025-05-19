@@ -90,6 +90,7 @@ app-template:
                 port: http
   configMaps:
     config:
+      suffix: config
       data:
         crontab: |
           0 3 * * * rclone sync "$KSCB_SRC" "$KSCB_DST:unifi" -v --backup-dir="$KSCB_DST:unifi-old/$(date -u +"%Y-%m-%dT%H-%M-%SZ")"
