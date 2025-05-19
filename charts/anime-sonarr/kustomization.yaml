@@ -16,9 +16,8 @@ helmCharts:
     valuesFile: ../sonarr/values.yaml
     releaseName: anime-sonarr 
 
-generators:
-  - ../secret-generator.yaml
-
 resources:
   - ./templates/postgres-user.yaml
   - ./templates/postgres.yaml
+  - ./secret.enc.yaml
+

@@ -30,8 +30,6 @@ spec:
           # Apps but extra
           - name: anime-radarr
             chart: radarr
-          - name: anime-sonarr
-            chart: sonarr
 
           # App
           - name: audiobookshelf
@@ -51,7 +49,6 @@ spec:
           - name: prowlarr
           - name: radarr
           - name: readarr
-          - name: sonarr
           - name: stash
           - name: wg-access-server
           - name: youtubedl-material
@@ -101,9 +98,10 @@ spec:
           - { name: longhorn, namespace: longhorn-system }
           - { name: home-k8s-tailscale-operator, namespace: tailscale }
 
+          - name: anime-sonarr
           - name: cloudnative-pg
-          - name: dns-over-http
           - name: dnsdist
+          - name: dns-over-http
           - name: minio
           - name: navidrome
           - name: netbootxyz
@@ -116,6 +114,8 @@ spec:
           - name: romm
           - name: slskd
           - name: snapshot-controller
+          - name: sonarr
+          - name: sops-secrets-operator
           - name: tachidesk
           - name: thelounge
           - name: unpackerr

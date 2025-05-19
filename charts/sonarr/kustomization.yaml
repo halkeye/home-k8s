@@ -22,3 +22,4 @@ generators:
 resources:
   - ./templates/postgres-user.yaml
   - ./templates/postgres.yaml
+  - ./secret.enc.yaml
