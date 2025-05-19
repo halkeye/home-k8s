@@ -36,7 +36,6 @@ spec:
           - name: frigate
           - name: immich
           - name: kobodl
-          - name: lidarr
           - name: lms
           - name: mylar3
           - name: prowlarr
@@ -95,8 +94,9 @@ spec:
           - name: dnsdist
           - name: dns-over-http
           - name: komf
-          - name: minio
           - name: komga
+          - name: lidarr
+          - name: minio
           - name: navidrome
           - name: netbootxyz
           - name: openbooks
