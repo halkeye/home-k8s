@@ -43,7 +43,7 @@ app-template:
   controllers:
     migrations:
       type: job
-      nameOverride: '{{ printf "immich-migrations-%s" (.Values.controllers.migrations.containers.migrations.image.tag | replace "." "-") }}'
+      forceRename: '{{ printf "immich-migrations-%s" (.Values.controllers.migrations.containers.migrations.image.tag | replace "." "-") }}'
       revisionHistoryLimit: 1
       job:
         backoffLimit: 0
