@@ -1,13 +1,13 @@
 apiVersion: db.movetokube.com/v1alpha1
 kind: PostgresUser
 metadata:
-  name: radarr
+  name: anime-radarr
   annotations:
     postgres.db.movetokube.com/instance: postgres17-rw
 spec:
-  role: radarr-group
-  database: radarr_main
-  secretName: radarr-db-secret
+  role: anime-radarr-group
+  database: anime-radarr_main
+  secretName: anime-radarr-db-secret
   privileges: OWNER
   secretTemplate:
     HOST_NO_PORT: "{{ .HostNoPort }}"

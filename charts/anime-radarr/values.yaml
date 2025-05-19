@@ -1,6 +1,0 @@
-radarr:
-  app-template:
-    ingress:
-      main:
-        annotations:
-          gethomepage.dev/name: Anime Radarr

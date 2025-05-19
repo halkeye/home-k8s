@@ -2,21 +2,21 @@
 apiVersion: db.movetokube.com/v1alpha1
 kind: Postgres
 metadata:
-  name: radarr-log
+  name: anime-radarr-log
   annotations:
     postgres.db.movetokube.com/instance: postgres17-rw
 spec:
-  database: radarr_log
+  database: anime-radarr_log
   dropOnDelete: false
-  masterRole: radarr-group
+  masterRole: anime-radarr-group
 ---
 apiVersion: db.movetokube.com/v1alpha1
 kind: Postgres
 metadata:
-  name: radarr-main
+  name: anime-radarr-main
   annotations:
     postgres.db.movetokube.com/instance: postgres17-rw
 spec:
-  database: radarr_main
+  database: anime-radarr_main
   dropOnDelete: false
-  masterRole: radarr-group
+  masterRole: anime-radarr-group
