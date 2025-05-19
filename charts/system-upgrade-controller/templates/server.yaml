@@ -6,7 +6,7 @@ metadata:
   name: server
 spec:
   version: "v1.33.0+k3s1" # renovate: datasource=github-releases depName=k3s-io/k3s
-  serviceAccountName: system-upgrade
+  serviceAccountName: system-upgrade-controller
   concurrency: 1
   cordon: true
   nodeSelector:
