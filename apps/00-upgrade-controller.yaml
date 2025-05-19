@@ -15,9 +15,8 @@ spec:
     path: charts/system-upgrade-controller
     repoURL: https://github.com/halkeye/home-k8s
     targetRevision: HEAD
-    helm:
-      valueFiles:
-        - values.yaml
+    kustomize:
+      namespace: system-upgrade
   syncPolicy:
     automated:
       selfHeal: true
