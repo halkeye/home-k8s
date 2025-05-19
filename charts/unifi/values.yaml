@@ -97,6 +97,7 @@ app-template:
   persistence:
     data:
       enabled: true
+      suffix: data
       accessMode: ReadWriteOnce
       size: 20Gi
       globalMounts:
