@@ -2,7 +2,8 @@ apiVersion: db.movetokube.com/v1alpha1
 kind: PostgresUser
 metadata:
   name: wg-access-server
-  namespace: wg-access-server
+  annotations:
+    postgres.db.movetokube.com/instance: postgres17-rw
 spec:
   role: wg-access-server
   database: wg-access-server
