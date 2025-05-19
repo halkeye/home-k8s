@@ -27,10 +27,6 @@ spec:
           - { namespace: monitoring, name: speedtest-exporter }
           - { namespace: monitoring, name: unifi-poller }
 
-          # Apps but extra
-          - name: anime-radarr
-            chart: radarr
-
           # App
           - name: audiobookshelf
           - name: autobrr
@@ -47,7 +43,6 @@ spec:
           - name: lms
           - name: mylar3
           - name: prowlarr
-          - name: radarr
           - name: readarr
           - name: stash
           - name: wg-access-server
@@ -98,6 +93,7 @@ spec:
           - { name: longhorn, namespace: longhorn-system }
           - { name: home-k8s-tailscale-operator, namespace: tailscale }
 
+          - name: anime-radarr
           - name: anime-sonarr
           - name: cloudnative-pg
           - name: dnsdist
@@ -109,6 +105,7 @@ spec:
           - name: pinchflat
           - name: plexripper
           - name: postgres-home-backup
+          - name: radarr
           - name: recommendarr
           - name: recyclarr
           - name: romm
