@@ -112,6 +112,7 @@ app-template:
     config:
       enabled: true
       type: persistentVolumeClaim
+      suffix: config
       accessMode: ReadWriteOnce
       size: 1Gi
       storageClass: nas-apps

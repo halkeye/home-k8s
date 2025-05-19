@@ -67,6 +67,7 @@ app-template:
   persistence:
     config:
       enabled: true
+      suffix: config
       type: persistentVolumeClaim
       accessMode: ReadWriteOnce
       storageClass: nas-apps
