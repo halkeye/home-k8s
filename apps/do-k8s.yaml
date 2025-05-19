@@ -41,7 +41,6 @@ spec:
           - name: foundry-vtt
           - name: gathio
           - name: grafana
-          - name: homarr
           - name: it-tools
           - name: libmedium
           - name: microbin
