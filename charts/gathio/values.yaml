@@ -64,6 +64,7 @@ app-template:
           subPath: config.toml
     files:
       enabled: true
+      suffix: files
       type: persistentVolumeClaim
       accessMode: ReadWriteOnce
       size: 10Gi
