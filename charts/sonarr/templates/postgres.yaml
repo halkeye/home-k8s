@@ -8,7 +8,7 @@ metadata:
 spec:
   database: sonarr_log
   dropOnDelete: false
-  masterRole: sonarr
+  masterRole: sonarr-group
 ---
 apiVersion: db.movetokube.com/v1alpha1
 kind: Postgres
@@ -19,4 +19,4 @@ metadata:
 spec:
   database: sonarr_main
   dropOnDelete: false
-  masterRole: sonarr
+  masterRole: sonarr-group
