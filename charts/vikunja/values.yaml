@@ -62,11 +62,7 @@ app-template:
             VIKUNJA_REDIS_ENABLED: true
             VIKUNJA_REDIS_HOST: "{{.Release.Name}}-redis-master:6379"
             VIKUNJA_REDIS_DB: 0
-            VIKUNJA_REDIS_PASSWORD:
-              valueFrom:
-                secretKeyRef:
-                  name: "{{ .Release.Name }}-redis"
-                  key: redis-password
+            VIKUNJA_REDIS_PASSWORD: ""
             VIKUNJA_KEYVALUE_TYPE: "redis"
             # Postgres
             VIKUNJA_DATABASE_TYPE: "postgres"
@@ -159,6 +155,7 @@ app-template:
       type: emptyDir
     files:
       enabled: true
+      suffix: files
       type: persistentVolumeClaim
       accessMode: ReadWriteOnce
       size: 10Gi
