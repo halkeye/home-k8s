@@ -1,13 +1,15 @@
 apiVersion: db.movetokube.com/v1alpha1
 kind: PostgresUser
 metadata:
-  name: {{ .Release.Name }}
+  name: autobrr
+  annotations:
+    postgres.db.movetokube.com/instance: postgres17-rw
 spec:
-  role: {{ .Release.Name }}
-  database: {{ .Release.Name }}
-  secretName: {{ .Release.Name }}-db-secret
+  role: autobrr-group
+  database: autobrr
+  secretName: autobrr-db-secret
   privileges: OWNER
   secretTemplate:
-    HOST_NO_PORT: "{{ `{{ .HostNoPort }}` }}"
-    PORT: "{{ `{{ .Port }}` }}"
+    HOST_NO_PORT: "{{ .HostNoPort }}"
+    PORT: "{{ .Port }}"
     

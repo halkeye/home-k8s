@@ -29,7 +29,6 @@ spec:
 
           # App
           - name: audiobookshelf
-          - name: autobrr
           - name: bandcampsync
           - name: bazarr
           - name: calibre-web
@@ -87,6 +86,7 @@ spec:
 
           - name: anime-radarr
           - name: anime-sonarr
+          - name: autobrr
           - name: cloudnative-pg
           - name: dnsdist
           - name: dns-over-http
