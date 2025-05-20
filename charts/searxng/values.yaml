@@ -109,6 +109,7 @@ app-template:
         - path: /etc/searxng
   configMaps:
     config:
+      suffix: config
       data:
         limiter.toml: |-
           [real_ip]
