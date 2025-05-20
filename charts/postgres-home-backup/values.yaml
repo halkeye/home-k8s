@@ -35,7 +35,7 @@ controllers:
           - name: BACKUP_KEEP_MINS
             value: "7200"
           - name: POSTGRES_EXTRA_OPTS
-            value: "-b -C -c -Z6"
+            value: "-b -C -c -Z6 --schema=public"
 persistence:
   backups:
     type: nfs
