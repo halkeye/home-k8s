@@ -1,174 +1,173 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
-app-template:
-  controllers:
-    typesense:
-      containers:
-        typesense:
-          image:
-            repository: docker.io/typesense/typesense
-            tag: 0.25.2
-          env:
-            TZ: America/Vancouver
-            TYPESENSE_DATA_DIR: /tmp
-            TYPESENSE_API_KEY: typesense
-          resources:
-            requests:
-              cpu: 50m
-              memory: 100Mi
-            limits:
-              memory: 500Mi
-          probes:
-            liveness: &probes
-              enabled: true
-              custom: true
-              spec:
-                httpGet:
-                  path: /health
-                  port: 8108
-                initialDelaySeconds: 0
-                periodSeconds: 10
-                timeoutSeconds: 1
-                failureThreshold: 3
-            readiness: *probes
+controllers:
+  typesense:
+    containers:
+      typesense:
+        image:
+          repository: docker.io/typesense/typesense
+          tag: 0.25.2
+        env:
+          TZ: America/Vancouver
+          TYPESENSE_DATA_DIR: /tmp
+          TYPESENSE_API_KEY: typesense
+        resources:
+          requests:
+            cpu: 50m
+            memory: 100Mi
+          limits:
+            memory: 500Mi
+        probes:
+          liveness: &probes
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /health
+                port: 8108
+              initialDelaySeconds: 0
+              periodSeconds: 10
+              timeoutSeconds: 1
+              failureThreshold: 3
+          readiness: *probes
 
-    app:
-      annotations:
-        reloader.stakater.com/auto: "true"
-      containers:
+  app:
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      app:
+        image:
+          repository: vikunja/vikunja
+          tag: 0.24.6
+        env:
+          TZ: America/Vancouver
+          VIKUNJA_TYPESENSE_ENABLED: "true"
+          VIKUNJA_TYPESENSE_APIKEY: typesense
+          VIKUNJA_TYPESENSE_URL: "http://{{.Release.Name}}-typesense:8108"
+          VIKUNJA_SERVICE_ENABLEREGISTRATION: false
+          VIKUNJA_SERVICE_TIMEZONE: "America/Vancouver"
+          VIKUNJA_SERVICE_PUBLICURL: "https://tasks.g4v.dev"
+          VIKUNJA_SERVICE_FRONTENDURL: "https://tasks.g4v.dev"
+          VIKUNJA_SERVICE_ENABLEPUBLICTEAMS: true
+          VIKUNJA_FILES_BASEPATH: /app/vikunja/files
+          VIKUNJA_FRONTEND_URL: "https://tasks.g4v.dev"
+          VIKUNJA_AUTH_LOCAL: false
+          VIKUNJA_METRICS_ENABLED: true
+          VIKUNJA_MAILER_ENABLED: true
+          VIKUNJA_MAILER_HOST: postfix-mailgun-relay.smtp.svc.cluster.local
+          VIKUNJA_MAILER_PORT: 587
+          VIKUNJA_MAILER_FROMEMAIL: "noreply@g4v.dev"
+          VIKUNJA_MAILER_SKIPTLSVERIFY: true
+          VIKUNJA_REDIS_ENABLED: true
+          VIKUNJA_REDIS_HOST: "{{.Release.Name}}-redis-master:6379"
+          VIKUNJA_REDIS_DB: 0
+          VIKUNJA_REDIS_PASSWORD: ""
+          VIKUNJA_KEYVALUE_TYPE: "redis"
+          # Postgres
+          VIKUNJA_DATABASE_TYPE: "postgres"
+          VIKUNJA_DATABASE_NAME:
+            valueFrom:
+              secretKeyRef:
+                name: vikunja-db-secret-vikunja
+                key: LOGIN
+          VIKUNJA_DATABASE_USER:
+            valueFrom:
+              secretKeyRef:
+                name: vikunja-db-secret-vikunja
+                key: LOGIN
+          VIKUNJA_DATABASE_PASSWORD:
+            valueFrom:
+              secretKeyRef:
+                name: vikunja-db-secret-vikunja
+                key: PASSWORD
+          VIKUNJA_DATABASE_HOST:
+            valueFrom:
+              secretKeyRef:
+                name: vikunja-db-secret-vikunja
+                key: HOST
+          VIKUNJA_DATABASE_DATABASE:
+            valueFrom:
+              secretKeyRef:
+                name: vikunja-db-secret-vikunja
+                key: DATABASE_NAME
+          VIKUNJA_DATABASE_SSLMODE: "require"
+        envFrom:
+          - secretRef:
+              name: "{{.Release.Name}}-secret"
+        resources:
+          requests:
+            cpu: 50m
+            memory: 100Mi
+          limits:
+            memory: 500Mi
+        probes:
+          liveness: &probes
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /api/v1/info
+                port: 3456
+              initialDelaySeconds: 0
+              periodSeconds: 10
+              timeoutSeconds: 1
+              failureThreshold: 3
+          readiness: *probes
+serviceMonitor:
+  app:
+    serviceName: app
+    endpoints:
+      - port: http
+        scheme: http
+        path: /api/v1/metrics
+        interval: 1m
+        scrapeTimeout: 10s
+        basicAuth:
+          username:
+            name: "vikunja-secret"
+            key: VIKUNJA_METRICS_USERNAME
+          password:
+            name: "vikunja-secret"
+            key: VIKUNJA_METRICS_PASSWORD
+service:
+  app:
+    controller: app
+    ports:
+      http:
+        port: 3456
+  typesense:
+    controller: typesense
+    ports:
+      http:
+        port: 8108
+ingress:
+  app:
+    hosts:
+      - host: tasks.g4v.dev
+        paths:
+          - path: /
+            service:
+              identifier: app
+              port: http
+persistence:
+  tmp:
+    type: emptyDir
+  files:
+    enabled: true
+    suffix: files
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    size: 10Gi
+    advancedMounts:
+      app:
         app:
-          image:
-            repository: vikunja/vikunja
-            tag: 0.24.6
-          env:
-            TZ: America/Vancouver
-            VIKUNJA_TYPESENSE_ENABLED: "true"
-            VIKUNJA_TYPESENSE_APIKEY: typesense
-            VIKUNJA_TYPESENSE_URL: "http://{{.Release.Name}}-typesense:8108"
-            VIKUNJA_SERVICE_ENABLEREGISTRATION: false
-            VIKUNJA_SERVICE_TIMEZONE: "America/Vancouver"
-            VIKUNJA_SERVICE_PUBLICURL: "https://tasks.g4v.dev"
-            VIKUNJA_SERVICE_FRONTENDURL: "https://tasks.g4v.dev"
-            VIKUNJA_SERVICE_ENABLEPUBLICTEAMS: true
-            VIKUNJA_FILES_BASEPATH: /app/vikunja/files
-            VIKUNJA_FRONTEND_URL: "https://tasks.g4v.dev"
-            VIKUNJA_AUTH_LOCAL: false
-            VIKUNJA_METRICS_ENABLED: true
-            VIKUNJA_MAILER_ENABLED: true
-            VIKUNJA_MAILER_HOST: postfix-mailgun-relay.smtp.svc.cluster.local
-            VIKUNJA_MAILER_PORT: 587
-            VIKUNJA_MAILER_FROMEMAIL: "noreply@g4v.dev"
-            VIKUNJA_MAILER_SKIPTLSVERIFY: true
-            VIKUNJA_REDIS_ENABLED: true
-            VIKUNJA_REDIS_HOST: "{{.Release.Name}}-redis-master:6379"
-            VIKUNJA_REDIS_DB: 0
-            VIKUNJA_REDIS_PASSWORD: ""
-            VIKUNJA_KEYVALUE_TYPE: "redis"
-            # Postgres
-            VIKUNJA_DATABASE_TYPE: "postgres"
-            VIKUNJA_DATABASE_NAME:
-              valueFrom:
-                secretKeyRef:
-                  name: vikunja-db-secret-vikunja
-                  key: LOGIN
-            VIKUNJA_DATABASE_USER:
-              valueFrom:
-                secretKeyRef:
-                  name: vikunja-db-secret-vikunja
-                  key: LOGIN
-            VIKUNJA_DATABASE_PASSWORD:
-              valueFrom:
-                secretKeyRef:
-                  name: vikunja-db-secret-vikunja
-                  key: PASSWORD
-            VIKUNJA_DATABASE_HOST:
-              valueFrom:
-                secretKeyRef:
-                  name: vikunja-db-secret-vikunja
-                  key: HOST
-            VIKUNJA_DATABASE_DATABASE:
-              valueFrom:
-                secretKeyRef:
-                  name: vikunja-db-secret-vikunja
-                  key: DATABASE_NAME
-            VIKUNJA_DATABASE_SSLMODE: "require"
-          envFrom:
-            - secretRef:
-                name: "{{.Release.Name}}-secret"
-          resources:
-            requests:
-              cpu: 50m
-              memory: 100Mi
-            limits:
-              memory: 500Mi
-          probes:
-            liveness: &probes
-              enabled: true
-              custom: true
-              spec:
-                httpGet:
-                  path: /api/v1/info
-                  port: 3456
-                initialDelaySeconds: 0
-                periodSeconds: 10
-                timeoutSeconds: 1
-                failureThreshold: 3
-            readiness: *probes
-  serviceMonitor:
-    app:
-      serviceName: app
-      endpoints:
-        - port: http
-          scheme: http
-          path: /api/v1/metrics
-          interval: 1m
-          scrapeTimeout: 10s
-          basicAuth:
-            username:
-              name: "vikunja-secret"
-              key: VIKUNJA_METRICS_USERNAME
-            password:
-              name: "vikunja-secret"
-              key: VIKUNJA_METRICS_PASSWORD
-  service:
-    app:
-      controller: app
-      ports:
-        http:
-          port: 3456
-    typesense:
-      controller: typesense
-      ports:
-        http:
-          port: 8108
-  ingress:
-    app:
-      hosts:
-        - host: tasks.g4v.dev
-          paths:
-            - path: /
-              service:
-                identifier: app
-                port: http
-  persistence:
-    tmp:
-      type: emptyDir
-    files:
-      enabled: true
-      suffix: files
-      type: persistentVolumeClaim
-      accessMode: ReadWriteOnce
-      size: 10Gi
-      advancedMounts:
+        - path: /app/vikunja/files
+  vikunja-config:
+    type: secret
+    name: "{{.Release.Name}}-secret"
+    advancedMounts:
+      app:
         app:
-          app:
-          - path: /app/vikunja/files
-    vikunja-config:
-      type: secret
-      name: "{{.Release.Name}}-secret"
-      advancedMounts:
-        app:
-          app:
-          - path: /etc/vikunja/config.yml
-            subPath: config.yml
-            readOnly: true
+        - path: /etc/vikunja/config.yml
+          subPath: config.yml
+          readOnly: true
