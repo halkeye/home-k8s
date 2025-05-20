@@ -44,6 +44,7 @@ app-template:
                 name: '{{.Release.Name}}-secret'
   configMaps:
     config:
+      suffix: config
       data:
         config.yml: |-
           cache:
