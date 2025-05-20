@@ -109,6 +109,7 @@ app-template:
   secrets:
     secret:
       enabled: true
+      suffix: secret
       stringData:
         config.yaml: |-
           # Network-specific config options
