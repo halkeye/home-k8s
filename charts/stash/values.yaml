@@ -61,6 +61,7 @@ app-template:
       enabled: true
       type: persistentVolumeClaim
       storageClass: nas-apps
+      suffix: config
       accessMode: ReadWriteMany
       size: 10Gi
       globalMounts:
