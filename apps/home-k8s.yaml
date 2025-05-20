@@ -35,7 +35,6 @@ spec:
           - name: calibre-web
           - name: frigate
           - name: kobodl
-          - name: mylar3
           - name: prowlarr
           - name: readarr
           - name: stash
@@ -97,6 +96,7 @@ spec:
           - name: lidarr
           - name: lms
           - name: minio
+          - name: mylar3
           - name: navidrome
           - name: netbootxyz
           - name: openbooks
