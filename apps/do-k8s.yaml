@@ -51,7 +51,6 @@ spec:
           - name: tautulli
           - name: unifi
           - name: vikunja
-          - name: vouch
   template:
     metadata:
       name: '{{.name}}'
