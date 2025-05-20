@@ -129,11 +129,6 @@ controllers:
               secretKeyRef:
                 name: "{{ .Release.Name }}-secret"
                 key: REDIS_HOSTNAME
-          IMMICH_MACHINE_LEARNING_URL:
-            valueFrom:
-              secretKeyRef:
-                name: "{{ .Release.Name }}-secret"
-                key: IMMICH_MACHINE_LEARNING_URL
           TYPESENSE_API_KEY:
             valueFrom:
               secretKeyRef:
