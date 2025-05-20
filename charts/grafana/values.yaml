@@ -136,6 +136,14 @@ grafana:
         datasource:
           - name: DS_PROMETHEUS
             value: Prometheus
+      cloudnative-pg:
+        # renovate: depName="CloudNativePG"
+        gnetId: 20417
+        revision: 4
+        datasource:
+          - name: DS_PROMETHEUS
+            value: Prometheus
+
     storage:
       minio:
         # renovate: depName="MinIO Dashboard"
