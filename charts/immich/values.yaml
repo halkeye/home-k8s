@@ -1,24 +1,4 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
-redis:
-  enabled: true
-  architecture: standalone
-  auth:
-    enabled: false
-    usePasswordFiles: false
-  master:
-    persistence:
-      enabled: false
-      storageClass: "longhorn"
-
-secrets:
-  secret:
-    enabled: true
-    stringData:
-      REDIS_HOSTNAME: '{{ printf "%s-redis-master" .Release.Name }}'
-      DB_HOSTNAME: "postgres-rw.db"
-      DB_DATABASE_NAME: "immich"
-      IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
-      TYPESENSE_API_KEY: different-string-for-now
 service:
   main:
     controller: main
@@ -80,17 +60,17 @@ controllers:
           REDIS_HOSTNAME:
             valueFrom:
               secretKeyRef:
-                name: "{{ .Release.Name }}-secret"
+                name: "immich-secret"
                 key: REDIS_HOSTNAME
           IMMICH_MACHINE_LEARNING_URL:
             valueFrom:
               secretKeyRef:
-                name: "{{ .Release.Name }}-secret"
+                name: "immich-secret"
                 key: IMMICH_MACHINE_LEARNING_URL
           TYPESENSE_API_KEY:
             valueFrom:
               secretKeyRef:
-                name: "{{ .Release.Name }}-secret"
+                name: "immich-secret"
                 key: TYPESENSE_API_KEY
           DB_URL:
             valueFrom:
@@ -127,12 +107,12 @@ controllers:
           REDIS_HOSTNAME:
             valueFrom:
               secretKeyRef:
-                name: "{{ .Release.Name }}-secret"
+                name: "immich-secret"
                 key: REDIS_HOSTNAME
           TYPESENSE_API_KEY:
             valueFrom:
               secretKeyRef:
-                name: "{{ .Release.Name }}-secret"
+                name: "immich-secret"
                 key: TYPESENSE_API_KEY
           DB_URL:
             valueFrom:
@@ -180,7 +160,7 @@ controllers:
           TYPESENSE_API_KEY:
             valueFrom:
               secretKeyRef:
-                name: "{{ .Release.Name }}-secret"
+                name: "immich-secret"
                 key: TYPESENSE_API_KEY
         probes:
           liveness: &typesense_probes

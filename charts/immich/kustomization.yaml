@@ -9,6 +9,9 @@ helmGlobals:
 generatorOptions:
   disableNameSuffixHash: true
 
+generators:
+  - ../_shared/redis/helm-generator.yaml
+
 helmCharts:
   - name: app-template
     version: 4.0.1
