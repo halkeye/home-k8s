@@ -2,9 +2,14 @@ apiVersion: db.movetokube.com/v1alpha1
 kind: PostgresUser
 metadata:
   name: prowlarr
-  namespace: prowlarr
+  annotations:
+    postgres.db.movetokube.com/instance: postgres17-rw
 spec:
-  role: prowlarr
-  database: prowlarr
+  role: prowlarr-group
+  database: prowlarr-main
   secretName: prowlarr-db-secret
   privileges: OWNER
+  secretTemplate:
+    HOST_NO_PORT: "{{ .HostNoPort }}"
+    PORT: "{{ .Port }}"
+    

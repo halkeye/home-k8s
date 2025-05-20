@@ -1,7 +1,22 @@
+---
 apiVersion: db.movetokube.com/v1alpha1
 kind: Postgres
 metadata:
-  name: prowlarr
+  name: prowlarr-log
+  annotations:
+    postgres.db.movetokube.com/instance: postgres17-rw
 spec:
-  database: prowlarr
-  dropOnDelete: true
+  database: prowlarr_log
+  dropOnDelete: false
+  masterRole: prowlarr-group
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: prowlarr-main
+  annotations:
+    postgres.db.movetokube.com/instance: postgres17-rw
+spec:
+  database: prowlarr_main
+  dropOnDelete: false
+  masterRole: prowlarr-group

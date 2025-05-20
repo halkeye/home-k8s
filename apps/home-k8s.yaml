@@ -34,7 +34,6 @@ spec:
           - name: calibre-web
           - name: frigate
           - name: kobodl
-          - name: prowlarr
           - name: stash
           - name: wg-access-server
           # - name: ytdl-sub
@@ -102,6 +101,7 @@ spec:
           - name: pinchflat
           - name: plexripper
           - name: postgres-home-backup
+          - name: prowlarr
           - name: radarr
           - name: readarr
           - name: recommendarr
