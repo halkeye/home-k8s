@@ -43,7 +43,6 @@ spec:
           - name: grafana
           - name: it-tools
           - name: libmedium
-          - name: miniflux
           - name: not-the-plants
           - name: planka
           - name: searxng
@@ -101,6 +100,7 @@ spec:
           - name: hoarder
           - name: kitchenowl
           - name: microbin
+          - name: miniflux
           - name: ollama
           - name: pixelfed
           - name: postiz
