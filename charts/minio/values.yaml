@@ -91,10 +91,8 @@ ingress:
 
 persistence:
   data:
-    enabled: true
-    type: persistentVolumeClaim
-    storageClass: nas-apps
-    accessMode: ReadWriteOnce
-    size: 50Gi
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Apps/minio
   tmp:
     type: emptyDir
