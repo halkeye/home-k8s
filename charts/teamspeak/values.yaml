@@ -55,6 +55,7 @@ persistence:
     enabled: true
     type: persistentVolumeClaim
     accessMode: ReadWriteOnce
+    suffix: data
     size: 2Gi
     globalMounts:
       - path: /var/ts3server/
