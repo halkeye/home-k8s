@@ -2,9 +2,14 @@ apiVersion: db.movetokube.com/v1alpha1
 kind: PostgresUser
 metadata:
   name: readarr
-  namespace: readarr
+  annotations:
+    postgres.db.movetokube.com/instance: postgres17-rw
 spec:
-  role: readarr
-  database: readarr
+  role: readarr-group
+  database: readarr-main
   secretName: readarr-db-secret
   privileges: OWNER
+  secretTemplate:
+    HOST_NO_PORT: "{{ .HostNoPort }}"
+    PORT: "{{ .Port }}"
+    

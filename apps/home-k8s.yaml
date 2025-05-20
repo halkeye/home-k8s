@@ -35,7 +35,6 @@ spec:
           - name: frigate
           - name: kobodl
           - name: prowlarr
-          - name: readarr
           - name: stash
           - name: wg-access-server
           # - name: ytdl-sub
@@ -104,6 +103,7 @@ spec:
           - name: plexripper
           - name: postgres-home-backup
           - name: radarr
+          - name: readarr
           - name: recommendarr
           - name: recyclarr
           - name: romm
