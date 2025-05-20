@@ -93,6 +93,6 @@ persistence:
   data:
     type: nfs
     server: 172.16.10.10
-    path: /volume1/Apps/minio-data
+    path: /volume1/Apps/minio-minio-data
   tmp:
     type: emptyDir
