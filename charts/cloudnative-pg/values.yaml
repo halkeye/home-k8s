@@ -1,7 +1,7 @@
 ---
 crds:
   create: true
-replicaCount: 2
+replicaCount: 3
 monitoring:
   podMonitorEnabled: true
   grafanaDashboard:
