@@ -34,7 +34,6 @@ spec:
           - name: bazarr
           - name: calibre-web
           - name: frigate
-          - name: immich
           - name: kobodl
           - name: mylar3
           - name: prowlarr
@@ -92,6 +91,7 @@ spec:
           - name: cloudnative-pg
           - name: dnsdist
           - name: dns-over-http
+          - name: immich
           - name: komf
           - name: komga
           - name: lidarr

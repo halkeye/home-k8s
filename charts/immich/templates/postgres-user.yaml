@@ -1,13 +1,16 @@
 apiVersion: db.movetokube.com/v1alpha1
 kind: PostgresUser
 metadata:
-  name: immich-user
-  namespace: immich
+  name: immich
+  annotations:
+    postgres.db.movetokube.com/instance: postgres17-rw
 spec:
-  role: immich
-  database: immich       # This references the Postgres CR
+  role: immich-group
+  database: immich
   secretName: immich
-  privileges: OWNER     # Can be OWNER/READ/WRITE
+  privileges: OWNER
   secretTemplate:
-    DB_URL: {{ `postgresql://{{.Role}}:{{.Password}}@{{.Host}}/{{.Database}}?{{ "" | mergeUriArgs }}` }}
-    DB_LOGGING_URL: {{ `postgresql://{{.Role}}:{{.Password}}@{{.Host}}/{{.Database}}?{{ "logging=true" | mergeUriArgs }}` }}
+    HOST_NO_PORT: "{{ .HostNoPort }}"
+    PORT: "{{ .Port }}"
+    DB_URL: postgresql://{{.Role}}:{{.Password}}@{{.Host}}/{{.Database}}?{{ "" | mergeUriArgs }}
+    DB_LOGGING_URL: postgresql://{{.Role}}:{{.Password}}@{{.Host}}/{{.Database}}?{{ "logging=true" | mergeUriArgs }}
