@@ -50,7 +50,6 @@ spec:
           - name: string-is
           - name: tautulli
           - name: unifi
-          - name: vikunja
   template:
     metadata:
       name: '{{.name}}'
@@ -104,6 +103,7 @@ spec:
           - name: pixelfed
           - name: postiz
           - name: teamspeak
+          - name: vikunja
   template:
     metadata:
       name: '{{.name}}'
