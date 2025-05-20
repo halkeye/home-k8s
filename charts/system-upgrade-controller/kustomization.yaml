@@ -16,7 +16,6 @@ helmCharts:
     valuesFile: ./values.yaml
     releaseName: system-upgrade-controller
 
-resources:
-  - ./templates/agent.yaml
-  - ./templates/server.yaml
-
+# resources:
+#   - ./templates/agent.yaml
+#   - ./templates/server.yaml
