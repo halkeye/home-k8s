@@ -98,6 +98,7 @@ app-template:
       enabled: true
       type: persistentVolumeClaim
       accessMode: ReadWriteOnce
+      suffix: config
       size: 1Gi
     tmp:
       enabled: true

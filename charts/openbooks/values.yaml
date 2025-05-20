@@ -90,6 +90,7 @@ persistence:
   openbooks:
     type: persistentVolumeClaim
     accessMode: ReadWriteOnce
+    suffix: openbooks
     size: 1Gi
     globalMounts:
       - path: /openbooks/logs

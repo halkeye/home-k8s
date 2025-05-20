@@ -61,6 +61,7 @@ persistence:
     type: persistentVolumeClaim
     accessMode: ReadWriteOnce
     size: 1Gi
+    suffix: config
     storageClass: longhorn
     globalMounts:
       - path: /home/suwayomi/.local/share/Tachidesk
