@@ -5,7 +5,7 @@ metadata:
   annotations:
     postgres.db.movetokube.com/instance: postgres17-rw
 spec:
-  role: anime-sonarr
+  role: anime-sonarr-group
   database: anime-sonarr-main
   secretName: anime-sonarr-db-secret
   privileges: OWNER
