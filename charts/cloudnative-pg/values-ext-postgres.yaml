@@ -13,5 +13,5 @@ image:
   tag: "sha-410609e"
 env:
   POSTGRES_INSTANCE: postgres17-rw
-existingSecret: cloudnative-pg-secrets
+existingSecret: cloudnative-pg-secret
 fullnameOverride: cloudnative-pg-ext-operator
