@@ -30,6 +30,19 @@
       ],
       "autoReplaceStringTemplate": "{{{indentation}}}version: \"{{{newValue}}}\" # renovate: datasource={{{datasource}}} depName={{{depName}}}",
       "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}"
+    },
+    {
+      "customType": "regex",
+      "description": [
+        "Process Kustomization CRD dependencies - Image and Github Release are the same version"
+      ],
+      "fileMatch": [
+        "(^|/)charts/.+\\.ya?ml(?:\\.j2)?$"
+      ],
+      "matchStrings": [
+        "datasource=(?<datasource>\\S+) image=(?<depName>\\S+)\n.*?-\\s(.*?)\/(?<currentValue>[^/]+)\/[^/]+\n"
+      ],
+      "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}docker{{/if}}"
     }
   ],
   "packageRules": [

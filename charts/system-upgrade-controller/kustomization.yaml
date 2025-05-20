@@ -16,6 +16,8 @@ helmCharts:
     valuesFile: ./values.yaml
     releaseName: system-upgrade-controller
 
-# resources:
-#   - ./templates/agent.yaml
-#   - ./templates/server.yaml
+resources:
+  # renovate: datasource=docker image=rancher/system-upgrade-controller
+  - https://github.com/rancher/system-upgrade-controller/releases/download/v0.15.2/crd.yaml
+  - ./templates/agent.yaml
+  - ./templates/server.yaml
