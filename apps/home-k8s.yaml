@@ -110,7 +110,6 @@ spec:
           - name: slskd
           - name: snapshot-controller
           - name: sonarr
-          - name: sops-secrets-operator
           - name: tachidesk
           - name: thelounge
           - name: unpackerr

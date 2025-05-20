@@ -64,6 +64,7 @@ spec:
           - list:
               elements:
                 - appname: redis-operator
+                - appname: sops-secrets-operator
   template:
     metadata:
       name: '{{.nameNormalized}}-{{.appname}}'
