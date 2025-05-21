@@ -1,39 +1,15 @@
 kube-prometheus-stack:
   fullnameOverride: "prometheus"
-  commonLabels:
-    cluster: home-k8s
   crds:
     enabled: false
   cleanPrometheusOperatorObjectNames: true
   kubeApiServer:
     serviceMonitor:
-      relabelings:
-        - action: replace
-          targetLabel: cluster
-          replacement: "home-k8s"
       metricRelabelings:
         - action: replace
           sourceLabels:
             - node
           targetLabel: instance
-  kubelet:
-    serviceMonitor:
-      relabelings:
-        - action: replace
-          targetLabel: cluster
-          replacement: "home-k8s"
-  coreDns:
-    serviceMonitor:
-      relabelings:
-        - action: replace
-          targetLabel: cluster
-          replacement: "home-k8s"
-  prometheusOperator:
-    serviceMonitor:
-      relabelings:
-        - action: replace
-          targetLabel: cluster
-          replacement: "home-k8s"
   alertmanager:
     ingress:
       enabled: true
@@ -103,17 +79,9 @@ kube-prometheus-stack:
           - alertname="InfoInhibitor"
   prometheus:
     enabled: true
-    serviceMonitor:
-      relabelings:
-        - action: replace
-          targetLabel: cluster
-          replacement: "home-k8s"
     monitor:
       enabled: true
       relabelings:
-        - action: replace
-          targetLabel: cluster
-          replacement: "home-k8s"
         - action: replace
           regex: (.*)
           replacement: $1
@@ -127,10 +95,6 @@ kube-prometheus-stack:
       enableAdminAPI: true
       externalLabels:
         cluster: home-k8s
-      relabelings:
-        - action: replace
-          targetLabel: cluster
-          replacement: "home-k8s"
       storageSpec:
         volumeClaimTemplate:
           spec:
@@ -202,25 +166,10 @@ kube-prometheus-stack:
     service:
       selector:
         k8s-app: kube-controller-manager
-    serviceMonitor:
-      relabelings:
-        - action: replace
-          targetLabel: cluster
-          replacement: "home-k8s"
   kubeEtcd:
     enabled: true
-    serviceMonitor:
-      relabelings:
-        - action: replace
-          targetLabel: cluster
-          replacement: "home-k8s"
   kubeScheduler:
     enabled: true
-    serviceMonitor:
-      relabelings:
-        - action: replace
-          targetLabel: cluster
-          replacement: "home-k8s"
   prometheus-node-exporter:
     fullnameOverride: node-exporter
     resources:
@@ -233,9 +182,6 @@ kube-prometheus-stack:
       monitor:
         enabled: true
         relabelings:
-          - action: replace
-            targetLabel: cluster
-            replacement: "home-k8s"
           - action: replace
             regex: (.*)
             replacement: $1
@@ -251,9 +197,6 @@ kube-prometheus-stack:
       monitor:
         enabled: true
         relabelings:
-          - action: replace
-            targetLabel: cluster
-            replacement: "home-k8s"
           - action: replace
             regex: (.*)
             replacement: $1
