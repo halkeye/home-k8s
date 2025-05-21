@@ -24,7 +24,6 @@ spec:
           # - { namespace: monitoring, name: nut-exporter }
           - { namespace: monitoring, name: qbittorrent-exporter }
           - { namespace: monitoring, name: sabnzbd-exporter }
-          - { namespace: monitoring, name: speedtest-exporter }
           - { namespace: monitoring, name: unifi-poller }
 
           # App
@@ -81,6 +80,8 @@ spec:
         elements:
           - { name: longhorn, namespace: longhorn-system }
           - { name: home-k8s-tailscale-operator, namespace: tailscale }
+          # Exporters
+          - { namespace: monitoring, name: speedtest-exporter }
 
           - name: anime-radarr
           - name: anime-sonarr
