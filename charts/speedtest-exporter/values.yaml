@@ -1,47 +1,45 @@
 fullnameOverride: speedtest-exporter
-app-template:
-  fullnameOverride: speedtest-exporter
-  controllers:
-    main:
-      strategy: RollingUpdate
-      annotations:
-        reloader.stakater.com/auto: "true"
-      containers:
-        main:
-          image:
-            repository: ghcr.io/miguelndecarvalho/speedtest-exporter
-            tag: v3.5.4
-          env:
-            TZ: America/Vancouver
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            capabilities:
-              drop: ["ALL"]
-          resources:
-            requests:
-              cpu: 15m
-              memory: 50Mi
-            limits:
-              memory: 100Mi
-  service:
-    main:
-      controller: main
-      ports:
-        http:
-          port: 9798
-  # serviceMonitor:
-  #   main:
-  #     serviceName: '{{ include "bjw-s.common.lib.chart.names.fullname" $ }}'
-  #     endpoints:
-  #       - port: http
-  #         scheme: http
-  #         path: /metrics
-  #         interval: 60m
-  #         scrapeTimeout: 1m
-  persistence:
-    tmp:
-      enabled: true
-      type: emptyDir
-      globalMounts:
-        - path: /home/speedtest/.config/
+controllers:
+  main:
+    strategy: RollingUpdate
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      main:
+        image:
+          repository: ghcr.io/miguelndecarvalho/speedtest-exporter
+          tag: v3.5.4
+        env:
+          TZ: America/Vancouver
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+        resources:
+          requests:
+            cpu: 15m
+            memory: 50Mi
+          limits:
+            memory: 100Mi
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 9798
+# serviceMonitor:
+#   main:
+#     serviceName: '{{ include "bjw-s.common.lib.chart.names.fullname" $ }}'
+#     endpoints:
+#       - port: http
+#         scheme: http
+#         path: /metrics
+#         interval: 60m
+#         scrapeTimeout: 1m
+persistence:
+  tmp:
+    enabled: true
+    type: emptyDir
+    globalMounts:
+      - path: /home/speedtest/.config/
