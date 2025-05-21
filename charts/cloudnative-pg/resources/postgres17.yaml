@@ -4,7 +4,7 @@ metadata:
   name: postgres17
 spec:
   instances: 3
-  imageName: ghcr.io/tensorchord/cloudnative-pgvecto.rs:17.4
+  imageName: ghcr.io/tensorchord/cloudnative-vectorchord:17.5
   primaryUpdateStrategy: unsupervised
   storage:
     size: 50Gi
@@ -28,7 +28,7 @@ spec:
 
   postgresql:
     shared_preload_libraries:
-      - "vectors.so"
+      - "vchord.so"
     parameters:
       max_connections: "300"
       shared_buffers: 512MB
@@ -57,5 +57,5 @@ spec:
   bootstrap:
     initdb:
       postInitSQL:
-        - ALTER SYSTEM SET search_path TO "$user", public, vectors;
-        - CREATE EXTENSION IF NOT EXISTS "vectors";
+        - ALTER SYSTEM SET search_path TO "$user", public, vcord;
+        - CREATE EXTENSION IF NOT EXISTS vchord CASCADE;
