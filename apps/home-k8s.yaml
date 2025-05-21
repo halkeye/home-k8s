@@ -19,10 +19,8 @@ spec:
 
           - { namespace: cloudflare, name: cloudflared }
 
-          - { namespace: monitoring, name: blackbox-exporter }
           - { namespace: monitoring, name: bambulabs-exporter }
           # - { namespace: monitoring, name: nut-exporter }
-          - { namespace: monitoring, name: qbittorrent-exporter }
           - { namespace: monitoring, name: sabnzbd-exporter }
           - { namespace: monitoring, name: unifi-poller }
 
@@ -81,6 +79,8 @@ spec:
           - { name: longhorn, namespace: longhorn-system }
           - { name: home-k8s-tailscale-operator, namespace: tailscale }
           # Exporters
+          - { namespace: monitoring, name: blackbox-exporter }
+          - { namespace: monitoring, name: qbittorrent-exporter }
           - { namespace: monitoring, name: speedtest-exporter }
 
           - name: anime-radarr
