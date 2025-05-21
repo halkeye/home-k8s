@@ -1,8 +1,39 @@
 kube-prometheus-stack:
   fullnameOverride: "prometheus"
+  commonLabels:
+    cluster: home-k8s
   crds:
     enabled: false
   cleanPrometheusOperatorObjectNames: true
+  kubeApiServer:
+    serviceMonitor:
+      relabelings:
+        - action: replace
+          targetLabel: cluster
+          replacement: "home-k8s"
+      metricRelabelings:
+        - action: replace
+          sourceLabels:
+            - node
+          targetLabel: instance
+  kubelet:
+    serviceMonitor:
+      relabelings:
+        - action: replace
+          targetLabel: cluster
+          replacement: "home-k8s"
+  coreDns:
+    serviceMonitor:
+      relabelings:
+        - action: replace
+          targetLabel: cluster
+          replacement: "home-k8s"
+  prometheusOperator:
+    serviceMonitor:
+      relabelings:
+        - action: replace
+          targetLabel: cluster
+          replacement: "home-k8s"
   alertmanager:
     ingress:
       enabled: true
@@ -29,6 +60,8 @@ kube-prometheus-stack:
               message: >-
                 {{`{{ range .Alerts -}}`}}
                 {{"  **Alert:** {{ .Annotations.title }}{{ if .Labels.severity }} `{{ .Labels.severity }}`{{ end }}"}}
+                {{"  **Graph:** <{{ .GeneratorURL }}|:chart_with_upwards_trend:> "}}
+                {{`{{ if ne .Annotations.runbook ""}}**Runbook:** <{{ .Annotations.runbook }}|:spiral_note_pad:> }}{{ end }}`}}
                 {{`{{ if ne .Annotations.summary ""}}**Summary:** {{ .Annotations.summary }} {{ else if ne .Annotations.message ""}}**Message:** {{ .Annotations.message }} {{ else if ne .Annotations.description ""}}**Description:** {{ .Annotations.description }}{{ end }}`}}
                 {{`  **Details:**`}}
                 {{"  {{ range .Labels.SortedPairs }} • {{ .Name }}: `{{ .Value }}`"}}
@@ -70,9 +103,17 @@ kube-prometheus-stack:
           - alertname="InfoInhibitor"
   prometheus:
     enabled: true
+    serviceMonitor:
+      relabelings:
+        - action: replace
+          targetLabel: cluster
+          replacement: "home-k8s"
     monitor:
       enabled: true
       relabelings:
+        - action: replace
+          targetLabel: cluster
+          replacement: "home-k8s"
         - action: replace
           regex: (.*)
           replacement: $1
@@ -81,11 +122,15 @@ kube-prometheus-stack:
           targetLabel: kubernetes_node
     prometheusSpec:
       # logLevel: debug
-      externalLabels:
-        cluster: home-k8s
       remoteWrite:
         - url: https://prometheus-do.g4v.dev/api/v1/write
       enableAdminAPI: true
+      externalLabels:
+        cluster: home-k8s
+      relabelings:
+        - action: replace
+          targetLabel: cluster
+          replacement: "home-k8s"
       storageSpec:
         volumeClaimTemplate:
           spec:
@@ -98,12 +143,6 @@ kube-prometheus-stack:
       podMonitorSelectorNilUsesHelmValues: false
       probeSelectorNilUsesHelmValues: false
       additionalScrapeConfigs:
-        - job_name: minio-job
-          bearer_token: '{{ .Values.minio_bearer_token }}'
-          metrics_path: /minio/v2/metrics/cluster
-          scheme: http
-          static_configs:
-            - targets: ['172.16.10.10:9000']
         - job_name: nas-syncthing-job
           bearer_token: '{{ .Values.nas_syncthings_key }}'
           scheme: https
@@ -149,20 +188,12 @@ kube-prometheus-stack:
       KubeMemoryOvercommit: true
       KubeMemoryQuotaOvercommit: true
     rules:
-      kubeApiserver: false
       etcd: false
+      kubeApiserver: false
       kubeControllerManager: false
       kubeProxy: false
       kubeSchedulerAlerting: false
       kubeSchedulerRecording: false
-  kubeApiServer:
-    enabled: true
-    serviceMonitor:
-      metricRelabelings:
-        - action: replace
-          sourceLabels:
-            - node
-          targetLabel: instance
   kubeProxy:
     enabled: false
   kubeControllerManager:
@@ -170,10 +201,25 @@ kube-prometheus-stack:
     service:
       selector:
         k8s-app: kube-controller-manager
+    serviceMonitor:
+      relabelings:
+        - action: replace
+          targetLabel: cluster
+          replacement: "home-k8s"
   kubeEtcd:
     enabled: true
+    serviceMonitor:
+      relabelings:
+        - action: replace
+          targetLabel: cluster
+          replacement: "home-k8s"
   kubeScheduler:
     enabled: true
+    serviceMonitor:
+      relabelings:
+        - action: replace
+          targetLabel: cluster
+          replacement: "home-k8s"
   prometheus-node-exporter:
     fullnameOverride: node-exporter
     resources:
@@ -186,6 +232,9 @@ kube-prometheus-stack:
       monitor:
         enabled: true
         relabelings:
+          - action: replace
+            targetLabel: cluster
+            replacement: "home-k8s"
           - action: replace
             regex: (.*)
             replacement: $1
@@ -201,6 +250,9 @@ kube-prometheus-stack:
       monitor:
         enabled: true
         relabelings:
+          - action: replace
+            targetLabel: cluster
+            replacement: "home-k8s"
           - action: replace
             regex: (.*)
             replacement: $1
