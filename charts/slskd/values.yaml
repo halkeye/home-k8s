@@ -62,6 +62,7 @@ service:
   soulseek:
     controller: main
     type: LoadBalancer
+    loadBalancerIP: 172.16.10.206
     ports:
       soulseek:
         enabled: true
