@@ -21,6 +21,7 @@ service:
 
 controllers:
   migrations:
+    replicas: 0
     type: job
     forceRename: '{{ printf "immich-migrations-%s" (.Values.controllers.migrations.containers.migrations.image.tag | replace "." "-") }}'
     revisionHistoryLimit: 1
@@ -45,6 +46,7 @@ controllers:
           - run
           - migrations:run
   main:
+    replicas: 0
     annotations:
       reloader.stakater.com/auto: "true"
     containers:
@@ -94,6 +96,7 @@ controllers:
             enabled: false
 
   machine-learning:
+    replicas: 0
     annotations:
       reloader.stakater.com/auto: "true"
     containers:
@@ -136,6 +139,7 @@ controllers:
             enabled: false
 
   typesense:
+    replicas: 0
     annotations:
       reloader.stakater.com/auto: "true"
     strategy: RollingUpdate
