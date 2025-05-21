@@ -418,6 +418,6 @@ app-template:
 
           # Logging config. See https://github.com/tulir/zeroconfig for details.
           logging:
-              min_level: debug
+              min_level: warn
               writers:
               - type: stdout
