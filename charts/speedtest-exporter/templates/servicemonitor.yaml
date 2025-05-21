@@ -12,7 +12,7 @@ spec:
     port: http
     scheme: http
     scrapeTimeout: 1m
-  jobLabel: speedtest-exporter
+  jobLabel: app.kubernetes.io/name
   namespaceSelector:
     matchNames:
     - {{ .Release.Namespace }}
