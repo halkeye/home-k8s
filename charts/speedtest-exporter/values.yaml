@@ -30,16 +30,15 @@ app-template:
       ports:
         http:
           port: 9798
-  serviceMonitor:
-    main:
-      enabled: true
-      serviceName: '{{ include "bjw-s.common.lib.chart.names.fullname" $ }}'
-      endpoints:
-        - port: http
-          scheme: http
-          path: /metrics
-          interval: 60m
-          scrapeTimeout: 1m
+  # serviceMonitor:
+  #   main:
+  #     serviceName: '{{ include "bjw-s.common.lib.chart.names.fullname" $ }}'
+  #     endpoints:
+  #       - port: http
+  #         scheme: http
+  #         path: /metrics
+  #         interval: 60m
+  #         scrapeTimeout: 1m
   persistence:
     tmp:
       enabled: true
