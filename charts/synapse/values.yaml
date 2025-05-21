@@ -8,6 +8,9 @@ matrix-synapse:
   postgresql:
     enabled: false
 
+  config:
+    logLevel: WARN
+
   ingress:
     enabled: true
     includeServerName: false
