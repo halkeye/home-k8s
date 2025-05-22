@@ -20,7 +20,7 @@ controllers:
           TZ: America/Vancouver
         envFrom:
           - secretRef:
-              name: "plex-media-server-secret"
+              name: "plex-media-server-exporter-secret"
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: false
