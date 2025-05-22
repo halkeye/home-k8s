@@ -1,61 +1,59 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 fullnameOverride: sabnzbd-exporter
-app-template:
-  fullnameOverride: sabnzbd-exporter
-  controllers:
-    main:
-      annotations:
-        reloader.stakater.com/auto: "true"
-      containers:
-        main:
-          image:
-            repository: "ghcr.io/onedr0p/exportarr"
-            tag: "v2.2.0"
-          args:
-            - sabnzbd
-          env:
-            PORT: "9707"
-          envFrom:
-            - secretRef:
-                name: "{{.Release.Name}}-secret"
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            capabilities:
-              drop: ["ALL"]
-          resources:
-            requests:
-              cpu: 100m
-              memory: 100Mi
-            limits:
-              cpu: 100m
-              memory: 100Mi
-          probes:
-            liveness: &probes
-              enabled: true
-              custom: true
-              spec:
-                httpGet:
-                  path: /metrics
-                  port: 9707
-                initialDelaySeconds: 0
-                periodSeconds: 30
-                timeoutSeconds: 1
-                failureThreshold: 3
-            readiness: *probes
-            startup: *probes
-  service:
-    main:
-      controller: main
-      ports:
-        http:
-          port: 9707
-  serviceMonitor:
-    main:
-      enabled: true
-      serviceName: 'sabnzbd'
-      endpoints:
-        - port: http
-          scheme: http
-          path: /metrics
-          interval: 30s
-          scrapeTimeout: 10s
+controllers:
+  main:
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      main:
+        image:
+          repository: "ghcr.io/onedr0p/exportarr"
+          tag: "v2.2.0"
+        args:
+          - sabnzbd
+        env:
+          PORT: "9707"
+        envFrom:
+          - secretRef:
+              name: "sabnzbd-exporter-secret"
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+        resources:
+          requests:
+            cpu: 10m
+            memory: 100Mi
+          limits:
+            memory: 100Mi
+        probes:
+          liveness: &probes
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /metrics
+                port: 9707
+              initialDelaySeconds: 0
+              periodSeconds: 30
+              timeoutSeconds: 1
+              failureThreshold: 3
+          readiness: *probes
+          startup: *probes
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 9707
+serviceMonitor:
+  main:
+    enabled: true
+    serviceName: 'sabnzbd'
+    endpoints:
+      - port: http
+        scheme: http
+        path: /metrics
+        interval: 30s
+        scrapeTimeout: 10s
