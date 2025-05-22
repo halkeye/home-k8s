@@ -59,6 +59,8 @@ matrix-synapse:
     enabled: false
 
   extraConfig:
+    experimental_features:
+      msc3202_device_masquerading: true
     email:
       enable_notifs: false
       notif_from: 'Your Friendly %(app)s homeserver <noreply@g4v.dev>'
