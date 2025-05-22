@@ -1,49 +1,49 @@
-app-template:
-  controllers:
-    main:
-      containers:
-        main:
-          image:
-            repository: golift/unifi-poller
-            tag: v2.15.3
-          env:
-            TZ: America/Vancouver
-            UP_UNIFI_DEFAULT_USER:
-              valueFrom:
-                secretKeyRef:
-                  name: "{{.Release.Name}}-secret"
-                  key: UP_UNIFI_DEFAULT_USER
-            UP_UNIFI_DEFAULT_PASS:
-              valueFrom:
-                secretKeyRef:
-                  name: "{{.Release.Name}}-secret"
-                  key: UP_UNIFI_DEFAULT_PASS
-            UP_UNIFI_DEFAULT_URL: "https://unifi.g4v.dev"
-            UP_INFLUXDB_DISABLE: true
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            capabilities:
-              drop: ["ALL"]
-          resources:
-            requests:
-              cpu: 15m
-              memory: 50Mi
-            limits:
-              memory: 100Mi
-  service:
-    main:
-      controller: main
-      ports:
-        http:
-          port: 9130
-  serviceMonitor:
-    main:
-      enabled: true
-      serviceName: '{{ include "bjw-s.common.lib.chart.names.fullname" $ }}'
-      endpoints:
-        - port: http
-          scheme: http
-          path: /metrics
-          interval: 2m
-          scrapeTimeout: 30s
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  main:
+    containers:
+      main:
+        image:
+          repository: golift/unifi-poller
+          tag: v2.15.3
+        env:
+          TZ: America/Vancouver
+          UP_UNIFI_DEFAULT_USER:
+            valueFrom:
+              secretKeyRef:
+                name: "unifi-poller-secret"
+                key: UP_UNIFI_DEFAULT_USER
+          UP_UNIFI_DEFAULT_PASS:
+            valueFrom:
+              secretKeyRef:
+                name: "unifi-poller-secret"
+                key: UP_UNIFI_DEFAULT_PASS
+          UP_UNIFI_DEFAULT_URL: "https://unifi.g4v.dev"
+          UP_INFLUXDB_DISABLE: true
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+        resources:
+          requests:
+            cpu: 15m
+            memory: 50Mi
+          limits:
+            memory: 100Mi
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 9130
+serviceMonitor:
+  main:
+    enabled: true
+    serviceName: '{{ include "bjw-s.common.lib.chart.names.fullname" $ }}'
+    endpoints:
+      - port: http
+        scheme: http
+        path: /metrics
+        interval: 2m
+        scrapeTimeout: 30s
