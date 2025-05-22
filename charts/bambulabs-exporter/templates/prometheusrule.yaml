@@ -3,14 +3,14 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: {{ .Release.Name }}-rules
+  name: bambulabs-exporter-rules
 spec:
   groups:
-    - name: {{ .Release.Name }}.rules
+    - name: bambulabs-exporter.rules
       rules:
         - alert: PrinterHasErrors
           annotations:
-            description: {{"Printer has errors."}}
+            description: "Printer has errors."
             summary: Printer has errors
           expr: |
             print_error_metric{service="bambulabs-exporter"} > 0 or mc_print_error_code_metric{service="bambulabs-exporter"} > 0

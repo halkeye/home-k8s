@@ -1,41 +1,39 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 fullnameOverride: bambulabs-exporter
-app-template:
-  fullnameOverride: bambulabs-exporter
-  controllers:
-    main:
-      annotations:
-        reloader.stakater.com/auto: "true"
-      containers:
-        main:
-          image:
-            repository: "ghcr.io/aetrius/bambulabs-exporter/bambulabs-exporter"
-            tag: "main"
-          envFrom:
-            - secretRef:
-                name: "{{.Release.Name}}-secret"
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            capabilities:
-              drop: ["ALL"]
-          resources:
-            requests:
-              cpu: 100m
-              memory: 100Mi
-            limits:
-              cpu: 100m
-              memory: 100Mi
-  service:
-    main:
-      controller: main
-      ports:
-        http:
-          port: 9101
-  serviceMonitor:
-    main:
-      enabled: true
-      serviceName: '{{ include "bjw-s.common.lib.chart.names.fullname" $ }}'
-      endpoints:
-        - port: http
-          scheme: http
-          path: /metrics
+controllers:
+  main:
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      main:
+        image:
+          repository: "ghcr.io/aetrius/bambulabs-exporter/bambulabs-exporter"
+          tag: "main"
+        envFrom:
+          - secretRef:
+              name: "{{.Release.Name}}-secret"
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+        resources:
+          requests:
+            cpu: 10m
+            memory: 100Mi
+          limits:
+            memory: 100Mi
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 9101
+serviceMonitor:
+  main:
+    enabled: true
+    serviceName: '{{ include "bjw-s.common.lib.chart.names.fullname" $ }}'
+    endpoints:
+      - port: http
+        scheme: http
+        path: /metrics
