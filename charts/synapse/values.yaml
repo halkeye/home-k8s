@@ -166,7 +166,7 @@ matrix-synapse:
         # - apt-get update && apt-get install -y --no-install-recommends git gettext-base
         - pip install https://github.com/matrix-org/synapse-s3-storage-provider/archive/refs/tags/v1.5.0.zip
     generic_worker:
-      enabled: true
+      enabled: false
       replicaCount: 2
 
 # these ones are for thisrepo, not synapse one
