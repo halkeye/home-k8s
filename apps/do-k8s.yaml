@@ -11,7 +11,6 @@ spec:
     - list:
         elements:
           - { namespace: monitoring, name: do-prometheus }
-          - { namespace: monitoring, name: mysqld-exporter }
 
           - { namespace: kube-system, name: do-ingress-nginx }
           # matrix
@@ -93,6 +92,9 @@ spec:
     - list:
         elements:
           - { name: do-k8s-tailscale-operator, namespace: tailscale }
+
+          # Exporters
+          - { namespace: monitoring, name: mysqld-exporter }
 
           - name: bytestash
           - name: hoarder
