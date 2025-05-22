@@ -13,15 +13,9 @@ spec:
           # "system"
           - name: traefik-forward-auth
 
-          # Exporters
-          - { namespace: plex, name: plex-exporter }
-          - { namespace: plex, name: plex-media-server-exporter }
-
           - { namespace: cloudflare, name: cloudflared }
 
-          - { namespace: monitoring, name: bambulabs-exporter }
-          # - { namespace: monitoring, name: nut-exporter }
-          - { namespace: monitoring, name: sabnzbd-exporter }
+          # Exporters
           - { namespace: monitoring, name: unifi-poller }
 
           # App
@@ -79,9 +73,14 @@ spec:
           - { name: longhorn, namespace: longhorn-system }
           - { name: home-k8s-tailscale-operator, namespace: tailscale }
           # Exporters
+          - { namespace: monitoring, name: bambulabs-exporter }
           - { namespace: monitoring, name: blackbox-exporter }
+          # - { namespace: monitoring, name: nut-exporter }
           - { namespace: monitoring, name: qbittorrent-exporter }
+          - { namespace: monitoring, name: sabnzbd-exporter }
           - { namespace: monitoring, name: speedtest-exporter }
+          - { namespace: plex, name: plex-exporter }
+          - { namespace: plex, name: plex-media-server-exporter }
 
           - name: anime-radarr
           - name: anime-sonarr
