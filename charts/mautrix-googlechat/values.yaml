@@ -143,7 +143,7 @@ app-template:
               message_send_checkpoint_endpoint: null
               # Whether asynchronous uploads via MSC2246 should be enabled for media.
               # Requires a media repo that supports MSC2246.
-              async_media: false
+              async_media: true
 
           # Application service host/registration related details
           # Changing these values requires regeneration of the registration.

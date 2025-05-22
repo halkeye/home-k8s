@@ -151,7 +151,7 @@ app-template:
               message_send_checkpoint_endpoint: null
               # Whether asynchronous uploads via MSC2246 should be enabled for media.
               # Requires a media repo that supports MSC2246.
-              async_media: false
+              async_media: true
 
           # Application service host/registration related details
           # Changing these values requires regeneration of the registration.
@@ -322,7 +322,7 @@ app-template:
               public_portals: false
               # Whether or not to use /sync to get presence, read receipts and typing notifications
               # when double puppeting is enabled
-              sync_with_custom_puppets: true
+              sync_with_custom_puppets: false
               # Whether or not to update the m.direct account data event when double puppeting is enabled.
               # Note that updating the m.direct event is not atomic (except with mautrix-asmux)
               # and is therefore prone to race conditions.
