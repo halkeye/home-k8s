@@ -16,7 +16,7 @@ controllers:
           - exporter
         envFrom:
           - secretRef:
-              name: "mysqld-secret"
+              name: "mysqld-exporter-secret"
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
