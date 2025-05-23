@@ -101,6 +101,7 @@ spec:
           - name: plexripper
           - name: postgres-home-backup
           - name: postgres-nas-backup
+          - name: postgres-do-k8s-backup
           - name: prowlarr
           - name: radarr
           - name: readarr
