@@ -1,36 +1,36 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
-  auto-compressor:
-    type: cronjob
-    annotations:
-      reloader.stakater.com/auto: 'true'
-    cronjob:
-      schedule: "0 2 * * *" # Every day at 2am
-      successfulJobsHistory: 1
-      failedJobsHistory: 3
-    containers:
-      main:
-        image: &image
-          repository: registry.gitlab.com/mb-saces/synatainer
-          tag: 0.4.4
-        envFrom: &secrets
-          - secretRef:
-              name: synatainer-secret
-        env:
-          STATE_AUTOCOMPRESSOR_CHUNKS_TO_COMPRESS: 100
-          STATE_AUTOCOMPRESSOR_CHUNK_SIZE: 500
-        securityContext: &securityContext
-          allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
-          capabilities: { drop: ["ALL"] }
-        command: ["autocompressor.sh"]
-        resources: &resources
-          requests:
-            cpu: 12m
-            memory: 64M
-          limits:
-            memory: 256M
+  # auto-compressor:
+  #   type: cronjob
+  #   annotations:
+  #     reloader.stakater.com/auto: 'true'
+  #   cronjob:
+  #     schedule: "0 2 * * *" # Every day at 2am
+  #     successfulJobsHistory: 1
+  #     failedJobsHistory: 3
+  #   containers:
+  #     main:
+  #       image:
+  #         repository: registry.gitlab.com/mb-saces/synatainer
+  #         tag: 0.4.4
+  #       envFrom:
+  #         - secretRef:
+  #             name: synatainer-secret
+  #       env:
+  #         STATE_AUTOCOMPRESSOR_CHUNKS_TO_COMPRESS: 100
+  #         STATE_AUTOCOMPRESSOR_CHUNK_SIZE: 500
+  #       securityContext:
+  #         allowPrivilegeEscalation: false
+  #         readOnlyRootFilesystem: true
+  #         capabilities: { drop: ["ALL"] }
+  #       command: ["autocompressor.sh"]
+  #       resources:
+  #         requests:
+  #           cpu: 12m
+  #           memory: 64M
+  #         limits:
+  #           memory: 256M
 
   purge-rooms:
     type: cronjob
@@ -42,10 +42,22 @@ controllers:
       failedJobsHistory: 1
     containers:
       main:
-        image: *image
-        envFrom: *secrets
-        resources: *resources
-        securityContext: *securityContext
+        image:
+          repository: registry.gitlab.com/mb-saces/synatainer
+          tag: 0.4.4
+        envFrom:
+          - secretRef:
+              name: synatainer-secret
+        resources:
+          requests:
+            cpu: 12m
+            memory: 64M
+          limits:
+            memory: 256M
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities: { drop: ["ALL"] }
         command: ["purge_rooms_no_local_members.sh"]
 
   purge-history:
@@ -58,10 +70,22 @@ controllers:
       failedJobsHistory: 1
     containers:
       main:
-        image: *image
-        envFrom: *secrets
-        resources: *resources
-        securityContext: *securityContext
+        image:
+          repository: registry.gitlab.com/mb-saces/synatainer
+          tag: 0.4.4
+        envFrom:
+          - secretRef:
+              name: synatainer-secret
+        resources:
+          requests:
+            cpu: 12m
+            memory: 64M
+          limits:
+            memory: 256M
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities: { drop: ["ALL"] }
         env:
           HISTORY_MAX_AGE: 365
           HISTORY_ROOM_LIST: all
@@ -77,9 +101,21 @@ controllers:
       failedJobsHistory: 1
     containers:
       main:
-        image: *image
-        envFrom: *secrets
-        resources: *resources
-        securityContext: *securityContext
+        image:
+          repository: registry.gitlab.com/mb-saces/synatainer
+          tag: 0.4.4
+        envFrom:
+          - secretRef:
+              name: synatainer-secret
+        resources:
+          requests:
+            cpu: 12m
+            memory: 64M
+          limits:
+            memory: 256M
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities: { drop: ["ALL"] }
         command: ["stui", "vacuum-db", "--full"]
 
