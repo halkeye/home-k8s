@@ -20,9 +20,10 @@ spec:
           - { namespace: matrix, name: mautrix-instagram }
           - { namespace: matrix, name: mautrix-linkedin }
           - { namespace: matrix, name: mautrix-signal }
-          # - { namespace: matrix, name: mautrix-telegram }
+          - { namespace: matrix, name: mautrix-telegram }
           - { namespace: matrix, name: mautrix-whatsapp }
           - { namespace: matrix, name: synapse }
+          - { namespace: matrix, name: synatainer }
           - { namespace: matrix, name: element-web }
           - name: matrix-sliding-sync
           - name: synapse-admin
