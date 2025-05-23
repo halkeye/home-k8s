@@ -14,9 +14,6 @@ controllers:
           UID: 1026
           PGID: 100  # 'users' group
           CALIBRE_PORT: 8083
-        envFrom:
-          - secretRef:
-              name: "{{.Release.Name}}-secret"
         probes:
           liveness:
             enabled: true
