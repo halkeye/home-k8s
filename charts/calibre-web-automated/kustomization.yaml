@@ -15,8 +15,3 @@ helmCharts:
     repo: https://bjw-s-labs.github.io/helm-charts
     valuesFile: values.yaml
     releaseName: calibre-web-automated 
-
-resources:
-  - ./templates/postgres-user.yaml
-  - ./templates/postgres.yaml
-  - ./secret.enc.yaml
