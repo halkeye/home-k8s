@@ -1,0 +1,94 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  auto-compressor:
+    type: cronjob
+
+    cronjob:
+      schedule: "0 2 * * *" # Every day at 2am
+      successfulJobsHistory: 1
+      failedJobsHistory: 3
+
+    containers:
+      main:
+        image: &image
+          repository: registry.gitlab.com/mb-saces/synatainer
+          tag: 0.4.4
+
+        envFrom: &secrets
+          - secretRef:
+              name: synatainer-secret
+
+        env:
+          STATE_AUTOCOMPRESSOR_CHUNKS_TO_COMPRESS: 100
+          STATE_AUTOCOMPRESSOR_CHUNK_SIZE: 500
+
+        securityContext: &securityContext
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities: { drop: ["ALL"] }
+
+        command: ["autocompressor.sh"]
+
+        resources: &resources
+          requests:
+            cpu: 12m
+            memory: 64M
+          limits:
+            memory: 256M
+
+  purge-rooms:
+    type: cronjob
+
+    cronjob:
+      schedule: "0 3 * * *" # Every day at 3am
+      successfulJobsHistory: 1
+      failedJobsHistory: 1
+
+    containers:
+      main:
+        image: *image
+        envFrom: *secrets
+        resources: *resources
+        securityContext: *securityContext
+
+        command: ["purge_rooms_no_local_members.sh"]
+
+  purge-history:
+    type: cronjob
+
+    cronjob:
+      schedule: "0 5 * * 1" # Every monday at 5am
+      successfulJobsHistory: 1
+      failedJobsHistory: 1
+
+    containers:
+      main:
+        image: *image
+        envFrom: *secrets
+        resources: *resources
+        securityContext: *securityContext
+
+        env:
+          HISTORY_MAX_AGE: 365
+          HISTORY_ROOM_LIST: all
+
+        command: ["purge_history.sh"]
+
+  vacuum:
+    type: cronjob
+
+    cronjob:
+      schedule: "0 4 1 * *" # First day of every month at 4:00 am
+      successfulJobsHistory: 1
+      failedJobsHistory: 1
+
+    containers:
+      main:
+        image: *image
+        envFrom: *secrets
+        resources: *resources
+        securityContext: *securityContext
+
+        command: ["stui", "vacuum-db", "--full"]
+
