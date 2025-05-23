@@ -40,6 +40,6 @@ persistence:
   backups:
     type: nfs
     server: 172.16.10.10
-    path: "/volume1/Backups/postgresql/do-k8sk8s"
+    path: "/volume1/Backups/postgresql/do-k8s"
     globalMounts:
       - path: /backups
