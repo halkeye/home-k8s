@@ -6,7 +6,7 @@ app-template:
         kobodl:
           image:
             repository: ghcr.io/halkeye/kobo-book-downloader
-            tag: sha-34d0fdb
+            tag: sha-9857a31
             # repository: ghcr.io/subdavis/kobodl
             # tag: latest@sha256:a28db847f5769a344561f2f6ec23e59bb03a46a238caff45c0a86b67fe8dd08b
           env:
