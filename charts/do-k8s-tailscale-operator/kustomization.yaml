@@ -16,8 +16,7 @@ helmCharts:
     valuesFile: ./values.yaml
     releaseName: tailscale-operator
 
-generators:
-  - ../secret-generator.yaml
-
 resources:
   - ./resources/proxyclass-userspace.yaml
+  - ./secret.enc.yaml
+
