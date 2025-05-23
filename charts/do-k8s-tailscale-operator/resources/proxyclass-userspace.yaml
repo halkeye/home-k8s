@@ -1,0 +1,11 @@
+apiVersion: tailscale.com/v1alpha1
+kind: ProxyClass
+metadata:
+  name: userspace
+spec:
+  statefulSet:
+    pod:
+      tailscaleContainer:
+        env:
+          - name: TS_USERSPACE
+            value: "true"

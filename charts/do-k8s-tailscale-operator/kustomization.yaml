@@ -18,3 +18,6 @@ helmCharts:
 
 generators:
   - ../secret-generator.yaml
+
+resources:
+  - ./resources/proxyclass-userspace.yaml
