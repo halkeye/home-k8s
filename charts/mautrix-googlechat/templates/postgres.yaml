@@ -4,4 +4,4 @@ metadata:
   name: "{{ .Release.Name }}"
 spec:
   database: "{{ .Release.Name }}"
-  dropOnDelete: true
+  dropOnDelete: false
