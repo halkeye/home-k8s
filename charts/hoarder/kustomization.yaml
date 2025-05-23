@@ -18,6 +18,3 @@ helmCharts:
 
 generators:
   - ../secret-generator.yaml
-
-resources:
-  - ./resources/tailscale-ollama.yaml
