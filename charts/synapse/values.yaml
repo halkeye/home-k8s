@@ -49,8 +49,6 @@ matrix-synapse:
 
   redis:
     enabled: true
-    networkPolicy:
-      enabled: true
     auth:
       enabled: true
 
