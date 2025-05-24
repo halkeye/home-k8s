@@ -3,7 +3,7 @@ kind: Cluster
 metadata:
   name: postgres17
 spec:
-  instances: 3
+  instances: 2 # number of db instances
   imageName: ghcr.io/tensorchord/cloudnative-vectorchord:17.5
   primaryUpdateStrategy: unsupervised
   storage:
