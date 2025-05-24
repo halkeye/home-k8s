@@ -61,13 +61,13 @@ persistence:
     type: emptyDir
   calibre-library:
     enabled: true
-    suffix: config
+    forceRename: 'calibre-web-automated'
     type: persistentVolumeClaim
     storageClass: nas-apps
     accessMode: ReadWriteOnce
     size: 10Gi
     globalMounts:
-      - path: /calibre-library 
+      - path: /calibre-library
   ingest:
     type: nfs
     server: 172.16.10.10
