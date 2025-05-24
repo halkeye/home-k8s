@@ -67,7 +67,7 @@ persistence:
     accessMode: ReadWriteOnce
     size: 10Gi
     globalMounts:
-      - path: /volume1/data/media/books
+      - path: /calibre-library 
   ingest:
     type: nfs
     server: 172.16.10.10
