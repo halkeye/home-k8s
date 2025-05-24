@@ -61,7 +61,7 @@ persistence:
     type: emptyDir
   calibre-library:
     enabled: true
-    suffix: config
+    suffix: calibre-library
     type: persistentVolumeClaim
     storageClass: nas-apps
     accessMode: ReadWriteOnce
