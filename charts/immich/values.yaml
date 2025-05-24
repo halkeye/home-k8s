@@ -20,31 +20,34 @@ service:
         protocol: HTTP
 
 controllers:
-  # migrations:
-  #   replicas: 0
-  #   type: job
-  #   forceRename: '{{ printf "immich-migrations-%s" (.Values.controllers.migrations.containers.migrations.image.tag | replace "." "-") }}'
-  #   revisionHistoryLimit: 1
-  #   job:
-  #     backoffLimit: 0
-  #     # 2 days
-  #     ttlSecondsAfterFinished: 172800
-  #   containers:
-  #     migrations:
-  #       image:
-  #         repository: ghcr.io/immich-app/immich-server
-  #         pullPolicy: IfNotPresent
-  #         tag: v1.132.3
-  #       env:
-  #         DB_URL:
-  #           valueFrom:
-  #             secretKeyRef:
-  #               name: immich-immich
-  #               key: DB_LOGGING_URL
-  #       command:
-  #         - npm
-  #         - run
-  #         - migrations:run
+  migrations:
+    replicas: 0
+    type: job
+    forceRename: '{{ printf "immich-migrations-%s" (.Values.controllers.migrations.containers.migrations.image.tag | replace "." "-") }}'
+    revisionHistoryLimit: 1
+    job:
+      backoffLimit: 0
+      # 2 days
+      ttlSecondsAfterFinished: 172800
+    containers:
+      migrations:
+        image:
+          repository: ghcr.io/immich-app/immich-server
+          pullPolicy: IfNotPresent
+          tag: v1.133.1
+        envFrom:
+          - secretRef:
+              name: "immich-secret"
+        # env:
+        #   DB_URL:
+        #     valueFrom:
+        #       secretKeyRef:
+        #         name: immich-immich
+        #         key: DB_LOGGING_URL
+        command:
+          - npm
+          - run
+          - migrations:run
   main:
     replicas: 0
     annotations:
@@ -55,30 +58,18 @@ controllers:
           repository: ghcr.io/immich-app/immich-server
           pullPolicy: IfNotPresent
           tag: v1.133.1
+        envFrom:
+          - secretRef:
+              name: "immich-secret"
         env:
           DB_SKIP_MIGRATIONS: "true"
           IMMICH_TRUSTED_PROXIES: "0.0.0.0"
           IMMICH_PORT: 3001
-          REDIS_HOSTNAME:
-            valueFrom:
-              secretKeyRef:
-                name: "immich-secret"
-                key: REDIS_HOSTNAME
-          IMMICH_MACHINE_LEARNING_URL:
-            valueFrom:
-              secretKeyRef:
-                name: "immich-secret"
-                key: IMMICH_MACHINE_LEARNING_URL
-          TYPESENSE_API_KEY:
-            valueFrom:
-              secretKeyRef:
-                name: "immich-secret"
-                key: TYPESENSE_API_KEY
-          DB_URL:
-            valueFrom:
-              secretKeyRef:
-                name: immich-immich
-                key: DB_URL
+          # DB_URL:
+          #   valueFrom:
+          #     secretKeyRef:
+          #       name: immich-immich
+          #       key: DB_URL
         probes:
           liveness: &server_probes
             enabled: true
@@ -103,25 +94,18 @@ controllers:
       main:
         image:
           repository: ghcr.io/immich-app/immich-machine-learning
-          tag: v1.131.2
+          tag: v1.133.1
           pullPolicy: IfNotPresent
+        envFrom:
+          - secretRef:
+              name: "immich-secret"
         env:
           TRANSFORMERS_CACHE: /cache
-          REDIS_HOSTNAME:
-            valueFrom:
-              secretKeyRef:
-                name: "immich-secret"
-                key: REDIS_HOSTNAME
-          TYPESENSE_API_KEY:
-            valueFrom:
-              secretKeyRef:
-                name: "immich-secret"
-                key: TYPESENSE_API_KEY
-          DB_URL:
-            valueFrom:
-              secretKeyRef:
-                name: immich-immich
-                key: DB_URL
+          # DB_URL:
+          #   valueFrom:
+          #     secretKeyRef:
+          #       name: immich-immich
+          #       key: DB_URL
         probes:
           liveness: &machine_probes
             enabled: true
@@ -159,13 +143,11 @@ controllers:
           repository: typesense/typesense
           tag: 0.25.2
           pullPolicy: IfNotPresent
+        envFrom:
+          - secretRef:
+              name: "immich-secret"
         env:
           TYPESENSE_DATA_DIR: /typesense-data
-          TYPESENSE_API_KEY:
-            valueFrom:
-              secretKeyRef:
-                name: "immich-secret"
-                key: TYPESENSE_API_KEY
         probes:
           liveness: &typesense_probes
             enabled: true
