@@ -11,7 +11,7 @@ controllers:
           tag: V3.0.4
         env:
           TZ: America/Vancouver
-          UID: 1026
+          PUID: 1026
           PGID: 100  # 'users' group
           CALIBRE_PORT: 8083
         probes:
