@@ -1,0 +1,15 @@
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: photoprism
+  annotations:
+    postgres.db.movetokube.com/instance: postgres17-rw
+spec:
+  role: photoprism-group
+  database: photoprism-main
+  secretName: photoprism-db-secret
+  privileges: OWNER
+  secretTemplate:
+    HOST_NO_PORT: "{{ .HostNoPort }}"
+    PORT: "{{ .Port }}"
+    

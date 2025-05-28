@@ -29,6 +29,23 @@ controllers:
           # GID: 1000
           # UMASK: 0000
           PHOTOPRISM_ORIGINALS_LIMIT: 4000 # in MB (default 1000)
+          PHOTOPRISM_DATABASE_DRIVER: postgres
+          PHOTOPRISM_DATABASE_NAME: photoprism
+          PHOTOPRISM_DATABASE_SERVER:
+            valueFrom:
+              secretKeyRef:
+                name: "photoprism-db-secret-photoprism"
+                key: HOST
+          PHOTOPRISM_DATABASE_USER:
+            valueFrom:
+              secretKeyRef:
+                name: "photoprism-db-secret-photoprism"
+                key: LOGIN
+          PHOTOPRISM_DATABASE_PASSWORD:
+            valueFrom:
+              secretKeyRef:
+                name: "photoprism-db-secret-photoprism"
+                key: PASSWORD
         envFrom:
           - secretRef:
               name: "photoprism-secret"

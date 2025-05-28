@@ -18,3 +18,5 @@ helmCharts:
 
 resources:
   - ./secret.enc.yaml
+  - ./templates/postgres.yaml
+  - ./templates/postgres-user.yaml
