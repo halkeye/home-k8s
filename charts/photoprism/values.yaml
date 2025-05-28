@@ -32,13 +32,13 @@ controllers:
         envFrom:
           - secretRef:
               name: "photoprism-secret"
-        probes:
-          liveness:
-            enabled: true
-          readiness:
-            enabled: true
-          startup:
-            enabled: true
+        # probes:
+        #   liveness:
+        #     enabled: true
+        #   readiness:
+        #     enabled: true
+        #   startup:
+        #     enabled: true
 service:
   main:
     controller: main
