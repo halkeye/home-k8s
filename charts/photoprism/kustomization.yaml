@@ -15,3 +15,6 @@ helmCharts:
     repo: https://bjw-s-labs.github.io/helm-charts
     valuesFile: values.yaml
     releaseName: photoprism 
+
+resources:
+  - ./secret.enc.yaml
