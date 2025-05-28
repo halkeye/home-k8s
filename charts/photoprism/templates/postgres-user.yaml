@@ -6,7 +6,7 @@ metadata:
     postgres.db.movetokube.com/instance: postgres17-rw
 spec:
   role: photoprism-group
-  database: photoprism-main
+  database: photoprism
   secretName: photoprism-db-secret
   privileges: OWNER
   secretTemplate:
