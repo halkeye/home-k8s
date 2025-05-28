@@ -2,8 +2,6 @@ apiVersion: db.movetokube.com/v1alpha1
 kind: PostgresUser
 metadata:
   name: photoprism
-  annotations:
-    postgres.db.movetokube.com/instance: postgres17-rw
 spec:
   role: photoprism-group
   database: photoprism
