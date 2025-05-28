@@ -105,6 +105,7 @@ spec:
           - name: microbin
           - name: miniflux
           - name: ollama
+          - name: photoprism
           - name: pixelfed
           - name: postiz
           - name: teamspeak
