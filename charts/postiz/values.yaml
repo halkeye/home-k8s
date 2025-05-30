@@ -76,9 +76,9 @@ service:
     controller: main
     ports:
       http:
-        port: 4080
-      uploads:
         port: 4200
+      uploads:
+        port: 4080
       api:
         port: 3000
 
