@@ -15,13 +15,34 @@ controllers:
       reloader.stakater.com/auto: "true"
     strategy: Recreate
     containers:
+      caddy:
+        image: 
+          repository: caddy
+          tag: 3.10-alpine
+        probes:
+          liveness:
+            enabled: true
+          readiness:
+            enabled: true
+          startup:
+            enabled: true
+        command:
+          - caddy 
+          - file-server 
+          - --root
+          - /uploads
+          - -l
+          - localhost:4080
       postiz:
         image:
           repository: ghcr.io/gitroomhq/postiz-app
           tag: v1.44.2
+        command: ["pnpm", "run", "pm2-run"]
         env:
           TZ: America/Vancouver
           EMAIL_PROVIDER: "nodemailer"
+          EMAIL_USER: ""
+          EMAIL_PASS: ""
           EMAIL_HOST: "postfix-mailgun-relay.smtp.svc.cluster.local"
           EMAIL_PORT: "587"
           EMAIL_SECURE: "false" 
@@ -55,7 +76,11 @@ service:
     controller: main
     ports:
       http:
-        port: 5000
+        port: 4080
+      uploads:
+        port: 4200
+      api:
+        port: 3000
 
 ingress:
   main:
@@ -69,6 +94,14 @@ ingress:
     hosts:
       - host: postiz.g4v.dev
         paths:
+          - path: /api
+            service:
+              identifier: main
+              port: api
+          - path: /uploads
+            service:
+              identifier: main
+              port: uploads
           - path: /
             service:
               identifier: main
