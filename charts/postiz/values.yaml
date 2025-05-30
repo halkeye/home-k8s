@@ -18,7 +18,7 @@ controllers:
       caddy:
         image: 
           repository: caddy
-          tag: 3.10-alpine
+          tag: 2.10-alpine
         probes:
           liveness:
             enabled: true
