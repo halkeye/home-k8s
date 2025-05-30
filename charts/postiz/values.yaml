@@ -94,10 +94,6 @@ ingress:
     hosts:
       - host: postiz.g4v.dev
         paths:
-          - path: /api
-            service:
-              identifier: main
-              port: api
           - path: /uploads
             service:
               identifier: main
@@ -106,6 +102,18 @@ ingress:
             service:
               identifier: main
               port: http
+  api:
+    enabled: true
+    annotations:
+      nginx.ingress.kubernetes.io/use-regex: "true"
+      nginx.ingress.kubernetes.io/rewrite-target: /api/$1
+    hosts:
+      - host: postiz.g4v.dev
+        paths:
+          - path: /api/(.*)
+            service:
+              identifier: main
+              port: api
 
 persistence:
   config:
