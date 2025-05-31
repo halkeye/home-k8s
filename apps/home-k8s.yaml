@@ -89,7 +89,6 @@ spec:
           - name: dnsdist
           - name: dns-over-http
           - name: immich
-          - name: kapowarr
           - name: komf
           - name: komga
           - name: lidarr
