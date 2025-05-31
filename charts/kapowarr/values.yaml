@@ -1,0 +1,101 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/common-3.0.1/charts/library/common/values.schema.json
+app-template:
+  controllers:
+    main:
+      containers:
+        main:
+          image:
+            # repository: mrcas/kapowarr
+            # tag: v1.0.0-beta-4
+            repository: ghcr.io/halkeye/kapowarr
+            tag: 4
+          env:
+            TZ: America/Vancouver
+          probes:
+            liveness: &probes
+              enabled: true
+              custom: true
+              spec:
+                httpGet:
+                  path: /ping
+                  port: 5656
+                initialDelaySeconds: 0
+                periodSeconds: 10
+                timeoutSeconds: 1
+                failureThreshold: 3
+            readiness: *probes
+            startup:
+              enabled: false
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          resources:
+            limits: &resources
+              memory: 600M
+            requests:
+              memory: 350M
+              cpu: 15m
+      pod:
+        securityContext:
+          runAsUser: 1026
+          runAsGroup: 100
+          runAsNonRoot: true
+          fsGroup: 100
+          fsGroupChangePolicy: OnRootMismatch
+  service:
+    main:
+      controller: main
+      ports:
+        http:
+          port: 5656
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        hajimari.io/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/kapowarr.png
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/group: Media Fetchers
+        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/kapowarr.png
+        gethomepage.dev/name: Kapowarr
+      hosts:
+        - host: &host "kapowarr.g4v.dev"
+          paths:
+            - path: /
+              service:
+                identifier: main
+                port: http
+  persistence:
+    config:
+      enabled: true
+      type: persistentVolumeClaim
+      accessMode: ReadWriteOnce
+      size: 10Gi
+      storageClass: synology-iscsi
+      globalMounts:
+        - path: /app/db
+    torrents:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Apps/torrents
+      globalMounts:
+        - path: /torrents
+    nzbdownloads:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Apps/nzbget
+      globalMounts:
+        - path: /nzb-downloads
+    comics:
+      type: nfs
+      server: 172.16.10.10
+      path: /volume1/Comics
+      globalMounts:
+        - path: /comics
+    downloads:
+      type: nfs
+      server: 172.16.10.10
+      path: "/volume1/Downloads"
+      globalMounts:
+        - path: /downloads
