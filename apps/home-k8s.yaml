@@ -89,6 +89,7 @@ spec:
           - name: dnsdist
           - name: dns-over-http
           - name: immich
+          - name: kapowarr
           - name: komf
           - name: komga
           - name: lidarr
@@ -100,9 +101,9 @@ spec:
           - name: openbooks
           - name: pinchflat
           - name: plexripper
+          - name: postgres-do-k8s-backup
           - name: postgres-home-backup
           - name: postgres-nas-backup
-          - name: postgres-do-k8s-backup
           - name: prowlarr
           - name: radarr
           - name: readarr
@@ -113,7 +114,6 @@ spec:
           - name: snapshot-controller
           - name: sonarr
           - name: tachidesk
-          - name: thelounge
           - name: unpackerr
           - name: youtubedl-material
   template:
