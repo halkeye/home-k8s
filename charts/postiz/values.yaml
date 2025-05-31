@@ -124,13 +124,9 @@ ingress:
               port: uploads
 
 persistence:
-  config:
-    enabled: true
-    type: persistentVolumeClaim
-    accessMode: ReadWriteOnce
-    size: 10Gi
   uploads:
     enabled: true
+    suffix: uploads
     type: persistentVolumeClaim
     accessMode: ReadWriteOnce
     size: 10Gi
