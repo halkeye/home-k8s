@@ -32,7 +32,7 @@ controllers:
           - --root
           - /uploads
           - -l
-          - localhost:4080
+          - 0.0.0.0:4080
       postiz:
         image:
           repository: ghcr.io/gitroomhq/postiz-app
