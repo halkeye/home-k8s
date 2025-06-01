@@ -95,6 +95,7 @@ spec:
           - name: lidarr
           - name: lms
           - name: minio
+          - name: music-assistant
           - name: mylar3
           - name: navidrome
           - name: netbootxyz
