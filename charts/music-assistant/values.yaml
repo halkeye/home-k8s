@@ -1,97 +1,96 @@
-app-template:
-  controllers:
-    music-assistant:
-      strategy: Recreate
-      pod:
-        hostNetwork: true
-      containers:
-        music-assistant:
-          image:
-            repository: ghcr.io/music-assistant/server
-            tag: 2.5.2
-          env:
-            TZ: America/Vancouver
-            LOG_LEVEL: "info"
-          securityContext:
-            privileged: true
-            capabilities:
-              add:
-                - SYS_ADMIN
-                - CAP_SYSLOG
-                - NET_BIND_SERVICE
-                - DAC_READ_SEARCH
-          probes:
-            liveness:
-              enabled: false
-            readiness:
-              enabled: false
-            startup:
-              enabled: false
-              spec:
-                failureThreshold: 30
-                periodSeconds: 5
-          resources:
-            requests:
-              cpu: 47m
-              memory: 512Mi
-            limits:
-              memory: 1024Mi
-  service:
-    music-assistant:
-      controller: music-assistant
-      ports:
-        http:
-          port: 8095
-        internal:
-          port: 8123
-    stream:
-      enabled: true
-      controller: music-assistant
-      type: LoadBalancer
-      externalTrafficPolicy: Cluster
-      ports:
-        stream:
-          enabled: true
-          port: 8097
-          protocol: TCP
-          targetPort: 8097
-  ingress:
-    main:
-      enabled: true
-      annotations:
-        gethomepage.dev/enabled: "true"
-        gethomepage.dev/group: Media
-        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/music-assistant.png
-        gethomepage.dev/name: Music Assistant
-      hosts:
-        - host: music.g4v.dev
-          paths:
-            - path: /
-              service:
-                identifier: music-assistant
-                port: http
-  persistence:
-    data:
-      enabled: true
-      type: persistentVolumeClaim
-      accessMode: ReadWriteOnce
-      size: 1Gi
-      storageClass: nas-apps
-      globalMounts:
-        - path: /data
-    music:
-      type: nfs
-      server: 172.16.10.10
-      path: /volume1/Audio/Music
-    podcasts:
-      type: nfs
-      server: 172.16.10.10
-      path: /volume1/Audio/Podcasts
-    comedians:
-      type: nfs
-      server: 172.16.10.10
-      path: /volume1/Audio/Comedians
-    books:
-      type: nfs
-      server: 172.16.10.10
-      path: /volume1/Audio/Audio Books/
+controllers:
+  music-assistant:
+    strategy: Recreate
+    pod:
+      hostNetwork: true
+    containers:
+      music-assistant:
+        image:
+          repository: ghcr.io/music-assistant/server
+          tag: 2.5.2
+        env:
+          TZ: America/Vancouver
+          LOG_LEVEL: "info"
+        securityContext:
+          privileged: true
+          capabilities:
+            add:
+              - SYS_ADMIN
+              - CAP_SYSLOG
+              - NET_BIND_SERVICE
+              - DAC_READ_SEARCH
+        probes:
+          liveness:
+            enabled: false
+          readiness:
+            enabled: false
+          startup:
+            enabled: false
+            spec:
+              failureThreshold: 30
+              periodSeconds: 5
+        resources:
+          requests:
+            cpu: 47m
+            memory: 512Mi
+          limits:
+            memory: 1024Mi
+service:
+  music-assistant:
+    controller: music-assistant
+    ports:
+      http:
+        port: 8095
+      internal:
+        port: 8123
+  stream:
+    enabled: true
+    controller: music-assistant
+    type: LoadBalancer
+    externalTrafficPolicy: Cluster
+    ports:
+      stream:
+        enabled: true
+        port: 8097
+        protocol: TCP
+        targetPort: 8097
+ingress:
+  main:
+    enabled: true
+    annotations:
+      gethomepage.dev/enabled: "true"
+      gethomepage.dev/group: Media
+      gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/music-assistant.png
+      gethomepage.dev/name: Music Assistant
+    hosts:
+      - host: music.g4v.dev
+        paths:
+          - path: /
+            service:
+              identifier: music-assistant
+              port: http
+persistence:
+  data:
+    enabled: true
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    size: 1Gi
+    storageClass: nas-apps
+    globalMounts:
+      - path: /data
+  music:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Audio/Music
+  podcasts:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Audio/Podcasts
+  comedians:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Audio/Comedians
+  books:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Audio/Audio Books/
