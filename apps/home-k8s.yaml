@@ -86,6 +86,7 @@ spec:
           - name: autobrr
           - name: calibre-web-automated
           - name: cloudnative-pg
+          - name: cross-seed
           - name: dnsdist
           - name: dns-over-http
           - name: immich
