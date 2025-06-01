@@ -1,0 +1,88 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  main:
+    replicas: 1
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      main:
+        image:
+          repository: ghcr.io/cross-seed/cross-seed
+          tag: 6.12.6
+        env:
+          TZ: America/Vancouver
+        envFrom:
+          - secretRef:
+              name: cross-seed-secret
+        probes:
+          liveness:
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /api/ping
+                port: 2468
+              initialDelaySeconds: 0
+              periodSeconds: 10
+              timeoutSeconds: 1
+              failureThreshold: 3
+          readiness:
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /api/ping
+                port: 2468
+              initialDelaySeconds: 0
+              periodSeconds: 10
+              timeoutSeconds: 1
+              failureThreshold: 3
+          startup:
+            enabled: false
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+        resources:
+          limits:
+            memory: 512Mi
+          requests:
+            cpu: 10m
+    pod:
+      securityContext:
+        runAsUser: 1026
+        runAsGroup: 100
+        runAsNonRoot: true
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 2468
+persistence:
+  config:
+    enabled: true
+    suffix: config
+    type: persistentVolumeClaim
+    storageClass: longhorn
+    accessMode: ReadWriteOnce
+    size: 1Gi
+  tmp:
+    enabled: true
+    type: emptyDir
+  secret-file:
+    type: configMap
+    name: cross-seed-config
+    globalMounts:
+      - path: /config/config.js
+        subPath: config.js
+        readOnly: true
+  downloads:
+    type: nfs
+    server: 172.16.10.10
+    path: "/volume1/Downloads"
+    globalMounts:
+      - path: /downloads
