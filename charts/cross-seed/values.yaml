@@ -11,6 +11,7 @@ controllers:
           tag: 6.12.6
         env:
           TZ: America/Vancouver
+        args: ["daemon"]
         envFrom:
           - secretRef:
               name: cross-seed-secret
