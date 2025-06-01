@@ -74,8 +74,8 @@ persistence:
     enabled: true
     type: persistentVolumeClaim
     accessMode: ReadWriteOnce
-    size: 1Gi
-    storageClass: nas-apps
+    size: 5Gi
+    storageClass: longhorn
     globalMounts:
       - path: /data
   music:
