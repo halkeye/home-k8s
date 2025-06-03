@@ -172,7 +172,7 @@ controllers:
         runAsGroup: 33
         runAsNonRoot: true
     type: job
-    nameOverride: '{{ printf "pixelfed-migrations-%s" (.Values.controllers.migrations.containers.migrations.image.tag | replace "." "-") }}'
+    forceRename: '{{ printf "pixelfed-migrations-%s" (.Values.controllers.migrations.containers.migrations.image.tag | replace "." "-") }}'
     revisionHistoryLimit: 1
     job:
       backoffLimit: 0
