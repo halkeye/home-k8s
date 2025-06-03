@@ -93,7 +93,6 @@ spec:
           - name: komf
           - name: komga
           - name: lidarr
-          - name: lms
           - name: minio
           - name: music-assistant
           - name: mylar3
