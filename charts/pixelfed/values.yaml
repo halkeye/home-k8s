@@ -9,21 +9,10 @@ controllers:
     containers:
       main:
         image: &image
-          # repository: quay.io/zknt/pixelfed
-          # tag: 2025-01-18
-          repository: ghcr.io/halkeye/docker-pixelfed
-          tag: add-generic-oidc.4
-        command:
-          - bash
-          - -c
-          - |-
-            gosu www-data php artisan storage:link
-            gosu www-data php artisan config:cache
-            gosu www-data php artisan cache:clear
-            gosu www-data php artisan route:cache
-            gosu www-data php artisan view:cache
-            gosu www-data php artisan instance:actor
-            exec apache2-foreground
+          repository: quay.io/zknt/pixelfed
+          tag: 2025-05-16
+          # repository: ghcr.io/halkeye/docker-pixelfed
+          # tag: add-generic-oidc.4
         # command:
         #   - bash
         #   - -c
@@ -34,10 +23,21 @@ controllers:
         #     gosu www-data php artisan route:cache
         #     gosu www-data php artisan view:cache
         #     gosu www-data php artisan instance:actor
-        #     echo "++++ Start apache... ++++"
-        #     source /etc/apache2/envvars
-        #     a2enmod rewrite remoteip proxy proxy_http && a2enconf remoteip
         #     exec apache2-foreground
+        command:
+          - bash
+          - -c
+          - |-
+            gosu www-data php artisan storage:link
+            gosu www-data php artisan config:cache
+            gosu www-data php artisan cache:clear
+            gosu www-data php artisan route:cache
+            gosu www-data php artisan view:cache
+            gosu www-data php artisan instance:actor
+            echo "++++ Start apache... ++++"
+            source /etc/apache2/envvars
+            a2enmod rewrite remoteip proxy proxy_http && a2enconf remoteip
+            exec apache2-foreground
         env: &envVars
           ENTRYPOINT_SKIP_SCRIPTS: 01-permissions.sh
           DOCKER_APP_PHP_DISPLAY_ERRORS: on
