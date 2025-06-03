@@ -23,6 +23,8 @@ ingress-nginx:
     allowSnippetAnnotations: true
 
     config:
+      denylist-source-range:
+        - 34.92.62.113
       use-forwarded-headers: "true"
       use-proxy-protocol: "true"  # DigitalOcean loadbalancer
       allow-snippet-annotations: "true"
