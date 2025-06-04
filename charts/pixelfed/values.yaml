@@ -49,7 +49,7 @@ controllers:
           APP_ENV: production
           APP_URL: https://pixelfed.g4v.dev
           APP_DOMAIN: "pixelfed.g4v.dev"
-          REDIS_HOST: "redis-master"
+          REDIS_HOST: "redis"
           ADMIN_DOMAIN: "pixelfed.g4v.dev"
           SESSION_DOMAIN: "pixelfed.g4v.dev"
           TRUST_PROXIES: "*"

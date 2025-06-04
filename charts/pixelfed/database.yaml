@@ -19,4 +19,12 @@ spec:
   secretTemplate:
     HOST_NO_PORT: "{{ .HostNoPort }}"
     PORT: "{{ .Port }}"
-    
+---
+apiVersion: redis.redis.opstreelabs.in/v1beta2
+kind: Redis
+metadata:
+  name: redis
+spec:
+  kubernetesConfig:
+    image: quay.io/opstree/redis:v7.0.15
+    imagePullPolicy: IfNotPresent

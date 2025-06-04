@@ -9,9 +9,13 @@ helmGlobals:
 generatorOptions:
   disableNameSuffixHash: true
 
-generators:
-  - ../secret-generator.yaml
-  - ./helm-chart.yaml
+helmCharts:
+  - name: app-template
+    version: 4.0.1
+    repo: https://bjw-s-labs.github.io/helm-charts
+    valuesFile: values.yaml
+    releaseName: pixelfed 
 
 resources:
   - ./database.yaml
+  - ./secret.enc.yaml
