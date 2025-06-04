@@ -71,16 +71,7 @@ controllers:
           MAIL_ENCRYPTION: ""
           MAIL_FROM_ADDRESS: "pixelfed@g4v.dev"
           MAIL_FROM_NAME: "Pixelfed"
-          PF_ENABLE_CLOUD: "false"
-          FILESYSTEM_CLOUD: "s3"
           ENTRYPOINT_SKIP: "true"
-          #AWS_ACCESS_KEY_ID:
-          #AWS_SECRET_ACCESS_KEY:
-          #AWS_DEFAULT_REGION:
-          #AWS_BUCKET: <BucketName>
-          #AWS_URL:
-          #AWS_ENDPOINT:
-          #AWS_USE_PATH_STYLE_ENDPOINT: false
 
           DB_CONNECTION: pgsql
           DB_HOST:
