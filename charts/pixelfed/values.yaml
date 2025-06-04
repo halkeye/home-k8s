@@ -6,6 +6,8 @@ defaultPodOptions:
 
 controllers:
   main:
+    annotations:
+      reloader.stakater.com/auto: "true"
     containers:
       main:
         image: &image
@@ -125,6 +127,8 @@ controllers:
             memory: 100Mi
             cpu: 10m
   worker:
+    annotations:
+      reloader.stakater.com/auto: "true"
     pod:
       securityContext:
         runAsUser: 33
@@ -166,6 +170,8 @@ controllers:
           capabilities:
             drop: ["ALL"]
   migrations:
+    annotations:
+      reloader.stakater.com/auto: "true"
     pod:
       securityContext:
         runAsUser: 33
