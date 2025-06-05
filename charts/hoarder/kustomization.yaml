@@ -17,4 +17,4 @@ helmCharts:
     releaseName: hoarder
 
 generators:
-  - ../secret-generator.yaml
+  - ./secret.enc.yaml
