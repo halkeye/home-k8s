@@ -161,8 +161,6 @@ controllers:
           capabilities:
             drop: ["ALL"]
   migrations:
-    annotations:
-      reloader.stakater.com/auto: "true"
     pod:
       securityContext:
         runAsUser: 33
