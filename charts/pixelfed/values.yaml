@@ -174,7 +174,7 @@ controllers:
     job:
       backoffLimit: 0
       # 2 days
-      ttlSecondsAfterFinished: 172800
+      ttlSecondsAfterFinished: 60
     containers:
       migrations:
         image:
