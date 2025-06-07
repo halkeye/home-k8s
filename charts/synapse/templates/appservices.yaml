@@ -158,8 +158,11 @@ stringData:
     id: whatsapp
     namespaces:
       users:
-      - exclusive: true
-        regex: ^@whatsapp_[0-9]+:g4v.dev$
+        - regex: ^@whatsappbot:g4v\.dev$
+          exclusive: true
+        - regex: ^@whatsapp_.*:g4v\.dev$
+          exclusive: true
+
     rate_limited: false
     sender_localpart: whatsappbot
     url: http://mautrix-whatsapp.matrix.svc.cluster.local:29318
