@@ -48,7 +48,7 @@ controllers:
           - run
           - migrations:run
   main:
-    replicas: 2
+    replicas: 1
     annotations:
       reloader.stakater.com/auto: "true"
     containers:
