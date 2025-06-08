@@ -37,12 +37,12 @@ controllers:
         envFrom:
           - secretRef:
               name: "immich-secret"
-        # env:
-        #   DB_URL:
-        #     valueFrom:
-        #       secretKeyRef:
-        #         name: immich-immich
-        #         key: DB_LOGGING_URL
+        env:
+          DB_URL:
+            valueFrom:
+              secretKeyRef:
+                name: immich-immich
+                key: DB_URL
         command:
           - npm
           - run
@@ -64,11 +64,11 @@ controllers:
           DB_SKIP_MIGRATIONS: "true"
           IMMICH_TRUSTED_PROXIES: "0.0.0.0"
           IMMICH_PORT: 3001
-          # DB_URL:
-          #   valueFrom:
-          #     secretKeyRef:
-          #       name: immich-immich
-          #       key: DB_URL
+          DB_URL:
+            valueFrom:
+              secretKeyRef:
+                name: immich-immich
+                key: DB_URL
         probes:
           liveness: &server_probes
             enabled: true
@@ -100,11 +100,11 @@ controllers:
               name: "immich-secret"
         env:
           TRANSFORMERS_CACHE: /cache
-          # DB_URL:
-          #   valueFrom:
-          #     secretKeyRef:
-          #       name: immich-immich
-          #       key: DB_URL
+          DB_URL:
+            valueFrom:
+              secretKeyRef:
+                name: immich-immich
+                key: DB_URL
         probes:
           liveness: &machine_probes
             enabled: true
