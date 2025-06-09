@@ -8,7 +8,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/home-operations/readarr
-          tag: 0.4.16.2793
+          tag: 0.4.17.2801
         env:
           TZ: America/Vancouver
           COMPlus_EnableDiagnostics: "0"
