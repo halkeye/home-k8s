@@ -5,7 +5,7 @@ metadata:
   name: postiz
 spec:
   database: postiz
-  dropOnDelete: true
+  dropOnDelete: false
 ---
 apiVersion: db.movetokube.com/v1alpha1
 kind: PostgresUser

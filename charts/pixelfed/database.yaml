@@ -5,7 +5,7 @@ metadata:
   name: pixelfed
 spec:
   database: pixelfed
-  dropOnDelete: true
+  dropOnDelete: false
 ---
 apiVersion: db.movetokube.com/v1alpha1
 kind: PostgresUser

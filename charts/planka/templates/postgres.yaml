@@ -4,4 +4,4 @@ metadata:
   name: planka
 spec:
   database: planka
-  dropOnDelete: true
+  dropOnDelete: false

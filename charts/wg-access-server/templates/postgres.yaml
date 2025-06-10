@@ -6,4 +6,4 @@ metadata:
     postgres.db.movetokube.com/instance: postgres17-rw
 spec:
   database: wg-access-server
-  dropOnDelete: true
+  dropOnDelete: false

@@ -6,4 +6,4 @@ metadata:
     postgres.db.movetokube.com/instance: postgres17-rw
 spec:
   database: romm
-  dropOnDelete: true
+  dropOnDelete: false
