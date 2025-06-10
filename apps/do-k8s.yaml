@@ -91,7 +91,7 @@ spec:
   generators:
     - list:
         elements:
-          - { name: do-k8s-tailscale-operator, namespace: tailscale }
+          # - { name: do-k8s-tailscale-operator, namespace: tailscale }
 
           # Exporters
           - { namespace: monitoring, name: mysqld-exporter }
