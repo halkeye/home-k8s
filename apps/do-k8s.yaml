@@ -100,7 +100,6 @@ spec:
 
           - name: bytestash
           - name: hoarder
-          - name: kitchenowl
           - name: metrics-server
           - name: microbin
           - name: miniflux
