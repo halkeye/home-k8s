@@ -17,7 +17,6 @@ spec:
                   namespace: smtp
 
                 - appname: whoami
-                - appname: kubetail
   template:
     metadata:
       name: '{{.nameNormalized}}-{{.appname}}'
