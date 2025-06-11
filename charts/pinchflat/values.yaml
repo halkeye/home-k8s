@@ -40,7 +40,7 @@ controllers:
             drop: ["ALL"]
         resources:
           limits:
-            memory: 2Gi
+            memory: 4Gi
           requests:
             memory: 256Mi
             cpu: 10m
