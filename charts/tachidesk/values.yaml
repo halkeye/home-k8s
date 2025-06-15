@@ -5,11 +5,13 @@ controllers:
     containers:
       main:
         image:
-          repository: ghcr.io/suwayomi/tachidesk
+          repository: ghcr.io/suwayomi/suwayomi-server
           tag: v2.0.1785
         env:
           TZ: America/Vancouver
           BIND_PORT: &port 4567
+          DOWNLOAD_AS_CBZ: "true"
+          AUTO_DOWNLOAD_CHAPTERS: "true"
         probes:
           liveness: &probes
             enabled: false
