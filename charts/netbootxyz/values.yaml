@@ -8,7 +8,7 @@ controllers:
       app:
         image:
           repository: ghcr.io/netbootxyz/netbootxyz
-          tag: "0.7.5-nbxyz1"
+          tag: "0.7.6-nbxyz1"
         env:
           TFTPD_OPTS: "--tftp-single-port" 
           PGID: 1000

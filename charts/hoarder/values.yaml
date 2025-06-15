@@ -98,7 +98,7 @@ controllers:
           # --experimental-dumpless-upgrade
         image:
           repository: docker.io/getmeili/meilisearch
-          tag: v1.14.0
+          tag: v1.15.2
         env:
           MEILI_NO_ANALYTICS: true
           MEILI_MASTER_KEY:
