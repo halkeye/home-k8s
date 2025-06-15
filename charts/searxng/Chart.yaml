@@ -6,12 +6,12 @@ appVersion: '1.0'
 
 dependencies:
   - name: app-template
-    version: 4.0.1
+    version: 4.1.1
     repository: https://bjw-s-labs.github.io/helm-charts
   - name: redis
     condition: redis.enabled
     repository: https://charts.bitnami.com/bitnami
-    version: 21.2.1
+    version: 21.2.3
 maintainers:
   - name: halkeye
     url: https://www.gavinmogan.com
