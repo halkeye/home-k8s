@@ -4,6 +4,10 @@ controllers:
   main:
     containers:
       main:
+        command:
+          - /bin/sh
+          - -c
+          - 'sleep 99d'
         image:
           repository: ghcr.io/suwayomi/suwayomi-server
           tag: v2.0.1785
