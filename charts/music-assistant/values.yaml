@@ -47,6 +47,7 @@ service:
     enabled: true
     controller: music-assistant
     type: LoadBalancer
+    loadBalancerIP: 172.16.10.207
     externalTrafficPolicy: Cluster
     ports:
       stream:
