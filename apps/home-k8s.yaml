@@ -22,7 +22,6 @@ spec:
           - name: calibre-web
           - name: frigate
           - name: kobodl
-          - name: stash
           - name: wg-access-server
           # - name: ytdl-sub
   template:
@@ -111,6 +110,7 @@ spec:
           - name: slskd
           - name: snapshot-controller
           - name: sonarr
+          - name: stash
           - name: tachidesk
           - name: unpackerr
           - name: youtubedl-material
