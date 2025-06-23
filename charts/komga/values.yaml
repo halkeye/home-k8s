@@ -5,7 +5,7 @@ controllers:
       main:
         image:
           repository: gotson/komga
-          tag: 1.21.3
+          tag: 1.22.0
         envFrom:
           - secretRef:
               name: "{{ .Release.Name }}-secret"
