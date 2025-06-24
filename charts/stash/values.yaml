@@ -1,6 +1,6 @@
 controllers:
   main:
-    replicas: 0
+    replicas: 1
     containers:
       main:
         image:
@@ -60,9 +60,8 @@ persistence:
   config:
     enabled: true
     type: persistentVolumeClaim
-    storageClass: nas-apps
+    storageClass: longhorn
     suffix: config
-    accessMode: ReadWriteMany
     size: 10Gi
     globalMounts:
       - path: /root/.stash
