@@ -94,10 +94,6 @@ app-template:
               service:
                 identifier: main
                 port: http
-      tls:
-        - hosts:
-            - admin-vpn.g4v.dev
-          secretName: "wg-access-server-tls"
 
   persistence:
     config:
