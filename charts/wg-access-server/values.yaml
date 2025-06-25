@@ -66,6 +66,8 @@ app-template:
       ports:
         http:
           port: 8000
+        https:
+          port: 8443
     wireguard:
       enabled: true
       controller: main
@@ -98,6 +100,8 @@ app-template:
       enabled: true
       type: secret
       name: "{{ .Release.Name }}-secret"
+    data:
+      type: emptyDir
 
   secrets:
     secret:
