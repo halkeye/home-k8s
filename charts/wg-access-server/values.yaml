@@ -94,6 +94,10 @@ app-template:
               service:
                 identifier: main
                 port: http
+      tls:
+        - hosts:
+            - admin-vpn.g4v.dev
+          secretName: "wg-access-server-tls"
 
   persistence:
     config:
@@ -102,6 +106,10 @@ app-template:
       name: "{{ .Release.Name }}-secret"
     data:
       type: emptyDir
+    certs:
+      enabled: true
+      type: secret
+      secretName: "wg-access-server-tls"
 
   secrets:
     secret:
@@ -115,9 +123,8 @@ app-template:
       stringData:
         config.yaml: |-
           https:
-            enabled: false
-            certFile: /data/wg-access-server.crt
-            keyFile: /data/wg-access-server.key
+            certFile: /certs/tls.crt
+            keyFile: /certs/tls.key
           dns:
             enabled: true
             domain: dhcp.home
