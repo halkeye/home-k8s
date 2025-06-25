@@ -99,7 +99,7 @@ app-template:
     config:
       enabled: true
       type: secret
-      name: "{{ .Release.Name }}-secret"
+      name: "{{ .Release.Name }}"
     data:
       type: emptyDir
     certs:
@@ -119,6 +119,7 @@ app-template:
       stringData:
         config.yaml: |-
           https:
+            enabled: true
             certFile: /certs/tls.crt
             keyFile: /certs/tls.key
           dns:
