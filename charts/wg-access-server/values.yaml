@@ -109,7 +109,7 @@ app-template:
     certs:
       enabled: true
       type: secret
-      secretName: "wg-access-server-tls"
+      name: "wg-access-server-tls"
 
   secrets:
     secret:
