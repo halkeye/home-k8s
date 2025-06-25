@@ -114,6 +114,10 @@ app-template:
       # -- Secret stringData content. Helm template enabled.
       stringData:
         config.yaml: |-
+          https:
+            enabled: false
+            certFile: /data/wg-access-server.crt
+            keyFile: /data/wg-access-server.key
           dns:
             enabled: true
             domain: dhcp.home
