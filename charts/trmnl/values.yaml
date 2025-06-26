@@ -7,41 +7,54 @@ controllers:
     containers:
       trmnl:
         image:
-          repository: ghcr.io/usetrmnl/byos_laravel
-          tag: 0.6.2
+          repository: ghcr.io/usetrmnl/terminus
+          tag: 0.14.0
         env:
-          PHP_OPCACHE_ENABLE: 1
-          TRMNL_PROXY_REFRESH_MINUTES: 15
-          FORCE_HTTPS: 1
-          DB_CONNECTION: pgsql
-          DB_HOST:
+          API_URI: https://trmnl.g4v.dev
+          HANAMI_PORT: 8080
+          DATABASE_URL:
             valueFrom:
               secretKeyRef:
                 name: "trmnl-db-secret-trmnl"
-                key: HOST_NO_PORT
-          DB_PORT:
-            valueFrom:
-              secretKeyRef:
-                name: "trmnl-db-secret-trmnl"
-                key: PORT
-          DB_DATABASE:
-            valueFrom:
-              secretKeyRef:
-                name: "trmnl-db-secret-trmnl"
-                key: DATABASE_NAME
-          DB_USERNAME:
-            valueFrom:
-              secretKeyRef:
-                name: "trmnl-db-secret-trmnl"
-                key: ROLE
-          DB_PASSWORD:
-            valueFrom:
-              secretKeyRef:
-                name: "trmnl-db-secret-trmnl"
-                key: PASSWORD
+                key: POSTGRES_URL
+          # PHP_OPCACHE_ENABLE: 1
+          # TRMNL_PROXY_REFRESH_MINUTES: 15
+          # FORCE_HTTPS: 1
+          # DB_CONNECTION: pgsql
+          # DB_HOST:
+          #   valueFrom:
+          #     secretKeyRef:
+          #       name: "trmnl-db-secret-trmnl"
+          #       key: HOST_NO_PORT
+          # DB_PORT:
+          #   valueFrom:
+          #     secretKeyRef:
+          #       name: "trmnl-db-secret-trmnl"
+          #       key: PORT
+          # DB_DATABASE:
+          #   valueFrom:
+          #     secretKeyRef:
+          #       name: "trmnl-db-secret-trmnl"
+          #       key: DATABASE_NAME
+          # DB_USERNAME:
+          #   valueFrom:
+          #     secretKeyRef:
+          #       name: "trmnl-db-secret-trmnl"
+          #       key: ROLE
+          # DB_PASSWORD:
+          #   valueFrom:
+          #     secretKeyRef:
+          #       name: "trmnl-db-secret-trmnl"
+          #       key: PASSWORD
         envFrom:
           - secretRef:
               name: "trmnl-secret"
+        resources:
+          limits:
+            memory: 1Gi
+          requests:
+            memory: 1Gi
+            cpu: 30m
 service:
   main:
     controller: main
