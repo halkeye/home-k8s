@@ -10,7 +10,6 @@ controllers:
           repository: ghcr.io/usetrmnl/byos_laravel
           tag: 0.6.2
         env:
-          APP_KEY: 
           PHP_OPCACHE_ENABLE: 1
           TRMNL_PROXY_REFRESH_MINUTES: 15
           FORCE_HTTPS: 1
