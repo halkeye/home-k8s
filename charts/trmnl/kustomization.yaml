@@ -16,4 +16,5 @@ helmCharts:
     valuesFile: values.yaml
     releaseName: trmnl 
 
-resources: []
+resources:
+  - ./secret.enc.yaml
