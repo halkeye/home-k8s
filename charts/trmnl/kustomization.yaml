@@ -17,4 +17,5 @@ helmCharts:
     releaseName: trmnl 
 
 resources:
+  - ./database.yaml
   - ./secret.enc.yaml

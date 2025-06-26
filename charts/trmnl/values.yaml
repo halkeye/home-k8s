@@ -14,7 +14,32 @@ controllers:
           PHP_OPCACHE_ENABLE: 1
           TRMNL_PROXY_REFRESH_MINUTES: 15
           FORCE_HTTPS: 1
-          DB_DATABASE: /var/www/html/database/storage/database.sqlite
+          DB_CONNECTION: pgsql
+          DB_HOST:
+            valueFrom:
+              secretKeyRef:
+                name: "trmnl-db-secret-trmnl"
+                key: HOST_NO_PORT
+          DB_PORT:
+            valueFrom:
+              secretKeyRef:
+                name: "trmnl-db-secret-trmnl"
+                key: PORT
+          DB_DATABASE:
+            valueFrom:
+              secretKeyRef:
+                name: "trmnl-db-secret-trmnl"
+                key: DATABASE_NAME
+          DB_USERNAME:
+            valueFrom:
+              secretKeyRef:
+                name: "trmnl-db-secret-trmnl"
+                key: ROLE
+          DB_PASSWORD:
+            valueFrom:
+              secretKeyRef:
+                name: "trmnl-db-secret-trmnl"
+                key: PASSWORD
         envFrom:
           - secretRef:
               name: "trmnl-secret"
@@ -38,14 +63,6 @@ persistence:
   tmp:
     enabled: true
     type: emptyDir
-  database:
-    enabled: true
-    suffix: database
-    type: persistentVolumeClaim
-    accessMode: ReadWriteOnce
-    size: 1Gi
-    globalMounts:
-      - path: /var/www/html/database/storage
   storage:
     enabled: true
     type: emptyDir
