@@ -14,7 +14,7 @@ controllers:
           PHP_OPCACHE_ENABLE: 1
           TRMNL_PROXY_REFRESH_MINUTES: 15
           FORCE_HTTPS: 1
-          DB_DATABASE: database/storage/database.sqlite
+          DB_DATABASE: /var/www/html/database/storage/database.sqlite
         envFrom:
           - secretRef:
               name: "trmnl-secret"
