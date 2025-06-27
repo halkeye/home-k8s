@@ -1,49 +1,48 @@
-app-template:
-  controllers:
-    main:
-      strategy: Recreate
-      containers:
-        app:
-          image:
-            repository: ghcr.io/meeb/bandcampsync
-            tag: latest@sha256:1c64dedba6b11acb1401047887ff36eb683271bae18966a96ebe67d87115c75c
-          env:
-            TZ: America/Vancouver
-          command:
-            - bandcampsync-service
-          probes:
-            liveness:
-              enabled: true
-            readiness:
-              enabled: true
-            startup:
-              enabled: true
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            capabilities:
-              drop: ['ALL']
-          resources:
-            limits:
-              memory: 1Gi
-            requests:
-              memory: 256Mi
-              cpu: 10m
-      pod:
+controllers:
+  main:
+    strategy: Recreate
+    containers:
+      app:
+        image:
+          repository: ghcr.io/meeb/bandcampsync
+          tag: latest@sha256:1c64dedba6b11acb1401047887ff36eb683271bae18966a96ebe67d87115c75c
+        env:
+          TZ: America/Vancouver
+        command:
+          - bandcampsync-service
+        probes:
+          liveness:
+            enabled: true
+          readiness:
+            enabled: true
+          startup:
+            enabled: true
         securityContext:
-          runAsUser: 1026
-          runAsGroup: 100
-          runAsNonRoot: true
-          fsGroup: 100
-          fsGroupChangePolicy: OnRootMismatch
-  persistence:
-    tmp:
-      type: emptyDir
-    config:
-      enabled: true
-      type: secret
-      name: '{{ .Release.Name }}-secret'
-    downloads:
-      type: nfs
-      server: 172.16.10.10
-      path: /volume1/Audio/Music
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ['ALL']
+        resources:
+          limits:
+            memory: 1Gi
+          requests:
+            memory: 256Mi
+            cpu: 10m
+    pod:
+      securityContext:
+        runAsUser: 1026
+        runAsGroup: 100
+        runAsNonRoot: true
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
+persistence:
+  tmp:
+    type: emptyDir
+  config:
+    enabled: true
+    type: secret
+    name: 'bandcampsync-secret'
+  downloads:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Audio/Music
