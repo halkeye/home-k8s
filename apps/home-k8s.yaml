@@ -17,7 +17,6 @@ spec:
 
           # App
           - name: audiobookshelf
-          - name: bandcampsync
           - name: bazarr
           - name: calibre-web
           - name: frigate
@@ -83,6 +82,7 @@ spec:
           - name: anime-radarr
           - name: anime-sonarr
           - name: autobrr
+          - name: bandcampsync
           - name: calibre-web-automated
           - name: cloudnative-pg
           - name: cross-seed
@@ -112,7 +112,6 @@ spec:
           - name: sonarr
           - name: stash
           - name: tachidesk
-          - name: trmnl
           - name: unpackerr
           - name: youtubedl-material
   template:
