@@ -15,8 +15,11 @@ traefik:
     prometheus.io/scrape: 'true'
   providers:
     kubernetesIngress:
+      allowExternalNameServices: true
       publishedService:
         enabled: true
+    kubernetesCRD:
+      allowExternalNameServices: true
   ingressRoute:
     dashboard:
       # -- Create an IngressRoute for the dashboard
