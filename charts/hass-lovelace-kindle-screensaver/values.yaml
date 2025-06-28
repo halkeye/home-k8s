@@ -17,6 +17,7 @@ controllers:
           OUTPUT_PATH: /tmp/output.jpg
           UNSAFE_IGNORE_CERTIFICATE_ERRORS: "true"
           IMAGE_FORMAT: jpg
+          HOME: /tmp
         envFrom:
           - secretRef:
               name: "hass-lovelace-kindle-screensaver-secret"
