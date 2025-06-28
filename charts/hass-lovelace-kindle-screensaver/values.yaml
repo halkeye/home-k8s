@@ -12,6 +12,7 @@ controllers:
           RENDERING_SCREEN_HEIGHT: "825"
           RENDERING_SCREEN_WIDTH: "1200"
           RENDERING_DELAY: "5000"
+          ROTATION: 90
           LANGUAGE: en
           CRON_JOB: "*/20 * * * *"
           OUTPUT_PATH: /tmp/output.jpg
