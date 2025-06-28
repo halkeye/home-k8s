@@ -1,0 +1,8 @@
+[files]
+extend-exclude = ["secret.enc.yaml"]
+
+[default.extend-identifiers]
+
+[default.extend-words]
+hass="hass"
+
