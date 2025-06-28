@@ -112,6 +112,7 @@ spec:
           - name: sonarr
           - name: stash
           - name: tachidesk
+          - name: tasmoadmin
           - name: unpackerr
           - name: youtubedl-material
   template:

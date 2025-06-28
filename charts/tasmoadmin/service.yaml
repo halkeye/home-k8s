@@ -5,3 +5,7 @@ metadata:
 spec:
   type: ExternalName
   externalName: homeassistant.dhcp.home
+  ports:
+    - port: 9541
+      protocol: TCP
+      targetPort: 9541
