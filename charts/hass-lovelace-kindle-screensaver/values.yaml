@@ -1,0 +1,64 @@
+controllers:
+  main:
+    containers:
+      app:
+        image:
+          repository: sibbl/hass-lovelace-kindle-screensaver
+          tag: 1.0.14
+        env:
+          TZ: America/Vancouver
+          HA_BASE_URL: http://home-assistant.dhcp.home:8123
+          HA_SCREENSHOT_URL: /dashboard-eink/screensaver?kiosk
+          RENDERING_SCREEN_HEIGHT: "825"
+          RENDERING_SCREEN_WIDTH: "1200"
+          RENDERING_DELAY: "5000"
+          LANGUAGE: en
+          CRON_JOB: "*/20 * * * *"
+          OUTPUT_PATH: /tmp/output.jpg
+          UNSAFE_IGNORE_CERTIFICATE_ERRORS: "true"
+          IMAGE_FORMAT: jpg
+        envFrom:
+          - secretRef:
+              name: "hass-lovelace-kindle-screensaver-secret"
+        probes:
+          liveness:
+            enabled: true
+          readiness:
+            enabled: true
+          startup:
+            enabled: true
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ['ALL']
+        resources:
+          requests:
+            memory: 256Mi
+            cpu: 10m
+    pod:
+      securityContext:
+        runAsUser: 1026
+        runAsGroup: 100
+        runAsNonRoot: true
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 5000
+ingress:
+  main:
+    enabled: true
+    hosts:
+      - host: "hass-lovelace-kindle-screensaver.g4v.dev"
+        paths:
+          - path: /
+            service:
+              identifier: main
+              port: http
+persistence:
+  tmp:
+    type: emptyDir
