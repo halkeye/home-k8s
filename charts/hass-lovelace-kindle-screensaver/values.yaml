@@ -9,8 +9,8 @@ controllers:
           TZ: America/Vancouver
           HA_BASE_URL: http://172.16.10.107:8123
           HA_SCREENSHOT_URL: /dashboard-eink/screensaver?kiosk
-          RENDERING_SCREEN_HEIGHT: "825"
-          RENDERING_SCREEN_WIDTH: "1200"
+          RENDERING_SCREEN_HEIGHT: "758"
+          RENDERING_SCREEN_WIDTH: "1024"
           RENDERING_DELAY: "5000"
           ROTATION: 90
           LANGUAGE: en
