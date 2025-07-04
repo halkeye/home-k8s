@@ -24,10 +24,6 @@ controllers:
     type: job
     forceRename: '{{ printf "immich-migrations-%s" (.Values.controllers.migrations.containers.migrations.image.tag | replace "." "-") }}'
     revisionHistoryLimit: 1
-    job:
-      backoffLimit: 0
-      # 2 days
-      ttlSecondsAfterFinished: 60
     containers:
       migrations:
         image:
