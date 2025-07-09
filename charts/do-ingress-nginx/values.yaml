@@ -26,6 +26,8 @@ ingress-nginx:
       denylist-source-range: "34.92.62.113"
       use-forwarded-headers: "true"
       use-proxy-protocol: "true"  # DigitalOcean loadbalancer
+      proxy-busy-buffers-size: "32k"
+      proxy-buffer-size: "32k"
       allow-snippet-annotations: "true"
       enable-real-ip: "true"
       compute-full-forwarded-for: "true"
