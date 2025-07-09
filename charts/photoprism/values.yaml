@@ -67,7 +67,7 @@ ingress:
     enabled: true
     annotations:
       gethomepage.dev/enabled: "true"
-      nginx.ingress.kubernetes.io/proxy-body-size: 4G
+      nginx.ingress.kubernetes.io/proxy-body-size: 1G
     hosts:
       - host: "photoprism.g4v.dev"
         paths:
