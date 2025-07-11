@@ -23,7 +23,7 @@ controllers:
       main:
         image:
           repository: docker.io/rancher/system-upgrade-controller
-          tag: v0.15.3
+          tag: v0.16.0
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
