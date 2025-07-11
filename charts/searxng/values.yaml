@@ -139,7 +139,7 @@ app-template:
           pass_ip = [
             '10.0.0.0/24',
             '172.16.10.0/24',
-            '216.71.199.212/32'
+            '104.37.60.186/32'
           ]
 
           # Activate passlist of (hardcoded) IPs from the SearXNG organization,
