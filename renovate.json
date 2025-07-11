@@ -100,7 +100,8 @@
     },
     {
       "matchPackageNames": [
-        "/external-dns/"
+        "/external-dns/",
+        "/nginx/"
       ],
       "enabled": false
     }
