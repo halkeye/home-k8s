@@ -1,53 +1,52 @@
-app-template:
-  defaultPodOptions:
-    dnsConfig:
-      options:
-        - name: ndots
-          value: "1"
-      nameservers:
-        - 8.8.8.8
-  controllers:
-    main:
-      type: cronjob
-      revisionHistoryLimit: 1
-      annotations:
-        reloader.stakater.com/auto: 'true'
-      cronjob:
-        schedule: '0 2 * * *'
-        successfulJobsHistory: 1
-        failedJobsHistory: 2
-      containers:
-        plex-discord-media-updates:
-          image:
-            repository: ghcr.io/halkeye/plex-discord-media-updates
-            tag: v0.0.4
-          env:
-            TZ: America/Vancouver
-          envFrom:
-            - secretRef:
-                name: '{{.Release.Name}}-secret'
-          probes:
-            liveness:
-              enabled: false
-            readiness:
-              enabled: false
-            startup:
-              enabled: false
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            capabilities:
-              drop: ['ALL']
-          resources:
-            limits:
-              memory: 256Mi
-            requests:
-              memory: 256Mi
-              cpu: 10m
-      pod:
+defaultPodOptions:
+  dnsConfig:
+    options:
+      - name: ndots
+        value: "1"
+    nameservers:
+      - 8.8.8.8
+controllers:
+  main:
+    type: cronjob
+    revisionHistoryLimit: 1
+    annotations:
+      reloader.stakater.com/auto: 'true'
+    cronjob:
+      schedule: '0 2 * * *'
+      successfulJobsHistory: 1
+      failedJobsHistory: 2
+    containers:
+      plex-discord-media-updates:
+        image:
+          repository: ghcr.io/halkeye/plex-discord-media-updates
+          tag: v0.0.4
+        env:
+          TZ: America/Vancouver
+        envFrom:
+          - secretRef:
+              name: '{{.Release.Name}}-secret'
+        probes:
+          liveness:
+            enabled: false
+          readiness:
+            enabled: false
+          startup:
+            enabled: false
         securityContext:
-          runAsUser: 568
-          runAsGroup: 568
-          runAsNonRoot: true
-          fsGroup: 568
-          fsGroupChangePolicy: OnRootMismatch
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ['ALL']
+        resources:
+          limits:
+            memory: 256Mi
+          requests:
+            memory: 256Mi
+            cpu: 10m
+    pod:
+      securityContext:
+        runAsUser: 568
+        runAsGroup: 568
+        runAsNonRoot: true
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch

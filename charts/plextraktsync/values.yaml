@@ -1,167 +1,166 @@
-app-template:
-  defaultPodOptions:
-    dnsConfig:
-      options:
-        - name: ndots
-          value: "1"
-      nameservers:
-        - 8.8.8.8
-  controllers:
-    main:
-      annotations:
-        reloader.stakater.com/auto: 'true'
-      pod:
-        securityContext:
-          runAsUser: 1000
-          runAsGroup: 1000
-          fsGroup: 1000
-          fsGroupChangePolicy: 'OnRootMismatch'
-      initContainers:
-        01-init:
-          image:
-            repository: ghcr.io/taxel/plextraktsync
-            tag: 0.34.11
-          env:
-            TZ: America/Vancouver
-          command:
-            - sh
-            - -c
-            - |
-              cp /configmap/config.yml /app/config/
-              cp -n /secrets/servers.yml /app/config/
-              cp -n /secrets/.pytrakt.json /app/config/
-      containers:
-        app:
-          image:
-            repository: ghcr.io/taxel/plextraktsync
-            tag: 0.34.11
-          args:
-            - watch
-          env:
-            TZ: America/Vancouver
-          envFrom:
-            - secretRef:
-                name: '{{.Release.Name}}-secret'
-  configMaps:
-    config:
-      suffix: config
-      data:
-        config.yml: |-
-          cache:
-            path: $PTS_CACHE_DIR/trakt_cache
-
-          libraries:
-            - "Movies"
-            - "TV Shows"
-
-          config:
-            dotenv_override: false
-
-          plex:
-            timeout: 30
-
-          logging:
-            append: true
-            # Whether to show timestamps in console messages
-            console_time: false
-            debug: false
-            filename: plextraktsync.log
-            # Additional logger names to apply filtering
-            filter_loggers:
-            #    - plexapi
-            #    - requests_cache.backends
-            #    - requests_cache.backends.base
-            #    - requests_cache.backends.sqlite
-            #    - requests_cache.policy.actions
-            #    - requests_cache.session
-            #    - trakt.core
-            #    - urllib3.connectionpool
-            filter:
-            #  # Filter out all messages with level WARNING
-            #  - level: WARNING
-            #  # Filter out message with level WARNING and containing a text
-            #  - level: WARNING
-            #    message: "not found on Trakt"
-            #  - message: "because provider local has no external Id"
-            #  - message: "because provider none has no external Id"
-            #  - message: "Retry using search for specific Plex Episode"
-            #  # Filter out messages by requests_cache
-            #  - name: requests_cache.backends
-            #  - name: requests_cache.backends.base
-            #  - name: requests_cache.backends.sqlite
-            #  - name: requests_cache.policy.actions
-            #  - name: requests_cache.session
-
-          # settings for 'sync' command
-          sync:
-            # Setting for whether ratings from one platform should have priority.
-            # Valid values are trakt, plex or none. (default: plex)
-            # none - No rating priority. Existing ratings are not overwritten.
-            # trakt - Trakt ratings have priority. Existing Plex ratings are overwritten.
-            # plex - Plex ratings have priority. Existing Trakt ratings are overwritten.
-            rating_priority: plex
-
-            plex_to_trakt:
-              collection: false
-              # Clear collected state of items not present in Plex
-              clear_collected: false
-              ratings: true
-              watched_status: true
-              # If plex_to_trakt watchlist=false and trakt_to_plex watchlist=true
-              # the Plex watchlist will be overwritten by Trakt watchlist
-              watchlist: false
-            trakt_to_plex:
-              liked_lists: true
-              ratings: true
-              watched_status: true
-              # If trakt_to_plex watchlist=false and plex_to_trakt watchlist=true
-              # the Trakt watchlist will be overwritten by Plex watchlist
-              watchlist: false
-              # If you prefer to fetch trakt watchlist as a playlist instead of
-              # plex watchlist, toggle this to true (is read only if watchlist=true)
-              watchlist_as_playlist: false
-              # Sync Play Progress from Trakt to Plex
-              playback_status: false
-
-          # Configuration for liked lists
-          liked_lists:
-            # Whether to keep watched items in the list
-            keep_watched: true
-
-          # Configuration override for specific lists
-          #liked_list:
-          #  "Saw Collection":
-          #    keep_watched: true
-
-          # settings for 'watch' command
-          watch:
-            add_collection: false
-            remove_collection: false
-            # what video watched percentage (0 to 100) triggers the watched status
-            scrobble_threshold: 80
-            # true to scrobble only what's watched by you, false for all your PMS users
-            username_filter: true
-            # Show the progress bar of played media in terminal
-            media_progressbar: false
-            # Clients to ignore when listening Play events
-            # ignore_clients: ~
-
-          xbmc-providers:
-            movies: imdb
-            shows: tvdb
-  persistence:
+defaultPodOptions:
+  dnsConfig:
+    options:
+      - name: ndots
+        value: "1"
+    nameservers:
+      - 8.8.8.8
+controllers:
+  main:
+    annotations:
+      reloader.stakater.com/auto: 'true'
+    pod:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: 'OnRootMismatch'
+    initContainers:
+      01-init:
+        image:
+          repository: ghcr.io/taxel/plextraktsync
+          tag: 0.34.11
+        env:
+          TZ: America/Vancouver
+        command:
+          - sh
+          - -c
+          - |
+            cp /configmap/config.yml /app/config/
+            cp -n /secrets/servers.yml /app/config/
+            cp -n /secrets/.pytrakt.json /app/config/
+    containers:
+      app:
+        image:
+          repository: ghcr.io/taxel/plextraktsync
+          tag: 0.34.11
+        args:
+          - watch
+        env:
+          TZ: America/Vancouver
+        envFrom:
+          - secretRef:
+              name: 'plextraktsync-secret'
+configMaps:
+  config:
+    suffix: config
     data:
-      enabled: true
-      type: persistentVolumeClaim
-      accessMode: ReadWriteOnce
-      size: 1Gi
-      globalMounts:
-        - path: /app/config/
-    configmap:
-      enabled: true
-      type: configMap
-      name: '{{ .Release.Name }}-config'
-    secrets:
-      enabled: true
-      type: secret
-      name: '{{ .Release.Name }}-secret'
+      config.yml: |-
+        cache:
+          path: $PTS_CACHE_DIR/trakt_cache
+
+        libraries:
+          - "Movies"
+          - "TV Shows"
+
+        config:
+          dotenv_override: false
+
+        plex:
+          timeout: 30
+
+        logging:
+          append: true
+          # Whether to show timestamps in console messages
+          console_time: false
+          debug: false
+          filename: plextraktsync.log
+          # Additional logger names to apply filtering
+          filter_loggers:
+          #    - plexapi
+          #    - requests_cache.backends
+          #    - requests_cache.backends.base
+          #    - requests_cache.backends.sqlite
+          #    - requests_cache.policy.actions
+          #    - requests_cache.session
+          #    - trakt.core
+          #    - urllib3.connectionpool
+          filter:
+          #  # Filter out all messages with level WARNING
+          #  - level: WARNING
+          #  # Filter out message with level WARNING and containing a text
+          #  - level: WARNING
+          #    message: "not found on Trakt"
+          #  - message: "because provider local has no external Id"
+          #  - message: "because provider none has no external Id"
+          #  - message: "Retry using search for specific Plex Episode"
+          #  # Filter out messages by requests_cache
+          #  - name: requests_cache.backends
+          #  - name: requests_cache.backends.base
+          #  - name: requests_cache.backends.sqlite
+          #  - name: requests_cache.policy.actions
+          #  - name: requests_cache.session
+
+        # settings for 'sync' command
+        sync:
+          # Setting for whether ratings from one platform should have priority.
+          # Valid values are trakt, plex or none. (default: plex)
+          # none - No rating priority. Existing ratings are not overwritten.
+          # trakt - Trakt ratings have priority. Existing Plex ratings are overwritten.
+          # plex - Plex ratings have priority. Existing Trakt ratings are overwritten.
+          rating_priority: plex
+
+          plex_to_trakt:
+            collection: false
+            # Clear collected state of items not present in Plex
+            clear_collected: false
+            ratings: true
+            watched_status: true
+            # If plex_to_trakt watchlist=false and trakt_to_plex watchlist=true
+            # the Plex watchlist will be overwritten by Trakt watchlist
+            watchlist: false
+          trakt_to_plex:
+            liked_lists: true
+            ratings: true
+            watched_status: true
+            # If trakt_to_plex watchlist=false and plex_to_trakt watchlist=true
+            # the Trakt watchlist will be overwritten by Plex watchlist
+            watchlist: false
+            # If you prefer to fetch trakt watchlist as a playlist instead of
+            # plex watchlist, toggle this to true (is read only if watchlist=true)
+            watchlist_as_playlist: false
+            # Sync Play Progress from Trakt to Plex
+            playback_status: false
+
+        # Configuration for liked lists
+        liked_lists:
+          # Whether to keep watched items in the list
+          keep_watched: true
+
+        # Configuration override for specific lists
+        #liked_list:
+        #  "Saw Collection":
+        #    keep_watched: true
+
+        # settings for 'watch' command
+        watch:
+          add_collection: false
+          remove_collection: false
+          # what video watched percentage (0 to 100) triggers the watched status
+          scrobble_threshold: 80
+          # true to scrobble only what's watched by you, false for all your PMS users
+          username_filter: true
+          # Show the progress bar of played media in terminal
+          media_progressbar: false
+          # Clients to ignore when listening Play events
+          # ignore_clients: ~
+
+        xbmc-providers:
+          movies: imdb
+          shows: tvdb
+persistence:
+  data:
+    enabled: true
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    size: 1Gi
+    globalMounts:
+      - path: /app/config/
+  configmap:
+    enabled: true
+    type: configMap
+    name: '{{ .Release.Name }}-config'
+  secrets:
+    enabled: true
+    type: secret
+    name: '{{ .Release.Name }}-secret'
