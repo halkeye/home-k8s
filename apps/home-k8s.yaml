@@ -76,8 +76,13 @@ spec:
           - { namespace: monitoring, name: sabnzbd-exporter }
           - { namespace: monitoring, name: speedtest-exporter }
           - { namespace: monitoring, name: unifi-poller }
+
           - { namespace: plex, name: plex-exporter }
           - { namespace: plex, name: plex-media-server-exporter }
+          - { namespace: plex, name: plex-auto-languages }
+          - { namespace: plex, name: plex-discord-media-updates }
+          - { namespace: plex, name: plextraktsync }
+
 
           - name: anime-radarr
           - name: anime-sonarr
