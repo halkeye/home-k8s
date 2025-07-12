@@ -30,10 +30,6 @@ spec:
           # Apps
           - { namespace: bitwarden, name: vaultwarden }
 
-          - { namespace: plex, name: plex-auto-languages }
-          - { namespace: plex, name: plex-discord-media-updates }
-          - { namespace: plex, name: plextraktsync }
-
           - name: authentik
           - name: excalidraw
           - name: externaldns-cloudflare
