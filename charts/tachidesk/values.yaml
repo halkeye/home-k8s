@@ -10,7 +10,7 @@ controllers:
           - 'sleep 99d'
         image:
           repository: ghcr.io/suwayomi/suwayomi-server
-          tag: v2.0.1833
+          tag: v2.0.1848
         env:
           TZ: America/Vancouver
           BIND_PORT: &port 4567
