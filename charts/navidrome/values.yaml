@@ -36,7 +36,7 @@ controllers:
           ND_LASTFM_ENABLED: "true"
         envFrom:
           - secretRef:
-              name: navidrome-secrets
+              name: navidrome-secret
         probes:
           liveness:
             enabled: true
