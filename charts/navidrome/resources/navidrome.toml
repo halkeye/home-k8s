@@ -1,0 +1,5 @@
+# https://www.navidrome.org/docs/usage/configuration-options/#available-options
+LogLevel = 'INFO'
+Scanner.Schedule = '@every 1h'
+TranscodingCacheSize = '5GB'
+MusicFolder = '/music'

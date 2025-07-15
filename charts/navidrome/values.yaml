@@ -25,17 +25,13 @@ controllers:
           ND_COVERJPEGQUALITY: "100"
           ND_DEFAULTTHEME: Dark
           ND_IMAGECACHESIZE: "1GB"
-          ND_TRANSCODINGCACHESIZE: 5GB
           ND_SEARCHFULLSTRING: "true"
           ND_SUBSONICARTISTPARTICIPATIONS: "true"
           ND_ENABLETRANSCODINGCONFIG: "true"
-          ND_LOGLEVEL: info
-          ND_MUSICFOLDER: /music
           ND_PORT: 8080
           ND_PROMETHEUS_ENABLED: "true"
           ND_REVERSEPROXYUSERHEADER: X-authentik-username
           ND_REVERSEPROXYWHITELIST: 0.0.0.0/0
-          ND_SCANSCHEDULE: "@every 1h"
           ND_SESSIONTIMEOUT: 24h
           ND_LASTFM_ENABLED: "true"
         envFrom:
@@ -81,6 +77,18 @@ ingress:
             service:
               identifier: navidrome
               port: http
+  navidrome-noauth:
+    hosts:
+      - host: navidrome.g4v.dev
+        paths:
+          - path: /share/
+            service:
+              identifier: navidrome
+              port: http
+          - path: /rest/
+            service:
+              identifier: navidrome
+              port: http
 
 persistence:
   config:
@@ -96,3 +104,10 @@ persistence:
     path: /volume1/Audio/Music
     globalMounts:
       - path: /music
+  configmap:
+    type: configMap
+    name: navidrome-configmap
+    globalMounts:
+      - path: /data/navidrome.toml
+        subPath: navidrome.toml
+        readOnly: true
