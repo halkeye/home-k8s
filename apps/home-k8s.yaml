@@ -102,6 +102,7 @@ spec:
           - name: minio
           - name: music-assistant
           - name: mylar3
+          - name: navidrome
           - name: netbootxyz
           - name: openbooks
           - name: pinchflat
