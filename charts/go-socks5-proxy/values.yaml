@@ -1,0 +1,52 @@
+controllers:
+  proxy:
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      plex-auto-language:
+        image:
+          repository: docker.io/remirigal/go-socks5-proxy
+          tag: latest@sha256:aad36c623f16850d7cea0171d1aa79d706129191db9e270b6dfd7db6b552c734
+        env:
+          PROXY_PORT: 1080
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+        resources:
+          requests:
+            cpu: 10m
+            memory: 512Mi
+          limits:
+            memory: 512Mi
+        probes:
+          liveness:
+            enabled: false
+          readiness:
+            enabled: false
+          startup:
+            enabled: false
+    pod:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/arch
+                    operator: NotIn
+                    values:
+                      - arm64
+service:
+  socks5:
+    controller: proxy
+    externalTrafficPolicy: Local
+    type: LoadBalancer
+    loadBalancerIP: 172.16.10.208
+    annotations:
+      external-dns.alpha.kubernetes.io/target: 172.16.10.208
+      external-dns.alpha.kubernetes.io/hostname: "proxy.g4v.dev"
+    ports:
+      socks5:
+        port: 1080
+        protocol: TCP
