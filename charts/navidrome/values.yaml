@@ -77,18 +77,18 @@ ingress:
             service:
               identifier: navidrome
               port: http
-  navidrome-noauth:
-    hosts:
-      - host: navidrome.g4v.dev
-        paths:
-          - path: /share/
-            service:
-              identifier: navidrome
-              port: http
-          - path: /rest/
-            service:
-              identifier: navidrome
-              port: http
+  # navidrome-noauth:
+  #   hosts:
+  #     - host: navidrome.g4v.dev
+  #       paths:
+  #         - path: /share/
+  #           service:
+  #             identifier: navidrome
+  #             port: http
+  #         - path: /rest/
+  #           service:
+  #             identifier: navidrome
+  #             port: http
 
 persistence:
   config:
