@@ -1,0 +1,74 @@
+controllers:
+  kavita:
+    strategy: Recreate
+    containers:
+      kavita:
+        image:
+          repository: ghcr.io/kareadita/kavita
+          tag: canary
+        env:
+          TZ: America/Vancouver
+          COMPlus_EnableDiagnostics: "0"
+        resources:
+          requests:
+            cpu: 50m
+            memory: 300Mi
+          limits:
+            cpu: 500m
+            memory: 1Gi
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: false
+          capabilities:
+            drop: ["ALL"]
+    pod:
+      securityContext:
+        runAsUser: 1026
+        runAsGroup: 100
+        runAsNonRoot: true
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
+
+service:
+  kavita:
+    controller: kavita
+    ports:
+      http:
+        port: 5000
+
+ingress:
+  kavita:
+    enabled: true
+    annotations:
+      gethomepage.dev/enabled: "true"
+      gethomepage.dev/group: Comics
+      gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/kavita.png
+      gethomepage.dev/name: Kavita
+    hosts:
+      - host: "kavita.g4v.dev"
+        paths:
+          - path: /
+            service:
+              identifier: kavita
+              port: http
+
+persistence:
+  config:
+    enabled: true
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    size: 5Gi
+    globalMounts:
+      - path: /kavita/config
+  comics:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Comics
+    globalMounts:
+      - path: /comics
+  manga:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Manga
+    globalMounts:
+      - path: /manga
