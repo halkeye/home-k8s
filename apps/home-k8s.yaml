@@ -96,6 +96,7 @@ spec:
           - name: go-socks5-proxy
           - name: hass-lovelace-kindle-screensaver
           - name: immich
+          - name: kavita
           - name: komf
           - name: komga
           - name: lidarr
