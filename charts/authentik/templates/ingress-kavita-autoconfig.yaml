@@ -6,7 +6,7 @@ metadata:
     kubernetes.io/tls-acme: "true"
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/cors-allow-origin: "*"
-  name: authentik-server
+  name: authentik-kavita-overrides
 spec:
   rules:
   - host: auth.g4v.dev
