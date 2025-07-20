@@ -6,7 +6,6 @@ metadata:
     kubernetes.io/tls-acme: "true"
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.ingress.kubernetes.io/cors-allow-origin: "*"
-    nginx.ingress.kubernetes.io/cors-allow-methods: "GET"
   name: authentik-server
 spec:
   rules:
@@ -18,7 +17,7 @@ spec:
             name: authentik-server
             port:
               number: 80
-        path: /application/o/kavita/.well-known/openid-configuration
+        path: /application/o/kavita/
         pathType: Prefix
   tls:
   - hosts:
