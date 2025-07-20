@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: esphome
+spec:
+  rules:
+  - host: esphome.g4v.dev
+    http:
+      paths:
+      - backend:
+          service:
+            name: esphome
+            port:
+              number: 6052
+        path: /
+        pathType: ImplementationSpecific
