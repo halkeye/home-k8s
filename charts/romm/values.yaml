@@ -53,6 +53,10 @@ controllers:
           REDIS_PORT: 6379
           OIDC_ENABLED: true
           OIDC_PROVIDER: authentik
+          LAUNCHBOX_API_ENABLED: true
+          ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA: true
+          HASHEOUS_API_ENABLED: true
+          PLAYMATCH_API_ENABLED: true
         envFrom:
           - secretRef:
               name: romm-secret
