@@ -6,7 +6,7 @@ controllers:
       app:
         image:
           repository: ghcr.io/meeb/bandcampsync
-          tag: latest@sha256:e4b9dca30680c395aa9a731b77129183373aac8b6f69316c4aeb2ccafde96925
+          tag: latest@sha256:c5221d499c7b294d808f1958dfec83e028e0cbba80325c36288848ec876d0a2c
         env:
           TZ: America/Vancouver
         command:
