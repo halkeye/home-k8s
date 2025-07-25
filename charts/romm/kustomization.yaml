@@ -3,11 +3,20 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-generators:
-  - ./helm-generator.yaml
-  - ../secret-generator.yaml
-  - ../_shared/redis/helm-generator.yaml
+helmGlobals:
+  chartHome: ./charts/
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+helmCharts:
+  - name: app-template
+    version: 4.1.2
+    repo: https://bjw-s-labs.github.io/helm-charts
+    valuesFile: values.yaml
+    releaseName: romm 
 
 resources:
+  - ./resources/redis.yaml
   - ./resources/postgres.yaml
   - ./resources/postgres-user.yaml
