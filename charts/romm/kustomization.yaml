@@ -20,3 +20,4 @@ resources:
   - ./resources/redis.yaml
   - ./resources/postgres.yaml
   - ./resources/postgres-user.yaml
+  - ./secret.enc.yaml
