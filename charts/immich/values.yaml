@@ -39,10 +39,11 @@ controllers:
               secretKeyRef:
                 name: immich-immich
                 key: DB_URL
-        command:
-          - npm
-          - run
-          - migrations:run
+        command: ["node", "server/dist/bin/migrations.js", "run"]
+#        command:
+#          - npm
+#          - run
+#          - migrations:run
   main:
     replicas: 1
     annotations:
