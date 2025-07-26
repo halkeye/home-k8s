@@ -44,6 +44,10 @@ controllers:
                 key: encryption_key
           NEXTAUTH_URL: https://hoarder.g4v.dev
           DISABLE_NEW_RELEASE_CHECK: true
+          ASSET_STORE_S3_ENDPOINT: https://halkeye-hoarder.tor1.digitaloceanspaces.com
+          ASSET_STORE_S3_REGION: tor1
+          ASSET_STORE_S3_BUCKET: halkeye-hoarder
+          ASSET_STORE_S3_FORCE_PATH_STYLE: true
         envFrom:
           - secretRef:
               name: "hoarder-secret"
