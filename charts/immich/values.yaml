@@ -20,26 +20,26 @@ service:
         protocol: HTTP
 
 controllers:
-#  migrations:
-#    type: job
-#    forceRename: '{{ printf "immich-migrations-%s" (.Values.controllers.migrations.containers.migrations.image.tag | replace "." "-") }}'
-#    revisionHistoryLimit: 1
-#    containers:
-#      migrations:
-#        image:
-#          repository: ghcr.io/immich-app/immich-server
-#          pullPolicy: IfNotPresent
-#          tag: v1.136.0
-#        envFrom:
-#          - secretRef:
-#              name: "immich-secret"
-#        env:
-#          DB_URL:
-#            valueFrom:
-#              secretKeyRef:
-#                name: immich-immich
-#                key: DB_URL
-#        command: ["node", "server/dist/bin/migrations.js", "run"]
+  migrations:
+    type: job
+    forceRename: '{{ printf "immich-migrations-%s" (.Values.controllers.migrations.containers.migrations.image.tag | replace "." "-") }}'
+    revisionHistoryLimit: 1
+    containers:
+      migrations:
+        image:
+          repository: ghcr.io/immich-app/immich-server
+          pullPolicy: IfNotPresent
+          tag: v1.136.0
+        envFrom:
+          - secretRef:
+              name: "immich-secret"
+        env:
+          DB_URL:
+            valueFrom:
+              secretKeyRef:
+                name: immich-immich
+                key: DB_URL
+        command: ["node", "server/dist/bin/migrations.js", "run"]
         # command: ["npm", "run", "migrations:run"]
   main:
     replicas: 1
