@@ -11,13 +11,6 @@ controllers:
           TZ: America/Vancouver
         command:
           - bandcampsync-service
-        probes:
-          liveness:
-            enabled: true
-          readiness:
-            enabled: true
-          startup:
-            enabled: true
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
