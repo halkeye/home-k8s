@@ -18,10 +18,8 @@ grafana:
       - stats.g4v.dev
   resources:
     requests:
-      cpu: 23m
-      memory: 127M
-    limits:
-      memory: 219M
+      cpu: 30m
+      memory: 256M
   dashboardProviders:
     dashboardproviders.yaml:
       apiVersion: 1
