@@ -78,12 +78,11 @@ persistence:
     type: persistentVolumeClaim
     accessMode: ReadWriteOnce
     size: 1Gi
-  logs:
-    enabled: true
-    type: emptyDir
-  data:
-    enabled: true
-    type: emptyDir
   tmp:
     enabled: true
     type: emptyDir
+    globalMounts:
+      - path: /tmp
+      - path: /data
+      - path: /logs
+      - path: /.
