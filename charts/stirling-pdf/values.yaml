@@ -85,4 +85,4 @@ persistence:
       - path: /tmp
       - path: /data
       - path: /logs
-      - path: /.
+      - path: /./pipeline
