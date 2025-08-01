@@ -74,7 +74,6 @@ ingress:
               port: http
 persistence:
   configs:
-    suffix: configs
     enabled: true
     type: persistentVolumeClaim
     accessMode: ReadWriteOnce
