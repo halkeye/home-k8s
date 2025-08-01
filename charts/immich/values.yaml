@@ -87,7 +87,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/immich-app/immich-machine-learning
-          tag: v1.137.1
+          tag: v1.137.3
           pullPolicy: IfNotPresent
         envFrom:
           - secretRef:
