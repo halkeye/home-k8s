@@ -12,6 +12,7 @@ controllers:
           tag: "1.6.0@sha256:0aaa1079e8c6e4b4f7b7d3c2f631cdc275625ca9018a75325289a49776bcdd65"
         env:
           TZ: America/Vancouver
+          KOMF_LOG_LEVEL: "debug"
           KOMF_SERVER_PORT: "8085"
           # optional jvm options. Example config for low memory usage. Runs guaranteed cleanup up every 3600000ms(1hour)
           JAVA_TOOL_OPTIONS: "-XX:+UnlockExperimentalVMOptions -XX:+UseShenandoahGC -XX:ShenandoahGCHeuristics=compact -XX:ShenandoahGuaranteedGCInterval=3600000 -XX:TrimNativeHeapInterval=3600000"
