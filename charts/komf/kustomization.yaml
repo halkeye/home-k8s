@@ -20,3 +20,5 @@ configMapGenerator:
   - name: komf-config
     files:
       - ./resources/application.yml
+resources:
+  - ./secret.enc.yaml
