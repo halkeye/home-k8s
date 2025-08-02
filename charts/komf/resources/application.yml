@@ -2,9 +2,8 @@ kavita:
   baseUri: "http://kavita.kavita.svc.cluster.local:5000" #or env:KOMF_KAVITA_BASE_URI
   apiKey: "" #or env:KOMF_KAVITA_API_KEY
   eventListener:
-    enabled: false # if disabled will not connect to kavita and won't pick up newly added entries
-    libraries: # listen to all events if empty
-      - 1
+    enabled: true # if disabled will not connect to kavita and won't pick up newly added entries
+    libraries: [] # listen to all events if empty
   notifications:
     libraries: [ ]  # Will send notifications if any notification source is enabled. If empty will send notifications for all libraries
   metadataUpdate:
