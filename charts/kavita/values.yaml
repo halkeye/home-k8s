@@ -72,3 +72,9 @@ persistence:
     path: /volume1/Manga
     globalMounts:
       - path: /manga
+  stashcontent:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/StashContent
+    globalMounts:
+      - path: /stash
