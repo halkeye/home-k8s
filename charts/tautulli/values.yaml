@@ -6,7 +6,7 @@ app-template:
         tautulli:
           image:
             repository: tautulli/tautulli
-            tag: v2.15.2
+            tag: v2.15.3
           env:
             TZ: America/Vancouver
           command: ['python', 'Tautulli.py']
