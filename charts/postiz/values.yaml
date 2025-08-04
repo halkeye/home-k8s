@@ -11,7 +11,7 @@ defaultPodOptions:
                   - amd64
 controllers:
   main:
-    replicas: 0
+    replicas: 1
     annotations:
       reloader.stakater.com/auto: "true"
     strategy: Recreate
