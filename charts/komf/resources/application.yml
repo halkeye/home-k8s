@@ -45,9 +45,9 @@ kavita:
   apiKey: "" #or env:KOMF_KAVITA_API_KEY
   eventListener:
     enabled: true # if disabled will not connect to kavita and won't pick up newly added entries
-    metadataLibraryFilter: [ ]  # listen to all events if empty
-    metadataSeriesExcludeFilter: [ ]
-    notificationsLibraryFilter: [ ] # Will send notifications if any notification source is enabled. If empty will send notifications for all libraries
+    # metadataLibraryFilter: [ ]  # listen to all events if empty
+    # metadataSeriesExcludeFilter: [ ]
+    # notificationsLibraryFilter: [ ] # Will send notifications if any notification source is enabled. If empty will send notifications for all libraries
   metadataUpdate:
     default:
       libraryType: "MANGA" # Can be "MANGA", "NOVEL", "COMIC" or "WEBTOON". Hint to help better match book numbers
@@ -69,13 +69,13 @@ kavita:
           - "ja-ro"
         orderBooks: false # will order books using parsed volume or chapter number. works only with COMIC_INFO
         languageValue: # set default language for series. Must use BCP 47 format e.g. "en"
-    library:
-      1:
-        libraryType: "COMIC" # Can be "MANGA", "NOVEL" or "COMIC". Hint to help better match book numbers
-      2:
-        libraryType: "MANGA" # Can be "MANGA", "NOVEL" or "COMIC". Hint to help better match book numbers
-      3:
-        libraryType: "MANGA" # Can be "MANGA", "NOVEL" or "COMIC". Hint to help better match book numbers
+    # library:
+    #   1:
+    #     libraryType: "COMIC" # Can be "MANGA", "NOVEL" or "COMIC". Hint to help better match book numbers
+    #   2:
+    #     libraryType: "MANGA" # Can be "MANGA", "NOVEL" or "COMIC". Hint to help better match book numbers
+    #   3:
+    #     libraryType: "MANGA" # Can be "MANGA", "NOVEL" or "COMIC". Hint to help better match book numbers
 
 notifications:
   templatesDirectory: "./" # path to a directory with templates
@@ -106,7 +106,7 @@ metadataProviders:
       artistRoles: [ "PENCILLER","INKER","COLORIST","LETTERER","COVER" ] # roles that will be mapped to artist role
     mal:
       priority: 20
-      enabled: false
+      enabled: true
       mediaType: "MANGA" # filter used in matching. Can be NOVEL, MANGA or WEBTOON. MANGA type includes everything except novels
     nautiljon:
       priority: 30
@@ -126,14 +126,14 @@ metadataProviders:
       enabled: false
     viz:
       priority: 70
-      enabled: false
+      enabled: true
     bookWalker:
       priority: 80
       enabled: false
       mediaType: "MANGA" # filter used in matching. Can be NOVEL, MANGA or WEBTOON.
     mangaDex:
       priority: 90
-      enabled: false
+      enabled: true
       coverLanguages:
         - "en"
         - "ja"
@@ -142,13 +142,13 @@ metadataProviders:
       enabled: false
     comicVine: # https://comicvine.gamespot.com/ requires API key. Experimental provider, can mismatch issue numbers
       priority: 110
-      enabled: false
+      enabled: true
     hentag:
       priority: 120
       enabled: false
     webtoons:
       priority: 130
-      enabled: false
+      enabled: true
     mangaBaka:
       priority: 140
       enabled: false
