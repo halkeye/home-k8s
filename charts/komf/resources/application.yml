@@ -69,13 +69,13 @@ kavita:
           - "ja-ro"
         orderBooks: false # will order books using parsed volume or chapter number. works only with COMIC_INFO
         languageValue: # set default language for series. Must use BCP 47 format e.g. "en"
-    # library:
-    #   1:
-    #     libraryType: "COMIC" # Can be "MANGA", "NOVEL" or "COMIC". Hint to help better match book numbers
-    #   2:
-    #     libraryType: "MANGA" # Can be "MANGA", "NOVEL" or "COMIC". Hint to help better match book numbers
-    #   3:
-    #     libraryType: "MANGA" # Can be "MANGA", "NOVEL" or "COMIC". Hint to help better match book numbers
+    library:
+      2:
+        libraryType: "COMIC" # Can be "MANGA", "NOVEL" or "COMIC". Hint to help better match book numbers
+      3:
+        libraryType: "MANGA" # Can be "MANGA", "NOVEL" or "COMIC". Hint to help better match book numbers
+      4:
+        libraryType: "MANGA" # Can be "MANGA", "NOVEL" or "COMIC". Hint to help better match book numbers
 
 notifications:
   templatesDirectory: "./" # path to a directory with templates
