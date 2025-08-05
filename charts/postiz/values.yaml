@@ -37,7 +37,7 @@ controllers:
       postiz:
         image:
           repository: ghcr.io/gitroomhq/postiz-app
-          tag: v2.2.5
+          tag: v2.3.0
         command: ["pnpm", "run", "pm2-run"]
         env:
           TZ: America/Vancouver
