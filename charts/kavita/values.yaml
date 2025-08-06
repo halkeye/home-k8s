@@ -84,3 +84,9 @@ persistence:
     path: /volume1/Books
     globalMounts:
       - path: /content/books
+  rpgs:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/RPGs
+    globalMounts:
+      - path: /content/rpgs
