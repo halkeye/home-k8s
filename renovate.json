@@ -70,7 +70,8 @@
         "/docker-mautrix-whatsapp/",
         "/docker-mautrix-gmessages/",
         "/docker-n8n/",
-        "/docker-yourls/"
+        "/docker-yourls/",
+        "/kavita/"
       ]
     },
     {
