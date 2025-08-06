@@ -11,6 +11,6 @@ spec:
           service:
             name: synology
             port:
-              number: 6052
+              number: 5000
         path: /
         pathType: ImplementationSpecific
