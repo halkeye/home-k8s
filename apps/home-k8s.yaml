@@ -121,6 +121,7 @@ spec:
           - name: snapshot-controller
           - name: sonarr
           - name: stash
+          - name: synology
           - name: tachidesk
           - name: tasmoadmin
           - name: unpackerr
