@@ -104,6 +104,24 @@ metadataProviders:
       mediaType: "MANGA" # filter used in matching. Can be NOVEL, MANGA or WEBTOON. MANGA type includes everything except novels
       authorRoles: [ "WRITER" ] # roles that will be mapped to author role
       artistRoles: [ "PENCILLER","INKER","COLORIST","LETTERER","COVER" ] # roles that will be mapped to artist role
+      seriesMetadata:
+        status: true
+        title: true
+        titleSort: true
+        summary: true
+        publisher: true
+        readingDirection: true
+        ageRating: true
+        language: true
+        genres: true
+        tags: true
+        totalBookCount: true
+        authors: true
+        thumbnail: true
+        releaseDate: true
+        links: true
+        score: true
+        books: true
     mal:
       priority: 20
       enabled: true
@@ -127,6 +145,8 @@ metadataProviders:
     viz:
       priority: 70
       enabled: true
+      seriesMetadata:
+        ageRating: true
     bookWalker:
       priority: 80
       enabled: false
