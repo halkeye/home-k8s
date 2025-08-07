@@ -138,7 +138,7 @@ persistence:
   configmap:
     enabled: true
     type: configMap
-    name: 'jellyfin-config'
+    name: 'jellyfin-configmap'
     globalMounts:
       - path: /config/logging.json
         subPath: logging.json
