@@ -83,6 +83,9 @@ spec:
           - { namespace: plex, name: plex-discord-media-updates }
           - { namespace: plex, name: plextraktsync }
 
+          - { namespace: jellyfin, name: jellyfin }
+          - { namespace: jellyfin, name: jellyplex-watched }
+          - { namespace: jellyfin, name: jellystat }
 
           - name: anime-radarr
           - name: anime-sonarr
