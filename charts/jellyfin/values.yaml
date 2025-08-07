@@ -134,3 +134,12 @@ persistence:
     type: nfs
     server: 172.16.10.10
     path: '/volume1/Apps/zap2xml'
+
+  configmap:
+    enabled: true
+    type: configMap
+    name: 'jellyfin-config'
+    globalMounts:
+      - path: /config/logging.json
+        subPath: logging.json
+        readOnly: true
