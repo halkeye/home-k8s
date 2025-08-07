@@ -14,10 +14,18 @@ controllers:
           JELLYFIN_PublishedServerUrl: https://jellyfin.g4v.dev
           TZ: America/Vancouver
         probes:
-          liveness:
+          liveness: &probes
             enabled: true
-          readiness:
-            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /health
+                port: 8096
+              initialDelaySeconds: 0
+              periodSeconds: 10
+              timeoutSeconds: 1
+              failureThreshold: 3
+          readiness: *probes
           startup:
             enabled: false
         resources:
@@ -26,6 +34,15 @@ controllers:
           requests:
             memory: 512Mi
             cpu: 100m
+serviceMonitor:
+  app:
+    serviceName: jellyfin
+    endpoints:
+      - port: http
+        scheme: http
+        path: /metrics
+        interval: 1m
+        scrapeTimeout: 10s
 service:
   main:
     controller: main
