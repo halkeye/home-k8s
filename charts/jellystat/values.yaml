@@ -5,11 +5,19 @@ controllers:
       jellystat:
         image:
           repository: docker.io/cyfershepard/jellystat
-          tag: unstable@sha256:ef6bcf7a7d5627ec0f7373e35f45fca3aa417b9cc70cc5b609d15017e47d073c
+          tag: unstable@sha256:eac13ef652ebb108d9622ce7b23ef10b0070105e9a8df4353bdf596019b181ee
         env:
           TZ: America/Vancouver
-          POSTGRES_DB: 'jellystat'
-          POSTGRES_ROLE: 'jellystat-group'
+          POSTGRES_DB:
+            valueFrom:
+              secretKeyRef:
+                name: '{{ .Release.Name }}-db-secret-{{ .Release.Name }}'
+                key: DATABASE_NAME
+          POSTGRES_ROLE:
+            valueFrom:
+              secretKeyRef:
+                name: '{{ .Release.Name }}-db-secret-{{ .Release.Name }}'
+                key: ROLE
           POSTGRES_PORT:
             valueFrom:
               secretKeyRef:
