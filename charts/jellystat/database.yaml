@@ -1,0 +1,25 @@
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: jellystat
+  annotations:
+    postgres.db.movetokube.com/instance: postgres17-rw
+spec:
+  database: jellystat
+  dropOnDelete: false
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: jellystat
+  annotations:
+    postgres.db.movetokube.com/instance: postgres17-rw
+spec:
+  role: jellystat
+  database: jellystat
+  secretName: jellystat-db-secret
+  privileges: OWNER
+  secretTemplate:
+    HOST_NO_PORT: "{{ .HostNoPort }}"
+    PORT: "{{ .Port }}"
