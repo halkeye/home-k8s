@@ -13,21 +13,21 @@ controllers:
           JELLYFIN_FFmpeg__analyzeduration: 50000000
           JELLYFIN_PublishedServerUrl: https://jellyfin.g4v.dev
           TZ: America/Vancouver
-        probes:
-          liveness: &probes
-            enabled: true
-            custom: true
-            spec:
-              httpGet:
-                path: /health
-                port: 8096
-              initialDelaySeconds: 0
-              periodSeconds: 10
-              timeoutSeconds: 1
-              failureThreshold: 3
-          readiness: *probes
-          startup:
-            enabled: false
+#        probes:
+#          liveness: &probes
+#            enabled: true
+#            custom: true
+#            spec:
+#              httpGet:
+#                path: /health
+#                port: 8096
+#              initialDelaySeconds: 0
+#              periodSeconds: 10
+#              timeoutSeconds: 1
+#              failureThreshold: 3
+#          readiness: *probes
+#          startup:
+#            enabled: false
         resources:
           limits:
             memory: 4Gi
