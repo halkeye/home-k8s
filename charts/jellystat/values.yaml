@@ -8,14 +8,18 @@ controllers:
           tag: unstable@sha256:ef6bcf7a7d5627ec0f7373e35f45fca3aa417b9cc70cc5b609d15017e47d073c
         env:
           TZ: America/Vancouver
-          POSTGRES_PORT: 5432
           POSTGRES_DB: 'jellystat'
           POSTGRES_ROLE: 'jellystat-group'
+          POSTGRES_PORT:
+            valueFrom:
+              secretKeyRef:
+                name: '{{ .Release.Name }}-db-secret-{{ .Release.Name }}'
+                key: PORT
           POSTGRES_IP:
             valueFrom:
               secretKeyRef:
                 name: '{{ .Release.Name }}-db-secret-{{ .Release.Name }}'
-                key: HOST
+                key: HOST_NO_PORT
           POSTGRES_PASSWORD:
             valueFrom:
               secretKeyRef:
