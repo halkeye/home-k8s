@@ -15,6 +15,3 @@ helmCharts:
     repo: https://bjw-s-labs.github.io/helm-charts
     valuesFile: values.yaml
     releaseName: jellyfin
-
-resources:
-  - ./secret.enc.yaml
