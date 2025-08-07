@@ -13,7 +13,7 @@ controllers:
               secretKeyRef:
                 name: '{{ .Release.Name }}-db-secret-{{ .Release.Name }}'
                 key: DATABASE_NAME
-          POSTGRES_ROLE: "jellyfin-group"
+          POSTGRES_ROLE: "jellystat-group"
           POSTGRES_PORT:
             valueFrom:
               secretKeyRef:
