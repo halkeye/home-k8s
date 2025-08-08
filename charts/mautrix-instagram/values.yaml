@@ -25,45 +25,10 @@ controllers:
           - bash
           - -c
           - cat /configmap/config.yaml | envsubst > /data/config.yaml
-      gluetun:
+      wireguard:
         image:
-          repository: ghcr.io/qdm12/gluetun
-          tag: v3.40.0
-        command:
-          - sh
-          - -c
-          - |-
-              export WIREGUARD_ENDPOINT_IP=$(LC_ALL=C nslookup $WIREGUARD_ENDPOINT_IP 1.1.1.1 2>/dev/null  | sed -nr '/Name/,+1s|Address(es)?: *||p')
-              exec /gluetun-entrypoint
-        env:
-          DNS_KEEP_NAMESERVER: true
-          DOT: off
-          VPN_SERVICE_PROVIDER: custom
-          VPN_TYPE: wireguard
-        envFrom:
-          - secretRef:
-              name: "mautrix-instagram-secret"
-        probes:
-          liveness:
-            enabled: true
-            custom: true
-            spec:
-              httpGet:
-                path: /
-                port: 9999
-              timeoutSeconds: 10
-              periodSeconds: 30
-              failureThreshold: 5
-          startup:
-            enabled: true
-            custom: true
-            spec:
-              httpGet:
-                path: /
-                port: 9999
-              initialDelaySeconds: 10
-              periodSeconds: 10
-              failureThreshold: 5
+          repository: linuxserver/wireguard
+          tag: 1.0.20250521
         restartPolicy: Always
         securityContext:
           capabilities:
@@ -146,3 +111,11 @@ persistence:
     enabled: true
     type: configMap
     name: "mautrix-instagram-configmap"
+  wgconfs:
+    enabled: true
+    type: secret
+    name: "mautrix-instagram-secret"
+    globalMounts:
+      - path: /config/wg_confs/home.conf
+        subPath: wg0.conf
+        readOnly: true
