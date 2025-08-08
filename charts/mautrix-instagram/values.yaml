@@ -33,6 +33,12 @@ controllers:
         image:
           repository: ghcr.io/qdm12/gluetun
           tag: v3.40.0
+        command:
+          - sh
+          - -c
+          - |-
+              export WIREGUARD_ENDPOINT_IP=(LC_ALL=C nslookup $WIREGUARD_ENDPOINT_IP 2>/dev/null  | sed -nr '/Name/,+1s|Address(es)?: *||p')
+              exec /gluetun-entrypoint
         envFrom:
           - secretRef:
               name: "mautrix-instagram-secret"
