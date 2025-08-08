@@ -39,10 +39,17 @@ traefik:
       operator: 'Exists'
       effect: 'NoSchedule'
   service:
+    single: false
+    annotations:
+      external-dns.alpha.kubernetes.io/target: 172.16.10.202
+      metallb.universe.tf/allow-shared-ip: traefik
+    type: LoadBalancer
     ipFamilyPolicy: 'PreferDualStack'
+    loadBalancerIP: 172.16.10.202
+    externalTrafficPolicy: Local
   logs:
     general:
-      level: DEBUG
+      level: INFO
   tlsStore:
     default:
       defaultCertificate:
