@@ -17,6 +17,7 @@ providers:
     allowExternalNameServices: true
     publishedService:
       enabled: true
+      pathOverride: "traefik-ingress/traefik-ingress"
   kubernetesCRD:
     allowExternalNameServices: true
 ingressRoute:
