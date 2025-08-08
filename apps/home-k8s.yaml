@@ -65,6 +65,8 @@ spec:
   generators:
     - list:
         elements:
+          - { name: traefik-ingress, namespace: traefik-ingress }
+
           - { name: longhorn, namespace: longhorn-system }
           - { name: home-k8s-tailscale-operator, namespace: tailscale }
 
