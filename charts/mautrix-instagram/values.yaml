@@ -24,11 +24,7 @@ controllers:
         command:
           - bash
           - -c
-          - |-
-              cat /configmap/config.yaml | envsubst > /data/config.yaml
-              find /configmap
-              find /data
-              cat /data/config.yaml
+          - cat /configmap/config.yaml | envsubst > /data/config.yaml
       gluetun:
         image:
           repository: ghcr.io/qdm12/gluetun
@@ -37,7 +33,7 @@ controllers:
           - sh
           - -c
           - |-
-              export WIREGUARD_ENDPOINT_IP=$(LC_ALL=C nslookup $WIREGUARD_ENDPOINT_IP 2>/dev/null  | sed -nr '/Name/,+1s|Address(es)?: *||p')
+              export WIREGUARD_ENDPOINT_IP=$(LC_ALL=C nslookup $WIREGUARD_ENDPOINT_IP 1.1.1.1 2>/dev/null  | sed -nr '/Name/,+1s|Address(es)?: *||p')
               exec /gluetun-entrypoint
         env:
           DNS_KEEP_NAMESERVER: true
