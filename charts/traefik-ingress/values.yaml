@@ -1,61 +1,56 @@
-traefik:
-  metrics:
-    prometheus:
-      service:
-        enabled: true
-      disableAPICheck: true
-      serviceMonitor:
-        interval: 30s
-  ingressClass:
-    enabled: true
-    isDefaultClass: true
-    name: traefik-ingress
-  podAnnotations:
-    prometheus.io/port: '8082'
-    prometheus.io/scrape: 'true'
-  providers:
-    kubernetesIngress:
-      allowExternalNameServices: true
-      publishedService:
-        enabled: true
-    kubernetesCRD:
-      allowExternalNameServices: true
-  ingressRoute:
-    dashboard:
-      # -- Create an IngressRoute for the dashboard
+metrics:
+  prometheus:
+    service:
       enabled: true
-      ingressRoute: true
-      # matchRule: Host(`traefik.h.g4v.dev`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
-      annotations:
-        fake: thing
-  priorityClassName: 'system-cluster-critical'
-  tolerations:
-    - key: 'CriticalAddonsOnly'
-      operator: 'Exists'
-    - key: 'node-role.kubernetes.io/control-plane'
-      operator: 'Exists'
-      effect: 'NoSchedule'
-    - key: 'node-role.kubernetes.io/master'
-      operator: 'Exists'
-      effect: 'NoSchedule'
-  service:
-    single: false
+    disableAPICheck: true
+    serviceMonitor:
+      interval: 30s
+ingressClass:
+  enabled: true
+  isDefaultClass: true
+  name: traefik-ingress
+podAnnotations:
+  prometheus.io/port: '8082'
+  prometheus.io/scrape: 'true'
+providers:
+  kubernetesIngress:
+    allowExternalNameServices: true
+    publishedService:
+      enabled: true
+  kubernetesCRD:
+    allowExternalNameServices: true
+ingressRoute:
+  dashboard:
+    # -- Create an IngressRoute for the dashboard
+    enabled: true
+    ingressRoute: true
+    # matchRule: Host(`traefik.h.g4v.dev`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
     annotations:
-      external-dns.alpha.kubernetes.io/target: 172.16.10.202
-      metallb.universe.tf/allow-shared-ip: traefik
-    type: LoadBalancer
-    ipFamilyPolicy: 'PreferDualStack'
+      fake: thing
+priorityClassName: 'system-cluster-critical'
+tolerations:
+  - key: 'CriticalAddonsOnly'
+    operator: 'Exists'
+  - key: 'node-role.kubernetes.io/control-plane'
+    operator: 'Exists'
+    effect: 'NoSchedule'
+  - key: 'node-role.kubernetes.io/master'
+    operator: 'Exists'
+    effect: 'NoSchedule'
+service:
+  single: false
+  annotations:
+    external-dns.alpha.kubernetes.io/target: 172.16.10.202
+    metallb.universe.tf/allow-shared-ip: traefik
+  type: LoadBalancer
+  ipFamilyPolicy: 'PreferDualStack'
+  spec:
     loadBalancerIP: 172.16.10.202
     externalTrafficPolicy: Local
-  logs:
-    general:
-      level: INFO
-  tlsStore:
-    default:
-      defaultCertificate:
-        secretName: wildcard-g4v-tls
-cert:
-  commonName: '*.h.g4v.dev'
-  dnsNames:
-    - '*.g4v.dev'
-    - '*.h.g4v.dev'
+logs:
+  general:
+    level: INFO
+tlsStore:
+  default:
+    defaultCertificate:
+      secretName: wildcard-g4v-tls
