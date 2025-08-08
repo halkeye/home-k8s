@@ -37,7 +37,7 @@ controllers:
           - sh
           - -c
           - |-
-              export WIREGUARD_ENDPOINT_IP=(LC_ALL=C nslookup $WIREGUARD_ENDPOINT_IP 2>/dev/null  | sed -nr '/Name/,+1s|Address(es)?: *||p')
+              export WIREGUARD_ENDPOINT_IP=$(LC_ALL=C nslookup $WIREGUARD_ENDPOINT_IP 2>/dev/null  | sed -nr '/Name/,+1s|Address(es)?: *||p')
               exec /gluetun-entrypoint
         envFrom:
           - secretRef:
