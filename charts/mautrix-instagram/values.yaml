@@ -135,4 +135,4 @@ persistence:
   configmap:
     enabled: true
     type: configMap
-    name: "mautrix-instagram-secret"
+    name: "mautrix-instagram-configmap"
