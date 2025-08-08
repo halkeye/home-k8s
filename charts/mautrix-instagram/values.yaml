@@ -40,6 +40,8 @@ controllers:
               export WIREGUARD_ENDPOINT_IP=$(LC_ALL=C nslookup $WIREGUARD_ENDPOINT_IP 2>/dev/null  | sed -nr '/Name/,+1s|Address(es)?: *||p')
               exec /gluetun-entrypoint
         env:
+          DNS_KEEP_NAMESERVER: true
+          DOT: off
           VPN_SERVICE_PROVIDER: custom
           VPN_TYPE: wireguard
         envFrom:
