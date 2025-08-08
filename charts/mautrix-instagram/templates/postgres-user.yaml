@@ -1,9 +1,9 @@
 apiVersion: db.movetokube.com/v1alpha1
 kind: PostgresUser
 metadata:
-  name: "{{ .Release.Name }}"
+  name: "mautrix-instagram"
 spec:
-  role: "{{ .Release.Name }}"
-  database: "{{ .Release.Name }}"
-  secretName: "{{ .Release.Name }}-db-secret"
+  role: "mautrix-instagram"
+  database: "mautrix-instagram"
+  secretName: "mautrix-instagram-db-secret"
   privileges: OWNER
