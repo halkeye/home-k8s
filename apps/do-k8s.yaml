@@ -17,7 +17,6 @@ spec:
           # - { namespace: matrix, name: matrix-authentication-service }
           - { namespace: matrix, name: mautrix-gmessages }
           - { namespace: matrix, name: mautrix-googlechat }
-          - { namespace: matrix, name: mautrix-instagram }
           - { namespace: matrix, name: mautrix-linkedin }
           - { namespace: matrix, name: mautrix-signal }
           - { namespace: matrix, name: mautrix-telegram }
@@ -91,6 +90,9 @@ spec:
           - { namespace: monitoring, name: mysqld-exporter }
 
           - { namespace: matrix, name: synatainer }
+
+          # Matrix
+          - { namespace: matrix, name: mautrix-instagram }
 
           - name: bytestash
           - name: hoarder

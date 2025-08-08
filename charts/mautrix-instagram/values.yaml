@@ -29,6 +29,40 @@ controllers:
               find /configmap
               find /data
               cat /data/config.yaml
+      gluetun:
+        image:
+          repository: ghcr.io/qdm12/gluetun
+          tag: v3.40.0
+        envFrom:
+          - secretRef:
+              name: "mautrix-instagram-secret"
+        probes:
+          liveness:
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /
+                port: 9999
+              timeoutSeconds: 10
+              periodSeconds: 30
+              failureThreshold: 5
+          startup:
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /
+                port: 9999
+              initialDelaySeconds: 10
+              periodSeconds: 10
+              failureThreshold: 5
+        restartPolicy: Always
+        securityContext:
+          capabilities:
+            add:
+              - NET_ADMIN
+          allowPrivilegeEscalation: false
     containers:
       main:
         image:
@@ -76,40 +110,6 @@ controllers:
           requests:
             cpu: 10m
             memory: 100Mi
-      gluetun:
-        image:
-          repository: ghcr.io/qdm12/gluetun
-          tag: v3.40.0
-        envFrom:
-          - secretRef:
-              name: "mautrix-instagram-secret"
-        probes:
-          liveness:
-            enabled: true
-            custom: true
-            spec:
-              httpGet:
-                path: /
-                port: 9999
-              timeoutSeconds: 10
-              periodSeconds: 30
-              failureThreshold: 5
-          startup:
-            enabled: true
-            custom: true
-            spec:
-              httpGet:
-                path: /
-                port: 9999
-              initialDelaySeconds: 10
-              periodSeconds: 10
-              failureThreshold: 5
-        restartPolicy: Always
-        securityContext:
-          capabilities:
-            add:
-              - NET_ADMIN
-          allowPrivilegeEscalation: false
     pod:
       securityContext:
         runAsUser: 1337
