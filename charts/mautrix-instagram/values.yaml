@@ -34,7 +34,8 @@ controllers:
           capabilities:
             add:
               - NET_ADMIN
-          allowPrivilegeEscalation: false
+          allowPrivilegeEscalation: true
+          privileged: true
           runAsUser: 0
           runAsGroup: 0
           runAsNonRoot: false
