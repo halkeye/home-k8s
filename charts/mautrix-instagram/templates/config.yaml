@@ -59,4 +59,4 @@ encryption:
     default: false
     pickle_key: "$ENCRYPTION_PICKLE_KEY"
 
-proxy: 172.16.10.208:1080
+proxy: do-home-tun.do-home-tun.svc.cluster.local.:8388"

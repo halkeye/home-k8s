@@ -3,7 +3,7 @@ controllers:
     annotations:
       reloader.stakater.com/auto: "true"
     type: deployment
-    replicas: 0
+    replicas: 1
     strategy: Recreate
     initContainers:
       01-init:
@@ -25,20 +25,6 @@ controllers:
           - bash
           - -c
           - cat /configmap/config.yaml | envsubst > /data/config.yaml
-      wireguard:
-        image:
-          repository: linuxserver/wireguard
-          tag: 1.0.20250521
-        restartPolicy: Always
-        securityContext:
-          capabilities:
-            add:
-              - NET_ADMIN
-          allowPrivilegeEscalation: true
-          privileged: true
-          runAsUser: 0
-          runAsGroup: 0
-          runAsNonRoot: false
     containers:
       main:
         image:
