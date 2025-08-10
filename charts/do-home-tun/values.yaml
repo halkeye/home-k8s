@@ -1,0 +1,70 @@
+controllers:
+  main:
+    annotations:
+      reloader.stakater.com/auto: "true"
+    type: deployment
+    containers:
+      gluetun:
+        image:
+          repository: ghcr.io/qdm12/gluetun
+          tag: v3.40.0
+        command:
+          - sh
+          - -c
+          - |-
+              export WIREGUARD_ENDPOINT_IP=$(LC_ALL=C nslookup $WIREGUARD_ENDPOINT_IP 1.1.1.1 2>/dev/null  | sed -nr '/Name/,+1s|Address(es)?: *||p')
+              exec /gluetun-entrypoint
+        env:
+          VPN_SERVICE_PROVIDER: custom
+          VPN_TYPE: wireguard
+          FIREWALL_INPUT_PORTS: "8388,8888,9999"
+          HEALTH_SERVER_ADDRESS: ":9999"
+          HTTPPROXY: "on"
+          HTTPPROXY_LISTENING_ADDRESS: :8888
+          HTTPPROXY_LOG: "on"
+        envFrom:
+          - secretRef:
+              name: "do-home-tun-secret"
+        probes:
+          liveness:
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /
+                port: 9999
+              timeoutSeconds: 10
+              periodSeconds: 10
+              failureThreshold: 5
+          startup:
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /
+                port: 9999
+              initialDelaySeconds: 10
+              periodSeconds: 10
+              failureThreshold: 5
+        restartPolicy: Always
+        securityContext:
+          capabilities:
+            add:
+              - NET_ADMIN
+          allowPrivilegeEscalation: true
+          runAsUser: 0
+          runAsGroup: 0
+          runAsNonRoot: false
+service:
+  proxy:
+    controller: main
+    publishNotReadyAddresses: true
+    ports:
+      main:
+        port: 8888
+      shadowsocks-udp:
+        port: 8388
+        protocol: UDP
+      shadowsocks-tcp:
+        port: 8388
+        protocol: UDP
