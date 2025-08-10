@@ -8,14 +8,14 @@ controllers:
         image:
           repository: ghcr.io/qdm12/gluetun
           tag: v3.40.0
-        command:
-          - sh
-          - -c
-          - |-
-              echo "before: $WIREGUARD_ENDPOINT_IP"
-              export WIREGUARD_ENDPOINT_IP=$(LC_ALL=C nslookup $WIREGUARD_ENDPOINT_IP 1.1.1.1 | sed -nr '/Name/,+1s|Address(es)?: *||p')
-              echo "after: $WIREGUARD_ENDPOINT_IP"
-              exec /gluetun-entrypoint
+#        command:
+#          - sh
+#          - -c
+#          - |-
+#              echo "before: $WIREGUARD_ENDPOINT_IP"
+#              export WIREGUARD_ENDPOINT_IP=$(LC_ALL=C nslookup $WIREGUARD_ENDPOINT_IP 1.1.1.1 | sed -nr '/Name/,+1s|Address(es)?: *||p')
+#              echo "after: $WIREGUARD_ENDPOINT_IP"
+#              exec /gluetun-entrypoint
         env:
           VPN_SERVICE_PROVIDER: custom
           VPN_TYPE: wireguard
