@@ -12,7 +12,9 @@ controllers:
           - sh
           - -c
           - |-
+              echo "before: $WIREGUARD_ENDPOINT_IP"
               export WIREGUARD_ENDPOINT_IP=$(LC_ALL=C nslookup $WIREGUARD_ENDPOINT_IP 1.1.1.1 2>/dev/null  | sed -nr '/Name/,+1s|Address(es)?: *||p')
+              echo "after: $WIREGUARD_ENDPOINT_IP"
               exec /gluetun-entrypoint
         env:
           VPN_SERVICE_PROVIDER: custom
