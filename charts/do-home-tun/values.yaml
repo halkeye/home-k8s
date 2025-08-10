@@ -46,7 +46,6 @@ controllers:
               initialDelaySeconds: 10
               periodSeconds: 10
               failureThreshold: 5
-        restartPolicy: Always
         securityContext:
           capabilities:
             add:
@@ -67,4 +66,4 @@ service:
         protocol: UDP
       shadowsocks-tcp:
         port: 8388
-        protocol: UDP
+        protocol: TCP
