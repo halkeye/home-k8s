@@ -2,6 +2,7 @@
 network:
     mode: instagram
     displayname_template: '{{ or .DisplayName .Username "Unknown user" }} (IG)'
+    proxy: socks5://home-socks-proxy.tailscale.svc.cluster.local.:1080
 
 bridge:
     permissions:
@@ -58,5 +59,3 @@ encryption:
     allow: false
     default: false
     pickle_key: "$ENCRYPTION_PICKLE_KEY"
-
-proxy: do-home-tun.do-home-tun.svc.cluster.local.:8388"
