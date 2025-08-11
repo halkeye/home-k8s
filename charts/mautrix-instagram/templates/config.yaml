@@ -3,6 +3,7 @@ network:
     mode: instagram
     displayname_template: '{{ or .DisplayName .Username "Unknown user" }} (IG)'
     proxy: socks5://home-socks-proxy.tailscale.svc.cluster.local.:1080
+    proxy_media: true
 
 bridge:
     permissions:
@@ -17,7 +18,8 @@ database:
 
 # Homeserver details.
 homeserver:
-    address: "http://synapse.matrix.svc.cluster.local.:8010"
+    #address: "http://synapse.matrix.svc.cluster.local.:8010"
+    address: "https://matrix.g4v.dev"
     domain: g4v.dev
     # Does the homeserver support https://github.com/matrix-org/matrix-spec-proposals/pull/2246?
     async_media: true
