@@ -17,6 +17,7 @@ helmCharts:
     releaseName: tailscale-operator
 
 resources:
-  - ./resources/proxyclass-userspace.yaml
   - ./secret.enc.yaml
-
+  - ./resources/service-home-proxy.yaml
+  - ./resources/proxyclass-userspace.yaml
+  - ./resources/proxyclass-accept-routes.yaml
