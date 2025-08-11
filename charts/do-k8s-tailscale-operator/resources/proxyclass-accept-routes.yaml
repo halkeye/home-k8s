@@ -1,7 +1,6 @@
 apiVersion: tailscale.com/v1alpha1
 kind: ProxyClass
 metadata:
-  generation: 2
   name: accept-routes
 spec:
   tailscale:
