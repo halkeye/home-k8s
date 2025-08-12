@@ -18,6 +18,6 @@ helmCharts:
 
 resources:
   # renovate: datasource=docker image=rancher/system-upgrade-controller
-  - https://github.com/rancher/system-upgrade-controller/releases/download/v0.16.0/crd.yaml
+  - https://github.com/rancher/system-upgrade-controller/releases/download/v0.16.2/crd.yaml
   - ./templates/agent.yaml
   - ./templates/server.yaml
