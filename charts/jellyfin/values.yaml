@@ -2,6 +2,8 @@ controllers:
   main:
     strategy: Recreate
     replicas: 1
+    annotations:
+      reloader.stakater.com/auto: 'true'
     containers:
       main:
         image:
