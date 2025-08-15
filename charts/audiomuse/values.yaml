@@ -1,0 +1,79 @@
+controllers:
+  audiomuse-ai-flask:
+    containers:
+      main:
+        image:
+          repository: ghcr.io/neptunehub/audiomuse-ai
+          tag: 0.6.4-beta
+        env: &env
+          TZ: America/Vancouver
+          POSTGRES_DB:
+            valueFrom:
+              secretKeyRef:
+                name: '{{ .Release.Name }}-db-secret-{{ .Release.Name }}'
+                key: DATABASE_NAME
+          POSTGRES_ROLE: "audiomuse-group"
+          POSTGRES_PORT:
+            valueFrom:
+              secretKeyRef:
+                name: '{{ .Release.Name }}-db-secret-{{ .Release.Name }}'
+                key: PORT
+          POSTGRES_HOST:
+            valueFrom:
+              secretKeyRef:
+                name: '{{ .Release.Name }}-db-secret-{{ .Release.Name }}'
+                key: HOST_NO_PORT
+          POSTGRES_PASSWORD:
+            valueFrom:
+              secretKeyRef:
+                name: '{{ .Release.Name }}-db-secret-{{ .Release.Name }}'
+                key: PASSWORD
+          POSTGRES_USER:
+            valueFrom:
+              secretKeyRef:
+                name: '{{ .Release.Name }}-db-secret-{{ .Release.Name }}'
+                key: LOGIN
+          SERVICE_TYPE: "flask"
+          MEDIASERVER_TYPE: "jellyfin"
+          REDIS_URL: "redis://redis:6379/0"
+          TEMP_DIR: "/app/temp_audio"
+        envFrom:
+          - secretRef:
+              name: '{{.Release.Name}}-secret'
+  audiomuse-ai-worker:
+    type: statefulset
+    replicas: 2
+    containers:
+      main:
+        image:
+          repository: ghcr.io/neptunehub/audiomuse-ai
+          tag: 0.6.4-beta
+        env: 
+          <<: *env
+          SERVICE_TYPE: "worker"
+        envFrom:
+          - secretRef:
+              name: '{{.Release.Name}}-secret'
+service:
+  main:
+    controller: audiomuse-ai-flask
+    ports:
+      http:
+        port: 8080
+
+ingress:
+  main:
+    enabled: true
+    hosts:
+      - host: audiomuse.g4v.dev
+        paths:
+          - path: /
+            service:
+              identifier: main
+              port: http
+
+persistence:
+  tmp:
+    type: emptyDir
+    globalMounts:
+      - path: /app/temp_audio
