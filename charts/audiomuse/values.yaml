@@ -35,7 +35,7 @@ controllers:
                 key: LOGIN
           SERVICE_TYPE: "flask"
           MEDIASERVER_TYPE: "jellyfin"
-          REDIS_URL: "redis://redis:6379/0"
+          REDIS_URL: "redis://audiomuse-redis-0:6379/0"
           TEMP_DIR: "/app/temp_audio"
         envFrom:
           - secretRef:

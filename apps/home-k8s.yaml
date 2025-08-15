@@ -91,6 +91,7 @@ spec:
 
           - name: anime-radarr
           - name: anime-sonarr
+          - name: audiomuse
           - name: autobrr
           - name: bandcampsync
           - name: calibre-web-automated

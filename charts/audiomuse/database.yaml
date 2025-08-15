@@ -27,7 +27,7 @@ spec:
 apiVersion: redis.redis.opstreelabs.in/v1beta2
 kind: Redis
 metadata:
-  name: audiomuse
+  name: audiomuse-redis
 spec:
   kubernetesConfig:
     image: quay.io/opstree/redis:v7.0.15
