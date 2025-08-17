@@ -75,11 +75,17 @@ controllers:
             enabled: true
 
         securityContext:
+          allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
-          runAsUser: 568
-          runAsGroup: 568
-          fsGroup: 568
-          fsGroupChangePolicy: OnRootMismatch
+          capabilities:
+            drop: ["ALL"]
+    pod:
+      securityContext:
+        runAsUser: 1026
+        runAsGroup: 100
+        runAsNonRoot: true
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
 service:
   main:
     controller: main
