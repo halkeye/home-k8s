@@ -9,7 +9,7 @@ controllers:
       geoip:
         image:
           repository: ghcr.io/maxmind/geoipupdate
-          tag: v7.1.0
+          tag: v7.1.1
         restartPolicy: Always
         env:
           GEOIPUPDATE_FREQUENCY: "8"

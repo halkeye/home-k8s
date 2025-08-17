@@ -26,7 +26,7 @@ controllers:
       app:
         image:
           repository: ghcr.io/rommapp/romm
-          tag: 4.1.0@sha256:be1d286ecf7dc94c0b3c46ada87443938f05cfd5d2d8677fd4f1c08d6eb7ec13
+          tag: 4.1.2@sha256:14ddc5abbfda99fcf60db9fa124b52727518b82deae8ece63f1e1b70873f471a
         env:
           TZ: America/Vancouver
           DISABLE_USERPASS_LOGIN: true
