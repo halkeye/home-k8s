@@ -1,0 +1,115 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  main:
+    replicas: 1
+    annotations:
+      reloader.stakater.com/auto: "true"
+
+    initContainers:
+      geoip:
+        image:
+          repository: ghcr.io/maxmind/geoipupdate
+          tag: v7.1.0
+        restartPolicy: Always
+        env:
+          GEOIPUPDATE_FREQUENCY: "8"
+          GEOIPUPDATE_PRESERVE_FILE_TIMES: "1"
+          GEOIPUPDATE_EDITION_IDS: GeoLite2-City
+        envFrom:
+          - secretRef:
+              name: plausible-secret
+
+        securityContext:
+          readOnlyRootFilesystem: true
+
+        probes:
+          startup:
+            enabled: true
+            custom: true
+            spec:
+              exec:
+                command:
+                  - ls
+                  - /usr/share/GeoIP/GeoLite2-City.mmdb
+              periodSeconds: 5
+
+    containers:
+      main:
+        image:
+          repository: ghcr.io/plausible/community-edition
+          tag: v3.0.1
+        command:
+          - sh
+          - -c
+          - |
+            set -eux
+            /entrypoint.sh db createdb
+            /entrypoint.sh db migrate
+            exec /entrypoint.sh run
+
+        env:
+          TZ: American/Vancouver
+          DISABLE_REGISTRATION: invite_only
+          IP_GEOLOCATION_DB: /usr/share/GeoIP/GeoLite2-City.mmdb
+          BASE_URL: "https://p.g4v.dev"
+          ENABLE_EMAIL_VERIFICATION: "true"
+          DATABASE_URL:
+            valueFrom:
+              secretKeyRef:
+                name: "plausible-db-secret-plausible"
+                key: POSTGRES_URL
+
+        envFrom:
+          - secretRef:
+              name: plausible-secret
+
+        probes:
+          startup:
+            enabled: true
+            spec:
+              failureThreshold: 30
+              periodSeconds: 5
+          liveness:
+            enabled: true
+          readiness:
+            enabled: true
+
+        securityContext:
+          readOnlyRootFilesystem: true
+          runAsUser: 568
+          runAsGroup: 568
+          fsGroup: 568
+          fsGroupChangePolicy: OnRootMismatch
+          supplementalGroups: [10000]
+    pod:
+      securityContext:
+        runAsUser: 1026
+        runAsGroup: 100
+        runAsNonRoot: true
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 8000
+ingress:
+  main:
+    enabled: true
+    hosts:
+      - host: "p.g4v.dev"
+        paths:
+          - path: /
+            service:
+              identifier: main
+              port: http
+persistence:
+  tmp:
+    enabled: true
+    type: emptyDir
+  geoip:
+    enabled: true
+    type: emptyDir
+    globalMounts:
+      - path: /usr/share/GeoIP
