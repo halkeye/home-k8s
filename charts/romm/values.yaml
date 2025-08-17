@@ -18,7 +18,7 @@ controllers:
           repository: busybox
           tag: 1.37
         command:
-          - bash
+          - sh
           - -c
           - |-
               cp /configmap/config.yml /romm/config
