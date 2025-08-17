@@ -103,3 +103,5 @@ persistence:
         subPath: users.xml
       - path: /etc/clickhouse-server/config.d/config.xml
         subPath: config.xml
+      - path: /etc/clickhouse-server/config.d/low-resources.xml
+        subPath: low-resources.xml

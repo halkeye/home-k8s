@@ -21,3 +21,4 @@ configMapGenerator:
     files:
       - config.xml=./resources/config.xml
       - users.xml=./resources/users.xml
+      - low-resources.xml=./resources/low-resources.xml

@@ -102,6 +102,7 @@ spec:
           - name: microbin
           - name: miniflux
           - name: photoprism
+          - name: plausible
           - name: postiz
           - name: stirling-pdf
           - name: teamspeak

@@ -80,14 +80,6 @@ controllers:
           runAsGroup: 568
           fsGroup: 568
           fsGroupChangePolicy: OnRootMismatch
-          supplementalGroups: [10000]
-    pod:
-      securityContext:
-        runAsUser: 1026
-        runAsGroup: 100
-        runAsNonRoot: true
-        fsGroup: 100
-        fsGroupChangePolicy: OnRootMismatch
 service:
   main:
     controller: main
