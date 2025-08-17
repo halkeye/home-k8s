@@ -12,6 +12,16 @@ controllers:
   romm:
     annotations:
       reloader.stakater.com/auto: "true"
+    initContainers:
+      init:
+        image:
+          repository: busybox
+          tag: 1.28
+        command:
+          - bash
+          - -c
+          - |-
+              cp /configmap/config.yml /romm/config
     containers:
       app:
         image:
@@ -118,6 +128,3 @@ persistence:
     enabled: true
     type: configMap
     name: romm-configmap
-    globalMounts:
-      - path: /romm/config/config.yml
-        subPath: config.yml
