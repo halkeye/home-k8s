@@ -1,0 +1,102 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  main:
+    replicas: 1
+    annotations:
+      reloader.stakater.com/auto: "true"
+    type: statefulset
+    strategy: RollingUpdate
+    # Make sure previous pods are fully terminated before new ones start
+    statefulset:
+      podManagementPolicy: OrderedReady
+    containers:
+      clickhouse:
+        image:
+          repository: clickhouse/clickhouse-server
+          tag: 25.7-alpine
+          pullPolicy: IfNotPresent
+        env:
+          CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: "1"
+          CLICKHOUSE_SKIP_USER_SETUP: 1
+          CLICKHOUSE_HTTP_PORT: 8123
+          CLICKHOUSE_TCP_PORT: 9000
+          CLICKHOUSE_LISTEN_HOST: 0.0.0.0
+          CLICKHOUSE_LOGGER_CONSOLE: "true"
+        probes:
+          liveness:
+            enabled: true
+            type: HTTP
+            path: /?query=SELECT+1
+          readiness:
+            enabled: true
+            type: HTTP
+            path: /?query=SELECT+1
+          startup:  
+            enabled: true
+            type: HTTP
+            path: /?query=SELECT+1
+            spec:
+              failureThreshold: 30
+              periodSeconds: 5
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+    pod:
+      # Add pod termination grace period to ensure clean shutdown
+      terminationGracePeriodSeconds: 60
+      securityContext:
+        runAsUser: 1026
+        runAsGroup: 100
+        runAsNonRoot: true
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 8123
+      tcp:
+        port: 9000
+ingress:
+  main:
+    enabled: true
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: 'websecure'
+      traefik.ingress.kubernetes.io/router.middlewares: 'traefik-ingress-authentik@kubernetescrd'
+      nginx.ingress.kubernetes.io/auth-url: http://ak-outpost-nginx.authentik.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
+      nginx.ingress.kubernetes.io/auth-signin: https://auth.g4v.dev/outpost.goauthentik.io/start?rd=$scheme://$http_host$escaped_request_uri
+      nginx.ingress.kubernetes.io/auth-response-headers: Set-Cookie,X-authentik-username,X-authentik-groups,X-authentik-email,X-authentik-name,X-authentik-uid
+      nginx.ingress.kubernetes.io/auth-snippet: proxy_set_header X-Forwarded-Host $http_host;
+    hosts:
+      - host: "clickhouse.g4v.dev"
+        paths:
+          - path: /
+            service:
+              identifier: main
+              port: http
+persistence:
+  data:
+    enabled: true
+    suffix: data
+    type: persistentVolumeClaim
+    accessMode: ReadWriteMany
+    size: 10Gi
+    globalMounts:
+      - path: /var/lib/clickhouse
+  logs:
+    enabled: true
+    type: emptyDir
+    globalMounts:
+      - path: /var/log
+  config:
+    enabled: true
+    type: configMap
+    name: clickhouse-configmap
+    globalMounts:
+      - path: /etc/clickhouse-server/users.d/users.xml
+        subPath: users.xml
+      - path: /etc/clickhouse-server/config.d/config.xml
+        subPath: config.xml
