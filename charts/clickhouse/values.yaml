@@ -86,6 +86,9 @@ persistence:
     size: 10Gi
     globalMounts:
       - path: /var/lib/clickhouse
+  tmp:
+    enabled: true
+    type: emptyDir
   logs:
     enabled: true
     type: emptyDir
