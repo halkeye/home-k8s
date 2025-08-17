@@ -16,9 +16,6 @@ helmCharts:
     valuesFile: values.yaml
     releaseName: clickhouse 
 
-resources:
-  - ./secret.enc.yaml
-
 configMapGenerator:
   - name: clickhouse-configmap
     files:
