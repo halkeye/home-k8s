@@ -17,5 +17,5 @@ spec:
   secretName: plausible-db-secret
   privileges: OWNER
   secretTemplate:
-    HOST_NO_PORT: "{{ .HostNoPort }}"
     PORT: "{{ .Port }}"
+    POSTGRES_URL_WITH_ARGS: postgresql://{{.Role}}:{{.Password}}@{{.Host}}/{{.Database}}?{{ "" | mergeUriArgs }}

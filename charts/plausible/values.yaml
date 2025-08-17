@@ -57,7 +57,7 @@ controllers:
             valueFrom:
               secretKeyRef:
                 name: "plausible-db-secret-plausible"
-                key: POSTGRES_URL
+                key: POSTGRES_URL_WITH_ARGS
 
         envFrom:
           - secretRef:
