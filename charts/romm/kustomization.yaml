@@ -21,3 +21,8 @@ resources:
   - ./resources/postgres.yaml
   - ./resources/postgres-user.yaml
   - ./secret.enc.yaml
+
+configMapGenerator:
+  - name: romm-configmap
+    files:
+      - config.yml=./resources/config.yml

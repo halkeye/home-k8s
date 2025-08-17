@@ -114,3 +114,10 @@ persistence:
     path: "/volume1/Games"
     globalMounts:
       - path: /romm/library
+  configmap:
+    enabled: true
+    type: configMap
+    name: romm-configmap
+    globalMounts:
+      - path: /romm/config/config.yml
+        subPath: config.yml
