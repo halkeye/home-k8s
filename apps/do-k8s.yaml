@@ -95,6 +95,7 @@ spec:
           - { namespace: matrix, name: mautrix-instagram }
 
           - name: bytestash
+          - name: clickhouse
           - name: do-home-tun
           - name: hoarder
           - name: metrics-server
