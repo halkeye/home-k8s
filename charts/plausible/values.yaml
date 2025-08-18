@@ -43,7 +43,6 @@ controllers:
           - -c
           - |
             set -eux
-            sleep 99d
             /entrypoint.sh db migrate
             exec /entrypoint.sh run
 
