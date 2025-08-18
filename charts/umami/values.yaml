@@ -67,6 +67,12 @@ ingress:
             service:
               identifier: main
               port: http
+      - host: "u.g4v.dev"
+        paths:
+          - path: /
+            service:
+              identifier: main
+              port: http
 persistence:
   tmp:
     enabled: true
