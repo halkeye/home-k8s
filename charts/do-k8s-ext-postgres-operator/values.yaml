@@ -9,7 +9,7 @@ resources:
     memory: 100Mi
 podAnnotations:
   reloader.stakater.com/auto: "true"
-existingSecret: do-k8s-ext-postgres-operator
+existingSecret: do-k8s-ext-postgres-operator-secret
 image:
   repository: ghcr.io/movetokube/postgres-operator
   tag: 2.1.0
