@@ -16,7 +16,6 @@ spec:
   database: postiz
   secretName: postiz-db-secret
   privileges: OWNER
-  secretTemplate: {}
 ---
 apiVersion: redis.redis.opstreelabs.in/v1beta2
 kind: Redis
