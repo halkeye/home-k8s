@@ -1,21 +1,15 @@
 ---
-ext-postgres-operator:
-  fullnameOverride: ext-postgres-operator
-  postgres:
-    host: ""
-    default_database: ""
-    user: ""
-    password: ""
-  resources:
-    limits:
-      cpu: 10m
-      memory: 100Mi
-    requests:
-      cpu: 10m
-      memory: 100Mi
-  image:
-    repository: ghcr.io/halkeye/postgres-operator
-    pullPolicy: IfNotPresent
-    tag: "sha-0207179"
-  podAnnotations:
-    reloader.stakater.com/auto: "true"
+fullnameOverride: ext-postgres-operator
+resources:
+  limits:
+    cpu: 10m
+    memory: 100Mi
+  requests:
+    cpu: 10m
+    memory: 100Mi
+podAnnotations:
+  reloader.stakater.com/auto: "true"
+existingSecret: ext-postgres-operator-secret
+image:
+  repository: ghcr.io/movetokube/postgres-operator
+  tag: 2.1.0
