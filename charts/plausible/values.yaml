@@ -43,7 +43,6 @@ controllers:
           - -c
           - |
             set -eux
-            /entrypoint.sh db createdb
             /entrypoint.sh db migrate
             exec /entrypoint.sh run
 
