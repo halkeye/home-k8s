@@ -16,9 +16,7 @@ spec:
   database: postiz
   secretName: postiz-db-secret
   privileges: OWNER
-  secretTemplate:
-    HOST_NO_PORT: "{{ .HostNoPort }}"
-    PORT: "{{ .Port }}"
+  secretTemplate: {}
 ---
 apiVersion: redis.redis.opstreelabs.in/v1beta2
 kind: Redis
