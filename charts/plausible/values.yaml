@@ -51,7 +51,7 @@ controllers:
           DISABLE_REGISTRATION: invite_only
           IP_GEOLOCATION_DB: /usr/share/GeoIP/GeoLite2-City.mmdb
           BASE_URL: "https://p.g4v.dev"
-          ENABLE_EMAIL_VERIFICATION: "true"
+          ENABLE_EMAIL_VERIFICATION: "false"
           DATABASE_CACERTFILE: "/ca-certificate.crt"
           DATABASE_URL:
             valueFrom:
