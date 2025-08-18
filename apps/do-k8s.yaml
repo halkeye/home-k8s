@@ -85,6 +85,7 @@ spec:
     - list:
         elements:
           - { name: do-k8s-tailscale-operator, namespace: tailscale }
+          - { name: do-k8s-ext-postgres-operator, namespace: ext-postgres-operator }
 
           # Exporters
           - { namespace: monitoring, name: mysqld-exporter }
