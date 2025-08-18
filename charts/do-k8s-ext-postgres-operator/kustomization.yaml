@@ -10,7 +10,7 @@ generatorOptions:
   disableNameSuffixHash: true
 
 helmCharts:
-  - name: do-k8s-ext-postgres-operator
+  - name: ext-postgres-operator
     releaseName: do-k8s-ext-postgres-operator
     version: 2.1.0
     repo: https://movetokube.github.io/postgres-operator/
