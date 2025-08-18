@@ -107,6 +107,7 @@ spec:
           - name: postiz
           - name: stirling-pdf
           - name: teamspeak
+          - name: umami
           - name: vikunja
   template:
     metadata:
