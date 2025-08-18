@@ -19,3 +19,8 @@ helmCharts:
 resources:
   - ./secret.enc.yaml
   - ./database.yaml
+
+configMapGenerator:
+  - name: plausible-configmap
+    files:
+      - ca-certificate.crt=./resources/ca-certificate.crt

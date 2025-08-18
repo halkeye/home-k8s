@@ -111,3 +111,10 @@ persistence:
     type: emptyDir
     globalMounts:
       - path: /usr/share/GeoIP
+  configmap:
+    enabled: true
+    type: configMap
+    name: plausible-configmap
+    globalMounts:
+      - path: /ca-certificate.crt
+        subPath: ca-certificate.crt
