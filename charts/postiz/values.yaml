@@ -38,7 +38,8 @@ controllers:
         image:
           repository: ghcr.io/gitroomhq/postiz-app
           tag: v2.5.3
-        command: ["pnpm", "run", "pm2-run"]
+        # command: ["pnpm", "run", "pm2-run"]
+        command: ["/bin/sh", "-c", "sleep 99d"]
         env:
           TZ: America/Vancouver
           EMAIL_PROVIDER: "nodemailer"
