@@ -20,13 +20,13 @@ controllers:
         image: 
           repository: caddy
           tag: 2.10-alpine
-        probes:
-          liveness:
-            enabled: true
-          readiness:
-            enabled: true
-          startup:
-            enabled: true
+#        probes:
+#          liveness:
+#            enabled: true
+#          readiness:
+#            enabled: true
+#          startup:
+#            enabled: true
         command:
           - caddy 
           - file-server 
