@@ -86,7 +86,7 @@ persistence:
     path: "/volume1/Downloads"
     globalMounts:
       - path: /openbooks/books
-        subPath: downloads/openbooks
+        subPath: Books
   openbooks:
     type: persistentVolumeClaim
     accessMode: ReadWriteOnce
