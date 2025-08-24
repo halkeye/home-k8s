@@ -8,7 +8,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/crutonjohn/lidarr-plugins
-          tag: 2.13.3.4692
+          tag: 2.14.0.4695
         env:
           TZ: America/Vancouver
           COMPlus_EnableDiagnostics: "0"
