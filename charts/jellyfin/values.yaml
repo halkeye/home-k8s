@@ -32,7 +32,7 @@ controllers:
 #            enabled: false
         resources:
           limits:
-            memory: 4Gi
+            memory: 6Gi
           requests:
             memory: 512Mi
             cpu: 100m
