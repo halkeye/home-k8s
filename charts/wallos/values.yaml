@@ -56,6 +56,11 @@ persistence:
     type: persistentVolumeClaim
     accessMode: ReadWriteOnce
     size: 20Gi
+    globalMounts:
+      - path: /var/www/html/db
+        subPath: db
+      - path: /var/www/html/images/uploads/logos
+        subPath: logos
   tmp:
     enabled: true
     type: emptyDir
