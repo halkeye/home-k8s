@@ -109,6 +109,7 @@ spec:
           - name: teamspeak
           - name: umami
           - name: vikunja
+          - name: wallos
   template:
     metadata:
       name: '{{.name}}'
