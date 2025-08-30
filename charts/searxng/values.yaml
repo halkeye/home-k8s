@@ -153,7 +153,7 @@ configMaps:
           method: GET
 
         redis:
-          url: redis:/redis:6379
+          url: redis://redis:6379
 
         search:
           autocomplete: duckduckgo
