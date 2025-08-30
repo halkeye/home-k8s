@@ -16,5 +16,6 @@ helmCharts:
     valuesFile: ./values.yaml
     releaseName: recommendarr
 
-generators:
-  - ../secret-generator.yaml
+resources:
+  - ./secret.enc.yaml
+
