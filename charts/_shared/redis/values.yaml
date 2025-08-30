@@ -1,4 +1,0 @@
-enabled: true
-architecture: standalone
-auth:
-  enabled: false
