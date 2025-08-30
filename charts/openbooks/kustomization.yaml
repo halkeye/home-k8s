@@ -8,12 +8,12 @@ helmGlobals:
 generatorOptions:
   disableNameSuffixHash: true
 
-generators:
-  - ../secret-generator.yaml
-
 helmCharts:
   - name: app-template
     version: 4.2.0
     repo: https://bjw-s-labs.github.io/helm-charts
     valuesFile: ./values.yaml
     releaseName: openbooks
+
+resources:
+  - ./secret.enc.yaml
