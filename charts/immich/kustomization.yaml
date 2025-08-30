@@ -20,3 +20,4 @@ resources:
   - ./templates/postgres-user.yaml
   - ./templates/postgres.yaml
   - ./templates/redis.yaml
+  - ./secret.enc.yaml
