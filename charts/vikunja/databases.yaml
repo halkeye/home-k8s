@@ -1,0 +1,27 @@
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: "vikunja"
+spec:
+  role: "vikunja"
+  database: "vikunja"
+  secretName: "vikunja-db-secret"
+  privileges: OWNER
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: "vikunja"
+spec:
+  database: "vikunja"
+  dropOnDelete: false
+---
+apiVersion: redis.redis.opstreelabs.in/v1beta2
+kind: Redis
+metadata:
+  name: redis
+spec:
+  kubernetesConfig:
+    image: quay.io/opstree/redis:v7.0.15
+    imagePullPolicy: IfNotPresent

@@ -1,9 +1,0 @@
-apiVersion: db.movetokube.com/v1alpha1
-kind: PostgresUser
-metadata:
-  name: "vikunja"
-spec:
-  role: "vikunja"
-  database: "vikunja"
-  secretName: "vikunja-db-secret"
-  privileges: OWNER

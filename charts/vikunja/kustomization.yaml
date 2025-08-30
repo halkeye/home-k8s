@@ -16,10 +16,6 @@ helmCharts:
     valuesFile: values.yaml
     releaseName: vikunja 
 
-generators:
-  - ../_shared/redis/helm-generator.yaml
-
 resources:
-  - ./templates/postgres-user.yaml
-  - ./templates/postgres.yaml
+  - ./databases.yaml
   - ./secret.enc.yaml
