@@ -57,6 +57,7 @@ ingress:
 persistence:
   data:
     enabled: true
+    suffix: data
     type: persistentVolumeClaim
     accessMode: ReadWriteOnce
     size: 10Gi
