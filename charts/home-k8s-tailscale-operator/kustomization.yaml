@@ -16,5 +16,5 @@ helmCharts:
     valuesFile: ./values.yaml
     releaseName: tailscale-operator
 
-generators:
-  - ../secret-generator.yaml
+resources:
+  - ./secret.enc.yaml
