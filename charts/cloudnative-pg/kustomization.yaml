@@ -15,10 +15,8 @@ helmCharts:
     repo: https://movetokube.github.io/postgres-operator/
     valuesFile: ./values-ext-postgres.yaml
 
-generators:
-  - ./secret-generator.yaml
-
 resources:
+  - ./secret.enc.yaml
   - ./resources/postgres17.yaml
   - ./resources/scheduled-backup.yaml
   - ./resources/services.yaml
