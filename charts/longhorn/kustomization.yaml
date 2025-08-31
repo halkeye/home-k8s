@@ -11,7 +11,7 @@ generatorOptions:
 
 helmCharts:
   - name: longhorn
-    version: 1.8.1
+    version: 1.9.1
     repo: https://charts.longhorn.io
     valuesFile: ./values.yaml
     releaseName: longhorn
