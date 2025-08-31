@@ -16,5 +16,5 @@ helmCharts:
     valuesFile: ./values.yaml
     releaseName: unpackerr
 
-generators:
-  - ../secret-generator.yaml
+resources:
+  - ./secret.enc.yaml
