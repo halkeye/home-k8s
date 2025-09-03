@@ -114,7 +114,6 @@ spec:
           - name: netbootxyz
           - name: openbooks
           - name: pinchflat
-          - name: plexripper
           - name: postgres-do-k8s-backup
           - name: postgres-home-backup
           - name: prowlarr
