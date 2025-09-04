@@ -12,7 +12,7 @@ controller:
     default: false
 
   extraArgs:
-    default-ssl-certificate: "kube-system/g4v-home-wildcard-certificate"
+    default-ssl-certificate: "kube-system/wildcard-home-g4v-tls"
 
   stats:
     enabled: true
