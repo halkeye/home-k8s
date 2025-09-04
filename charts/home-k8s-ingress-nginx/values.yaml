@@ -25,7 +25,6 @@ controller:
 
   config:
     use-forwarded-headers: "true"
-    allow-snippet-annotations: "true"
     enable-real-ip: "true"
     compute-full-forwarded-for: "true"
     annotations-risk-level: Critical
