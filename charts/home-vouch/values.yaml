@@ -14,7 +14,7 @@ controllers:
           VOUCH_ALLOWALLUSERS: true
           VOUCH_COOKIE_DOMAIN: g4v.dev
           VOUCH_LISTEN: 0.0.0.0
-          VOUCH_DOCUMENT_ROOT: oauth2
+          VOUCH_DOCUMENT_ROOT: /oauth2
         envFrom:
           - secretRef:
               name: "vouch-secret"
