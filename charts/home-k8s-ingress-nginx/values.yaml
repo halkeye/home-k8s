@@ -1,0 +1,58 @@
+namespaceOverride: "kube-system"
+fullnameOverride: "ingress-nginx"
+
+metrics:
+  enabled: true
+
+rbac:
+  create: true
+
+controller:
+  ingressClassResource:
+    default: false
+
+  extraArgs:
+    default-ssl-certificate: "kube-system/wildcard-do-g4v-tls"
+
+  stats:
+    enabled: true
+
+  metrics:
+    enabled: true
+    port: 10254
+
+  allowSnippetAnnotations: true
+
+  config:
+    use-forwarded-headers: "true"
+    allow-snippet-annotations: "true"
+    enable-real-ip: "true"
+    compute-full-forwarded-for: "true"
+    annotations-risk-level: Critical
+    # https://github.com/kubernetes/ingress-nginx/issues/11176
+    strict-validate-path-type: "false"
+
+  service:
+    type: LoadBalancer
+    loadBalancerIP: 172.16.10.209
+    externalTrafficPolicy: Local
+    publishService:
+      enabled: "true"
+    annotations:
+      external-dns.alpha.kubernetes.io/target: 172.16.10.209
+      metallb.universe.tf/allow-shared-ip: nginx-ingress
+      prometheus.io/scrape: "true"
+      prometheus.io/port: "10254"
+
+defaultBackend:
+  enabled: true
+  image:
+    repository: ghcr.io/tarampampam/error-pages
+    tag: 3.6.0
+  extraEnvs:
+    # Optional: change the default theme
+    - name: TEMPLATE_NAME
+      value: l7
+    # Optional: enables the output of additional information on error pages
+    - name: SHOW_DETAILS
+      value: 'true'
