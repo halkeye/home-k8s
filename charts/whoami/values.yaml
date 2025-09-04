@@ -1,5 +1,3 @@
-global:
-  privateDomainName: g4v.dev
 controllers:
   main:
     containers:
@@ -65,7 +63,7 @@ ingress:
       nginx.ingress.kubernetes.io/auth-snippet: |
         proxy_set_header X-Forwarded-Host $http_host;
     hosts:
-      - host: 'whoami-{{ .Values.global.privateDomainName }}'
+      - host: 'whoami.g4v.dev'
         paths:
           - path: /
             service:
