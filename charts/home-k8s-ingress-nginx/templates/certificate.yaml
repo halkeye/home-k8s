@@ -2,7 +2,7 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: g4v-do-wildcard-certificate
+  name: g4v-home-wildcard-certificate
 spec:
   dnsNames:
     - '*.g4v.dev'
@@ -11,4 +11,4 @@ spec:
   issuerRef:
     name: letsencrypt
     kind: ClusterIssuer
-  secretName: wildcard-do-g4v-tls
+  secretName: wildcard-home-g4v-tls
