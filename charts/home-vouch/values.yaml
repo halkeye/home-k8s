@@ -1,0 +1,73 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  main:
+    replicas: 1
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      vouch:
+        image:
+          repository: quay.io/vouch/vouch-proxy
+          tag: 0.45 
+        env:
+          TZ: America/Vancouver
+          VOUCH_ALLOWALLUSERS: true
+          VOUCH_COOKIE_DOMAIN: g4v.dev
+          VOUCH_LISTEN: 0.0.0.0
+          VOUCH_DOCUMENT_ROOT: oauth2
+        envFrom:
+          - secretRef:
+              name: "vouch-secret"
+        probes:
+          liveness: &probes
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /healthcheck
+                port: 9090
+              initialDelaySeconds: 0
+              periodSeconds: 10
+              timeoutSeconds: 1
+              failureThreshold: 3
+          readiness: *probes
+          startup:
+            enabled: false
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+        resources:
+          requests:
+            cpu: 10m
+            memory: 128Mi
+    pod:
+      securityContext:
+        runAsUser: 1026
+        runAsGroup: 100
+        runAsNonRoot: true
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 9090 
+ingress:
+  main:
+    enabled: true
+    annotations:
+      gethomepage.dev/enabled: "false"
+    hosts:
+      - host: "vouch.h.g4v.dev"
+        paths:
+          - path: /
+            service:
+              identifier: main
+              port: http
+persistence:
+  tmp:
+    enabled: true
+    type: emptyDir
