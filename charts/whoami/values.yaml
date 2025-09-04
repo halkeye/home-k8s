@@ -56,7 +56,7 @@ ingress:
       traefik.ingress.kubernetes.io/router.entrypoints: 'websecure'
       traefik.ingress.kubernetes.io/router.middlewares: 'traefik-ingress-authentik@kubernetescrd'
       nginx.ingress.kubernetes.io/auth-url: "https://vouch.h.g4v.dev/_oauth2/validate"
-      nginx.ingress.kubernetes.io/auth-signin: "https://vouch.h.g4v.dev/_oauth2/login?url=$scheme://$http_host$request_uri"
+      nginx.ingress.kubernetes.io/auth-signin: "https://vouch.h.g4v.dev/_oauth2/login?url=$scheme://$http_host$request_uri&vouch-failcount=$auth_resp_failcount&X-Vouch-Token=$auth_resp_jwt&error=$auth_resp_err"
       nginx.ingress.kubernetes.io/server-snippet: real_ip_header CF-Connecting-IP;
       nginx.ingress.kubernetes.io/configuration-snippet: real_ip_header CF-Connecting-IP;
     hosts:
