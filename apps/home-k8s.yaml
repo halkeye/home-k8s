@@ -105,6 +105,7 @@ spec:
           - name: esphome
           - name: go-socks5-proxy
           - name: hass-lovelace-kindle-screensaver
+          - name: home-vouch
           - name: immich
           - name: kavita
           - name: komf
