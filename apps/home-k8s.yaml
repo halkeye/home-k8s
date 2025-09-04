@@ -133,6 +133,7 @@ spec:
           - name: tachidesk
           - name: tasmoadmin
           - name: unpackerr
+          - name: whoami
           - name: youtubedl-material
   template:
     metadata:
@@ -151,6 +152,9 @@ spec:
         targetRevision: HEAD
         kustomize:
           namespace: '{{- if index . "namespace" -}}{{ .namespace | normalize }}{{- else }}{{ .name | normalize }}{{ end }}'
+#          commonAnnotationsEnvsubst: true
+#          commonAnnotations:
+#            privateDomainName: h.g4v.dev
       syncPolicy:
         automated:
           selfHeal: true

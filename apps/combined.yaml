@@ -15,8 +15,6 @@ spec:
               elements:
                 - appname: postfix-mailgun-relay
                   namespace: smtp
-
-                - appname: whoami
   template:
     metadata:
       name: '{{.nameNormalized}}-{{.appname}}'
