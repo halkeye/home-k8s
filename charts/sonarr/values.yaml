@@ -116,6 +116,7 @@ serviceMonitor:
         scrapeTimeout: 1m
 ingress:
   main:
+    className: nginx
     enabled: true
     annotations:
       gethomepage.dev/enabled: "true"
