@@ -73,6 +73,8 @@ spec:
 
           - { name: home-k8s-tailscale-operator, namespace: tailscale }
 
+          - { name: home-vouch, namespace: vouch, chart: vouch }
+
           # Exporters
           - { namespace: monitoring, name: bambulabs-exporter }
           - { namespace: monitoring, name: blackbox-exporter }
@@ -105,7 +107,6 @@ spec:
           - name: esphome
           - name: go-socks5-proxy
           - name: hass-lovelace-kindle-screensaver
-          - name: home-vouch
           - name: immich
           - name: kavita
           - name: komf
