@@ -15,9 +15,6 @@ controllers:
           VOUCH_COOKIE_DOMAIN: g4v.dev
           VOUCH_LISTEN: 0.0.0.0
           VOUCH_DOCUMENT_ROOT: oauth2
-          OAUTH_PROVIDER: oidc
-          OAUTH_CLIENT_ID: 
-          OAUTH_CLIENT_SECRET:
         envFrom:
           - secretRef:
               name: "vouch-secret"
@@ -64,7 +61,7 @@ ingress:
     annotations:
       gethomepage.dev/enabled: "false"
     hosts:
-      - host: "vouch.h.g4v.dev"
+      - host: "vouch.g4v.dev"
         paths:
           - path: /
             service:
