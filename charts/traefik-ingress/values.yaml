@@ -7,7 +7,7 @@ metrics:
       interval: 30s
 ingressClass:
   enabled: true
-  isDefaultClass: true
+  isDefaultClass: false
   name: traefik-ingress
 podAnnotations:
   prometheus.io/port: '8082'
