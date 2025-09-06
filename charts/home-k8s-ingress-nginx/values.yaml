@@ -9,7 +9,7 @@ rbac:
 
 controller:
   ingressClassResource:
-    default: false
+    default: true
 
   extraArgs:
     default-ssl-certificate: "kube-system/wildcard-home-g4v-tls"
