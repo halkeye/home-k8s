@@ -18,7 +18,6 @@ spec:
           # App
           - name: audiobookshelf
           - name: bazarr
-          - name: calibre-web
           - name: frigate
           - name: kobodl
           - name: wg-access-server
@@ -99,7 +98,6 @@ spec:
           - name: audiomuse
           - name: autobrr
           - name: bandcampsync
-          - name: calibre-web-automated
           - name: cloudnative-pg
           - name: cross-seed
           - name: dnsdist
