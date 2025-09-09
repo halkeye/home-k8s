@@ -43,7 +43,7 @@ patches:
               name: litestream-secret
               key: LITESTREAM_SECRET_ACCESS_KEY
     - op: add
-      path: /spec/template/spec/containers
+      path: /spec/template/spec/containers/0
       value:
       - name: litestream
         image: litestream/litestream:0.3
