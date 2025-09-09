@@ -105,6 +105,12 @@
         "/nginx/"
       ],
       "enabled": false
+    },
+    {
+      "matchPackageNames": [
+        "ghcr.io/karakeep-app/karakeep"
+      ],
+      "allowedVersions": "!/^0.27.0$/"
     }
   ]
 }
