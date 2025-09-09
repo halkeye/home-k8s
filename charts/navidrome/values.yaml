@@ -119,3 +119,7 @@ persistence:
       - path: /data/navidrome.toml
         subPath: navidrome.toml
         readOnly: true
+  litestream-configmap:
+    type: configMap
+    name: litestream-configmap
+    globalMounts: []

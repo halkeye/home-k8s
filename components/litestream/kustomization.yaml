@@ -23,7 +23,7 @@ patches:
         volumeMounts:
         - name: data
           mountPath: /data
-        - name: configmap
+        - name: litestream-configmap
           mountPath: /etc/litestream.yml
           subPath: litestream.yml
         env:
@@ -54,7 +54,7 @@ patches:
         volumeMounts:
         - name: data
           mountPath: /data
-        - name: configmap
+        - name: litestream-configmap
           mountPath: /etc/litestream.yml
           subPath: litestream.yml
         env:
