@@ -108,7 +108,7 @@
     },
     {
       "matchPackageNames": [
-        "ghcr.io/karakeep-app/karakeep"
+        "karakeep-app/karakeep"
       ],
       "allowedVersions": "!/^0.27.0$/"
     }
