@@ -15,3 +15,7 @@ helmCharts:
     repo: oci://docker.io/envoyproxy
     valuesFile: values.yaml
     releaseName: envoy-gateway
+
+resources:
+  - ./templates/gateway.yaml
+  - ./templates/certificate.yaml
