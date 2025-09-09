@@ -35,7 +35,7 @@ patches:
           valueFrom:
             configMapKeyRef:
               name: litestream-configmap
-              key: LITESTREAM_ACCESS_KEY_ID
+              key: LITESTREAM_DB_PATH
         - name: LITESTREAM_ACCESS_KEY_ID
           valueFrom:
             secretKeyRef:
@@ -66,7 +66,7 @@ patches:
           valueFrom:
             configMapKeyRef:
               name: litestream-configmap
-              key: LITESTREAM_ACCESS_KEY_ID
+              key: LITESTREAM_DB_PATH
         - name: LITESTREAM_ACCESS_KEY_ID
           valueFrom:
             secretKeyRef:
