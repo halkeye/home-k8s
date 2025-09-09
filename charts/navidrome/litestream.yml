@@ -1,0 +1,4 @@
+dbs:
+  - path: /data/navidrome.db
+    replicas:
+      - url: s3://halkeye-litestream/navidrome

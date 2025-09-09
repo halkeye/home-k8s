@@ -23,3 +23,11 @@ configMapGenerator:
   - name: navidrome-configmap
     files:
       - ./resources/navidrome.toml
+  - name: litestream-configmap
+    files:
+      - litestream.yml=./litestream.yml
+    literals:
+      - LITESTREAM_DB_PATH="/data/navidrome.db"
+
+components:
+  - ../../components/litestream

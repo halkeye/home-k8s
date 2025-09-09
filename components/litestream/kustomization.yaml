@@ -1,0 +1,78 @@
+apiVersion: kustomize.config.k8s.io/v1alpha1
+kind: Component
+
+#configMapGenerator:
+#  - name: litestream-configmap
+#    files:
+#      - litestream.yml=./litestream.yml
+#    literals:
+#      - LITESTREAM_DB_PATH="/data/navidrome.db"
+
+patches:
+- target:
+    group: apps
+    version: v1
+    kind: Deployment
+  patch: |-
+    - op: add
+      path: /spec/template/spec/initContainers
+      value:
+        name: init-litestream
+        image: litestream/litestream:0.3
+        args: ['restore', '-if-db-not-exists', '-if-replica-exists', '$(LITESTREAM_DB_PATH)']
+        volumeMounts:
+        - name: data
+          mountPath: /data
+        - name: configmap
+          mountPath: /etc/litestream.yml
+          subPath: litestream.yml
+        env:
+        - name: LITESTREAM_DB_PATH
+          valueFrom:
+            configMapKeyRef:
+              name: litestream-configmap
+              key: LITESTREAM_ACCESS_KEY_ID
+        - name: LITESTREAM_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: litestream-secret
+              key: LITESTREAM_ACCESS_KEY_ID
+        - name: LITESTREAM_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: litestream-secret
+              key: LITESTREAM_SECRET_ACCESS_KEY
+    - op: add
+      path: /spec/template/spec/containers
+      value:
+        name: litestream
+        image: litestream/litestream:0.3
+        args: ['replicate']
+        ports:
+        - name: metrics
+          containerPort: 9090
+        volumeMounts:
+        - name: data
+          mountPath: /data
+        - name: configmap
+          mountPath: /etc/litestream.yml
+          subPath: litestream.yml
+        env:
+        - name: LITESTREAM_DB_PATH
+          valueFrom:
+            configMapKeyRef:
+              name: litestream-configmap
+              key: LITESTREAM_ACCESS_KEY_ID
+        - name: LITESTREAM_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: litestream-secret
+              key: LITESTREAM_ACCESS_KEY_ID
+        - name: LITESTREAM_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: litestream-secret
+              key: LITESTREAM_SECRET_ACCESS_KEY
+
+resources:
+- ./secret.enc.yaml
