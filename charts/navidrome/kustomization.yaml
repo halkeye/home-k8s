@@ -24,10 +24,14 @@ configMapGenerator:
     files:
       - ./resources/navidrome.toml
   - name: litestream-configmap
-    files:
-      - litestream.yml=./litestream.yml
     literals:
       - LITESTREAM_DB_PATH="/data/navidrome.db"
+      - |
+        litestream.yml=
+          dbs:
+            - path: /data/navidrome.db
+              replicas:
+                - url: s3://halkeye-litestream.tor1.digitaloceanspaces.com/navidrome
 
 components:
   - ../../components/litestream
