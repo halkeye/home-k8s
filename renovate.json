@@ -19,11 +19,11 @@
       "description": [
         "Process custom dependencies"
       ],
-      "fileMatch": [
-        "inventory/group_vars/all.yml",
-        "(^|/)charts/.+\\.ya?ml(?:\\.j2)?$",
-        "charts/system-upgrade-controller/templates/agent.yaml",
-        "charts/system-upgrade-controller/templates/server.yaml"
+      "managerFilePatterns": [
+        "/inventory/group_vars/all.yml/",
+        "/(^|/)charts/.+\\.ya?ml(?:\\.j2)?$/",
+        "/charts/system-upgrade-controller/templates/agent.yaml/",
+        "/charts/system-upgrade-controller/templates/server.yaml/"
       ],
       "matchStrings": [
         "(?<indentation>\\s+)version: \"(?<currentValue>.+?)\" # renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)"
@@ -36,11 +36,11 @@
       "description": [
         "Process Kustomization CRD dependencies - Image and Github Release are the same version"
       ],
-      "fileMatch": [
-        "(^|/)charts/.+\\.ya?ml(?:\\.j2)?$"
+      "managerFilePatterns": [
+        "/(^|/)charts/.+\\.ya?ml(?:\\.j2)?$/"
       ],
       "matchStrings": [
-        "datasource=(?<datasource>\\S+) image=(?<depName>\\S+)\n.*?-\\s(.*?)\/(?<currentValue>[^/]+)\/[^/]+\n"
+        "datasource=(?<datasource>\\S+) image=(?<depName>\\S+)\n.*?-\\s(.*?)/(?<currentValue>[^/]+)/[^/]+\n"
       ],
       "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}docker{{/if}}"
     }
