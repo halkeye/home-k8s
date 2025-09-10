@@ -67,7 +67,7 @@ spec:
           - { name: traefik-ingress, namespace: traefik-ingress }
 
           - { name: home-k8s-ingress-nginx, namespace: kube-system }
-          - { name: home-k8s-envoy-gateway, namespace: envoy-gateway-system }
+          # - { name: home-k8s-envoy-gateway, namespace: envoy-gateway-system }
 
           - { name: longhorn, namespace: longhorn-system }
 
