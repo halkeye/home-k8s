@@ -108,7 +108,7 @@ persistence:
   music:
     type: nfs
     # server: 172.16.10.10
-    server: home-socks-proxy.tailscale.svc.cluster.local.
+    server: ts-home-synology-8l2mq.tailscale.svc.cluster.local.
     path: /volume1/Audio/Music
     globalMounts:
       - path: /music
