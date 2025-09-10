@@ -103,7 +103,6 @@ spec:
           - name: metrics-server
           - name: microbin
           - name: miniflux
-          - name: navidrome
           - name: photoprism
           - name: plausible
           - name: postiz
