@@ -109,10 +109,10 @@ spec:
           - name: immich
           - name: kavita
           - name: komf
-          - name: komga
+          # - name: komga
           - name: lidarr
           - name: minio
-          - name: music-assistant
+          # - name: music-assistant
           - name: mylar3
           - name: netbootxyz
           - name: openbooks
@@ -121,8 +121,8 @@ spec:
           - name: postgres-home-backup
           - name: prowlarr
           - name: radarr
-          - name: readarr
-          - name: recommendarr
+          # - name: readarr
+          # - name: recommendarr
           - name: recyclarr
           - name: romm
           - name: slskd
