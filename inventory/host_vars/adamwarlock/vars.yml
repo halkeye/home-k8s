@@ -1,0 +1,4 @@
+---
+# calico_iface: enp196s0f1
+flannel_iface: enp196s0f1
+k3s_master_taint: false
