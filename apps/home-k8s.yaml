@@ -94,6 +94,7 @@ spec:
           - { namespace: jellyfin, name: jellyplex-watched }
           - { namespace: jellyfin, name: jellystat }
 
+          - name: amd-gpu
           - name: anime-radarr
           - name: anime-sonarr
           - name: audiomuse
