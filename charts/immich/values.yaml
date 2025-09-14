@@ -200,6 +200,7 @@ persistence:
 ingress:
   main:
     enabled: true
+    className: nginx
     annotations:
       gethomepage.dev/enabled: "true"
       gethomepage.dev/group: Media
