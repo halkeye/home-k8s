@@ -215,3 +215,10 @@ ingress:
             service:
               identifier: main
               port: http
+      - host: "photos.g4v.dev"
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              identifier: main
+              port: http
