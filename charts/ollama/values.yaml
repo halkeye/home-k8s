@@ -1,8 +1,27 @@
 controllers:
-  main:
+  ollama:
     replicas: 1
     annotations:
       reloader.stakater.com/auto: 'true'
+    initContainers:
+      download:
+        image:
+          repository: docker.io/ollama/ollama
+          tag: 0.11.10-rocm
+        env:
+          TZ: America/Vancouver
+          OLLAMA_HOST: 0.0.0.0
+          OLLAMA_ORIGINS: "*"
+          OLLAMA_MODELS: "/models"
+          OLLAMA_KEEP_ALIVE: "24h"
+          OLLAMA_LOAD_TIMEOUT: "600"
+        command:
+          - "/bin/sh"
+          - "-c"
+          - "ollama pull gemma3; ollama pull deepseek-r1; ollama pull llama3.2; ollama pull mistral"
+        resources:
+          requests:
+            amd.com/gpu: 1
     containers:
       main:
         image:
@@ -20,10 +39,6 @@ controllers:
           OLLAMA_MODELS: "/models"
           OLLAMA_KEEP_ALIVE: "24h"
           OLLAMA_LOAD_TIMEOUT: "600"
-        lifecycle:
-          postStart:
-            exec:
-              command: [ "/bin/sh", "-c", "ollama pull gemma3; ollama pull deepseek-r1; ollama pull llama3.2; ollama pull mistral" ]
         resources:
           requests:
             cpu: 500m
@@ -40,14 +55,80 @@ controllers:
           - 992
         fsGroup: 100
         fsGroupChangePolicy: OnRootMismatch
+  webui:
+    replicas: 1
+    annotations:
+      reloader.stakater.com/auto: 'true'
+    containers:
+      main:
+        image:
+          repository: ghcr.io/open-webui/open-webui
+          tag: 0.6.28
+        envFrom:
+          - secretRef:
+              name: "open-webui-secret"
+        env:
+          TZ: America/Vancouver
+          # Open-webui settings
+          ENABLE_OPENAI_API: "False"
+          ENABLE_OLLAMA_API: "True"
+          OLLAMA_BASE_URL: http://ollama:11434
+          ENABLE_RAG_WEB_SEARCH: true
+          ENABLE_SEARCH_QUERY: true
+          RAG_WEB_SEARCH_ENGINE: searxng
+          SEARXNG_QUERY_URL: https://search.g4v.dev/search?q=<query>
+          ENABLE_WEBSOCKET_SUPPORT: "true"
+          WEBSOCKET_MANAGER: "redis"
+          WEBSOCKET_REDIS_URL: "redis://redis:6379/0"
+          # Auth
+          ENABLE_OAUTH_SIGNUP: "true"
+          OAUTH_MERGE_ACCOUNTS_BY_EMAIL: "true"
+          OAUTH_PROVIDER_NAME: "G4V"
+          OAUTH_PICTURE_CLAIM: ""
+          OPENID_PROVIDER_URL: "https://auth.g4v.dev/application/o/open-webui/.well-known/openid-configuration"
+          ENABLE_OAUTH_ROLE_MANAGEMENT: "true"
+          ENABLE_OAUTH_GROUP_MANAGEMENT: "true"
+          ENABLE_OAUTH_GROUP_CREATION: "true"
+          OAUTH_ALLOWED_ROLES: "users, admins"
+          OAUTH_ADMIN_ROLES: "admins"
+          OAUTH_ROLES_CLAIM: "groups"
+          OAUTH_SCOPES: "openid email profile groups"
+          DEFAULT_USER_ROLE: "user"
+          ENABLE_LOGIN_FORM: "false"
+          OAUTH_UPDATE_PICTURE_ON_LOGIN: "true"
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+        resources:
+          requests:
+            cpu: 500m
+            memory: 1Gi
+          limits:
+            memory: 2Gi
+    pod:
+      securityContext:
+        runAsUser: 1026
+        runAsGroup: 100
+        runAsNonRoot: true
+        supplementalGroups:
+          - 992
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
 service:
-  main:
-    controller: main
+  ollama:
+    controller: ollama
     ports:
       http:
         port: 11434
+  webui:
+    controller: webui
+    ports:
+      http:
+        port: 8080
 ingress:
-  main:
+  ollama:
     enabled: true
     annotations:
       gethomepage.dev/enabled: 'false'
@@ -56,7 +137,18 @@ ingress:
         paths:
           - path: /
             service:
-              identifier: main
+              identifier: ollama
+              port: http
+  webui:
+    enabled: true
+    annotations:
+      gethomepage.dev/enabled: 'false'
+    hosts:
+      - host: ai.g4v.dev
+        paths:
+          - path: /
+            service:
+              identifier: webui
               port: http
 persistence:
   config:
@@ -64,14 +156,28 @@ persistence:
     type: persistentVolumeClaim
     accessMode: ReadWriteOnce
     size: 20Gi
-    globalMounts:
-      - path: /root/.ollama
-      - path: /.ollama
+    advancedMounts:
+      ollama:
+        app:
+          - path: /root/.ollama
+          - path: /.ollama
+  web-config:
+    enabled: true
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    suffix: open-webui
+    size: 20Gi
+    advancedMounts:
+      webui:
+        app:
+          - path: /app/backend/data
   models:
     enabled: true
     type: emptyDir
-    globalMounts:
-      - path: /models
+    advancedMounts:
+      ollama:
+        app:
+          - path: /models
   tmp:
     enabled: true
     type: emptyDir
