@@ -1,0 +1,76 @@
+controllers:
+  main:
+    replicas: 1
+    annotations:
+      reloader.stakater.com/auto: 'true'
+    containers:
+      main:
+        image:
+          repository: docker.io/ollama/ollama
+          tag: 0.11.10-rocm
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+        env:
+          TZ: America/Vancouver
+          OLLAMA_HOST: 0.0.0.0
+          OLLAMA_ORIGINS: "*"
+          OLLAMA_MODELS: "/models"
+          OLLAMA_KEEP_ALIVE: "24h"
+          OLLAMA_LOAD_TIMEOUT: "600"
+        lifecycle:
+          postStart:
+            exec:
+              command: [ "/bin/sh", "-c", "ollama pull gemma3 deepseek-r1 llama3.2 mistral" ]
+        resources:
+          requests:
+            cpu: 500m
+            memory: 2Gi
+          limits:
+            amd.com/gpu: 1
+            memory: 16Gi
+    pod:
+      securityContext:
+        runAsUser: 1026
+        runAsGroup: 100
+        runAsNonRoot: true
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 11434
+ingress:
+  main:
+    enabled: true
+    annotations:
+      gethomepage.dev/enabled: 'false'
+    hosts:
+      - host: ollama.g4v.dev
+        paths:
+          - path: /
+            service:
+              identifier: main
+              port: http
+persistence:
+  config:
+    enabled: true
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    size: 20Gi
+    globalMounts:
+      - path: /root/.ollama
+  models:
+    enabled: true
+    type: emptyDir
+    globalMounts:
+      - path: /models
+  tmp:
+    enabled: true
+    type: emptyDir
+    globalMounts:
+      - path: /tmp
