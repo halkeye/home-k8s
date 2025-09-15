@@ -148,7 +148,7 @@ persistence:
     size: 20Gi
     advancedMounts:
       ollama:
-        app:
+        main:
           - path: /root/.ollama
           - path: /.ollama
   web-config:
@@ -159,14 +159,14 @@ persistence:
     size: 20Gi
     advancedMounts:
       webui:
-        app:
+        main:
           - path: /app/backend/data
   models:
     enabled: true
     type: emptyDir
     advancedMounts:
       ollama:
-        app:
+        main:
           - path: /models
   tmp:
     enabled: true
