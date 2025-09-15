@@ -66,3 +66,7 @@ persistence:
     type: emptyDir
     globalMounts:
       - path: /tmp
+  litestream-configmap:
+    type: configMap
+    name: litestream-configmap
+    globalMounts: []
