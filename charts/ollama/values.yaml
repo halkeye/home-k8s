@@ -96,6 +96,11 @@ controllers:
           DEFAULT_USER_ROLE: "user"
           ENABLE_LOGIN_FORM: "false"
           OAUTH_UPDATE_PICTURE_ON_LOGIN: "true"
+          DATABASE_URL:
+            valueFrom:
+              secretKeyRef:
+                name: "open-webui-db-secret-plausible"
+                key: POSTGRES_URL
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true

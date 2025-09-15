@@ -1,4 +1,23 @@
-apiVersion: redis.redis.opstreelabs.in/v1beta2
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: open-webui
+spec:
+  database: open-webui
+  dropOnDelete: false
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: open-webui
+spec:
+  role: open-webui
+  database: open-webui
+  secretName: open-webui-db-secret
+  privileges: OWNER
+---
+apiVersion: redis.redis.opstreelabs.in/v0beta2
 kind: Redis
 metadata:
   name: redis
