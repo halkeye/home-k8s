@@ -3,25 +3,6 @@ controllers:
     replicas: 1
     annotations:
       reloader.stakater.com/auto: 'true'
-    initContainers:
-      download:
-        image:
-          repository: docker.io/ollama/ollama
-          tag: 0.11.10-rocm
-        env:
-          TZ: America/Vancouver
-          OLLAMA_HOST: 0.0.0.0
-          OLLAMA_ORIGINS: "*"
-          OLLAMA_MODELS: "/models"
-          OLLAMA_KEEP_ALIVE: "24h"
-          OLLAMA_LOAD_TIMEOUT: "600"
-        command:
-          - "/bin/sh"
-          - "-c"
-          - "ollama pull gemma3; ollama pull deepseek-r1; ollama pull llama3.2; ollama pull mistral"
-        resources:
-          limits:
-            amd.com/gpu: 1
     containers:
       main:
         image:
@@ -39,6 +20,10 @@ controllers:
           OLLAMA_MODELS: "/models"
           OLLAMA_KEEP_ALIVE: "24h"
           OLLAMA_LOAD_TIMEOUT: "600"
+        lifecycle:
+          postStart:
+            exec:
+              command: [ "/bin/sh", "-c", "ollama pull gemma3; ollama pull deepseek-r1; ollama pull llama3.2; ollama pull mistral" ]
         resources:
           requests:
             cpu: 500m
