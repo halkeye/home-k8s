@@ -17,7 +17,7 @@ spec:
   secretName: open-webui-db-secret
   privileges: OWNER
 ---
-apiVersion: redis.redis.opstreelabs.in/v0beta2
+apiVersion: redis.redis.opstreelabs.in/v1beta2
 kind: Redis
 metadata:
   name: redis
