@@ -36,6 +36,8 @@ controllers:
         runAsUser: 1026
         runAsGroup: 100
         runAsNonRoot: true
+        supplementalGroups:
+          - 992
         fsGroup: 100
         fsGroupChangePolicy: OnRootMismatch
 service:
