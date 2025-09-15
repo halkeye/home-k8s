@@ -20,7 +20,7 @@ controllers:
           - "-c"
           - "ollama pull gemma3; ollama pull deepseek-r1; ollama pull llama3.2; ollama pull mistral"
         resources:
-          requests:
+          limits:
             amd.com/gpu: 1
     containers:
       main:
