@@ -116,6 +116,7 @@ spec:
           # - name: music-assistant
           - name: mylar3
           - name: netbootxyz
+          - name: ollama
           - name: openbooks
           - name: pinchflat
           - name: postgres-do-k8s-backup
