@@ -23,7 +23,7 @@ controllers:
         lifecycle:
           postStart:
             exec:
-              command: [ "/bin/sh", "-c", "ollama pull gemma3; ollama pull deepseek-r1; ollama pull llama3.2; ollama pull mistral" ]
+              command: [ "/bin/sh", "-c", "ollama pull gemma3; ollama pull deepseek-r1; ollama pull llama3.2; ollama pull mistral; ollama pull qwen3:4b" ]
         resources:
           requests:
             cpu: 500m
@@ -86,6 +86,17 @@ controllers:
               secretKeyRef:
                 name: "open-webui-db-secret-open-webui"
                 key: POSTGRES_URL
+        probes:
+          liveness: &probes
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /health
+                port: 8080
+          readiness: *probes
+          startup:
+            enabled: false
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
@@ -163,7 +174,11 @@ persistence:
           - path: /app/backend/data
   models:
     enabled: true
-    type: emptyDir
+    type: persistentVolumeClaim
+    accessMode: ReadWriteMany
+    storageClass: nas-apps
+    suffix: models
+    size: 150Gi
     advancedMounts:
       ollama:
         main:
