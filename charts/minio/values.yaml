@@ -20,6 +20,7 @@ controllers:
           tag: RELEASE.2025-02-28T09-55-16Z
         env:
           MINIO_API_CORS_ALLOW_ORIGIN: https://minio.g4v.dev,https://s3.g4v.dev
+          MINIO_IDENTITY_OPENID_ENABLE: "on"
           MINIO_BROWSER_REDIRECT_URL: https://minio.g4v.dev
           MINIO_PROMETHEUS_JOB_ID: minio
           MINIO_PROMETHEUS_URL: https://prometheus.h.g4v.dev
