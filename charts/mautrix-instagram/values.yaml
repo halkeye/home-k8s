@@ -98,11 +98,3 @@ persistence:
     enabled: true
     type: configMap
     name: "mautrix-instagram-configmap"
-  wgconfs:
-    enabled: true
-    type: secret
-    name: "mautrix-instagram-secret"
-    globalMounts:
-      - path: /config/wg_confs/home.conf
-        subPath: wg0.conf
-        readOnly: true
