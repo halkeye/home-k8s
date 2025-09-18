@@ -37,7 +37,7 @@ controllers:
       postiz:
         image:
           repository: ghcr.io/gitroomhq/postiz-app
-          tag: v2.5.4
+          tag: v2.6.0
         # command: ["pnpm", "run", "pm2-run"]
         # command: ["/bin/sh", "-c", "sleep 99d"]
         env:
