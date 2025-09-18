@@ -1,7 +1,7 @@
 apiVersion: db.movetokube.com/v1alpha1
 kind: Postgres
 metadata:
-  name: "{{ .Release.Name }}"
+  name: "mautrix-gmessages"
 spec:
-  database: "{{ .Release.Name }}"
+  database: "mautrix-gmessages"
   dropOnDelete: false
