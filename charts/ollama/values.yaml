@@ -48,7 +48,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/open-webui/open-webui
-          tag: 0.6.28
+          tag: v0.6.30
         envFrom:
           - secretRef:
               name: "open-webui-secret"
