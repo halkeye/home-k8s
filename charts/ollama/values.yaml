@@ -129,6 +129,19 @@ service:
       http:
         port: 8080
 ingress:
+  ollama-tailscale:
+    enabled: true
+    ingressClassName: tailscale
+    tls:
+      - hosts:
+          - ollama
+    hosts:
+      - host: ollama
+        paths:
+          - path: /
+            service:
+              identifier: ollama
+              port: http
   ollama:
     enabled: true
     annotations:
