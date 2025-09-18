@@ -10,6 +10,6 @@ spec:
   secretName: radarr-db-secret
   privileges: OWNER
   secretTemplate:
-    HOST_NO_PORT: "{{ .HostNoPort }}"
+    HOST_NO_PORT: "{{ .Hostname }}"
     PORT: "{{ .Port }}"
     

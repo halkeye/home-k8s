@@ -21,7 +21,7 @@ spec:
   secretName: audiomuse-db-secret
   privileges: OWNER
   secretTemplate:
-    HOST_NO_PORT: "{{ .HostNoPort }}"
+    HOST_NO_PORT: "{{ .Hostname }}"
     PORT: "{{ .Port }}"
 ---
 apiVersion: redis.redis.opstreelabs.in/v1beta2
