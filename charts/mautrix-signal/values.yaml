@@ -19,7 +19,7 @@ controllers:
                 key: POSTGRES_URL
         envFrom:
           - secretRef:
-              name: "mautrix-instagram-secret"
+              name: "mautrix-signal-secret"
         command:
           - bash
           - -c
@@ -97,3 +97,7 @@ persistence:
   data:
     enabled: true
     type: emptyDir
+  configmap:
+    enabled: true
+    type: configMap
+    name: "mautrix-signal-configmap"
