@@ -131,7 +131,7 @@ service:
 ingress:
   ollama-tailscale:
     enabled: true
-    ingressClassName: tailscale
+    className: tailscale
     tls:
       - hosts:
           - ollama
