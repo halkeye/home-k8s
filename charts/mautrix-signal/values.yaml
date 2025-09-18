@@ -34,7 +34,7 @@ controllers:
           MAUTRIX_DB_URI:
             valueFrom:
               secretKeyRef:
-                name: "{{.Release.Name}}-db-secret-{{.Release.Name}}"
+                name: "mautrix-signal-db-secret-mautrix-signal"
                 key: POSTGRES_URL
         args:
           - "-c"
