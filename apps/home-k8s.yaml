@@ -66,6 +66,7 @@ spec:
         elements:
           - { name: traefik-ingress, namespace: traefik-ingress }
 
+          - { name: externaldns-internal-technitium, namespace: kube-system }
           - { name: home-k8s-ingress-nginx, namespace: kube-system }
           # - { name: home-k8s-envoy-gateway, namespace: envoy-gateway-system }
 
@@ -74,6 +75,7 @@ spec:
           - { name: home-k8s-tailscale-operator, namespace: tailscale }
 
           - { name: home-vouch, namespace: vouch, chart: vouch }
+
 
           # Exporters
           - { namespace: monitoring, name: bambulabs-exporter }
