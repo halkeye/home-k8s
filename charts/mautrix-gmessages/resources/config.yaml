@@ -37,7 +37,7 @@ provisioning:
 # Settings for enabling double puppeting
 double_puppet:
     secrets:
-
+        g4v.dev: "$LOGIN_SHARED_SECRET"
 encryption:
     allow: true
     default: false
