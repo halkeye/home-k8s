@@ -18,7 +18,7 @@ database:
 
 # Homeserver details.
 homeserver:
-    #address: "http://synapse.matrix.svc.cluster.local.:8010"
+    #address: "http://synapse.matrix.svc.cluster.local.:8008"
     address: "https://matrix.g4v.dev"
     domain: g4v.dev
     # Does the homeserver support https://github.com/matrix-org/matrix-spec-proposals/pull/2246?

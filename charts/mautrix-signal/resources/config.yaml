@@ -14,7 +14,7 @@ database:
 
 # Homeserver details.
 homeserver:
-    address: "http://synapse.matrix.svc.cluster.local.:8010"
+    address: "http://synapse.matrix.svc.cluster.local.:8008"
     domain: g4v.dev
     async_media: true
 
