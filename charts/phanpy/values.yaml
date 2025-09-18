@@ -31,10 +31,10 @@ controllers:
             memory: 512Mi
     pod:
       securityContext:
-        runAsUser: 1026
-        runAsGroup: 100
+        runAsUser: 0
+        runAsGroup: 0
         runAsNonRoot: true
-        fsGroup: 100
+        fsGroup: 0
         fsGroupChangePolicy: OnRootMismatch
 service:
   main:
