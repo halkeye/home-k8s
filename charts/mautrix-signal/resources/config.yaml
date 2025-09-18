@@ -37,8 +37,8 @@ double_puppet:
         g4v.dev: "$LOGIN_SHARED_SECRET"
 
 encryption:
-    allow: true
-    pickle_key: "$ENCRYPTION_PICKLE_KEY"
+    allow: false
+    # pickle_key: "$ENCRYPTION_PICKLE_KEY"
 
 # Logging config. See https://github.com/tulir/zeroconfig for details.
 logging:
