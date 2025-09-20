@@ -1,87 +1,86 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
-app-template:
-  controllers:
-    main:
-      replicas: 2
-      strategy: RollingUpdate
-      containers:
-        main:
-          image:
-            repository: ghcr.io/miniflux/miniflux
-            tag: 2.2.13-distroless@sha256:38eed52e0a3ff3ecb5ace6f509e9a2ce2079bb673dcd82586a41c0f64160721f
-          env:
-            BASE_URL: https://miniflux.g4v.dev
-            CREATE_ADMIN: "1"
-            LOG_DATE_TIME: "1"
-            METRICS_ALLOWED_NETWORKS: "10.32.0.0/16"
-            METRICS_COLLECTOR: "1"
-            OAUTH2_USER_CREATION: "1"
-            OAUTH2_OIDC_DISCOVERY_ENDPOINT: https://auth.g4v.dev/application/o/miniflux/
-            OAUTH2_PROVIDER: oidc
-            OAUTH2_REDIRECT_URL: https://miniflux.g4v.dev/oauth2/oidc/callback
-            POLLING_SCHEDULER: entry_frequency
-            POLLING_FREQUENCY: "15"
-            PORT: &port 3000
-            RUN_MIGRATIONS: "1"
-          envFrom:
-            - secretRef:
-                name: miniflux-secret
-          probes:
-            liveness: &probes
-              enabled: true
-              custom: true
-              spec:
-                httpGet:
-                  path: /healthcheck
-                  port: *port
-                initialDelaySeconds: 0
-                periodSeconds: 10
-                timeoutSeconds: 1
-                failureThreshold: 3
-            readiness: *probes
-            startup:
-              enabled: false
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            capabilities:
-              drop: ["ALL"]
-          resources:
-            requests:
-              cpu: 10m
-              memory: 100Mi
-            limits:
-              memory: 100Mi
-      pod:
+controllers:
+  main:
+    replicas: 2
+    strategy: RollingUpdate
+    containers:
+      main:
+        image:
+          repository: ghcr.io/miniflux/miniflux
+          tag: 2.2.13-distroless@sha256:38eed52e0a3ff3ecb5ace6f509e9a2ce2079bb673dcd82586a41c0f64160721f
+        env:
+          BASE_URL: https://miniflux.g4v.dev
+          CREATE_ADMIN: "1"
+          LOG_DATE_TIME: "1"
+          METRICS_ALLOWED_NETWORKS: "10.32.0.0/16"
+          METRICS_COLLECTOR: "1"
+          OAUTH2_USER_CREATION: "1"
+          OAUTH2_OIDC_DISCOVERY_ENDPOINT: https://auth.g4v.dev/application/o/miniflux/
+          OAUTH2_PROVIDER: oidc
+          OAUTH2_REDIRECT_URL: https://miniflux.g4v.dev/oauth2/oidc/callback
+          POLLING_SCHEDULER: entry_frequency
+          POLLING_FREQUENCY: "15"
+          PORT: &port 3000
+          RUN_MIGRATIONS: "1"
+        envFrom:
+          - secretRef:
+              name: miniflux-secret
+        probes:
+          liveness: &probes
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /healthcheck
+                port: *port
+              initialDelaySeconds: 0
+              periodSeconds: 10
+              timeoutSeconds: 1
+              failureThreshold: 3
+          readiness: *probes
+          startup:
+            enabled: false
         securityContext:
-          runAsUser: 568
-          runAsGroup: 568
-          runAsNonRoot: true
-        topologySpreadConstraints:
-          - maxSkew: 1
-            topologyKey: kubernetes.io/hostname
-            whenUnsatisfiable: DoNotSchedule
-            labelSelector:
-              matchLabels:
-                app.kubernetes.io/name: miniflux
-  service:
-    main:
-      controller: main
-      ports:
-        http:
-          port: *port
-  ingress:
-    main:
-      enabled: true
-      annotations:
-        gethomepage.dev/enabled: "true"
-        gethomepage.dev/group: Reading
-        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/miniflux.png
-        gethomepage.dev/name: Miniflux
-      hosts:
-        - host: "miniflux.g4v.dev"
-          paths:
-            - path: /
-              service:
-                identifier: main
-                port: http
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+        resources:
+          requests:
+            cpu: 10m
+            memory: 100Mi
+          limits:
+            memory: 100Mi
+    pod:
+      securityContext:
+        runAsUser: 568
+        runAsGroup: 568
+        runAsNonRoot: true
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/name: miniflux
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: *port
+ingress:
+  main:
+    enabled: true
+    annotations:
+      gethomepage.dev/enabled: "true"
+      gethomepage.dev/group: Reading
+      gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/miniflux.png
+      gethomepage.dev/name: Miniflux
+    hosts:
+      - host: "miniflux.g4v.dev"
+        paths:
+          - path: /
+            service:
+              identifier: main
+              port: http
