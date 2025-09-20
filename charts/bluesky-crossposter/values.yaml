@@ -6,7 +6,7 @@ controllers:
     containers:
       main:
         image:
-          repository: ghcr.io/linus2punkt0/bluesky-crossposter:latest
+          repository: ghcr.io/linus2punkt0/bluesky-crossposter
           tag: latest@sha256:14e3c2f804a25f1bd3b980304969d76657aa8dbf8b091948237d352c78b5d0a6 
         env:
           TZ: America/Vancouver
