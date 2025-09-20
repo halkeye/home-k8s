@@ -1,84 +1,84 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
-app-template:
-  controllers:
-    kobodl:
-      containers:
-        kobodl:
-          image:
-            repository: ghcr.io/halkeye/kobo-book-downloader
-            tag: sha-9857a31
-            # repository: ghcr.io/subdavis/kobodl
-            # tag: latest@sha256:a28db847f5769a344561f2f6ec23e59bb03a46a238caff45c0a86b67fe8dd08b
-          env:
-            TZ: America/Vancouver
-          args:
-            - "--config"
-            - "/config/kobodl.json"
-            - "serve"
-            - "-h"
-            - "0.0.0.0"
-            - "-p"
-            - "5000"
-            - "--output-dir"
-            - "/tmp"
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            capabilities:
-              drop: ["ALL"]
-          resources:
-            limits: &resources
-              memory: 128Mi
-            requests:
-              <<: *resources
-              cpu: 10m
-      pod:
+controllers:
+  kobodl:
+    containers:
+      kobodl:
+        image:
+          repository: ghcr.io/halkeye/kobo-book-downloader
+          tag: sha-9857a31
+          # repository: ghcr.io/subdavis/kobodl
+          # tag: latest@sha256:a28db847f5769a344561f2f6ec23e59bb03a46a238caff45c0a86b67fe8dd08b
+        env:
+          TZ: America/Vancouver
+        args:
+          - "--config"
+          - "/config/kobodl.json"
+          - "serve"
+          - "-h"
+          - "0.0.0.0"
+          - "-p"
+          - "5000"
+          - "--output-dir"
+          - "/tmp"
         securityContext:
-          runAsUser: 1026
-          runAsGroup: 101
-          runAsNonRoot: true
-          fsGroup: 101
-          fsGroupChangePolicy: OnRootMismatch
-  service:
-    kobodl:
-      controller: kobodl
-      ports:
-        http:
-          port: 5000
-  ingress:
-    main:
-      enabled: true
-      annotations:
-        gethomepage.dev/enabled: "true"
-        gethomepage.dev/group: Media Fetchers
-        gethomepage.dev/icon: mdi:book
-        gethomepage.dev/name: Kobodl
-        traefik.ingress.kubernetes.io/router.entrypoints: 'websecure'
-        traefik.ingress.kubernetes.io/router.middlewares: 'traefik-ingress-authentik@kubernetescrd'
-        nginx.ingress.kubernetes.io/auth-url: "https://vouch.g4v.dev/_oauth2/validate"
-        nginx.ingress.kubernetes.io/auth-signin: "https://vouch.g4v.dev/_oauth2/login?url=$scheme://$http_host$request_uri&vouch-failcount=$auth_resp_failcount&X-Vouch-Token=$auth_resp_jwt&error=$auth_resp_err"
-        nginx.ingress.kubernetes.io/server-snippet: real_ip_header CF-Connecting-IP;
-        nginx.ingress.kubernetes.io/configuration-snippet: |
-          real_ip_header CF-Connecting-IP;
-        nginx.ingress.kubernetes.io/auth-response-headers: X-Vouch-User
-        nginx.ingress.kubernetes.io/auth-snippet: |
-          proxy_set_header X-Forwarded-Host $http_host;
-          auth_request_set $auth_resp_x_vouch_user $upstream_http_x_vouch_user;
-          auth_request_set $auth_resp_jwt $upstream_http_x_vouch_jwt;
-          auth_request_set $auth_resp_err $upstream_http_x_vouch_err;
-          auth_request_set $auth_resp_failcount $upstream_http_x_vouch_failcount;
-      hosts:
-        - host: "kobodl.g4v.dev"
-          paths:
-            - path: /
-              service:
-                identifier: kobodl
-                port: http
-  persistence:
-    config:
-      enabled: true
-      type: nfs
-      server: 172.16.10.10
-      path: /volume1/Apps/kobodl/
-    tmp:
-      type: emptyDir
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+        resources:
+          limits: &resources
+            memory: 128Mi
+          requests:
+            <<: *resources
+            cpu: 10m
+    pod:
+      securityContext:
+        runAsUser: 1026
+        runAsGroup: 101
+        runAsNonRoot: true
+        fsGroup: 101
+        fsGroupChangePolicy: OnRootMismatch
+service:
+  kobodl:
+    controller: kobodl
+    ports:
+      http:
+        port: 5000
+ingress:
+  main:
+    enabled: true
+    className: nginx
+    annotations:
+      gethomepage.dev/enabled: "true"
+      gethomepage.dev/group: Media Fetchers
+      gethomepage.dev/icon: mdi:book
+      gethomepage.dev/name: Kobodl
+      traefik.ingress.kubernetes.io/router.entrypoints: 'websecure'
+      traefik.ingress.kubernetes.io/router.middlewares: 'traefik-ingress-authentik@kubernetescrd'
+      nginx.ingress.kubernetes.io/auth-url: "https://vouch.g4v.dev/_oauth2/validate"
+      nginx.ingress.kubernetes.io/auth-signin: "https://vouch.g4v.dev/_oauth2/login?url=$scheme://$http_host$request_uri&vouch-failcount=$auth_resp_failcount&X-Vouch-Token=$auth_resp_jwt&error=$auth_resp_err"
+      nginx.ingress.kubernetes.io/server-snippet: real_ip_header CF-Connecting-IP;
+      nginx.ingress.kubernetes.io/configuration-snippet: |
+        real_ip_header CF-Connecting-IP;
+      nginx.ingress.kubernetes.io/auth-response-headers: X-Vouch-User
+      nginx.ingress.kubernetes.io/auth-snippet: |
+        proxy_set_header X-Forwarded-Host $http_host;
+        auth_request_set $auth_resp_x_vouch_user $upstream_http_x_vouch_user;
+        auth_request_set $auth_resp_jwt $upstream_http_x_vouch_jwt;
+        auth_request_set $auth_resp_err $upstream_http_x_vouch_err;
+        auth_request_set $auth_resp_failcount $upstream_http_x_vouch_failcount;
+    hosts:
+      - host: "kobodl.g4v.dev"
+        paths:
+          - path: /
+            service:
+              identifier: kobodl
+              port: http
+persistence:
+  config:
+    enabled: true
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Apps/kobodl/
+  tmp:
+    type: emptyDir
