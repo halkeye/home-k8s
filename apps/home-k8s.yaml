@@ -19,7 +19,6 @@ spec:
           - name: audiobookshelf
           - name: bazarr
           - name: frigate
-          - name: kobodl
           - name: wg-access-server
           # - name: ytdl-sub
   template:
@@ -111,8 +110,8 @@ spec:
           - name: hass-lovelace-kindle-screensaver
           - name: immich
           - name: kavita
+          - name: kobodl
           - name: komf
-          # - name: komga
           - name: lidarr
           - name: minio
           # - name: music-assistant
