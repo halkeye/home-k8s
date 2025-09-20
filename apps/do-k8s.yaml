@@ -97,7 +97,6 @@ spec:
           - { namespace: matrix, name: mautrix-signal }
 
           - name: bytestash
-          - name: clickhouse
           - name: do-home-tun
           - name: hoarder
           - name: metrics-server
@@ -105,7 +104,6 @@ spec:
           - name: miniflux
           - name: phanpy
           - name: photoprism
-          - name: plausible
           - name: postiz
           - name: searxng
           - name: stirling-pdf
