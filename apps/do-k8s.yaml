@@ -96,6 +96,7 @@ spec:
           - { namespace: matrix, name: mautrix-instagram }
           - { namespace: matrix, name: mautrix-signal }
 
+          - name: bluesky-crossposter
           - name: bytestash
           - name: do-home-tun
           - name: hoarder
