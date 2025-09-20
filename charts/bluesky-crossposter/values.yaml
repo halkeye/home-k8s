@@ -1,0 +1,21 @@
+controllers:
+  main:
+    type: statefulset
+    annotations:
+      reloader.stakater.com/auto: 'true'
+    containers:
+      main:
+        image:
+          repository: ghcr.io/linus2punkt0/bluesky-crossposter:latest
+          tag: latest@sha256:14e3c2f804a25f1bd3b980304969d76657aa8dbf8b091948237d352c78b5d0a6 
+        env:
+          TZ: America/Vancouver
+        envFrom:
+          - secretRef:
+              name: "bluesky-crossposter-secret"
+persistence:
+  db:
+    enabled: true
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    size: 1Gi
