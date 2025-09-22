@@ -4,7 +4,7 @@ controllers:
     annotations:
       reloader.stakater.com/auto: "true"
     containers:
-      radarr:
+      main:
         image:
           repository: cloudflare/cloudflared
           tag: "2025.9.1"
@@ -20,7 +20,8 @@ controllers:
           - --config
           - /etc/cloudflared/config/config.yaml
           - run
-          - "${SECRET_CLOUDFLARE_TUNNEL_ID}"
+          - --token
+          - "${CLOUDFLARE_TUNNEL_SECRET}"
         envFrom:
           - secretRef:
               name: "cloudflared-secret"
@@ -39,24 +40,12 @@ controllers:
           readiness: *probes
           startup:
             enabled: false
-        securityContext:
-          allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
-          capabilities:
-            drop: ["ALL"]
         resources:
           limits: &resources
             memory: 1Gi
           requests:
             <<: *resources
             cpu: 10m
-    pod:
-      securityContext:
-        runAsUser: 1026
-        runAsGroup: 100
-        runAsNonRoot: true
-        fsGroup: 100
-        fsGroupChangePolicy: OnRootMismatch
 service:
   main:
     controller: main
