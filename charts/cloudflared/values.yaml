@@ -1,10 +1,91 @@
-image:
-  repository: cloudflare/cloudflared
-  tag: "2025.9.1"
-  imagePullPolicy: IfNotPresent
-
-replicaCount: 3
-tunnelID: ""
-tunnelAuth: ""
-ingress:
-  - service: http_status:404
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  main:
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      radarr:
+        image:
+          repository: cloudflare/cloudflared
+          tag: "2025.9.1"
+        env:
+          TZ: America/Vancouver
+          NO_AUTOUPDATE: "true"
+          TUNNEL_CRED_FILE: /etc/cloudflared/creds/credentials.json
+          TUNNEL_METRICS: 0.0.0.0:8080
+          TUNNEL_TRANSPORT_PROTOCOL: quic
+          TUNNEL_POST_QUANTUM: true
+        args:
+          - tunnel
+          - --config
+          - /etc/cloudflared/config/config.yaml
+          - run
+          - "${SECRET_CLOUDFLARE_TUNNEL_ID}"
+        envFrom:
+          - secretRef:
+              name: "{{.Release.Name}}-secret"
+        probes:
+          liveness: &probes
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /ready
+                port: 8080
+              initialDelaySeconds: 0
+              periodSeconds: 10
+              timeoutSeconds: 1
+              failureThreshold: 3
+          readiness: *probes
+          startup:
+            enabled: false
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+        resources:
+          limits: &resources
+            memory: 1Gi
+          requests:
+            <<: *resources
+            cpu: 10m
+    pod:
+      securityContext:
+        runAsUser: 1026
+        runAsGroup: 100
+        runAsNonRoot: true
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 8080
+      metrics:
+        port: 2000
+serviceMonitor:
+  main:
+    enabled: true
+    endpoints:
+      - port: metrics
+        scheme: http
+        path: /metrics
+        interval: 1m
+        scrapeTimeout: 1m
+persistence:
+  config:
+    type: configMap
+    name: cloudflared-configmap
+    globalMounts:
+      - path: /etc/cloudflared/config/config.yaml
+        subPath: config.yaml
+        readOnly: true
+  credentials:
+    type: secret
+    name: cloudflared-secret
+    globalMounts:
+      - path: /etc/cloudflared/creds/credentials.json
+        subPath: credentials.json
+        readOnly: true
