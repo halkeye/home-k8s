@@ -118,6 +118,13 @@ controllers:
         fsGroup: 100
         fsGroupChangePolicy: OnRootMismatch
 service:
+  ollama-ts:
+    controller: ollama
+    type: LoadBalancer
+    loadBalancerClass: tailscale
+    ports:
+      http:
+        port: 11434
   ollama:
     controller: ollama
     ports:
@@ -129,19 +136,6 @@ service:
       http:
         port: 8080
 ingress:
-  ollama-tailscale:
-    enabled: true
-    className: tailscale
-    tls:
-      - hosts:
-          - ollama
-    hosts:
-      - host: ollama
-        paths:
-          - path: /
-            service:
-              identifier: ollama
-              port: http
   ollama:
     enabled: true
     annotations:
