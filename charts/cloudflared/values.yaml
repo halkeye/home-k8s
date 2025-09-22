@@ -21,7 +21,7 @@ controllers:
           - /etc/cloudflared/config/config.yaml
           - run
           - --token
-          - "${CLOUDFLARE_TUNNEL_SECRET}"
+          - "$(CLOUDFLARE_TUNNEL_SECRET)"
         envFrom:
           - secretRef:
               name: "cloudflared-secret"
