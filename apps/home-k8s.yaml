@@ -13,8 +13,6 @@ spec:
           # "system"
           - name: traefik-forward-auth
 
-          - { namespace: cloudflare, name: cloudflared }
-
           # App
           - name: audiobookshelf
           - name: bazarr
@@ -75,6 +73,7 @@ spec:
 
           - { name: home-vouch, namespace: vouch, chart: vouch }
 
+          - { namespace: cloudflare, name: cloudflared }
 
           # Exporters
           - { namespace: monitoring, name: bambulabs-exporter }

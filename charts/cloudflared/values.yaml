@@ -23,7 +23,7 @@ controllers:
           - "${SECRET_CLOUDFLARE_TUNNEL_ID}"
         envFrom:
           - secretRef:
-              name: "{{.Release.Name}}-secret"
+              name: "cloudflared-secret"
         probes:
           liveness: &probes
             enabled: true
