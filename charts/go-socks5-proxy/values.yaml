@@ -1,5 +1,6 @@
 controllers:
   proxy:
+    strategy: RollingUpdate
     annotations:
       reloader.stakater.com/auto: "true"
     containers:
