@@ -9,6 +9,7 @@ controllers:
           tag: latest@sha256:99e8232915b7791a17a2067350f4380527fc082a4d792a0181ecb2e027ac088e
         env:
           PROXY_PORT: 1080
+          REQUIRE_AUTH: false
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
