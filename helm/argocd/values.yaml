@@ -58,7 +58,7 @@ argo-cd:
         enabled: true
     ingress:
       enabled: true
-      ingressClassName: ""
+      ingressClassName: "nginx"
       annotations:
         gethomepage.dev/enabled: 'false'
       hostname: argocd-webhooks.g4v.dev
@@ -68,9 +68,8 @@ argo-cd:
       serviceMonitor:
         enabled: true
     ingress:
-      enabled: false
+      enabled: true
       annotations:
-        external-dns.alpha.kubernetes.io/target: 172.16.10.202
         cert-manager.io/cluster-issuer: acme-letsencrypt-prod
       hostname: argocd.h.g4v.dev
     configManagementPlugins: |
@@ -140,6 +139,7 @@ argo-cd:
       resource.customizations.ignoreDifferences.apiextensions.k8s.io_CustomResourceDefinition: |
         jqPathExpressions:
           - '.spec.preserveUnknownFields'
+          - '.spec.conversion.strategy'
       resource.customizations.ignoreDifferences.apps_DaemonSet: |
         jqPathExpressions:
           - '.spec.template.spec.hostUsers'
