@@ -9,7 +9,6 @@ defaultSettings:
   backupstorePollInterval: 0
   createDefaultDiskLabeledNodes: true
   restoreVolumeRecurringJobs: true
-  storageMinimalAvailablePercentage: 1
   guaranteedEngineManagerCPU: 20
   guaranteedReplicaManagerCPU: 20
   orphanAutoDeletion: true
