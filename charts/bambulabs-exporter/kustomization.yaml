@@ -18,4 +18,5 @@ helmCharts:
 
 resources:
   - ./templates/prometheusrule.yaml
+  - ./templates/servicemonitor.yaml
   - ./secret.enc.yaml

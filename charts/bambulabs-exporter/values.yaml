@@ -11,7 +11,7 @@ controllers:
           tag: "main"
         envFrom:
           - secretRef:
-              name: "{{.Release.Name}}-secret"
+              name: "bambulabs-exporter-secret"
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
@@ -29,11 +29,10 @@ service:
     ports:
       http:
         port: 9101
-serviceMonitor:
-  main:
-    enabled: true
-    serviceName: '{{ include "bjw-s.common.lib.chart.names.fullname" $ }}'
-    endpoints:
-      - port: http
-        scheme: http
-        path: /metrics
+# serviceMonitor:
+#   main:
+#     enabled: true
+#     endpoints:
+#       - port: http
+#         scheme: http
+#         path: /metrics
