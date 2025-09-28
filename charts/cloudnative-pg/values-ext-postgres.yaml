@@ -1,5 +1,5 @@
-podAnnotations:
-  reloader.stakater.com/auto: "true"
+---
+fullnameOverride: cloudnative-pg-ext-operator
 resources:
   limits:
     cpu: 10m
@@ -7,11 +7,11 @@ resources:
   requests:
     cpu: 10m
     memory: 100Mi
+podAnnotations:
+  reloader.stakater.com/auto: "true"
+existingSecret: cloudnative-pg-secret
 image:
-  repository: ghcr.io/halkeye/postgres-operator
-  pullPolicy: IfNotPresent
-  tag: "sha-410609e"
+  repository: ghcr.io/movetokube/postgres-operator
+  tag: 2.2.0
 env:
   POSTGRES_INSTANCE: postgres17-rw
-existingSecret: cloudnative-pg-secret
-fullnameOverride: cloudnative-pg-ext-operator

@@ -1,7 +1,7 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: external-gateway
+  name: http-gateway
 spec:
   gatewayClassName: prod
   listeners:
@@ -22,7 +22,7 @@ spec:
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: external-gateway
+  name: internal-gateway
 spec:
   gatewayClassName: prod
   listeners:

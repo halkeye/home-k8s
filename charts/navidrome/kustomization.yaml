@@ -11,7 +11,7 @@ generatorOptions:
 
 helmCharts:
   - name: app-template
-    version: 4.2.0
+    version: 4.3.0
     repo: https://bjw-s-labs.github.io/helm-charts
     valuesFile: values.yaml
     releaseName: navidrome
@@ -24,10 +24,14 @@ configMapGenerator:
     files:
       - ./resources/navidrome.toml
   - name: litestream-configmap
-    files:
-      - litestream.yml=./litestream.yml
     literals:
       - LITESTREAM_DB_PATH="/data/navidrome.db"
+      - |
+        litestream.yml=
+          dbs:
+            - path: /data/navidrome.db
+              replicas:
+                - url: s3://halkeye-litestream.tor1.digitaloceanspaces.com/navidrome
 
 components:
   - ../../components/litestream

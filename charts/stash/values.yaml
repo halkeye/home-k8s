@@ -72,12 +72,6 @@ persistence:
     path: /volume1/StashContent
     globalMounts:
       - path: /content
-  home-halkeye2:
-      type: nfs
-      server: 172.16.10.10
-      path: /volume1/homes/halkeye2/
-      globalMounts:
-          - path: /volume1/homes/halkeye2/
   transcode:
     type: nfs
     server: 172.16.10.10

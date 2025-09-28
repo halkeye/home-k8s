@@ -7,7 +7,7 @@ controllers:
       main:
         image:
           repository: bellamy/wallos
-          tag: 4.1.1
+          tag: 4.3.0
         env:
           TZ: America/Vancouver
         probes:
@@ -51,7 +51,7 @@ ingress:
               identifier: main
               port: http
 persistence:
-  config:
+  data:
     enabled: true
     type: persistentVolumeClaim
     accessMode: ReadWriteOnce
@@ -66,3 +66,7 @@ persistence:
     type: emptyDir
     globalMounts:
       - path: /tmp
+  litestream-configmap:
+    type: configMap
+    name: litestream-configmap
+    globalMounts: []

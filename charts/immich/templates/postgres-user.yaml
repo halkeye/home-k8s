@@ -10,7 +10,7 @@ spec:
   secretName: immich
   privileges: OWNER
   secretTemplate:
-    HOST_NO_PORT: "{{ .HostNoPort }}"
+    HOST_NO_PORT: "{{ .Hostname }}"
     PORT: "{{ .Port }}"
     DB_URL: postgresql://{{.Role}}:{{.Password}}@{{.Host}}/{{.Database}}?{{ "" | mergeUriArgs }}
     DB_LOGGING_URL: postgresql://{{.Role}}:{{.Password}}@{{.Host}}/{{.Database}}?{{ "logging=true" | mergeUriArgs }}

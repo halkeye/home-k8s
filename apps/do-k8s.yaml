@@ -15,10 +15,8 @@ spec:
           - { namespace: kube-system, name: do-ingress-nginx }
           # matrix
           # - { namespace: matrix, name: matrix-authentication-service }
-          - { namespace: matrix, name: mautrix-gmessages }
           - { namespace: matrix, name: mautrix-googlechat }
           - { namespace: matrix, name: mautrix-linkedin }
-          - { namespace: matrix, name: mautrix-signal }
           - { namespace: matrix, name: mautrix-telegram }
           - { namespace: matrix, name: mautrix-whatsapp }
           - { namespace: matrix, name: synapse }
@@ -94,18 +92,19 @@ spec:
           - { namespace: matrix, name: synatainer }
 
           # Matrix
+          - { namespace: matrix, name: mautrix-gmessages }
           - { namespace: matrix, name: mautrix-instagram }
+          - { namespace: matrix, name: mautrix-signal }
 
+          - name: bluesky-crossposter
           - name: bytestash
-          - name: clickhouse
           - name: do-home-tun
           - name: hoarder
           - name: metrics-server
           - name: microbin
           - name: miniflux
+          - name: phanpy
           - name: photoprism
-          - name: plausible
-          - name: postiz
           - name: searxng
           - name: stirling-pdf
           - name: teamspeak

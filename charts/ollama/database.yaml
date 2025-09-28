@@ -1,0 +1,31 @@
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: open-webui
+  annotations:
+    postgres.db.movetokube.com/instance: postgres17-rw
+spec:
+  database: open-webui
+  dropOnDelete: false
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: open-webui
+  annotations:
+    postgres.db.movetokube.com/instance: postgres17-rw
+spec:
+  role: open-webui
+  database: open-webui
+  secretName: open-webui-db-secret
+  privileges: OWNER
+---
+apiVersion: redis.redis.opstreelabs.in/v1beta2
+kind: Redis
+metadata:
+  name: redis
+spec:
+  kubernetesConfig:
+    image: quay.io/opstree/redis:v7.0.15
+    imagePullPolicy: IfNotPresent

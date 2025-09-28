@@ -1,14 +1,16 @@
 controllers:
   proxy:
+    strategy: RollingUpdate
     annotations:
       reloader.stakater.com/auto: "true"
     containers:
       main:
         image:
           repository: docker.io/serjs/go-socks5-proxy
-          tag: latest@sha256:aad36c623f16850d7cea0171d1aa79d706129191db9e270b6dfd7db6b552c734
+          tag: latest@sha256:99e8232915b7791a17a2067350f4380527fc082a4d792a0181ecb2e027ac088e
         env:
           PROXY_PORT: 1080
+          REQUIRE_AUTH: false
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true

@@ -13,13 +13,10 @@ spec:
           # "system"
           - name: traefik-forward-auth
 
-          - { namespace: cloudflare, name: cloudflared }
-
           # App
           - name: audiobookshelf
           - name: bazarr
           - name: frigate
-          - name: kobodl
           - name: wg-access-server
           # - name: ytdl-sub
   template:
@@ -66,14 +63,17 @@ spec:
         elements:
           - { name: traefik-ingress, namespace: traefik-ingress }
 
+          - { name: externaldns-internal-technitium, namespace: kube-system }
           - { name: home-k8s-ingress-nginx, namespace: kube-system }
-          - { name: home-k8s-envoy-gateway, namespace: envoy-gateway-system }
+          # - { name: home-k8s-envoy-gateway, namespace: envoy-gateway-system }
 
           - { name: longhorn, namespace: longhorn-system }
 
           - { name: home-k8s-tailscale-operator, namespace: tailscale }
 
           - { name: home-vouch, namespace: vouch, chart: vouch }
+
+          - { namespace: cloudflare, name: cloudflared }
 
           # Exporters
           - { namespace: monitoring, name: bambulabs-exporter }
@@ -94,6 +94,7 @@ spec:
           - { namespace: jellyfin, name: jellyplex-watched }
           - { namespace: jellyfin, name: jellystat }
 
+          - name: amd-gpu
           - name: anime-radarr
           - name: anime-sonarr
           - name: audiomuse
@@ -108,22 +109,22 @@ spec:
           - name: hass-lovelace-kindle-screensaver
           - name: immich
           - name: kavita
+          - name: kobodl
           - name: komf
-          - name: komga
           - name: lidarr
           - name: minio
-          - name: music-assistant
+          # - name: music-assistant
           - name: mylar3
-          - name: navidrome
           - name: netbootxyz
+          - name: ollama
           - name: openbooks
           - name: pinchflat
           - name: postgres-do-k8s-backup
           - name: postgres-home-backup
           - name: prowlarr
           - name: radarr
-          - name: readarr
-          - name: recommendarr
+          # - name: readarr
+          # - name: recommendarr
           - name: recyclarr
           - name: romm
           - name: slskd

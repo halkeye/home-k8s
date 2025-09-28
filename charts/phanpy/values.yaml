@@ -1,0 +1,61 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  main:
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      main:
+        image:
+          repository: "ghcr.io/jjgadgets/phanpy"
+          tag: 2025.01.26.24f03f5
+        env:
+          TZ: America/Vancouver
+          PHANPY_WEBSITE: "toot.g4v.dev"
+          PHANPY_DEFAULT_INSTANCE: "toot.cafe"
+        probes:
+          liveness:
+            enabled: true
+          readiness:
+            enabled: true
+          startup:
+            enabled: false
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            add: ["NET_BIND_SERVICE"]
+            drop: ["ALL"]
+        resources:
+          requests:
+            cpu: 10m
+          limits:
+            memory: 512Mi
+    pod:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        runAsNonRoot: true
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 8080
+ingress:
+  main:
+    enabled: true
+    annotations:
+      gethomepage.dev/enabled: "true"
+    hosts:
+      - host: "toot.g4v.dev"
+        paths:
+          - path: /
+            service:
+              identifier: main
+              port: http
+persistence:
+  tmp:
+    enabled: true
+    type: emptyDir

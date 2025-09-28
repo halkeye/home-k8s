@@ -11,7 +11,7 @@ generatorOptions:
 
 helmCharts:
   - name: tailscale-operator
-    version: 1.86.5
+    version: 1.88.2
     repo: https://pkgs.tailscale.com/helmcharts/
     valuesFile: ./values.yaml
     releaseName: tailscale-operator
@@ -20,5 +20,6 @@ resources:
   - ./secret.enc.yaml
   - ./resources/service-home-proxy.yaml
   - ./resources/service-home-synology.yaml
+  - ./resources/service-ollama.yaml
   - ./resources/proxyclass-userspace.yaml
   - ./resources/proxyclass-accept-routes.yaml

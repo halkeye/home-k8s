@@ -1,0 +1,16 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+helmGlobals:
+  chartHome: ./charts/
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+helmCharts:
+  - name: amd-gpu
+    version: 0.20.0
+    repo: https://rocm.github.io/k8s-device-plugin/
+    valuesFile: ./values.yaml

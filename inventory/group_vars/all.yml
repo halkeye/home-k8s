@@ -112,27 +112,6 @@ metal_lb_controller_tag_version: v0.14.8 # renovate: datasource=github-releases 
 # metallb ip range for load balancer
 metal_lb_ip_range: 172.16.10.200-172.16.10.250
 
-# Only enable if your nodes are proxmox LXC nodes, make sure to configure your proxmox nodes
-# in your hosts.ini file.
-# Please read https://gist.github.com/triangletodd/02f595cd4c0dc9aac5f7763ca2264185 before using this.
-# Most notably, your containers must be privileged, and must not have nesting set to true.
-# Please note this script disables most of the security of lxc containers, with the trade off being that lxc
-# containers are significantly more resource efficient compared to full VMs.
-# Mixing and matching VMs and lxc containers is not supported, ymmv if you want to do this.
-# I would only really recommend using this if you have particularly low powered proxmox nodes where the overhead of
-# VMs would use a significant portion of your available resources.
-proxmox_lxc_configure: false
-# the user that you would use to ssh into the host, for example if you run ssh some-user@my-proxmox-host,
-# set this value to some-user
-proxmox_lxc_ssh_user: root
-# the unique proxmox ids for all of the containers in the cluster, both worker and master nodes
-proxmox_lxc_ct_ids:
-  - 200
-  - 201
-  - 202
-  - 203
-  - 204
-
 # Only enable this if you have set up your own container registry to act as a mirror / pull-through cache
 # (harbor / nexus / docker's official registry / etc).
 # Can be beneficial for larger dev/test environments (for example if you're getting rate limited by docker hub),
@@ -183,7 +162,7 @@ custom_registries_yaml: |
 #   HTTPS_PROXY: "http://proxy.domain.local:3128"
 #   NO_PROXY: "*.domain.local,127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"
 #
-#
+
 ubuntu_packages:
   - open-iscsi
   - nfs-common

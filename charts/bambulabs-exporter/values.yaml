@@ -7,8 +7,8 @@ controllers:
     containers:
       main:
         image:
-          repository: "ghcr.io/aetrius/bambulabs-exporter/bambulabs-exporter"
-          tag: "main"
+          repository: "ghcr.io/halkeye/bambulabs-exporter"
+          tag: "1.0"
         envFrom:
           - secretRef:
               name: "{{.Release.Name}}-secret"
@@ -32,7 +32,6 @@ service:
 serviceMonitor:
   main:
     enabled: true
-    serviceName: '{{ include "bjw-s.common.lib.chart.names.fullname" $ }}'
     endpoints:
       - port: http
         scheme: http
