@@ -472,7 +472,7 @@ grafana.ini:
     auto_login: true
     name: authentik
     enabled: true
-    scopes: openid email profile offline_access
+    scopes: openid email profile offline_access groups
     email_attribute_path: email
     login_attribute_path: preferred_username
     name_attribute_path: name

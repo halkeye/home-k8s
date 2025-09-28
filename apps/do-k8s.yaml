@@ -31,7 +31,6 @@ spec:
           - name: externaldns-cloudflare
           - name: foundry-vtt
           - name: gathio
-          - name: grafana
           - name: it-tools
           - name: libmedium
           - name: not-the-plants
@@ -99,6 +98,7 @@ spec:
           - name: bluesky-crossposter
           - name: bytestash
           - name: do-home-tun
+          - name: grafana
           - name: hoarder
           - name: metrics-server
           - name: microbin
