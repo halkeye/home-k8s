@@ -1,6 +1,4 @@
 enabled: false
-podAnnotations:
-  reloader.stakater.com/auto: "true"
 serviceMonitor:
   enabled: true
 ingress:
