@@ -151,6 +151,7 @@ kube-prometheus-stack:
       # my limits are bad anyways, so don't alert me cause i went over
       KubeMemoryOvercommit: true
       KubeMemoryQuotaOvercommit: true
+      KubeCPUOvercommit: true
       KubeletDown: true
     rules:
       etcd: false
