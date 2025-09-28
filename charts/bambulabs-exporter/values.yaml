@@ -8,7 +8,7 @@ controllers:
       main:
         image:
           repository: "ghcr.io/halkeye/bambulabs-exporter"
-          tag: "1.1.0"
+          tag: "1.2.0"
         envFrom:
           - secretRef:
               name: "bambulabs-exporter-secret"
