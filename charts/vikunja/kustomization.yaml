@@ -19,3 +19,12 @@ helmCharts:
 resources:
   - ./databases.yaml
   - ./secret.enc.yaml
+
+patches:
+- target:
+    group: monitoring.coreos.com
+    version: v1
+    kind: ServiceMonitor
+  patch: |-
+    - op: remove
+      path: /spec/namespaceSelector
