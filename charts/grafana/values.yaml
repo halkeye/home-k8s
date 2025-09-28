@@ -369,6 +369,11 @@ grafana:
           - name: DS_PROMETHEUS
             value: Prometheus
     default:
+      bambulabs:
+        url: https://raw.githubusercontent.com/halkeye/Bambulabs-Exporter/59e6c3bb6e52ab0ee5a3dd49039cebb9969478b4/examples/grafana_dashboard.json
+        datasource:
+          - name: DS_PROMETHEUS
+            value: Prometheus
       plex:
         url: https://raw.githubusercontent.com/jsclayton/prometheus-plex-exporter/aef192f1390f220f12b27a4cb0205c6319bb6253/examples/dashboards/Media%20Server.json
         datasource:
@@ -469,7 +474,10 @@ grafana:
       auto_login: true
       name: authentik
       enabled: true
-      scopes: openid email profile
+      scopes: openid email profile offline_access
+      email_attribute_path: email
+      login_attribute_path: preferred_username
+      name_attribute_path: name
       auth_url: https://auth.g4v.dev/application/o/authorize/
       token_url: https://auth.g4v.dev/application/o/token/
       api_url: https://auth.g4v.dev/application/o/userinfo/
