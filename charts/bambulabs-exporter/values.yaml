@@ -8,10 +8,10 @@ controllers:
       main:
         image:
           repository: "ghcr.io/halkeye/bambulabs-exporter"
-          tag: "1.0"
+          tag: "1.1.0"
         envFrom:
           - secretRef:
-              name: "{{.Release.Name}}-secret"
+              name: "bambulabs-exporter-secret"
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true

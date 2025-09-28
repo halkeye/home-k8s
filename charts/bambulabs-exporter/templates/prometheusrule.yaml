@@ -8,12 +8,21 @@ spec:
   groups:
     - name: bambulabs-exporter.rules
       rules:
+        - alert: PrinterErrorIsMissing
+          annotations:
+            description: "Printer errors is not being reported"
+            summary: absent(print_error{service="bambulabs-exporter"}) or print_error{service="bambulabs-exporter"} > 0 or absent(mc_print_error_code{service="bambulabs-exporter"}) or mc_print_error_code{service="bambulabs-exporter"} > 0
+          expr: |
+            absent(print_error{service="bambulabs-exporter"}) or absent(mc_print_error_code{service="bambulabs-exporter"})
+          for: 5m
+          labels:
+            severity: critical
         - alert: PrinterHasErrors
           annotations:
             description: "Printer has errors."
             summary: Printer has errors
           expr: |
-            print_error_metric{service="bambulabs-exporter"} > 0 or mc_print_error_code_metric{service="bambulabs-exporter"} > 0
-          for: 2m
+            print_error{service="bambulabs-exporter"} > 0 or mc_print_error_code{service="bambulabs-exporter"} > 0
+          for: 5m
           labels:
             severity: critical
