@@ -67,6 +67,7 @@ controllers:
           ENABLE_SCHEDULED_UPDATE_LAUNCHBOX_METADATA: true
           HASHEOUS_API_ENABLED: true
           PLAYMATCH_API_ENABLED: true
+          HLTB_API_ENABLED: true
         envFrom:
           - secretRef:
               name: romm-secret
