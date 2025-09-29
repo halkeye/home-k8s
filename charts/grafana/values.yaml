@@ -364,7 +364,7 @@ dashboards:
           value: Prometheus
   default:
     bambulabs:
-      url: https://raw.githubusercontent.com/halkeye/Bambulabs-Exporter/83dca3ef9d275f8ea44f0ef38493c3059fb19fed/examples/grafana_dashboard.json
+      url: https://raw.githubusercontent.com/halkeye/Bambulabs-Exporter/548e860221bf6ff874bf6653e2827eee74a7bd70/examples/grafana_dashboard.json
       datasource:
         - name: DS_PROMETHEUS
           value: Prometheus
