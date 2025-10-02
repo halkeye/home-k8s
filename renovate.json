@@ -111,6 +111,15 @@
         "/karakeep/"
       ],
       "allowedVersions": "!/^0.27.0$/"
+    },
+    {
+      "groupName": "Immich",
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "ghcr.io/immich-app/**"
+      ]
     }
   ]
 }
