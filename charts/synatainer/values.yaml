@@ -58,7 +58,7 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities: { drop: ["ALL"] }
-        command: ["bash", "-x", purge_rooms_no_local_members.sh"]
+        command: [purge_rooms_no_local_members.sh"]
 
   purge-history:
     type: cronjob
