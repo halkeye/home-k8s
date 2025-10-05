@@ -6,6 +6,7 @@ controllers:
   #   annotations:
   #     reloader.stakater.com/auto: 'true'
   #   cronjob:
+  #     ttlSecondsAfterFinished: 43200
   #     schedule: "0 2 * * *" # Every day at 2am
   #     successfulJobsHistory: 1
   #     failedJobsHistory: 3
@@ -37,6 +38,7 @@ controllers:
     annotations:
       reloader.stakater.com/auto: 'true'
     cronjob:
+      ttlSecondsAfterFinished: 43200
       schedule: "0 3 * * *" # Every day at 3am
       successfulJobsHistory: 1
       failedJobsHistory: 1
@@ -65,6 +67,7 @@ controllers:
     annotations:
       reloader.stakater.com/auto: 'true'
     cronjob:
+      ttlSecondsAfterFinished: 43200
       schedule: "0 5 * * 1" # Every monday at 5am
       successfulJobsHistory: 1
       failedJobsHistory: 1
@@ -96,6 +99,7 @@ controllers:
     annotations:
       reloader.stakater.com/auto: 'true'
     cronjob:
+      ttlSecondsAfterFinished: 43200
       schedule: "0 4 1 * *" # First day of every month at 4:00 am
       successfulJobsHistory: 1
       failedJobsHistory: 1
