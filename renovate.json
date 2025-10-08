@@ -71,7 +71,8 @@
         "/docker-mautrix-gmessages/",
         "/docker-n8n/",
         "/docker-yourls/",
-        "/kavita/"
+        "/kavita/",
+        "/searxng/"
       ]
     },
     {
