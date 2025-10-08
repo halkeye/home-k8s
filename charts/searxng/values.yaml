@@ -103,6 +103,10 @@ persistence:
   tmp:
     type: emptyDir
     globalMounts:
+      - path: /tmp
+  etc:
+    type: emptyDir
+    globalMounts:
       - path: /etc/searxng
 configMaps:
   config:
