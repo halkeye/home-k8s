@@ -7,7 +7,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/linus2punkt0/bluesky-crossposter
-          tag: latest@sha256:0af04672c35b31cf2f6b48e97d9680f236c4beca253fb68c88a24b5e1caccff5 
+          tag: latest@sha256:547fd415336a536e8ed3595adb6634a359cc00ae2db335200f552a73a0ac1c6c 
         env:
           TZ: America/Vancouver
         envFrom:
