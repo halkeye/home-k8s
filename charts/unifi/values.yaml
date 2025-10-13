@@ -6,7 +6,7 @@ app-template:
         unifi:
           image:
             repository: jacobalberty/unifi
-            tag: v9.5.21@sha256:34b772d7d7debde09ba1c3c63b739bc71774e6cffe07624f5d9ed3483edad938
+            tag: v9.5.21@sha256:b96378a64887a6e23b44aa1306b0626517dc99e38770be16bdf94d9decc4ed28
           env:
             TZ: America/Vancouver
             RUNAS_UID0: 'false'
