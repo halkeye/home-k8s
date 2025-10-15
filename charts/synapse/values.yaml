@@ -145,7 +145,7 @@ matrix-synapse:
 
     extraCommands:
       # - apt-get update && apt-get install -y --no-install-recommends git
-      - pip install https://github.com/matrix-org/synapse-s3-storage-provider/archive/refs/tags/v1.5.0.zip
+      - pip install https://github.com/matrix-org/synapse-s3-storage-provider/archive/refs/tags/v1.6.0.zip
 
   workers:
     default:
@@ -166,7 +166,7 @@ matrix-synapse:
 
       extraCommands:
         # - apt-get update && apt-get install -y --no-install-recommends git gettext-base
-        - pip install https://github.com/matrix-org/synapse-s3-storage-provider/archive/refs/tags/v1.5.0.zip
+        - pip install https://github.com/matrix-org/synapse-s3-storage-provider/archive/refs/tags/v1.6.0.zip
     generic_worker:
       enabled: true
       replicaCount: 3
