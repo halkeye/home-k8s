@@ -48,6 +48,7 @@ service:
     annotations:
       external-dns.alpha.kubernetes.io/target: 172.16.10.208
       external-dns.alpha.kubernetes.io/hostname: "proxy.g4v.dev"
+      tailscale.com/expose: "true"
     ports:
       socks5:
         port: 1080
