@@ -11,7 +11,7 @@ generatorOptions:
 
 helmCharts:
   - name: gateway-helm
-    version: 1.5.3
+    version: 1.5.4
     repo: oci://docker.io/envoyproxy
     valuesFile: values.yaml
     releaseName: envoy-gateway
