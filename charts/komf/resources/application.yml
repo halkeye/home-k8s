@@ -1,45 +1,3 @@
-komga:
-  baseUri: http://localhost:25600 #or env:KOMF_KOMGA_BASE_URI
-  komgaUser: admin@example.org #or env:KOMF_KOMGA_USER
-  komgaPassword: admin #or env:KOMF_KOMGA_PASSWORD
-  eventListener:
-    enabled: true # if disabled will not connect to komga and won't pick up newly added entries
-    metadataLibraryFilter: [ ]  # listen to all events if empty
-    metadataSeriesExcludeFilter: [ ]
-    notificationsLibraryFilter: [ ] # Will send notifications if any notification source is enabled. If empty will send notifications for all libraries
-  metadataUpdate:
-    default:
-      libraryType: "MANGA" # Can be "MANGA", "NOVEL", "COMIC" or "WEBTOON". Hint to help better match book numbers
-      updateModes: [ API ] # can use multiple options at once. available options are API, COMIC_INFO
-      aggregate: false # if enabled will search and aggregate metadata from all configured providers
-      mergeTags: false # if true and aggregate is enabled will merge tags from all providers
-      mergeGenres: false # if true and aggregate is enabled will merge genres from all providers
-      bookCovers: false # update book thumbnails
-      seriesCovers: false # update series thumbnails
-      overrideExistingCovers: true # if false will upload but not select new cover if another cover already exists
-      overrideComicInfo: false # Replace existing ComicInfo file. If false, only append additional data
-      postProcessing:
-        seriesTitle: false # update series title
-        seriesTitleLanguage: "en" # series title update language. If empty chose first matching title
-        fallbackToAltTitle: false # fallback to first alternative tile if series title is not found
-        alternativeSeriesTitles: false # use other title types as alternative title option
-        alternativeSeriesTitleLanguages: # alternative title languages
-          - "en"
-          - "ja"
-          - "ja-ro"
-        orderBooks: false # will order books using parsed volume or chapter number
-        scoreTagName: "score" # adds score tag of specified format e.g. "score: 8" only uses integer part of rating. Can be used in search using query: tag:"score: 8" in komga
-        readingDirectionValue: # override reading direction for all series. should be one of these: LEFT_TO_RIGHT, RIGHT_TO_LEFT, VERTICAL, WEBTOON
-        languageValue: # set default language for series. Must use BCP 47 format e.g. "en"
-        #TagName: if specified and if provider has data about publisher in that language then additional tag will be added using format ({TagName}: publisherName)
-        #e.g. originalPublisherTagName: "Original Publisher" will add tag "Original Publisher: Shueisha"
-        originalPublisherTagName:
-        #publisherTagNames:
-        #  - tagName: "English Publisher"
-        #    language: "en"
-    library:
-      0J2TDB3Y2Q6X1:
-        libraryType: "COMIC" # Can be "MANGA", "NOVEL" or "COMIC". Hint to help better match book numbers
 kavita:
   baseUri: "http://kavita.kavita.svc.cluster.local:5000" #or env:KOMF_KAVITA_BASE_URI
   apiKey: "" #or env:KOMF_KAVITA_API_KEY
@@ -57,7 +15,7 @@ kavita:
       mergeGenres: true # if true and aggregate is enabled will merge genres from all providers
       bookCovers: true #update book thumbnails
       seriesCovers: true #update series thumbnails
-      overrideExistingCovers: true # if false will upload but not select new cover if another cover already exists
+      overrideExistingCovers: false # if false will upload but not select new cover if another cover already exists
       lockCovers: true # lock cover images so that kavita does not change them
       postProcessing:
         seriesTitle: true #update series title
@@ -75,19 +33,9 @@ kavita:
       3:
         libraryType: "MANGA" # Can be "MANGA", "NOVEL" or "COMIC". Hint to help better match book numbers
       4:
-        libraryType: "MANGA" # Can be "MANGA", "NOVEL" or "COMIC". Hint to help better match book numbers
-
-notifications:
-  templatesDirectory: "./" # path to a directory with templates
-  discord:
-    # List of discord webhook urls. Will call these webhooks after series or books were added
-    webhooks: # config example: webhooks: ["https://discord.com/api/webhooks/9..."] (env:KOMF_DISCORD_WEBHOOKS - comma separated list of webhooks)
-    seriesCover: false # include series cover in message
-    embedColor: "1F8B4C"
-  apprise:
-    # List of apprise urls. Will call these after series or books were added
-    urls:
-    seriesCover: false # include series cover as attachment
+        libraryType: "NOVEL" # Can be "MANGA", "NOVEL" or "COMIC". Hint to help better match book numbers
+      5:
+        libraryType: "NOVEL" # Can be "MANGA", "NOVEL" or "COMIC". Hint to help better match book numbers
 
 database:
   file: ./database.sqlite # database file location.
