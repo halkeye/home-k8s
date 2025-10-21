@@ -1,0 +1,78 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  main:
+    replicas: 1
+    annotations:
+      reloader.stakater.com/auto: "true"
+
+    containers:
+      main:
+        image:
+          repository: blinkospace/blinko
+          tag: 1.6.3@sha256:a0bc1924a0b963b63bc2ffb8dbda15c12729672291f74b8a2e15f86125ab6934
+        env:
+          TZ: American/Vancouver
+          NODE_ENV: production
+          NEXTAUTH_URL: https://blinko.g4v.dev
+          NEXTAUTH_URL_INTERNAL: http://blinko.blinko.svc.cluster.local:1111
+          NEXT_PUBLIC_BASE_URL: https://blinko.g4v.dev
+          NEXT_PRIVATE_STANDALONE: true
+          DATABASE_URL:
+            valueFrom:
+              secretKeyRef:
+                name: "blinko-db-secret-blinko"
+                key: POSTGRES_URL
+        probes:
+          liveness:
+            enabled: true
+          readiness:
+            enabled: true
+        resources:
+          requests:
+            memory: 350Mi
+            cpu: 100m
+          limits:
+            memory: 1024Mi
+
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+    pod:
+      securityContext:
+        runAsUser: 1026
+        runAsGroup: 100
+        runAsNonRoot: true
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 1111
+ingress:
+  main:
+    enabled: true
+    hosts:
+      - host: "blinko.g4v.dev"
+        paths:
+          - path: /
+            service:
+              identifier: main
+              port: http
+persistence:
+  tmp:
+    enabled: true
+    type: emptyDir
+  data:
+    enabled: true
+    suffix: files
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    size: 10Gi
+    globalMounts:
+      - path: /app/.blinko
+        readOnly: false
+
