@@ -3,7 +3,7 @@ name: element-web
 version: 1.0.0
 dependencies:
   - name: element-web
-    version: 1.4.21
+    version: 1.4.22
     repository: https://ananace.gitlab.io/charts
 maintainers:
   - name: halkeye
