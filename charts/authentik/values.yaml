@@ -5,7 +5,7 @@ authentik:
   global:
     image:
       repository: ghcr.io/goauthentik/server
-      tag: "2025.8.4"
+      tag: "2025.10.0"
 
   authentik:
     # This sends anonymous usage-data, stack traces on errors and
