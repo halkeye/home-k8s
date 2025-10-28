@@ -1,6 +1,6 @@
 authentik:
   redis:
-    enabled: true
+    enabled: false
 
   global:
     image:
