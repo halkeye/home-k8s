@@ -6,6 +6,8 @@ authentik:
     image:
       repository: ghcr.io/goauthentik/server
       tag: "2025.10.0"
+    deploymentAnnotations:
+      reloader.stakater.com/auto: "true"
 
   authentik:
     # This sends anonymous usage-data, stack traces on errors and
