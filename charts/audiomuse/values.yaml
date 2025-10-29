@@ -6,7 +6,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/neptunehub/audiomuse-ai
-          tag: 0.7.4-beta
+          tag: 0.7.5-beta
         env: &env
           TZ: America/Vancouver
           POSTGRES_DB:
@@ -51,7 +51,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/neptunehub/audiomuse-ai
-          tag: 0.7.4-beta
+          tag: 0.7.5-beta
         env: 
           <<: *env
           SERVICE_TYPE: "worker"
