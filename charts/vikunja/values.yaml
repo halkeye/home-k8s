@@ -43,7 +43,7 @@ controllers:
           TZ: America/Vancouver
           VIKUNJA_TYPESENSE_ENABLED: "true"
           VIKUNJA_TYPESENSE_APIKEY: typesense
-          VIKUNJA_TYPESENSE_URL: "http://{{.Release.Name}}-typesense:8108"
+          VIKUNJA_TYPESENSE_URL: "http://vikunja-typesense:8108"
           VIKUNJA_SERVICE_ENABLEREGISTRATION: false
           VIKUNJA_SERVICE_TIMEZONE: "America/Vancouver"
           VIKUNJA_SERVICE_PUBLICURL: "https://tasks.g4v.dev"
@@ -93,7 +93,7 @@ controllers:
           VIKUNJA_DATABASE_SSLMODE: "require"
         envFrom:
           - secretRef:
-              name: "{{.Release.Name}}-secret"
+              name: "vikunja-secret"
         resources:
           requests:
             cpu: 50m
@@ -162,12 +162,3 @@ persistence:
       app:
         app:
         - path: /app/vikunja/files
-  vikunja-config:
-    type: secret
-    name: "{{.Release.Name}}-secret"
-    advancedMounts:
-      app:
-        app:
-        - path: /etc/vikunja/config.yml
-          subPath: config.yml
-          readOnly: true
