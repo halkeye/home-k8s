@@ -162,11 +162,3 @@ persistence:
       app:
         app:
         - path: /app/vikunja/files
-  vikunja-config:
-    type: secret
-    name: "vikunja-secret"
-    advancedMounts:
-      app:
-        app:
-        - path: /etc/vikunja/config.yml
-          subPath: config.yml
