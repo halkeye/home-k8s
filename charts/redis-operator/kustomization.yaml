@@ -14,7 +14,7 @@ resources:
 
 helmCharts:
   - name: redis-operator
-    version: 0.22.1
+    version: 0.22.2
     repo: https://ot-container-kit.github.io/helm-charts/
     valuesFile: ./values.yaml
     releaseName: redis-operator
