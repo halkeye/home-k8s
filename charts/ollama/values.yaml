@@ -26,11 +26,11 @@ controllers:
               command: [ "/bin/sh", "-c", "ollama pull gemma3; ollama pull deepseek-r1; ollama pull llama3.2; ollama pull mistral; ollama pull qwen3:4b" ]
         resources:
           requests:
+            amd.com/gpu: 1
             cpu: 500m
-            memory: 2Gi
+            memory: 24Gi
           limits:
             amd.com/gpu: 1
-            memory: 16Gi
     pod:
       securityContext:
         runAsUser: 1026
