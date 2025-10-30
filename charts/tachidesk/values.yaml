@@ -57,6 +57,12 @@ ingress:
             service:
               identifier: main
               port: http
+      - host: mangadownloader.g4v.dev
+        paths:
+          - path: /
+            service:
+              identifier: main
+              port: http
 persistence:
   config:
     enabled: true
