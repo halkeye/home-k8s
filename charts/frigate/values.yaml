@@ -11,7 +11,7 @@ app-template:
             tag: 0.16.2@sha256:4041ad318224500cf9513c513b1bb927d9dd252f63bbd3d11c92006c1172c86c
           envFrom:
             - secretRef:
-                name: "{{.Release.Name}}-secret"
+                name: "frigate-secret"
           env:
             CONFIG_FILE: /configmap/config.yml
             TZ: America/Vancouver
@@ -59,7 +59,7 @@ app-template:
       externalTrafficPolicy: Cluster
       annotations:
         external-dns.alpha.kubernetes.io/hostname: external-frigate-stream.g4v.dev
-        metallb.universe.tf/allow-shared-ip: "{{.Release.Name}}"
+        metallb.universe.tf/allow-shared-ip: "frigate"
       ports:
         rtsp-tcp:
           enabled: true
@@ -109,7 +109,7 @@ app-template:
         - path: /config
     configmap:
       type: configMap
-      name: "{{.Release.Name}}-config"
+      name: "frigate-config"
       globalMounts:
         - path: /configmap/
     cache:
