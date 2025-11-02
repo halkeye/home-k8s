@@ -5,8 +5,8 @@ app-template:
       containers:
         gathio:
           image:
-            repository: ghcr.io/halkeye/docker-gathio
-            tag: fix-nodemailer.22
+            repository: ghcr.io/lowercasename/gathio
+            tag: 1.6.0
           command:
             - npm
             - run
