@@ -8,7 +8,7 @@ controllers:
       sonarr:
         image:
           repository: ghcr.io/home-operations/sonarr
-          tag: 4.0.16.2942
+          tag: 4.0.16.2943
         env:
           TZ: America/Vancouver
           # https://github.com/Radarr/Radarr/issues/7030#issuecomment-1039689518
