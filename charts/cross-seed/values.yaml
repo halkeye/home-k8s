@@ -8,7 +8,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/cross-seed/cross-seed
-          tag: 6.13.5
+          tag: 6.13.6
         env:
           TZ: America/Vancouver
         args: ["daemon", "--verbose"]
