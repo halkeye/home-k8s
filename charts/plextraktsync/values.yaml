@@ -19,7 +19,7 @@ controllers:
       01-init:
         image:
           repository: ghcr.io/taxel/plextraktsync
-          tag: 0.34.17
+          tag: 0.34.18
         env:
           TZ: America/Vancouver
         command:
@@ -33,7 +33,7 @@ controllers:
       app:
         image:
           repository: ghcr.io/taxel/plextraktsync
-          tag: 0.34.17
+          tag: 0.34.18
         args:
           - watch
         env:
