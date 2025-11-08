@@ -18,7 +18,7 @@ controllers:
             valueFrom:
               secretKeyRef:
                 name: "umami-db-secret-umami"
-                key: POSTGRES_URL
+                key: POSTGRES_URL_WITH_ARGS
         probes:
           liveness: &probes
             enabled: true
