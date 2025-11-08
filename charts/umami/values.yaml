@@ -10,14 +10,11 @@ controllers:
         image:
           repository: ghcr.io/umami-software/umami
           tag: 3.0.0
-        command:
-          - sh
-          - -c
-          - sleep 99d
         env:
           TZ: American/Vancouver
           DISABLE_TELEMETRY: "true"
           DATABASE_TYPE: postgresql
+          NODE_TLS_REJECT_UNAUTHORIZED: '0'
           DATABASE_URL:
             valueFrom:
               secretKeyRef:
@@ -25,7 +22,7 @@ controllers:
                 key: POSTGRES_URL_WITH_ARGS
         probes:
           liveness: &probes
-            enabled: false
+            enabled: true
             custom: true
             spec:
               httpGet:
