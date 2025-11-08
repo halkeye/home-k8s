@@ -9,7 +9,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/umami-software/umami
-          tag: postgresql-v2.11.3
+          tag: 3.0.0
         env:
           TZ: American/Vancouver
           DISABLE_TELEMETRY: "true"
