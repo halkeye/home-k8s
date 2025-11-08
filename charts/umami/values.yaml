@@ -13,6 +13,7 @@ controllers:
         env:
           TZ: American/Vancouver
           DISABLE_TELEMETRY: "true"
+          NODE_TLS_REJECT_UNAUTHORIZED: "true"
           DATABASE_TYPE: postgresql
           DATABASE_URL:
             valueFrom:
