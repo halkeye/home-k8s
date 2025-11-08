@@ -5,7 +5,7 @@ controllers:
       main:
         image:
           repository: stashapp/stash
-          tag: v0.29.2
+          tag: v0.29.3
         env:
           TZ: America/Vancouver
           STASH_PORT: "9999"
