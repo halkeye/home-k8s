@@ -10,6 +10,10 @@ controllers:
         image:
           repository: ghcr.io/umami-software/umami
           tag: 3.0.0
+        command:
+          - bash
+          - -c
+          - sleep 99d
         env:
           TZ: American/Vancouver
           DISABLE_TELEMETRY: "true"
