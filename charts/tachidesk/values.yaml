@@ -71,12 +71,6 @@ persistence:
     storageClass: longhorn
     globalMounts:
       - path: /home/suwayomi/.local/share/Tachidesk
-  comics:
-    type: nfs
-    server: 172.16.10.10
-    path: /volume1/Comics
-    globalMounts:
-      - path: /comics
   downloads:
     type: nfs
     server: 172.16.10.10

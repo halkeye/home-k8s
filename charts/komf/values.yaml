@@ -84,12 +84,24 @@ persistence:
   comics:
     type: nfs
     server: 172.16.10.10
-    path: /volume1/Comics
+    path: /volume1/Comics/Comics
     globalMounts:
-      - path: /comics
+      - path: /content/comics
   manga:
     type: nfs
     server: 172.16.10.10
-    path: /volume1/Manga
+    path: /volume1/Comics/Manga
     globalMounts:
-      - path: /manga
+      - path: /content/manga
+  webtoons:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Comics/Webtoons
+    globalMounts:
+      - path: /content/webtoons
+  webcomics:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Comics/Webcomics
+    globalMounts:
+      - path: /content/webcomics
