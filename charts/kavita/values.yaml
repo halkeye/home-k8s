@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
   kavita:
     strategy: Recreate
@@ -56,13 +57,13 @@ ingress:
     annotations:
       tailscale.com/funnel: "true"
     className: tailscale
-    hosts:
-      - host: "kavita"
-        paths:
-          - path: /
-            service:
-              identifier: kavita
-              port: http
+    defaultBackend:
+      resource:
+        kind: Service
+        name: kavita
+    tls:
+      - hosts:
+          - kavita
 
 persistence:
   config:
