@@ -51,6 +51,18 @@ ingress:
             service:
               identifier: kavita
               port: http
+  kavita-funnel:
+    enabled: true
+    annotations:
+      tailscale.com/funnel: "true"
+    className: tailscale
+    hosts:
+      - host: "kavita"
+        paths:
+          - path: /
+            service:
+              identifier: kavita
+              port: http
 
 persistence:
   config:
