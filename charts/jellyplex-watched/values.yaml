@@ -12,7 +12,7 @@ controllers:
       jellyplexwatched:
         image:
           repository: luigi311/jellyplex-watched
-          tag: latest@sha256:8baa19c0288b0c53b58b422402f8a61f24eca6a32986ed4519c31035da4c86d9
+          tag: latest@sha256:e72a10f4cc0bdf6ddad7e03bb8419639ab991fb0b7396f4845340e6f9135f904
         env:
           TZ: America/Vancouver
           ## Do not mark any shows/movies as played and instead just output to log if they would of been marked.
