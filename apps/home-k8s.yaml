@@ -121,7 +121,6 @@ spec:
           - name: postgres-home-backup
           - name: prowlarr
           - name: radarr
-          # - name: readarr
           # - name: recommendarr
           - name: recyclarr
           - name: romm
