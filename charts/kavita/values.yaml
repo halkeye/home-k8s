@@ -61,7 +61,7 @@ ingress:
       service:
         name: kavita
         port:
-          name: https
+          name: http
     tls:
       - hosts:
           - kavita
