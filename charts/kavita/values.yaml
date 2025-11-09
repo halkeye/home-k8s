@@ -58,9 +58,10 @@ ingress:
       tailscale.com/funnel: "true"
     className: tailscale
     defaultBackend:
-      resource:
-        kind: Service
+      service:
         name: kavita
+        port:
+          name: https
     tls:
       - hosts:
           - kavita
