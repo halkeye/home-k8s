@@ -110,11 +110,9 @@ spec:
           - name: immich
           - name: kavita
           - name: kobodl
-          - name: komf
           - name: lidarr
           - name: minio
           # - name: music-assistant
-          - name: mylar3
           - name: netbootxyz
           - name: ollama
           - name: openbooks
