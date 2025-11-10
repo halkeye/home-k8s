@@ -113,6 +113,7 @@ spec:
           - name: lidarr
           - name: minio
           # - name: music-assistant
+          - name: navidrome
           - name: netbootxyz
           - name: ollama
           - name: openbooks
@@ -121,7 +122,7 @@ spec:
           - name: postgres-home-backup
           - name: prowlarr
           - name: radarr
-          # - name: recommendarr
+          - name: recommendarr
           - name: recyclarr
           - name: romm
           - name: slskd
