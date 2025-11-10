@@ -107,8 +107,7 @@ persistence:
       - path: /config
   music:
     type: nfs
-    # server: 172.16.10.10
-    server: ts-home-synology-8l2mq.tailscale.svc.cluster.local.
+    server: 172.16.10.10
     path: /volume1/Audio/Music
     globalMounts:
       - path: /music
