@@ -11,7 +11,7 @@ generatorOptions:
 
 helmCharts:
   - name: external-dns
-    version: 1.15.2
+    version: 1.19.0
     repo: https://kubernetes-sigs.github.io/external-dns/
     valuesFile: values.yaml
     releaseName: externaldns-pihole
