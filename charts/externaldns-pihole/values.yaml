@@ -1,5 +1,5 @@
-nameOverride: externaldns-internal-pihole
-fullnameOverride: externaldns-internal-pihole
+nameOverride: externaldns-pihole
+fullnameOverride: externaldns-pihole
 policy: upsert-only
 domainFilters:
   - g4v.dev
@@ -20,10 +20,10 @@ env:
   - name: EXTERNAL_DNS_PIHOLE_PASSWORD
     valueFrom:
       secretKeyRef:
-        name: externaldns-internal-pihole-secrets
+        name: externaldns-pihole-secrets
         key: EXTERNAL_DNS_PIHOLE_PASSWORD
   - name: EXTERNAL_DNS_PIHOLE_SERVER
     valueFrom:
       secretKeyRef:
-        name: externaldns-internal-pihole-secrets
+        name: externaldns-pihole-secrets
         key: EXTERNAL_DNS_PIHOLE_SERVER
