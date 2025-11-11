@@ -1,0 +1,29 @@
+nameOverride: externaldns-internal-pihole
+fullnameOverride: externaldns-internal-pihole
+policy: upsert-only
+domainFilters:
+  - g4v.dev
+  - h.g4v.dev
+serviceMonitor:
+  enabled: true
+sources:
+  - service
+  - ingress
+  - gateway-httproute
+  - gateway-grpcroute
+provider:
+  name: pihole
+registry: noop
+env:
+  - name: EXTERNAL_DNS_PIHOLE_API_VERSION
+    value: "6"
+  - name: EXTERNAL_DNS_PIHOLE_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: externaldns-internal-pihole-secrets
+        key: EXTERNAL_DNS_PIHOLE_PASSWORD
+  - name: EXTERNAL_DNS_PIHOLE_SERVER
+    valueFrom:
+      secretKeyRef:
+        name: externaldns-internal-pihole-secrets
+        key: EXTERNAL_DNS_PIHOLE_SERVER
