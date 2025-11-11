@@ -1,6 +1,8 @@
 nameOverride: externaldns-pihole
 fullnameOverride: externaldns-pihole
 policy: upsert-only
+deploymentAnnotations:
+  reloader.stakater.com/auto: 'true'
 domainFilters:
   - g4v.dev
   - h.g4v.dev
@@ -27,3 +29,4 @@ env:
       secretKeyRef:
         name: externaldns-pihole-secrets
         key: EXTERNAL_DNS_PIHOLE_SERVER
+logLevel: debug
