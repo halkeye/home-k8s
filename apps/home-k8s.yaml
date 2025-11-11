@@ -10,9 +10,6 @@ spec:
   generators:
     - list:
         elements:
-          # "system"
-          - name: traefik-forward-auth
-
           # App
           - name: audiobookshelf
           - name: bazarr
@@ -61,9 +58,9 @@ spec:
   generators:
     - list:
         elements:
-          - { name: traefik-ingress, namespace: traefik-ingress }
-
           - { name: externaldns-internal-technitium, namespace: kube-system }
+          - { name: externaldns-pihole, namespace: kube-system }
+
           - { name: home-k8s-ingress-nginx, namespace: kube-system }
           # - { name: home-k8s-envoy-gateway, namespace: envoy-gateway-system }
 
