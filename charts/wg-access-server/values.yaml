@@ -14,7 +14,7 @@ app-template:
         - name: ndots
           value: "1"
       nameservers:
-        - 172.16.10.3
+        - 172.16.10.7
 
   controllers:
     main:
@@ -123,7 +123,7 @@ app-template:
             enabled: true
             domain: dhcp.home
             upstream:
-              - 172.16.10.3
+              - 172.16.10.7
           wireguard:
             privateKey: "{{ .Values.appConfigs.wireguardPrivateKey }}"
           # You can disable the builtin admin account by leaving out 'adminPassword'. Requires another backend to be configured.

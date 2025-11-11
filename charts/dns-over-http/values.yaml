@@ -16,7 +16,7 @@ controllers:
           - /server/doh-server.conf
         env:
           TZ: America/Vancouver
-          UPSTREAM_DNS_SERVER: "udp:172.16.10.3:53"
+          UPSTREAM_DNS_SERVER: "udp:172.16.10.7:53"
           DOH_HTTP_PREFIX: "/dns-query"
           DOH_SERVER_LISTEN: ":0.0.0.0"
           DOH_SERVER_TIMEOUT: "10"
