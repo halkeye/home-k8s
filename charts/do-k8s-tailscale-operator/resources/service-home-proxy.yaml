@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    tailscale.com/tailnet-ip: "172.16.10.208"
+    tailscale.com/tailnet-ip: "go-socks5-proxy-go-socks5-proxy.taildba47.ts.net"
   labels:
     tailscale.com/proxy-class: accept-routes
   name: home-socks-proxy

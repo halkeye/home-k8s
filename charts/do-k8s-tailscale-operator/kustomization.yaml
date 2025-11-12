@@ -19,7 +19,6 @@ helmCharts:
 resources:
   - ./secret.enc.yaml
   - ./resources/service-home-proxy.yaml
-  - ./resources/service-home-synology.yaml
   - ./resources/service-ollama.yaml
   - ./resources/proxyclass-userspace.yaml
   - ./resources/proxyclass-accept-routes.yaml
