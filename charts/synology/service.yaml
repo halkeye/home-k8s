@@ -4,7 +4,7 @@ metadata:
   name: synology
 spec:
   type: ExternalName
-  externalName: 172.16.10.10
+  externalName: synology.dhcp.home
   ports:
     - port: 5000
       protocol: TCP
