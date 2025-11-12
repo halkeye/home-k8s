@@ -2,7 +2,6 @@
 starlord ansible_host=172.16.10.5
 groot ansible_host=172.16.10.6
 adamwarlock ansible_host=172.16.10.11
-rocketracoon ansible_host=172.16.10.7
 
 [node]
 # starlord

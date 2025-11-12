@@ -1,4 +1,0 @@
----
-# calico_iface: eth0
-flannel_iface: eth0
-k3s_master_taint: false

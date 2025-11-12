@@ -26,9 +26,9 @@
         "/charts/system-upgrade-controller/templates/server.yaml/"
       ],
       "matchStrings": [
-        "(?<indentation>\\s+)version: \"(?<currentValue>.+?)\" # renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)"
+        "(?<indentation>\\s+)(?<version_prefix>\\w+)version: \"(?<currentValue>.+?)\" # renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)"
       ],
-      "autoReplaceStringTemplate": "{{{indentation}}}version: \"{{{newValue}}}\" # renovate: datasource={{{datasource}}} depName={{{depName}}}",
+      "autoReplaceStringTemplate": "{{{indentation}}}{{{version_prefix}}}version: \"{{{newValue}}}\" # renovate: datasource={{{datasource}}} depName={{{depName}}}",
       "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}"
     },
     {
