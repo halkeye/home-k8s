@@ -58,7 +58,6 @@ spec:
   generators:
     - list:
         elements:
-          - { name: externaldns-internal-technitium, namespace: kube-system }
           - { name: externaldns-pihole, namespace: kube-system }
 
           - { name: home-k8s-ingress-nginx, namespace: kube-system }
