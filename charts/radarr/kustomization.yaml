@@ -17,8 +17,7 @@ helmCharts:
     releaseName: radarr 
 
 resources:
-  - ./templates/postgres-user.yaml
-  - ./templates/postgres.yaml
+  - ./databases.yaml
   - ./secret.enc.yaml
 
 patches:
