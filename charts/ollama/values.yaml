@@ -119,7 +119,7 @@ controllers:
 service:
   ollama:
     controller: ollama
-    annoations:
+    annotations:
       tailscale.com/expose: "true"
     ports:
       http:
