@@ -1,0 +1,21 @@
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: memos
+spec:
+  role: memos-group
+  database: memos
+  secretName: memos-db-secret
+  privileges: OWNER
+  secretTemplate:
+    DB_URL: postgresql://{{.Role}}:{{.Password}}@{{.Host}}/{{.Database}}?{{ "" | mergeUriArgs }}
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: memos
+spec:
+  database: memos
+  dropOnDelete: false
+  masterRole: memos-group
