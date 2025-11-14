@@ -97,7 +97,6 @@ spec:
 
           - name: bluesky-crossposter
           - name: bytestash
-          - name: do-home-tun
           - name: grafana
           - name: hoarder
           - name: metrics-server
