@@ -99,6 +99,7 @@ spec:
           - name: bytestash
           - name: grafana
           - name: hoarder
+          - name: memos
           - name: metrics-server
           - name: microbin
           - name: miniflux
