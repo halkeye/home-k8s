@@ -98,8 +98,6 @@ spec:
           - name: bandcampsync
           - name: cloudnative-pg
           - name: cross-seed
-          - name: dnsdist
-          - name: dns-over-http
           - name: esphome
           - name: go-socks5-proxy
           - name: hass-lovelace-kindle-screensaver
