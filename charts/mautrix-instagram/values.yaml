@@ -29,7 +29,7 @@ controllers:
       main:
         image:
           repository: dock.mau.dev/mautrix/meta
-          tag: v0.2510.0
+          tag: v0.2511.0
         env:
           TZ: America/Vancouver
         command:
