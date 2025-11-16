@@ -42,12 +42,12 @@ controllers:
 service:
   socks5:
     controller: proxy
-    externalTrafficPolicy: Local
-    type: LoadBalancer
-    loadBalancerIP: 172.16.10.208
+    # externalTrafficPolicy: Local
+    # type: LoadBalancer
+    # loadBalancerIP: 172.16.10.208
     annotations:
-      external-dns.alpha.kubernetes.io/target: 172.16.10.208
-      external-dns.alpha.kubernetes.io/hostname: "proxy.g4v.dev"
+      # external-dns.alpha.kubernetes.io/target: 172.16.10.208
+      # external-dns.alpha.kubernetes.io/hostname: "proxy.g4v.dev"
       tailscale.com/expose: "true"
     ports:
       socks5:
