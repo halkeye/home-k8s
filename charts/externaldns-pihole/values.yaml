@@ -1,6 +1,6 @@
 nameOverride: externaldns-pihole
 fullnameOverride: externaldns-pihole
-policy: upsert-only
+policy: sync
 deploymentAnnotations:
   reloader.stakater.com/auto: 'true'
 domainFilters:
