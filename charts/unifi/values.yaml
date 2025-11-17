@@ -121,3 +121,13 @@ app-template:
         - path: /crontab
           subPath: crontab
           readOnly: true
+    gatewayconfig:
+      enabled: true
+      type: secret
+      name: '{{ .Release.Name }}-secret'
+      advancedMounts:
+        main:
+          main:
+            - path: /unifi/data/sites/1xtf5px1/config.gateway.json
+              readOnly: true
+              subPath: 1xtf5px1.config.gateway.json
