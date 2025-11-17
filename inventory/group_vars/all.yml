@@ -16,25 +16,25 @@ flannel_iface: eth0
 calico_ebpf: true # use eBPF dataplane instead of iptables
 calico_tag: v3.28.0 # renovate: datasource=github-releases depName=projectcalico/calico
 
-
 # uncomment cilium_iface to use cilium cni instead of flannel or calico
 # ensure v4.19.57, v5.1.16, v5.2.0 or more recent kernel
 # cilium_iface: "eth0"
+cilium_iface: "enp1s0 enp2s0 enx000ec6ab18ca"
 cilium_mode: native # native when nodes on same subnet or using bgp, else set routed
 cilium_tag: "v1.18.4" # renovate: datasource=github-releases depName=cilium/cilium
 cilium_hubble: true # enable hubble observability relay and ui
 
 # if using calico or cilium, you may specify the cluster pod cidr pool
-cluster_cidr: 10.52.0.0/16
+cluster_cidr: 10.42.0.0/16
 
 # enable cilium bgp control plane for lb services and pod cidrs. disables metallb.
-cilium_bgp: false
+cilium_bgp: true
 
 # bgp parameters for cilium cni. only active when cilium_iface is defined and cilium_bgp is true.
 cilium_bgp_my_asn: "64500"
 cilium_bgp_peer_asn: "64501"
 cilium_bgp_peer_address: 172.16.0.1
-cilium_bgp_lb_cidr: 172.16.31.0/24 # cidr for cilium loadbalancer ipam
+cilium_bgp_lb_cidr: 172.16.10.200-172.16.10.250
 
 # enable kube-vip ARP broadcasts
 kube_vip_arp: false
@@ -43,14 +43,13 @@ kube_vip_arp: false
 kube_vip_bgp: true
 
 # bgp parameters for kube-vip
-kube_vip_bgp_routerid: "127.0.0.1"  # Defines the router ID for the BGP server
+kube_vip_bgp_routerid: "172.16.0.1"  # Defines the router ID for the BGP server
 kube_vip_bgp_as: "64500"  # Defines the AS for the BGP server
 kube_vip_bgp_peeraddress: "172.16.0.1"  # Defines the address for the BGP peer
 kube_vip_bgp_peeras: "64501"  # Defines the AS for the BGP peer
 
 # apiserver_endpoint is virtual ip-address which will be configured on each master
 apiserver_endpoint: 172.16.10.50
-
 
 # The IP on which the node is reachable in the cluster.
 # Here, a sensible default is provided, you can still override
@@ -91,7 +90,7 @@ kube_vip_tag_version: "v1.0.1" # renovate: datasource=github-releases depName=ku
 
 # kube-vip ip range for load balancer
 # (uncomment to use kube-vip for services instead of MetalLB)
-kube_vip_lb_ip_range: "172.16.10.200-172.16.10.250"
+# kube_vip_lb_ip_range: "172.16.10.200-172.16.10.250"
 
 # metallb type frr or native
 metal_lb_type: native
@@ -109,7 +108,7 @@ metal_lb_speaker_tag_version: "v0.15.2" # renovate: datasource=github-releases d
 metal_lb_controller_tag_version: "v0.15.2" # renovate: datasource=github-releases depName=metallb/metallb
 
 # metallb ip range for load balancer
-metal_lb_ip_range: 172.16.10.200-172.16.10.250
+# metal_lb_ip_range: 172.16.10.200-172.16.10.250
 
 # Only enable this if you have set up your own container registry to act as a mirror / pull-through cache
 # (harbor / nexus / docker's official registry / etc).
