@@ -1,0 +1,23 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: kube-system
+
+helmGlobals:
+  chartHome: ./charts/
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+helmCharts:
+  - name: cilium
+    version: 1.18.4
+    repo: https://helm.cilium.io
+    valuesFile: values.yaml
+    releaseName: home-k8s-cilium
+
+resources:
+  - ./bgpv2.yaml
+  - ./route.yaml
+

@@ -1,0 +1,65 @@
+---
+apiVersion: cilium.io/v2
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: 01-lb-pool
+spec:
+  blocks:
+    - start: 172.16.10.200
+      stop: 172.16.10.250
+---
+apiVersion: cilium.io/v2
+kind: CiliumBGPPeerConfig
+metadata:
+  name: cilium-peer
+spec:
+  # timers:
+  #   holdTimeSeconds: 90
+  #   keepAliveTimeSeconds: 30
+  #   connectRetryTimeSeconds: 120
+  families:
+    - afi: ipv4
+      safi: unicast
+      advertisements:
+        matchLabels:
+          advertise: bgp
+  # ebgpMultihop: 10
+  gracefulRestart:
+    enabled: true
+    restartTimeSeconds: 15
+---
+apiVersion: cilium.io/v2
+kind: CiliumBGPClusterConfig
+metadata:
+  name: cilium-bgp
+spec:
+  nodeSelector:
+    matchLabels:
+      kubernetes.io/os: "linux"
+  bgpInstances:
+    - name: cluster
+      localASN: 64500
+      peers:
+        - name: gateway
+          peerASN: 64501
+          peerAddress: 172.16.10.1
+          peerConfigRef:
+            name: cilium-peer
+---
+apiVersion: cilium.io/v2
+kind: CiliumBGPAdvertisement
+metadata:
+  name: bgp-advertisements
+  labels:
+    advertise: bgp
+spec:
+  advertisements:
+    - advertisementType: "Service"
+      service:
+        addresses:
+          - ExternalIP
+          - LoadBalancerIP
+      # select all services because nothing matches not in
+      selector:
+        matchExpressions:
+         - {key: somekey, operator: NotIn, values: ['never-used-value']}

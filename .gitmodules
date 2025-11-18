@@ -1,6 +1,6 @@
 [submodule "deps/k3s-ansible"]
 	path = deps/k3s-ansible
-	url = https://github.com/techno-tim/k3s-ansible
+	url = https://github.com/timothystewart6/k3s-ansible
 [submodule "collections/community.sops"]
 	path = collections/community.sops
 	url = https://github.com/ansible-collections/community.sops
