@@ -33,7 +33,7 @@ cilium_bgp: true
 # bgp parameters for cilium cni. only active when cilium_iface is defined and cilium_bgp is true.
 cilium_bgp_my_asn: "64500"
 cilium_bgp_peer_asn: "64501"
-cilium_bgp_peer_address: 172.16.0.1
+cilium_bgp_peer_address: 172.16.10.1
 cilium_bgp_lb_cidr: 172.16.10.200-172.16.10.250
 
 # enable kube-vip ARP broadcasts
@@ -43,9 +43,9 @@ kube_vip_arp: false
 kube_vip_bgp: true
 
 # bgp parameters for kube-vip
-kube_vip_bgp_routerid: "172.16.0.1"  # Defines the router ID for the BGP server
+kube_vip_bgp_routerid: "172.16.10.1"  # Defines the router ID for the BGP server
 kube_vip_bgp_as: "64500"  # Defines the AS for the BGP server
-kube_vip_bgp_peeraddress: "172.16.0.1"  # Defines the address for the BGP peer
+kube_vip_bgp_peeraddress: "172.16.10.1"  # Defines the address for the BGP peer
 kube_vip_bgp_peeras: "64501"  # Defines the AS for the BGP peer
 
 # apiserver_endpoint is virtual ip-address which will be configured on each master
@@ -102,7 +102,7 @@ metal_lb_mode: layer2
 # bgp options
 metal_lb_bgp_my_asn: "64500"
 metal_lb_bgp_peer_asn: "64501"
-metal_lb_bgp_peer_address: "172.16.0.1"
+metal_lb_bgp_peer_address: "172.16.10.1"
 
 # image tag for metal lb
 metal_lb_speaker_tag_version: "v0.15.2" # renovate: datasource=github-releases depName=metallb/metallb
