@@ -127,7 +127,7 @@ app-template:
       name: '{{ .Release.Name }}-secret'
       advancedMounts:
         main:
-          main:
+          unifi:
             - path: /unifi/data/sites/1xtf5px1/config.gateway.json
               readOnly: true
               subPath: 1xtf5px1.config.gateway.json
