@@ -65,6 +65,7 @@ reset: PLAYBOOK+=reset
 reset: run ## Reset all the things
 
 .PHONY: diff
+diff: PLAYBOOK+=site
 diff: ANSIBLE_DEBUG+=--check --diff
 diff: run ## Dry run and output diffs not run
 
