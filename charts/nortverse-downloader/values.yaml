@@ -1,0 +1,28 @@
+controllers:
+  main:
+    type: cronjob
+    revisionHistoryLimit: 1
+    annotations:
+      reloader.stakater.com/auto: 'true'
+    cronjob:
+      schedule: '@daily'
+      successfulJobsHistory: 1
+      failedJobsHistory: 3
+    containers:
+      main:
+        image:
+          repository: ghcr.io/halkeye/nortverse-downloader
+          tag: 1.3.0
+        command:
+          - download
+          - "--output"
+          - /webcomics/Nortverse/
+          - "--start-url"
+          - "https://nortverse.com/comic/haunted-by-the-past-16/"
+persistence:
+  webcomics:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Comics/Webcomics
+    globalMounts:
+      - path: /webcomics
