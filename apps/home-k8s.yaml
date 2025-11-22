@@ -108,6 +108,7 @@ spec:
           # - name: music-assistant
           - name: navidrome
           - name: netbootxyz
+          - name: nortverse-downloader
           - name: ollama
           - name: openbooks
           - name: pinchflat
