@@ -12,7 +12,6 @@ spec:
         elements:
           # App
           - name: audiobookshelf
-          - name: bazarr
           - name: frigate
           - name: wg-access-server
           # - name: ytdl-sub
