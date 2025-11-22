@@ -13,7 +13,8 @@ controllers:
         image:
           repository: ghcr.io/halkeye/nortverse-downloader
           tag: 1.3.0
-        args:
+        command:
+          - "/nortverse-downloader"
           - download
           - "--output"
           - /webcomics/Nortverse/
