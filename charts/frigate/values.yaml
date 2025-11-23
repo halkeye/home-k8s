@@ -56,9 +56,10 @@ service:
     controller: frigate
     type: LoadBalancer
     externalTrafficPolicy: Cluster
+    loadBalancerIP: 172.16.10.210
     annotations:
       external-dns.alpha.kubernetes.io/hostname: external-frigate-stream.g4v.dev
-      metallb.universe.tf/allow-shared-ip: "frigate"
+      metallb.io/allow-shared-ip: "frigate"
     ports:
       rtsp-tcp:
         enabled: true
