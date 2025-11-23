@@ -1,0 +1,48 @@
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: readarr
+  annotations:
+    postgres.db.movetokube.com/instance: postgres17-rw
+spec:
+  role: readarr-group
+  database: readarr-main
+  secretName: readarr-db-secret
+  privileges: OWNER
+  secretTemplate:
+    HOST_NO_PORT: "{{ .Hostname }}"
+    PORT: "{{ .Port }}"
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: readarr-log
+  annotations:
+    postgres.db.movetokube.com/instance: postgres17-rw
+spec:
+  database: readarr_log
+  dropOnDelete: false
+  masterRole: readarr-group
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: readarr-main
+  annotations:
+    postgres.db.movetokube.com/instance: postgres17-rw
+spec:
+  database: readarr_main
+  dropOnDelete: false
+  masterRole: readarr-group
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: readarr-cache
+  annotations:
+    postgres.db.movetokube.com/instance: postgres17-rw
+spec:
+  database: readarr_cache
+  dropOnDelete: false
+  masterRole: readarr-group
