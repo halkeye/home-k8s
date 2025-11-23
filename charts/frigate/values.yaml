@@ -1,127 +1,126 @@
-app-template:
-  controllers:
-    frigate:
-      strategy: Recreate
-      annotations:
-        reloader.stakater.com/auto: "true"
-      containers:
-        frigate:
-          image:
-            repository: ghcr.io/blakeblackshear/frigate
-            tag: 0.16.2@sha256:4041ad318224500cf9513c513b1bb927d9dd252f63bbd3d11c92006c1172c86c
-          envFrom:
-            - secretRef:
-                name: "frigate-secret"
-          env:
-            CONFIG_FILE: /configmap/config.yml
-            TZ: America/Vancouver
-            FRIGATE_KUBE_HOST_IP:
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.hostIP
-          probes:
-            liveness: &probes
-              enabled: false
-              custom: true
-              spec:
-                httpGet:
-                  path: /api/version
-                  port: 5000
-                initialDelaySeconds: 0
-                periodSeconds: 10
-                timeoutSeconds: 1
-                failureThreshold: 3
-            readiness: *probes
-            startup:
-              enabled: false
-          securityContext:
-            privileged: true
-          resources:
-            limits:
-              memory: 8Gi
-            requests:
-              cpu: 100m
-  defaultPodOptions:
-    nodeSelector:
-      google.feature.node.kubernetes.io/coral: "true"
-  service:
-    main:
-      controller: frigate
-      ports:
-        http:
-          port: 5000
-        rtsp:
-          port: 8554
-    external-stream:
-      enabled: true
-      controller: frigate
-      type: LoadBalancer
-      externalTrafficPolicy: Cluster
-      annotations:
-        external-dns.alpha.kubernetes.io/hostname: external-frigate-stream.g4v.dev
-        metallb.universe.tf/allow-shared-ip: "frigate"
-      ports:
-        rtsp-tcp:
-          enabled: true
-          port: 8554
-          protocol: TCP
-          targetPort: 8554
-        rtsp-udp:
-          enabled: true
-          port: 8554
-          protocol: UDP
-          targetPort: 8554
-        webrtc-tcp:
-          enabled: true
-          port: 8555
-          protocol: TCP
-          targetPort: 8555
-        webrtc-udp:
-          enabled: true
-          port: 8555
-          protocol: UDP
-          targetPort: 8555
-  ingress:
-    main:
-      enabled: true
-      annotations:
-        gethomepage.dev/enabled: "true"
-        gethomepage.dev/group: Home
-        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/frigate.png
-        gethomepage.dev/name: Frigate
-      hosts:
-        - host: frigate.g4v.dev
-          paths:
-            - path: /
-              service:
-                identifier: main
-                port: http
-  persistence:
-    data:
-      enabled: true
-      type: persistentVolumeClaim
-      accessMode: ReadWriteOnce
-      size: 50Gi
-      storageClass: nas-apps
-      globalMounts:
-        - path: /data
-        - path: /media
-        - path: /config
-    configmap:
-      type: configMap
-      name: "frigate-config"
-      globalMounts:
-        - path: /configmap/
-    cache:
-      type: emptyDir
-      medium: Memory
-      sizeLimit: 4Gi
-      globalMounts:
-        - path: /dev/shm
-        - path: /tmp/cache
-    usb:
-      type: hostPath
-      hostPath: /dev/bus/usb
-      hostPathType: Directory
-      globalMounts:
-        - path: /dev/bus/usb
+controllers:
+  frigate:
+    strategy: Recreate
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      frigate:
+        image:
+          repository: ghcr.io/blakeblackshear/frigate
+          tag: 0.16.2@sha256:4041ad318224500cf9513c513b1bb927d9dd252f63bbd3d11c92006c1172c86c
+        envFrom:
+          - secretRef:
+              name: "frigate-secret"
+        env:
+          CONFIG_FILE: /configmap/config.yml
+          TZ: America/Vancouver
+          FRIGATE_KUBE_HOST_IP:
+            valueFrom:
+              fieldRef:
+                fieldPath: status.hostIP
+        probes:
+          liveness: &probes
+            enabled: false
+            custom: true
+            spec:
+              httpGet:
+                path: /api/version
+                port: 5000
+              initialDelaySeconds: 0
+              periodSeconds: 10
+              timeoutSeconds: 1
+              failureThreshold: 3
+          readiness: *probes
+          startup:
+            enabled: false
+        securityContext:
+          privileged: true
+        resources:
+          limits:
+            memory: 8Gi
+          requests:
+            cpu: 100m
+defaultPodOptions:
+  nodeSelector:
+    google.feature.node.kubernetes.io/coral: "true"
+service:
+  main:
+    controller: frigate
+    ports:
+      http:
+        port: 5000
+      rtsp:
+        port: 8554
+  external-stream:
+    enabled: true
+    controller: frigate
+    type: LoadBalancer
+    externalTrafficPolicy: Cluster
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: external-frigate-stream.g4v.dev
+      metallb.universe.tf/allow-shared-ip: "frigate"
+    ports:
+      rtsp-tcp:
+        enabled: true
+        port: 8554
+        protocol: TCP
+        targetPort: 8554
+      rtsp-udp:
+        enabled: true
+        port: 8554
+        protocol: UDP
+        targetPort: 8554
+      webrtc-tcp:
+        enabled: true
+        port: 8555
+        protocol: TCP
+        targetPort: 8555
+      webrtc-udp:
+        enabled: true
+        port: 8555
+        protocol: UDP
+        targetPort: 8555
+ingress:
+  main:
+    enabled: true
+    annotations:
+      gethomepage.dev/enabled: "true"
+      gethomepage.dev/group: Home
+      gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/frigate.png
+      gethomepage.dev/name: Frigate
+    hosts:
+      - host: frigate.g4v.dev
+        paths:
+          - path: /
+            service:
+              identifier: main
+              port: http
+persistence:
+  data:
+    enabled: true
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    size: 50Gi
+    storageClass: nas-apps
+    globalMounts:
+      - path: /data
+      - path: /media
+      - path: /config
+  configmap:
+    type: configMap
+    name: "frigate-config"
+    globalMounts:
+      - path: /configmap/
+  cache:
+    type: emptyDir
+    medium: Memory
+    sizeLimit: 4Gi
+    globalMounts:
+      - path: /dev/shm
+      - path: /tmp/cache
+  usb:
+    type: hostPath
+    hostPath: /dev/bus/usb
+    hostPathType: Directory
+    globalMounts:
+      - path: /dev/bus/usb
