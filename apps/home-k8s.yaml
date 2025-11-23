@@ -12,7 +12,6 @@ spec:
         elements:
           # App
           - name: audiobookshelf
-          - name: frigate
           - name: wg-access-server
           # - name: ytdl-sub
   template:
@@ -98,6 +97,7 @@ spec:
           - name: cloudnative-pg
           - name: cross-seed
           - name: esphome
+          - name: frigate
           - name: go-socks5-proxy
           - name: hass-lovelace-kindle-screensaver
           - name: immich
@@ -146,9 +146,6 @@ spec:
         targetRevision: HEAD
         kustomize:
           namespace: '{{- if index . "namespace" -}}{{ .namespace | normalize }}{{- else }}{{ .name | normalize }}{{ end }}'
-#          commonAnnotationsEnvsubst: true
-#          commonAnnotations:
-#            privateDomainName: h.g4v.dev
       syncPolicy:
         automated:
           selfHeal: true
