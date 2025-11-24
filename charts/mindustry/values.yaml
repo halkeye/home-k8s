@@ -1,0 +1,64 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  main:
+    replicas: 1
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      mindustry:
+        image:
+          repository: ghcr.io/usa-reddragon/mindustry
+          tag: v146@sha256:79fb944f8e5f414418d5ac1dcd8745e1d46e480ddf3331cf0f9e437b30fca360
+        env:
+          TZ: America/Vancouver
+          MINDUSTRY_NAME: halkeye
+          MINDUSTRY_DESC: "Halkeye's mindustry server"
+          MINDUSTRY_ENABLE_VOTEKICK: "true"
+          MINDUSTRY_LOGGING: "true"
+          MINDUSTRY_AUTO_PAUSE: "true"
+          MINDUSTRY_WHITELIST: "true"
+        envFrom:
+          - secretRef:
+              name: "mindustry-secret"
+        probes:
+          liveness:
+            enabled: true
+          readiness:
+            enabled: true
+          startup:
+            enabled: true
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+        resources:
+          requests:
+            memory: 1Gi
+            cpu: 10m
+    pod:
+      securityContext:
+        runAsUser: 1026
+        runAsGroup: 100
+        runAsNonRoot: true
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
+service:
+  main:
+    controller: main
+    ports:
+      game-tcp:
+        port: 6567
+        primary: true
+        protocol: TCP
+      game-udp:
+        port: 6567
+        primary: false
+        protocol: UDP
+persistence:
+  config:
+    enabled: true
+    suffix: config
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    size: 10Gi
