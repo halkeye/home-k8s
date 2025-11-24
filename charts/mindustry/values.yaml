@@ -47,7 +47,9 @@ service:
   main:
     controller: main
     annotations:
+      service.beta.kubernetes.io/do-loadbalancer-name: 'dok8s-mindustry'
       external-dns.alpha.kubernetes.io/hostname: mindustry.halkeye.net
+      external-dns.alpha.kubernetes.io/cloudflare-proxied: 'false'
     ports:
       game-tcp:
         port: 6567
