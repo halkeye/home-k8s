@@ -14,7 +14,6 @@ controllers:
           MINDUSTRY_DEBUG: "true"
           MINDUSTRY_DESC: "Halkeye's mindustry server"
           MINDUSTRY_ENABLE_VOTEKICK: "true"
-          MINDUSTRY_LOG_COMMANDS: "true"
           MINDUSTRY_LOGGING: "true"
           MINDUSTRY_NAME: halkeye
           MINDUSTRY_SHOW_CONNECT_MESSAGES: "true"
