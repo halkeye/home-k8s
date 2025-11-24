@@ -9,11 +9,17 @@ controllers:
           tag: v146@sha256:79fb944f8e5f414418d5ac1dcd8745e1d46e480ddf3331cf0f9e437b30fca360
         env:
           TZ: America/Vancouver
-          MINDUSTRY_NAME: halkeye
+          MINDUSTRY_ANTI_SPAM: "true"
+          MINDUSTRY_AUTO_PAUSE: "true"
+          MINDUSTRY_DEBUG: "true"
           MINDUSTRY_DESC: "Halkeye's mindustry server"
           MINDUSTRY_ENABLE_VOTEKICK: "true"
+          MINDUSTRY_LOG_COMMANDS: "true"
           MINDUSTRY_LOGGING: "true"
-          MINDUSTRY_AUTO_PAUSE: "true"
+          MINDUSTRY_NAME: halkeye
+          MINDUSTRY_SHOW_CONNECT_MESSAGES: "true"
+          MINDUSTRY_START_COMMANDS: "host Archipelago"
+          MINDUSTRY_STRICT: "true"
           MINDUSTRY_WHITELIST: "true"
         # probes:
         #   liveness:
