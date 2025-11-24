@@ -46,6 +46,8 @@ controllers:
 service:
   main:
     controller: main
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: mindustry.halkeye.net
     ports:
       game-tcp:
         port: 6567

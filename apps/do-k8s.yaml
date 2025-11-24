@@ -102,6 +102,7 @@ spec:
           - name: memos
           - name: metrics-server
           - name: microbin
+          - name: mindustry
           - name: miniflux
           - name: phanpy
           - name: photoprism
