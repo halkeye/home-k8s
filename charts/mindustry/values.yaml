@@ -17,9 +17,11 @@ controllers:
           MINDUSTRY_LOGGING: "true"
           MINDUSTRY_NAME: halkeye
           MINDUSTRY_SHOW_CONNECT_MESSAGES: "true"
-          MINDUSTRY_START_COMMANDS: "host Archipelago"
+          MINDUSTRY_START_COMMANDS: "whitelist-add n/XyMElJp+4AAAAAYxwodw==,host Archipelago"
           MINDUSTRY_STRICT: "true"
           MINDUSTRY_WHITELIST: "true"
+          MINDUSTRY_SOCKET_INPUT: "true"
+          MINDUSTRY_SOCKET_INPUT_PORT: "80085"
         # probes:
         #   liveness:
         #     enabled: true
