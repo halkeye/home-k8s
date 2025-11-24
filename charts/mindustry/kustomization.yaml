@@ -16,9 +16,6 @@ helmCharts:
     valuesFile: values.yaml
     releaseName: mindustry 
 
-resources:
-  - ./secret.enc.yaml
-
 patches:
 - target:
     group: monitoring.coreos.com
