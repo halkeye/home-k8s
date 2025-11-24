@@ -46,6 +46,7 @@ controllers:
 service:
   main:
     controller: main
+    type: LoadBalancer
     annotations:
       service.beta.kubernetes.io/do-loadbalancer-name: 'dok8s-mindustry'
       external-dns.alpha.kubernetes.io/hostname: mindustry.halkeye.net
