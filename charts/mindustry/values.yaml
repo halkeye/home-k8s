@@ -15,9 +15,6 @@ controllers:
           MINDUSTRY_LOGGING: "true"
           MINDUSTRY_AUTO_PAUSE: "true"
           MINDUSTRY_WHITELIST: "true"
-        envFrom:
-          - secretRef:
-              name: "mindustry-secret"
         # probes:
         #   liveness:
         #     enabled: true
