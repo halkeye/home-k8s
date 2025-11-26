@@ -42,7 +42,7 @@ controllers:
             memory: 1Gi
     pod:
       securityContext:
-        runAsUser: 1026
+        runAsUser: 1000
         runAsGroup: 100
         runAsNonRoot: true
         fsGroup: 100
@@ -84,11 +84,16 @@ ingress:
               identifier: main
               port: http
 persistence:
+  # configs:
+  #   enabled: true
+  #   type: persistentVolumeClaim
+  #   accessMode: ReadWriteOnce
+  #   size: 1Gi
   configs:
     enabled: true
-    type: persistentVolumeClaim
-    accessMode: ReadWriteOnce
-    size: 1Gi
+    type: emptyDir
+    globalMounts:
+      - path: /configs
   tmp:
     enabled: true
     type: emptyDir
