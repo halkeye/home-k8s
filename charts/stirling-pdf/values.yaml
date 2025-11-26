@@ -6,11 +6,11 @@ controllers:
         image:
           repository: frooodle/s-pdf
           tag: 2.0.0
-        command:
-          - java
-          - -Dfile.encoding=UTF-8
-          - -jar
-          - /app.jar
+        # command:
+        #   - java
+        #   - -Dfile.encoding=UTF-8
+        #   - -jar
+        #   - /app.jar
         env:
           DOCKER_ENABLE_SECURITY: 'false'
           STIRLING_PDF_DESKTOP_UI: 'false'
@@ -19,19 +19,15 @@ controllers:
           TEMP: /tmp/stirling-pdf
           TMP: /tmp/stirling-pdf
         probes:
-          liveness: &probes
+          liveness:
             enabled: true
-            custom: false
-            spec:
-              periodSeconds: 10
-              timeoutSeconds: 1
-              failureThreshold: 3
-          readiness: *probes
+          readiness:
+            enabled: true
           startup:
-            enabled: false
+            enabled: true
         securityContext:
           allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
+          readOnlyRootFilesystem: false
           capabilities:
             drop: ["ALL"]
         resources:
@@ -40,13 +36,13 @@ controllers:
             memory: 128Mi
           limits:
             memory: 1Gi
-    pod:
-      securityContext:
-        runAsUser: 1000
-        runAsGroup: 100
-        runAsNonRoot: true
-        fsGroup: 100
-        fsGroupChangePolicy: OnRootMismatch
+    # pod:
+    #   securityContext:
+    #     runAsUser: 1000
+    #     runAsGroup: 100
+    #     runAsNonRoot: true
+    #     fsGroup: 100
+    #     fsGroupChangePolicy: OnRootMismatch
 service:
   main:
     controller: main
