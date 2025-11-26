@@ -14,6 +14,10 @@ controllers:
         env:
           DOCKER_ENABLE_SECURITY: 'false'
           STIRLING_PDF_DESKTOP_UI: 'false'
+          STIRLING_TEMPFILES_DIRECTORY: /tmp/stirling-pdf
+          TMPDIR: /tmp/stirling-pdf
+          TEMP: /tmp/stirling-pdf
+          TMP: /tmp/stirling-pdf
         probes:
           liveness: &probes
             enabled: true
