@@ -12,6 +12,7 @@ controllers:
         #   - -jar
         #   - /app.jar
         env:
+          SECURITY_ENABLELOGIN: 'false'
           DOCKER_ENABLE_SECURITY: 'false'
           STIRLING_PDF_DESKTOP_UI: 'false'
           STIRLING_TEMPFILES_DIRECTORY: /tmp/stirling-pdf
