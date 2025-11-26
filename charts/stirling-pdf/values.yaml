@@ -97,3 +97,4 @@ persistence:
       - path: /data
       - path: /logs
       - path: /./pipeline
+      - path: /./customFiles
