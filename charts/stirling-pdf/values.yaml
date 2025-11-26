@@ -94,7 +94,23 @@ persistence:
     type: emptyDir
     globalMounts:
       - path: /tmp
-      - path: /data
+  logs:
+    enabled: true
+    type: emptyDir
+    globalMounts:
       - path: /logs
-      - path: /./pipeline
+  data:
+    enabled: true
+    type: emptyDir
+    globalMounts:
+      - path: /data
+  customfiles:
+    enabled: true
+    type: emptyDir
+    globalMounts:
       - path: /./customFiles
+  pipeline:
+    enabled: true
+    type: emptyDir
+    globalMounts:
+      - path: /./pipeline
