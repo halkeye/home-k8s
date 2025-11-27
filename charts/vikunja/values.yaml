@@ -15,8 +15,6 @@ controllers:
           requests:
             cpu: 50m
             memory: 100Mi
-          limits:
-            memory: 500Mi
         probes:
           liveness: &probes
             enabled: true
