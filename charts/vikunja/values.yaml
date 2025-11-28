@@ -2,6 +2,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
   app:
+    # strategy: RollingUpdate
     annotations:
       reloader.stakater.com/auto: "true"
     containers:
@@ -17,6 +18,11 @@ controllers:
           VIKUNJA_SERVICE_FRONTENDURL: "https://tasks.g4v.dev"
           VIKUNJA_SERVICE_ENABLEPUBLICTEAMS: true
           VIKUNJA_FILES_BASEPATH: /app/vikunja/files
+          VIKUNJA_FILES_TYPE: s3
+          VIKUNJA_FILES_S3_ENDPOINT: https://halkeye-vikunja.tor1.digitaloceanspaces.com
+          VIKUNJA_FILES_S3_BUCKET: "halkeye-vikunja"
+          VIKUNJA_FILES_S3_REGION: tor1
+          VIKUNJA_FILES_S3_USEPATHSTYLE: "true"
           VIKUNJA_FRONTEND_URL: "https://tasks.g4v.dev"
           VIKUNJA_AUTH_LOCAL: false
           VIKUNJA_METRICS_ENABLED: true
