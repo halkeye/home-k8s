@@ -31,7 +31,7 @@ controllers:
           VIKUNJA_MAILER_PORT: 587
           VIKUNJA_MAILER_FROMEMAIL: "noreply@g4v.dev"
           VIKUNJA_MAILER_SKIPTLSVERIFY: true
-          VIKUNJA_KEYVALUE_TYPE: "redis"
+          VIKUNJA_KEYVALUE_TYPE: "memory"
           # Postgres
           VIKUNJA_DATABASE_TYPE: "postgres"
           VIKUNJA_DATABASE_NAME:
