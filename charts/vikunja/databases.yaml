@@ -16,12 +16,3 @@ metadata:
 spec:
   database: "vikunja"
   dropOnDelete: false
----
-apiVersion: redis.redis.opstreelabs.in/v1beta2
-kind: Redis
-metadata:
-  name: redis
-spec:
-  kubernetesConfig:
-    image: quay.io/opstree/redis:v7.0.15
-    imagePullPolicy: IfNotPresent

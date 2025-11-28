@@ -1,36 +1,6 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
-  typesense:
-    containers:
-      typesense:
-        image:
-          repository: docker.io/typesense/typesense
-          tag: 0.25.2
-        env:
-          TZ: America/Vancouver
-          TYPESENSE_DATA_DIR: /tmp
-          TYPESENSE_API_KEY: typesense
-        resources:
-          requests:
-            cpu: 50m
-            memory: 100Mi
-          limits:
-            memory: 500Mi
-        probes:
-          liveness: &probes
-            enabled: true
-            custom: true
-            spec:
-              httpGet:
-                path: /health
-                port: 8108
-              initialDelaySeconds: 0
-              periodSeconds: 10
-              timeoutSeconds: 1
-              failureThreshold: 3
-          readiness: *probes
-
   app:
     annotations:
       reloader.stakater.com/auto: "true"
@@ -41,9 +11,6 @@ controllers:
           tag: 1.0.0-rc3
         env:
           TZ: America/Vancouver
-          VIKUNJA_TYPESENSE_ENABLED: "true"
-          VIKUNJA_TYPESENSE_APIKEY: typesense
-          VIKUNJA_TYPESENSE_URL: "http://vikunja-typesense:8108"
           VIKUNJA_SERVICE_ENABLEREGISTRATION: false
           VIKUNJA_SERVICE_TIMEZONE: "America/Vancouver"
           VIKUNJA_SERVICE_PUBLICURL: "https://tasks.g4v.dev"
@@ -58,10 +25,6 @@ controllers:
           VIKUNJA_MAILER_PORT: 587
           VIKUNJA_MAILER_FROMEMAIL: "noreply@g4v.dev"
           VIKUNJA_MAILER_SKIPTLSVERIFY: true
-          VIKUNJA_REDIS_ENABLED: true
-          VIKUNJA_REDIS_HOST: "redis:6379"
-          VIKUNJA_REDIS_DB: 0
-          VIKUNJA_REDIS_PASSWORD: ""
           VIKUNJA_KEYVALUE_TYPE: "redis"
           # Postgres
           VIKUNJA_DATABASE_TYPE: "postgres"
