@@ -111,6 +111,7 @@ spec:
           - name: nortverse-downloader
           - name: ollama
           - name: openbooks
+          - name: pihole
           - name: pinchflat
           - name: postgres-do-k8s-backup
           - name: postgres-home-backup
