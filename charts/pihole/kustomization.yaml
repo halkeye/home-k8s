@@ -1,0 +1,20 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+helmGlobals:
+  chartHome: ./charts/
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+helmCharts:
+  - name: pihole
+    version: 2.34.0
+    repo: https://mojo2600.github.io/pihole-kubernetes/
+    valuesFile: values.yaml
+    releaseName: pihole
+
+resources:
+  - ./secret.enc.yaml
