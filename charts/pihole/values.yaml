@@ -14,15 +14,13 @@ persistentVolumeClaim:
   enabled: true
   size: '1G'
 
-serviceTCP:
+serviceDns:
   type: LoadBalancer
-#  annotations:
-#    metallb.universe.tf/allow-shared-ip: pihole-svc
-
-serviceUDP:
-  type: LoadBalancer
-#  annotations:
-#    metallb.universe.tf/allow-shared-ip: pihole-svc
+  loadBalancerIP: 172.16.10.211
+  mixedService: true
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: "dns.g4v.dev"
+    kube-vip.io/loadbalancerIPs: 172.16.10.211
 
 resources:
   limits:
