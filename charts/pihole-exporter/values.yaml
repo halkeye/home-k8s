@@ -5,7 +5,7 @@ controllers:
     containers:
       main:
         image:
-          repository: ghcr.io/osnabrugge/pihole-exporter
+          repository: ekofr/pihole-exporter
           tag: v1.2.0
         envFrom:
           - secretRef:
