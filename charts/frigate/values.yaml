@@ -59,6 +59,7 @@ service:
     loadBalancerIP: 172.16.10.210
     annotations:
       external-dns.alpha.kubernetes.io/hostname: external-frigate-stream.g4v.dev
+      kube-vip.io/loadbalancerIPs: 172.16.10.210
     ports:
       rtsp-tcp:
         enabled: true
