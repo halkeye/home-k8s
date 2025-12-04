@@ -1,0 +1,50 @@
+controllers:
+  main:
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      main:
+        image:
+          repository: ghcr.io/osnabrugge/pihole-exporter
+          tag: v1.2.0
+        envFrom:
+          - secretRef:
+              name: "frigate-secret"
+        probes:
+          liveness:
+            enabled: true
+          readiness:
+            enabled: true
+          startup:
+            enabled: true
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+        resources:
+          requests:
+            cpu: 15m
+            memory: 60M
+    pod:
+      securityContext:
+        runAsUser: 65535
+        runAsGroup: 65535
+        runAsNonRoot: true
+        fsGroup: 65535
+        fsGroupChangePolicy: OnRootMismatch
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 9617
+serviceMonitor:
+  app:
+    serviceName: pihole-exporter
+    endpoints:
+      - port: http
+        scheme: http
+        path: /metrics
+        interval: 60m
+        scrapeTimeout: 1m
