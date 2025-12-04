@@ -1,14 +1,14 @@
-dnsmasq:
-  customDnsEntries:
-    - filter-rr=ANY,HTTPS,AAAA
-    - server=/dhcp.home/172.16.10.1
-    - server=/10.16.172.in-addr.arpa/172.16.10.1
-    - address=/nas.g4v.dev/172.16.10.10
-    - address=/odin.gavinmogan.com/172.16.10.2
-    - address=/synology.dhcp.home/172.16.10.10
-    - address=/mqtt.int.g4v.dev/172.16.10.107
-    - address=/ubnt/68.183.248.183
-    - address=/unifi/68.183.248.183
+# dnsmasq:
+#   customDnsEntries:
+#     - filter-rr=ANY,HTTPS,AAAA
+#     - server=/dhcp.home/172.16.10.1
+#     - server=/10.16.172.in-addr.arpa/172.16.10.1
+#     - address=/nas.g4v.dev/172.16.10.10
+#     - address=/odin.gavinmogan.com/172.16.10.2
+#     - address=/synology.dhcp.home/172.16.10.10
+#     - address=/mqtt.int.g4v.dev/172.16.10.107
+#     - address=/ubnt/68.183.248.183
+#     - address=/unifi/68.183.248.183
 
 persistentVolumeClaim:
   enabled: true
@@ -31,6 +31,7 @@ resources:
     memory: 128Mi
 
 admin:
+  enabled: true
   existingSecret: pihole-secrets
 
 doh:
