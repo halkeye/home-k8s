@@ -105,8 +105,8 @@ metal_lb_bgp_peer_asn: "64501"
 metal_lb_bgp_peer_address: "172.16.10.1"
 
 # image tag for metal lb
-metal_lb_speaker_tag_version: "v0.15.2" # renovate: datasource=github-releases depName=metallb/metallb
-metal_lb_controller_tag_version: "v0.15.2" # renovate: datasource=github-releases depName=metallb/metallb
+metal_lb_speaker_tag_version: "v0.15.3" # renovate: datasource=github-releases depName=metallb/metallb
+metal_lb_controller_tag_version: "v0.15.3" # renovate: datasource=github-releases depName=metallb/metallb
 
 # metallb ip range for load balancer
 metal_lb_ip_range: 172.16.10.200-172.16.10.250
