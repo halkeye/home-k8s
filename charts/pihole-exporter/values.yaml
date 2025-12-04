@@ -46,4 +46,3 @@ serviceMonitor:
       - port: http
         scheme: http
         path: /metrics
-        scrapeTimeout: 1m
