@@ -126,6 +126,8 @@ kube-prometheus-stack:
           scheme: https
           static_configs:
             - targets: ['cadvisor.nas.g4v.dev:443']
+              labels:
+                cluster: 'nas'
         - job_name: nas-smartctl
           scheme: https
           static_configs:
