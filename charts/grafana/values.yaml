@@ -370,9 +370,16 @@ dashboards:
       datasource:
         - name: DS_PROMETHEUS
           value: Prometheus
-    pi-hole:
+    pihole:
       # renovate: depName="Pi-hole Exporter"
       gnetId: 10176
+      revision: 3
+      datasource:
+        - name: DS_PROMETHEUS
+          value: Prometheus
+    externaldns:
+      # renovate: depName="External DNS Exporter"
+      gnetId: 15038
       revision: 3
       datasource:
         - name: DS_PROMETHEUS
