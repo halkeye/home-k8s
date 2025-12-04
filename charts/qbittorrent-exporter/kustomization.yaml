@@ -16,6 +16,9 @@ helmCharts:
     valuesFile: values.yaml
     releaseName: qbittorrent-exporter
 
+resources:
+  - ./secret.enc.yaml
+
 patches:
 - target:
     group: monitoring.coreos.com

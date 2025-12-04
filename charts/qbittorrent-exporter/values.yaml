@@ -11,7 +11,7 @@ controllers:
           tag: "v1.6.0"
         envFrom:
           - secretRef:
-              name: "{{.Release.Name}}-secret"
+              name: "qbittorrent-exporter-secret"
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
