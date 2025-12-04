@@ -30,6 +30,8 @@ service:
   main:
     type: LoadBalancer
     loadBalancerIP: 172.16.10.204
+    annotations:
+      kube-vip.io/loadbalancerIPs: 172.16.10.204
     controller: netbootxyz
     ports:
       web:

@@ -63,6 +63,8 @@ service:
     controller: main
     type: LoadBalancer
     loadBalancerIP: 172.16.10.206
+    annotations:
+      kube-vip.io/loadbalancerIPs: 172.16.10.206
     ports:
       soulseek:
         enabled: true

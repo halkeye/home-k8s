@@ -15,13 +15,11 @@ persistentVolumeClaim:
   size: '1G'
 
 serviceTCP:
-  loadBalancerIP: 172.16.10.204
   type: LoadBalancer
 #  annotations:
 #    metallb.universe.tf/allow-shared-ip: pihole-svc
 
 serviceUDP:
-  loadBalancerIP: 172.16.10.204
   type: LoadBalancer
 #  annotations:
 #    metallb.universe.tf/allow-shared-ip: pihole-svc

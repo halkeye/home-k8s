@@ -49,6 +49,8 @@ service:
     type: LoadBalancer
     loadBalancerIP: 172.16.10.207
     externalTrafficPolicy: Cluster
+    annotations:
+      kube-vip.io/loadbalancerIPs: 172.16.10.207
     ports:
       stream:
         enabled: true

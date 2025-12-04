@@ -37,6 +37,7 @@ controller:
     publishService:
       enabled: "true"
     annotations:
+      kube-vip.io/loadbalancerIPs: 172.16.10.209
       external-dns.alpha.kubernetes.io/target: 172.16.10.209
       prometheus.io/scrape: "true"
       prometheus.io/port: "10254"
