@@ -9,7 +9,7 @@ controllers:
           tag: v1.2.0
         envFrom:
           - secretRef:
-              name: "frigate-secret"
+              name: "pihole-exporter-secret"
         probes:
           liveness:
             enabled: true
