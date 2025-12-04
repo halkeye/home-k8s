@@ -38,7 +38,6 @@ controller:
       enabled: "true"
     annotations:
       external-dns.alpha.kubernetes.io/target: 172.16.10.209
-      # metallb.universe.tf/allow-shared-ip: nginx-ingress
       prometheus.io/scrape: "true"
       prometheus.io/port: "10254"
 
