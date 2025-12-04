@@ -88,6 +88,9 @@ spec:
           - { namespace: jellyfin, name: jellyplex-watched }
           - { namespace: jellyfin, name: jellystat }
 
+          - { namespace: pihole, name: pihole }
+          - { namespace: pihole, name: pihole-exporter }
+
           - name: amd-gpu
           - name: anime-radarr
           - name: anime-sonarr
@@ -111,7 +114,6 @@ spec:
           - name: nortverse-downloader
           - name: ollama
           - name: openbooks
-          - name: pihole
           - name: pinchflat
           - name: postgres-do-k8s-backup
           - name: postgres-home-backup

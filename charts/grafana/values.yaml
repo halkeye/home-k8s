@@ -370,6 +370,13 @@ dashboards:
       datasource:
         - name: DS_PROMETHEUS
           value: Prometheus
+    pi-hole:
+      # renovate: depName="Pi-hole Exporter"
+      gnetId: 10176
+      revision: 3
+      datasource:
+        - name: DS_PROMETHEUS
+          value: Prometheus
   default:
     bambulabs:
       url: https://raw.githubusercontent.com/halkeye/Bambulabs-Exporter/02b74fc4e6aed1cef9a58a029ca6dcfc885c81bf/examples/grafana_dashboard.json
