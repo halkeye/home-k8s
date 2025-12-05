@@ -47,13 +47,12 @@ service:
     ports:
       http:
         port: 9707
+
 serviceMonitor:
   main:
     enabled: true
-    serviceName: 'sabnzbd'
+    serviceName: '{{ include "bjw-s.common.lib.chart.names.fullname" $ }}'
     endpoints:
       - port: http
         scheme: http
         path: /metrics
-        interval: 30s
-        scrapeTimeout: 10s

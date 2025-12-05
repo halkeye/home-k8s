@@ -15,3 +15,12 @@ helmCharts:
     repo: https://prometheus-community.github.io/helm-charts
     valuesFile: values.yaml
     releaseName: blackbox-exporter
+
+patches:
+- target:
+    group: monitoring.coreos.com
+    version: v1
+    kind: ServiceMonitor
+  patch: |-
+    - op: remove
+      path: /spec/namespaceSelector

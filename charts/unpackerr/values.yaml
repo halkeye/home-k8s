@@ -71,10 +71,8 @@ persistence:
 
 serviceMonitor:
   app:
-    serviceName: unpackerr
+    serviceName: '{{ include "bjw-s.common.lib.chart.names.fullname" $ }}'
     endpoints:
       - port: http
         scheme: http
         path: /metrics
-        interval: 1m
-        scrapeTimeout: 10s
