@@ -70,7 +70,7 @@ persistence:
     type: persistentVolumeClaim
     storageClass: longhorn
     accessMode: ReadWriteOnce
-    size: 500Mi
+    size: 1Gi
   tmp:
     enabled: true
     type: emptyDir

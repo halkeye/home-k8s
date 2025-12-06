@@ -157,7 +157,7 @@ persistence:
     enabled: true
     type: persistentVolumeClaim
     accessMode: ReadWriteOnce
-    size: 5Gi
+    size: 20Gi
     advancedMounts:
       ollama:
         main:
@@ -168,7 +168,7 @@ persistence:
     type: persistentVolumeClaim
     accessMode: ReadWriteOnce
     suffix: open-webui
-    size: 5Gi
+    size: 20Gi
     advancedMounts:
       webui:
         main:

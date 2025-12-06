@@ -102,7 +102,7 @@ persistence:
     enabled: true
     type: persistentVolumeClaim
     accessMode: ReadWriteOnce
-    size: 1Gi
+    size: 10Gi
     globalMounts:
       - path: /config
   music:
