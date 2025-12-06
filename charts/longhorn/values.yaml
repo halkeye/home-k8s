@@ -2,6 +2,8 @@
 monitoring:
   enabled: true
   createPrometheusRules: true
+serviceMonitor:
+  enabled: true
 defaultSettings:
   backupTarget: s3://halkeye-home-k8s-longhorn@tor1/
   backupTargetCredentialSecret: longhorn-secret
