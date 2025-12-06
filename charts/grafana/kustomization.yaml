@@ -9,13 +9,13 @@ helmGlobals:
 generatorOptions:
   disableNameSuffixHash: true
 
-configMapGenerator:
-  - name: grafana-externaldns-dashboard
-    files:
-      - externaldns.json=./dashboards/externaldns.json
-    options:
-      labels:
-        grafana_dashboard: "1"
+# configMapGenerator:
+#   - name: grafana-externaldns-dashboard
+#     files:
+#       - externaldns.json=./dashboards/externaldns.json
+#     options:
+#       labels:
+#         grafana_dashboard: "1"
 
 helmCharts:
   - name: grafana
