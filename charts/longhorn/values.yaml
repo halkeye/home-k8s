@@ -2,8 +2,9 @@
 monitoring:
   enabled: true
   createPrometheusRules: true
-serviceMonitor:
-  enabled: true
+metrics:
+  serviceMonitor:
+    enabled: true
 defaultSettings:
   backupTarget: s3://halkeye-home-k8s-longhorn@tor1/
   backupTargetCredentialSecret: longhorn-secret
@@ -15,6 +16,8 @@ defaultSettings:
   defaultLonghornStaticStorageClass: longhorn
   nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
   taintToleration: CriticalAddonsOnly:Exists; node-role.kubernetes.io/control-plane:NoSchedule
+  allowCollectingLonghornUsageMetrics: true
+  concurrentAutomaticEngineUpgradePerNodeLimit: 2
 ingress:
   enabled: true
   host: longhorn.g4v.dev
