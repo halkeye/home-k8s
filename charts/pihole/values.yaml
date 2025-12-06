@@ -12,7 +12,7 @@
 
 persistentVolumeClaim:
   enabled: true
-  size: '1G'
+  size: 500Mi
 
 serviceDns:
   type: LoadBalancer

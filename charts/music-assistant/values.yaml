@@ -77,7 +77,7 @@ persistence:
     enabled: true
     type: persistentVolumeClaim
     accessMode: ReadWriteOnce
-    size: 5Gi
+    size: 1Gi
     storageClass: longhorn
     globalMounts:
       - path: /data

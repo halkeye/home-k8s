@@ -86,7 +86,7 @@ persistence:
   config:
     enabled: true
     accessMode: ReadWriteOnce
-    size: 1Gi
+    size: 500Mi
     storageClass: longhorn
   config-file:
     type: configMap
