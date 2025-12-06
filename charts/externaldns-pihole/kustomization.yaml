@@ -14,7 +14,7 @@ helmCharts:
     version: 1.19.0
     repo: https://kubernetes-sigs.github.io/external-dns/
     valuesFile: values.yaml
-    releaseName: externaldns-pihole
+    releaseName: external-dns-pihole
 
 resources:
   - ./secret.enc.yaml
