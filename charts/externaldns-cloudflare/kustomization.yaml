@@ -1,0 +1,29 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+helmGlobals:
+  chartHome: ./charts/
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+helmCharts:
+  - name: external-dns
+    version: 1.19.0
+    repo: https://kubernetes-sigs.github.io/external-dns/
+    valuesFile: values.yaml
+    releaseName: external-dns-pihole
+
+resources:
+  - ./secret.enc.yaml
+
+patches:
+- target:
+    group: monitoring.coreos.com
+    version: v1
+    kind: ServiceMonitor
+  patch: |-
+    - op: remove
+      path: /spec/namespaceSelector

@@ -1,31 +1,30 @@
-external-dns:
-  nameOverride: externaldns-cloudflare
-  fullnameOverride: externaldns-cloudflare
-  policy: sync
-  resources:
-    limits:
-      memory: 100Mi
-    requests:
-      cpu: 10m
-      memory: 100Mi
-  domainFilters:
-    - g4v.dev
-    - halkeye.net
-    - kodekoan.com
-    - gavinmogan.com
-    - saltystories.ca
-  serviceMonitor:
-    enabled: false
-  sources:
-    - ingress
-    - service
-  provider:
-    name: cloudflare
-  extraArgs:
-    - --cloudflare-proxied
-  env:
-    - name: CF_API_TOKEN
-      valueFrom:
-        secretKeyRef:
-          name: externaldns-cloudflare-secrets
-          key: CF_API_TOKEN
+nameOverride: external-dns-cloudflare
+fullnameOverride: external-dns-cloudflare
+policy: sync
+resources:
+  limits:
+    memory: 100Mi
+  requests:
+    cpu: 10m
+    memory: 100Mi
+domainFilters:
+  - g4v.dev
+  - halkeye.net
+  - kodekoan.com
+  - gavinmogan.com
+  - saltystories.ca
+serviceMonitor:
+  enabled: false
+sources:
+  - ingress
+  - service
+provider:
+  name: cloudflare
+extraArgs:
+  - --cloudflare-proxied
+env:
+  - name: CF_API_TOKEN
+    valueFrom:
+      secretKeyRef:
+        name: external-dns-cloudflare-secrets
+        key: CF_API_TOKEN
