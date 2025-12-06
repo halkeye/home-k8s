@@ -28,7 +28,6 @@ spec:
 
           - name: authentik
           - name: excalidraw
-          - name: externaldns-cloudflare
           - name: foundry-vtt
           - name: gathio
           - name: it-tools
@@ -97,6 +96,7 @@ spec:
 
           - name: bluesky-crossposter
           - name: bytestash
+          - name: externaldns-cloudflare
           - name: grafana
           - name: hoarder
           - name: memos
