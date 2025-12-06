@@ -166,3 +166,7 @@ ubuntu_packages:
   - open-iscsi
   - nfs-common
   - jq
+  - cryptsetup
+
+ubuntu_packages_remove:
+  - multipath-tools
