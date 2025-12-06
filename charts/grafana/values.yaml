@@ -189,6 +189,13 @@ dashboards:
     exportarr:
       url: https://raw.githubusercontent.com/onedr0p/exportarr/933ed39eba6ecbadfec8d7a9f9f71a07c05d56cb/examples/grafana/dashboard2.json
       token: ''
+    unpackerr:
+      # renovate: depName="Unpackerr"
+      gnetId: 18817
+      revision: 1
+      datasource:
+        - name: DS_PROMETHEUS
+          value: Prometheus
   observability:
     prometheus:
       # renovate: depName="Prometheus"
