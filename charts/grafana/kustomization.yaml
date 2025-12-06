@@ -12,7 +12,7 @@ generatorOptions:
 configMapGenerator:
   - name: grafana-externaldns-dashboard
     files:
-      - network/externaldns.json=./dashboards/externaldns.json
+      - externaldns.json=./dashboards/externaldns.json
     options:
       labels:
         grafana_dashboard: "1"
