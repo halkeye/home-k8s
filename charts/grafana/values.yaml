@@ -391,13 +391,13 @@ dashboards:
       datasource:
         - name: DS_PROMETHEUS
           value: Prometheus
-    externaldns:
-      renovate: depName="External DNS Exporter"
-      gnetId: 15038
-      revision: 3
-      datasource:
-        - name: DS_PROMETHEUS
-          value: Prometheus
+    # externaldns:
+    #   renovate: depName="External DNS Exporter"
+    #   gnetId: 15038
+    #   revision: 3
+    #   datasource:
+    #     - name: DS_PROMETHEUS
+    #       value: Prometheus
   default:
     bambulabs:
       url: https://raw.githubusercontent.com/halkeye/Bambulabs-Exporter/02b74fc4e6aed1cef9a58a029ca6dcfc885c81bf/examples/grafana_dashboard.json
