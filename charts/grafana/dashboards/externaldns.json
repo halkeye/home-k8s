@@ -15,7 +15,7 @@
       }
     ]
   },
-  "description": "Grafana dashboard to display externaldns metrics",
+  "description": "Grafana dashboard to display external-dns metrics",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
@@ -32,7 +32,7 @@
       },
       "id": 2,
       "panels": [],
-      "title": "externaldns endpoints",
+      "title": "external-dns endpoints",
       "type": "row"
     },
     {
@@ -123,9 +123,9 @@
             "uid": "$datasource"
           },
           "exemplar": true,
-          "expr": "external_dns_registry_endpoints_total {pod=~\".*externaldns.*\",pod=~\"$pod\"}",
+          "expr": "external_dns_registry_endpoints_total {job=~\".*external-dns.*\",job=~\"$job\"}",
           "interval": "",
-          "legendFormat": "{{pod}}",
+          "legendFormat": "{{job}}",
           "refId": "A"
         }
       ],
@@ -222,9 +222,9 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "external_dns_source_endpoints_total {pod=~\".*externaldns.*\",pod=~\"$pod\"}",
+          "expr": "external_dns_source_endpoints_total {job=~\".*external-dns.*\",job=~\"$job\"}",
           "interval": "",
-          "legendFormat": "{{pod}}",
+          "legendFormat": "{{job}}",
           "range": true,
           "refId": "A"
         }
@@ -242,7 +242,7 @@
       },
       "id": 26,
       "panels": [],
-      "title": "externaldns sync",
+      "title": "external-dns sync",
       "type": "row"
     },
     {
@@ -312,9 +312,9 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "1000 * (external_dns_controller_last_reconcile_timestamp_seconds{pod=~\".*externaldns.*\",pod=~\"$pod\"})",
+          "expr": "1000 * (external_dns_controller_last_reconcile_timestamp_seconds{job=~\".*external-dns.*\",pjob=~\"$job\"})",
           "interval": "",
-          "legendFormat": "{{pod}}",
+          "legendFormat": "{{job}}",
           "range": true,
           "refId": "A"
         }
@@ -389,9 +389,9 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "1000 * (external_dns_controller_last_sync_timestamp_seconds{pod=~\".*externaldns.*\",pod=~\"$pod\"})",
+          "expr": "1000 * (external_dns_controller_last_sync_timestamp_seconds{job=~\".*external-dns.*\",job=~\"$job\"})",
           "interval": "",
-          "legendFormat": "{{pod}}",
+          "legendFormat": "{{job}}",
           "range": true,
           "refId": "A"
         }
@@ -404,7 +404,7 @@
         "type": "prometheus",
         "uid": "$datasource"
       },
-      "description": "externaldns controller no_op runs total",
+      "description": "external-dns controller no_op runs total",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -457,14 +457,14 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "external_dns_controller_no_op_runs_total {pod=~\".*externaldns.*\",pod=~\"$pod\"}",
+          "expr": "external_dns_controller_no_op_runs_total {job=~\".*external-dns.*\",job=~\"$job\"}",
           "interval": "",
-          "legendFormat": "{{pod}}",
+          "legendFormat": "{{job}}",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "externaldns controller no_op runs total",
+      "title": "external-dns controller no_op runs total",
       "type": "gauge"
     },
     {
@@ -477,7 +477,7 @@
       },
       "id": 29,
       "panels": [],
-      "title": "externaldns records",
+      "title": "external-dns records",
       "type": "row"
     },
     {
@@ -538,9 +538,9 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "external_dns_registry_a_records {pod=~\".*externaldns.*\",pod=~\"$pod\"}",
+          "expr": "external_dns_registry_a_records {job=~\".*external-dns.*\",job=~\"$job\"}",
           "interval": "",
-          "legendFormat": "{{pod}}",
+          "legendFormat": "{{job}}",
           "range": true,
           "refId": "A"
         }
@@ -606,9 +606,9 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "external_dns_registry_aaaa_records {pod=~\".*externaldns.*\",pod=~\"$pod\"}",
+          "expr": "external_dns_registry_aaaa_records {job=~\".*external-dns.*\",job=~\"$job\"}",
           "interval": "",
-          "legendFormat": "{{pod}}",
+          "legendFormat": "{{job}}",
           "range": true,
           "refId": "A"
         }
@@ -674,9 +674,9 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "external_dns_source_a_records {pod=~\".*externaldns.*\",pod=~\"$pod\"}",
+          "expr": "external_dns_source_a_records {job=~\".*external-dns.*\",job=~\"$job\"}",
           "interval": "",
-          "legendFormat": "{{pod}}",
+          "legendFormat": "{{job}}",
           "range": true,
           "refId": "A"
         }
@@ -742,9 +742,9 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "external_dns_source_aaaa_records {pod=~\".*externaldns.*\",pod=~\"$pod\"}",
+          "expr": "external_dns_source_aaaa_records {job=~\".*external-dns.*\",job=~\"$job\"}",
           "interval": "",
-          "legendFormat": "{{pod}}",
+          "legendFormat": "{{job}}",
           "range": true,
           "refId": "A"
         }
@@ -810,9 +810,9 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "external_dns_controller_verified_a_records {pod=~\".*externaldns.*\",pod=~\"$pod\"}",
+          "expr": "external_dns_controller_verified_a_records {job=~\".*external-dns.*\",job=~\"$job\"}",
           "interval": "",
-          "legendFormat": "{{pod}}",
+          "legendFormat": "{{job}}",
           "range": true,
           "refId": "A"
         }
@@ -878,9 +878,9 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "external_dns_controller_verified_aaaa_records {pod=~\".*externaldns.*\",pod=~\"$pod\"}",
+          "expr": "external_dns_controller_verified_aaaa_records {job=~\".*external-dns.*\",job=~\"$job\"}",
           "interval": "",
-          "legendFormat": "{{pod}}",
+          "legendFormat": "{{job}}",
           "range": true,
           "refId": "A"
         }
@@ -898,7 +898,7 @@
       },
       "id": 8,
       "panels": [],
-      "title": "externaldns errors",
+      "title": "external-dns errors",
       "type": "row"
     },
     {
@@ -957,13 +957,13 @@
             "uid": "$datasource"
           },
           "exemplar": true,
-          "expr": "external_dns_registry_errors_total {pod=~\".*externaldns.*\",pod=~\"$pod\"}",
+          "expr": "external_dns_registry_errors_total {job=~\".*external-dns.*\",job=~\"$job\"}",
           "interval": "",
-          "legendFormat": "{{pod}}",
+          "legendFormat": "{{job}}",
           "refId": "A"
         }
       ],
-      "title": "Total externaldns registry errors",
+      "title": "Total external-dns registry errors",
       "type": "gauge"
     },
     {
@@ -1022,13 +1022,13 @@
             "uid": "$datasource"
           },
           "exemplar": true,
-          "expr": "external_dns_source_errors_total {pod=~\".*externaldns.*\",pod=~\"$pod\"}",
+          "expr": "external_dns_source_errors_total {job=~\".*external-dns.*\",job=~\"$job\"}",
           "interval": "",
-          "legendFormat": "{{pod}}",
+          "legendFormat": "{{job}}",
           "refId": "A"
         }
       ],
-      "title": "Total externaldns source errors",
+      "title": "Total external-dns source errors",
       "type": "gauge"
     },
     {
@@ -1041,7 +1041,7 @@
       },
       "id": 16,
       "panels": [],
-      "title": "externaldns pods",
+      "title": "external-dns job",
       "type": "row"
     },
     {
@@ -1211,11 +1211,11 @@
             "uid": "$datasource"
           },
           "exemplar": true,
-          "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{pod=~\".*externaldns.*\",pod=~\"$pod\"}) by (pod)",
+          "expr": "sum(node_namespace_job:container_cpu_usage_seconds_total:sum_irate{job=~\".*external-dns.*\",job=~\"$job\"}) by (job)",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
-          "legendFormat": "{{pod}}",
+          "legendFormat": "{{job}}",
           "refId": "A",
           "step": 10
         },
@@ -1224,7 +1224,7 @@
             "uid": "$datasource"
           },
           "exemplar": true,
-          "expr": "scalar(kube_resourcequota{pod=~\".*externaldns.*\",pod=~\"$pod\", type=\"hard\",resource=\"requests.cpu\"})",
+          "expr": "scalar(kube_resourcequota{job=~\".*external-dns.*\",job=~\"$job\", type=\"hard\",resource=\"requests.cpu\"})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
@@ -1237,7 +1237,7 @@
             "uid": "$datasource"
           },
           "exemplar": true,
-          "expr": "scalar(kube_resourcequota{pod=~\".*externaldns.*\",pod=~\"$pod\", type=\"hard\",resource=\"limits.cpu\"})",
+          "expr": "scalar(kube_resourcequota{job=~\".*external-dns.*\",job=~\"$job\", type=\"hard\",resource=\"limits.cpu\"})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
@@ -1416,11 +1416,11 @@
             "uid": "$datasource"
           },
           "exemplar": true,
-          "expr": "sum(container_memory_working_set_bytes{pod=~\".*externaldns.*\",pod=~\"$pod\",container!=\"\", image!=\"\"}) by (pod)",
+          "expr": "sum(container_memory_working_set_bytes{job=~\".*external-dns.*\",job=~\"$job\",container!=\"\", image!=\"\"}) by (job)",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
-          "legendFormat": "{{pod}}",
+          "legendFormat": "{{job}}",
           "refId": "A",
           "step": 10
         },
@@ -1430,7 +1430,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "scalar(kube_resourcequota{pod=~\".*externaldns.*\", type=\"hard\",resource=\"requests.memory\"})",
+          "expr": "scalar(kube_resourcequota{job=~\".*external-dns.*\", type=\"hard\",resource=\"requests.memory\"})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
@@ -1445,7 +1445,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "scalar(kube_resourcequota{pod=~\".*externaldns.*\",pod=~\"$pod\",type=\"hard\",resource=\"limits.memory\"})",
+          "expr": "scalar(kube_resourcequota{job=~\".*external-dns.*\",job=~\"$job\",type=\"hard\",resource=\"limits.memory\"})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
@@ -1625,7 +1625,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "pod"
+              "options": "job"
             },
             "properties": [
               {
@@ -1646,7 +1646,7 @@
                   {
                     "targetBlank": false,
                     "title": "Drill down",
-                    "url": "./d/6581e46e4e5c7ba40a07646395ef7b23/k8s-resources-pod?var-datasource=$datasource&var-cluster=$cluster&var-namespace=$namespace&var-pod=$__cell"
+                    "url": "./d/6581e46e4e5c7ba40a07646395ef7b23/k8s-resources-job?var-datasource=$datasource&var-cluster=$cluster&var-namespace=$namespace&var-job=$__cell"
                   }
                 ]
               },
@@ -1683,7 +1683,7 @@
             "uid": "$datasource"
           },
           "exemplar": true,
-          "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{pod=~\".*externaldns.*\",pod=~\"$pod\"}) by (pod)",
+          "expr": "sum(node_namespace_job:container_cpu_usage_seconds_total:sum_irate{job=~\".*external-dns.*\",job=~\"$job\"}) by (job)",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -1697,7 +1697,7 @@
             "uid": "$datasource"
           },
           "exemplar": true,
-          "expr": "sum(kube_pod_container_resource_requests{pod=~\".*externaldns.*\",pod=~\"$pod\",resource=\"cpu\"}) by (pod)",
+          "expr": "sum(kube_pod{job=~\".*external-dns.*\",job=~\"$job\",resource=\"cpu\"}) by (job)",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -1711,7 +1711,7 @@
             "uid": "$datasource"
           },
           "exemplar": true,
-          "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{pod=~\".*externaldns.*\",pod=~\"$pod\"}) by (pod) / sum(kube_pod_container_resource_requests{pod=~\".*externaldns.*\",pod=~\"$pod\",resource=\"cpu\"}) by (pod)",
+          "expr": "sum(node_namespace_job:container_cpu_usage_seconds_total:sum_irate{job=~\".*external-dns.*\",job=~\"$job\"}) by (job) / sum(kube_pod{job=~\".*external-dns.*\",job=~\"$job\",resource=\"cpu\"}) by (job)",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -1725,7 +1725,7 @@
             "uid": "$datasource"
           },
           "exemplar": true,
-          "expr": "sum(kube_pod_container_resource_limits{pod=~\".*externaldns.*\",pod=~\"$pod\",resource=\"cpu\"}) by (pod)",
+          "expr": "sum(kube_pod{job=~\".*external-dns.*\",job=~\"$job\",resource=\"cpu\"}) by (job)",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -1739,7 +1739,7 @@
             "uid": "$datasource"
           },
           "exemplar": true,
-          "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{pod=~\".*externaldns.*\",pod=~\"$pod\"}) by (pod) / sum(kube_pod_container_resource_limits{pod=~\".*externaldns.*\",pod=~\"$pod\",resource=\"cpu\"}) by (pod)",
+          "expr": "sum(node_namespace_job:container_cpu_usage_seconds_total:sum_irate{job=~\".*external-dns.*\",job=~\"$job\"}) by (job) / sum(kube_pod{job=~\".*external-dns.*\",job=~\"$job\",resource=\"cpu\"}) by (job)",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -1995,7 +1995,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "pod"
+              "options": "job"
             },
             "properties": [
               {
@@ -2016,7 +2016,7 @@
                   {
                     "targetBlank": false,
                     "title": "Drill down",
-                    "url": "./d/6581e46e4e5c7ba40a07646395ef7b23/k8s-resources-pod?var-datasource=$datasource&var-cluster=$cluster&var-namespace=$namespace&var-pod=$__cell"
+                    "url": "./d/6581e46e4e5c7ba40a07646395ef7b23/k8s-resources-job?var-datasource=$datasource&var-cluster=$cluster&var-namespace=$namespace&var-job=$__cell"
                   }
                 ]
               },
@@ -2053,7 +2053,7 @@
             "uid": "$datasource"
           },
           "exemplar": true,
-          "expr": "sum(container_memory_working_set_bytes{pod=~\".*externaldns.*\",pod=~\"$pod\",container!=\"\", image!=\"\"}) by (pod)",
+          "expr": "sum(container_memory_working_set_bytes{job=~\".*external-dns.*\",job=~\"$job\",container!=\"\", image!=\"\"}) by (job)",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -2067,7 +2067,7 @@
             "uid": "$datasource"
           },
           "exemplar": true,
-          "expr": "sum(kube_pod_container_resource_requests{pod=~\".*externaldns.*\",pod=~\"$pod\",resource=\"memory\"}) by (pod)",
+          "expr": "sum(kube_pod{job=~\".*external-dns.*\",job=~\"$job\",resource=\"memory\"}) by (job)",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -2081,7 +2081,7 @@
             "uid": "$datasource"
           },
           "exemplar": true,
-          "expr": "sum(container_memory_working_set_bytes{pod=~\".*externaldns.*\",pod=~\"$pod\",container!=\"\", image!=\"\"}) by (pod) / sum(kube_pod_container_resource_requests{pod=~\".*externaldns.*\",pod=~\"$pod\",resource=\"memory\"}) by (pod)",
+          "expr": "sum(container_memory_working_set_bytes{job=~\".*external-dns.*\",job=~\"$job\",container!=\"\", image!=\"\"}) by (job) / sum(kube_pod{job=~\".*external-dns.*\",job=~\"$job\",resource=\"memory\"}) by (job)",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -2095,7 +2095,7 @@
             "uid": "$datasource"
           },
           "exemplar": true,
-          "expr": "sum(kube_pod_container_resource_limits{pod=~\".*externaldns.*\",pod=~\"$pod\", resource=\"memory\"}) by (pod)",
+          "expr": "sum(kube_pod{job=~\".*external-dns.*\",job=~\"$job\", resource=\"memory\"}) by (job)",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -2109,7 +2109,7 @@
             "uid": "$datasource"
           },
           "exemplar": true,
-          "expr": "sum(container_memory_working_set_bytes{pod=~\".*externaldns.*\",pod=~\"$pod\",container!=\"\", image!=\"\"}) by (pod) / sum(kube_pod_container_resource_limits{pod=~\".*externaldns.*\",pod=~\"$pod\",resource=\"memory\"}) by (pod)",
+          "expr": "sum(container_memory_working_set_bytes{job=~\".*external-dns.*\",job=~\"$job\",container!=\"\", image!=\"\"}) by (job) / sum(kube_pod{job=~\".*external-dns.*\",job=~\"$job\",resource=\"memory\"}) by (job)",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -2123,7 +2123,7 @@
             "uid": "$datasource"
           },
           "exemplar": true,
-          "expr": "sum(container_memory_rss{pod=~\".*externaldns.*\",pod=~\"$pod\",container!=\"\"}) by (pod)",
+          "expr": "sum(container_memory_rss{job=~\".*external-dns.*\",job=~\"$job\",container!=\"\"}) by (job)",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -2137,7 +2137,7 @@
             "uid": "$datasource"
           },
           "exemplar": true,
-          "expr": "sum(container_memory_cache{pod=~\".*externaldns.*\",pod=~\"$pod\",container!=\"\"}) by (pod)",
+          "expr": "sum(container_memory_cache{job=~\".*external-dns.*\",job=~\"$job\",container!=\"\"}) by (job)",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -2151,7 +2151,7 @@
             "uid": "$datasource"
           },
           "exemplar": true,
-          "expr": "sum(container_memory_swap{pod=~\".*externaldns.*\",pod=~\"$pod\",container!=\"\"}) by (pod)",
+          "expr": "sum(container_memory_swap{job=~\".*external-dns.*\",job=~\"$job\",container!=\"\"}) by (job)",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -2177,7 +2177,7 @@
   "refresh": "",
   "schemaVersion": 42,
   "tags": [
-    "externaldns",
+    "external-dns",
     "dns"
   ],
   "templating": {
@@ -2199,20 +2199,20 @@
       },
       {
         "current": {
-          "text": "externaldns-pihole-f9d77c464-b886r",
-          "value": "externaldns-pihole-f9d77c464-b886r"
+          "text": "external-dns-pihole-f9d77c464-b886r",
+          "value": "external-dns-pihole-f9d77c464-b886r"
         },
         "datasource": {
           "type": "prometheus",
           "uid": "$datasource"
         },
-        "definition": "label_values(kube_pod_info{pod=~\".*externaldns.*\"}, pod)",
+        "definition": "label_values(kube_pod{job=~\".*external-dns.*\"}, job)",
         "includeAll": true,
-        "label": "pod",
-        "name": "pod",
+        "label": "job",
+        "name": "job",
         "options": [],
         "query": {
-          "query": "label_values(kube_pod_info{pod=~\".*externaldns.*\"}, pod)",
+          "query": "label_values(kube_pod_info{job=~\".*external-dns.*\"}, job)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 2,
