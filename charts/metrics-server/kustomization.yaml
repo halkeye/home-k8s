@@ -14,3 +14,13 @@ helmCharts:
     version: 3.13.0
     repo: https://kubernetes-sigs.github.io/metrics-server/
     releaseName: metrics-server 
+    valuesFile: ./values.yaml
+
+patches:
+- target:
+    group: monitoring.coreos.com
+    version: v1
+    kind: ServiceMonitor
+  patch: |-
+    - op: remove
+      path: /spec/namespaceSelector
