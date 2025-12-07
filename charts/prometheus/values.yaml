@@ -115,19 +115,19 @@ kube-prometheus-stack:
           scheme: https
           static_configs:
             - targets: ['syncthing.nas.g4v.dev']
-        - job_name: traefik
-          static_configs:
-            - targets: ['traefik.nas.g4v.dev:8000']
-        - job_name: nas-node
-          scheme: https
-          static_configs:
-            - targets: ['node-exporter.nas.g4v.dev:443']
-        - job_name: nas-cadvisor
-          scheme: https
-          static_configs:
-            - targets: ['cadvisor.nas.g4v.dev:443']
-              labels:
-                cluster: 'nas'
+        # - job_name: traefik
+        #   static_configs:
+        #     - targets: ['traefik.nas.g4v.dev:8000']
+        # - job_name: nas-node
+        #   scheme: https
+        #   static_configs:
+        #     - targets: ['node-exporter.nas.g4v.dev:443']
+        # - job_name: nas-cadvisor
+        #   scheme: https
+        #   static_configs:
+        #     - targets: ['cadvisor.nas.g4v.dev:443']
+        #       labels:
+        #         cluster: 'nas'
         - job_name: nas-smartctl
           scheme: https
           static_configs:
