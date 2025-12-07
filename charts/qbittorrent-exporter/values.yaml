@@ -7,11 +7,15 @@ controllers:
     containers:
       main:
         image:
-          repository: "ghcr.io/esanchezm/prometheus-qbittorrent-exporter"
-          tag: "v1.6.0"
-        envFrom:
-          - secretRef:
-              name: "qbittorrent-exporter-secret"
+          repository: ghcr.io/martabal/qbittorrent-exporter
+          tag: v1.13.0
+        env:
+          QBITTORRENT_BASE_URL: https://qbittorrent.nas.g4v.dev/
+        probes:
+          liveness:
+            enabled: true
+          readiness:
+            enabled: true
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
@@ -28,7 +32,7 @@ service:
     controller: main
     ports:
       http:
-        port: 8000
+        port: 8090
 serviceMonitor:
   main:
     enabled: true

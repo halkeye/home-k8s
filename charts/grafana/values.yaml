@@ -196,6 +196,13 @@ dashboards:
       datasource:
         - name: DS_PROMETHEUS
           value: Prometheus
+    qbittorrent:
+      # renovate: depName="Qbittorrent"
+      gnetId: 23784
+      revision: 1
+      datasource:
+        - name: DS_PROMETHEUS
+          value: Prometheus
   observability:
     prometheus:
       # renovate: depName="Prometheus"
