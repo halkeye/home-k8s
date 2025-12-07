@@ -1,6 +1,11 @@
 nameOverride: external-dns-cloudflare
 fullnameOverride: external-dns-cloudflare
 policy: sync
+image:
+  repository: registry.k8s.io/external-dns/external-dns
+  tag: v0.20.0
+deploymentAnnotations:
+  reloader.stakater.com/auto: 'true'
 resources:
   limits:
     memory: 100Mi
@@ -14,7 +19,7 @@ domainFilters:
   - gavinmogan.com
   - saltystories.ca
 serviceMonitor:
-  enabled: false
+  enabled: true
 sources:
   - ingress
   - service

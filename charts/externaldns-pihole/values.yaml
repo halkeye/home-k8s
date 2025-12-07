@@ -1,8 +1,17 @@
 nameOverride: external-dns-pihole
 fullnameOverride: external-dns-pihole
 policy: sync
+image:
+  repository: registry.k8s.io/external-dns/external-dns
+  tag: v0.20.0
 deploymentAnnotations:
   reloader.stakater.com/auto: 'true'
+resources:
+  limits:
+    memory: 100Mi
+  requests:
+    cpu: 10m
+    memory: 100Mi
 domainFilters:
   - g4v.dev
   - h.g4v.dev
@@ -29,7 +38,3 @@ env:
       secretKeyRef:
         name: external-dns-pihole-secrets
         key: EXTERNAL_DNS_PIHOLE_SERVER
-image:
-  repository: registry.k8s.io/external-dns/external-dns
-  tag: v0.19.0
-#logLevel: debug
