@@ -79,11 +79,7 @@ spec:
           - { namespace: monitoring, name: speedtest-exporter }
           - { namespace: monitoring, name: unifi-poller }
 
-          - { namespace: plex, name: plex-exporter }
-          - { namespace: plex, name: plex-media-server-exporter }
-          - { namespace: plex, name: plex-auto-languages }
           - { namespace: plex, name: plex-discord-media-updates }
-          - { namespace: plex, name: plextraktsync }
 
           - { namespace: jellyfin, name: jellyfin }
           - { namespace: jellyfin, name: jellyplex-watched }
