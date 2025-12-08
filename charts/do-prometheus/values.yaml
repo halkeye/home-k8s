@@ -33,7 +33,7 @@ kube-prometheus-stack:
     ingress:
       enabled: true
       annotations:
-        nginx.ingress.kubernetes.io/proxy-body-size: '500m'
+        nginx.ingress.kubernetes.io/proxy-body-size: '1G'
         nginx.ingress.kubernetes.io/whitelist-source-range: "104.37.60.186/32"
         external-dns.alpha.kubernetes.io/cloudflare-proxied: 'false'
         gethomepage.dev/enabled: 'true'
@@ -119,7 +119,7 @@ kube-prometheus-stack:
             - __meta_kubernetes_pod_node_name
           targetLabel: kubernetes_node
     prometheusSpec:
-      # logLevel: debug
+      logLevel: debug
       enableAdminAPI: true
       enableRemoteWriteReceiver: true
       externalLabels:
