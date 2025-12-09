@@ -1,6 +1,4 @@
 kube-prometheus-stack:
-  prometheusOperator:
-    kubeletEndpointSliceEnabled: true
   fullnameOverride: "prometheus"
   crds:
     enabled: false
@@ -93,7 +91,6 @@ kube-prometheus-stack:
           targetLabel: kubernetes_node
     prometheusSpec:
       logLevel: debug
-      serviceDiscoveryRole: EndpointSlice
       remoteWrite:
         - url: https://prometheus-do.g4v.dev/api/v1/write
       enableAdminAPI: true
@@ -220,8 +217,8 @@ kube-prometheus-stack:
               expr: (kube_pod_container_status_restarts_total - kube_pod_container_status_restarts_total offset 10m >= 1) and ignoring (reason) min_over_time(kube_pod_container_status_last_terminated_reason{reason="OOMKilled"}[10m]) == 1
               labels:
                 severity: critical
-kubelet:
-  serviceMonitor:
-    honorTimestamps: false
-    trackTimestampsStaleness: false
-    cAdvisorInterval: 30s
+# kubelet:
+#   serviceMonitor:
+#     honorTimestamps: false
+#     trackTimestampsStaleness: false
+#     cAdvisorInterval: 30s
