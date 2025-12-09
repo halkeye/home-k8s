@@ -224,3 +224,4 @@ kubelet:
   serviceMonitor:
     honorTimestamps: false
     trackTimestampsStaleness: false
+    cAdvisorInterval: 30s
