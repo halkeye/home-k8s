@@ -81,6 +81,7 @@ kube-prometheus-stack:
           - alertname="InfoInhibitor"
   prometheus:
     enabled: true
+    agentMode: true
     monitor:
       enabled: true
       relabelings:
