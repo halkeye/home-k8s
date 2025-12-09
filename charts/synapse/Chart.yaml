@@ -3,7 +3,7 @@ name: synapse
 version: 0.0.0
 dependencies:
   - name: matrix-synapse
-    version: 3.12.16
+    version: 3.12.17
     repository: https://ananace.gitlab.io/charts
 maintainers:
   - name: halkeye
