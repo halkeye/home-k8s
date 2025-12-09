@@ -3,13 +3,13 @@ kube-prometheus-stack:
   crds:
     enabled: false
   cleanPrometheusOperatorObjectNames: true
-  kubeApiServer:
-    serviceMonitor:
-      metricRelabelings:
-        - action: replace
-          sourceLabels:
-            - node
-          targetLabel: instance
+  # kubeApiServer:
+  #   serviceMonitor:
+  #     metricRelabelings:
+  #       - action: replace
+  #         sourceLabels:
+  #           - node
+  #         targetLabel: instance
   alertmanager:
     ingress:
       enabled: true
