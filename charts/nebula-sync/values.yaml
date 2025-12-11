@@ -1,0 +1,42 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  main:
+    annotations:
+      reloader.stakater.com/auto: "true"
+    type: cronjob
+    cronjob:
+      schedule: "0 * * * *"
+      timeZone: "Australia/Sydney"
+      concurrencyPolicy: Forbid
+      successfulJobsHistory: 1
+      failedJobsHistory: 1
+    containers:
+      main:
+        image:
+          repository: ghcr.io/lovelaze/nebula-sync
+          tag: v0.11.1
+        env:
+          TZ: "American/Vancouver"
+          FULL_SYNC: "true"
+        envFrom:
+          - secretRef:
+              name: nebula-sync-secret
+        resources:
+          requests:
+            cpu: 10m
+            memory: 64Mi
+          limits:
+            memory: 128Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+              - ALL
+    pod:
+      securityContext:
+        runAsUser: 1026
+        runAsGroup: 100
+        runAsNonRoot: true
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
