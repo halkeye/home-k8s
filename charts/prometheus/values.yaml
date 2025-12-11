@@ -221,7 +221,7 @@ kube-prometheus-stack:
     serviceMonitor:
       enabled: true
       kubelet: false
-      cAdvisor: true
+      cAdvisor: false
       honorTimestamps: false
       trackTimestampsStaleness: false
       cAdvisorInterval: 30s
