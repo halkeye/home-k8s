@@ -219,8 +219,8 @@ kube-prometheus-stack:
                 severity: critical
   kubelet:
     serviceMonitor:
-        enabled: false
-        cAdvisor: false
-  #     honorTimestamps: false
-  #     trackTimestampsStaleness: false
-  #     cAdvisorInterval: 30s
+      enabled: true
+      cAdvisor: true
+      honorTimestamps: false
+      trackTimestampsStaleness: false
+      cAdvisorInterval: 30s
