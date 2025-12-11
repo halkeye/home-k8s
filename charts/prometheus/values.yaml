@@ -89,7 +89,7 @@ kube-prometheus-stack:
             - __meta_kubernetes_pod_node_name
           targetLabel: kubernetes_node
     prometheusSpec:
-      logLevel: debug
+      # logLevel: debug
       remoteWrite:
         - url: https://prometheus-do.g4v.dev/api/v1/write
       externalLabels:
