@@ -81,7 +81,6 @@ kube-prometheus-stack:
     enabled: true
     # agentMode: true
     monitor:
-      enabled: true
       relabelings:
         - action: replace
           regex: (.*)
@@ -93,7 +92,6 @@ kube-prometheus-stack:
       logLevel: debug
       remoteWrite:
         - url: https://prometheus-do.g4v.dev/api/v1/write
-      enableAdminAPI: true
       externalLabels:
         cluster: home-k8s
       storageSpec:
@@ -166,14 +164,9 @@ kube-prometheus-stack:
   kubeProxy:
     enabled: false
   kubeControllerManager:
-    enabled: true
     service:
       selector:
         k8s-app: kube-controller-manager
-  kubeEtcd:
-    enabled: true
-  kubeScheduler:
-    enabled: true
   prometheus-node-exporter:
     fullnameOverride: node-exporter
     resources:
@@ -184,7 +177,6 @@ kube-prometheus-stack:
         memory: 64M
     prometheus:
       monitor:
-        enabled: true
         relabelings:
           - action: replace
             regex: (.*)
@@ -199,7 +191,6 @@ kube-prometheus-stack:
       - persistentvolumeclaims=[*]
     prometheus:
       monitor:
-        enabled: true
         relabelings:
           - action: replace
             regex: (.*)
@@ -217,9 +208,11 @@ kube-prometheus-stack:
               expr: (kube_pod_container_status_restarts_total - kube_pod_container_status_restarts_total offset 10m >= 1) and ignoring (reason) min_over_time(kube_pod_container_status_last_terminated_reason{reason="OOMKilled"}[10m]) == 1
               labels:
                 severity: critical
+  # kubernetesServiceMonitors: 
+  #   enabled: false
   kubelet:
+    enabled: false
     serviceMonitor:
-      enabled: true
       kubelet: false
       cAdvisor: false
       honorTimestamps: false
