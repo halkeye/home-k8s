@@ -3,6 +3,9 @@ kube-prometheus-stack:
   crds:
     enabled: false
   cleanPrometheusOperatorObjectNames: true
+  prometheusOperation:
+      kubeletEndpointsEnabled: false
+      kubeletEndpointSliceEnabled: true
   # kubeApiServer:
   #   serviceMonitor:
   #     metricRelabelings:
@@ -102,9 +105,12 @@ kube-prometheus-stack:
               requests:
                 storage: 50Gi
       ruleSelectorNilUsesHelmValues: false
+      serviceDiscoveryRole: EndpointSlice
       serviceMonitorSelectorNilUsesHelmValues: false
       podMonitorSelectorNilUsesHelmValues: false
       probeSelectorNilUsesHelmValues: false
+      enableFeatures:
+        - new-service-discovery-manager
       additionalScrapeConfigs:
         - job_name: nas-syncthing-job
           bearer_token: '{{ .Values.nas_syncthings_key }}'
