@@ -160,6 +160,7 @@ kube-prometheus-stack:
       KubeMemoryOvercommit: true
       KubeMemoryQuotaOvercommit: true
       KubeCPUOvercommit: true
+      KubeletDown: true
     rules:
       etcd: false
       kubeApiserver: false
