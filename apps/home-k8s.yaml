@@ -87,6 +87,7 @@ spec:
 
           - { namespace: pihole, name: pihole }
           - { namespace: pihole, name: pihole-exporter }
+          # - { namespace: pihole, name: nebula-sync }
 
           - name: amd-gpu
           - name: anime-radarr
