@@ -15,6 +15,7 @@ controllers:
       schedule: '0 2 * * *'
       successfulJobsHistory: 1
       failedJobsHistory: 2
+      backoffLimit: 1
     containers:
       plex-discord-media-updates:
         image:

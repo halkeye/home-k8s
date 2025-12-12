@@ -16,6 +16,7 @@ controllers:
     cronjob:
       schedule: "@daily"
       ttlSecondsAfterFinished: 43200
+      backoffLimit: 1
     containers:
       main:
         image:

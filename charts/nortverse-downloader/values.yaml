@@ -8,6 +8,7 @@ controllers:
       schedule: '@daily'
       successfulJobsHistory: 1
       failedJobsHistory: 3
+      backoffLimit: 1
     containers:
       main:
         image:

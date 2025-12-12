@@ -8,6 +8,7 @@ controllers:
       schedule: '@hourly'
       successfulJobsHistory: 10
       failedJobsHistory: 5
+      backoffLimit: 1
     containers:
       jellyplexwatched:
         image:

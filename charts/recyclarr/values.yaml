@@ -10,6 +10,7 @@ controllers:
       schedule: '@daily'
       successfulJobsHistory: 1
       failedJobsHistory: 2
+      backoffLimit: 1
     containers:
       recyclarr:
         image:

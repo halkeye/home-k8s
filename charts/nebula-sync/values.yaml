@@ -10,6 +10,7 @@ controllers:
       concurrencyPolicy: Forbid
       successfulJobsHistory: 1
       failedJobsHistory: 1
+      backoffLimit: 1
     containers:
       main:
         image:
