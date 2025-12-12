@@ -4,8 +4,8 @@ kube-prometheus-stack:
     enabled: false
   cleanPrometheusOperatorObjectNames: true
   prometheusOperation:
-      kubeletEndpointsEnabled: false
-      kubeletEndpointSliceEnabled: true
+    kubeletEndpointsEnabled: false
+    kubeletEndpointSliceEnabled: true
   # kubeApiServer:
   #   serviceMonitor:
   #     metricRelabelings:
@@ -214,7 +214,7 @@ kube-prometheus-stack:
               expr: (kube_pod_container_status_restarts_total - kube_pod_container_status_restarts_total offset 10m >= 1) and ignoring (reason) min_over_time(kube_pod_container_status_last_terminated_reason{reason="OOMKilled"}[10m]) == 1
               labels:
                 severity: critical
-  # kubernetesServiceMonitors: 
+  # kubernetesServiceMonitors:
   #   enabled: false
   kubelet:
     enabled: false
