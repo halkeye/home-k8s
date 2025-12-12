@@ -18,7 +18,7 @@ controllers:
           - "--output"
           - /webcomics/Nortverse/
           - "--start-url"
-          - "https://nortverse.com/comic/healthy-compromise/"
+          - "https://nortverse.com/comic/christmas-favorites-5/"
     pod:
       securityContext:
         runAsUser: 1026
