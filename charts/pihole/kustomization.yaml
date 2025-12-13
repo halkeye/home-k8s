@@ -18,3 +18,29 @@ helmCharts:
 
 resources:
   - ./secret.enc.yaml
+
+patches:
+- target:
+    group: monitoring.coreos.com
+    version: v1
+    kind: ServiceMonitor
+  patch: |-
+    - op: remove
+      path: /spec/namespaceSelector
+- patch: |-
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: pihole
+    spec:
+      template:
+        spec:
+          containers:
+            - name: pihole
+              env:
+                - $patch: delete
+                  name: FTLCONF_dns_listeningMode
+                - $patch: delete
+                  name: VIRTUAL_HOST
+                - $patch: delete
+                  name: FTLCONF_misc_etc_dnsmasq_d
