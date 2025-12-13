@@ -34,10 +34,11 @@ admin:
   enabled: true
   existingSecret: pihole-secrets
 
-doh:
-  enabled: true
-
 ingress:
   enabled: true
   hosts:
     - pihole.g4v.dev
+
+# disable upstreams so nebula sync can work
+DNS1: ""
+DNS2: ""
