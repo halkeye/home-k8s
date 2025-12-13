@@ -6,7 +6,7 @@ controllers:
     type: cronjob
     cronjob:
       schedule: "0 * * * *"
-      timeZone: "Australia/Sydney"
+      timeZone: "American/Vancouver"
       concurrencyPolicy: Forbid
       successfulJobsHistory: 1
       failedJobsHistory: 1
