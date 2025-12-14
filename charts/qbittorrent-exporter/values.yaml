@@ -8,7 +8,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/martabal/qbittorrent-exporter
-          tag: v1.13.0
+          tag: v1.13.2
         env:
           QBITTORRENT_BASE_URL: https://qbittorrent.nas.g4v.dev/
         probes:
