@@ -8,7 +8,7 @@ controllers:
       radarr:
         image:
           repository: ghcr.io/home-operations/radarr
-          tag: 6.1.0.10293
+          tag: 6.1.0.10309
         env:
           TZ: America/Vancouver
           # https://github.com/Radarr/Radarr/issues/7030#issuecomment-1039689518
