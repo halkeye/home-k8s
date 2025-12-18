@@ -3,3 +3,5 @@ operatorConfig:
     - "tag:home-k8s-operator"
 proxyConfig:
   defaultTags: "tag:home-k8s"
+oauth:
+  clientSecret: operator-oauth
