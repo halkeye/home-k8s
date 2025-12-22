@@ -2,8 +2,8 @@
 controllers:
   main:
     strategy: Recreate
-    pod:
-      hostNetwork: true
+    # pod:
+    #   hostNetwork: true
     containers:
       lms:
         image:
