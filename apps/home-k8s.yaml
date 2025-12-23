@@ -105,6 +105,8 @@ spec:
           - name: kavita
           - name: kobodl
           - name: lidarr
+          - name: lms
+          - name: mdns-reflector
           - name: minio
           - name: music-assistant
           - name: navidrome
