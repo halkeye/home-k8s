@@ -1,8 +1,8 @@
 controllers:
   music-assistant:
     strategy: Recreate
-    pod:
-      hostNetwork: true
+    # pod:
+    #   hostNetwork: true
     containers:
       music-assistant:
         image:
@@ -31,10 +31,8 @@ controllers:
               periodSeconds: 5
         resources:
           requests:
-            cpu: 47m
+            cpu: 50m
             memory: 512Mi
-          limits:
-            memory: 1024Mi
 service:
   music-assistant:
     controller: music-assistant
