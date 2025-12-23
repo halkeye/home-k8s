@@ -50,20 +50,16 @@ controllers:
 service:
   main:
     controller: main
+    type: LoadBalancer
     ports:
       http:
+        enabled: true
         port: 9000
-  cli:
-    controller: main
-    ports:
+        protocol: TCP
       cli:
         enabled: true
         port: 9090
         protocol: TCP
-  slimproto:
-    controller: main
-    type: LoadBalancer
-    ports:
       slimproto:
         enabled: true
         port: 3483
