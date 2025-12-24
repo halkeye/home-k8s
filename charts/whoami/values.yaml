@@ -53,20 +53,20 @@ ingress:
     enabled: true
     annotations:
       gethomepage.dev/enabled: 'false'
-      traefik.ingress.kubernetes.io/router.entrypoints: 'websecure'
-      traefik.ingress.kubernetes.io/router.middlewares: 'traefik-ingress-authentik@kubernetescrd'
-      nginx.ingress.kubernetes.io/auth-url: "https://vouch.g4v.dev/_oauth2/validate"
-      nginx.ingress.kubernetes.io/auth-signin: "https://vouch.g4v.dev/_oauth2/login?url=$scheme://$http_host$request_uri&vouch-failcount=$auth_resp_failcount&X-Vouch-Token=$auth_resp_jwt&error=$auth_resp_err"
-      nginx.ingress.kubernetes.io/server-snippet: real_ip_header CF-Connecting-IP;
-      nginx.ingress.kubernetes.io/configuration-snippet: |
-        real_ip_header CF-Connecting-IP;
-      nginx.ingress.kubernetes.io/auth-response-headers: X-Vouch-User
-      nginx.ingress.kubernetes.io/auth-snippet: |
-        proxy_set_header X-Forwarded-Host $http_host;
-        auth_request_set $auth_resp_x_vouch_user $upstream_http_x_vouch_user;
-        auth_request_set $auth_resp_jwt $upstream_http_x_vouch_jwt;
-        auth_request_set $auth_resp_err $upstream_http_x_vouch_err;
-        auth_request_set $auth_resp_failcount $upstream_http_x_vouch_failcount;
+      # traefik.ingress.kubernetes.io/router.entrypoints: 'websecure'
+      # traefik.ingress.kubernetes.io/router.middlewares: 'traefik-ingress-authentik@kubernetescrd'
+      # nginx.ingress.kubernetes.io/auth-url: "https://vouch.g4v.dev/_oauth2/validate"
+      # nginx.ingress.kubernetes.io/auth-signin: "https://vouch.g4v.dev/_oauth2/login?url=$scheme://$http_host$request_uri&vouch-failcount=$auth_resp_failcount&X-Vouch-Token=$auth_resp_jwt&error=$auth_resp_err"
+      # nginx.ingress.kubernetes.io/server-snippet: real_ip_header CF-Connecting-IP;
+      # nginx.ingress.kubernetes.io/configuration-snippet: |
+      #   real_ip_header CF-Connecting-IP;
+      # nginx.ingress.kubernetes.io/auth-response-headers: X-Vouch-User
+      # nginx.ingress.kubernetes.io/auth-snippet: |
+      #   proxy_set_header X-Forwarded-Host $http_host;
+      #   auth_request_set $auth_resp_x_vouch_user $upstream_http_x_vouch_user;
+      #   auth_request_set $auth_resp_jwt $upstream_http_x_vouch_jwt;
+      #   auth_request_set $auth_resp_err $upstream_http_x_vouch_err;
+      #   auth_request_set $auth_resp_failcount $upstream_http_x_vouch_failcount;
     hosts:
       - host: 'whoami.g4v.dev'
         paths:
