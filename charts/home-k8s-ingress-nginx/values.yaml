@@ -24,7 +24,7 @@ controller:
   allowSnippetAnnotations: true
 
   config:
-    enable-real-ip: "true"
+    enable-real-ip: "false"
     annotations-risk-level: Critical
     # https://github.com/kubernetes/ingress-nginx/issues/11176
     strict-validate-path-type: "false"

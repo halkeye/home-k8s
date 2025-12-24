@@ -27,5 +27,5 @@ patches:
 resources:
   - https://raw.githubusercontent.com/isindir/sops-secrets-operator/147febf336f14bb2546eec020680ce1b2a2e96f1/config/crd/bases/isindir.github.com_sopssecrets.yaml
 
-generators:
-  - ./secret-generator.yaml
+# generators:
+#   - ./secret-generator.yaml

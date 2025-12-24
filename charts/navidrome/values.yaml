@@ -30,8 +30,10 @@ controllers:
           ND_ENABLETRANSCODINGCONFIG: "true"
           ND_PORT: 8080
           ND_PROMETHEUS_ENABLED: "true"
-          ND_REVERSEPROXYUSERHEADER: X-authentik-username
+          ND_REVERSEPROXYUSERHEADER: X-Vouch-User
           ND_REVERSEPROXYWHITELIST: 0.0.0.0/0
+          ND_EXTAUTH_USERHEADER: X-Vouch-User
+          ND_EXTAUTH_TRUSTEDSOURCES: "0.0.0.0/0"
           ND_SESSIONTIMEOUT: 24h
           ND_LASTFM_ENABLED: "true"
         envFrom:

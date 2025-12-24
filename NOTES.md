@@ -13,3 +13,18 @@ save
 exit
 ```
 
+
+## Broken metrics
+
+anime-radarr
+anime-sonarr
+lidarr
+minio
+blackbox-exporter
+prometheus-kube-controller-manager
+prometheus-kube-etcd
+prometheus-kube-scheduler
+sabnzbd-exporter
+pihole-exporter
+sops-secret-opterator-metrics-monitor
+upackerr
