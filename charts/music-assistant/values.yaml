@@ -55,6 +55,11 @@ service:
         port: 8097
         protocol: TCP
         targetPort: 8097
+      stream2:
+        enabled: true
+        port: 8098
+        protocol: TCP
+        targetPort: 8098
 ingress:
   main:
     enabled: true
