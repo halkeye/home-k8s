@@ -12,4 +12,4 @@ podAnnotations:
 existingSecret: do-k8s-ext-postgres-operator-secret
 image:
   repository: ghcr.io/movetokube/postgres-operator
-  tag: 2.3.0
+  tag: 2.4.0
