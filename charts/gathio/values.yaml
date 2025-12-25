@@ -2,6 +2,8 @@ app-template:
   controllers:
     gathio:
       strategy: Recreate
+      annotations:
+        reloader.stakater.com/auto: 'true'
       containers:
         gathio:
           image:
