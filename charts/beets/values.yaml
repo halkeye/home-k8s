@@ -16,7 +16,7 @@ controllers:
       app:
         image:
           repository: ghcr.io/halkeye/docker-beets
-          tag: 2.3.1.10
+          tag: 2.3.1.11
         env:
           TZ: American/Vancouver
           BETANIN_HOST: 0.0.0.0
@@ -41,11 +41,11 @@ controllers:
           readOnlyRootFilesystem: true
           capabilities: { drop: ["ALL"] }
 service:
-  betanin:
-    controller: main
-    ports:
-      http:
-        port: 80
+  # betanin:
+  #   controller: main
+  #   ports:
+  #     http:
+  #       port: 80
   webui:
     controller: main
     ports:
@@ -68,10 +68,10 @@ persistence:
     type: emptyDir
   tmp:
     type: emptyDir
-  betanin-data:
-    type: emptyDir
-    globalMounts:
-    - path: /config/.local/share/betanin
+  # betanin-data:
+  #   type: emptyDir
+  #   globalMounts:
+  #   - path: /config/.local/share/betanin
   music:
     type: nfs
     server: 172.16.10.10
@@ -96,9 +96,9 @@ persistence:
       - path: /config/.config/beets/secrets.yaml
         subPath: secrets.yaml
         readOnly: true
-      - path: /config/.config/betanin/config.toml
-        subPath: config.toml
-        readOnly: true
-      - path: /config/.local/share/betanin/secret_key
-        subPath: secret_key
-        readOnly: true
+      # - path: /config/.config/betanin/config.toml
+      #   subPath: config.toml
+      #   readOnly: true
+      # - path: /config/.local/share/betanin/secret_key
+      #   subPath: secret_key
+      #   readOnly: true
