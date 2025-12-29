@@ -95,6 +95,7 @@ spec:
           - name: audiomuse
           - name: autobrr
           - name: bandcampsync
+          - name: beets
           - name: cloudnative-pg
           - name: cross-seed
           - name: esphome

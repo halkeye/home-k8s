@@ -21,6 +21,7 @@ controllers:
           TZ: American/Vancouver
           BETANIN_HOST: 0.0.0.0
           BETANIN_PORT: 80
+          BEETSDIR: /config/.config/beets
         probes:
           liveness:
             enabled: false
