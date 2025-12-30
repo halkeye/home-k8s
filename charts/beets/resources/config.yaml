@@ -65,16 +65,16 @@ import:
   hardlink: false
   reflink: false
   delete: false
-  resume: ask
-  incremental: false
+  resume: no
+  incremental: true
   incremental_skip_later: false
   from_scratch: false
   quiet_fallback: skip
-  none_rec_action: ask
+  none_rec_action: skip
   timid: false
   log:
   autotag: true
-  quiet: false
+  quiet: true
   singletons: false
   default_action: apply
   detail: false
@@ -82,7 +82,7 @@ import:
   group_albums: false
   pretend: false
   search_ids: []
-  duplicate_action: ask
+  duplicate_action: keep
   bell: false
   set_fields: {}
 
