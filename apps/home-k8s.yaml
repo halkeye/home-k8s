@@ -106,6 +106,7 @@ spec:
           - name: kavita
           - name: kobodl
           - name: lidarr
+          - name: mariadb-operator
           - name: mdns-reflector
           - name: minio
           - name: music-assistant
