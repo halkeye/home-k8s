@@ -1,0 +1,70 @@
+---
+metrics:
+  enabled: true
+webhook:
+  cert:
+    certManager:
+      enabled: true
+
+mariadb:
+  rootPasswordSecretKeyRef:
+    name: mariadb
+    key: root-password
+  storage:
+    size: 10Gi
+  replicas: 3
+  galera:
+    enabled: true
+databases:
+  - name: mariadb
+    characterSet: utf8
+    collate: utf8_general_ci
+    cleanupPolicy: Delete
+    requeueInterval: 10h
+    retryInterval: 30s
+users:
+  - name: mariadb
+    passwordSecretKeyRef:
+      name: mariadb
+      key: password
+    host: "%"
+    cleanupPolicy: Delete
+    requeueInterval: 10h
+    retryInterval: 30s
+grants:
+  - name: mariadb
+    privileges:
+      - "ALL PRIVILEGES"
+    database: "*"
+    table: "*"
+    username: mariadb
+    grantOption: true
+    host: "%"
+    cleanupPolicy: Delete
+    requeueInterval: 10h
+    retryInterval: 30s
+physicalBackups:
+  - name: physicalbackup
+    schedule:
+      cron: "0 0 * * *"
+      suspend: false
+      immediate: true
+    compression: gzip
+    maxRetention: 720h
+    storage:
+      s3:
+        bucket: physicalbackups
+        prefix: mariadb
+        endpoint: minio.minio.svc.cluster.local:9000
+        region:  us-east-1
+        accessKeyIdSecretKeyRef:
+          name: minio
+          key: access-key-id
+        secretAccessKeySecretKeyRef:
+          name: minio
+          key: secret-access-key
+        tls:
+          enabled: true
+          caSecretKeyRef:
+            name: minio-ca
+            key: ca.crt
