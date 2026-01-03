@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    kubernetes.io/tls-acme: "true"
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "*"
+  name: authentik-booklore-overrides
+spec:
+  rules:
+  - host: auth.g4v.dev
+    http:
+      paths:
+      - backend:
+          service:
+            name: authentik-server
+            port:
+              number: 80
+        path: /application/o/booklore/
+        pathType: Prefix
+  tls:
+  - hosts:
+    - auth.g4v.dev
+    secretName: authentik-tls
