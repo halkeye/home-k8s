@@ -89,6 +89,10 @@ persistence:
       - path: /app/data
   tmp:
     type: emptyDir
+  bookdrop:
+    type: emptyDir
+    globalMounts:
+      - path: /bookdrop
   books:
     type: nfs
     server: 172.16.10.10
