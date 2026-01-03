@@ -87,6 +87,8 @@ persistence:
     size: 5Gi
     globalMounts:
       - path: /app/data
+  tmp:
+    type: emptyDir
   books:
     type: nfs
     server: 172.16.10.10
