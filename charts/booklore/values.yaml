@@ -12,7 +12,7 @@ controllers:
         env:
           TZ: America/Vancouver
           USER_ID: "1026"
-          GROUP_ID: "1026"
+          GROUP_ID: "100"
           BOOKLORE_DB_USER: "booklore"
           BOOKLORE_DB_PASS:
             valueFrom:
@@ -80,13 +80,13 @@ ingress:
               identifier: main
               port: http
 persistence:
-  config:
-    enabled: true
-    type: persistentVolumeClaim
-    accessMode: ReadWriteOnce
-    size: 5Gi
-    globalMounts:
-      - path: /app/data
+  # data:
+  #   enabled: true
+  #   type: persistentVolumeClaim
+  #   accessMode: ReadWriteOnce
+  #   size: 5Gi
+  #   globalMounts:
+  #     - path: /app/data
   tmp:
     type: emptyDir
   bookdrop:
@@ -98,4 +98,4 @@ persistence:
     server: 172.16.10.10
     path: /volume1/Downloads/Books.tmp
     globalMounts:
-      - path: /content/books
+      - path: /books
