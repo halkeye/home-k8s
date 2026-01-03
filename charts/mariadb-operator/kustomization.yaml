@@ -5,7 +5,9 @@ helmCharts:
   - name: mariadb-operator-crds
     version: 25.10.3
     repo: https://helm.mariadb.com/mariadb-operator
+    releaseName: mariadb-operator-crds
   - name: mariadb-operator
     version: 25.10.3
     repo: https://helm.mariadb.com/mariadb-operator
     valuesFile: values.yaml
+    releaseName: mariadb-operator
