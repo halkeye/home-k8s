@@ -7,7 +7,7 @@ controllers:
       music-assistant:
         image:
           repository: ghcr.io/music-assistant/server
-          tag: 2.7.2
+          tag: 2.7.3
         env:
           TZ: America/Vancouver
           LOG_LEVEL: "info"
