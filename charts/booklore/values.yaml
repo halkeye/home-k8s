@@ -73,7 +73,7 @@ ingress:
     className: nginx
     enabled: true
     hosts:
-      - host: "books.g4v.dev"
+      - host: "booklore.g4v.dev"
         paths:
           - path: /
             service:
