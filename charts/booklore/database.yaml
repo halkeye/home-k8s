@@ -6,7 +6,7 @@ metadata:
 spec:
   mariaDbRef:
     name: mariadb
-    namespace: storage
+    namespace: mariadb-operator
   passwordSecretKeyRef:
     name: booklore
     key: BOOKLORE_DB_PASS
