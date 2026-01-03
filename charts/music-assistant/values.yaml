@@ -83,6 +83,10 @@ persistence:
     storageClass: longhorn
     globalMounts:
       - path: /data
+  audio:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Audio
   music:
     type: nfs
     server: 172.16.10.10
