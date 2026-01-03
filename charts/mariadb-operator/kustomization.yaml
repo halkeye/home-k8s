@@ -17,3 +17,6 @@ helmCharts:
     repo: https://helm.mariadb.com/mariadb-operator
     valuesFile: cluster-values.yaml
     releaseName: mariadb-cluster
+
+resources:
+  - ./secret.enc.yaml
