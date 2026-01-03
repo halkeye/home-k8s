@@ -10,7 +10,7 @@ controllers:
           # repository: ghcr.io/booklore-app/booklore
           # tag: v1.16.3
           repository: docker.io/halkeye/dev-booklore
-          tag: pr-2122-2
+          tag: pr-2122-3
         env:
           TZ: America/Vancouver
           USER_ID: "1026"
