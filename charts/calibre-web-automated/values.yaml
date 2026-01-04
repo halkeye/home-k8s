@@ -18,10 +18,10 @@ controllers:
           S6_READ_ONLY_ROOT: 1
           PUID: 1026
           PGID: 100
-        # command:
-        #   - /bin/sh
-        #   - -c
-        #   - sleep 99d
+        command:
+          - /bin/sh
+          - -c
+          - sleep 99d
         securityContext:
           allowPrivilegeEscalation: true
           readOnlyRootFilesystem: false
