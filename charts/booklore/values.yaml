@@ -11,6 +11,10 @@ controllers:
           # tag: v1.16.3
           repository: docker.io/halkeye/dev-booklore
           tag: pr-2122-5
+        command:
+          - sh
+          - -c
+          - "chown -R 1026:100 /app/data; /start.sh"
         env:
           TZ: America/Vancouver
           USER_ID: "1026"
@@ -82,13 +86,13 @@ ingress:
               identifier: main
               port: http
 persistence:
-  # data:
-  #   enabled: true
-  #   type: persistentVolumeClaim
-  #   accessMode: ReadWriteOnce
-  #   size: 5Gi
-  #   globalMounts:
-  #     - path: /app/data
+  data:
+    enabled: true
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    size: 5Gi
+    globalMounts:
+      - path: /app/data
   tmp:
     type: emptyDir
   bookdrop:
