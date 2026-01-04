@@ -18,6 +18,10 @@ controllers:
           S6_READ_ONLY_ROOT: 1
           PUID: 1026
           PGID: 100
+        command:
+          - /bin/sh
+          - -c
+          - sleep 99d
         securityContext:
           allowPrivilegeEscalation: true
           readOnlyRootFilesystem: false
@@ -31,21 +35,21 @@ controllers:
               - SETGID
               - FOWNER
               - DAC_OVERRIDE
-        probes:
-          liveness: &probes
-            enabled: true
-            custom: true
-            spec:
-              httpGet:
-                path: /login
-                port: 8083
-              initialDelaySeconds: 30
-              periodSeconds: 10
-              timeoutSeconds: 1
-              failureThreshold: 3
-          readiness: *probes
-          startup:
-            enabled: false
+        # probes:
+        #   liveness: &probes
+        #     enabled: true
+        #     custom: true
+        #     spec:
+        #       httpGet:
+        #         path: /login
+        #         port: 8083
+        #       initialDelaySeconds: 30
+        #       periodSeconds: 10
+        #       timeoutSeconds: 1
+        #       failureThreshold: 3
+        #   readiness: *probes
+        #   startup:
+        #     enabled: false
         resources:
           limits:
             memory: 4Gi

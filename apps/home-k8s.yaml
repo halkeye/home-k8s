@@ -97,6 +97,7 @@ spec:
           - name: bandcampsync
           - name: beets
           - name: booklore
+          - name: calibre-web-automated
           - name: cloudnative-pg
           - name: cross-seed
           - name: esphome
