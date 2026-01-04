@@ -56,7 +56,7 @@ controllers:
       securityContext:
         # runAsUser: 1026
         # runAsGroup: 100
-        runAsNonRoot: true
+        # runAsNonRoot: true
         fsGroup: 100
         fsGroupChangePolicy: OnRootMismatch
 service:
