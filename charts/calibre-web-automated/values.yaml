@@ -16,6 +16,8 @@ controllers:
           NETWORK_SHARE_MODE: true
           S6_YES_I_WANT_A_WORLD_WRITABLE_RUN_BECAUSE_KUBERNETES: 1
           S6_READ_ONLY_ROOT: 1
+          PUID: 1026
+          PGID: 100
         securityContext:
           allowPrivilegeEscalation: true
           readOnlyRootFilesystem: false
@@ -52,8 +54,8 @@ controllers:
             memory: 256Mi
     pod:
       securityContext:
-        runAsUser: 1026
-        runAsGroup: 100
+        # runAsUser: 1026
+        # runAsGroup: 100
         runAsNonRoot: true
         fsGroup: 100
         fsGroupChangePolicy: OnRootMismatch
