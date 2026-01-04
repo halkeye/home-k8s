@@ -1,0 +1,99 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  main:
+    replicas: 1
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      main:
+        image:
+          repository: ghcr.io/crocodilestick/calibre-web-automated
+          tag: V3.1.4
+        env:
+          TZ: America/Vancouver
+          CACHE_DIR: /cache
+          # Skips/soft fail on privileged actions that shouldn't exist anyways
+          NETWORK_SHARE_MODE: true
+          S6_YES_I_WANT_A_WORLD_WRITABLE_RUN_BECAUSE_KUBERNETES: 1
+          S6_READ_ONLY_ROOT: 1
+        securityContext:
+          allowPrivilegeEscalation: true
+          readOnlyRootFilesystem: false
+          capabilities:
+            drop:
+              - ALL
+            add:
+              # S6
+              - CHOWN
+              - SETUID
+              - SETGID
+              - FOWNER
+              - DAC_OVERRIDE
+        probes:
+          liveness: &probes
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /login
+                port: 8083
+              initialDelaySeconds: 30
+              periodSeconds: 10
+              timeoutSeconds: 1
+              failureThreshold: 3
+          readiness: *probes
+          startup:
+            enabled: false
+        resources:
+          limits:
+            memory: 4Gi
+          requests:
+            cpu: 50m
+            memory: 256Mi
+    pod:
+      securityContext:
+        runAsUser: 1026
+        runAsGroup: 100
+        runAsNonRoot: true
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 8083
+ingress:
+  main:
+    className: nginx
+    enabled: true
+    hosts:
+      - host: "calibre-web-automated.g4v.dev"
+        paths:
+          - path: /
+            service:
+              identifier: main
+              port: http
+persistence:
+  config:
+    enabled: true
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    size: 5Gi
+    globalMounts:
+      - path: /config
+  tmpfs:
+    type: emptyDir
+    globalMounts:
+      - path: /cache
+        subPath: cache
+      - path: /tmp
+        subPath: tmp
+      - path: /run
+        subPath: run
+  books:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Downloads/Books.tmp
+    globalMounts:
+      - path: /calibre-library
