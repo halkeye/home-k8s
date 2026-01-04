@@ -8,7 +8,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/crocodilestick/calibre-web-automated
-          tag: V3.1.4
+          tag: dev@sha256:0f55d9bd8f3523f60a4d790544f6fca888919fc5bdc8e03e938a66c30c3156ee
         env:
           TZ: America/Vancouver
           CACHE_DIR: /cache
