@@ -102,6 +102,6 @@ persistence:
   books:
     type: nfs
     server: 172.16.10.10
-    path: /volume1/Downloads/Books.tmp
+    path: /volume1/Books
     globalMounts:
       - path: /books
