@@ -80,6 +80,12 @@ ingress:
             service:
               identifier: main
               port: http
+      - host: "cwa.g4v.dev"
+        paths:
+          - path: /
+            service:
+              identifier: main
+              port: http
 persistence:
   config:
     enabled: true
