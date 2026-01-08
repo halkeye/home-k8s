@@ -27,8 +27,8 @@ controllers:
           VIKUNJA_AUTH_LOCAL: false
           VIKUNJA_METRICS_ENABLED: true
           VIKUNJA_MAILER_ENABLED: true
-          VIKUNJA_MAILER_HOST: postfix-mailgun-relay.smtp.svc.cluster.local
-          VIKUNJA_MAILER_PORT: 587
+          VIKUNJA_MAILER_HOST: smtp-relay.smtp-relay.svc.cluster.local
+          VIKUNJA_MAILER_PORT: 2525
           VIKUNJA_MAILER_FROMEMAIL: "noreply@g4v.dev"
           VIKUNJA_MAILER_SKIPTLSVERIFY: true
           VIKUNJA_KEYVALUE_TYPE: "memory"

@@ -67,8 +67,8 @@ matrix-synapse:
       enable_notifs: false
       notif_from: 'Your Friendly %(app)s homeserver <noreply@g4v.dev>'
       client_base_url: 'http://chat.g4v.dev'
-      smtp_host: postfix-mailgun-relay.smtp.svc.cluster.local
-      smtp_port: 587
+      smtp_host: smtp-relay.smtp-relay.svc.cluster.local
+      smtp_port: 2525
     max_upload_size: 500M
 
     # Maximum number of pixels that will be thumbnailed
