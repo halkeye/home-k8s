@@ -59,7 +59,7 @@ app-template:
     configmap:
       enabled: true
       type: secret
-      name: "{{ .Release.Name }}-secret"
+      name: "gathio"
       globalMounts:
         - path: /app/config/config.toml
           readOnly: true
