@@ -61,6 +61,7 @@ spec:
           - list:
               elements:
                 - appname: redis-operator
+                - appname: smtp-relay
                 - appname: sops-secrets-operator
   template:
     metadata:
