@@ -12,7 +12,7 @@ controllers:
           tag: 0.8.1
         env:
           TZ: America/Vancouver
-          # DEBUG: "yes"
+          DEBUG: "no"
         envFrom:
           - secretRef:
               name: smtp-relay
