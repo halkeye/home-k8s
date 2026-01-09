@@ -9,7 +9,7 @@ controllers:
       01-init:
         image:
           repository: ghcr.io/halkeye/docker-mautrix-gmessages
-          tag: "v0.2511.0.44"
+          tag: "v0.2511.0.45"
         env:
           TZ: America/Vancouver
           MAUTRIX_DB_URI:
@@ -28,7 +28,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/halkeye/docker-mautrix-gmessages
-          tag: "v0.2511.0.44"
+          tag: "v0.2511.0.45"
         env:
           TZ: America/Vancouver
           MAUTRIX_DB_URI:
