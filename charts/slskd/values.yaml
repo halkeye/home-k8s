@@ -8,7 +8,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/slskd/slskd
-          tag: 0.24.1
+          tag: 0.24.2
         env:
           TZ: America/Vancouver
           DOTNET_BUNDLE_EXTRACT_BASE_DIR: /tmp/.net
