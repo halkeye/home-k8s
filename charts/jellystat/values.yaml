@@ -7,7 +7,7 @@ controllers:
       jellystat:
         image:
           repository: docker.io/cyfershepard/jellystat
-          tag: unstable@sha256:96da1f9ba1f009564f0e4b07aedbb7a31517989159e1c364ddf648165a63e7b9
+          tag: unstable@sha256:0d7228826143c94d03fee2c9080f78dcaef6f085d890824b2b350b5493feb4ab
         env:
           TZ: America/Vancouver
           POSTGRES_DB:
