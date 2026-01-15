@@ -103,6 +103,8 @@ persistence:
         subPath: tmp
       - path: /run
         subPath: run
+      - path: /cwa-book-ingest
+        subPath: cwa-book-ingest
   books:
     type: nfs
     server: 172.16.10.10
