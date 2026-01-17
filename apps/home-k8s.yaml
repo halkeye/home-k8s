@@ -116,6 +116,7 @@ spec:
           - name: netbootxyz
           - name: nortverse-downloader
           - name: ollama
+          - name: node-red
           - name: openbooks
           - name: pinchflat
           - name: postgres-do-k8s-backup

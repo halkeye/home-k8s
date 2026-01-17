@@ -13,9 +13,9 @@ module.exports = {
       strategy: require("passport-openidconnect").Strategy,
       options: {
         issuer: "https://auth.g4v.dev",
-        authorizationURL: "https://auth.g4v.dev/authorize",
-        tokenURL: "https://auth.g4v.dev/api/oidc/token",
-        userInfoURL: "https://auth.g4v.dev/api/oidc/userinfo",
+        authorizationURL: "https://auth.g4v.dev/application/o/authorize/",
+        tokenURL: "https://auth.g4v.dev/application/o/token/",
+        userInfoURL: "https://auth.g4v.dev/application/o/userinfo/",
         clientID: process.env.NODE_RED_OAUTH_CLIENT_ID,
         clientSecret: process.env.NODE_RED_OAUTH_CLIENT_SECRET,
         callbackURL: "https://node-red.g4v.dev/auth/strategy/callback",
