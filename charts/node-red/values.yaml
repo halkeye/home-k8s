@@ -21,7 +21,9 @@ controllers:
           - sh
           - -c
           - |-
-              npm install passport-openidconnect
+              cd /data
+              npm init -y
+              npm install --unsafe-perm --no-update-notifier --no-fund passport-openidconnect
     containers:
       app:
         image:
