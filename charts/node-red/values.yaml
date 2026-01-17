@@ -1,0 +1,69 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+defaultPodOptions:
+  securityContext:
+    runAsUser: 1026
+    runAsGroup: 100
+    runAsNonRoot: true
+    fsGroup: 100
+    fsGroupChangePolicy: "OnRootMismatch"
+
+controllers:
+  node-red:
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      app:
+        image:
+          repository: ghcr.io/node-red/node-red
+          tag: 4.1.3
+        env:
+          TZ: America/Vancouver
+        envFrom:
+          - secretRef:
+              name: node-red
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: false
+          capabilities: { drop: ["ALL"] }
+        resources:
+          requests:
+            cpu: 10m
+          limits:
+            memory: 512Mi
+service:
+  app:
+    controller: node-red
+    ports:
+      http:
+        port: 1880
+ingress:
+  app:
+    hosts:
+      - host: node-red.g4v.dev
+        paths:
+          - path: /
+            service:
+              identifier: app
+              port: http
+
+persistence:
+  data:
+    enabled: true
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    size: 50Gi
+    globalMounts:
+      - path: /data
+  tmpfs:
+    type: emptyDir
+    globalMounts:
+      - path: /tmp
+        subPath: tmp
+  settings:
+    type: configMap
+    name: node-red
+    globalMounts:
+      - path: /data/settings.js
+        subPath: settings.js
+        readOnly: true
