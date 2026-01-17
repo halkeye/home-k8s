@@ -17,7 +17,6 @@ spec:
           # - { namespace: matrix, name: matrix-authentication-service }
           - { namespace: matrix, name: mautrix-googlechat }
           - { namespace: matrix, name: mautrix-linkedin }
-          - { namespace: matrix, name: mautrix-telegram }
           - { namespace: matrix, name: mautrix-whatsapp }
           - { namespace: matrix, name: synapse }
           - { namespace: matrix, name: element-web }
@@ -101,7 +100,6 @@ spec:
           - name: memos
           - name: metrics-server
           - name: microbin
-          - name: mindustry
           - name: miniflux
           - name: phanpy
           - name: photoprism
