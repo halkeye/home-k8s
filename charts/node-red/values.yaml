@@ -12,6 +12,16 @@ controllers:
   node-red:
     annotations:
       reloader.stakater.com/auto: "true"
+    initContainers:
+      init:
+        image:
+          repository: ghcr.io/node-red/node-red
+          tag: 4.1.3
+        command:
+          - sh
+          - -c
+          - |-
+              npm install passport-openidconnect
     containers:
       app:
         image:
