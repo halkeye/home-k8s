@@ -6,7 +6,7 @@ app-template:
         main:
           image:
             repository: ghcr.io/etkecc/synapse-admin
-            tag: v0.10.3-etke27
+            tag: v0.11.1-etke52
   ingress:
     main:
       enabled: true
