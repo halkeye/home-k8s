@@ -42,3 +42,11 @@ service:
     ports:
       http:
         port: 80
+persistence:
+  config:
+    type: configMap
+    name: synapse-admin
+    globalMounts:
+      - path: /app/config.json
+        subPath: config.json
+        readOnly: true
