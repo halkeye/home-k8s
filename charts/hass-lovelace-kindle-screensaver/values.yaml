@@ -7,7 +7,7 @@ controllers:
           tag: 1.0.15
         env:
           TZ: America/Vancouver
-          HA_BASE_URL: http://172.16.10.107:8123
+          HA_BASE_URL: http://homeassistant.dhcp.home:8123
           HA_SCREENSHOT_URL: /dashboard-eink/screensaver?kiosk
           RENDERING_SCREEN_HEIGHT: "758"
           RENDERING_SCREEN_WIDTH: "1024"
