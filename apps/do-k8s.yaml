@@ -21,7 +21,6 @@ spec:
           - { namespace: matrix, name: mautrix-whatsapp }
           - { namespace: matrix, name: synapse }
           - { namespace: matrix, name: element-web }
-          - name: synapse-admin
 
           # Apps
           - { namespace: bitwarden, name: vaultwarden }
@@ -108,6 +107,7 @@ spec:
           - name: photoprism
           - name: searxng
           - name: stirling-pdf
+          - name: synapse-admin
           - name: teamspeak
           - name: umami
           - name: vikunja
