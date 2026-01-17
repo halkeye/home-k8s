@@ -12,7 +12,7 @@ module.exports = {
       icon: "fa-cloud",
       strategy: require("passport-openidconnect").Strategy,
       options: {
-        issuer: "https://auth.g4v.dev",
+        issuer: "https://auth.g4v.dev/application/o/node-red/",
         authorizationURL: "https://auth.g4v.dev/application/o/authorize/",
         tokenURL: "https://auth.g4v.dev/application/o/token/",
         userInfoURL: "https://auth.g4v.dev/application/o/userinfo/",
