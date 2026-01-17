@@ -71,7 +71,8 @@
         "/docker-n8n/",
         "/docker-yourls/",
         "/kavita/",
-        "/searxng/"
+        "/searxng/",
+        "/synapse-admin/"
       ]
     },
     {
