@@ -7,8 +7,8 @@
 #     - address=/odin.gavinmogan.com/172.16.10.2
 #     - address=/synology.dhcp.home/172.16.10.10
 #     - address=/mqtt.int.g4v.dev/172.16.10.107
-#     - address=/ubnt/68.183.248.183
-#     - address=/unifi/68.183.248.183
+#     - address=/ubnt/165.227.241.29
+#     - address=/unifi/165.227.241.29
 
 persistentVolumeClaim:
   enabled: true

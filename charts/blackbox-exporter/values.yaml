@@ -50,7 +50,7 @@ serviceMonitor:
   targets:
     # Inform IP
     - name: informer-ip
-      url: 68.183.248.183
+      url: 165.227.241.29
       module: icmp
     # Nas
     - name: nas
