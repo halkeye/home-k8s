@@ -40,6 +40,7 @@ controllers:
     cronjob:
       ttlSecondsAfterFinished: 43200
       schedule: "0 3 * * *" # Every day at 3am
+      concurrencyPolicy: Forbid
       successfulJobsHistory: 1
       failedJobsHistory: 1
       backoffLimit: 1
@@ -48,6 +49,7 @@ controllers:
         image:
           repository: registry.gitlab.com/mb-saces/synatainer
           tag: 0.4.4
+        restartPolicy: Never
         envFrom:
           - secretRef:
               name: synatainer-secret
@@ -69,6 +71,7 @@ controllers:
       reloader.stakater.com/auto: 'true'
     cronjob:
       ttlSecondsAfterFinished: 43200
+      concurrencyPolicy: Forbid
       schedule: "0 5 * * 1" # Every monday at 5am
       successfulJobsHistory: 1
       failedJobsHistory: 1
@@ -78,6 +81,7 @@ controllers:
         image:
           repository: registry.gitlab.com/mb-saces/synatainer
           tag: 0.4.4
+        restartPolicy: Never
         envFrom:
           - secretRef:
               name: synatainer-secret
@@ -103,6 +107,7 @@ controllers:
     cronjob:
       ttlSecondsAfterFinished: 43200
       schedule: "0 4 1 * *" # First day of every month at 4:00 am
+      concurrencyPolicy: Forbid
       successfulJobsHistory: 1
       failedJobsHistory: 1
       backoffLimit: 1
@@ -111,6 +116,7 @@ controllers:
         image:
           repository: registry.gitlab.com/mb-saces/synatainer
           tag: 0.4.4
+        restartPolicy: Never
         envFrom:
           - secretRef:
               name: synatainer-secret
