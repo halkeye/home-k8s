@@ -16,7 +16,7 @@ controllers:
       app:
         image:
           repository: ghcr.io/n8n-io/n8n
-          tag: 1.123.16
+          tag: 2.4.4
         env:
           TZ: America/Vancouver
           GENERIC_TIMEZONE: America/Vancouver
