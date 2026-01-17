@@ -33,7 +33,6 @@ spec:
           - name: not-the-plants
           - name: planka
           - name: string-is
-          - name: tautulli
           - name: unifi
   template:
     metadata:
