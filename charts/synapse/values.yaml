@@ -104,8 +104,6 @@ matrix-synapse:
     app_service_config_files:
       - /synapse/config/appservices/whatsapp-registration.yaml
       - /synapse/config/appservices/whatsapp-doublepuppet.yaml
-      - /synapse/config/appservices/telegram-registration.yaml
-      - /synapse/config/appservices/telegram-doublepuppet.yaml
       - /synapse/config/appservices/googlechat-registration.yaml
       - /synapse/config/appservices/googlechat-doublepuppet.yaml
       - /synapse/config/appservices/signal-registration.yaml

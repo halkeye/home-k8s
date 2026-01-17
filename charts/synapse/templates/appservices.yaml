@@ -127,31 +127,6 @@ stringData:
     rate_limited: false
     sender_localpart: d31ZSuzGQo2rqdgWfu4VZEBEbC0KdEoz4Tc8zcPjADRzCObYOiOSbF6Q5oAZBPgU
     url: null
-  telegram-registration.yaml: |
-    as_token: {{ .Values.extraSecrets.telegram_registration_as_token }}
-    hs_token: {{ .Values.extraSecrets.telegram_registration_hs_token }}
-    id: telegram
-    namespaces:
-      aliases:
-      - exclusive: true
-        regex: '#telegram_.+:g4v.dev'
-      users:
-      - exclusive: true
-        regex: '@telegram_.+:g4v.dev'
-    rate_limited: false
-    sender_localpart: telegrambot
-    url: http://mautrix-telegram.matrix.svc.cluster.local:29317
-  telegram-doublepuppet.yaml: |
-    as_token: {{ .Values.extraSecrets.telegram_doublepuppet_as_token }}
-    hs_token: {{ .Values.extraSecrets.telegram_doublepuppet_hs_token }}
-    id: telegram-doublepuppet
-    namespaces:
-      users:
-      - exclusive: false
-        regex: '@.*:g4v\.dev'
-    rate_limited: false
-    sender_localpart: d123c923-f409-40dd-b3af-bdee3123999a
-    url: null
   whatsapp-registration.yaml: |
     as_token: {{ .Values.extraSecrets.whatsapp_registration_as_token }}
     hs_token: {{ .Values.extraSecrets.whatsapp_registration_hs_token }}
