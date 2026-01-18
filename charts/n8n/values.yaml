@@ -41,6 +41,7 @@ controllers:
           OIDC_REDIRECT_URI: https://n8n.g4v.dev/auth/oidc/callback
           N8N_ADDITIONAL_NON_UI_ROUTES: auth
           EXTERNAL_FRONTEND_HOOKS_URLS: /assets/oidc-frontend-hook.js
+          N8N_PROXY_HOPS: "1"
           N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: false
           N8N_PROTOCOL: "https"
           N8N_PORT: 8080
