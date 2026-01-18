@@ -45,6 +45,7 @@ controllers:
           N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: false
           N8N_PROTOCOL: "https"
           N8N_PORT: 8080
+          WEBHOOK_URL: https://n8n.g4v.dev/
           N8N_HOST: n8n.g4v.dev
           N8N_LOG_LEVEL: info
           N8N_LOG_OUTPUT: console
