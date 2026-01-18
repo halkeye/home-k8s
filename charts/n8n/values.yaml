@@ -21,6 +21,7 @@ controllers:
           - sh
           - -c
           - |-
+              mkdir -p /home/node/.n8n/hooks/
               test -e /home/node/.n8n/hooks/n8n-hooks.js || \
                 wget -O /home/node/.n8n/hooks/n8n-hooks.js https://raw.githubusercontent.com/cweagans/n8n-oidc/f2961d6c6ac103989f4920523b6d3faad7547bc2/hooks.js
     containers:
