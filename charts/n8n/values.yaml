@@ -12,6 +12,17 @@ controllers:
   n8n:
     annotations:
       reloader.stakater.com/auto: "true"
+    initContainers:
+      init:
+        image:
+          repository: ghcr.io/n8n-io/n8n
+          tag: 2.4.4
+        command:
+          - sh
+          - -c
+          - |-
+              test -e /home/node/.n8n/hooks/n8n-hooks.js || \
+                wget --fail -O /home/node/.n8n/hooks/n8n-hooks.js https://raw.githubusercontent.com/cweagans/n8n-oidc/f2961d6c6ac103989f4920523b6d3faad7547bc2/hooks.js
     containers:
       app:
         image:
@@ -24,6 +35,11 @@ controllers:
           EXECUTIONS_DATA_PRUNE: true
           EXECUTIONS_DATA_MAX_AGE: 7
           EXECUTIONS_DATA_PRUNE_MAX_COUNT: 50000
+          EXTERNAL_HOOK_FILES: /home/node/.n8n/hooks/n8n-hooks.js
+          OIDC_ISSUER_URL: https://auth.g4v.dev
+          OIDC_REDIRECT_URI: https://n8n.g4v.dev/auth/oidc/callback
+          N8N_ADDITIONAL_NON_UI_ROUTES: auth
+          EXTERNAL_FRONTEND_HOOKS_URLS: /assets/oidc-frontend-hook.js
           N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: false
           N8N_PROTOCOL: "https"
           N8N_PORT: 8080
