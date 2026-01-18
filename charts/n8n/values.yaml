@@ -41,11 +41,12 @@ controllers:
           OIDC_REDIRECT_URI: https://n8n.g4v.dev/auth/oidc/callback
           N8N_ADDITIONAL_NON_UI_ROUTES: auth
           EXTERNAL_FRONTEND_HOOKS_URLS: /assets/oidc-frontend-hook.js
+          WEBHOOK_URL: https://n8n.g4v.dev/
+          WEBHOOK_TUNNEL_URL: https://n8n.g4v.dev/
           N8N_PROXY_HOPS: "1"
           N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: false
           N8N_PROTOCOL: "https"
-          WEBHOOK_URL: https://n8n.g4v.dev/
-          N8N_HOST: n8n.g4v.dev
+          N8N_HOST: 0.0.0.0
           N8N_LOG_LEVEL: info
           N8N_LOG_OUTPUT: console
           N8N_RUNNERS_ENABLED: true
