@@ -1,0 +1,24 @@
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: n8n
+  annotations:
+    postgres.db.movetokube.com/instance: postgres17-rw
+spec:
+  role: n8n
+  database: n8n
+  secretName: n8n-db
+  privileges: OWNER
+  secretTemplate:
+    HOST_NO_PORT: "{{ .Hostname }}"
+    PORT: "{{ .Port }}"
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: n8n
+  annotations:
+    postgres.db.movetokube.com/instance: postgres17-rw
+spec:
+  database: n8n
+  dropOnDelete: false
