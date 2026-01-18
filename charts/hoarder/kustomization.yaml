@@ -18,3 +18,20 @@ helmCharts:
 
 resources:
   - ./secret.enc.yaml
+
+configMapGenerator:
+  - name: litestream-configmap
+    literals:
+      - LITESTREAM_DB_PATH="/data/db.db"
+      - |
+        litestream.yml=
+          dbs:
+            - path: /data/db.db
+              replicas:
+                - url: s3://halkeye-litestream.tor1.digitaloceanspaces.com/hoarder
+            - path: /data/queue.db
+              replicas:
+                - url: s3://halkeye-litestream.tor1.digitaloceanspaces.com/hoarder
+
+components:
+  - ../../components/litestream
