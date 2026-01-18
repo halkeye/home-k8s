@@ -10,7 +10,7 @@ matrix-synapse:
 
   config:
     publicBaseurl: 'https://matrix.g4v.dev'
-    logLevel: DEBUG
+    logLevel: ERROR
     reportStats: true
 
   ingress:
