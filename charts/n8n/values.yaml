@@ -36,7 +36,7 @@ controllers:
           EXECUTIONS_DATA_MAX_AGE: 7
           EXECUTIONS_DATA_PRUNE_MAX_COUNT: 50000
           EXTERNAL_HOOK_FILES: /home/node/.n8n/hooks/n8n-hooks.js
-          OIDC_ISSUER_URL: https://auth.g4v.dev
+          OIDC_ISSUER_URL: https://auth.g4v.dev/application/o/n8n/
           OIDC_REDIRECT_URI: https://n8n.g4v.dev/auth/oidc/callback
           N8N_ADDITIONAL_NON_UI_ROUTES: auth
           EXTERNAL_FRONTEND_HOOKS_URLS: /assets/oidc-frontend-hook.js
