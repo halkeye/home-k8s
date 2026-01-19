@@ -1,16 +1,16 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
   main:
-    replicas: 0
+    replicas: 1
     annotations:
       reloader.stakater.com/auto: "true"
     containers:
       booklore:
         image:
-          # repository: ghcr.io/booklore-app/booklore
-          # tag: v1.16.3
-          repository: docker.io/halkeye/dev-booklore
-          tag: pr-2122-5
+          repository: ghcr.io/booklore-app/booklore
+          tag: v1.17.0
+          # repository: docker.io/halkeye/dev-booklore
+          # tag: pr-2122-5
         command:
           - sh
           - -c
