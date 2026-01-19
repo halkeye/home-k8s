@@ -164,3 +164,7 @@ persistence:
         app:
           - path: /meili_data
             subPath: meilisearch
+  litestream-configmap:
+    type: configMap
+    name: litestream-configmap
+    globalMounts: []
