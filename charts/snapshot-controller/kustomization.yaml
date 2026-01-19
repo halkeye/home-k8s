@@ -11,7 +11,7 @@ generatorOptions:
 
 helmCharts:
   - name: snapshot-controller
-    version: 5.0.1
+    version: 5.0.2
     repo: https://piraeus.io/helm-charts/
     valuesFile: ./values.yaml
     releaseName: snapshot-controller
