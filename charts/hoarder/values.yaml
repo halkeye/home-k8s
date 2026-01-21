@@ -12,6 +12,7 @@ controllers:
   hoarder:
     annotations:
       reloader.stakater.com/auto: "true"
+      litestream: enabled
     containers:
       app:
         image:

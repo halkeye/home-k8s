@@ -13,6 +13,7 @@ controllers:
   navidrome:
     annotations:
       reloader.stakater.com/auto: "true"
+      litestream: enabled
     containers:
       navidrome:
         image:
