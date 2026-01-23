@@ -9,6 +9,7 @@ controllers:
           tag: latest@sha256:58d772ec4e42092c0d57d9b9fa45b947d305656fdde6b61fc0c42efefcb164a3
         env:
           TZ: America/Vancouver
+          IGNORES_FILE: /ignores/ignores.txt
         command:
           - bandcampsync-service
         securityContext:
@@ -36,6 +37,13 @@ persistence:
     enabled: true
     type: secret
     name: 'bandcampsync-secret'
+  ignores:
+    enabled: true
+    suffix: config
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    storageClass: nas-apps
+    size: 1Gi
   downloads:
     type: nfs
     server: 172.16.10.10
