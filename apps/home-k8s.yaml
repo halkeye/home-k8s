@@ -113,7 +113,6 @@ spec:
           - name: minio
           - name: music-assistant
           - name: n8n
-          - name: navidrome
           - name: netbootxyz
           - name: node-red
           - name: nortverse-downloader
