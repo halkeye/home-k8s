@@ -7,7 +7,7 @@ controllers:
       searxng:
         image:
           repository: docker.io/searxng/searxng
-          tag: 2026.1.20-410996df9
+          tag: 2026.1.23-c97d4d9b6
         # command: ['uwsgi', '--master', '--http-socket', '0.0.0.0:8080', '/usr/local/searxng/dockerfiles/uwsgi.ini']
         env:
           BASE_URL: https://search.g4v.dev
