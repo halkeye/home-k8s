@@ -73,6 +73,8 @@ ingress:
   main:
     className: nginx
     enabled: true
+    annotations:
+      nginx.ingress.kubernetes.io/proxy-body-size: '1G'
     hosts:
       - host: "calibre-web-automated.g4v.dev"
         paths:
