@@ -1,0 +1,12 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+helmCharts:
+  - name: flannel
+    version: v0.28.0
+    repo: https://flannel-io.github.io/flannel/
+    valuesFile: values.yaml
+    releaseName: kube-flannel 
+
