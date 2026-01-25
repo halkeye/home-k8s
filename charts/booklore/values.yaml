@@ -8,7 +8,7 @@ controllers:
       booklore:
         image:
           repository: ghcr.io/booklore-app/booklore
-          tag: v1.18.4
+          tag: v1.18.5
           # repository: docker.io/halkeye/dev-booklore
           # tag: pr-2122-5
         command:
