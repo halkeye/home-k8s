@@ -7,10 +7,10 @@ controllers:
     containers:
       booklore:
         image:
-          # repository: ghcr.io/booklore-app/booklore
-          # tag: v1.18.5
-          repository: docker.io/halkeye/dev-booklore
-          tag: pr-test-1
+          repository: ghcr.io/booklore-app/booklore
+          tag: v1.18.5
+          # repository: docker.io/halkeye/dev-booklore
+          # tag: pr-test-1
         command:
           - sh
           - -c
