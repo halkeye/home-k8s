@@ -11,7 +11,7 @@ generatorOptions:
 
 helmCharts:
   - name: prometheus-blackbox-exporter
-    version: 11.7.0
+    version: 11.7.1
     repo: https://prometheus-community.github.io/helm-charts
     valuesFile: values.yaml
     releaseName: blackbox-exporter
