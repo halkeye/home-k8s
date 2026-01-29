@@ -84,7 +84,7 @@ extra_agent_args: >-
   {{ extra_args }}
 
 # image tag for kube-vip
-kube_vip_tag_version: "v1.0.3" # renovate: datasource=github-releases depName=kube-vip/kube-vip
+kube_vip_tag_version: "v1.0.4" # renovate: datasource=github-releases depName=kube-vip/kube-vip
 
 # tag for kube-vip-cloud-provider manifest
 # kube_vip_cloud_provider_tag_version: "main"
