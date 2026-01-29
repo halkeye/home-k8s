@@ -79,7 +79,7 @@ controllers:
           requests:
             cpu: 10m
           limits:
-            memory: 3000Mi
+            memory: 4000Mi
 service:
   app:
     controller: romm
