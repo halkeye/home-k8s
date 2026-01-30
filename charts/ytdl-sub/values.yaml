@@ -25,7 +25,7 @@ app-template:
         main:
           image:
             repository: ghcr.io/jmbannon/ytdl-sub
-            tag: 2026.01.27
+            tag: 2026.01.30
           env:
             TZ: America/Vancouver
             ## Do not mark any shows/movies as played and instead just output to log if they would of been marked.
