@@ -134,6 +134,10 @@ ingress:
     enabled: true
     annotations:
       gethomepage.dev/enabled: 'false'
+      nginx.ingress.kubernetes.io/proxy-read-timeout: "36000"
+      nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
+      nginx.ingress.kubernetes.io/proxy-connect-timeout: "300"
+      nginx.ingress.kubernetes.io/websocket-िकीp-alive: "true"
     hosts:
       - host: ollama.g4v.dev
         paths:
