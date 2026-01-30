@@ -137,7 +137,7 @@ ingress:
       nginx.ingress.kubernetes.io/proxy-read-timeout: "36000"
       nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
       nginx.ingress.kubernetes.io/proxy-connect-timeout: "300"
-      nginx.ingress.kubernetes.io/websocket-िकीp-alive: "true"
+      nginx.ingress.kubernetes.io/connection-proxy-header: "keep-alive"
     hosts:
       - host: ollama.g4v.dev
         paths:
