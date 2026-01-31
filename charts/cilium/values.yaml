@@ -1,0 +1,11 @@
+---
+operator:
+  replica: 1
+
+hubble:
+  relay:
+    # -- Enable Hubble Relay (requires hubble.enabled=true)
+    enabled: true
+  ui:
+    # -- Whether to enable the Hubble UI.
+    enabled: true

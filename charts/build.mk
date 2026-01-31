@@ -15,3 +15,6 @@ diff: ## Show difference between local and dev
 
 apply: ## Apply
 	kustomize build --enable-helm . | kubectl apply -f -
+
+build: ## Build
+	kustomize build --enable-helm .

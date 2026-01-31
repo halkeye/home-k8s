@@ -66,19 +66,27 @@ extra_args: >-
 
 # change these to your liking, the only required are: --disable servicelb, --tls-san {{ apiserver_endpoint }}
 # the contents of the if block is also required if using calico or cilium
+# extra_server_args: >-
+#   {{ extra_args }}
+#   {{ '--node-taint node-role.kubernetes.io/master=true:NoSchedule' if k3s_master_taint else '' }}
+#   {% if calico_iface is defined or cilium_iface is defined %}
+#   --flannel-backend=none
+#   --disable-kube-proxy
+#   --disable-network-policy
+#   --cluster-cidr={{ cluster_cidr | default('10.52.0.0/16') }}
+#   {% endif %}
+#   --tls-san {{ apiserver_endpoint }}
+#   --disable servicelb
+#   --disable metrics-server
+#   --disable traefik
+
 extra_server_args: >-
-  {{ extra_args }}
-  {{ '--node-taint node-role.kubernetes.io/master=true:NoSchedule' if k3s_master_taint else '' }}
-  {% if calico_iface is defined or cilium_iface is defined %}
-  --flannel-backend=none
-  --disable-kube-proxy
-  --disable-network-policy
-  --cluster-cidr={{ cluster_cidr | default('10.52.0.0/16') }}
-  {% endif %}
   --tls-san {{ apiserver_endpoint }}
   --disable servicelb
   --disable metrics-server
   --disable traefik
+  --flannel-backend=none 
+  --disable-network-policy
 
 extra_agent_args: >-
   {{ extra_args }}
