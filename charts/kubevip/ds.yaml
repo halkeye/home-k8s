@@ -1,0 +1,127 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  annotations:
+    deprecated.daemonset.template.generation: "6"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"apps/v1","kind":"DaemonSet","metadata":{"annotations":{},"name":"kube-vip-ds","namespace":"kube-system"},"spec":{"revisionHistoryLimit":10,"selector":{"matchLabels":{"name":"kube-vip-ds"}},"template":{"metadata":{"labels":{"name":"kube-vip-ds"}},"spec":{"affinity":{"nodeAffinity":{"requiredDuringSchedulingIgnoredDuringExecution":{"nodeSelectorTerms":[{"matchExpressions":[{"key":"node-role.kubernetes.io/master","operator":"Exists"}]},{"matchExpressions":[{"key":"node-role.kubernetes.io/control-plane","operator":"Exists"}]}]}}},"containers":[{"args":["manager"],"env":[{"name":"vip_arp","value":"true"},{"name":"port","value":"6443"},{"name":"vip_nodename","valueFrom":{"fieldRef":{"fieldPath":"spec.nodeName"}}},{"name":"vip_subnet","value":"32"},{"name":"dns_mode","value":"first"},{"name":"cp_enable","value":"true"},{"name":"cp_namespace","value":"kube-system"},{"name":"svc_enable","value":"true"},{"name":"svc_leasename","value":"plndr-svcs-lock"},{"name":"svc_election","value":"true"},{"name":"lb_enable","value":"true"},{"name":"lb_port","value":"6443"},{"name":"lb_fwdmethod","value":"local"},{"name":"address","value":"172.16.10.50"},{"name":"prometheus_server","value":":2112"}],"image":"ghcr.io/kube-vip/kube-vip:v1.0.2","imagePullPolicy":"Always","name":"kube-vip","resources":{},"securityContext":{"capabilities":{"add":["NET_ADMIN","NET_RAW"],"drop":["ALL"]}}}],"hostNetwork":true,"serviceAccountName":"kube-vip","tolerations":[{"effect":"NoSchedule","operator":"Exists"},{"effect":"NoExecute","operator":"Exists"}]}},"updateStrategy":{}}}
+  creationTimestamp: "2025-12-04T04:00:25Z"
+  generation: 6
+  name: kube-vip-ds
+  namespace: kube-system
+  resourceVersion: "310500054"
+  uid: 9816a5ef-40e3-4554-8f07-e7cbeb693445
+spec:
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      name: kube-vip-ds
+  template:
+    metadata:
+      labels:
+        name: kube-vip-ds
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: node-role.kubernetes.io/master
+                operator: Exists
+            - matchExpressions:
+              - key: node-role.kubernetes.io/control-plane
+                operator: Exists
+      containers:
+      - args:
+        - manager
+        env:
+        - name: vip_arp
+          value: "true"
+        - name: bgp_enable
+          value: "false"
+        - name: port
+          value: "6443"
+        - name: vip_nodename
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: vip_subnet
+          value: "32"
+        - name: dns_mode
+          value: first
+        - name: vip_cidr
+          value: "32"
+        - name: cp_enable
+          value: "true"
+        - name: cp_namespace
+          value: kube-system
+        - name: vip_ddns
+          value: "false"
+        - name: svc_enable
+          value: "true"
+        - name: svc_leasename
+          value: plndr-svcs-lock
+        - name: svc_election
+          value: "true"
+        - name: vip_leaderelection
+          value: "true"
+        - name: vip_leaseduration
+          value: "15"
+        - name: vip_renewdeadline
+          value: "10"
+        - name: vip_retryperiod
+          value: "2"
+        - name: lb_enable
+          value: "true"
+        - name: lb_port
+          value: "6443"
+        - name: lb_fwdmethod
+          value: local
+        - name: address
+          value: 172.16.10.50
+        - name: prometheus_server
+          value: :2112
+        - name: vip_loglevel
+          value: "10"
+        - name: svc_loglevel
+          value: "10"
+        image: ghcr.io/kube-vip/kube-vip:v1.0.2
+        imagePullPolicy: Always
+        name: kube-vip
+        resources: {}
+        securityContext:
+          capabilities:
+            add:
+            - NET_ADMIN
+            - NET_RAW
+            drop:
+            - ALL
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      hostNetwork: true
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: kube-vip
+      serviceAccountName: kube-vip
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoSchedule
+        operator: Exists
+      - effect: NoExecute
+        operator: Exists
+  updateStrategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+    type: RollingUpdate
+status:
+  currentNumberScheduled: 3
+  desiredNumberScheduled: 3
+  numberAvailable: 3
+  numberMisscheduled: 0
+  numberReady: 3
+  observedGeneration: 6
+  updatedNumberScheduled: 3
