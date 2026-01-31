@@ -49,6 +49,7 @@ service:
     externalTrafficPolicy: Cluster
     annotations:
       kube-vip.io/loadbalancerIPs: 172.16.10.207
+      lbipam.cilium.io/ips: 172.16.10.207
     ports:
       stream:
         enabled: true

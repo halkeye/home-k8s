@@ -21,6 +21,7 @@ serviceDns:
   annotations:
     external-dns.alpha.kubernetes.io/hostname: "dns.g4v.dev"
     kube-vip.io/loadbalancerIPs: 172.16.10.211
+    lbipam.cilium.io/ips: 172.16.10.211
 
 resources:
   limits:

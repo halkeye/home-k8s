@@ -72,6 +72,7 @@ app-template:
       loadBalancerIP: 172.16.10.203
       annotations:
         kube-vip.io/loadbalancerIPs: 172.16.10.203
+        lbipam.cilium.io/ips: 172.16.10.203
       ports:
         wireguard:
           enabled: true
