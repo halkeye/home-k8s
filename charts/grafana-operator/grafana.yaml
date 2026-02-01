@@ -1,0 +1,48 @@
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: Grafana
+metadata:
+  name: grafana
+  labels:
+    dashboards: "grafana"
+spec:
+  config:
+    news:
+      news_feed_enabled: false
+    server:
+      root_url: https://grafana.g4v.dev
+    analytics:
+      check_for_updates: false
+      check_for_plugin_updates: false
+      reporting_enabled: true
+    security:
+      disable_initial_admin_creation: true
+    auth:
+      disable_login_form: true
+      signout_redirect_url: https://auth.g4v.dev/application/o/grafana/end-session/
+      oauth_allow_insecure_email_lookup: true
+    auth.anonymous:
+      enabled: false
+      org_name: Main Org.
+      org_role: Viewer
+      hide_version: true
+    auth.generic_oauth:
+      auto_login: true
+      name: authentik
+      enabled: true
+      scopes: openid email profile offline_access groups
+      email_attribute_path: email
+      login_attribute_path: preferred_username
+      name_attribute_path: name
+      auth_url: https://auth.g4v.dev/application/o/authorize/
+      token_url: https://auth.g4v.dev/application/o/token/
+      api_url: https://auth.g4v.dev/application/o/userinfo/
+      # Optionally map user groups to Grafana roles
+      role_attribute_path: contains(groups[*], 'Grafana Admins') && 'Admin' || contains(groups[*], 'Grafana Editors') && 'Editor' || 'Viewer'
+  httpRoute:
+    spec:
+      parentRefs:
+        - name: my-gateway
+          namespace: default
+      hostnames:
+        - grafana.g4v.dev
