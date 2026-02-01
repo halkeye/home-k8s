@@ -7,6 +7,7 @@ namespace: grafana
 
 resources:
   - https://github.com/grafana/grafana-operator/releases/download/v5.21.4/kustomize-cluster_scoped.yaml
+  - secret.enc.yaml
   - grafana.yaml
   - dashboards/samples.yaml
 
