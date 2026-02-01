@@ -18,6 +18,6 @@ patches:
           spec:
             parentRefs:
               - name: tls-home-gateway 
-                namespace: cillium
+                namespace: cilium
             hostnames:
               - grafana.h.g4v.dev
