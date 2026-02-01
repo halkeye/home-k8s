@@ -2,11 +2,38 @@
 operator:
   replica: 1
 
+bandwidthManager:
+  enabled: true
+  bbr: true
+
 hubble:
   relay:
     enabled: true
+    prometheus:
+      serviceMonitor:
+        enabled: true
   ui:
     enabled: true
+    # ingress:
+    #   enabled: true
+    #   className: "nginx-internal"
+    #   hosts:
+    #     - hubble.g4v.dev
+  metrics:
+    enabled:
+      - dns:query;ignoreAAAA
+      - drop
+      - tcp
+      - flow
+      - port-distribution
+      - icmp
+      - http
+    serviceMonitor:
+      enabled: true
+    # dashboards:
+    #   enabled: true
+    #   annotations:
+    #     grafana_folder: Cilium
   tls:
     auto:
       enabled: true
@@ -18,6 +45,10 @@ clustermesh:
       auto:
         enabled: true
         method: cronJob
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
 
 gatewayAPI:
   enabled: true

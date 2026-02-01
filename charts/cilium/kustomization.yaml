@@ -15,3 +15,5 @@ helmCharts:
 resources:
   - announce.yaml
   - ip-pool.yaml
+  - certificate.yaml
+  - gateway.yaml
