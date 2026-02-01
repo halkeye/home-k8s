@@ -42,7 +42,7 @@ spec:
   httpRoute:
     spec:
       parentRefs:
-        - name: my-gateway
-          namespace: default
+        - name: tls-gateway 
+          namespace: cillium
       hostnames:
         - grafana.g4v.dev
