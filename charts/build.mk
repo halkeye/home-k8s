@@ -11,10 +11,10 @@ help: ## Display this help message
 all: diff ## Default target to diff everything
 
 diff: ## Show difference between local and dev
-	kustomize build --enable-helm . | kubectl diff -f -
+	kustomize build --helm-api-versions monitoring.coreos.com/v1 --enable-helm . | kubectl diff -f -
 
 apply: ## Apply
-	kustomize build --enable-helm . | kubectl apply -f -
+	kustomize build --helm-api-versions monitoring.coreos.com/v1 --enable-helm . | kubectl apply -f -
 
 build: ## Build
-	kustomize build --enable-helm .
+	kustomize build --helm-api-versions monitoring.coreos.com/v1 --enable-helm .

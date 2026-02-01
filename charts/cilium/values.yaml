@@ -1,12 +1,31 @@
 ---
 operator:
   replica: 1
+  # dashboards:
+  #   enabled: true
+  #   annotations:
+  #     grafana_folder: Cilium
+  prometheus:
+    enabled: true
+    serviceMonitor:
+      enabled: true
 
 kubeProxyReplacement: true
+
+prometheus:
+  enabled: true
+  serviceMonitor:
+    enabled: true
 
 bandwidthManager:
   enabled: true
   bbr: true
+
+# dashboards:
+#   enabled: true
+#   annotations:
+#     grafana_folder: Cilium
+
 
 hubble:
   relay:
@@ -70,3 +89,8 @@ loadBalancer:
 
 wellKnownIdentities:
   enabled: true
+
+envoy:
+  prometheus: 
+    serviceMonitor:
+      enabled: true
