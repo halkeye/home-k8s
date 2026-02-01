@@ -11,6 +11,8 @@ spec:
       news_feed_enabled: "false"
     server:
       root_url: https://grafana.g4v.dev
+    log:
+      mode: console
     analytics:
       check_for_updates: "false"
       check_for_plugin_updates: "false"
@@ -44,3 +46,7 @@ spec:
           namespace: cilium
       hostnames:
         - grafana.g4v.dev
+      rules:
+        - backendRefs:
+            - name: grafana-service
+              port: 3000
