@@ -151,6 +151,14 @@ spec:
         targetRevision: HEAD
         kustomize:
           namespace: '{{- if index . "namespace" -}}{{ .namespace | normalize }}{{- else }}{{ .name | normalize }}{{ end }}'
+      ignoreDifferences:
+        - group: grafana.integreatly.org
+          kind: Grafana
+          jqPathExpressions:
+            - .spec.httpRoute.spec.parentRefs[].group
+            - .spec.httpRoute.spec.parentRefs[].kind
+            - .spec.httpRoute.spec.backendRefs[].group
+            - .spec.httpRoute.spec.backendRefs[].kind
       syncPolicy:
         automated:
           selfHeal: true
