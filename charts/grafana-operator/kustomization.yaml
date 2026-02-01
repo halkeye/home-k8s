@@ -9,6 +9,7 @@ resources:
   - https://github.com/grafana/grafana-operator/releases/download/v5.21.4/kustomize-cluster_scoped.yaml
   - secret.enc.yaml
   - grafana.yaml
+  - datasources.yaml
   - dashboards/samples.yaml
 
 # https://grafana.github.io/grafana-operator/docs/installation/kustomize/#argocd
