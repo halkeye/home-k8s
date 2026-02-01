@@ -8,28 +8,28 @@ metadata:
 spec:
   config:
     news:
-      news_feed_enabled: false
+      news_feed_enabled: "false"
     server:
       root_url: https://grafana.g4v.dev
     analytics:
-      check_for_updates: false
-      check_for_plugin_updates: false
-      reporting_enabled: true
+      check_for_updates: "false"
+      check_for_plugin_updates: "false"
+      reporting_enabled: "true"
     security:
-      disable_initial_admin_creation: true
+      disable_initial_admin_creation: "true"
     auth:
-      disable_login_form: true
+      disable_login_form: "true"
       signout_redirect_url: https://auth.g4v.dev/application/o/grafana/end-session/
-      oauth_allow_insecure_email_lookup: true
+      oauth_allow_insecure_email_lookup: "true"
     auth.anonymous:
-      enabled: false
+      enabled: "false"
       org_name: Main Org.
       org_role: Viewer
-      hide_version: true
+      hide_version: "true"
     auth.generic_oauth:
-      auto_login: true
+      auto_login: "true"
       name: authentik
-      enabled: true
+      enabled: "true"
       scopes: openid email profile offline_access groups
       email_attribute_path: email
       login_attribute_path: preferred_username
