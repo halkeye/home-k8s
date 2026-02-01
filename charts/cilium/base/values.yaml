@@ -16,11 +16,6 @@ hubble:
         enabled: true
   ui:
     enabled: true
-    # ingress:
-    #   enabled: true
-    #   className: "nginx-internal"
-    #   hosts:
-    #     - hubble.g4v.dev
   metrics:
     enabled:
       - dns:query;ignoreAAAA
@@ -56,13 +51,6 @@ gatewayAPI:
   enabled: true
   gatewayClass:
     create: "true"
-
-ingressController:
-  enabled: true
-  service:
-    annotations:
-      kube-vip.io/loadbalancerIPs: 172.16.10.212
-      lbipam.cilium.io/ips: 172.16.10.212
 
 # Increase rate limit when doing L2 announcements
 # k8sClientRateLimit:

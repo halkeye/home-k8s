@@ -6,12 +6,11 @@ metadata:
 spec:
   dnsNames:
     - '*.g4v.dev'
-    - '*.h.g4v.dev'
   commonName: "*.g4v.dev"
   issuerRef:
     name: acme-letsencrypt-prod
     kind: ClusterIssuer
-  secretName: wildcard-g4v-tls
+  secretName: cilium-wildcard-g4v-tls
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
@@ -19,13 +18,12 @@ metadata:
   name: wildcard-home-g4v-tls
 spec:
   dnsNames:
-    - '*.g4v.dev'
     - '*.h.g4v.dev'
-  commonName: "*.g4v.dev"
+  commonName: "*.h.g4v.dev"
   issuerRef:
     name: acme-letsencrypt-prod
     kind: ClusterIssuer
-  secretName: wildcard-home-g4v-tls
+  secretName: cilium-wildcard-home-g4v-tls
 # ---
 # apiVersion: cert-manager.io/v1
 # kind: Certificate
