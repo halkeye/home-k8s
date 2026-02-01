@@ -2,6 +2,8 @@
 operator:
   replica: 1
 
+kubeProxyReplacement: true
+
 bandwidthManager:
   enabled: true
   bbr: true
@@ -52,6 +54,8 @@ clustermesh:
 
 gatewayAPI:
   enabled: true
+  gatewayClass:
+    create: "true"
 
 ingressController:
   enabled: true

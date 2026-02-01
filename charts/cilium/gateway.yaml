@@ -21,7 +21,7 @@ spec:
       tls:
         certificateRefs:
           - kind: Secret
-            name: wildcard-g4v-tls
+            name: cilium-wildcard-g4v-tls
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
@@ -45,4 +45,4 @@ spec:
       tls:
         certificateRefs:
           - kind: Secret
-            name: wildcard-home-g4v-tls
+            name: cilium-wildcard-home-g4v-tls
