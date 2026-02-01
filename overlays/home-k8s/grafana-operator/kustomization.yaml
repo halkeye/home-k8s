@@ -3,7 +3,6 @@ kind: Kustomization
 
 resources:
 - ../../../charts/grafana-operator/
-namePrefix: "home-"
 
 patches:
   - patch: |-

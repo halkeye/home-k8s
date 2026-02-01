@@ -88,6 +88,8 @@ spec:
           - { namespace: pihole, name: pihole-exporter }
           - { namespace: pihole, name: nebula-sync }
 
+          - { namespace: grafana-operator, name: grafana-operator, path: "overlays/home-k8s", prefix: "home-k8s" }
+
           - name: amd-gpu
           - name: anime-radarr
           - name: anime-sonarr
@@ -134,7 +136,7 @@ spec:
           - name: youtubedl-material
   template:
     metadata:
-      name: '{{.name}}'
+      name: '{{- if index . "prefix" -}}{{ .prefix }}-{{ end }}{{.name}}'
       namespace: argocd
       annotations:
         argocd.argoproj.io/sync-wave: '{{dig "syncwave" "20" . }}'
@@ -144,7 +146,7 @@ spec:
         server: '{{dig "server" "https://kubernetes.default.svc" . }}'
       project: default
       source:
-        path: 'charts/{{dig "chart" .name .}}'
+        path: '{{dig "path" "charts" .}}/{{dig "chart" .name .}}'
         repoURL: https://github.com/halkeye/home-k8s
         targetRevision: HEAD
         kustomize:
