@@ -157,8 +157,10 @@ spec:
           jqPathExpressions:
             - .spec.httpRoute.spec.parentRefs[].group
             - .spec.httpRoute.spec.parentRefs[].kind
-            - .spec.httpRoute.spec.backendRefs[].group
-            - .spec.httpRoute.spec.backendRefs[].kind
+            - .spec.httpRoute.spec.rules[].backendRefs[].group
+            - .spec.httpRoute.spec.rules[].backendRefs[].kind
+            - .spec.httpRoute.spec.rules[].backendRefs[].weight
+            - .spec.httpRoute.spec.rules[].matches
       syncPolicy:
         automated:
           selfHeal: true
