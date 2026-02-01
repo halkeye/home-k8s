@@ -3,7 +3,6 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: wildcard-g4v-tls
-  namespace: cilium-secrets
 spec:
   dnsNames:
     - '*.g4v.dev'
@@ -18,7 +17,6 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: wildcard-home-g4v-tls
-  namespace: cilium-secrets
 spec:
   dnsNames:
     - '*.g4v.dev'
