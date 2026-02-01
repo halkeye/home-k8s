@@ -44,6 +44,7 @@ spec:
       parentRefs:
         - name: tls-gateway 
           namespace: cilium
+          sectionName: https
       hostnames:
         - grafana.g4v.dev
       rules:
