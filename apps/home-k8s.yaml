@@ -60,7 +60,6 @@ spec:
           - { name: home-metrics-server, chart: metrics-server, namespace: kube-system }
 
           - { name: home-k8s-ingress-nginx, namespace: kube-system }
-          # - { name: home-k8s-envoy-gateway, namespace: envoy-gateway-system }
 
           - { name: longhorn, namespace: longhorn-system }
 

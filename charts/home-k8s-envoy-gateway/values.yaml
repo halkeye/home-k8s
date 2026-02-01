@@ -1,3 +1,0 @@
-envoyGateway:
-  rbac:
-    cluster: true
