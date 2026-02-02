@@ -14,7 +14,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/usememos/memos
-          tag: 0.26.0@sha256:8726a101dc8d971bfdfc9ed5c419af43ccb55f1ceb916de73d9709d30a21a766
+          tag: 0.26.0@sha256:a0e337e4770cc4062ddb1e0fff3072201e80fbbe2f4f3beabec5306f74e767cb
         env:
           TZ: America/Vancouver
           MEMOS_MODE: "prod"
