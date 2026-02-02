@@ -1,17 +1,14 @@
-cert-manager:
-  fullnameOverride: cert-manager
-  nameOverride: cert-manager
-  installCRDs: true
-  dns01RecursiveNameservers: "8.8.8.8:53,1.1.1.1:53"
-  dns01RecursiveNameserversOnly: true
-  prometheus:
+installCRDs: true
+dns01RecursiveNameservers: "8.8.8.8:53,1.1.1.1:53"
+dns01RecursiveNameserversOnly: true
+prometheus:
+  enabled: true
+  servicemonitor:
     enabled: true
-    servicemonitor:
-      enabled: true
-  resources:
-    requests:
-      cpu: 10m
-      memory: 180Mi
-    limits:
-      cpu: 10m
-      memory: 180Mi
+resources:
+  requests:
+    cpu: 10m
+    memory: 180Mi
+  limits:
+    cpu: 10m
+    memory: 180Mi

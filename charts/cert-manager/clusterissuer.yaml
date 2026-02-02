@@ -1,0 +1,30 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: acme-letsencrypt-prod
+spec:
+  acme:
+    email: domains@gavinmogan.com
+    privateKeySecretRef:
+      name: clusterissuer-acme-letsencrypt-prod-credentials-issuer-key
+    server: https://acme-v02.api.letsencrypt.org/directory
+    solvers:
+      - dns01:
+          cloudflare:
+            apiTokenSecretRef:
+              key: api-token
+              name: clusterissuer-acme-letsencrypt-prod-credentials
+        selector:
+          dnsZones:
+            - h.g4v.dev
+            - do.g4v.dev
+            - ts.g4v.dev
+            - ext.g4v.dev
+            - g4v.dev
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: selfsigned-selfsigned-issuer
+spec:
+  selfSigned: {}
