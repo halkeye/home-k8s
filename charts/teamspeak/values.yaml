@@ -1,5 +1,6 @@
 controllers:
   main:
+    replicas: 0
     strategy: Recreate
     containers:
       teamspeak:
