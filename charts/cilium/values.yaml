@@ -1,10 +1,6 @@
 ---
 operator:
   replica: 1
-  dashboards:
-    enabled: true
-    annotations:
-      grafana_folder: Cilium
   prometheus:
     enabled: true
     serviceMonitor:
@@ -20,11 +16,6 @@ prometheus:
 bandwidthManager:
   enabled: true
   bbr: true
-
-dashboards:
-  enabled: true
-  annotations:
-    grafana_folder: Cilium
 
 hubble:
   relay:
@@ -45,10 +36,6 @@ hubble:
       - http
     serviceMonitor:
       enabled: true
-    dashboards:
-      enabled: true
-      annotations:
-        grafana_folder: Cilium
   tls:
     auto:
       enabled: true
