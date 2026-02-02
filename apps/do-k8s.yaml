@@ -110,7 +110,7 @@ spec:
           - name: vikunja
   template:
     metadata:
-      name: '{{.name}}'
+      name: '{{- if index . "prefix" -}}{{ .prefix }}-{{ end }}{{.name}}'
       namespace: argocd
       annotations:
         argocd.argoproj.io/sync-wave: '{{dig "syncwave" "20" . }}'
@@ -120,11 +120,21 @@ spec:
         server: '{{dig "server" "https://6280be86-f269-4fd1-a692-92d18aaf6595.k8s.ondigitalocean.com" . }}'
       project: default
       source:
-        path: 'charts/{{dig "chart" .name .}}'
+        path: '{{dig "path" "charts" .}}/{{dig "chart" .name .}}'
         repoURL: https://github.com/halkeye/home-k8s
         targetRevision: HEAD
         kustomize:
           namespace: '{{- if index . "namespace" -}}{{ .namespace | normalize }}{{- else }}{{ .name | normalize }}{{ end }}'
+      ignoreDifferences:
+        - group: grafana.integreatly.org
+          kind: Grafana
+          jqPathExpressions:
+            - .spec.httpRoute.spec.parentRefs[].group
+            - .spec.httpRoute.spec.parentRefs[].kind
+            - .spec.httpRoute.spec.rules[].backendRefs[].group
+            - .spec.httpRoute.spec.rules[].backendRefs[].kind
+            - .spec.httpRoute.spec.rules[].backendRefs[].weight
+            - .spec.httpRoute.spec.rules[].matches
       syncPolicy:
         automated:
           selfHeal: true
