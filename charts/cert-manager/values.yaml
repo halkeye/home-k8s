@@ -12,3 +12,5 @@ resources:
   limits:
     cpu: 10m
     memory: 180Mi
+webhook:
+  timeoutSeconds: 25
