@@ -17,3 +17,5 @@ resources:
   - ip-pool.yaml
   - gateway.yaml
   - certificates.yaml
+  - dashboards.yaml
+  - hubble-httproute.yaml
