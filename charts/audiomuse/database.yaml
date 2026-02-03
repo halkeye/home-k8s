@@ -32,5 +32,20 @@ spec:
   kubernetesConfig:
     image: quay.io/opstree/redis:v7.0.15
     imagePullPolicy: IfNotPresent
-  serviceMonitor:
+  redisExporter:
     enabled: true
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: redis-standalone
+  labels:
+    redis-operator: "true"
+spec:
+  selector:
+    matchLabels:
+      redis_setup_type: standalone
+  endpoints:
+  - port: redis-exporter
+    interval: 30s
+    scrapeTimeout: 10s
