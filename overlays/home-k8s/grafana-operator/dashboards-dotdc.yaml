@@ -1,0 +1,77 @@
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaFolder
+metadata:
+  name: dotdc
+spec:
+  allowCrossNamespaceImport: true
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  title: "Github @dotdc"
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: k8s-system-api-server
+spec:
+  folderRef: dotdc
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/42a9975632aa8fb44a7d05cda6d00d50d2dcb1a4/dashboards/k8s-system-api-server.json
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: k8s-system-coredns
+spec:
+  folderRef: dotdc
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/42a9975632aa8fb44a7d05cda6d00d50d2dcb1a4/dashboards/k8s-system-coredns.json
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: k8s-views-global
+spec:
+  folderRef: dotdc
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/42a9975632aa8fb44a7d05cda6d00d50d2dcb1a4/dashboards/k8s-views-global.json
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: k8s-views-namespaces
+spec:
+  folderRef: dotdc
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/42a9975632aa8fb44a7d05cda6d00d50d2dcb1a4/dashboards/k8s-views-namespaces.json
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: k8s-views-nodes
+spec:
+  folderRef: dotdc
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/42a9975632aa8fb44a7d05cda6d00d50d2dcb1a4/dashboards/k8s-views-nodes.json
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: k8s-views-pods
+spec:
+  folderRef: dotdc
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/42a9975632aa8fb44a7d05cda6d00d50d2dcb1a4/dashboards/k8s-views-pods.json

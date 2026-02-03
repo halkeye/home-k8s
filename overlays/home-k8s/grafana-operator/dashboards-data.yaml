@@ -1,0 +1,65 @@
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaFolder
+metadata:
+  name: databases
+spec:
+  allowCrossNamespaceImport: true
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  title: "Databases"
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: redis
+spec:
+  folderRef: databases
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  grafanaCom:
+    # renovate: depName="Redis"
+    id: 11835
+    revision: 1
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: mysql
+spec:
+  folderRef: databases
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  # renovate: depName="MySQL"
+  url: https://raw.githubusercontent.com/prometheus/mysqld_exporter/c407e35c629be445c5e3db291910a3ec974be5de/mysqld-mixin/dashboards/mysql-overview.json
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: postgresql
+spec:
+  folderRef: databases
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  grafanaCom:
+    # renovate: depName="PostgreSQL"
+    id: 9628
+    revision: 8
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: cloudnative-pg
+spec:
+  folderRef: databases
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  grafanaCom:
+    # renovate: depName="CloudNativePG"
+    id: 20417
+    revision: 4
