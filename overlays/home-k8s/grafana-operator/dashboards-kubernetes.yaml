@@ -151,6 +151,8 @@ spec:
   datasources:
   - inputName: "DS_PROMETHEUS"
     datasourceName: "prometheus"
+  - inputName: "VAR_DATASOURCE"
+    datasourceName: "prometheus"
   folderRef: kubernetes
   instanceSelector:
     matchLabels:
