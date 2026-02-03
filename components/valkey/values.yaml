@@ -10,6 +10,17 @@ controllers:
         image:
           repository: ghcr.io/oliver006/redis_exporter
           tag: v1.80.2
+        securityContext:
+          runAsUser: 59000
+          runAsGroup: 59000
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
 
 persistence:
   data:
