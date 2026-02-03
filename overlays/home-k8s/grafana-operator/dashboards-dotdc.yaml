@@ -15,6 +15,9 @@ kind: GrafanaDashboard
 metadata:
   name: k8s-system-api-server
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: dotdc
   instanceSelector:
     matchLabels:
@@ -26,6 +29,9 @@ kind: GrafanaDashboard
 metadata:
   name: k8s-system-coredns
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: dotdc
   instanceSelector:
     matchLabels:
@@ -37,6 +43,9 @@ kind: GrafanaDashboard
 metadata:
   name: k8s-views-global
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: dotdc
   instanceSelector:
     matchLabels:
@@ -48,6 +57,9 @@ kind: GrafanaDashboard
 metadata:
   name: k8s-views-namespaces
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: dotdc
   instanceSelector:
     matchLabels:
@@ -59,6 +71,9 @@ kind: GrafanaDashboard
 metadata:
   name: k8s-views-nodes
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: dotdc
   instanceSelector:
     matchLabels:
@@ -70,6 +85,9 @@ kind: GrafanaDashboard
 metadata:
   name: k8s-views-pods
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: dotdc
   instanceSelector:
     matchLabels:

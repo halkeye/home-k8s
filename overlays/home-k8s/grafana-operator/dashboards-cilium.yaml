@@ -15,6 +15,9 @@ kind: GrafanaDashboard
 metadata:
   name: cilium-agent
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: cilium
   instanceSelector:
     matchLabels:

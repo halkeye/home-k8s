@@ -29,6 +29,9 @@ kind: GrafanaDashboard
 metadata:
   name: kubernetes-api-server
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: kubernetes
   instanceSelector:
     matchLabels:
@@ -43,6 +46,9 @@ kind: GrafanaDashboard
 metadata:
   name: kubernetes-coredns
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: kubernetes
   instanceSelector:
     matchLabels:
@@ -57,6 +63,9 @@ kind: GrafanaDashboard
 metadata:
   name: kubernetes-namespaces
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: kubernetes
   instanceSelector:
     matchLabels:
@@ -71,6 +80,9 @@ kind: GrafanaDashboard
 metadata:
   name: kubernetes-nodes
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: kubernetes
   instanceSelector:
     matchLabels:
@@ -85,6 +97,9 @@ kind: GrafanaDashboard
 metadata:
   name: kubernetes-pods
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: kubernetes
   instanceSelector:
     matchLabels:
@@ -99,6 +114,9 @@ kind: GrafanaDashboard
 metadata:
   name: kubernetes-volumes
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: kubernetes
   instanceSelector:
     matchLabels:
@@ -113,6 +131,9 @@ kind: GrafanaDashboard
 metadata:
   name: kubernetes-cluster
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: kubernetes
   instanceSelector:
     matchLabels:
@@ -127,6 +148,9 @@ kind: GrafanaDashboard
 metadata:
   name: kube-state-metrics-v2
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: kubernetes
   instanceSelector:
     matchLabels:
@@ -141,6 +165,9 @@ kind: GrafanaDashboard
 metadata:
   name: kubernetes-global
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: kubernetes
   instanceSelector:
     matchLabels:
@@ -155,6 +182,9 @@ kind: GrafanaDashboard
 metadata:
   name: node-exporter-full
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: kubernetes
   instanceSelector:
     matchLabels:
@@ -169,6 +199,9 @@ kind: GrafanaDashboard
 metadata:
   name: node-feature-discovery
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: kubernetes
   instanceSelector:
     matchLabels:
@@ -180,6 +213,9 @@ kind: GrafanaDashboard
 metadata:
   name: cluster-monitoring
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: kubernetes
   instanceSelector:
     matchLabels:
@@ -194,6 +230,9 @@ kind: GrafanaDashboard
 metadata:
   name: cadvisor
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: kubernetes
   instanceSelector:
     matchLabels:
@@ -208,6 +247,9 @@ kind: GrafanaDashboard
 metadata:
   name: cert-manager
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: kubernetes
   instanceSelector:
     matchLabels:
@@ -220,6 +262,9 @@ kind: GrafanaDashboard
 metadata:
   name: alertmanager
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: kubernetes
   instanceSelector:
     matchLabels:
@@ -234,6 +279,9 @@ kind: GrafanaDashboard
 metadata:
   name: prometheus
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: kubernetes
   instanceSelector:
     matchLabels:

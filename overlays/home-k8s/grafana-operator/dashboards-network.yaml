@@ -15,6 +15,9 @@ kind: GrafanaDashboard
 metadata:
   name: blackbox-exporter
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: network
   instanceSelector:
     matchLabels:
@@ -29,6 +32,9 @@ kind: GrafanaDashboard
 metadata:
   name: website-monitoring
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: network
   instanceSelector:
     matchLabels:
@@ -43,6 +49,9 @@ kind: GrafanaDashboard
 metadata:
   name: coredns
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: network
   instanceSelector:
     matchLabels:
@@ -57,6 +66,9 @@ kind: GrafanaDashboard
 metadata:
   name: cloudflared
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: network
   instanceSelector:
     matchLabels:
@@ -71,6 +83,9 @@ kind: GrafanaDashboard
 metadata:
   name: speedtest-exporter-hub
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: network
   instanceSelector:
     matchLabels:
@@ -82,6 +97,9 @@ kind: GrafanaDashboard
 metadata:
   name: pihole
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: network
   instanceSelector:
     matchLabels:

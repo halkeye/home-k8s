@@ -15,6 +15,9 @@ kind: GrafanaDashboard
 metadata:
   name: vikunja
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: other
   instanceSelector:
     matchLabels:
@@ -29,6 +32,9 @@ kind: GrafanaDashboard
 metadata:
   name: argocd
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: other
   instanceSelector:
     matchLabels:

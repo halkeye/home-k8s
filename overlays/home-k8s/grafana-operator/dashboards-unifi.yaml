@@ -15,6 +15,9 @@ kind: GrafanaDashboard
 metadata:
   name: unifi-insights
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: unifi
   instanceSelector:
     matchLabels:
@@ -29,6 +32,9 @@ kind: GrafanaDashboard
 metadata:
   name: unifi-network-sites
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: unifi
   instanceSelector:
     matchLabels:
@@ -43,6 +49,9 @@ kind: GrafanaDashboard
 metadata:
   name: unifi-uap
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: unifi
   instanceSelector:
     matchLabels:
@@ -57,6 +66,9 @@ kind: GrafanaDashboard
 metadata:
   name: unifi-usg
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: unifi
   instanceSelector:
     matchLabels:
@@ -71,6 +83,9 @@ kind: GrafanaDashboard
 metadata:
   name: unifi-usw
 spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: unifi
   instanceSelector:
     matchLabels:
