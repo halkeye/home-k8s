@@ -19,4 +19,4 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  url: https://raw.githubusercontent.com/halkeye/Bambulabs-Exporter/02b74fc4e6aed1cef9a58a029ca6dcfc885c81bf/examples/grafana_dashboard.json
+  url: https://raw.githubusercontent.com/halkeye/Bambulabs-Exporter/73854326fea24987e96ad751ffdcb179efeb9e26/examples/grafana_dashboard.json
