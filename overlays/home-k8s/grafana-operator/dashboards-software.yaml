@@ -18,7 +18,7 @@ spec:
   datasources:
   - inputName: "DS_PROMETHEUS"
     datasourceName: "prometheus"
-  folderRef: other
+  folderRef: software
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
@@ -35,7 +35,7 @@ spec:
   datasources:
   - inputName: "DS_PROMETHEUS"
     datasourceName: "prometheus"
-  folderRef: other
+  folderRef: software
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
