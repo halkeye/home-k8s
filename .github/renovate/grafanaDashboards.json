@@ -17,12 +17,14 @@
         "(^|/)charts\\/prometheus\\/values\\.ya?ml(\\.j2)?$",
         "(^|/)charts\\/grafana\\/values\\.ya?ml(\\.j2)?$",
         "charts\\/prometheus\\/values\\.ya?ml(\\.j2)?$",
-        "charts\\/grafana\\/values\\.ya?ml(\\.j2)?$"
+        "charts\\/grafana\\/values\\.ya?ml(\\.j2)?$",
+        "dashboards\\.ya?ml?$",
+        "dashboards-(.*)\\.ya?ml?$"
       ],
       "matchStrings": [
-        "depName=\"(?<depName>.*)\"\\n(?<indentation>\\s+)gnetId: (?<packageName>\\d+)\\n.+revision: (?<currentValue>\\d+)"
+        "depName=\"(?<depName>.*)\"\\n(?<indentation>\\s+)(?<gnetKey>id|gnetId): (?<packageName>\\d+)\\n.+revision: (?<currentValue>\\d+)"
       ],
-      "autoReplaceStringTemplate": "depName=\"{{{depName}}}\"\n{{{indentation}}}gnetId: {{{packageName}}}\n{{{indentation}}}revision: {{{newValue}}}",
+      "autoReplaceStringTemplate": "depName=\"{{{depName}}}\"\n{{{indentation}}}{{{gnetKey}}}: {{{packageName}}}\n{{{indentation}}}revision: {{{newValue}}}",
       "datasourceTemplate": "custom.grafana-dashboards",
       "versioningTemplate": "regex:^(?<major>\\d+)$"
     }
