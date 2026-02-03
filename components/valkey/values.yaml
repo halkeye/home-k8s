@@ -33,7 +33,7 @@ serviceMonitor:
         scheme: http
         path: /metrics
         relabelings:
-        - source_labels: [__meta_kubernetes_pod_name]
+        - sourceLabels: [__meta_kubernetes_pod_name]
           action: replace
-          target_label: instance
+          targetLabel: instance
           regex: (.*valkey.*)
