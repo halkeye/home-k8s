@@ -6,7 +6,6 @@ namespace: grafana-operator
 resources:
 - ../../../charts/grafana-operator/
 - dashboards-3dprinter.yaml
-- dashboards-cilium.yaml
 - dashboards-data.yaml
 - dashboards-dotdc.yaml
 - dashboards-ingress.yaml
