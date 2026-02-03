@@ -8,7 +8,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  title: "Media Fetchers"
+  title: "Kubernetes"
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
