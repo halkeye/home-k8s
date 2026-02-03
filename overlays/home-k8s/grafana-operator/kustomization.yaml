@@ -13,7 +13,6 @@ resources:
 - dashboards-kubernetes.yaml
 - dashboards-mediafetchers.yaml
 - dashboards-network.yaml
-- dashboards-observability.yaml
 - dashboards-other.yaml
 - dashboards-software.yaml
 - dashboards-storage.yaml

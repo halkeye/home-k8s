@@ -228,3 +228,17 @@ spec:
     # renovate: depName="Alertmanager"
     id: 9578
     revision: 4
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: prometheus
+spec:
+  folderRef: kubernetes
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  grafanaCom:
+    # renovate: depName="Prometheus"
+    id: 19105
+    revision: 8
