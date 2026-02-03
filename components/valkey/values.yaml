@@ -1,0 +1,39 @@
+controllers:
+  valkey:
+    type: statefulset
+    containers:
+      valkey:
+        image:
+          repository: ghcr.io/valkey-io/valkey
+          tag: 9.0.1-alpine@sha256:c106a0c03bcb23cbdf9febe693114cb7800646b11ca8b303aee7409de005faa8
+      exporter:
+        image:
+          repository: ghcr.io/oliver006/redis_exporter
+          tag: v1.80.2
+
+persistence:
+  data:
+    type: emptyDir
+
+service:
+  valkey:
+    controller: valkey
+    ports:
+      valkey:
+        port: 6379
+      metrics:
+        port: 9121
+
+serviceMonitor:
+  valkey:
+    enabled: true
+    serviceName: valkey
+    endpoints:
+      - port: metrics
+        scheme: http
+        path: /metrics
+        relabelings:
+        - source_labels: [__meta_kubernetes_pod_name]
+          action: replace
+          target_label: instance
+          regex: (.*valkey.*)

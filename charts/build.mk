@@ -18,4 +18,4 @@ apply: ## Apply
 	kustomize build --helm-api-versions monitoring.coreos.com/v1 --enable-helm . | kubectl apply --context $(CLUSTER) -f -
 
 build: ## Build
-	kustomize build --helm-api-versions monitoring.coreos.com/v1 --enable-helm . --context $(CLUSTER)
+	kustomize build --helm-api-versions monitoring.coreos.com/v1 --enable-helm .

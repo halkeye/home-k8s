@@ -3,11 +3,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-helmGlobals:
-  chartHome: ./charts/
-
-generatorOptions:
-  disableNameSuffixHash: true
+namespace: romm
 
 helmCharts:
   - name: app-template
@@ -17,7 +13,6 @@ helmCharts:
     releaseName: romm 
 
 resources:
-  - ./resources/redis.yaml
   - ./resources/postgres.yaml
   - ./resources/postgres-user.yaml
   - ./secret.enc.yaml
@@ -26,3 +21,6 @@ configMapGenerator:
   - name: romm-configmap
     files:
       - config.yml=./resources/config.yml
+
+components:
+  - ../../components/valkey
