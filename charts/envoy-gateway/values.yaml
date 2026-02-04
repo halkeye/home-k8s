@@ -4,6 +4,4 @@ config:
       cluster: true
     extensionApis:
       enableBackend: true
-    logging:
-      level:
-        default: debug
+      externalTrafficPolicy: Cluster
