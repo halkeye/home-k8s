@@ -1,3 +1,7 @@
-envoyGateway:
-  rbac:
-    cluster: true
+config:
+  envoyGateway:
+    rbac:
+      cluster: true
+    extensionApis:
+      enableBackend: true
+

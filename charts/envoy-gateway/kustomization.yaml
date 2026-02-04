@@ -6,15 +6,15 @@ kind: Kustomization
 namespace: gateway
 
 helmCharts:
-  - name: gateway-crds-helm
-    version: 1.6.3
-    repo: oci://docker.io/envoyproxy
-    valuesInline:
-      crds:
-        gatewayAPI:
-          enabled: true
-        envoyGateway:
-          enabled: true
+  # - name: gateway-crds-helm
+  #   version: 1.6.3
+  #   repo: oci://docker.io/envoyproxy
+  #   valuesInline:
+  #     crds:
+  #       gatewayAPI:
+  #         enabled: false
+  #       envoyGateway:
+  #         enabled: true
   - name: gateway-helm
     version: 1.6.3
     repo: oci://docker.io/envoyproxy
