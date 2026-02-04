@@ -4,4 +4,7 @@ config:
       cluster: true
     extensionApis:
       enableBackend: true
-      externalTrafficPolicy: Cluster
+    provider:
+      kubernetes:
+        envoyService:
+          externalTrafficPolicy: Cluster
