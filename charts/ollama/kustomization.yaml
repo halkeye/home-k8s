@@ -19,3 +19,6 @@ helmCharts:
 resources:
   - ./secret.enc.yaml
   - ./database.yaml
+
+components:
+  - ../../components/valkey

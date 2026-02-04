@@ -62,8 +62,8 @@ controllers:
           RAG_WEB_SEARCH_ENGINE: searxng
           SEARXNG_QUERY_URL: https://search.g4v.dev/search?q=<query>
           ENABLE_WEBSOCKET_SUPPORT: "true"
-          WEBSOCKET_MANAGER: "redis"
-          WEBSOCKET_REDIS_URL: "redis://redis:6379/0"
+          WEBSOCKET_MANAGER: "valkey"
+          WEBSOCKET_REDIS_URL: "redis://valkey:6379/0"
           # Auth
           ENABLE_OAUTH_SIGNUP: "true"
           OAUTH_MERGE_ACCOUNTS_BY_EMAIL: "true"
