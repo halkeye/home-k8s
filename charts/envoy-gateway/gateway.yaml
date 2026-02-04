@@ -11,12 +11,23 @@ metadata:
   name: envoy-proxy-config
   namespace: default
 spec:
+  # provider:
+  #   type: Kubernetes
+  #   kubernetes:
+  #     # Configure the Envoy Proxy service to be cluster-internal
+  #     envoyService:
+  #       externalTrafficPolicy: Cluster
   provider:
     type: Kubernetes
     kubernetes:
-      # Configure the Envoy Proxy service to be cluster-internal
-      envoyService:
-        externalTrafficPolicy: Cluster
+      envoyDaemonSet:
+        patch:
+          value:
+            spec:
+              template:
+                spec:
+                  nodeSelector:
+                    node-role.kubernetes.io/worker: "worker"
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
