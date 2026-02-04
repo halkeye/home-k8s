@@ -84,8 +84,8 @@ spec:
   httpRoute:
     spec:
       parentRefs:
-        - name: tls-gateway 
-          namespace: cilium
+        - name: http-gateway
+          namespace: envoy-gateway
           sectionName: https
       hostnames:
         - grafana.g4v.dev

@@ -4,8 +4,8 @@ metadata:
   name: hubble-ui
 spec:
   parentRefs:
-    - name: tls-home-gateway 
-      namespace: cilium
+    - name: http-gateway
+      namespace: envoy-gateway
       sectionName: https
   hostnames:
     - hubble-ui.h.g4v.dev

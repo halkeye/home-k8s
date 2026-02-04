@@ -29,9 +29,5 @@ patches:
             root_url: https://grafana.h.g4v.dev
         httpRoute:
           spec:
-            parentRefs:
-              - name: tls-home-gateway 
-                namespace: cilium
-                sectionName: https
             hostnames:
               - grafana.h.g4v.dev

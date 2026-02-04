@@ -15,6 +15,7 @@ spec:
               elements:
                 - appname: smtp-relay
                 - appname: sops-secrets-operator
+                - appname: envoy-gateway
                 - appname: cert-manager
                   useOverlay: true
   template:
