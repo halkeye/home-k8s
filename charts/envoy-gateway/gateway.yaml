@@ -38,6 +38,8 @@ metadata:
 spec:
   parentRefs:
     - name: http-gateway
+      group: gateway.networking.k8s.io	
+      kind: Gateway
       sectionName: http
   rules:
     - filters:
@@ -45,3 +47,7 @@ spec:
           requestRedirect:
             scheme: https
             statusCode: 301
+      matches:	
+        - path:	
+            type: PathPrefix	
+            value: /
