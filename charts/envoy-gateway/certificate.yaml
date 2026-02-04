@@ -2,13 +2,17 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: g4v-home-wildcard-certificate
+  name: wildcard-certificate
 spec:
   dnsNames:
     - '*.g4v.dev'
     - '*.h.g4v.dev'
+    - '*.do.g4v.dev'
+    - '*.ts.g4v.dev'
+    - '*.halkeye.net'
+    - '*.gavinmogan.com'
   commonName: "*.g4v.dev"
   issuerRef:
     name: acme-letsencrypt-prod
     kind: ClusterIssuer
-  secretName: wildcard-home-g4v-tls
+  secretName: wildcard-tls
