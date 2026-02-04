@@ -83,3 +83,14 @@ route:
         sectionName: https
     hostnames:
       - whoami.do.g4v.dev
+    rules:
+      - matches:	
+        - path:	
+            type: PathPrefix	
+            value: /
+        backendRefs:
+          - group: ''
+            kind: Service
+            name: whoami
+            port: 8080
+            weight: 1
