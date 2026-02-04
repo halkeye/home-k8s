@@ -35,7 +35,7 @@ metadata:
   name: tls-redirect
 spec:
   parentRefs:
-    - name: tls-gateway
+    - name: http-gateway
       sectionName: http
   rules:
     - filters:
