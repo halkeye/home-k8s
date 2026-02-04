@@ -27,6 +27,7 @@ spec:
       tls:
         certificateRefs:
           - kind: Secret
+            group: ''
             name: wildcard-tls
             namespace: gateway
 ---
