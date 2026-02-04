@@ -21,6 +21,8 @@ spec:
             - ts.g4v.dev
             - ext.g4v.dev
             - g4v.dev
+            - halkeye.net
+            - gavinmogan.com
 ---
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
