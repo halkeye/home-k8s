@@ -74,3 +74,12 @@ ingress:
             service:
               identifier: main
               port: http
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - whoami.do.g4v.dev
