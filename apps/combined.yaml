@@ -13,7 +13,6 @@ spec:
           - clusters: {}
           - list:
               elements:
-                - appname: redis-operator
                 - appname: smtp-relay
                 - appname: sops-secrets-operator
                 - appname: cert-manager
