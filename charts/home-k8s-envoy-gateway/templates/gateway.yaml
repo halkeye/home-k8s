@@ -1,0 +1,41 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: http-gateway
+spec:
+  gatewayClassName: prod
+  listeners:
+  - name: http
+    port: 80
+    protocol: HTTP
+    hostname: "*.g4v.dev"
+  - name: https
+    port: 443
+    protocol: HTTPS
+    hostname: "*.g4v.dev"
+    tls:
+      mode: Terminate
+      certificateRefs:
+      - kind: Secret
+        name: wildcard-home-g4v-tls
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: internal-gateway
+spec:
+  gatewayClassName: prod
+  listeners:
+  - name: http
+    port: 80
+    protocol: HTTP
+    hostname: "*.h.g4v.dev"
+  - name: https
+    port: 443
+    protocol: HTTPS
+    hostname: "*.h.g4v.dev"
+    tls:
+      mode: Terminate
+      certificateRefs:
+      - kind: Secret
+        name: wildcard-home-g4v-tls
