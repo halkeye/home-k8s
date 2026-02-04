@@ -3,9 +3,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-helmGlobals:
-  chartHome: ./charts/
-
 helmCharts:
   - name: sops-secrets-operator
     version: 0.25.0
@@ -26,6 +23,7 @@ patches:
 
 resources:
   - https://raw.githubusercontent.com/isindir/sops-secrets-operator/147febf336f14bb2546eec020680ce1b2a2e96f1/config/crd/bases/isindir.github.com_sopssecrets.yaml
+  - monitor.yaml
 
 # generators:
 #   - ./secret-generator.yaml
