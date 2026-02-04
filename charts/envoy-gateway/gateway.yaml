@@ -28,6 +28,7 @@ spec:
         certificateRefs:
           - kind: Secret
             name: wildcard-tls
+            namespace: gateway
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
