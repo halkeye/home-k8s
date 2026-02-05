@@ -1,0 +1,25 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- ../../../charts/whoami/
+
+patches:
+  - target:
+      group: gateway.networking.k8s.io
+      version: v1
+      kind: HTTPRoute
+      name: whoami
+    patch: |-
+      - op: replace
+        path: /spec/hostnames
+        value: [whoami.h.g4v.dev]
+  - target:
+      group: networking.k8s.io
+      version: v1
+      kind: Ingress
+      name: whoami
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: whoami.h.g4v.dev

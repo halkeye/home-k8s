@@ -12,10 +12,10 @@ help: ## Display this help message
 all: diff ## Default target to diff everything
 
 diff: ## Show difference between local and dev
-	kustomize build --helm-api-versions monitoring.coreos.com/v1 --enable-helm . | kubectl diff --context $(CLUSTER) -f -
+	$(MAKE) -s build | kubectl diff --context $(CLUSTER) -f -
 
 apply: ## Apply
-	kustomize build --helm-api-versions monitoring.coreos.com/v1 --enable-helm . | kubectl apply --context $(CLUSTER) -f -
+	$(MAKE) -s build | kubectl apply --context $(CLUSTER) -f -
 
 build: ## Build
-	kustomize build --helm-api-versions monitoring.coreos.com/v1 --enable-helm .
+	kustomize build --helm-api-versions monitoring.coreos.com/v1 --helm-api-versions gateway.networking.k8s.io/v1/HTTPRoute --enable-helm .

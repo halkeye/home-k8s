@@ -1,1 +1,1 @@
-include ../build.mk
+include ../Makefile
