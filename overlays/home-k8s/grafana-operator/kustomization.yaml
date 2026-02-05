@@ -9,7 +9,6 @@ resources:
 - dashboards-data.yaml
 - dashboards-dotdc.yaml
 - dashboards-ingress.yaml
-- dashboards-kubernetes.yaml
 - dashboards-mediafetchers.yaml
 - dashboards-network.yaml
 - dashboards-other.yaml

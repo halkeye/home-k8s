@@ -10,7 +10,7 @@ resources:
   - secret.enc.yaml
   - grafana.yaml
   - datasources.yaml
-  - dashboards/samples.yaml
+  - dashboards-kubernetes.yaml
 
 # https://grafana.github.io/grafana-operator/docs/installation/kustomize/#argocd
 patches:

@@ -108,3 +108,37 @@ spec:
     # renovate: depName="Pi-hole Exporter"
     id: 10176
     revision: 3
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: tailscale-overview
+spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
+  folderRef: network
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  grafanaCom:
+    # renovate: depName="Tailscale / Overview"
+    id: 24177
+    revision: 1
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: tailscale-machine
+spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
+  folderRef: network
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  grafanaCom:
+    # renovate: depName="Tailscale / Machine"
+    id: 24178
+    revision: 1

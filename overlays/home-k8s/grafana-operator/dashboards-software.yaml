@@ -43,3 +43,20 @@ spec:
     # renovate: depName="ArgoCD"
     id: 14584
     revision: 1
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: authentik
+spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
+  folderRef: software
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  grafanaCom:
+    # renovate: depName="Authentik"
+    id: 14837
+    revision: 2

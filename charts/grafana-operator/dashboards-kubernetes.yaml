@@ -292,3 +292,20 @@ spec:
     # renovate: depName="Prometheus"
     id: 19105
     revision: 8
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: kubernetes-persistent-volumes
+spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
+  folderRef: kubernetes
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  grafanaCom:
+    # renovate: depName="kubernetes-persistent-volumes"
+    id: 13646
+    revision: 2
