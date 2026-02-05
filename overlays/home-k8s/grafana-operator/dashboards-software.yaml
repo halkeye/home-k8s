@@ -75,4 +75,4 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  url: https://raw.githubusercontent.com/halkeye/stashapp-prometheus-exporter/efa491a36cf155480c31165b48c91f5531c859f6/dashboards/stashapp-overview.json
+  url: https://raw.githubusercontent.com/halkeye/stashapp-prometheus-exporter/12b0d87d316f95d962e8e0429a37b4df934e80da/dashboards/stashapp-overview.json
