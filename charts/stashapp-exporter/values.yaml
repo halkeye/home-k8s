@@ -1,0 +1,48 @@
+controllers:
+  main:
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      main:
+        image:
+          repository: ghcr.io/evolite/stashapp-prometheus-exporter
+          tag: 5f74acc61cee97702223f4c69e000383fd8685a9
+        envFrom:
+          - secretRef:
+              name: "stashapp-exporter"
+        probes:
+          liveness:
+            enabled: true
+          readiness:
+            enabled: true
+          startup:
+            enabled: true
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+        resources:
+          requests:
+            cpu: 15m
+            memory: 60M
+    pod:
+      securityContext:
+        runAsUser: 65535
+        runAsGroup: 65535
+        runAsNonRoot: true
+        fsGroup: 65535
+        fsGroupChangePolicy: OnRootMismatch
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 9100
+serviceMonitor:
+  app:
+    serviceName: stashapp-exporter
+    endpoints:
+      - port: http
+        scheme: http
+        path: /metrics
