@@ -22,6 +22,8 @@ serviceMonitor:
   enabled: true
 sources:
   - ingress
+  - gateway-httproute
+  - gateway-grpcroute
   - service
 provider:
   name: cloudflare

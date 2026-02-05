@@ -18,10 +18,10 @@ domainFilters:
 serviceMonitor:
   enabled: true
 sources:
-  - service
   - ingress
   - gateway-httproute
   - gateway-grpcroute
+  - service
 provider:
   name: pihole
 registry: noop
