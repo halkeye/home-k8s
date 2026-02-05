@@ -134,6 +134,8 @@ spec:
   datasources:
   - inputName: "DS_PROMETHEUS"
     datasourceName: "prometheus"
+  - inputName: "DS_AFRANET_PROMETHEUS"
+    datasourceName: "prometheus"
   folderRef: ingress
   instanceSelector:
     matchLabels:
