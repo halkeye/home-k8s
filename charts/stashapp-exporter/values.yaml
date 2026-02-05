@@ -5,8 +5,8 @@ controllers:
     containers:
       main:
         image:
-          repository: ghcr.io/evolite/stashapp-prometheus-exporter
-          tag: 5f74acc61cee97702223f4c69e000383fd8685a9
+          repository: ghcr.io/halkeye/stashapp-prometheus-exporter
+          tag: sha-2581b55
         envFrom:
           - secretRef:
               name: "stashapp-exporter"
