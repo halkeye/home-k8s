@@ -1,0 +1,62 @@
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaFolder
+metadata:
+  name: programming
+spec:
+  allowCrossNamespaceImport: true
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  title: "Programming"
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: golang
+spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
+  folderRef: programming
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  grafanaCom:
+    # renovate: depName="Go Host & Runtime Metrics Dashboard"
+    id: 21221
+    revision: 1
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: nodejs-application-dashboard
+spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
+  folderRef: programming
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  grafanaCom:
+    # renovate: depName="NodeJS Application Dashboard"
+    id: 11159
+    revision: 1
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: nodejs-metrics
+spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
+  folderRef: programming
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  grafanaCom:
+    # renovate: depName="Nodejs Metrics"
+    id: 11956
+    revision: 1

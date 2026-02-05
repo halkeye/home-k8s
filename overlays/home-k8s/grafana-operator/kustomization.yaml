@@ -16,6 +16,7 @@ resources:
 - dashboards-software.yaml
 - dashboards-storage.yaml
 - dashboards-unifi.yaml
+- dashboards-programming.yaml
 
 patches:
   - patch: |-
