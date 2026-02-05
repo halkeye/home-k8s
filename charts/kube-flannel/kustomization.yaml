@@ -7,7 +7,7 @@ namespace: kube-flannel
 
 helmCharts:
   - name: flannel
-    version: v0.28.0
+    version: v0.28.1
     repo: https://flannel-io.github.io/flannel/
     valuesFile: values.yaml
     releaseName: kube-flannel 
