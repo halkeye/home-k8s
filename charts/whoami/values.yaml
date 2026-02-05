@@ -82,7 +82,7 @@ route:
         namespace: envoy-gateway
         sectionName: https
     hostnames:
-      - whoami.do.g4v.dev
+      - whoami-do.g4v.dev
     rules:
       - matches:	
         - path:	
