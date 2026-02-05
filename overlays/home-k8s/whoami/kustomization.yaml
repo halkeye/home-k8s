@@ -22,4 +22,4 @@ patches:
     patch: |-
       - op: replace
         path: /spec/rules/0/host
-        value: whoami.h.g4v.dev
+        value: whoami-ingress.h.g4v.dev

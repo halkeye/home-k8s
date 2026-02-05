@@ -68,7 +68,7 @@ ingress:
       #   auth_request_set $auth_resp_err $upstream_http_x_vouch_err;
       #   auth_request_set $auth_resp_failcount $upstream_http_x_vouch_failcount;
     hosts:
-      - host: 'whoami.g4v.dev'
+      - host: 'whoami-ingress.g4v.dev'
         paths:
           - path: /
             service:
