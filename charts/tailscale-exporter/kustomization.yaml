@@ -1,0 +1,25 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: monitoring
+
+helmCharts:
+  - name: app-template
+    version: 4.6.2
+    repo: https://bjw-s-labs.github.io/helm-charts
+    valuesFile: values.yaml
+    releaseName: pihole-exporter 
+
+resources:
+  - ./secret.enc.yaml
+
+patches:
+- target:
+    group: monitoring.coreos.com
+    version: v1
+    kind: ServiceMonitor
+  patch: |-
+    - op: remove
+      path: /spec/namespaceSelector
