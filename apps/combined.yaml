@@ -18,6 +18,8 @@ spec:
                 - appname: envoy-gateway
                 - appname: cert-manager
                   useOverlay: true
+                - appname: whoami
+                  useOverlay: true
   template:
     metadata:
       name: '{{.nameNormalized}}-{{.appname}}'

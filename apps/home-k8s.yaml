@@ -133,7 +133,6 @@ spec:
           - name: tachidesk
           - name: tasmoadmin
           - name: unpackerr
-          - name: whoami
           - name: youtubedl-material
   template:
     metadata:
