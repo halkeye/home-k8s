@@ -77,7 +77,8 @@ spec:
           - { namespace: monitoring, name: qbittorrent-exporter }
           - { namespace: monitoring, name: sabnzbd-exporter }
           - { namespace: monitoring, name: speedtest-exporter }
-          - { namespace: monitoring, name: tailscale-poller }
+          - { namespace: monitoring, name: stashapp-exporter }
+          - { namespace: monitoring, name: tailscale-exporter }
           - { namespace: monitoring, name: unifi-poller }
 
           - { namespace: plex, name: plex-discord-media-updates }
