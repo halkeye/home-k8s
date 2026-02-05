@@ -1,16 +1,5 @@
 ---
 apiVersion: grafana.integreatly.org/v1beta1
-kind: GrafanaFolder
-metadata:
-  name: network
-spec:
-  allowCrossNamespaceImport: true
-  instanceSelector:
-    matchLabels:
-      dashboards: "grafana"
-  title: "Network"
----
-apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
   name: blackbox-exporter
@@ -43,23 +32,6 @@ spec:
     # renovate: depName="Website Monitoring"
     id: 13041
     revision: 4
----
-apiVersion: grafana.integreatly.org/v1beta1
-kind: GrafanaDashboard
-metadata:
-  name: coredns
-spec:
-  datasources:
-  - inputName: "DS_PROMETHEUS"
-    datasourceName: "prometheus"
-  folderRef: network
-  instanceSelector:
-    matchLabels:
-      dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="CoreDNS"
-    id: 14981
-    revision: 2
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -124,21 +96,4 @@ spec:
   grafanaCom:
     # renovate: depName="Tailscale / Overview"
     id: 24177
-    revision: 1
----
-apiVersion: grafana.integreatly.org/v1beta1
-kind: GrafanaDashboard
-metadata:
-  name: tailscale-machine
-spec:
-  datasources:
-  - inputName: "DS_PROMETHEUS"
-    datasourceName: "prometheus"
-  folderRef: network
-  instanceSelector:
-    matchLabels:
-      dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="Tailscale / Machine"
-    id: 24178
     revision: 1

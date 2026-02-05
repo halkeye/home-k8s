@@ -7,15 +7,12 @@ resources:
 - ../../../charts/grafana-operator/
 - dashboards-3dprinter.yaml
 - dashboards-data.yaml
-- dashboards-dotdc.yaml
-- dashboards-ingress.yaml
 - dashboards-mediafetchers.yaml
 - dashboards-network.yaml
 - dashboards-other.yaml
 - dashboards-software.yaml
 - dashboards-storage.yaml
 - dashboards-unifi.yaml
-- dashboards-programming.yaml
 
 patches:
   - patch: |-
@@ -26,8 +23,8 @@ patches:
       spec:
         config:
           server:
-            root_url: https://grafana.h.g4v.dev
+            root_url: https://grafana-h.g4v.dev
         httpRoute:
           spec:
             hostnames:
-              - grafana.h.g4v.dev
+              - grafana-h.g4v.dev

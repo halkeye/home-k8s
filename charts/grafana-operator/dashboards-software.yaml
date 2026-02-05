@@ -1,8 +1,19 @@
 ---
 apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaFolder
+metadata:
+  name: software
+spec:
+  allowCrossNamespaceImport: true
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  title: "Software"
+---
+apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
-  name: argocd
+  name: vikunja
 spec:
   datasources:
   - inputName: "DS_PROMETHEUS"
@@ -12,22 +23,23 @@ spec:
     matchLabels:
       dashboards: "grafana"
   grafanaCom:
-    # renovate: depName="ArgoCD"
-    id: 14584
+    # renovate: depName="Vikunja"
+    id: 21928
     revision: 1
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
-  name: stashapp
+  name: authentik
 spec:
   datasources:
   - inputName: "DS_PROMETHEUS"
-    datasourceName: "prometheus"
-  - inputName: "df7cjcbegurr4d"
     datasourceName: "prometheus"
   folderRef: software
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  url: https://raw.githubusercontent.com/halkeye/stashapp-prometheus-exporter/12b0d87d316f95d962e8e0429a37b4df934e80da/dashboards/stashapp-overview.json
+  grafanaCom:
+    # renovate: depName="Authentik"
+    id: 14837
+    revision: 2

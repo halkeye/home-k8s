@@ -3,14 +3,21 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-namespace: grafana
+namespace: grafana-operator
 
 resources:
   - https://github.com/grafana/grafana-operator/releases/download/v5.21.4/kustomize-cluster_scoped.yaml
   - secret.enc.yaml
   - grafana.yaml
   - datasources.yaml
+  - dashboards-data.yaml
+  - dashboards-dotdc.yaml
+  - dashboards-ingress.yaml
   - dashboards-kubernetes.yaml
+  - dashboards-network.yaml
+  - dashboards-other.yaml
+  - dashboards-programming.yaml
+  - dashboards-software.yaml
 
 # https://grafana.github.io/grafana-operator/docs/installation/kustomize/#argocd
 patches:

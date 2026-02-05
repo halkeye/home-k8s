@@ -1,0 +1,58 @@
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaFolder
+metadata:
+  name: databases
+spec:
+  allowCrossNamespaceImport: true
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  title: "Databases"
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: redis
+spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
+  folderRef: databases
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  # renovate: depName="Redis"
+  url: https://raw.githubusercontent.com/oliver006/redis_exporter/refs/tags/v1.80.2/contrib/grafana_prometheus_redis_dashboard.json
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: mysql
+spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
+  folderRef: databases
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  # renovate: depName="MySQL"
+  url: https://raw.githubusercontent.com/prometheus/mysqld_exporter/c407e35c629be445c5e3db291910a3ec974be5de/mysqld-mixin/dashboards/mysql-overview.json
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: postgresql
+spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
+  folderRef: databases
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  grafanaCom:
+    # renovate: depName="PostgreSQL"
+    id: 9628
+    revision: 8
