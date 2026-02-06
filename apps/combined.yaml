@@ -20,6 +20,8 @@ spec:
                   useOverlay: true
                 - appname: whoami
                   useOverlay: true
+                - appname: grafana-operator
+                  useOverlay: true
   template:
     metadata:
       name: '{{.nameNormalized}}-{{.appname}}'

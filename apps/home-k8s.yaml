@@ -91,8 +91,6 @@ spec:
           - { namespace: pihole, name: pihole-exporter }
           - { namespace: pihole, name: nebula-sync }
 
-          - { namespace: grafana-operator, name: grafana-operator, path: "overlays/home-k8s", prefix: "home-k8s" }
-
           - name: amd-gpu
           - name: anime-radarr
           - name: anime-sonarr

@@ -94,7 +94,6 @@ spec:
           - name: bluesky-crossposter
           - name: bytestash
           - name: externaldns-cloudflare
-          - name: grafana
           - name: hoarder
           - name: memos
           - name: metrics-server
