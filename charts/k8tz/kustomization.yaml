@@ -1,0 +1,13 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: k8tz
+
+helmCharts:
+  - name: k8tz
+    version: 0.18.0
+    repo: https://k8tz.github.io/k8tz/
+    valuesFile: values.yaml
+    releaseName: k8tz
