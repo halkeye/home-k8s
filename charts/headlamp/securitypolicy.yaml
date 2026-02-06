@@ -13,5 +13,5 @@ spec:
     clientID: "fL5KNw0xcDnLgFg14j8M2lHdD5Jp7Rx7I2ZwOsy2"
     clientSecret:
       name: "headlamp-client-secret"
-    redirectURL: "https://headlamp-do.g4v.dev/oauth2/callback"
+    redirectURL: "https://headlamp-h.g4v.dev/oauth2/callback"
     logoutPath: "/myapp/logout"
