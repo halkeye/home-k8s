@@ -13,7 +13,7 @@ patches:
     patch: |-
       - op: replace
         path: /spec/hostnames
-        value: [whoami.h.g4v.dev]
+        value: [whoami-h.g4v.dev]
   - target:
       group: networking.k8s.io
       version: v1
@@ -22,4 +22,13 @@ patches:
     patch: |-
       - op: replace
         path: /spec/rules/0/host
-        value: whoami-ingress.h.g4v.dev
+        value: whoami-ingress-h.g4v.dev
+  - target:
+      group: gateway.envoyproxy.io
+      version: v1alpha1
+      kind: SecurityPolicy
+      name: whoami-oidc
+    patch: |-
+      - op: replace
+        path: /spec/oidc/redirectURL
+        value: https://whoami-h.g4v.dev/oauth2/callback

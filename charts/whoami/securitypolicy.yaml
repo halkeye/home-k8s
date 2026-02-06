@@ -1,0 +1,17 @@
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: whoami-oidc
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: whoami
+  oidc:
+    provider:
+      issuer: "https://auth.g4v.dev/application/o/whoami/"
+    clientID: "YMtZG6iRtGX7TmNypl4Tucl0VAGHlM8Y6hsvc9G2"
+    clientSecret:
+      name: "whoami-client-secret"
+    redirectURL: "https://whoami-do.g4v.dev/oauth2/callback"
+    logoutPath: "/myapp/logout"

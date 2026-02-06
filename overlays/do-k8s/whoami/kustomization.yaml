@@ -23,3 +23,12 @@ patches:
       - op: replace
         path: /spec/rules/0/host
         value: whoami-ingress-do.g4v.dev
+  - target:
+      group: gateway.envoyproxy.io
+      version: v1alpha1
+      kind: SecurityPolicy
+      name: whoami-oidc
+    patch: |-
+      - op: replace
+        path: /spec/oidc/redirectURL
+        value: https://whoami-do.g4v.dev/oauth2/callback
