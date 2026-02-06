@@ -1,0 +1,22 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: grafana-operator
+
+resources:
+- ../../../charts/grafana-operator/
+
+patches:
+  - patch: |-
+      apiVersion: grafana.integreatly.org/v1beta1
+      kind: Grafana
+      metadata:
+        name: grafana
+      spec:
+        config:
+          server:
+            root_url: https://grafana-do.g4v.dev
+        httpRoute:
+          spec:
+            hostnames:
+              - grafana-do.g4v.dev
