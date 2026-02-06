@@ -1,0 +1,13 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: remove-empty-ns-operator
+
+helmCharts:
+  - name: remove-empty-ns-operator
+    version: 1.1.0
+    repo: https://rgeraskin.github.io/remove-empty-ns-operator/
+    valuesFile: values.yaml
+    releaseName: remove-empty-ns-operator
