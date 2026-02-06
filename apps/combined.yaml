@@ -13,15 +13,13 @@ spec:
           - clusters: {}
           - list:
               elements:
-                - appname: smtp-relay
-                - appname: sops-secrets-operator
-                - appname: envoy-gateway
-                - appname: cert-manager
-                  useOverlay: true
-                - appname: whoami
-                  useOverlay: true
-                - appname: grafana-operator
-                  useOverlay: true
+                - { appname: cert-manager, useOverlay: true }
+                - { appname: envoy-gateway }
+                - { appname: grafana-operator, useOverlay: true }
+                - { appname: remove-empty-ns-operator }
+                - { appname: smtp-relay }
+                - { appname: sops-secrets-operator }
+                - { appname: whoami, useOverlay: true }
   template:
     metadata:
       name: '{{.nameNormalized}}-{{.appname}}'
