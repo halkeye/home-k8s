@@ -18,4 +18,4 @@ apply: ## Apply
 	$(MAKE) -s build | kubectl apply --context $(CLUSTER) -f -
 
 build: ## Build
-	kustomize build --helm-api-versions monitoring.coreos.com/v1 --helm-api-versions gateway.networking.k8s.io/v1/HTTPRoute --enable-helm .
+	kustomize build --load-restrictor LoadRestrictionsNone --helm-api-versions monitoring.coreos.com/v1 --helm-api-versions gateway.networking.k8s.io/v1/HTTPRoute --enable-helm .
