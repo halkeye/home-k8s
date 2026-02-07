@@ -6,7 +6,7 @@ controllers:
       main:
         image:
           repository: frooodle/s-pdf
-          tag: 2.4.4
+          tag: 2.4.5
         # command:
         #   - java
         #   - -Dfile.encoding=UTF-8
