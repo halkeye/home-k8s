@@ -65,25 +65,27 @@ service:
     ports:
       http:
         port: 8083
-ingress:
+route:
   main:
-    className: nginx
     enabled: true
-    annotations:
-      nginx.ingress.kubernetes.io/proxy-body-size: '1G'
-    hosts:
-      - host: "calibre-web-automated.g4v.dev"
-        paths:
-          - path: /
-            service:
-              identifier: main
-              port: http
-      - host: "cwa.g4v.dev"
-        paths:
-          - path: /
-            service:
-              identifier: main
-              port: http
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "calibre-web-automated.g4v.dev"
+      - "cwa.g4v.dev"
+    rules:
+      - matches:	
+        - path:	
+            type: PathPrefix	
+            value: /
+        backendRefs:
+          - group: ''
+            kind: Service
+            identifier: main
+            port: http
+            weight: 1
 persistence:
   config:
     enabled: true
