@@ -99,7 +99,6 @@ spec:
           - name: microbin
           - name: miniflux
           - name: phanpy
-          - name: photoprism
           - name: searxng
           - name: stirling-pdf
           - name: synapse-admin
