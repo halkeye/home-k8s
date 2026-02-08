@@ -97,7 +97,6 @@ spec:
           - name: audiomuse
           - name: autobrr
           - name: bandcampsync
-          - name: booklore
           - name: calibre-web-automated
           - name: cloudnative-pg
           - name: cross-seed
