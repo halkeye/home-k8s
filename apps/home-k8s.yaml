@@ -104,6 +104,7 @@ spec:
           - name: frigate
           - name: go-socks5-proxy
           - name: hass-lovelace-kindle-screensaver
+          - name: headlamp
           - name: immich
           - name: kavita
           - name: kobodl
