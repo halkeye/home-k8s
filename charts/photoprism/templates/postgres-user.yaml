@@ -1,9 +1,0 @@
-apiVersion: db.movetokube.com/v1alpha1
-kind: PostgresUser
-metadata:
-  name: photoprism
-spec:
-  role: photoprism-group
-  database: photoprism
-  secretName: photoprism-db-secret
-  privileges: OWNER
