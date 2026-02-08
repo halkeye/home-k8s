@@ -13,7 +13,7 @@ helmCharts:
   - name: metrics-server
     version: 3.13.0
     repo: https://kubernetes-sigs.github.io/metrics-server/
-    releaseName: metrics-server 
+    releaseName: metrics-server
     valuesFile: ./values.yaml
 
 patches:

@@ -10,5 +10,5 @@ helmCharts:
     version: v0.28.1
     repo: https://flannel-io.github.io/flannel/
     valuesFile: values.yaml
-    releaseName: kube-flannel 
+    releaseName: kube-flannel
 

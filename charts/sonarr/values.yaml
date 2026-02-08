@@ -124,9 +124,9 @@ route:
     hostnames:
       - "{{ .Release.Name }}.g4v.dev"
     rules:
-      - matches:	
-        - path:	
-            type: PathPrefix	
+      - matches:
+        - path:
+            type: PathPrefix
             value: /
         backendRefs:
           - group: ''

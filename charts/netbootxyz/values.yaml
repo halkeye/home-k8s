@@ -10,7 +10,7 @@ controllers:
           repository: ghcr.io/netbootxyz/netbootxyz
           tag: "0.7.6-nbxyz1"
         env:
-          TFTPD_OPTS: "--tftp-single-port" 
+          TFTPD_OPTS: "--tftp-single-port"
           PGID: 1000
           PUID: 1000
           WEB_APP_PORT: 3000

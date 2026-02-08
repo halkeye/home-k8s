@@ -8,7 +8,7 @@ helmCharts:
     version: 4.6.2
     repo: https://bjw-s-labs.github.io/helm-charts
     valuesFile: values.yaml
-    releaseName: node-red 
+    releaseName: node-red
 
 resources:
   - ./secret.enc.yaml

@@ -10,7 +10,7 @@ helmCharts:
     version: 4.6.2
     repo: https://bjw-s-labs.github.io/helm-charts
     valuesFile: ../radarr/values.yaml
-    releaseName: anime-radarr 
+    releaseName: anime-radarr
 
 resources:
   - ./templates/postgres-user.yaml

@@ -8,7 +8,7 @@ helmCharts:
     version: 4.6.2
     repo: https://bjw-s-labs.github.io/helm-charts
     valuesFile: values.yaml
-    releaseName: synapse-admin 
+    releaseName: synapse-admin
 
 configMapGenerator:
   - name: synapse-admin

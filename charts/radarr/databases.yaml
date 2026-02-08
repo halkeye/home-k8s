@@ -13,7 +13,6 @@ spec:
   secretTemplate:
     HOST_NO_PORT: "{{ .Hostname }}"
     PORT: "{{ .Port }}"
-    
 ---
 apiVersion: db.movetokube.com/v1alpha1
 kind: Postgres

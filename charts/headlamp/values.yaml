@@ -2,7 +2,7 @@
 httpRoute:
   enabled: true
   parentRefs:
-    - group: gateway.networking.k8s.io	
+    - group: gateway.networking.k8s.io
       kind: Gateway
       name: http-gateway
       namespace: envoy-gateway
@@ -11,8 +11,8 @@ httpRoute:
     - headlamp-h.g4v.dev
   rules:
     - backendRefs:
-        - group: ''	
-          kind: Service	
+        - group: ''
+          kind: Service
           name: headlamp
           port: 80
           weight: 1

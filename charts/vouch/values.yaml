@@ -8,7 +8,7 @@ controllers:
       vouch:
         image:
           repository: quay.io/vouch/vouch-proxy
-          tag: 0.45 
+          tag: 0.45
         env:
           TZ: America/Vancouver
           VOUCH_ALLOWALLUSERS: true
@@ -54,7 +54,7 @@ service:
     controller: main
     ports:
       http:
-        port: 9090 
+        port: 9090
 ingress:
   main:
     enabled: true

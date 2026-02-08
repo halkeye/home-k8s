@@ -12,4 +12,4 @@ spec:
   secretTemplate:
     HOST_NO_PORT: "{{ .Hostname }}"
     PORT: "{{ .Port }}"
-    
+   

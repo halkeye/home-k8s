@@ -52,7 +52,7 @@ controllers:
         image:
           repository: ghcr.io/neptunehub/audiomuse-ai
           tag: 0.7.12-beta
-        env: 
+        env:
           <<: *env
           SERVICE_TYPE: "worker"
         envFrom:

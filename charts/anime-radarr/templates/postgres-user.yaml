@@ -1,3 +1,4 @@
+---
 apiVersion: db.movetokube.com/v1alpha1
 kind: PostgresUser
 metadata:
@@ -12,4 +13,4 @@ spec:
   secretTemplate:
     HOST_NO_PORT: "{{ .Hostname }}"
     PORT: "{{ .Port }}"
-    
+

@@ -22,7 +22,7 @@ helmCharts:
     version: 10.5.15
     repo: https://grafana.github.io/helm-charts
     valuesFile: values.yaml
-    releaseName: grafana 
+    releaseName: grafana
 
 resources:
   - ./secret.enc.yaml

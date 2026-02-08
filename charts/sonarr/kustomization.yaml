@@ -10,7 +10,7 @@ helmCharts:
     version: 4.6.2
     repo: https://bjw-s-labs.github.io/helm-charts
     valuesFile: values.yaml
-    releaseName: sonarr 
+    releaseName: sonarr
 
 resources:
   - ./templates/postgres-user.yaml
