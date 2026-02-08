@@ -1,0 +1,16 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: matrix
+
+helmCharts:
+  - name: element-web
+    version: 1.4.29
+    repo: https://ananace.gitlab.io/charts
+    valuesFile: values.yaml
+    releaseName: element-web
+
+resources:
+  - ./httproute.yaml

@@ -1,23 +1,18 @@
-element-web:
-  ingress:
-    enabled: true
-    hosts:
-      - chat.g4v.dev
-  defaultServer:
-    url: 'https://matrix.g4v.dev'
-    name: 'g4v.dev'
-  config:
-    disable_guests: true
-    show_labs_settings: true
-    room_directory:
-      servers:
-        - matrix.org
-        - mozilla.org
-        - gitter.im
-        - g4v.dev
-  resources:
-    limits:
-      memory: 128Mi
-    requests:
-      cpu: 10m
-      memory: 128Mi
+defaultServer:
+  url: 'https://matrix.g4v.dev'
+  name: 'g4v.dev'
+config:
+  disable_guests: true
+  show_labs_settings: true
+  room_directory:
+    servers:
+      - matrix.org
+      - mozilla.org
+      - gitter.im
+      - g4v.dev
+resources:
+  limits:
+    memory: 128Mi
+  requests:
+    cpu: 10m
+    memory: 128Mi

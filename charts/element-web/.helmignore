@@ -14,13 +14,10 @@
 *.swp
 *.bak
 *.tmp
+*.orig
 *~
 # Various IDEs
 .project
 .idea/
 *.tmproj
 .vscode/
-node_modules/
-release.config.cjs
-cr.yaml
-.cr-release-packages
