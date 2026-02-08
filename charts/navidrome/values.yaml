@@ -18,7 +18,7 @@ controllers:
       navidrome:
         image:
           repository: ghcr.io/navidrome/navidrome
-          tag: 0.60.0
+          tag: 0.60.2
         env:
           TZ: America/Vancouver
           ND_DATAFOLDER: /config
