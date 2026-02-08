@@ -5,6 +5,8 @@ metadata:
 spec:
   parentRefs:
     - name: http-gateway
+      group: gateway.networking.k8s.io
+      kind: Gateway
       namespace: envoy-gateway
       sectionName: https
   hostnames:
@@ -13,3 +15,10 @@ spec:
     - backendRefs:
         - name: element-web
           port: 80
+          group: ''
+          kind: Service
+          weight: 1
+      matches:
+        - path:
+            type: PathPrefix
+            value: /
