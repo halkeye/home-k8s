@@ -1,0 +1,16 @@
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: libmedium
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: libmedium
+  oidc:
+    provider:
+      issuer: "https://auth.g4v.dev/application/o/libmedium/"
+    clientID: "jAV9T2eYvJO5rmaasEve1RyZHukNQb7oUEc9uprt"
+    clientSecret:
+      name: "libmedium-client-secret"
+    redirectURL: "https://libmedium.g4v.dev/oauth2/callback"

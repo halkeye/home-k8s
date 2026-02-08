@@ -28,7 +28,6 @@ spec:
           - name: foundry-vtt
           - name: gathio
           - name: it-tools
-          - name: libmedium
           - name: not-the-plants
           - name: planka
           - name: string-is
@@ -94,6 +93,7 @@ spec:
           - name: bytestash
           - name: externaldns-cloudflare
           - name: hoarder
+          - name: libmedium
           - name: memos
           - name: metrics-server
           - name: microbin
@@ -111,6 +111,7 @@ spec:
       namespace: argocd
       annotations:
         argocd.argoproj.io/sync-wave: '{{dig "syncwave" "20" . }}'
+        argocd.argoproj.io/compare-options: ServerSideDiff=true,IncludeMutationWebhook=true
     spec:
       destination:
         namespace: '{{- if index . "namespace" -}}{{ .namespace | normalize }}{{- else }}{{ .name | normalize }}{{ end }}'

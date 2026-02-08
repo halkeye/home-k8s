@@ -1,92 +1,69 @@
-app-template:
-  controllers:
-    main:
-      strategy: RollingUpdate
-      annotations:
-        reloader.stakater.com/auto: 'true'
-      containers:
-        libmedium:
-          image:
-            repository: realaravinth/libmedium
-            tag: latest@sha256:3ab8addf2e78c69ca26b3df6305667541b0cbddbc473401199311650aa298478
-          env:
-            TZ: America/Vancouver
-            LOG_LEVEL: 'info'
-            PORT: '7000'
-          probes:
-            liveness: &probes
-              enabled: false
-            readiness: *probes
-            startup: *probes
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            capabilities:
-              drop: ['ALL']
-          resources:
-            requests:
-              cpu: 10m
-              memory: 100Mi
-            limits:
-              memory: 100Mi
-      pod:
+controllers:
+  main:
+    strategy: RollingUpdate
+    annotations:
+      reloader.stakater.com/auto: 'true'
+    containers:
+      libmedium:
+        image:
+          repository: realaravinth/libmedium
+          tag: latest@sha256:3ab8addf2e78c69ca26b3df6305667541b0cbddbc473401199311650aa298478
+        env:
+          TZ: America/Vancouver
+          LOG_LEVEL: 'info'
+          PORT: '7000'
+        probes:
+          liveness: &probes
+            enabled: false
+          readiness: *probes
+          startup: *probes
         securityContext:
-          runAsUser: 568
-          runAsGroup: 568
-          runAsNonRoot: true
-          fsGroup: 568
-          fsGroupChangePolicy: OnRootMismatch
-  service:
-    main:
-      controller: main
-      ports:
-        http:
-          port: 7000
-  ingress:
-    main:
-      enabled: true
-      annotations:
-        gethomepage.dev/enabled: 'false'
-        nginx.ingress.kubernetes.io/auth-url: http://ak-outpost-nginx.authentik.svc.cluster.local:9000/outpost.goauthentik.io/auth/nginx
-        nginx.ingress.kubernetes.io/auth-signin: https://libmedium.g4v.dev/outpost.goauthentik.io/start?rd=$scheme://$http_host$escaped_request_uri
-        nginx.ingress.kubernetes.io/auth-response-headers: Set-Cookie,X-authentik-username,X-authentik-groups,X-authentik-email,X-authentik-name,X-authentik-uid
-        nginx.ingress.kubernetes.io/auth-snippet: |
-          proxy_set_header X-Forwarded-Host $http_host;
-      hosts:
-        - host: libmedium.g4v.dev
-          paths:
-            - path: /
-              service:
-                identifier: main
-                port: http
-  persistence:
-    config:
-      enabled: true
-      type: configMap
-      name: '{{.Release.Name}}-config'
-      globalMounts:
-        - path: /etc/libmedium/config.toml
-          subPath: config.toml
-          readOnly: true
-    cache:
-      enabled: true
-      type: emptyDir
-  configMaps:
-    config:
-      data:
-        config.toml: |-
-          debug = true
-          source_code = "https://github.com/realaravinth/libmedium"
-          cache = "/cache"
-
-          [server]
-          # The port at which you want authentication to listen to
-          # takes a number, choose from 1000-10000 if you dont know what you are doing
-          port = 7000
-          #IP address. Enter 0.0.0.0 to listen on all available addresses
-          ip= "0.0.0.0"
-          # enter your hostname, eg: example.com
-          domain = "g4v.dev"
-          allow_registration = false
-          proxy_has_tls = false
-          #workers = 2
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ['ALL']
+        resources:
+          requests:
+            cpu: 10m
+            memory: 100Mi
+          limits:
+            memory: 100Mi
+    pod:
+      securityContext:
+        runAsUser: 568
+        runAsGroup: 568
+        runAsNonRoot: true
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 7000
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "libmedium.g4v.dev"
+    rules:
+      - backendRefs:
+          - identifier: main
+            port: http
+            weight: 1
+persistence:
+  config:
+    enabled: true
+    type: configMap
+    name: libmedium
+    globalMounts:
+      - path: /etc/libmedium/config.toml
+        subPath: config.toml
+        readOnly: true
+  cache:
+    enabled: true
+    type: emptyDir

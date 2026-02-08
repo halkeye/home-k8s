@@ -1,0 +1,25 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: libmedium
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+helmCharts:
+  - name: app-template
+    version: 4.6.2
+    repo: https://bjw-s-labs.github.io/helm-charts
+    valuesFile: values.yaml
+    releaseName: libmedium
+
+configMapGenerator:
+  - name: libmedium
+    files:
+      - config.toml
+
+resources:
+  - ./secret.enc.yaml
+  - ./securitypolicy.yaml

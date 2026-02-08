@@ -26,6 +26,7 @@ spec:
       namespace: argocd
       annotations:
         argocd.argoproj.io/sync-wave: '{{dig "syncwave" "20" . }}'
+        argocd.argoproj.io/compare-options: ServerSideDiff=true,IncludeMutationWebhook=true
     spec:
       destination:
         namespace: '{{- if index . "namespace" -}}{{ .namespace | normalize }}{{- else }}{{ .appname | normalize }}{{ end }}'
