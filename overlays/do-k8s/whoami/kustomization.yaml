@@ -15,15 +15,6 @@ patches:
         path: /spec/hostnames
         value: [whoami-do.g4v.dev]
   - target:
-      group: networking.k8s.io
-      version: v1
-      kind: Ingress
-      name: whoami
-    patch: |-
-      - op: replace
-        path: /spec/rules/0/host
-        value: whoami-ingress-do.g4v.dev
-  - target:
       group: gateway.envoyproxy.io
       version: v1alpha1
       kind: SecurityPolicy
