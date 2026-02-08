@@ -19,7 +19,6 @@ spec:
           - { namespace: matrix, name: mautrix-linkedin }
           - { namespace: matrix, name: mautrix-whatsapp }
           - { namespace: matrix, name: synapse }
-          - { namespace: matrix, name: element-web }
 
           # Apps
           - { namespace: bitwarden, name: vaultwarden }
@@ -84,12 +83,12 @@ spec:
           # Exporters
           - { namespace: monitoring, name: mysqld-exporter }
 
-          - { namespace: matrix, name: synatainer }
-
           # Matrix
+          - { namespace: matrix, name: element-web }
           - { namespace: matrix, name: mautrix-gmessages }
           - { namespace: matrix, name: mautrix-instagram }
           - { namespace: matrix, name: mautrix-signal }
+          - { namespace: matrix, name: synatainer }
 
           - name: bluesky-crossposter
           - name: bytestash
