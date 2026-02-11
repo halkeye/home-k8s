@@ -28,7 +28,7 @@ app-template:
               drop: ["ALL"]
           resources:
             limits: &resources
-              memory: 1Gi
+              memory: 2Gi
             requests:
               <<: *resources
               cpu: 10m
