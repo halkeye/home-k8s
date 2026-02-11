@@ -64,9 +64,6 @@ serviceMonitor:
     # - name: printer
     #   url: printer.dhcp.home
     #   module: icmp
-    - name: rfbridge
-      url: 172.16.10.178
-      module: icmp
     - name: blinds-controller-1
       url: blinds_controller_1.dhcp.home
       module: icmp
