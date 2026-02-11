@@ -3,7 +3,7 @@ matrix-synapse:
   fullnameOverride: synapse
   image:
     repository: ghcr.io/element-hq/synapse
-    tag: v1.146.0
+    tag: v1.147.0
 
   postgresql:
     enabled: false
