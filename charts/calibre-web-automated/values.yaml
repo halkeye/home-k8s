@@ -108,6 +108,6 @@ persistence:
   books:
     type: nfs
     server: 172.16.10.10
-    path: /volume1/Books
+    path: /volume1/Comics/Books
     globalMounts:
       - path: /calibre-library
