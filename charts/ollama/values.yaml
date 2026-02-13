@@ -133,33 +133,45 @@ service:
     ports:
       http:
         port: 8080
-ingress:
-  ollama:
-    enabled: true
-    annotations:
-      gethomepage.dev/enabled: 'false'
-      nginx.ingress.kubernetes.io/proxy-read-timeout: "36000"
-      nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
-      nginx.ingress.kubernetes.io/proxy-connect-timeout: "300"
-      nginx.ingress.kubernetes.io/connection-proxy-header: "keep-alive"
-    hosts:
-      - host: ollama.g4v.dev
-        paths:
-          - path: /
-            service:
-              identifier: ollama
-              port: http
+route:
   webui:
     enabled: true
-    annotations:
-      gethomepage.dev/enabled: 'false'
-    hosts:
-      - host: ai.g4v.dev
-        paths:
-          - path: /
-            service:
-              identifier: webui
-              port: http
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "ai.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - group: ''
+            kind: Service
+            identifier: webui
+            port: http
+            weight: 1
+  ollama:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "ollama.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - group: ''
+            kind: Service
+            identifier: ollama
+            port: http
+            weight: 1
 persistence:
   config:
     enabled: true
