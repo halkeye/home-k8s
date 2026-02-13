@@ -19,28 +19,33 @@ controllers:
           repository: ghcr.io/karakeep-app/karakeep
           tag: 0.30.0
         env:
-          COREPACK_INTEGRITY_KEYS: 0 # until https://github.com/hoarder-app/hoarder/commit/c032f5065e5f1c62c0f57cd00462be4689178a23 is merged
+          ASSET_STORE_S3_BUCKET: halkeye-hoarder
+          ASSET_STORE_S3_ENDPOINT: https://halkeye-hoarder.tor1.digitaloceanspaces.com
+          ASSET_STORE_S3_FORCE_PATH_STYLE: true
+          ASSET_STORE_S3_REGION: tor1
           BROWSER_WEB_URL: http://hoarder-chrome:9222
+          COREPACK_INTEGRITY_KEYS: 0 # until https://github.com/hoarder-app/hoarder/commit/c032f5065e5f1c62c0f57cd00462be4689178a23 is merged
           CRAWLER_DOWNLOAD_BANNER_IMAGE: true
           CRAWLER_ENABLE_ADBLOCKER: true
           CRAWLER_STORE_SCREENSHOT: true
           DATA_DIR: /data
-          DISABLE_SIGNUPS: false
+          DISABLE_NEW_RELEASE_CHECK: true
           DISABLE_PASSWORD_AUTH: true
+          DISABLE_SIGNUPS: false
           INFERENCE_FETCH_TIMEOUT_SEC: 600
+          INFERENCE_IMAGE_MODEL: llava
           INFERENCE_JOB_TIMEOUT_SEC: 600
           INFERENCE_TEXT_MODEL: gemma3
-          INFERENCE_IMAGE_MODEL: llava
           MEILI_ADDR: http://hoarder-meilisearch:7700
           MEILI_MASTER_KEY: { valueFrom: { secretKeyRef: { name: hoarder-secret, key: meilisearch_master_key } } }
           NEXTAUTH_SECRET: { valueFrom: { secretKeyRef: { name: hoarder-secret, key: encryption_key } } }
           NEXTAUTH_URL: https://hoarder.g4v.dev
-          DISABLE_NEW_RELEASE_CHECK: true
-          ASSET_STORE_S3_ENDPOINT: https://halkeye-hoarder.tor1.digitaloceanspaces.com
-          ASSET_STORE_S3_REGION: tor1
-          ASSET_STORE_S3_BUCKET: halkeye-hoarder
-          ASSET_STORE_S3_FORCE_PATH_STYLE: true
+          WORKERS_HOST: 0.0.0.0
           WORKERS_PORT: 3005
+          SMTP_HOST: smtp-relay.smtp-relay.svc.cluster.local
+          SMTP_PORT: 2525
+          SMTP_FROM: hoarder@g4v.dev
+          PROMETHEUS_AUTH_TOKEN: metrics
         envFrom:
           - secretRef:
               name: "hoarder-secret"
@@ -186,3 +191,6 @@ serviceMonitor:
         path: /metrics
         interval: 1m
         scrapeTimeout: 1m
+        bearerTokenSecret:
+          name: hoarder-secret
+          key: PROMETHEUS_AUTH_TOKEN
