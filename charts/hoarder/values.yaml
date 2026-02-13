@@ -45,7 +45,6 @@ controllers:
           SMTP_HOST: smtp-relay.smtp-relay.svc.cluster.local
           SMTP_PORT: 2525
           SMTP_FROM: hoarder@g4v.dev
-          PROMETHEUS_AUTH_TOKEN: metrics
         envFrom:
           - secretRef:
               name: "hoarder-secret"
@@ -186,9 +185,9 @@ serviceMonitor:
     enabled: true
     serviceName: 'hoarder-app'
     endpoints:
-      - port: metrics
+      - port: http
         scheme: http
-        path: /metrics
+        path: /api/metrics
         interval: 1m
         scrapeTimeout: 1m
         bearerTokenSecret:
