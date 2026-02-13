@@ -32,7 +32,7 @@ controllers:
             amd.com/gpu: 1
     pod:
       securityContext:
-        runAsUser: 1026
+        runAsUser: 1000
         runAsGroup: 100
         runAsNonRoot: true
         supplementalGroups:
@@ -53,38 +53,42 @@ controllers:
               name: "open-webui-secret"
         env:
           TZ: America/Vancouver
-          # Open-webui settings
-          ENABLE_OPENAI_API: "False"
-          ENABLE_OLLAMA_API: "True"
-          OLLAMA_BASE_URL: http://ollama:11434
-          ENABLE_RAG_WEB_SEARCH: true
-          ENABLE_SEARCH_QUERY: true
-          RAG_WEB_SEARCH_ENGINE: searxng
-          SEARXNG_QUERY_URL: https://search.g4v.dev/search?q=<query>
-          ENABLE_WEBSOCKET_SUPPORT: "true"
-          WEBSOCKET_MANAGER: "valkey"
-          WEBSOCKET_REDIS_URL: "redis://valkey:6379/0"
-          # Auth
-          ENABLE_OAUTH_SIGNUP: "true"
-          OAUTH_MERGE_ACCOUNTS_BY_EMAIL: "true"
-          OAUTH_PROVIDER_NAME: "G4V"
-          OAUTH_PICTURE_CLAIM: ""
-          OPENID_PROVIDER_URL: "https://auth.g4v.dev/application/o/open-webui/.well-known/openid-configuration"
-          ENABLE_OAUTH_ROLE_MANAGEMENT: "true"
-          ENABLE_OAUTH_GROUP_MANAGEMENT: "true"
-          ENABLE_OAUTH_GROUP_CREATION: "true"
-          OAUTH_ALLOWED_ROLES: "users, admins"
-          OAUTH_ADMIN_ROLES: "admins"
-          OAUTH_ROLES_CLAIM: "groups"
-          OAUTH_SCOPES: "openid email profile groups"
-          DEFAULT_USER_ROLE: "user"
-          ENABLE_LOGIN_FORM: "false"
-          OAUTH_UPDATE_PICTURE_ON_LOGIN: "true"
           DATABASE_URL:
             valueFrom:
               secretKeyRef:
                 name: "open-webui-db-secret-open-webui"
                 key: POSTGRES_URL
+
+          CORS_ALLOW_ORIGIN: https://ai.g4v.dev
+          DEFAULT_USER_ROLE: "user"
+          ENABLE_LOGIN_FORM: "false"
+          ENABLE_OAUTH_GROUP_CREATION: "true"
+          ENABLE_OAUTH_GROUP_MANAGEMENT: "true"
+          ENABLE_OAUTH_ROLE_MANAGEMENT: "true"
+          ENABLE_OAUTH_SIGNUP: "true"
+          ENABLE_OLLAMA_API: "True"
+          ENABLE_OPENAI_API: "False"
+          ENABLE_RAG_WEB_SEARCH: true
+          ENABLE_SEARCH_QUERY: true
+          ENABLE_WEBSOCKET_SUPPORT: "true"
+          OAUTH_ADMIN_ROLES: "admins"
+          OAUTH_ALLOWED_ROLES: "users, admins"
+          OAUTH_MERGE_ACCOUNTS_BY_EMAIL: "true"
+          OAUTH_PICTURE_CLAIM: ""
+          OAUTH_PROVIDER_NAME: "G4V"
+          OAUTH_ROLES_CLAIM: "groups"
+          OAUTH_SCOPES: "openid email profile groups"
+          OAUTH_UPDATE_PICTURE_ON_LOGIN: "true"
+          OLLAMA_BASE_URL: http://ollama:11434
+          OPENID_PROVIDER_URL: "https://auth.g4v.dev/application/o/open-webui/.well-known/openid-configuration"
+          RAG_WEB_SEARCH_ENGINE: searxng
+          SEARXNG_QUERY_URL: https://search.g4v.dev/search?q=<query>
+          TORCHINDUCTOR_CACHE_DIR: /tmp/touchinductor
+          WEBSOCKET_MANAGER: "valkey"
+          WEBSOCKET_REDIS_URL: "redis://valkey:6379/0"
+          WEBUI_AUTH_COOKIE_SECURE: True
+          WEBUI_SESSION_COOKIE_SECURE: True
+          WEBUI_URL: https://ai.kantai.xyz
         probes:
           liveness: &probes
             enabled: true
@@ -109,12 +113,12 @@ controllers:
             memory: 2Gi
     pod:
       securityContext:
-        runAsUser: 1026
-        runAsGroup: 100
+        runAsUser: 1000
+        runAsGroup: 1000
         runAsNonRoot: true
         supplementalGroups:
           - 992
-        fsGroup: 100
+        fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
 service:
   ollama:
