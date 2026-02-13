@@ -16,7 +16,7 @@ controllers:
       init:
         image:
           repository: ghcr.io/n8n-io/n8n
-          tag: 2.8.1
+          tag: 2.8.2
         command:
           - sh
           - -c
@@ -28,7 +28,7 @@ controllers:
       app:
         image:
           repository: ghcr.io/n8n-io/n8n
-          tag: 2.8.1
+          tag: 2.8.2
         env:
           TZ: America/Vancouver
           GENERIC_TIMEZONE: America/Vancouver
