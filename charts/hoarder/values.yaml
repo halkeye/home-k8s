@@ -133,15 +133,26 @@ service:
       http:
         port: 7700
 
-ingress:
-  app:
-    hosts:
-      - host: hoarder.g4v.dev
-        paths:
-          - path: /
-            service:
-              identifier: app
-              port: http
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - hoarder.g4v.dev
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - group: ''
+            kind: Service
+            identifier: app
+            port: http
+            weight: 1
 
 persistence:
   data:
