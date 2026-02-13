@@ -1,3 +1,15 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+defaultPodOptions:
+  securityContext:
+    runAsUser: 1000
+    runAsGroup: 1000
+    runAsNonRoot: true
+    supplementalGroups:
+      - 992
+    fsGroup: 1000
+    fsGroupChangePolicy: "OnRootMismatch"
+
 controllers:
   ollama:
     replicas: 1
@@ -30,15 +42,6 @@ controllers:
             memory: 24Gi
           limits:
             amd.com/gpu: 1
-    pod:
-      securityContext:
-        runAsUser: 1000
-        runAsGroup: 100
-        runAsNonRoot: true
-        supplementalGroups:
-          - 992
-        fsGroup: 100
-        fsGroupChangePolicy: OnRootMismatch
   webui:
     replicas: 1
     annotations:
@@ -111,15 +114,6 @@ controllers:
             memory: 1Gi
           limits:
             memory: 2Gi
-    pod:
-      securityContext:
-        runAsUser: 1000
-        runAsGroup: 1000
-        runAsNonRoot: true
-        supplementalGroups:
-          - 992
-        fsGroup: 1000
-        fsGroupChangePolicy: OnRootMismatch
 service:
   ollama:
     controller: ollama
