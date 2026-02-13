@@ -7,7 +7,7 @@ controllers:
       main:
         image:
           repository: docker.io/ollama/ollama
-          tag: 0.15.6-rocm
+          tag: 0.16.1-rocm
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
@@ -47,7 +47,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/open-webui/open-webui
-          tag: 0.7.2
+          tag: v0.8.0
         envFrom:
           - secretRef:
               name: "open-webui-secret"
