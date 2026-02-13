@@ -182,6 +182,7 @@ persistence:
       ollama:
         main:
           - path: /root/.ollama
+          - path: /home/ubuntu/.ollama
           - path: /.ollama
   web-config:
     enabled: true
