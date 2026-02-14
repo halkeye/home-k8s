@@ -1,5 +1,5 @@
 ---
-k3s_version: "v1.35.0+k3s3" # renovate: datasource=github-releases depName=k3s-io/k3s
+k3s_version: "v1.35.1+k3s1" # renovate: datasource=github-releases depName=k3s-io/k3s
 k3s_token: "{{ lookup('community.sops.sops', 'k3s_token') }}"
 # this is the user that has ssh access to these machines
 ansible_user: halkeye
