@@ -7,7 +7,7 @@ namespace: matrix
 
 helmCharts:
   - name: element-web
-    version: 1.4.29
+    version: 1.4.30
     repo: https://ananace.gitlab.io/charts
     valuesFile: values.yaml
     releaseName: element-web
