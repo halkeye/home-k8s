@@ -26,3 +26,20 @@ spec:
     # renovate: depName="CoreDNS"
     id: 14981
     revision: 2
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: hubble-ui-metrics
+spec:
+  datasources:
+  - inputName: "DS_PROMETHEUS"
+    datasourceName: "prometheus"
+  folderRef: network
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  grafanaCom:
+    # renovate: depName="Cilium v1.12 Hubble Metrics"
+    id: 16613
+    revision: 1
