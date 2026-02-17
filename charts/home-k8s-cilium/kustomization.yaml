@@ -12,7 +12,7 @@ generatorOptions:
 
 helmCharts:
   - name: cilium
-    version: 1.19.0
+    version: 1.19.1
     repo: https://helm.cilium.io
     valuesFile: values.yaml
     releaseName: home-k8s-cilium
