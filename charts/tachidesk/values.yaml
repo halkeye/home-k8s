@@ -6,7 +6,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/suwayomi/suwayomi-server
-          tag: v2.1.2078
+          tag: v2.1.2085
         env:
           TZ: America/Vancouver
           BIND_PORT: &port 4567
