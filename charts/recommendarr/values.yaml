@@ -47,21 +47,26 @@ service:
     ports:
       http:
         port: 3000
-ingress:
+route:
   main:
     enabled: true
-    annotations:
-      gethomepage.dev/enabled: "true"
-      gethomepage.dev/group: Media
-      gethomepage.dev/icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/refs/heads/main/png/openai.png
-      gethomepage.dev/name: Recommendarr
-    hosts:
-      - host: recommendarr.g4v.dev
-        paths:
-          - path: /
-            service:
-              identifier: main
-              port: http
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "recommendarr.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - group: ''
+            kind: Service
+            identifier: main
+            port: http
+            weight: 1
 persistence:
   tmp:
     type: emptyDir
