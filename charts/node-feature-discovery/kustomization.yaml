@@ -1,0 +1,17 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: kube-system
+
+helmCharts:
+  - name: node-feature-discovery
+    version: 0.18.3
+    valuesFile: values.yaml
+    repo: https://kubernetes-sigs.github.io/node-feature-discovery/charts
+    releaseName: node-feature-discovery
+
+
+resources:
+  - ./features.yaml

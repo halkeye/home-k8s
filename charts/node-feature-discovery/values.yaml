@@ -1,7 +1,6 @@
-node-feature-discovery:
-  worker:
-    config:
-      core:
-        sources: ["pci", "system", "usb"]
-  prometheus:
-    enable: true
+worker:
+  config:
+    core:
+      sources: ["pci", "system", "usb"]
+prometheus:
+  enable: true
