@@ -1,7 +1,0 @@
-apiVersion: db.movetokube.com/v1alpha1
-kind: Postgres
-metadata:
-  name: planka
-spec:
-  database: planka
-  dropOnDelete: false

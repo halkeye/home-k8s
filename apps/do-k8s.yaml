@@ -29,7 +29,6 @@ spec:
           - name: gathio
           - name: it-tools
           - name: not-the-plants
-          - name: planka
           - name: unifi
   template:
     metadata:
@@ -98,6 +97,7 @@ spec:
           - name: microbin
           - name: miniflux
           - name: phanpy
+          - name: planka
           - name: searxng
           - name: stirling-pdf
           - name: string-is

@@ -1,82 +1,81 @@
-app-template:
-  controllers:
-    main:
-      replicas: 0
-      annotations:
-        reloader.stakater.com/auto: "true"
-      containers:
-        main:
-          image:
-            repository: ghcr.io/plankanban/planka
-            tag: 2.0.1@sha256:0d28490e5a32c0e185431cfbdf7e861b0a62ebb58b94c69dd1fc0d7e7f261670
-          env:
-            TZ: America/Vancouver
-            BASE_URL: https://planka.g4v.dev
-            WEBHOOKS: "[]"
-            PGSSLMODE: no-verify
-            DATABASE_URL:
-              valueFrom:
-                secretKeyRef:
-                  name: planka-db-secret-planka
-                  key: DB_URL
-          envFrom:
-            - secretRef:
-                name: "{{.Release.Name}}-secret"
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: false
-            capabilities:
-              drop: ["ALL"]
-          # resources:
-          #   limits: &resources
-          #     memory: 2Gi
-          #   requests:
-          #     <<: *resources
-          #     cpu: 10m
-      pod:
+controllers:
+  main:
+    replicas: 0
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      main:
+        image:
+          repository: ghcr.io/plankanban/planka
+          tag: 2.0.1@sha256:0d28490e5a32c0e185431cfbdf7e861b0a62ebb58b94c69dd1fc0d7e7f261670
+        env:
+          TZ: America/Vancouver
+          BASE_URL: https://planka.g4v.dev
+          WEBHOOKS: "[]"
+          PGSSLMODE: no-verify
+          DATABASE_URL:
+            valueFrom:
+              secretKeyRef:
+                name: planka-db-secret-planka
+                key: DB_URL
+        envFrom:
+          - secretRef:
+              name: "planka"
         securityContext:
-          runAsUser: 1000
-          runAsGroup: 1000
-          runAsNonRoot: true
-          fsGroup: 1000
-          fsGroupChangePolicy: OnRootMismatch
-  service:
-    main:
-      controller: main
-      ports:
-        http:
-          port: 1337
-  route:
-    main:
-      enabled: true
-      parentRefs:
-        - name: http-gateway
-          namespace: envoy-gateway
-          sectionName: https
-      hostnames:
-        - "planka.g4v.dev"
-      rules:
-        - matches:
-          - path:
-              type: PathPrefix
-              value: /
-          backendRefs:
-            - group: ''
-              kind: Service
-              identifier: main
-              port: http
-              weight: 1
-  persistence:
-    config:
-      enabled: true
-      accessMode: ReadWriteOnce
-      size: 10Gi
-      advancedMounts:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: false
+          capabilities:
+            drop: ["ALL"]
+        # resources:
+        #   limits: &resources
+        #     memory: 2Gi
+        #   requests:
+        #     <<: *resources
+        #     cpu: 10m
+    pod:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        runAsNonRoot: true
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 1337
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "planka.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - group: ''
+            kind: Service
+            identifier: main
+            port: http
+            weight: 1
+persistence:
+  config:
+    enabled: true
+    accessMode: ReadWriteOnce
+    size: 10Gi
+    advancedMounts:
+      main:
         main:
-          main:
-            - path: /app/public/user-avatars
-              subPath: user-avatars
-            - path: /app/private/attachments
-              subPath: attachments
-            - path: /app/public/project-background-images
-              subPath: project-background-images
+          - path: /app/public/user-avatars
+            subPath: user-avatars
+          - path: /app/private/attachments
+            subPath: attachments
+          - path: /app/public/project-background-images
+            subPath: project-background-images

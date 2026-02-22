@@ -1,0 +1,21 @@
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: planka
+  namespace: planka
+spec:
+  role: planka
+  database: planka
+  secretName: planka-db-secret
+  privileges: OWNER
+  secretTemplate:
+    DB_URL: "postgresql://{{.Role}}:{{.Password}}@{{.Host}}/{{.Database}}?sslmode=no-verify"
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: planka
+spec:
+  database: planka
+  dropOnDelete: false
