@@ -46,22 +46,27 @@ service:
     ports:
       http:
         port: 3000
-ingress:
+route:
   main:
     enabled: true
-    hosts:
-      - host: "umami.g4v.dev"
-        paths:
-          - path: /
-            service:
-              identifier: main
-              port: http
-      - host: "u.g4v.dev"
-        paths:
-          - path: /
-            service:
-              identifier: main
-              port: http
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "umami.g4v.dev"
+      - "u.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - group: ''
+            kind: Service
+            identifier: main
+            port: http
+            weight: 1
 persistence:
   tmp:
     enabled: true
