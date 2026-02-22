@@ -99,7 +99,7 @@ serviceMonitor:
             name: "vikunja-secret"
             key: VIKUNJA_METRICS_PASSWORD
 service:
-  app:
+  main:
     controller: app
     ports:
       http:

@@ -81,7 +81,7 @@ controllers:
           limits:
             memory: 4000Mi
 service:
-  app:
+  main:
     controller: romm
     ports:
       http:

@@ -77,7 +77,7 @@ route:
         backendRefs:
           - group: ''
             kind: Service
-            identifier: main
+            identifier: music-assistant
             port: http
             weight: 1
 persistence:
