@@ -1,55 +1,60 @@
-app-template:
-  controllers:
-    main:
-      containers:
-        string-is:
-          image:
-            repository: daveperrett/string-is
-            tag: v1.38.0
-          env:
-            TZ: America/Vancouver
-          probes:
-            liveness:
-              enabled: true
-            readiness:
-              enabled: true
-            startup:
-              enabled: true
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            capabilities:
-              drop: ["ALL"]
-          resources:
-            limits:
-              memory: 500Mi
-            requests:
-              memory: 256Mi
-              cpu: 10m
-      pod:
+controllers:
+  main:
+    containers:
+      string-is:
+        image:
+          repository: daveperrett/string-is
+          tag: v1.38.0
+        env:
+          TZ: America/Vancouver
+        probes:
+          liveness:
+            enabled: true
+          readiness:
+            enabled: true
+          startup:
+            enabled: true
         securityContext:
-          runAsUser: 568
-          runAsGroup: 568
-          runAsNonRoot: true
-          fsGroup: 568
-          fsGroupChangePolicy: OnRootMismatch
-  service:
-    main:
-      controller: main
-      ports:
-        http:
-          port: 3000
-  ingress:
-    main:
-      enabled: true
-      annotations:
-        gethomepage.dev/enabled: "true"
-        gethomepage.dev/group: Tools
-        gethomepage.dev/name: String.is
-      hosts:
-        - host: string-is.g4v.dev
-          paths:
-            - path: /
-              service:
-                identifier: main
-                port: http
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+        resources:
+          limits:
+            memory: 500Mi
+          requests:
+            memory: 256Mi
+            cpu: 10m
+    pod:
+      securityContext:
+        runAsUser: 568
+        runAsGroup: 568
+        runAsNonRoot: true
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 3000
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "string-is.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - group: ''
+            kind: Service
+            identifier: main
+            port: http
+            weight: 1
