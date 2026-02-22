@@ -17,7 +17,7 @@ controllers:
       app:
         image:
           repository: ghcr.io/karakeep-app/karakeep
-          tag: 0.30.0
+          tag: 0.31.0
         env:
           ASSET_STORE_S3_BUCKET: halkeye-hoarder
           ASSET_STORE_S3_ENDPOINT: https://halkeye-hoarder.tor1.digitaloceanspaces.com
