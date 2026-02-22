@@ -86,15 +86,27 @@ service:
     ports:
       http:
         port: 8080
-ingress:
-  app:
-    hosts:
-      - host: romm.g4v.dev
-        paths:
-          - path: /
-            service:
-              identifier: app
-              port: http
+
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "romm.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - group: ''
+            kind: Service
+            identifier: main
+            port: http
+            weight: 1
 
 persistence:
   config:
