@@ -65,16 +65,26 @@ service:
       http:
         port: 8000
 
-ingress:
+route:
   main:
     enabled: true
-    hosts:
-      - host: audiomuse.g4v.dev
-        paths:
-          - path: /
-            service:
-              identifier: main
-              port: http
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "audiomuse.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - group: ''
+            kind: Service
+            identifier: main
+            port: http
+            weight: 1
 
 persistence:
   tmp:
