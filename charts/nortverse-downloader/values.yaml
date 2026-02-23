@@ -21,7 +21,7 @@ controllers:
           - "--flaresolverr"
           - "http://172.16.10.10:8191/"
           - "--start-url"
-          - "https://nortverse.com/comic/christmas-favorites-5/"
+          - "https://nortverse.com/comic/valentines-surprise/"
     pod:
       securityContext:
         runAsUser: 1026
