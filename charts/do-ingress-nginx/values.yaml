@@ -61,7 +61,7 @@ ingress-nginx:
     enabled: true
     image:
       repository: ghcr.io/tarampampam/error-pages
-      tag: 3.8.0
+      tag: 3.8.1
     extraEnvs:
       # Optional: change the default theme
       - name: TEMPLATE_NAME
