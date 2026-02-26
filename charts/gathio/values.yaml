@@ -8,7 +8,7 @@ app-template:
         gathio:
           image:
             repository: ghcr.io/lowercasename/gathio
-            tag: 1.6.0
+            tag: 1.6.1
           command:
             - npm
             - run
