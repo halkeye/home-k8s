@@ -20,18 +20,7 @@ metadata:
   name: gpu-device
 spec:
   rules:
-    - name: all-amd-class-0300
-      labelsTemplate: |
-        {{ range .pci.device }}vendor-{{ .class }}-{{ .device }}.present=true
-        {{ end }}
-      matchFeatures:
-        - feature: pci.device
-          matchExpressions:
-            class: { op: In, value: ["0300"] }
-            vendor: { op: In, value: ["1002"] }
-            # device: { op: In, value: ["15bf"] } # Phoenix1
-    - # Intel UHD Graphics 630
-      name: amd-phoenix
+    - name: amd-phoenix
       labels:
         amd-phoenix.feature.node.kubernetes.io/gpu: "true"
         feature.node.kubernetes.io/gpu: "true"
@@ -40,15 +29,14 @@ spec:
           matchExpressions:
             class: { op: In, value: ["0300"] }
             vendor: { op: In, value: ["1002"] }
-            device: { op: In, value: ["15bf"] } # Phoenix1
-    # - # Strix Halo [Radeon Graphics / Radeon 8050S Graphics / Radeon 8060S Graphics
-    #   name: amd.gpu
-    #   labels:
-    #     amd.feature.node.kubernetes.io/gpu: "true"
-    #     feature.node.kubernetes.io/gpu: "true"
-    #   matchFeatures:
-    #     - feature: pci.device
-    #       matchExpressions:
-    #         class: { op: In, value: ["0300", "0380"] }
-    #         vendor: { op: In, value: ["1002"] }
-    #         device: { op: In, value: ["1586"] }
+            device: { op: In, value: ["15bf"] }
+    - name: amd-halo
+      labels:
+        amd-halo.feature.node.kubernetes.io/gpu: "true"
+        feature.node.kubernetes.io/gpu: "true"
+      matchFeatures:
+        - feature: pci.device
+          matchExpressions:
+            class: { op: In, value: ["0380"] }
+            vendor: { op: In, value: ["1002"] }
+            device: { op: In, value: ["1586"] }
