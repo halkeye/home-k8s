@@ -25,6 +25,9 @@ spec:
       labels:
         intel.feature.node.kubernetes.io/gpu: "true"
         feature.node.kubernetes.io/gpu: "true"
+      labelsTemplate: |
+        {{ range .pci.device }}vendor-{{ .class }}-{{ .device }}.present=true
+        {{ end }}
       matchFeatures:
         - feature: pci.device
           matchExpressions:
