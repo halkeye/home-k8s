@@ -113,9 +113,7 @@ spec:
           - name: mdns-reflector
           - name: minio
           - name: music-assistant
-          - name: n8n
           - name: netbootxyz
-          - name: node-red
           - name: nortverse-downloader
           - name: ollama
           - name: openbooks
