@@ -1,3 +1,6 @@
+defaultPodOptions:
+  nodeSelector:
+    feature.node.kubernetes.io/gpu: "true"
 controllers:
   main:
     strategy: Recreate
@@ -65,6 +68,9 @@ route:
             port: http
             weight: 1
 persistence:
+  dri:
+    hostPath: /dev/dri
+    type: hostPath
   config:
     enabled: true
     type: persistentVolumeClaim
