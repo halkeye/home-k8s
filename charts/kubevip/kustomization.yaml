@@ -7,7 +7,7 @@ namespace: kube-system
 
 helmCharts:
   - name: kube-vip
-    version: 0.9.5
+    version: 0.9.6
     repo: https://kube-vip.github.io/helm-charts
     valuesFile: values.yaml
     releaseName: kube-vip

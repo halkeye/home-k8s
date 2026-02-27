@@ -19,7 +19,7 @@ controllers:
       main:
         image:
           repository: docker.io/ollama/ollama
-          tag: 0.17.1-rocm
+          tag: 0.17.2-rocm
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
