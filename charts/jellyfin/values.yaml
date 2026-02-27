@@ -40,25 +40,30 @@ service:
     ports:
       http:
         port: 8096
-ingress:
+route:
   main:
     enabled: true
-    annotations:
-      gethomepage.dev/enabled: 'true'
-      gethomepage.dev/group: Media
-      gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/jellyfin.png
-      gethomepage.dev/name: Jellyfin
-      nginx.ingress.kubernetes.io/server-snippet: |
-        location /metrics {
-          return 404;
-        }
-    hosts:
-      - host: jellyfin.g4v.dev
-        paths:
-          - path: /
-            service:
-              identifier: main
-              port: http
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "jellyfin.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /metrics
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - group: ''
+            kind: Service
+            identifier: main
+            port: http
+            weight: 1
 persistence:
   config:
     enabled: true
