@@ -1,0 +1,41 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: goldilocks-dashboard
+spec:
+  parentRefs:
+    - name: http-gateway
+      group: gateway.networking.k8s.io
+      kind: Gateway
+      namespace: envoy-gateway
+      sectionName: https
+  hostnames:
+    - goldilocks.g4v.dev
+  rules:
+    - backendRefs:
+        - name: goldilocks-dashboard
+          port: http
+          kind: Service
+      matches:
+        - path:
+            type: PathPrefix
+            value: /
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: goldilocks-oidc
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: goldilocks
+  oidc:
+    provider:
+      issuer: "https://auth.g4v.dev/application/o/goldilocks/"
+    clientID: "9IpVMTaH58W1B6vZ5et0fDQ9NoGiwQT7SDvXg9Kj"
+    clientSecret:
+      name: "goldilocks-client-secret"
+    redirectURL: "https://goldilocks.g4v.dev/oauth2/callback"
+    logoutPath: "/myapp/logout"
