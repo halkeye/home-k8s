@@ -6,38 +6,18 @@ radarr:
     base_url: https://anime-radarr.g4v.dev:443
     api_key: !env_var RADARR_API_KEY
     delete_old_custom_formats: true
-    replace_existing_custom_formats: true
     # Quality Definition Settings
     quality_definition:
       type: anime
-    media_naming:
-      folder: default
-      movie:
-        rename: true
-        standard: default
-    include:
-      # Comment out any of the following includes to disable them
-      - template: radarr-quality-definition-movie
-      - template: radarr-quality-profile-anime
-      - template: radarr-custom-formats-anime
-    # Custom Formats: https://recyclarr.dev/wiki/yaml/config-reference/custom-formats/
-    custom_formats:
-      - trash_ids:
-          - 064af5f084a0a24458cc8ecd3220f93f # Uncensored
-        quality_profiles:
-          - name: Remux-1080p - Anime
-            score: 0 # Adjust scoring as desired
-      - trash_ids:
-          - a5d148168c4506b55cf53984107c396e # 10bit
-        quality_profiles:
-          - name: Remux-1080p - Anime
-            score: 0 # Adjust scoring as desired
-      - trash_ids:
-          - 4a3b087eea2ce012fcc1ce319259a3be # Anime Dual Audio
-        quality_profiles:
-          - name: Remux-1080p - Anime
-            # If you want to prefer Dual Audio within the same tier give the CF a score of 10,
-            # if you want it to be preferred a tier above give the CF a score of 101, and
-            # if you want to prefer it over any tiers give the CF a score of 2000.
-            score: 101 # Adjust scoring as desired
 
+    quality_profiles:
+      - trash_id: 722b624f9af1e492284c4bc842153a38  # [Anime] Remux-1080p
+        reset_unmatched_scores:
+          enabled: true
+
+    custom_format_groups:
+      add:
+        - trash_id: "4a3b087eea2ce012fcc1ce319259a3be" # Anime Dual Audio
+      skip:
+        - trash_id: "064af5f084a0a24458cc8ecd3220f93f" # Uncensored
+        - trash_id: "a5d148168c4506b55cf53984107c396e" # 10bit

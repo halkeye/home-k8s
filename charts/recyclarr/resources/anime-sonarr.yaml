@@ -6,41 +6,12 @@ sonarr:
     base_url: https://anime-sonarr.g4v.dev:443
     api_key: !env_var SONARR_API_KEY
     delete_old_custom_formats: true
-    replace_existing_custom_formats: true
-    # Quality Definition Settings
     quality_definition:
       type: anime
-    media_naming:
-      series: default
-      season: default
-      episodes:
-        rename: true
-        standard: default
-        daily: default
-        anime: default
-    include:
-      # Comment out any of the following includes to disable them
-      - template: sonarr-quality-definition-anime
-      - template: sonarr-v4-quality-profile-anime
-      - template: sonarr-v4-custom-formats-anime
     # Custom Formats: https://recyclarr.dev/wiki/yaml/config-reference/custom-formats/
-    custom_formats:
-      - trash_ids:
-          - 026d5aadd1a6b4e550b134cb6c72b3ca # Uncensored
-        quality_profiles:
-          - name: Remux-1080p - Anime
-            score: 0 # Adjust scoring as desired
-      - trash_ids:
-          - b2550eb333d27b75833e25b8c2557b38 # 10bit
-        quality_profiles:
-          - name: Remux-1080p - Anime
-            score: 0 # Adjust scoring as desired
-      - trash_ids:
-          - 418f50b10f1907201b6cfdf881f467b7 # Anime Dual Audio
-        quality_profiles:
-          - name: Remux-1080p - Anime
-            # If you want to prefer Dual Audio within the same tier give the CF a score of 10,
-            # if you want it to be preferred a tier above give the CF a score of 101, and
-            # if you want to prefer it over any tiers give the CF a score of 2000.
-            score: 101 # Adjust scoring as desired
-
+    custom_format_groups:
+      add:
+        - trash_id: 418f50b10f1907201b6cfdf881f467b7 # Anime Dual Audio
+      skip:
+        - trash_id: 026d5aadd1a6b4e550b134cb6c72b3ca # Uncensored
+        - trash_id: b2550eb333d27b75833e25b8c2557b38 # 10bit
