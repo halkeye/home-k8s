@@ -137,7 +137,7 @@ persistence:
         - path: /app/vikunja/files
   configmap:
     enabled: true
-    type: secret
+    type: configMap
     name: "vikunja"
     globalMounts:
       - path: /configmap/config.yml
