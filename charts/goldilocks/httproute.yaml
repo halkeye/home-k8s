@@ -15,7 +15,7 @@ spec:
   rules:
     - backendRefs:
         - name: goldilocks-dashboard
-          port: http
+          port: 80
           kind: Service
       matches:
         - path:
