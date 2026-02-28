@@ -2,13 +2,22 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
   main:
+    type: cronjob
+    revisionHistoryLimit: 1
     annotations:
       reloader.stakater.com/auto: 'true'
+    cronjob:
+      schedule: '@daily'
+      successfulJobsHistory: 1
+      failedJobsHistory: 2
+      backoffLimit: 1
     containers:
       recyclarr:
         image:
           repository: ghcr.io/recyclarr/recyclarr
           tag: 8.3.2
+        args:
+          - sync
         env:
           COMPlus_EnableDiagnostics: '0'
           TZ: America/Vancouver
