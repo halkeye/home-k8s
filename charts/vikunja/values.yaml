@@ -12,6 +12,7 @@ controllers:
           tag: 1.0.0-rc3
         env:
           TZ: America/Vancouver
+          VIKUNJA_CONFIG: /configmap/config.yml
           VIKUNJA_SERVICE_ENABLEREGISTRATION: false
           VIKUNJA_SERVICE_TIMEZONE: "America/Vancouver"
           VIKUNJA_SERVICE_PUBLICURL: "https://tasks.g4v.dev"
@@ -119,11 +120,8 @@ route:
             type: PathPrefix
             value: /
         backendRefs:
-          - group: ''
-            kind: Service
-            identifier: main
+          - identifier: main
             port: http
-            weight: 1
 persistence:
   tmp:
     type: emptyDir
@@ -137,3 +135,11 @@ persistence:
       app:
         app:
         - path: /app/vikunja/files
+  configmap:
+    enabled: true
+    type: secret
+    name: "vikunja"
+    globalMounts:
+      - path: /configmap/config.yml
+        readOnly: true
+        subPath: config.yml

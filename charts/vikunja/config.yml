@@ -1,0 +1,9 @@
+auth:
+  openid:
+    enabled: true
+    providers:
+      authentik:
+        name: auth.g4v.dev
+        authurl: https://auth.g4v.dev/application/o/vikunja/
+        clientid: 4q8aEjKOnHU3eym2XFAyS3H1HAZI5ve0T0ibYeG9
+        scope: openid profile email vikunja_scope
