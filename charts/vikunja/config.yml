@@ -1,3 +1,9 @@
+log:
+  path: /dev/stdout
+  enabled: true
+  standard: stdout
+  level: DEBUG
+
 auth:
   openid:
     enabled: true
