@@ -5,6 +5,8 @@ log:
   level: DEBUG
 
 auth:
+  local:
+    enabled: false
   openid:
     enabled: true
     providers:

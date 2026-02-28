@@ -16,8 +16,7 @@ controllers:
         command:
           - sh
           - -c
-          - |-
-            cat /configmap/config.yml | envsubst > /tmp/config.yml
+          - cat /configmap/config.yml | envsubst > /tmp/config.yml && cat /tmp/config.yml
     containers:
       app:
         image:
@@ -38,7 +37,6 @@ controllers:
           VIKUNJA_FILES_S3_REGION: tor1
           VIKUNJA_FILES_S3_USEPATHSTYLE: "true"
           VIKUNJA_FRONTEND_URL: "https://tasks.g4v.dev"
-          VIKUNJA_AUTH_LOCAL: false
           VIKUNJA_METRICS_ENABLED: true
           VIKUNJA_MAILER_ENABLED: true
           VIKUNJA_MAILER_HOST: smtp-relay.smtp-relay.svc.cluster.local
