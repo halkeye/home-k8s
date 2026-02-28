@@ -1,86 +1,93 @@
-app-template:
-  controllers:
-    main:
-      containers:
-        vaultwarden:
-          image:
-            repository: vaultwarden/server
-            tag: 1.35.4@sha256:43498a94b22f9563f2a94b53760ab3e710eefc0d0cac2efda4b12b9eb8690664
-          env:
-            PUSH_ENABLED: true
-            DOMAIN: "https://bitwarden.g4v.dev"
-            TZ: "America/Vancouver"
-            SIGNUPS_ALLOWED: "false"
-            WEBSOCKET_ENABLED: "true"
-            WEBSOCKET_ADDRESS: 0.0.0.0
-            WEBSOCKET_PORT: 3012
-            ROCKET_PORT: 8000
-            DATA_FOLDER: data
-            ICON_CACHE_FOLDER: data/icon_cache
-            ATTACHMENTS_FOLDER: data/attachments
-          envFrom:
-            - secretRef:
-                name: "{{.Release.Name}}-secret"
-          probes:
-            liveness: &probes
-              enabled: true
-              custom: true
-              spec:
-                httpGet:
-                  path: /alive
-                  port: 8000
-                initialDelaySeconds: 0
-                periodSeconds: 10
-                timeoutSeconds: 1
-                failureThreshold: 3
-            readiness: *probes
-            startup:
-              enabled: false
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            capabilities:
-              drop: ["ALL"]
-          resources:
-            requests:
-              cpu: 10m
-              memory: 126Mi
-            limits:
-              memory: 256Mi
-      pod:
+controllers:
+  main:
+    containers:
+      vaultwarden:
+        image:
+          repository: vaultwarden/server
+          tag: 1.35.4@sha256:43498a94b22f9563f2a94b53760ab3e710eefc0d0cac2efda4b12b9eb8690664
+        env:
+          PUSH_ENABLED: true
+          DOMAIN: "https://bitwarden.g4v.dev"
+          TZ: "America/Vancouver"
+          SIGNUPS_ALLOWED: "false"
+          WEBSOCKET_ENABLED: "true"
+          WEBSOCKET_ADDRESS: 0.0.0.0
+          WEBSOCKET_PORT: 3012
+          ROCKET_PORT: 8000
+          DATA_FOLDER: data
+          ICON_CACHE_FOLDER: data/icon_cache
+          ATTACHMENTS_FOLDER: data/attachments
+        envFrom:
+          - secretRef:
+              name: "vaultwarden"
+        probes:
+          liveness: &probes
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /alive
+                port: 8000
+              initialDelaySeconds: 0
+              periodSeconds: 10
+              timeoutSeconds: 1
+              failureThreshold: 3
+          readiness: *probes
+          startup:
+            enabled: false
         securityContext:
-          runAsUser: 568
-          runAsGroup: 568
-          runAsNonRoot: true
-          fsGroup: 568
-          fsGroupChangePolicy: OnRootMismatch
-  service:
-    main:
-      controller: main
-      ports:
-        http:
-          port: 8000
-        ws:
-          port: 3012
-  ingress:
-    main:
-      enabled: true
-      annotations:
-        gethomepage.dev/enabled: "true"
-        gethomepage.dev/group: Security
-        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/vaultwarden.png
-        gethomepage.dev/name: Vault Warden
-      hosts:
-        - host: bitwarden.g4v.dev
-          paths:
-            - path: /
-              service:
-                identifier: main
-                port: http
-            - path: /notifications/hub
-              service:
-                identifier: main
-                port: ws
-  persistence:
-    data:
-      type: emptyDir
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+        resources:
+          requests:
+            cpu: 10m
+            memory: 126Mi
+          limits:
+            memory: 256Mi
+    pod:
+      securityContext:
+        runAsUser: 568
+        runAsGroup: 568
+        runAsNonRoot: true
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 8000
+      ws:
+        port: 3012
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "bitwarden.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - identifier: main
+            port: http
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /notifications/hub
+        backendRefs:
+          - identifier: main
+            port: ws
+persistence:
+  data:
+    enabled: true
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    size: 10Gi
