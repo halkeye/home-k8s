@@ -68,6 +68,8 @@ service:
 route:
   main:
     enabled: true
+    annotations:
+      external-dns.alpha.kubernetes.io/cloudflare-proxied: 'false'
     parentRefs:
       - name: http-gateway
         namespace: envoy-gateway
