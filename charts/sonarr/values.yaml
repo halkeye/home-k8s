@@ -129,9 +129,7 @@ route:
             type: PathPrefix
             value: /
         backendRefs:
-          - group: ''
-            kind: Service
-            identifier: main
+          - identifier: main
             port: http
             weight: 1
 persistence:

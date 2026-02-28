@@ -21,8 +21,6 @@ spec:
           - { namespace: matrix, name: synapse }
 
           # Apps
-          - { namespace: bitwarden, name: vaultwarden }
-
           - name: authentik
           - name: excalidraw
           - name: foundry-vtt
@@ -86,6 +84,8 @@ spec:
           - { namespace: matrix, name: mautrix-instagram }
           - { namespace: matrix, name: mautrix-signal }
           - { namespace: matrix, name: synatainer }
+
+          - { namespace: bitwarden, name: vaultwarden }
 
           - name: bluesky-crossposter
           - name: bytestash
