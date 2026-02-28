@@ -74,6 +74,14 @@ route:
         sectionName: https
     hostnames:
       - "search.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - identifier: main
+            port: http
 persistence:
   config:
     enabled: true
