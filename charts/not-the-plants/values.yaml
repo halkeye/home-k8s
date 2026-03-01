@@ -1,79 +1,82 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
-app-template:
-  controllers:
-    main:
-      replicas: 1
-      strategy: RollingUpdate
-      containers:
-        main:
-          image:
-            repository: ghcr.io/nginxinc/nginx-s3-gateway/nginx-oss-s3-gateway
-            tag: unprivileged-oss-20230518
-          env:
-            S3_BUCKET_NAME: not-the-plants
-            S3_REGION: sfo3
-            S3_SERVER_PORT: "443"
-            S3_SERVER_PROTO: https
-            S3_SERVER: sfo3.digitaloceanspaces.com
-            S3_STYLE: virtual
-            AWS_REGION: "sfo3"
-            AWS_SIGS_VERSION: "4"
-            ALLOW_DIRECTORY_LIST: "false"
-            PROVIDE_INDEX_PAGE: "true"
-          envFrom:
-            - secretRef:
-                name: "{{.Release.Name}}-secret"
-          probes:
-            liveness: &probes
-              enabled: true
-              custom: true
-              spec:
-                httpGet:
-                  path: /health
-                  port: 8080
-                initialDelaySeconds: 0
-                periodSeconds: 10
-                timeoutSeconds: 1
-                failureThreshold: 3
-            readiness: *probes
-            startup:
-              enabled: false
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: false
-            capabilities:
-              drop: ["ALL"]
-          resources:
-            limits: &resources
-              memory: 256Mi
-            requests:
-              <<: *resources
-              cpu: 10m
-      pod:
+controllers:
+  main:
+    replicas: 1
+    strategy: RollingUpdate
+    containers:
+      main:
+        image:
+          repository: ghcr.io/nginxinc/nginx-s3-gateway/nginx-oss-s3-gateway
+          tag: unprivileged-oss-20230518
+        env:
+          S3_BUCKET_NAME: not-the-plants
+          S3_REGION: sfo3
+          S3_SERVER_PORT: "443"
+          S3_SERVER_PROTO: https
+          S3_SERVER: sfo3.digitaloceanspaces.com
+          S3_STYLE: virtual
+          AWS_REGION: "sfo3"
+          AWS_SIGS_VERSION: "4"
+          ALLOW_DIRECTORY_LIST: "false"
+          PROVIDE_INDEX_PAGE: "true"
+        envFrom:
+          - secretRef:
+              name: "not-the-plants"
+        probes:
+          liveness: &probes
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /health
+                port: 8080
+              initialDelaySeconds: 0
+              periodSeconds: 10
+              timeoutSeconds: 1
+              failureThreshold: 3
+          readiness: *probes
+          startup:
+            enabled: false
         securityContext:
-          runAsUser: 101
-          runAsGroup: 101
-          runAsNonRoot: true
-  service:
-    main:
-      controller: main
-      ports:
-        http:
-          port: 8080
-  ingress:
-    main:
-      enabled: true
-      annotations:
-        gethomepage.dev/enabled: "false"
-      hosts:
-        - host: &host "not-the-plants.g4v.dev"
-          paths:
-            - path: /
-              service:
-                identifier: main
-                port: http
-
-  persistence:
-    tmp:
-      enabled: true
-      type: emptyDir
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: false
+          capabilities:
+            drop: ["ALL"]
+        resources:
+          limits: &resources
+            memory: 256Mi
+          requests:
+            <<: *resources
+            cpu: 10m
+    pod:
+      securityContext:
+        runAsUser: 101
+        runAsGroup: 101
+        runAsNonRoot: true
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 8080
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "not-the-plants.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - identifier: main
+            port: http
+persistence:
+  tmp:
+    enabled: true
+    type: emptyDir
