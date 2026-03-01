@@ -1,3 +1,3 @@
-CLUSTER:=do-k8s
+CLUSTER ?= do-k8s
 include ../Makefile
 
