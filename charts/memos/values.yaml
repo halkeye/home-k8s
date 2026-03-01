@@ -53,16 +53,23 @@ serviceMonitor:
         path: /metrics
         interval: 1m
         scrapeTimeout: 1m
-ingress:
+route:
   main:
     enabled: true
-    hosts:
-      - host: "memos.g4v.dev"
-        paths:
-          - path: /
-            service:
-              identifier: main
-              port: http
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "memos.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - identifier: main
+            port: http
 persistence:
   tmp:
     enabled: true

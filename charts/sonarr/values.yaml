@@ -131,7 +131,6 @@ route:
         backendRefs:
           - identifier: main
             port: http
-            weight: 1
 persistence:
   config:
     enabled: true
