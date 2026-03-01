@@ -37,34 +37,23 @@ service:
       http:
         port: 5000
 
-ingress:
-  kavita:
+route:
+  main:
     enabled: true
-    annotations:
-      gethomepage.dev/enabled: "true"
-      gethomepage.dev/group: Comics
-      gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/kavita.png
-      gethomepage.dev/name: Kavita
-    hosts:
-      - host: "kavita.g4v.dev"
-        paths:
-          - path: /
-            service:
-              identifier: kavita
-              port: http
-  kavita-funnel:
-    enabled: true
-    annotations:
-      tailscale.com/funnel: "true"
-    className: tailscale
-    defaultBackend:
-      service:
-        name: kavita
-        port:
-          name: http
-    tls:
-      - hosts:
-          - kavita
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "kavita.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - identifier: main
+            port: http
 
 persistence:
   config:
