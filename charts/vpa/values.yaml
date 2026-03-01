@@ -1,0 +1,14 @@
+---
+# only used for goldilocks right now, so only the recommender is needed
+recommender:
+  enabled: true
+  image:
+    repository: registry.k8s.io/autoscaling/vpa-recommender
+    tag: 1.4.1
+updater:
+  enabled: false
+admissionController:
+  enabled: false
+metrics-server:
+  enabled: false
+
