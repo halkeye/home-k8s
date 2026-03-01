@@ -1,38 +1,39 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
-app-template:
-  controllers:
-    main:
-      containers:
-        main:
-          image:
-            repository: ghcr.io/corentinth/it-tools
-            tag: 2023.5.14-77f2efc
-          env:
-            TZ: America/Vancouver
-          resources:
-            requests:
-              memory: 100Mi
-              cpu: 10m
-            limits:
-              memory: 500Mi
-  service:
-    main:
-      controller: main
-      ports:
-        http:
-          port: 80
-  ingress:
-    main:
-      enabled: true
-      annotations:
-        gethomepage.dev/enabled: "true"
-        gethomepage.dev/group: Tools
-        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/it-tools.png
-        gethomepage.dev/name: IT Tools
-      hosts:
-        - host: &host it-tools.g4v.dev
-          paths:
-            - path: /
-              service:
-                identifier: main
-                port: http
+controllers:
+  main:
+    containers:
+      main:
+        image:
+          repository: ghcr.io/corentinth/it-tools
+          tag: 2023.5.14-77f2efc
+        env:
+          TZ: America/Vancouver
+        resources:
+          requests:
+            memory: 100Mi
+            cpu: 10m
+          limits:
+            memory: 500Mi
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 80
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "it-tools.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - identifier: main
+            port: http
