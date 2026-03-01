@@ -1,7 +1,7 @@
 ---
 image:
   repository: us-docker.pkg.dev/fairwinds-ops/oss/goldilocks
-  tag: v4.14.1
+  tag: v4.14.10
 
 dashboard:
   flags:
