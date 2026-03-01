@@ -2,8 +2,8 @@ fullnameOverride: synapse
 matrix-synapse:
   fullnameOverride: synapse
   image:
-    repository: ghcr.io/element-hq/synapse
-    tag: v1.148.0
+    repository: ghcr.io/halkeye/docker-synapse
+    tag: v1.148.0.3
 
   postgresql:
     enabled: false
@@ -13,33 +13,30 @@ matrix-synapse:
     logLevel: ERROR
     reportStats: true
 
-  ingress:
+  gateway:
     enabled: true
-    includeServerName: false
     annotations:
-      nginx.ingress.kubernetes.io/enable-cors: 'true'
-      nginx.ingress.kubernetes.io/cors-allow-origin: "https://synapse-admin.g4v.dev"
-      nginx.ingress.kubernetes.io/cors-allow-credentials: 'true'
-      nginx.ingress.kubernetes.io/proxy-body-size: '500m'
-      nginx.ingress.kubernetes.io/proxy-connect-timeout: '180'
-      nginx.ingress.kubernetes.io/proxy-read-timeout: '180'
-      nginx.ingress.kubernetes.io/proxy-send-timeout: '180'
       external-dns.alpha.kubernetes.io/cloudflare-proxied: 'false'
-    includeUnderscoreSynapse: true
     hosts:
       - matrix.g4v.dev
     wkHosts:
       - matrix.g4v.dev
     csHosts:
       - matrix.g4v.dev
+    includeUnderscoreSynapse: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
     csPaths:
-      - path: /_synapse/client/oidc
-        pathType: Prefix
-        backend:
-          service:
-            name: synapse
-            port:
-              number: 8008
+    - backendRefs:
+        - kind: Service
+          name: synapse
+          port: 8008
+      matches:
+        - path:
+            type: PathPrefix
+            value: /_synapse/client/oidc
 
   externalPostgresql:
     database: synapse
@@ -141,10 +138,6 @@ matrix-synapse:
         subPath: extraConfig.yaml
         mountPath: /synapse/config/conf.d/extraConfig.yaml
 
-    extraCommands:
-      # - apt-get update && apt-get install -y --no-install-recommends git
-      - pip install https://github.com/matrix-org/synapse-s3-storage-provider/archive/refs/tags/v1.6.0.zip
-
   workers:
     default:
       volumes:
@@ -162,9 +155,6 @@ matrix-synapse:
           subPath: extraConfig.yaml
           mountPath: /synapse/config/conf.d/extraConfig.yaml
 
-      extraCommands:
-        # - apt-get update && apt-get install -y --no-install-recommends git gettext-base
-        - pip install https://github.com/matrix-org/synapse-s3-storage-provider/archive/refs/tags/v1.6.0.zip
     generic_worker:
       enabled: true
       replicaCount: 3
