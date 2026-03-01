@@ -23,7 +23,6 @@ spec:
           # Apps
           - name: authentik
           - name: excalidraw
-          - name: foundry-vtt
           - name: gathio
           - name: it-tools
           - name: unifi
@@ -89,6 +88,7 @@ spec:
           - name: bluesky-crossposter
           - name: bytestash
           - name: externaldns-cloudflare
+          - name: foundry-vtt
           - name: hoarder
           - name: libmedium
           - name: memos
