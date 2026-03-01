@@ -8,7 +8,9 @@ recommender:
 updater:
   enabled: false
 admissionController:
-  enabled: false
+  enabled: true
+  image:
+    repository: registry.k8s.io/autoscaling/vpa-admission-controller
+    tag: 1.4.1
 metrics-server:
   enabled: false
-
