@@ -26,7 +26,6 @@ spec:
           - name: foundry-vtt
           - name: gathio
           - name: it-tools
-          - name: not-the-plants
           - name: unifi
   template:
     metadata:
@@ -96,6 +95,7 @@ spec:
           - name: metrics-server
           - name: microbin
           - name: miniflux
+          - name: not-the-plants
           - name: phanpy
           - name: planka
           - name: searxng
