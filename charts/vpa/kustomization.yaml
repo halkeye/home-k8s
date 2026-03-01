@@ -11,3 +11,6 @@ helmCharts:
     repo: https://charts.fairwinds.com/stable
     valuesFile: values.yaml
     releaseName: vpa
+
+resources:
+  - https://raw.githubusercontent.com/kubernetes/autoscaler/refs/tags/vertical-pod-autoscaler-1.6.0/vertical-pod-autoscaler/deploy/vpa-v1-crd-gen.yaml
