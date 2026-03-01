@@ -24,7 +24,6 @@ spec:
           - name: authentik
           - name: excalidraw
           - name: gathio
-          - name: it-tools
           - name: unifi
   template:
     metadata:
@@ -90,6 +89,7 @@ spec:
           - name: externaldns-cloudflare
           - name: foundry-vtt
           - name: hoarder
+          - name: it-tools
           - name: libmedium
           - name: memos
           - name: metrics-server
