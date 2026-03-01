@@ -1,28 +1,47 @@
-excalidraw:
-  image:
-    repository: excalidraw/excalidraw
-    pullPolicy: Always
-    tag: "latest"
-  ingress:
-    enabled: true
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+defaultPodOptions:
+  securityContext:
+    runAsGroup: 65534
+    runAsUser: 65534
+    runAsNonRoot: true
+
+controllers:
+  main:
+    replicas: 1
     annotations:
-      gethomepage.dev/enabled: 'false'
-      traefik.ingress.kubernetes.io/router.entrypoints: 'websecure'
-      traefik.ingress.kubernetes.io/router.middlewares: 'traefik-ingress-authentik@kubernetescrd'
-      nginx.ingress.kubernetes.io/auth-url: "https://vouch.g4v.dev/_oauth2/validate"
-      nginx.ingress.kubernetes.io/auth-signin: "https://vouch.g4v.dev/_oauth2/login?url=$scheme://$http_host$request_uri&vouch-failcount=$auth_resp_failcount&X-Vouch-Token=$auth_resp_jwt&error=$auth_resp_err"
-      nginx.ingress.kubernetes.io/server-snippet: real_ip_header CF-Connecting-IP;
-      nginx.ingress.kubernetes.io/configuration-snippet: |
-        real_ip_header CF-Connecting-IP;
-      nginx.ingress.kubernetes.io/auth-response-headers: X-Vouch-User
-      nginx.ingress.kubernetes.io/auth-snippet: |
-        proxy_set_header X-Forwarded-Host $http_host;
-        auth_request_set $auth_resp_x_vouch_user $upstream_http_x_vouch_user;
-        auth_request_set $auth_resp_jwt $upstream_http_x_vouch_jwt;
-        auth_request_set $auth_resp_err $upstream_http_x_vouch_err;
-        auth_request_set $auth_resp_failcount $upstream_http_x_vouch_failcount;
-    hosts:
-      - host: draw.g4v.dev
-        paths:
-          - path: /
-            pathType: Prefix
+      reloader.stakater.com/auto: "true"
+    containers:
+      main:
+        image:
+          repository: docker.io/excalidraw/excalidraw
+          tag: latest@sha256:0c95248ae1f3f582d7c4472504a963f52c4f2de4a8174a5b4a3d649e29ee31dc
+        env:
+          TZ: America/Vancouver
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 80
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "draw.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - identifier: main
+            port: http
