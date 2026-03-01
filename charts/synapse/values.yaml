@@ -13,6 +13,9 @@ matrix-synapse:
     logLevel: ERROR
     reportStats: true
 
+  ingress:
+    enabled: false
+
   gateway:
     enabled: true
     annotations:
