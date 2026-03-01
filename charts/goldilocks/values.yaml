@@ -5,6 +5,7 @@ image:
 
 dashboard:
   flags:
+    on-by-default: true
     enable-cost: false
 
 controller:
