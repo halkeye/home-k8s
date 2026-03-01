@@ -22,7 +22,6 @@ spec:
 
           # Apps
           - name: authentik
-          - name: excalidraw
           - name: gathio
           - name: unifi
   template:
@@ -86,6 +85,7 @@ spec:
 
           - name: bluesky-crossposter
           - name: bytestash
+          - name: excalidraw
           - name: externaldns-cloudflare
           - name: foundry-vtt
           - name: hoarder
