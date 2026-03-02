@@ -65,6 +65,7 @@ service:
         port: 9001
       s3:
         port: 9000
+
 serviceMonitor:
   app:
     serviceName: minio
@@ -72,21 +73,40 @@ serviceMonitor:
       - port: s3
         scheme: http
         path: /minio/v2/metrics/cluster
-ingress:
-  app:
-    hosts:
-      - host: minio.g4v.dev
-        paths:
-          - path: /
-            service:
-              identifier: app
-              port: http
-      - host: s3.g4v.dev
-        paths:
-          - path: /
-            service:
-              identifier: app
-              port: s3
+
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "minio.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - identifier: app
+            port: http
+  s3:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "s3.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - identifier: app
+            port: s3
 
 persistence:
   data:
