@@ -51,10 +51,10 @@ controllers:
               httpGet:
                 path: /api/v1/info/status
                 port: 8080
-        securityContext:
-          allowPrivilegeEscalation: false
-          capabilities:
-            drop: ["ALL"]
+        # securityContext:
+        #   allowPrivilegeEscalation: false
+        #   capabilities:
+        #     drop: ["ALL"]
         resources:
           requests:
             cpu: 25m
