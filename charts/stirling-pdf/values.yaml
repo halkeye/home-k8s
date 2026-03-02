@@ -1,14 +1,14 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 defaultPodOptions:
   automountServiceAccountToken: false
-  # securityContext:
-  #   runAsNonRoot: true
-  #   runAsUser: 1001
-  #   runAsGroup: 1001
-  #   fsGroup: 1001
-  #   fsGroupChangePolicy: OnRootMismatch
-  #   seccompProfile:
-  #     type: RuntimeDefault
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 1001
+    runAsGroup: 1001
+    fsGroup: 1001
+    fsGroupChangePolicy: OnRootMismatch
+    seccompProfile:
+      type: RuntimeDefault
 
 controllers:
   main:
@@ -61,13 +61,6 @@ controllers:
             memory: 128Mi
           limits:
             memory: 1Gi
-    pod:
-      securityContext:
-        runAsUser: 102
-        runAsGroup: 103
-        runAsNonRoot: true
-        fsGroup: 103
-        fsGroupChangePolicy: OnRootMismatch
 service:
   main:
     controller: main
