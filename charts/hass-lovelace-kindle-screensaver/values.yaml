@@ -51,16 +51,23 @@ service:
     ports:
       http:
         port: 5000
-ingress:
+route:
   main:
     enabled: true
-    hosts:
-      - host: "hass-lovelace-kindle-screensaver.g4v.dev"
-        paths:
-          - path: /
-            service:
-              identifier: main
-              port: http
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "hass-lovelace-kindle-screensaver.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - identifier: main
+            port: http
 persistence:
   tmp:
     type: emptyDir
