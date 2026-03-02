@@ -6,7 +6,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/unpackerr/unpackerr
-          tag: 0.14.5
+          tag: 0.15.0
         env:
           TZ: America/Vancouver
           UN_SONARR_0_URL: https://sonarr.g4v.dev
