@@ -99,7 +99,6 @@ spec:
           - name: phanpy
           - name: planka
           - name: searxng
-          - name: stirling-pdf
           - name: string-is
           - name: synapse-admin
           - name: teamspeak
