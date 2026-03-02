@@ -1,0 +1,17 @@
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: pinchflat-oidc
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: pinchflat
+  oidc:
+    provider:
+      issuer: "https://auth.g4v.dev/application/o/pinchflat/"
+    clientID: "ZHyEppFxW3pJJHHhaTMiG6OEKWfTq3sFtETZopr2"
+    clientSecret:
+      name: "pinchflat-client-secret"
+    redirectURL: "https://pinchflat.g4v.dev/oauth2/callback"
+    logoutPath: "/myapp/logout"
