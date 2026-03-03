@@ -5,7 +5,7 @@ kind: Kustomization
 
 helmCharts:
   - name: sops-secrets-operator
-    version: 0.25.0
+    version: 0.25.1
     repo: https://isindir.github.io/sops-secrets-operator/
     valuesFile: ./values.yaml
     releaseName: sops-secrets-operator
