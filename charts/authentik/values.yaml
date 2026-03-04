@@ -16,23 +16,21 @@ authentik:
       enabled: true
 
   server:
-    ingress:
-      enabled: true
-      ingressClassName: nginx
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt
-        kubernetes.io/tls-acme: "true"
-        gethomepage.dev/enabled: "true"
-        gethomepage.dev/group: Security
-        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/authentik.png
-        gethomepage.dev/name: Authentik
-      hosts:
-        - auth.g4v.dev
-      tls:
-        - hosts:
-            - auth.g4v.dev
-          secretName: "authentik-tls"
-
+    route:
+      main:
+        enabled: true
+        # -- Route annotations
+        # annotations:
+        #   cert-manager.io/cluster-issuer: letsencrypt
+        #   kubernetes.io/tls-acme: "true"
+        # -- Route hostnames
+        hostnames:
+          - auth.g4v.dev
+        # -- Reference to parent gateways
+        parentRefs:
+          - name: http-gateway
+            namespace: envoy-gateway
+            sectionName: https
     volumeMounts:
       - name: certs
         mountPath: /certs
