@@ -10,6 +10,13 @@ ingress-nginx:
     ingressClassResource:
       default: true
 
+    image:
+      registry: registry.k8s.io
+      image: ingress-nginx/controller
+      tag: "v1.12.8"
+      digest: ""
+      digestChroot: ""
+
     extraArgs:
       default-ssl-certificate: "kube-system/wildcard-do-g4v-tls"
 
