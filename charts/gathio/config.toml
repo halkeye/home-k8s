@@ -35,7 +35,7 @@ creator_email_addresses = ["${GATHIO_CREATOR_EMAIL_ADDRESSES_1}","${GATHIO_CREAT
 mongodb_url = "${GATHIO_MONGODB_URL}"
 
 [nodemailer]
-smtp_url = "smtp://${GATHIO_SMTP_USERNAME}}:${GATHIO_SMTP_PASSWORD}@${GATHIO_SMTP_SERVER}:${$GATHIO_SMTP_PORT}/?secure=false&logger=true&debug=true&ignoreTLS=true&requireTLS=false&pool=true"
+smtp_url = "smtp://${GATHIO_SMTP_USERNAME}:${GATHIO_SMTP_PASSWORD}@${GATHIO_SMTP_SERVER}:${$GATHIO_SMTP_PORT}/?secure=false&logger=true&debug=true&ignoreTLS=true&requireTLS=false&pool=true"
 
 [sendgrid]
 api_key = ""
