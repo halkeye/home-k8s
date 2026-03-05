@@ -27,7 +27,7 @@ mail_service = "nodemailer"
 # empty, anyone can create events.
 # For example:
 # creator_email_addresses = ["test@test.com", "admin@test.com"]
-creator_email_addresses = ["${GATHIO_CREATOR_EMAIL_ADDRESSES_1}","${GATHIO_CREATOR_EMAIL_ADDRESSES_2}"]
+creator_email_addresses = ["${GATHIO_CREATOR_EMAIL_ADDRESSES_0}","${GATHIO_CREATOR_EMAIL_ADDRESSES_1}"]
 
 [database]
 # Set up for a locally running MongoDB connection. Change this to
