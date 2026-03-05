@@ -110,15 +110,15 @@ app-template:
           # empty, anyone can create events.
           # For example:
           # creator_email_addresses = ["test@test.com", "admin@test.com"]
-          creator_email_addresses = {{ .Values.creator_email_addresses | toJson }}
+          creator_email_addresses = ["${GATHIO_CREATOR_EMAIL_ADDRESSES_1}","${GATHIO_CREATOR_EMAIL_ADDRESSES_2}"]
 
           [database]
           # Set up for a locally running MongoDB connection. Change this to
           # 'mongodb://mongo:27017/gathio' for a Dockerised connection.
-          mongodb_url = {{ .Values.mongodb_url | quote }}
+          mongodb_url = "${GATHIO_MONGODB_URL}"
 
           [nodemailer]
-          smtp_url = "smtp://{{ .Values.smtp_username }}:{{ .Values.smtp_password }}@{{ .Values.smtp_server }}:{{ .Values.smtp_port }}/?secure=false&logger=true&debug=true&ignoreTLS=true&requireTLS=false&pool=true"
+          smtp_url = "smtp://${GATHIO_SMTP_USERNAME}}:${GATHIO_SMTP_PASSWORD}@${GATHIO_SMTP_SERVER}:${$GATHIO_SMTP_PORT}/?secure=false&logger=true&debug=true&ignoreTLS=true&requireTLS=false&pool=true"
 
           [sendgrid]
           api_key = ""
