@@ -13,6 +13,9 @@ app-template:
             - npm
             - run
             - start
+          envFrom:
+            - secretRef:
+                name: "gathio"
           probes:
             liveness: &probes
               enabled: false
