@@ -22,7 +22,6 @@ spec:
 
           # Apps
           - name: authentik
-          - name: gathio
           - name: unifi
   template:
     metadata:
@@ -88,6 +87,7 @@ spec:
           - name: excalidraw
           - name: externaldns-cloudflare
           - name: foundry-vtt
+          - name: gathio
           - name: hoarder
           - name: it-tools
           - name: libmedium
