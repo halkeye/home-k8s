@@ -119,6 +119,7 @@ spec:
           - name: ollama
           - name: openbooks
           - name: pinchflat
+          - name: polaris
           - name: postgres-do-k8s-backup
           - name: postgres-home-backup
           - name: prowlarr
