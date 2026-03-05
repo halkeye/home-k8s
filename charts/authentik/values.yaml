@@ -29,6 +29,8 @@ authentik:
         # -- Reference to parent gateways
         parentRefs:
           - name: http-gateway
+            group: gateway.networking.k8s.io	
+            kind: Gateway
             namespace: envoy-gateway
             sectionName: https
     volumeMounts:
