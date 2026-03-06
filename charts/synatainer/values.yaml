@@ -13,8 +13,8 @@ controllers:
   #   containers:
   #     main:
   #       image:
-  #         repository: registry.gitlab.com/mb-saces/synatainer
-  #         tag: 0.4.4
+  #         repository:  ghcr.io/halkeye/docker-synatainer
+  #         tag: v0.4.4.2
   #       envFrom:
   #         - secretRef:
   #             name: synatainer-secret
@@ -47,8 +47,8 @@ controllers:
     containers:
       main:
         image:
-          repository: registry.gitlab.com/mb-saces/synatainer
-          tag: 0.4.4
+          repository:  ghcr.io/halkeye/docker-synatainer
+          tag: v0.4.4.2
         envFrom:
           - secretRef:
               name: synatainer-secret
@@ -78,8 +78,8 @@ controllers:
     containers:
       main:
         image:
-          repository: registry.gitlab.com/mb-saces/synatainer
-          tag: 0.4.4
+          repository:  ghcr.io/halkeye/docker-synatainer
+          tag: v0.4.4.2
         envFrom:
           - secretRef:
               name: synatainer-secret
@@ -112,8 +112,8 @@ controllers:
     containers:
       main:
         image:
-          repository: registry.gitlab.com/mb-saces/synatainer
-          tag: 0.4.4
+          repository:  ghcr.io/halkeye/docker-synatainer
+          tag: v0.4.4.2
         envFrom:
           - secretRef:
               name: synatainer-secret
