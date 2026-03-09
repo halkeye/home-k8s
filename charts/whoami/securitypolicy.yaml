@@ -15,9 +15,12 @@ spec:
       name: "whoami-client-secret"
     redirectURL: "https://whoami-do.g4v.dev/oauth2/callback"
     logoutPath: "/myapp/logout"
+    forwardAccessToken: true
+    passThroughAuthHeader: true
     cookieNames:
       accessToken: "whoami-access-token"
   jwt:
+    optional: true
     providers:
       - name: authentik
         issuer: "https://auth.g4v.dev/application/o/whoami/"
