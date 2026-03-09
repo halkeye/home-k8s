@@ -15,28 +15,69 @@ controllers:
       reloader.stakater.com/auto: "true"
       litestream: enabled
     containers:
+      oauth2_proxy:
+        image: 
+          repository: quay.io/oauth2-proxy/oauth2-proxy
+          tag: v7.14.3
+        env:
+          OAUTH2_PROXY_XAUTHREQUEST: "true"
+          OAUTH2_PROXY_HTTP_ADDRESS: "http://[::]:4180"
+          OAUTH2_PROXY_PROVIDER: oidc
+          OAUTH2_PROXY_COOKIE_DOMAINS: "navidrome.g4v.dev"
+          OAUTH2_PROXY_WHITELIST_DOMAINS: "navidrome.g4v.dev"
+          OAUTH2_PROXY_EMAIL_DOMAINS: "*"
+          OAUTH2_PROXY_SCOPE: openid profile email
+          OAUTH2_PROXY_SET_XAUTHREQUEST: "true"
+          OAUTH2_PROXY_REVERSE_PROXY: "true"
+          OAUTH2_PROXY_SILENCE_PING_LOGGING: "true"
+          OAUTH2_PROXY_OIDC_ISSUER_URL: https://auth.g4v.dev/application/o/navidrome/
+          OAUTH2_PROXY_LOGIN_URL: https://auth.g4v.dev
+          OAUTH2_PROXY_CHALLENGE_METHOD: S256
+        envFrom:
+          - secretRef:
+              name: navidrome-oauth2-proxy
+        probes:
+          liveness:
+            enabled: true
+          readiness:
+            enabled: true
+        resources:
+          limits:
+            memory: 110Mi
+          requests:
+            cpu: 30m
+            memory: 110Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
+          readOnlyRootFilesystem: true
       navidrome:
         image:
           repository: ghcr.io/navidrome/navidrome
           tag: 0.60.3
         env:
           TZ: America/Vancouver
-          ND_DATAFOLDER: /config
-          ND_ENABLEGRAVATAR: "true"
+          ND_AUTHREQUESTLIMIT: 0
           ND_COVERJPEGQUALITY: "100"
+          ND_DATAFOLDER: /config
           ND_DEFAULTTHEME: Dark
-          ND_IMAGECACHESIZE: "1GB"
-          ND_SEARCHFULLSTRING: "true"
-          ND_SUBSONICARTISTPARTICIPATIONS: "true"
+          ND_ENABLEGRAVATAR: "true"
+          ND_ENABLESHARING: "true"
           ND_ENABLETRANSCODINGCONFIG: "true"
+          ND_EXTAUTH_TRUSTEDSOURCES: "0.0.0.0/0"
+          ND_EXTAUTH_USERHEADER: X-Auth-Request-User
+          ND_IMAGECACHESIZE: "1GB"
+          ND_LASTFM_ENABLED: "true"
           ND_PORT: 8080
           ND_PROMETHEUS_ENABLED: "true"
-          ND_REVERSEPROXYUSERHEADER: X-Vouch-User
+          ND_REVERSEPROXYUSERHEADER: X-Auth-Request-User
           ND_REVERSEPROXYWHITELIST: 0.0.0.0/0
-          ND_EXTAUTH_USERHEADER: X-Vouch-User
-          ND_EXTAUTH_TRUSTEDSOURCES: "0.0.0.0/0"
+          ND_SCANSCHEDULE: "@every 1h"
+          ND_SEARCHFULLSTRING: "true"
           ND_SESSIONTIMEOUT: 24h
-          ND_LASTFM_ENABLED: "true"
+          ND_SUBSONICARTISTPARTICIPATIONS: "true"
         envFrom:
           - secretRef:
               name: navidrome-secret
@@ -53,52 +94,45 @@ controllers:
             memory: 1Gi
 
 service:
-  navidrome:
+  main:
     controller: navidrome
     ports:
       http:
         port: 8080
+      oauth:
+        port: 4180
 
-ingress:
-  navidrome:
-    annotations:
-      gethomepage.dev/enabled: "true"
-      gethomepage.dev/group: Media
-      gethomepage.dev/icon: https://raw.githubusercontent.com/homarr-labs/dashboard-icons/main/png/navidrome.png
-      gethomepage.dev/name: Navidrome
-      traefik.ingress.kubernetes.io/router.entrypoints: 'websecure'
-      traefik.ingress.kubernetes.io/router.middlewares: 'traefik-ingress-authentik@kubernetescrd'
-      nginx.ingress.kubernetes.io/auth-url: "https://vouch.g4v.dev/_oauth2/validate"
-      nginx.ingress.kubernetes.io/auth-signin: "https://vouch.g4v.dev/_oauth2/login?url=$scheme://$http_host$request_uri&vouch-failcount=$auth_resp_failcount&X-Vouch-Token=$auth_resp_jwt&error=$auth_resp_err"
-      nginx.ingress.kubernetes.io/server-snippet: real_ip_header CF-Connecting-IP;
-      nginx.ingress.kubernetes.io/configuration-snippet: |
-        real_ip_header CF-Connecting-IP;
-      nginx.ingress.kubernetes.io/auth-response-headers: X-Vouch-User
-      nginx.ingress.kubernetes.io/auth-snippet: |
-        proxy_set_header X-Forwarded-Host $http_host;
-        auth_request_set $auth_resp_x_vouch_user $upstream_http_x_vouch_user;
-        auth_request_set $auth_resp_jwt $upstream_http_x_vouch_jwt;
-        auth_request_set $auth_resp_err $upstream_http_x_vouch_err;
-        auth_request_set $auth_resp_failcount $upstream_http_x_vouch_failcount;
-    hosts:
-      - host: navidrome.g4v.dev
-        paths:
-          - path: /
-            service:
-              identifier: navidrome
-              port: http
-  # navidrome-noauth:
-  #   hosts:
-  #     - host: navidrome.g4v.dev
-  #       paths:
-  #         - path: /share/
-  #           service:
-  #             identifier: navidrome
-  #             port: http
-  #         - path: /rest/
-  #           service:
-  #             identifier: navidrome
-  #             port: http
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "navidrome.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - identifier: main
+            port: oauth
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /share/
+        backendRefs:
+          - identifier: main
+            port: http
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /rest/
+        backendRefs:
+          - identifier: main
+            port: http
 
 persistence:
   data:
