@@ -23,6 +23,8 @@ controllers:
           - oauth2-proxy
           - --alpha-config
           - /data/oauth2_proxy.cfg
+        env:
+          EMAIL_DOMAINS: '*'
         envFrom:
           - secretRef:
               name: navidrome-oauth2-proxy
