@@ -1,5 +1,40 @@
 # https://www.navidrome.org/docs/usage/configuration-options/#available-options
+
+AuthRequestLimit = 0
+CoverJpegQuality = 100
+DefaultTheme = "Dark"
+EnableGravatar = false
+EnableSharing = true
+EnableTranscodingConfig = true
+# EnableUserEditing = true # needed to set external password
+ImageCacheSize = "1GB"
 LogLevel = 'INFO'
-Scanner.Schedule = '@every 1h'
-TranscodingCacheSize = '5GB'
 MusicFolder = '/music'
+Port = 8080
+SearchFullString = true
+SessionTimeout = 86400000000000
+TranscodingCacheSize = '5GB'
+
+[ExtAuth]
+TrustedSources = "0.0.0.0/0,172.16.10.0/24"
+UserHeader = "X-Auth-Request-User"
+
+[Scanner]
+Schedule = '@every 1h'
+
+[LastFM]
+Enabled = true
+Language = "en"
+Languages = [ "en" ]
+ScrobbleFirstArtistOnly = false
+
+[Prometheus]
+Enabled = true
+
+[Subsonic]
+AppendSubtitle = true
+ArtistParticipations = true
+DefaultReportRealPath = false
+EnableAverageRating = true
+LegacyClients = "DSub"
+MinimalClients = "SubMusic"
