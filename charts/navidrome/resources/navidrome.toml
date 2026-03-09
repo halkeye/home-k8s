@@ -10,7 +10,6 @@ EnableTranscodingConfig = true
 ImageCacheSize = "1GB"
 LogLevel = 'INFO'
 MusicFolder = '/music'
-Port = 8080
 SearchFullString = true
 SessionTimeout = 86400000000000
 TranscodingCacheSize = '5GB'

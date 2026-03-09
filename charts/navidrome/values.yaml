@@ -76,7 +76,7 @@ service:
     controller: navidrome
     ports:
       http:
-        port: 8080
+        port: 4533
   oauth2proxy:
     controller: oauth2proxy
     ports:
