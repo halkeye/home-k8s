@@ -11,6 +11,8 @@ defaultPodOptions:
 
 controllers:
   oauth2proxy:
+    annotations:
+      reloader.stakater.com/auto: "true"
     containers:
       oauth2proxy:
         image: 
