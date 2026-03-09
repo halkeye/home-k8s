@@ -15,7 +15,7 @@ controllers:
       reloader.stakater.com/auto: "true"
       litestream: enabled
     containers:
-      oauth2_proxy:
+      oauth2proxy:
         image: 
           repository: quay.io/oauth2-proxy/oauth2-proxy
           tag: v7.14.3
