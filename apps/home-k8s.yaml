@@ -114,6 +114,7 @@ spec:
           - name: mdns-reflector
           - name: minio
           - name: music-assistant
+          - name: navidrome
           - name: netbootxyz
           - name: nortverse-downloader
           - name: ollama
