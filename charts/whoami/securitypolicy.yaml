@@ -15,19 +15,3 @@ spec:
       name: "whoami-client-secret"
     redirectURL: "https://whoami-do.g4v.dev/oauth2/callback"
     logoutPath: "/myapp/logout"
-    forwardAccessToken: true
-    passThroughAuthHeader: true
-    cookieNames:
-      accessToken: "whoami-access-token"
-  jwt:
-    providers:
-      - name: authentik
-        issuer: "https://auth.g4v.dev/application/o/whoami/"
-        remoteJWKS:
-          uri: "https://auth.g4v.dev/application/o/whoami/jwks/"
-        extractFrom:
-          cookies:
-            - "whoami-access-token"
-        claimToHeaders:
-          - claim: preferred_username
-            header: Remote-User
