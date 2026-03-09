@@ -20,7 +20,6 @@ spec:
     cookieNames:
       accessToken: "whoami-access-token"
   jwt:
-    optional: true
     providers:
       - name: authentik
         issuer: "https://auth.g4v.dev/application/o/whoami/"
