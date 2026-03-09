@@ -52,15 +52,23 @@ service:
         port: 3000
 
 
-ingress:
-  app:
-    hosts:
-      - host: netbootxyz.g4v.dev
-        paths:
-          - path: /
-            service:
-              identifier: admin
-              port: http
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "netbootxyz.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - identifier: main
+            port: http
 
 persistence:
   config:
