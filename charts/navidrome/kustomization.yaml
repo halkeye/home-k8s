@@ -22,6 +22,7 @@ resources:
 configMapGenerator:
   - name: navidrome-configmap
     files:
+      - ./oauth2_proxy.cfg
       - ./resources/navidrome.toml
   - name: litestream-configmap
     literals:
