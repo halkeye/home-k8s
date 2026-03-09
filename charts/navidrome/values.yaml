@@ -20,7 +20,7 @@ controllers:
           repository: quay.io/oauth2-proxy/oauth2-proxy
           tag: v7.14.3
         env:
-          OAUTH2_PROXY_CODE_CHALLENGE_METHOD: U256
+          OAUTH2_PROXY_CODE_CHALLENGE_METHOD: S256
           OAUTH2_PROXY_COOKIE_DOMAINS: "navidrome.g4v.dev"
           OAUTH2_PROXY_EMAIL_DOMAINS: "*"
           OAUTH2_PROXY_HTTP_ADDRESS: "http://[::]:4180"
@@ -74,8 +74,6 @@ controllers:
           ND_LASTFM_ENABLED: "true"
           ND_PORT: 8080
           ND_PROMETHEUS_ENABLED: "true"
-          ND_REVERSEPROXYUSERHEADER: X-Auth-Request-User
-          ND_REVERSEPROXYWHITELIST: 0.0.0.0/0
           ND_SCANSCHEDULE: "@every 1h"
           ND_SEARCHFULLSTRING: "true"
           ND_SESSIONTIMEOUT: 24h
