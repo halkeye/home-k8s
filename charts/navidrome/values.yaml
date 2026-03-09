@@ -19,8 +19,10 @@ controllers:
         image: 
           repository: quay.io/oauth2-proxy/oauth2-proxy
           tag: v7.14.3
-        env:
-          OAUTH2_PROXY_ALPHA_CONFIG: /data/oauth2_proxy.cfg
+        command:
+          - oauth2-proxy
+          - --alpha-config
+          - /data/oauth2_proxy.cfg
         envFrom:
           - secretRef:
               name: navidrome-oauth2-proxy
