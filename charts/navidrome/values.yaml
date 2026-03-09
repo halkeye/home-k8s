@@ -32,7 +32,6 @@ controllers:
           OAUTH2_PROXY_SILENCE_PING_LOGGING: "true"
           OAUTH2_PROXY_OIDC_ISSUER_URL: https://auth.g4v.dev/application/o/navidrome/
           OAUTH2_PROXY_LOGIN_URL: https://auth.g4v.dev
-          OAUTH2_PROXY_CHALLENGE_METHOD: S256
         envFrom:
           - secretRef:
               name: navidrome-oauth2-proxy
