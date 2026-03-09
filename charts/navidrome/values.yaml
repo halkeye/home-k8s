@@ -10,10 +10,7 @@ defaultPodOptions:
     fsGroupChangePolicy: "OnRootMismatch"
 
 controllers:
-  navidrome:
-    annotations:
-      reloader.stakater.com/auto: "true"
-      litestream: enabled
+  oauth2proxy:
     containers:
       oauth2proxy:
         image: 
@@ -47,6 +44,11 @@ controllers:
             drop:
               - ALL
           readOnlyRootFilesystem: true
+  navidrome:
+    annotations:
+      reloader.stakater.com/auto: "true"
+      litestream: enabled
+    containers:
       navidrome:
         image:
           repository: ghcr.io/navidrome/navidrome
@@ -86,11 +88,14 @@ controllers:
             memory: 1Gi
 
 service:
-  main:
+  navidrome:
     controller: navidrome
     ports:
       http:
         port: 8080
+  oauth2proxy:
+    controller: oauth2proxy
+    ports:
       oauth:
         port: 4180
 
@@ -109,21 +114,21 @@ route:
             type: PathPrefix
             value: /
         backendRefs:
-          - identifier: main
+          - identifier: oauth2proxy
             port: oauth
       - matches:
         - path:
             type: PathPrefix
             value: /share/
         backendRefs:
-          - identifier: main
+          - identifier: navidrome
             port: http
       - matches:
         - path:
             type: PathPrefix
             value: /rest/
         backendRefs:
-          - identifier: main
+          - identifier: navidrome
             port: http
 
 persistence:
@@ -138,8 +143,18 @@ persistence:
     type: nfs
     server: 172.16.10.10
     path: /volume1/Audio/Music
-    globalMounts:
-      - path: /music
+    advancedMounts:
+      navidrome:
+        navidrome:
+          - path: /music
+  audio:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Audio
+    advancedMounts:
+      navidrome:
+        navidrome:
+          - path: /audio
   configmap:
     type: configMap
     name: navidrome-configmap
