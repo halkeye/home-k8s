@@ -62,6 +62,7 @@ controllers:
           ND_ENABLETRANSCODINGCONFIG: "true"
           ND_EXTAUTH_TRUSTEDSOURCES: "0.0.0.0/0"
           ND_EXTAUTH_USERHEADER: X-Auth-Request-User
+          ND_REVERSEPROXYWHITELIST: "0.0.0.0/0"
           ND_IMAGECACHESIZE: "1GB"
           ND_LASTFM_ENABLED: "true"
           ND_PORT: 8080
