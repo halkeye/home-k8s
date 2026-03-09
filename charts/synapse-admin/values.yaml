@@ -5,7 +5,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/etkecc/synapse-admin
-          tag: v0.11.1-etke53
+          tag: v0.11.4-etke54
 ingress:
   main:
     enabled: true
