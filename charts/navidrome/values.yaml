@@ -49,7 +49,7 @@ controllers:
   navidrome:
     annotations:
       reloader.stakater.com/auto: "true"
-      litestream: enabled
+      # litestream: enabled
     containers:
       navidrome:
         image:
@@ -151,7 +151,7 @@ persistence:
       - path: /data/oauth2_proxy.cfg
         subPath: oauth2_proxy.cfg
         readOnly: true
-  litestream-configmap:
-    type: configMap
-    name: litestream-configmap
-    globalMounts: []
+  # litestream-configmap:
+  #   type: configMap
+  #   name: litestream-configmap
+  #   globalMounts: []

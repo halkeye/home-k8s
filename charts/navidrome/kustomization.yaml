@@ -24,15 +24,15 @@ configMapGenerator:
     files:
       - ./oauth2_proxy.cfg
       - ./resources/navidrome.toml
-  - name: litestream-configmap
-    literals:
-      - LITESTREAM_DB_PATH="/data/navidrome.db"
-      - |
-        litestream.yml=
-          dbs:
-            - path: /data/navidrome.db
-              replicas:
-                - url: s3://halkeye-litestream.tor1.digitaloceanspaces.com/navidrome
-
-components:
-  - ../../components/litestream
+#   - name: litestream-configmap
+#     literals:
+#       - LITESTREAM_DB_PATH="/data/navidrome.db"
+#       - |
+#         litestream.yml=
+#           dbs:
+#             - path: /data/navidrome.db
+#               replicas:
+#                 - url: s3://halkeye-litestream.tor1.digitaloceanspaces.com/navidrome
+#
+# components:
+#   - ../../components/litestream
