@@ -15,3 +15,6 @@ spec:
       name: "whoami-client-secret"
     redirectURL: "https://whoami-do.g4v.dev/oauth2/callback"
     logoutPath: "/myapp/logout"
+    headers:
+      - claim: "preferred_username"
+        header: "x-preferred-username"
