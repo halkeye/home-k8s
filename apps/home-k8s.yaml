@@ -72,6 +72,7 @@ spec:
           - { namespace: cloudflare, name: cloudflared }
 
           - { namespace: monitoring, name: prometheus }
+          - { namespace: monitoring, name: matrix-alertmanager }
 
           # Exporters
           - { namespace: monitoring, name: bambulabs-exporter }
