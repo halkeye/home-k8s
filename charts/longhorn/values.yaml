@@ -18,9 +18,14 @@ defaultSettings:
   taintToleration: CriticalAddonsOnly:Exists; node-role.kubernetes.io/control-plane:NoSchedule
   allowCollectingLonghornUsageMetrics: true
   concurrentAutomaticEngineUpgradePerNodeLimit: 2
-ingress:
+httproute:
   enabled: true
-  host: longhorn.g4v.dev
+  hostnames:
+    - longhorn-h.g4v.dev
+  parentRefs:
+    - name: http-gateway
+      namespace: envoy-gateway
+      sectionName: https
 longhornDriver:
   tolerations: &tolerations
     - key: CriticalAddonsOnly
