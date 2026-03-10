@@ -14,6 +14,10 @@ controllers:
         image:
           repository: stashapp/stash
           tag: v0.30.1
+        command:
+          - /bin/bash
+          - -c
+          - sleep 99d
         env:
           HOME: /config
           STASH_NO_BROWSER: "true"
@@ -37,11 +41,11 @@ controllers:
           readiness: *probes
           startup:
             enabled: false
-        securityContext:
-          allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
-          capabilities:
-            drop: ["ALL"]
+        # securityContext:
+        #   allowPrivilegeEscalation: false
+        #   readOnlyRootFilesystem: true
+        #   capabilities:
+        #     drop: ["ALL"]
         resources:
           limits: &resources
             memory: 2Gi
