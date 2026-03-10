@@ -41,7 +41,7 @@ alertmanager:
               username: alertmanager
               password_file: /etc/alertmanager/secrets/alertmanager-secrets/matrix-alertmanager
     route:
-      receiver: 'discord'
+      receiver: 'matrix-receiver'
       routes:
         - receiver: "null"
           matchers:
@@ -50,7 +50,7 @@ alertmanager:
         - receiver: 'null'
           matchers:
           - severity =~ "none"
-        - receiver: 'discord'
+        - receiver: 'matrix-receiver'
     inhibit_rules:
       - source_matchers:
         - severity="critical"
