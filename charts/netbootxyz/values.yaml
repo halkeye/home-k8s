@@ -67,7 +67,7 @@ route:
             type: PathPrefix
             value: /
         backendRefs:
-          - identifier: main
+          - identifier: admin
             port: http
 
 persistence:
