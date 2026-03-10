@@ -1,226 +1,230 @@
-kube-prometheus-stack:
-  fullnameOverride: "prometheus"
-  crds:
-    enabled: false
-  cleanPrometheusOperatorObjectNames: true
-  prometheusOperation:
-    kubeletEndpointsEnabled: false
-    kubeletEndpointSliceEnabled: true
-  # kubeApiServer:
-  #   serviceMonitor:
-  #     metricRelabelings:
-  #       - action: replace
-  #         sourceLabels:
-  #           - node
-  #         targetLabel: instance
-  alertmanager:
-    ingress:
-      enabled: true
-      annotations:
-        gethomepage.dev/enabled: 'true'
-        gethomepage.dev/group: Monitoring
-        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/alertmanager.png
-        gethomepage.dev/name: Alert Manager
-      hosts:
-        - alertmanager.h.g4v.dev
-    alertmanagerSpec: {}
-    tplConfig: true
-    stringConfig: |-
-      templates:
-        - /etc/alertmanager/config/*.tmpl
-      receivers:
-        - name: 'null'
-        - name: 'discord'
-          discord_configs:
-            - webhook_url: {{ .Values.discord_api_url | quote }}
-              send_resolved: true
-              title: |-
-                {{`[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ if ne .CommonAnnotations.summary ""}}{{ .CommonAnnotations.summary }} {{ else if ne .CommonAnnotations.message ""}}{{ .CommonAnnotations.message }} {{ else if ne .CommonAnnotations.description ""}}{{ .CommonAnnotations.description }} {{ else }}{{ .CommonLabels.alertname }}{{ end }}`}}
-              message: >-
-                {{`{{ range .Alerts -}}`}}
-                {{"  **Alert:** {{ .Annotations.title }}{{ if .Labels.severity }} `{{ .Labels.severity }}`{{ end }}"}}
-                {{"  **Graph:** <{{ .GeneratorURL }}|:chart_with_upwards_trend:> "}}
-                {{`{{ if ne .Annotations.runbook ""}}**Runbook:** <{{ .Annotations.runbook }}|:spiral_note_pad:> }}{{ end }}`}}
-                {{`{{ if ne .Annotations.summary ""}}**Summary:** {{ .Annotations.summary }} {{ else if ne .Annotations.message ""}}**Message:** {{ .Annotations.message }} {{ else if ne .Annotations.description ""}}**Description:** {{ .Annotations.description }}{{ end }}`}}
-                {{`  **Details:**`}}
-                {{"  {{ range .Labels.SortedPairs }} • {{ .Name }}: `{{ .Value }}`"}}
-                {{`  {{ end }}`}}
-                {{`{{ end }}`}}
-      route:
-        receiver: 'discord'
-        routes:
-          - receiver: "null"
-            matchers:
-            - alertname="Watchdog"
-            continue: false
-          - receiver: 'null'
-            matchers:
-            - severity =~ "none"
-          - receiver: 'discord'
-      inhibit_rules:
-        - source_matchers:
-          - severity="critical"
-          target_matchers:
-          - severity=~"warning|info"
-          equal:
-          - namespace
-          - alertname
-        - source_matchers:
-          - severity="warning"
-          target_matchers:
-          - severity="info"
-          equal:
-          - namespace
-          - alertname
-        - source_matchers:
-          - alertname="InfoInhibitor"
-          target_matchers:
-          - severity="info"
-          equal:
-          - namespace
-        - target_matchers:
-          - alertname="InfoInhibitor"
-  prometheus:
+fullnameOverride: "prometheus"
+crds:
+  enabled: false
+cleanPrometheusOperatorObjectNames: true
+prometheusOperation:
+  kubeletEndpointsEnabled: false
+  kubeletEndpointSliceEnabled: true
+# kubeApiServer:
+#   serviceMonitor:
+#     metricRelabelings:
+#       - action: replace
+#         sourceLabels:
+#           - node
+#         targetLabel: instance
+alertmanager:
+  ingress:
     enabled: true
-    # agentMode: true
+    annotations:
+      gethomepage.dev/enabled: 'true'
+      gethomepage.dev/group: Monitoring
+      gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/alertmanager.png
+      gethomepage.dev/name: Alert Manager
+    hosts:
+      - alertmanager.h.g4v.dev
+  alertmanagerSpec:
+    secrets:
+      - alertmanager-secrets
+  tplConfig: true
+
+  stringConfig: |-
+    templates:
+      - /etc/alertmanager/config/*.tmpl
+    receivers:
+      - name: 'null'
+      - name: 'discord'
+        discord_configs:
+          - webhook_url_file: /etc/alertmanager/secrets/alertmanager-secrets/discord-api-url
+            send_resolved: true
+            title: |-
+              {{`[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ if ne .CommonAnnotations.summary ""}}{{ .CommonAnnotations.summary }} {{ else if ne .CommonAnnotations.message ""}}{{ .CommonAnnotations.message }} {{ else if ne .CommonAnnotations.description ""}}{{ .CommonAnnotations.description }} {{ else }}{{ .CommonLabels.alertname }}{{ end }}`}}
+            message: >-
+              {{`{{ range .Alerts -}}`}}
+              {{"  **Alert:** {{ .Annotations.title }}{{ if .Labels.severity }} `{{ .Labels.severity }}`{{ end }}"}}
+              {{"  **Graph:** <{{ .GeneratorURL }}|:chart_with_upwards_trend:> "}}
+              {{`{{ if ne .Annotations.runbook ""}}**Runbook:** <{{ .Annotations.runbook }}|:spiral_note_pad:> }}{{ end }}`}}
+              {{`{{ if ne .Annotations.summary ""}}**Summary:** {{ .Annotations.summary }} {{ else if ne .Annotations.message ""}}**Message:** {{ .Annotations.message }} {{ else if ne .Annotations.description ""}}**Description:** {{ .Annotations.description }}{{ end }}`}}
+              {{`  **Details:**`}}
+              {{"  {{ range .Labels.SortedPairs }} • {{ .Name }}: `{{ .Value }}`"}}
+              {{`  {{ end }}`}}
+              {{`{{ end }}`}}
+    route:
+      receiver: 'discord'
+      routes:
+        - receiver: "null"
+          matchers:
+          - alertname="Watchdog"
+          continue: false
+        - receiver: 'null'
+          matchers:
+          - severity =~ "none"
+        - receiver: 'discord'
+    inhibit_rules:
+      - source_matchers:
+        - severity="critical"
+        target_matchers:
+        - severity=~"warning|info"
+        equal:
+        - namespace
+        - alertname
+      - source_matchers:
+        - severity="warning"
+        target_matchers:
+        - severity="info"
+        equal:
+        - namespace
+        - alertname
+      - source_matchers:
+        - alertname="InfoInhibitor"
+        target_matchers:
+        - severity="info"
+        equal:
+        - namespace
+      - target_matchers:
+        - alertname="InfoInhibitor"
+prometheus:
+  enabled: true
+  # agentMode: true
+  monitor:
+    relabelings:
+      - action: replace
+        regex: (.*)
+        replacement: $1
+        sourceLabels:
+          - __meta_kubernetes_pod_node_name
+        targetLabel: kubernetes_node
+  prometheusSpec:
+    secrets:
+      - prometheus-secrets
+    # logLevel: debug
+    # remoteWrite:
+    #   - url: https://prometheus-do.g4v.dev/api/v1/write
+    externalLabels:
+      cluster: home-k8s
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: longhorn
+          resources:
+            requests:
+              storage: 50Gi
+    ruleSelectorNilUsesHelmValues: false
+    serviceDiscoveryRole: EndpointSlice
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+    probeSelectorNilUsesHelmValues: false
+    enableFeatures:
+      - new-service-discovery-manager
+    additionalScrapeConfigs:
+      - job_name: nas-syncthing-job
+        bearer_token_file: '/etc/prometheus/secrets/prometheus-secrets/nas-syncthings-key'
+        scheme: https
+        static_configs:
+          - targets: ['syncthing.nas.g4v.dev']
+      # - job_name: traefik
+      #   static_configs:
+      #     - targets: ['traefik.nas.g4v.dev:8000']
+      # - job_name: nas-node
+      #   scheme: https
+      #   static_configs:
+      #     - targets: ['node-exporter.nas.g4v.dev:443']
+      # - job_name: nas-cadvisor
+      #   scheme: https
+      #   static_configs:
+      #     - targets: ['cadvisor.nas.g4v.dev:443']
+      #       labels:
+      #         cluster: 'nas'
+      - job_name: nas-smartctl
+        scheme: https
+        static_configs:
+          - targets: ['smartctl-exporter.nas.g4v.dev:443']
+      - job_name: 'homeassistant'
+        scrape_interval: 60s
+        metrics_path: /api/prometheus
+        authorization:
+          credentials_file: '/etc/prometheus/secrets/prometheus-secrets/homeassistant-key'
+        scheme: http
+        static_configs:
+          - targets: ['homeassistant.dhcp.home:8123']
+  ingress:
+    enabled: true
+    annotations:
+      gethomepage.dev/enabled: 'true'
+      gethomepage.dev/group: Monitoring
+      gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/prometheus.png
+      gethomepage.dev/name: Prometheus
+    hosts:
+      - prometheus.h.g4v.dev
+grafana:
+  enabled: false
+defaultRules:
+  disabled:
+    # my limits are bad anyways, so don't alert me cause i went over
+    KubeMemoryOvercommit: true
+    KubeMemoryQuotaOvercommit: true
+    KubeCPUOvercommit: true
+    KubeletDown: true
+  rules:
+    etcd: false
+    kubeApiserver: false
+    kubeControllerManager: false
+    kubeProxy: false
+    kubeSchedulerAlerting: false
+    kubeSchedulerRecording: false
+kubeProxy:
+  enabled: false
+kubeControllerManager:
+  service:
+    selector:
+      k8s-app: kube-controller-manager
+prometheus-node-exporter:
+  fullnameOverride: node-exporter
+  resources:
+    requests:
+      cpu: 23m
+      memory: 64M
+    limits:
+      memory: 64M
+  prometheus:
     monitor:
       relabelings:
         - action: replace
           regex: (.*)
           replacement: $1
-          sourceLabels:
-            - __meta_kubernetes_pod_node_name
+          sourceLabels: ["__meta_kubernetes_pod_node_name"]
           targetLabel: kubernetes_node
-    prometheusSpec:
-      # logLevel: debug
-      # remoteWrite:
-      #   - url: https://prometheus-do.g4v.dev/api/v1/write
-      externalLabels:
-        cluster: home-k8s
-      storageSpec:
-        volumeClaimTemplate:
-          spec:
-            storageClassName: longhorn
-            resources:
-              requests:
-                storage: 50Gi
-      ruleSelectorNilUsesHelmValues: false
-      serviceDiscoveryRole: EndpointSlice
-      serviceMonitorSelectorNilUsesHelmValues: false
-      podMonitorSelectorNilUsesHelmValues: false
-      probeSelectorNilUsesHelmValues: false
-      enableFeatures:
-        - new-service-discovery-manager
-      additionalScrapeConfigs:
-        - job_name: nas-syncthing-job
-          bearer_token: '{{ .Values.nas_syncthings_key }}'
-          scheme: https
-          static_configs:
-            - targets: ['syncthing.nas.g4v.dev']
-        # - job_name: traefik
-        #   static_configs:
-        #     - targets: ['traefik.nas.g4v.dev:8000']
-        # - job_name: nas-node
-        #   scheme: https
-        #   static_configs:
-        #     - targets: ['node-exporter.nas.g4v.dev:443']
-        # - job_name: nas-cadvisor
-        #   scheme: https
-        #   static_configs:
-        #     - targets: ['cadvisor.nas.g4v.dev:443']
-        #       labels:
-        #         cluster: 'nas'
-        - job_name: nas-smartctl
-          scheme: https
-          static_configs:
-            - targets: ['smartctl-exporter.nas.g4v.dev:443']
-        - job_name: 'homeassistant'
-          scrape_interval: 60s
-          metrics_path: /api/prometheus
-          authorization:
-            credentials: '{{ .Values.homeassistant_key }}'
-          scheme: http
-          static_configs:
-            - targets: ['homeassistant.dhcp.home:8123']
-    ingress:
-      enabled: true
-      annotations:
-        gethomepage.dev/enabled: 'true'
-        gethomepage.dev/group: Monitoring
-        gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/prometheus.png
-        gethomepage.dev/name: Prometheus
-      hosts:
-        - prometheus.h.g4v.dev
-  grafana:
-    enabled: false
-  defaultRules:
-    disabled:
-      # my limits are bad anyways, so don't alert me cause i went over
-      KubeMemoryOvercommit: true
-      KubeMemoryQuotaOvercommit: true
-      KubeCPUOvercommit: true
-      KubeletDown: true
-    rules:
-      etcd: false
-      kubeApiserver: false
-      kubeControllerManager: false
-      kubeProxy: false
-      kubeSchedulerAlerting: false
-      kubeSchedulerRecording: false
-  kubeProxy:
-    enabled: false
-  kubeControllerManager:
-    service:
-      selector:
-        k8s-app: kube-controller-manager
-  prometheus-node-exporter:
-    fullnameOverride: node-exporter
-    resources:
-      requests:
-        cpu: 23m
-        memory: 64M
-      limits:
-        memory: 64M
-    prometheus:
-      monitor:
-        relabelings:
-          - action: replace
-            regex: (.*)
-            replacement: $1
-            sourceLabels: ["__meta_kubernetes_pod_node_name"]
-            targetLabel: kubernetes_node
-  kube-state-metrics:
-    fullnameOverride: kube-state-metrics
-    metricLabelsAllowlist:
-      - pods=[*]
-      - deployments=[*]
-      - persistentvolumeclaims=[*]
-    prometheus:
-      monitor:
-        relabelings:
-          - action: replace
-            regex: (.*)
-            replacement: $1
-            sourceLabels: ["__meta_kubernetes_pod_node_name"]
-            targetLabel: kubernetes_node
-  additionalPrometheusRulesMap:
-    oom-rules:
-      groups:
-        - name: oom
-          rules:
-            - alert: OomKilled
-              annotations:
-                summary: Container {{ $labels.container }} in pod {{ $labels.namespace }}/{{ $labels.pod }} has been OOMKilled {{ $value }} times in the last 10 minutes.
-              expr: (kube_pod_container_status_restarts_total - kube_pod_container_status_restarts_total offset 10m >= 1) and ignoring (reason) min_over_time(kube_pod_container_status_last_terminated_reason{reason="OOMKilled"}[10m]) == 1
-              labels:
-                severity: critical
-  # kubernetesServiceMonitors:
-  #   enabled: false
-  kubelet:
-    enabled: false
-    serviceMonitor:
-      kubelet: false
-      cAdvisor: false
-      honorTimestamps: false
-      trackTimestampsStaleness: false
-      cAdvisorInterval: 30s
+kube-state-metrics:
+  fullnameOverride: kube-state-metrics
+  metricLabelsAllowlist:
+    - pods=[*]
+    - deployments=[*]
+    - persistentvolumeclaims=[*]
+  prometheus:
+    monitor:
+      relabelings:
+        - action: replace
+          regex: (.*)
+          replacement: $1
+          sourceLabels: ["__meta_kubernetes_pod_node_name"]
+          targetLabel: kubernetes_node
+additionalPrometheusRulesMap:
+  oom-rules:
+    groups:
+      - name: oom
+        rules:
+          - alert: OomKilled
+            annotations:
+              summary: Container {{ $labels.container }} in pod {{ $labels.namespace }}/{{ $labels.pod }} has been OOMKilled {{ $value }} times in the last 10 minutes.
+            expr: (kube_pod_container_status_restarts_total - kube_pod_container_status_restarts_total offset 10m >= 1) and ignoring (reason) min_over_time(kube_pod_container_status_last_terminated_reason{reason="OOMKilled"}[10m]) == 1
+            labels:
+              severity: critical
+# kubernetesServiceMonitors:
+#   enabled: false
+kubelet:
+  enabled: false
+  serviceMonitor:
+    kubelet: false
+    cAdvisor: false
+    honorTimestamps: false
+    trackTimestampsStaleness: false
+    cAdvisorInterval: 30s
