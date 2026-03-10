@@ -32,22 +32,13 @@ alertmanager:
       - /etc/alertmanager/config/*.tmpl
     receivers:
       - name: 'null'
-      - name: 'discord'
-        discord_configs:
-          - webhook_url_file: /etc/alertmanager/secrets/alertmanager-secrets/discord-api-url
-            send_resolved: true
-            title: |-
-              {{`[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ if ne .CommonAnnotations.summary ""}}{{ .CommonAnnotations.summary }} {{ else if ne .CommonAnnotations.message ""}}{{ .CommonAnnotations.message }} {{ else if ne .CommonAnnotations.description ""}}{{ .CommonAnnotations.description }} {{ else }}{{ .CommonLabels.alertname }}{{ end }}`}}
-            message: >-
-              {{`{{ range .Alerts -}}`}}
-              {{"  **Alert:** {{ .Annotations.title }}{{ if .Labels.severity }} `{{ .Labels.severity }}`{{ end }}"}}
-              {{"  **Graph:** <{{ .GeneratorURL }}|:chart_with_upwards_trend:> "}}
-              {{`{{ if ne .Annotations.runbook ""}}**Runbook:** <{{ .Annotations.runbook }}|:spiral_note_pad:> }}{{ end }}`}}
-              {{`{{ if ne .Annotations.summary ""}}**Summary:** {{ .Annotations.summary }} {{ else if ne .Annotations.message ""}}**Message:** {{ .Annotations.message }} {{ else if ne .Annotations.description ""}}**Description:** {{ .Annotations.description }}{{ end }}`}}
-              {{`  **Details:**`}}
-              {{"  {{ range .Labels.SortedPairs }} • {{ .Name }}: `{{ .Value }}`"}}
-              {{`  {{ end }}`}}
-              {{`{{ end }}`}}
+      - name: 'matrix-receiver'
+        webhook_configs:
+        - url: 'http://matrix-alertmanager.monitoring:8080'
+          http_config:
+            basic_auth:
+              username: alertmanager
+              password_file: /etc/alertmanager/secrets/alertmanager-secrets/matrix-alertmanager
     route:
       receiver: 'discord'
       routes:
