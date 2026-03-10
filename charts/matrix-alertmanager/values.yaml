@@ -1,0 +1,44 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  main:
+    replicas: 1
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      main:
+        image:
+          repository: docker.io/jaywink/matrix-alertmanager
+          tag: v0.9.0
+        env:
+          TZ: America/Vancouver
+          APP_PORT: 8080
+          MATRIX_HOMESERVER_URL: "https://matrix.g4v.dev"
+          MATRIX_ROOMS: observability/alertmanager/matrix/!YmXbOIUzQbqDFNVqYP:${SECRET_DOMAIN}
+          MENTION_ROOM: 0
+        envFrom:
+          - secretRef:
+              name: "matrix-alertmanager"
+        probes:
+          liveness:
+            enabled: true
+          readiness:
+            enabled: true
+          startup:
+            enabled: false
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+        resources:
+          requests:
+            cpu: 15m
+            memory: 50Mi
+          limits:
+            memory: 250Mi
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 8080
