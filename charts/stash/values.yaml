@@ -19,6 +19,8 @@ controllers:
           STASH_PORT: "9999"
           STASH_NO_BROWSER: "true"
           STASH_STASH: /content/
+          HOME: /root
+          USER: 1026
         probes:
           liveness: &probes
             enabled: true
