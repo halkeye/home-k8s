@@ -15,11 +15,12 @@ controllers:
           repository: stashapp/stash
           tag: v0.30.1
         env:
-          TZ: America/Vancouver
-          STASH_PORT: "9999"
+          HOME: /config
           STASH_NO_BROWSER: "true"
+          STASH_PORT: "9999"
           STASH_STASH: /content/
-          HOME: /root
+          STASH_CONFIG_FILE: /config/config.yml
+          TZ: America/Vancouver
           USER: 1026
         probes:
           liveness: &probes
@@ -83,6 +84,7 @@ persistence:
     size: 10Gi
     globalMounts:
       - path: /root/.stash
+      - path: /config
   stashcontent:
     type: nfs
     server: 172.16.10.10
