@@ -1,3 +1,11 @@
+defaultPodOptions:
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 1026
+    runAsGroup: 100
+    fsGroup: 100
+    fsGroupChangePolicy: OnRootMismatch
+
 controllers:
   main:
     replicas: 1
@@ -9,6 +17,8 @@ controllers:
         env:
           TZ: America/Vancouver
           STASH_PORT: "9999"
+          STASH_NO_BROWSER: "true"
+          STASH_STASH: /content/
         probes:
           liveness: &probes
             enabled: true
