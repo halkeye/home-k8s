@@ -20,6 +20,7 @@ controllers:
           STASH_PORT: "9999"
           STASH_STASH: /content/
           STASH_CONFIG_FILE: /config/config.yml
+          STASH_CACHE: /cache
           TZ: America/Vancouver
           USER: 1026
         probes:
@@ -97,3 +98,9 @@ persistence:
     path: /volume1/Apps/stash/transcode
     globalMounts:
       - path: /media/transcode
+  tmp:
+    enabled: true
+    type: emptyDir
+    globalMounts:
+      - path: /tmp
+      - path: /cache
