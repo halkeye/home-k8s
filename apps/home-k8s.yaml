@@ -71,6 +71,8 @@ spec:
 
           - { namespace: cloudflare, name: cloudflared }
 
+          - { namespace: monitoring, name: prometheus }
+
           # Exporters
           - { namespace: monitoring, name: bambulabs-exporter }
           - { namespace: monitoring, name: blackbox-exporter }
