@@ -13,15 +13,16 @@ prometheusOperation:
 #           - node
 #         targetLabel: instance
 alertmanager:
-  ingress:
-    enabled: true
-    annotations:
-      gethomepage.dev/enabled: 'true'
-      gethomepage.dev/group: Monitoring
-      gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/alertmanager.png
-      gethomepage.dev/name: Alert Manager
-    hosts:
-      - alertmanager.h.g4v.dev
+  route:
+    main:
+      enabled: true
+      hostnames:
+        - alertmanager-h.g4v.dev
+        - alertmanager.h.g4v.dev
+      parentRefs:
+        - name: http-gateway
+          namespace: envoy-gateway
+          sectionName: https
   alertmanagerSpec:
     secrets:
       - alertmanager-secrets
@@ -137,15 +138,16 @@ prometheus:
         scheme: http
         static_configs:
           - targets: ['homeassistant.dhcp.home:8123']
-  ingress:
-    enabled: true
-    annotations:
-      gethomepage.dev/enabled: 'true'
-      gethomepage.dev/group: Monitoring
-      gethomepage.dev/icon: https://raw.githubusercontent.com/walkxcode/dashboard-icons/master/png/prometheus.png
-      gethomepage.dev/name: Prometheus
-    hosts:
-      - prometheus.h.g4v.dev
+  route:
+    main:
+      enabled: true
+      hostnames:
+        - prometheus-h.g4v.dev
+        - prometheus.h.g4v.dev
+      parentRefs:
+        - name: http-gateway
+          namespace: envoy-gateway
+          sectionName: https
 grafana:
   enabled: false
 defaultRules:
