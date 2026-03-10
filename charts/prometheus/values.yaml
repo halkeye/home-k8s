@@ -35,7 +35,7 @@ alertmanager:
       - name: 'null'
       - name: 'matrix-receiver'
         webhook_configs:
-        - url: 'http://matrix-alertmanager.monitoring:8080'
+        - url: 'http://matrix-alertmanager.monitoring:8080/alerts'
           http_config:
             basic_auth:
               username: alertmanager
