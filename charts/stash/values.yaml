@@ -1,10 +1,10 @@
-defaultPodOptions:
-  securityContext:
-    runAsNonRoot: true
-    runAsUser: 1026
-    runAsGroup: 100
-    fsGroup: 100
-    fsGroupChangePolicy: OnRootMismatch
+# defaultPodOptions:
+#   securityContext:
+#     runAsNonRoot: true
+#     runAsUser: 1026
+#     runAsGroup: 100
+#     fsGroup: 100
+#     fsGroupChangePolicy: OnRootMismatch
 
 controllers:
   main:
@@ -37,11 +37,11 @@ controllers:
           readiness: *probes
           startup:
             enabled: false
-        securityContext:
-          allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
-          capabilities:
-            drop: ["ALL"]
+        # securityContext:
+        #   allowPrivilegeEscalation: false
+        #   readOnlyRootFilesystem: true
+        #   capabilities:
+        #     drop: ["ALL"]
         resources:
           limits: &resources
             memory: 2Gi
