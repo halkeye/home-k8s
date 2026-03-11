@@ -28,9 +28,7 @@ alertmanager:
       - alertmanager-secrets
   externalUrl: https://alertmanager-h.g4v.dev
 
-  stringConfig: |-
-    templates:
-      - /etc/alertmanager/config/*.tmpl
+  config:
     receivers:
       - name: 'null'
       - name: 'matrix-receiver'
@@ -50,29 +48,6 @@ alertmanager:
           matchers:
           - severity =~ "none"
         - receiver: 'matrix-receiver'
-    inhibit_rules:
-      - source_matchers:
-        - severity="critical"
-        target_matchers:
-        - severity=~"warning|info"
-        equal:
-        - namespace
-        - alertname
-      - source_matchers:
-        - severity="warning"
-        target_matchers:
-        - severity="info"
-        equal:
-        - namespace
-        - alertname
-      - source_matchers:
-        - alertname="InfoInhibitor"
-        target_matchers:
-        - severity="info"
-        equal:
-        - namespace
-      - target_matchers:
-        - alertname="InfoInhibitor"
 prometheus:
   enabled: true
   # agentMode: true
