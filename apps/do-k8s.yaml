@@ -68,8 +68,6 @@ spec:
           - { name: do-k8s-tailscale-operator, namespace: tailscale }
           - { name: do-k8s-ext-postgres-operator, namespace: ext-postgres-operator }
 
-          - { name: do-k8s-vouch, namespace: vouch, chart: vouch }
-
           # Exporters
           - { namespace: monitoring, name: mysqld-exporter }
 

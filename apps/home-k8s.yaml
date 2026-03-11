@@ -67,8 +67,6 @@ spec:
 
           - { name: home-k8s-tailscale-operator, namespace: tailscale }
 
-          - { name: home-vouch, namespace: vouch, chart: vouch }
-
           - { namespace: cloudflare, name: cloudflared }
 
           - { namespace: monitoring, name: prometheus }
