@@ -27,7 +27,6 @@ alertmanager:
     secrets:
       - alertmanager-secrets
   externalUrl: https://alertmanager-h.g4v.dev
-
   config:
     receivers:
       - name: 'null'
@@ -41,13 +40,14 @@ alertmanager:
     route:
       receiver: 'matrix-receiver'
       routes:
-        - receiver: "none"
+        - receiver: "null"
           matchers:
           - alertname="Watchdog"
         - receiver: 'null'
           matchers:
           - severity =~ "none"
         - receiver: 'matrix-receiver'
+
 prometheus:
   enabled: true
   # agentMode: true
