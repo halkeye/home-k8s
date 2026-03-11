@@ -44,16 +44,12 @@ alertmanager:
     route:
       receiver: 'matrix-receiver'
       routes:
-        - receiver: "none"
-          matchers:
-          - alertname="Watchdog-disabled"
-        - receiver: "matrix-receiver"
-          matchers:
-          - alertname="Watchdog"
-          continue: false
-        - receiver: 'null'
-          matchers:
-          - severity =~ "none"
+        # - receiver: "none"
+        #   matchers:
+        #   - alertname="Watchdog"
+        # - receiver: 'null'
+        #   matchers:
+        #   - severity =~ "none"
         - receiver: 'matrix-receiver'
     inhibit_rules:
       - source_matchers:
