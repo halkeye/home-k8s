@@ -61,6 +61,7 @@ prometheus:
           - __meta_kubernetes_pod_node_name
         targetLabel: kubernetes_node
   prometheusSpec:
+    externalUrl: https://prometheus-h.g4v.dev
     secrets:
       - prometheus-secrets
     # logLevel: debug
