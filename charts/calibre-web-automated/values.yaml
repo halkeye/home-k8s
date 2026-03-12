@@ -31,21 +31,21 @@ controllers:
               - SETGID
               - FOWNER
               - DAC_OVERRIDE
-        probes:
-          liveness: &probes
-            enabled: true
-            custom: true
-            spec:
-              httpGet:
-                path: /login
-                port: 8083
-              initialDelaySeconds: 30
-              periodSeconds: 10
-              timeoutSeconds: 1
-              failureThreshold: 3
-          readiness: *probes
-          startup:
-            enabled: false
+        # probes:
+        #   liveness: &probes
+        #     enabled: true
+        #     custom: true
+        #     spec:
+        #       httpGet:
+        #         path: /login
+        #         port: 8083
+        #       initialDelaySeconds: 30
+        #       periodSeconds: 10
+        #       timeoutSeconds: 1
+        #       failureThreshold: 3
+        #   readiness: *probes
+        #   startup:
+        #     enabled: false
         resources:
           limits:
             memory: 4Gi
@@ -86,6 +86,8 @@ route:
             identifier: main
             port: http
             weight: 1
+        timeouts:
+          request: "60s"
 persistence:
   config:
     enabled: true
