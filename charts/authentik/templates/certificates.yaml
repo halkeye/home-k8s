@@ -1,0 +1,13 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: authentik-tls
+spec:
+  dnsNames:
+    - 'auth.g4v.dev'
+  commonName: "auth.g4v.dev"
+  issuerRef:
+    name: acme-letsencrypt-prod
+    kind: ClusterIssuer
+  secretName: authentik-tls
