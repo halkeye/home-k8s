@@ -20,3 +20,9 @@ httpRoute:
         - path:
             type: PathPrefix
             value: /
+image:
+  registry: ghcr.io
+  repository: headlamp-k8s/headlamp
+  tag: "v0.40.1"
+config:
+  sessionTTL: null
