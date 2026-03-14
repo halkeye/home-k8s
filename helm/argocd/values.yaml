@@ -56,22 +56,27 @@ argo-cd:
       enabled: true
       serviceMonitor:
         enabled: true
-    ingress:
+    httproute:
       enabled: true
-      ingressClassName: "nginx"
-      annotations:
-        gethomepage.dev/enabled: 'false'
-      hostname: argocd-webhooks.g4v.dev
+      parentRefs:
+        - name: http-gateway
+          namespace: envoy-gateway
+          sectionName: https
+      hostnames:
+        - argocd-webhooks.g4v.dev
   server:
     metrics:
       enabled: true
       serviceMonitor:
         enabled: true
-    ingress:
+    httproute:
       enabled: true
-      annotations:
-        cert-manager.io/cluster-issuer: acme-letsencrypt-prod
-      hostname: argocd.h.g4v.dev
+      parentRefs:
+        - name: http-gateway
+          namespace: envoy-gateway
+          sectionName: https
+      hostnames:
+        - argocd.h.g4v.dev
     configManagementPlugins: |
       - name: sops
         init:
