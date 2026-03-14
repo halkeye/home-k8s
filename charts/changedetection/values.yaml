@@ -58,7 +58,7 @@ persistence:
   datastore:
     enabled: true
     type: persistentVolumeClaim
-    accessMode: ReadWriteMany
+    accessMode: ReadWriteOnce
     size: 10Gi
     advancedMounts:
       main:
