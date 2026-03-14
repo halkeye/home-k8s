@@ -13,7 +13,7 @@ helmCharts:
     valuesFile: operator-values.yaml
     releaseName: mariadb-operator
   - name: mariadb-cluster
-    version: 25.10.4
+    version: 26.3.0
     repo: https://helm.mariadb.com/mariadb-operator
     valuesFile: cluster-values.yaml
     releaseName: mariadb-cluster
