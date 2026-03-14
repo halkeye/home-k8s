@@ -121,6 +121,17 @@
       "matchPackageNames": [
         "ghcr.io/immich-app/**"
       ]
+    },
+    {
+      "groupName": "mariadb-operator",
+      "matchDatasources": [
+        "helm"
+      ],
+      "matchPackageNames": [
+        "mariadb-operator-crds",
+        "mariadb-operator",
+        "mariadb-cluster"
+      ]
     }
   ]
 }
