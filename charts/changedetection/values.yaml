@@ -1,0 +1,69 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  main:
+    replicas: 1
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      changedetection:
+        image:
+          repository: ghcr.io/dgtlmoon/changedetection.io
+          tag: 0.54.5
+        env:
+          TZ: America/Vancouver
+          PORT: 5000
+          USE_X_SETTINGS: 1
+          # PLAYWRIGHT_DRIVER_URL: ws://localhost:3000/?stealth=1&--disable-web-security=true&--user-data-dir=~/browserless-cache-123
+          PLAYWRIGHT_DRIVER_URL: ws://localhost:3000
+      browser:
+        image:
+          repository: dgtlmoon/sockpuppetbrowser
+          tag: latest@sha256:7116c61ef9cfce3d48a7efd9355d2fbe19f593ea3cfb52a5ded40ecbcb0a3f9d
+        env:
+          SCREEN_WIDTH: "1920"
+          SCREEN_HEIGHT: "1024"
+          SCREEN_DEPTH: "16"
+          MAX_CONCURRENT_CHROME_PROCESSES: "16"
+          # - { name: ENABLE_DEBUGGER, value: "false" }
+          # - { name: PREBOOT_CHROME, value: "true" }
+          # - { name: CONNECTION_TIMEOUT, value: "300000" }
+          # - { name: MAX_CONCURRENT_SESSIONS, value: "10" }
+          # - { name: CHROME_REFRESH_TIME, value: "600000" }
+          # - { name: DEFAULT_BLOCK_ADS, value: "true" }
+          # - { name: DEFAULT_STEALTH, value: "true" }
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 5000
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "changedetection.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - identifier: main
+            port: http
+persistence:
+  datastore:
+    enabled: true
+    type: persistentVolumeClaim
+    accessMode: ReadWriteMany
+    size: 10Gi
+    advancedMounts:
+      main:
+        changedetection:
+          - path: /datastore
+  tmp:
+    enabled: true
+    type: emptyDir
