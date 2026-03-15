@@ -1,0 +1,26 @@
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: terminus
+  annotations:
+    postgres.db.movetokube.com/instance: postgres17-rw
+spec:
+  role: terminus
+  database: terminus
+  secretName: terminus-db-secret
+  privileges: OWNER
+  secretTemplate:
+    HOST_NO_PORT: "{{ .Hostname }}"
+    PORT: "{{ .Port }}"
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: terminus
+  annotations:
+    postgres.db.movetokube.com/instance: postgres17-rw
+spec:
+  database: terminus
+  dropOnDelete: false
+  masterRole: terminus
