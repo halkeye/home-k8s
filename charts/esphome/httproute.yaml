@@ -10,7 +10,7 @@ spec:
     namespace: envoy-gateway-system
   rules:
   - backendRefs:
-    - name: esphome
+    - name: esphome-tunnel
       port: 6052
     matches:
     - path:
