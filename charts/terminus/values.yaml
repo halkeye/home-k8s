@@ -14,6 +14,7 @@ controllers:
           API_URI: https://trmnl-h.g4v.dev
           HANAMI_PORT: 2300
           APP_SETUP: "true"
+          KEYVALUE_URL: "redis://valkey:6379/0"
           DATABASE_URL:
             valueFrom:
               secretKeyRef:
