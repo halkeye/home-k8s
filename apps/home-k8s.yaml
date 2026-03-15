@@ -132,6 +132,7 @@ spec:
           - name: synology
           - name: tachidesk
           - name: tasmoadmin
+          - name: terminus
           - name: unpackerr
           - name: youtubedl-material
   template:
