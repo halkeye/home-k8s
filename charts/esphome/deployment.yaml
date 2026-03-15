@@ -7,15 +7,15 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/controller: esphome
-      app.kubernetes.io/instance: esphome
-      app.kubernetes.io/name: esphome
+      app.kubernetes.io/controller: esphome-tunnel
+      app.kubernetes.io/instance: esphome-tunnel
+      app.kubernetes.io/name: esphome-tunnel
   template:
     metadata:
       labels:
-        app.kubernetes.io/controller: esphome
-        app.kubernetes.io/instance: esphome
-        app.kubernetes.io/name: esphome
+        app.kubernetes.io/controller: esphome-tunnel
+        app.kubernetes.io/instance: esphome-tunnel
+        app.kubernetes.io/name: esphome-tunnel
     spec:
       dnsPolicy: ClusterFirst
       restartPolicy: Always
@@ -52,9 +52,9 @@ metadata:
   name: esphome-tunnel
 spec:
   selector:
-    app.kubernetes.io/controller: esphome
-    app.kubernetes.io/instance: esphome
-    app.kubernetes.io/name: esphome
+    app.kubernetes.io/controller: esphome-tunnel
+    app.kubernetes.io/instance: esphome-tunnel
+    app.kubernetes.io/name: esphome-tunnel
   ports:
   - port: 6052
     protocol: TCP

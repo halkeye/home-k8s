@@ -1,0 +1,61 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: synology-tunnel
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/controller: synology-tunnel
+      app.kubernetes.io/instance: synology-tunnel
+      app.kubernetes.io/name: synology-tunnel
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/controller: synology-tunnel
+        app.kubernetes.io/instance: synology-tunnel
+        app.kubernetes.io/name: synology-tunnel
+    spec:
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      containers:
+        - name: synology-tunnel
+          image: alpine/socat
+          args:
+          - tcp-listen:5000,fork,reuseaddr
+          - tcp-connect:synology.dhcp.home:5000
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: synology-tunnel
+spec:
+  hostnames:
+    - synology.g4v.dev
+  parentRefs:
+    - name: http-gateway
+      namespace: envoy-gateway
+      sectionName: https
+  rules:
+  - backendRefs:
+    - name: synology-tunnel
+      port: 5000
+    matches:
+    - path:
+        type: PathPrefix
+        value: /
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: synology-tunnel
+spec:
+  selector:
+    app.kubernetes.io/controller: synology-tunnel
+    app.kubernetes.io/instance: synology-tunnel
+    app.kubernetes.io/name: synology-tunnel
+  ports:
+  - port: 5000
+    protocol: TCP
+    targetPort: 5000
