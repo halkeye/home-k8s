@@ -11,7 +11,7 @@ controllers:
           tag: 0.49.0
         env:
           TZ: America/Vancouver
-          API_URI: https://trmnl-h.g4v.dev
+          API_URI: https://terminus-h.g4v.dev
           HANAMI_PORT: 2300
           APP_SETUP: "true"
           KEYVALUE_URL: "redis://valkey:6379/0"
@@ -72,7 +72,7 @@ route:
         namespace: envoy-gateway
         sectionName: https
     hostnames:
-      - "terminus.g4v.dev"
+      - "terminus-h.g4v.dev"
     rules:
       - matches:
         - path:
