@@ -60,9 +60,6 @@ spec:
           - { name: node-feature-discovery, namespace: kube-system }
           - { name: home-metrics-server, chart: metrics-server, namespace: kube-system }
 
-          - { name: home-k8s-ingress-nginx, namespace: kube-system }
-          # - { name: home-k8s-envoy-gateway, namespace: envoy-gateway-system }
-
           - { name: longhorn, namespace: longhorn-system }
 
           - { name: home-k8s-tailscale-operator, namespace: tailscale }
@@ -111,7 +108,7 @@ spec:
           - name: immich
           - name: kavita
           - name: kobodl
-          - name: mariadb-operator
+          # - name: mariadb-operator
           - name: mdns-reflector
           - name: minio
           - name: music-assistant
