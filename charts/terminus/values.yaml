@@ -90,7 +90,9 @@ persistence:
     accessMode: ReadWriteMany
     size: 10Gi
     globalMounts:
-          - path: /app/public/uploads
+      - path: /app/public/uploads
   tmp:
     enabled: true
     type: emptyDir
+    globalMounts:
+      -  path: /app/public/assets/
