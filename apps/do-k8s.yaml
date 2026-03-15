@@ -82,6 +82,7 @@ spec:
 
           - name: bluesky-crossposter
           - name: bytestash
+          - name: changedetection
           - name: excalidraw
           - name: externaldns-cloudflare
           - name: foundry-vtt
