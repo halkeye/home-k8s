@@ -24,4 +24,4 @@ spec:
           image: alpine/socat
           args:
           - tcp-listen:6052,fork,reuseaddr
-          - tcp-connect:esphome:6052
+          - tcp-connect:homeassistant.dhcp.home:6052
