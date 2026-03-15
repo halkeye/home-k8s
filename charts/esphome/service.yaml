@@ -1,11 +1,14 @@
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: esphome
+  name: esphome-tunnel
 spec:
-  type: ExternalName
-  externalName: homeassistant.dhcp.home
+  selector:
+    app.kubernetes.io/controller: esphome
+    app.kubernetes.io/instance: esphome
+    app.kubernetes.io/name: esphome
   ports:
-    - port: 6052
-      protocol: TCP
-      targetPort: 6052
+  - port: 6052
+    protocol: TCP
+    targetPort: 6052

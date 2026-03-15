@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: esphome-tunnel
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/controller: esphome
+      app.kubernetes.io/instance: esphome
+      app.kubernetes.io/name: esphome
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/controller: esphome
+        app.kubernetes.io/instance: esphome
+        app.kubernetes.io/name: esphome
+    spec:
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      containers:
+        - name: esphome-tunnel
+          image: alpine/socat
+          args:
+          - tcp-listen:6052,fork,reuseaddr
+          - tcp-connect:esphome:6052
