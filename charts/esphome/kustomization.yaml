@@ -4,6 +4,4 @@ kind: Kustomization
 namespace: esphome
 
 resources:
-- ./httproute.yaml
-- ./service.yaml
 - ./deployment.yaml

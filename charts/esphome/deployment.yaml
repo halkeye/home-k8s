@@ -25,3 +25,37 @@ spec:
           args:
           - tcp-listen:6052,fork,reuseaddr
           - tcp-connect:homeassistant.dhcp.home:6052
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: esphome-tunnel
+spec:
+  hostnames:
+    - esphome.g4v.dev
+  parentRefs:
+    - name: http-gateway
+      namespace: envoy-gateway
+      sectionName: https
+  rules:
+  - backendRefs:
+    - name: esphome-tunnel
+      port: 6052
+    matches:
+    - path:
+        type: PathPrefix
+        value: /
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: esphome-tunnel
+spec:
+  selector:
+    app.kubernetes.io/controller: esphome
+    app.kubernetes.io/instance: esphome
+    app.kubernetes.io/name: esphome
+  ports:
+  - port: 6052
+    protocol: TCP
+    targetPort: 6052
