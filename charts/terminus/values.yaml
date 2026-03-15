@@ -15,6 +15,7 @@ controllers:
           HANAMI_PORT: 2300
           APP_SETUP: "true"
           KEYVALUE_URL: "redis://valkey:6379/0"
+          LOG_LEVEL: debug
           DATABASE_URL:
             valueFrom:
               secretKeyRef:
