@@ -43,7 +43,6 @@ controllers:
               periodSeconds: 10
         securityContext:
           allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
           capabilities:
             drop: ["ALL"]
         resources:
@@ -91,8 +90,3 @@ persistence:
     size: 10Gi
     globalMounts:
       - path: /app/public/uploads
-  tmp:
-    enabled: true
-    type: emptyDir
-    globalMounts:
-      -  path: /app/public/assets/
