@@ -20,6 +20,9 @@ controllers:
               secretKeyRef:
                 name: "terminus-db-secret-terminus"
                 key: POSTGRES_URL
+        envFrom:
+          - secretRef:
+              name: "terminus"
         probes:
           liveness: &probes
             enabled: true
