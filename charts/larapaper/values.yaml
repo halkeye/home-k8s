@@ -49,7 +49,6 @@ persistence:
   storage:
     enabled: true
     type: persistentVolumeClaim
-    accessMode: ReadWriteMany
     size: 10Gi
     globalMounts:
       - path: /var/www/html/storage/app/public/images/generated
