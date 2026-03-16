@@ -49,7 +49,6 @@ persistence:
   storage:
     enabled: true
     type: persistentVolumeClaim
-    storageClass: longhorn
     accessMode: ReadWriteMany
     size: 10Gi
     globalMounts:

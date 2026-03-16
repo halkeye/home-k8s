@@ -89,6 +89,7 @@ spec:
           - name: gathio
           - name: hoarder
           - name: it-tools
+          - name: larapaper
           - name: libmedium
           - name: memos
           - name: metrics-server
