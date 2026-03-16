@@ -36,7 +36,7 @@ route:
         namespace: envoy-gateway
         sectionName: https
     hostnames:
-      - "trml.g4v.dev"
+      - "trmnl.g4v.dev"
     rules:
       - matches:
         - path:
