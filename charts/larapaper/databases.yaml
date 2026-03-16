@@ -1,0 +1,22 @@
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: larapaper
+spec:
+  role: larapaper
+  database: larapaper
+  secretName: larapaper-db-secret
+  privileges: OWNER
+  secretTemplate:
+    HOST_NO_PORT: "{{ .Hostname }}"
+    PORT: "{{ .Port }}"
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: larapaper
+spec:
+  database: larapaper
+  dropOnDelete: false
+  masterRole: larapaper

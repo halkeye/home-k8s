@@ -1,0 +1,57 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  main:
+    replicas: 1
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      main:
+        image:
+          repository: ghcr.io/usetrmnl/larapaper
+          tag: 0.30.1
+        env:
+          TZ: America/Vancouver
+          PHP_OPCACHE_ENABLE: 1
+          APP_URL: https://trmnl.g4v.dev
+          OIDC_ENABLED: true
+          DDB_DATABASE:
+            valueFrom:
+              secretKeyRef:
+                name: "larapaper-db-secret-larapaper"
+                key: POSTGRES_URL
+        envFrom:
+          - secretRef:
+              name: "larapaper"
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 8080
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "trml.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - identifier: main
+            port: http
+persistence:
+  storage:
+    enabled: true
+    type: persistentVolumeClaim
+    storageClass: longhorn
+    accessMode: ReadWriteMany
+    size: 10Gi
+    globalMounts:
+      - path: /var/www/html/storage/app/public/images/generated
+        subPath: generated-images
