@@ -23,6 +23,7 @@ controllers:
           FILESYSTEM_DISK: s3
           FORCE_HTTPS: true
           LOG_CHANNEL: stderr
+          LOG_LEVEL: debug
           MAIL_HOST: smtp-relay.smtp-relay.svc.cluster.local
           MAIL_MAILER: smtp
           MAIL_PORT: "2525"
