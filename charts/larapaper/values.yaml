@@ -36,13 +36,13 @@ controllers:
         envFrom:
           - secretRef:
               name: "larapaper"
-    pod:
-      securityContext:
-        runAsUser: 82
-        runAsGroup: 82
-        runAsNonRoot: true
-        fsGroup: 82
-        fsGroupChangePolicy: OnRootMismatch
+    # pod:
+    #   securityContext:
+    #     runAsUser: 82
+    #     runAsGroup: 82
+    #     runAsNonRoot: true
+    #     fsGroup: 82
+    #     fsGroupChangePolicy: OnRootMismatch
 service:
   main:
     controller: main
