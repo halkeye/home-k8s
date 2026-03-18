@@ -7,8 +7,10 @@ controllers:
     containers:
       main:
         image:
-          repository: ghcr.io/usetrmnl/larapaper
-          tag: 0.30.1
+          # repository: ghcr.io/usetrmnl/larapaper
+          # tag: 0.30.1
+          repository: nwestfall/httplistener
+          tag: latest
         env:
           TZ: America/Vancouver
           APP_DEBUG: true
@@ -46,7 +48,8 @@ service:
     controller: main
     ports:
       http:
-        port: 8080
+        # port: 8080
+        port: 80
 route:
   main:
     enabled: true
