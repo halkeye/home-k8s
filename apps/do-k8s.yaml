@@ -80,7 +80,6 @@ spec:
 
           - { namespace: bitwarden, name: vaultwarden }
 
-          - name: bluesky-crossposter
           - name: bytestash
           - name: changedetection
           - name: excalidraw
