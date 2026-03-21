@@ -20,7 +20,7 @@ controllers:
               secretKeyRef:
                 name: "larapaper-db-secret-larapaper"
                 key: POSTGRES_URL
-          # FILESYSTEM_DISK: s3
+          FILESYSTEM_DISK: s3
           FORCE_HTTPS: true
           LOG_CHANNEL: stderr
           LOG_LEVEL: debug
