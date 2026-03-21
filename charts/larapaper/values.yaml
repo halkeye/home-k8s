@@ -24,7 +24,6 @@ controllers:
           FORCE_HTTPS: true
           LOG_CHANNEL: stderr
           LOG_LEVEL: debug
-          LOG_OUTPUT_LEVEL: debug
           MAIL_HOST: smtp-relay.smtp-relay.svc.cluster.local
           MAIL_MAILER: smtp
           MAIL_PORT: "2525"
