@@ -7,7 +7,7 @@ namespace: sops-secrets-operator
 
 helmCharts:
   - name: sops-secrets-operator
-    version: 0.25.2
+    version: 0.25.3
     repo: https://isindir.github.io/sops-secrets-operator/
     valuesFile: ./values.yaml
     releaseName: sops-secrets-operator
