@@ -52,9 +52,6 @@ clustermesh:
       serviceMonitor:
         enabled: true
 
-gatewayAPI:
-  enabled: true
-
 # Increase rate limit when doing L2 announcements
 # k8sClientRateLimit:
 #   qps: 50
@@ -71,10 +68,7 @@ externalIPs:
 loadBalancer:
   standalone: true
 
-wellKnownIdentities:
-  enabled: true
-
 envoy:
+  enabled: false
   prometheus:
-    serviceMonitor:
-      enabled: true
+    enabled: false
