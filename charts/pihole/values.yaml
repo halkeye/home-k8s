@@ -23,6 +23,9 @@ serviceDns:
     kube-vip.io/loadbalancerIPs: 172.16.10.211
     lbipam.cilium.io/ips: 172.16.10.211
 
+serviceDhcp:
+  enabled: false
+
 resources:
   limits:
     cpu: 200m
