@@ -54,8 +54,6 @@ clustermesh:
 
 gatewayAPI:
   enabled: true
-  gatewayClass:
-    create: "true"
 
 # Increase rate limit when doing L2 announcements
 # k8sClientRateLimit:
