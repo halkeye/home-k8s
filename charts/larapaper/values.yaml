@@ -20,10 +20,10 @@ controllers:
               secretKeyRef:
                 name: "larapaper-db-secret-larapaper"
                 key: POSTGRES_URL
-          FILESYSTEM_DISK: s3
+          # FILESYSTEM_DISK: s3
           FORCE_HTTPS: true
           LOG_CHANNEL: stderr
-          LOG_LEVEL: debug
+          LOG_LEVEL: info
           MAIL_HOST: smtp-relay.smtp-relay.svc.cluster.local
           MAIL_MAILER: smtp
           MAIL_PORT: "2525"
