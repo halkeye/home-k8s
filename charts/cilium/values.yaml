@@ -7,8 +7,6 @@ operator:
       enabled: true
 
 kubeProxyReplacement: true
-nodePort:
-  enableHealthCheck: false
 
 prometheus:
   enabled: true
