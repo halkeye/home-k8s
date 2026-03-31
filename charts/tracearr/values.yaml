@@ -20,7 +20,7 @@ controllers:
             valueFrom:
               secretKeyRef:
                 name: "tracearr-db-tracearr"
-                key: URI
+                key: POSTGRES_URL
         envFrom:
           - secretRef:
               name: tracearr
