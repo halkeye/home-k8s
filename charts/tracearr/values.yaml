@@ -66,5 +66,5 @@ persistence:
         subPath: image-cache
       - path: /tmp
         subPath: tmp
-      - path: /data/backups
-        subPath: backups
+      - path: /data/backup
+        subPath: backup
