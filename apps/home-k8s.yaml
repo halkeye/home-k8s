@@ -133,6 +133,7 @@ spec:
           - name: tachidesk
           - name: tasmoadmin
           - name: terminus
+          - name: tracearr
           - name: unpackerr
           - name: youtubedl-material
   template:
