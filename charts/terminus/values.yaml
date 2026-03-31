@@ -76,7 +76,7 @@ route:
         namespace: envoy-gateway
         sectionName: https
     hostnames:
-      - "terminus-h.g4v.dev"
+      - "terminus.g4v.dev"
     rules:
       - matches:
         - path:
