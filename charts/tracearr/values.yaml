@@ -15,7 +15,7 @@ controllers:
           HOST: "0.0.0.0"
           NODE_ENV: production
           PORT: 3000
-          REDIS_URL: redis://localhost:6379
+          REDIS_URL: redis://valkey:6379
           DATABASE_URL:
             valueFrom:
               secretKeyRef:
