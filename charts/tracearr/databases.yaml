@@ -1,0 +1,27 @@
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: tracearr
+  annotations:
+    postgres.db.movetokube.com/instance: postgres17-rw
+spec:
+  role: tracearr
+  database: tracearr
+  secretName: tracearr-db
+  privileges: OWNER
+  secretTemplate:
+    HOST_NO_PORT: "{{ .Hostname }}"
+    PORT: "{{ .Port }}"
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: tracearr
+  annotations:
+    postgres.db.movetokube.com/instance: postgres17-rw
+spec:
+  database: tracearr
+  dropOnDelete: false
+  extensions:
+  - timescaledb

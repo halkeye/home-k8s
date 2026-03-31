@@ -1,0 +1,70 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  tracearr:
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      app:
+        image:
+          repository: ghcr.io/connorgallopo/tracearr
+          tag: 1.4.25
+        env:
+          TZ: America/Vancouver
+          CORS_ORIGIN: "https://tracearr.g4v.dev"
+          HOST: "0.0.0.0"
+          NODE_ENV: production
+          PORT: 3000
+          REDIS_URL: redis://localhost:6379
+          DATABASE_URL:
+            valueFrom:
+              secretKeyRef:
+                name: "tracearr-db-tracearr"
+                key: URI
+        envFrom:
+          - secretRef:
+              name: tracearr
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities: { drop: ["ALL"] }
+          runAsNonRoot: false
+service:
+  main:
+    controller: tracearr
+    ports:
+      http:
+        port: 3000
+
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "tracearr.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - group: ''
+            kind: Service
+            identifier: main
+            port: http
+            weight: 1
+
+persistence:
+  tmp:
+    type: emptyDir
+    sizeLimit: 5G
+    globalMounts:
+      - path: /app/data/image-cache
+        subPath: image-cache
+      - path: /tmp
+        subPath: tmp
+      - path: /data/backups
+        subPath: backups
