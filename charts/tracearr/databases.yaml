@@ -4,7 +4,7 @@ kind: PostgresUser
 metadata:
   name: tracearr
   annotations:
-    postgres.db.movetokube.com/instance: postgres17-rw
+    postgres.db.movetokube.com/instance: timescaledb
 spec:
   role: tracearr
   database: tracearr
@@ -19,7 +19,7 @@ kind: Postgres
 metadata:
   name: tracearr
   annotations:
-    postgres.db.movetokube.com/instance: postgres17-rw
+    postgres.db.movetokube.com/instance: timescaledb
 spec:
   database: tracearr
   dropOnDelete: false
