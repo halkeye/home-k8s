@@ -36,6 +36,13 @@ spec:
       max_connections: "300"
       shared_buffers: 512MB
 
+  podSecurityContext:
+    runAsUser: 1000
+    runAsGroup: 1000
+    fsGroup: 1000
+    supplementalGroups: [101]
+    fsGroupChangePolicy: "OnRootMismatch"
+
   backup:
     retentionPolicy: 14d
     barmanObjectStore:
