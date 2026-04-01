@@ -4,7 +4,12 @@ metadata:
   name: timescaledb
 spec:
   instances: 2 # number of db instances
-  imageName: timescale/timescaledb-ha:pg18.1-ts2.25.0
+  imageCatalogRef:
+    apiGroup: postgresql.cnpg.io
+    # Change the following to `ClusterImageCatalog` if needed
+    kind: ClusterImageCatalog
+    name: timescaledb
+    major: 18
   primaryUpdateStrategy: unsupervised
   storage:
     size: 50Gi

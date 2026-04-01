@@ -17,6 +17,7 @@ helmCharts:
 
 resources:
   - ./secret.enc.yaml
+  - ./resources/clusterimagecatalog.yaml
   - ./resources/postgres17.yaml
   - ./resources/timescaledb.yaml
   - ./resources/scheduled-backup.yaml
