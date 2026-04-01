@@ -20,6 +20,7 @@ helmCharts:
       fullnameOverride: cloudnative-pg-ext-operator
       env:
         POSTGRES_INSTANCE: postgres17-rw
+        POSTGRES_HOST: postgres17-rw.cloudnative-pg.svc.cluster.local:5432
   - name: ext-postgres-operator
     releaseName: ext-postgres-timescaledb
     version: 3.0.0
@@ -30,6 +31,7 @@ helmCharts:
       nameOverride: ext-postgres-timescaledb
       env:
         POSTGRES_INSTANCE: timescaledb
+        POSTGRES_HOST: timescaledb.cloudnative-pg.svc.cluster.local:5432
 
 resources:
   - ./secret.enc.yaml
