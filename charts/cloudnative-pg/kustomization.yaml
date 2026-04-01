@@ -3,6 +3,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+namespace: cloudnative-pg
+
 helmCharts:
   - name: cloudnative-pg
     releaseName: cloudnative-pg
@@ -10,10 +12,23 @@ helmCharts:
     repo: https://cloudnative-pg.github.io/charts/
     valuesFile: ./values.yaml
   - name: ext-postgres-operator
-    releaseName: ext-postgres-operator
+    releaseName: cloudnative-pg-ext-operator
     version: 3.0.0
     repo: https://movetokube.github.io/postgres-operator/
     valuesFile: ./values-ext-postgres.yaml
+    valuesInline:
+      fullnameOverride: cloudnative-pg-ext-operator
+      env:
+        POSTGRES_INSTANCE: postgres17-rw
+  - name: ext-postgres-operator
+    releaseName: ext-postgres-timescaledb
+    version: 3.0.0
+    repo: https://movetokube.github.io/postgres-operator/
+    valuesFile: ./values-ext-postgres.yaml
+    valuesInline:
+      fullnameOverride: ext-postgres-timescaledb
+      env:
+        POSTGRES_INSTANCE: timescaledb
 
 resources:
   - ./secret.enc.yaml

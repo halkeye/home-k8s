@@ -1,5 +1,4 @@
 ---
-fullnameOverride: cloudnative-pg-ext-operator
 resources:
   limits:
     cpu: 10m
