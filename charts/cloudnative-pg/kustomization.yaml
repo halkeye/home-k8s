@@ -31,7 +31,7 @@ helmCharts:
       nameOverride: ext-postgres-timescaledb
       env:
         POSTGRES_INSTANCE: timescaledb
-        POSTGRES_HOST: timescaledb.cloudnative-pg.svc.cluster.local:5432
+        POSTGRES_HOST: timescaledb-rw.cloudnative-pg.svc.cluster.local:5432
 
 resources:
   - ./secret.enc.yaml
