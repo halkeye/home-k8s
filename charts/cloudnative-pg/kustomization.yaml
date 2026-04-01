@@ -27,6 +27,7 @@ helmCharts:
     valuesFile: ./values-ext-postgres.yaml
     valuesInline:
       fullnameOverride: ext-postgres-timescaledb
+      nameOverride: ext-postgres-timescaledb
       env:
         POSTGRES_INSTANCE: timescaledb
 
