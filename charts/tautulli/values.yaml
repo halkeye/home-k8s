@@ -11,9 +11,6 @@ controllers:
           tag: v2.17.0
         env:
           TZ: America/Vancouver
-        envFrom:
-          - secretRef:
-              name: tautulli
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
