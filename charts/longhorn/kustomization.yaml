@@ -18,6 +18,7 @@ helmCharts:
 
 resources:
   - ./secret.enc.yaml
+  - ./snapshotclass.yaml
 
 patches:
 - target:
