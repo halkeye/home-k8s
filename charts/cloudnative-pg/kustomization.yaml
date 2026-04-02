@@ -8,7 +8,7 @@ namespace: cloudnative-pg
 helmCharts:
   - name: cloudnative-pg
     releaseName: cloudnative-pg
-    version: 0.27.1
+    version: 0.28.0
     repo: https://cloudnative-pg.github.io/charts/
     valuesFile: ./values.yaml
   - name: ext-postgres-operator
