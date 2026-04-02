@@ -10,7 +10,10 @@ controllers:
           repository: ghcr.io/tautulli/tautulli
           tag: v2.17.0
         command:
-          - tautulli
+          - python
+          - Tautulli.py
+          - --datadir
+          - /config
         env:
           TZ: America/Vancouver
         securityContext:
