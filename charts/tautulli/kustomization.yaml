@@ -1,0 +1,30 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: tautulli
+
+helmCharts:
+  - name: app-template
+    version: 4.6.2
+    repo: https://bjw-s-labs.github.io/helm-charts
+    valuesFile: values.yaml
+    releaseName: tautulli
+
+# configMapGenerator:
+#   - name: litestream-configmap
+#     literals:
+#       - LITESTREAM_DB_PATH="/data/db.db"
+#       - |
+#         litestream.yml=
+#           dbs:
+#             - path: /data/db.db
+#               replicas:
+#                 - url: s3://halkeye-litestream.tor1.digitaloceanspaces.com/hoarder
+#             - path: /data/queue.db
+#               replicas:
+#                 - url: s3://halkeye-litestream.tor1.digitaloceanspaces.com/hoarder
+#
+# components:
+#   - ../../components/litestream

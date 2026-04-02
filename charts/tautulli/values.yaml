@@ -1,0 +1,66 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  tautulli:
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      app:
+        image:
+          repository: ghcr.io/tautulli/tautulli
+          tag: v2.17.0
+        env:
+          TZ: America/Vancouver
+        envFrom:
+          - secretRef:
+              name: tautulli
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities: { drop: ["ALL"] }
+          runAsNonRoot: false
+    pod:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        runAsNonRoot: true
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+
+service:
+  main:
+    controller: tautulli
+    ports:
+      http:
+        port: 8181
+
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "tautulli.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - group: ''
+            kind: Service
+            identifier: main
+            port: http
+            weight: 1
+
+persistence:
+  config:
+    enabled: true
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    size: 10Gi
+  tmp:
+    type: emptyDir
+    sizeLimit: 5G
