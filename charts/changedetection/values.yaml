@@ -8,7 +8,7 @@ controllers:
       changedetection:
         image:
           repository: ghcr.io/dgtlmoon/changedetection.io
-          tag: 0.54.7
+          tag: 0.54.8
         env:
           TZ: America/Vancouver
           BASE_URL: https://changedetection.g4v.dev
