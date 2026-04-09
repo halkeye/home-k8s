@@ -108,7 +108,7 @@ spec:
           - name: immich
           - name: kavita
           - name: kobodl
-          # - name: mariadb-operator
+          - name: manga-manager
           - name: mdns-reflector
           - name: minio
           - name: music-assistant
