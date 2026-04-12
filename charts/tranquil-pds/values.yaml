@@ -13,6 +13,7 @@ controllers:
           TZ: America/Vancouver
           DATABASE_URL: { valueFrom: { secretKeyRef: { name: "tranquil-pds-db-secret-tranquil-pds", key: POSTGRES_URL } } }
           ## App Config
+          SERVER_HOST: 0.0.0.0
           PDS_HOSTNAME: transquil-pds.g4v.dev
           CRAWLERS: https://bsky.network
           CONTACT_EMAIL: pds@g4v.dev
