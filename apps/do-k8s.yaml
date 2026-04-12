@@ -102,6 +102,7 @@ spec:
           - name: synapse-admin
           - name: tautulli
           - name: teamspeak
+          - name: tranquil-pds
           - name: umami
           - name: vikunja
   template:

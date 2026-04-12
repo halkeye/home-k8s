@@ -21,7 +21,7 @@ controllers:
           BLOB_STORAGE_BACKEND: s3
           S3_BUCKET: halkeye-tranquil-pds
           # Cache
-          VALKEY_URL: valkey:6379
+          VALKEY_URL: redis://valkey:6379
           CACHE_BACKEND: valkey
           # sso
           SSO_OIDC_ENABLED: true
