@@ -16,8 +16,11 @@ controllers:
           SERVER_HOST: 0.0.0.0
           PDS_HOSTNAME: transquil-pds.g4v.dev
           CRAWLERS: https://bsky.network
+          # email
           CONTACT_EMAIL: pds@g4v.dev
           MAIL_FROM_ADDRESS: pds@g4v.dev
+          # https://manpages.debian.org/testing/msmtp/msmtp.1.en.html#ENVIRONMENT says this should work
+          SMTPSERVER: smtp-relay.smtp-relay.svc.cluster.local:2525
           # storage
           BLOB_STORAGE_BACKEND: s3
           S3_BUCKET: halkeye-tranquil-pds
@@ -30,6 +33,21 @@ controllers:
         envFrom:
           - secretRef:
               name: "tranquil-pds"
+        probes:
+          liveness: &probes
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /xrpc/_health
+                port: 3000
+              initialDelaySeconds: 0
+              periodSeconds: 10
+              timeoutSeconds: 1
+              failureThreshold: 3
+          readiness: *probes
+          startup:
+            enabled: false
 
 service:
   main:
