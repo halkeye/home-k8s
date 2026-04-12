@@ -1,0 +1,67 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  app:
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      app:
+        image:
+          repository: ghcr.io/halkeye/docker-tranquil-pds
+          tag: sha-3cb904c8bafc99bcee827e55e603cc2e6032fcf8
+        env:
+          TZ: America/Vancouver
+          DATABASE_URL: { valueFrom: { secretKeyRef: { name: "tranquil-pds-db-secret-tranquil-pds", key: POSTGRES_URL } } }
+          ## App Config
+          PDS_HOSTNAME: transquil-pds.g4v.dev
+          CRAWLERS: https://bsky.network
+          CONTACT_EMAIL: pds@g4v.dev
+          MAIL_FROM_ADDRESS: pds@g4v.dev
+          # storage
+          BLOB_STORAGE_BACKEND: s3
+          S3_BUCKET: halkeye-tranquil-pds
+          # Cache
+          VALKEY_URL: valkey:6379
+          CACHE_BACKEND: valkey
+          # sso
+          SSO_OIDC_ENABLED: true
+          SSO_OIDC_DISPLAY_NAME: G4V Auth
+        envFrom:
+          - secretRef:
+              name: "tranquil-pds"
+
+service:
+  main:
+    controller: app
+    ports:
+      http:
+        port: 3000
+
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "tranquil-pds.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - group: ''
+            kind: Service
+            identifier: main
+            port: http
+            weight: 1
+
+persistence:
+  tmp:
+    type: emptyDir
+    sizeLimit: 5G
+    globalMounts:
+      - path: /tmp
+        subPath: tmp

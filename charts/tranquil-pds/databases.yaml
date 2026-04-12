@@ -1,0 +1,22 @@
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: tranquil-pds
+spec:
+  role: tranquil-pds
+  database: tranquil-pds
+  secretName: tranquil-pds-db-secret
+  privileges: OWNER
+  secretTemplate:
+    HOST_NO_PORT: "{{ .Hostname }}"
+    PORT: "{{ .Port }}"
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: tranquil-pds
+spec:
+  database: tranquil-pds
+  dropOnDelete: false
+  masterRole: tranquil-pds
