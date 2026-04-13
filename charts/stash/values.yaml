@@ -13,7 +13,7 @@ controllers:
       main:
         image:
           repository: stashapp/stash
-          tag: v0.31.0
+          tag: v0.31.1
         env:
           HOME: /config
           STASH_NO_BROWSER: "true"
