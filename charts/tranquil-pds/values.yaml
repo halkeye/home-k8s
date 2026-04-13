@@ -8,7 +8,7 @@ controllers:
       app:
         image:
           repository: ghcr.io/halkeye/docker-tranquil-pds
-          tag: sha-3cb904c8bafc99bcee827e55e603cc2e6032fcf8
+          tag: sha-0f64b6e39a9ed192b2e0fab41a66452e24759d6a
         env:
           TZ: America/Vancouver
           DATABASE_URL: { valueFrom: { secretKeyRef: { name: "tranquil-pds-db-secret-tranquil-pds", key: POSTGRES_URL } } }
