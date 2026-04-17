@@ -11,6 +11,9 @@ controllers:
           tag: 0.1.0
         env:
           TZ: America/Vancouver
+        envFrom:
+          - secretRef:
+              name: "kindle-opds-proxy"
 
 service:
   main:
