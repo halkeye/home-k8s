@@ -107,7 +107,6 @@ spec:
           - name: headlamp
           - name: immich
           - name: kavita
-          - name: kindle-opds-proxy
           - name: kobodl
           - name: manga-manager
           - name: mdns-reflector
