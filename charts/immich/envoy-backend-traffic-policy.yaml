@@ -8,4 +8,4 @@ spec:
     kind: HTTPRoute
     name: immich
   requestBuffer:
-    limit: 10G
+    limit: 5G
