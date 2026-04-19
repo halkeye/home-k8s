@@ -101,5 +101,12 @@ persistence:
     path: /volume1/Webseries
     globalMounts:
       - path: /downloads/webseries
+  audio:
+    enabled: true
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Audio
+    globalMounts:
+      - path: /downloads/audio
   tmp:
     type: emptyDir
