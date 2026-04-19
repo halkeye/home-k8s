@@ -8,8 +8,9 @@ service:
         enabled: true
         primary: true
         port: 3001
-        protocol: TCP
-        appProtocol: kubernetes.io/ws
+        protocol: HTTP
+        # protocol: TCP
+        # appProtocol: kubernetes.io/ws
   machine-learning:
     controller: machine-learning
     type: ClusterIP
