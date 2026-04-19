@@ -3,8 +3,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-helmGlobals:
-  chartHome: ./charts/
+namespace: immich
 
 generatorOptions:
   disableNameSuffixHash: true
@@ -17,9 +16,9 @@ helmCharts:
     releaseName: immich
 
 resources:
-  - ./templates/postgres-user.yaml
-  - ./templates/postgres.yaml
   - ./secret.enc.yaml
+  - ./databases.yaml
+  - ./envoy-backend-traffic-policy.yaml
 
 components:
   - ../../components/valkey

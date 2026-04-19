@@ -1,3 +1,4 @@
+---
 apiVersion: db.movetokube.com/v1alpha1
 kind: PostgresUser
 metadata:
@@ -14,3 +15,18 @@ spec:
     PORT: "{{ .Port }}"
     DB_URL: postgresql://{{.Role}}:{{.Password}}@{{.Host}}/{{.Database}}?{{ "" | mergeUriArgs }}
     DB_LOGGING_URL: postgresql://{{.Role}}:{{.Password}}@{{.Host}}/{{.Database}}?{{ "logging=true" | mergeUriArgs }}
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: immich
+  annotations:
+    postgres.db.movetokube.com/instance: postgres17-rw
+spec:
+  database: immich
+  dropOnDelete: false
+  masterRole: immich-group
+  extensions:
+  - cube
+  - earthdistance
+  - vectors
