@@ -9,6 +9,12 @@ exclude:
       names: # ['info.txt', '._*', '*.nfo']
         - '@eaDir'
         - '#recycle'
+        - '.DS_Store'
+        - '.localized'
+        - '.Trashes'
+        - '.stfolder'
+        - '@SynoResource'
+        - 'gamelist.xml'
 
     # Multi files games section
     # Will apply to files that are in sub-folders (multi-disc roms, games with updates, DLC, patches, etc.)
@@ -17,3 +23,11 @@ exclude:
       names:
         - '@eaDir'
         - '#recycle'
+        - '__MACOSX'
+        - '$RECYCLE.BIN'
+        - '.Trash-*'
+        - '.stfolder'
+        - '.Spotlight-V100'
+        - '.fseventsd'
+        - '.DocumentRevisions-V100'
+        - 'System Volume Information'
