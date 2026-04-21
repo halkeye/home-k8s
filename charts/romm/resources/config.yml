@@ -1,6 +1,8 @@
 ---
 # https://github.com/rommapp/romm/blob/master/examples/config.example.yml
 exclude:
+  platforms:
+    - '#recycle'
   roms:
     single_file:
       # Exclude matched file names to be scanned.
@@ -15,6 +17,9 @@ exclude:
         - '.stfolder'
         - '@SynoResource'
         - 'gamelist.xml'
+        - rominfo.txt
+        - readme.txt
+        - systeminfo.txt
 
     # Multi files games section
     # Will apply to files that are in sub-folders (multi-disc roms, games with updates, DLC, patches, etc.)
@@ -31,3 +36,6 @@ exclude:
         - '.fseventsd'
         - '.DocumentRevisions-V100'
         - 'System Volume Information'
+        - rominfo.txt
+        - readme.txt
+        - systeminfo.txt
