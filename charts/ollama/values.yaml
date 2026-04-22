@@ -204,3 +204,5 @@ persistence:
     type: emptyDir
     globalMounts:
       - path: /tmp
+      - path: /root/.postgresql
+        subPath: postgresql
