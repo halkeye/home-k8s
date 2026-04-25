@@ -1,0 +1,4 @@
+Chart.lock
+charts/
+values-secrets.yaml
+secret.enc.yaml

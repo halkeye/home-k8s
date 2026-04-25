@@ -1,0 +1,14 @@
+apiVersion: v2
+name: shelfmark
+type: application
+version: 0.1.0
+appVersion: "1.2.1"
+
+dependencies:
+- name: app-template
+  version: 4.6.2
+  repository: https://bjw-s-labs.github.io/helm-charts
+maintainers:
+  - name: halkeye
+    url: https://www.gavinmogan.com
+    email: helm@gavinmogan.com

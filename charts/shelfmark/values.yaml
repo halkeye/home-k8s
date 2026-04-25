@@ -1,0 +1,117 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+defaultPodOptions:
+  securityContext:
+    runAsUser: 1026
+    runAsGroup: 100
+    runAsNonRoot: true
+    fsGroup: 100
+    fsGroupChangePolicy: OnRootMismatch
+
+controllers:
+  main:
+    replicas: 1
+    strategy: Recreate
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      main:
+        image:
+          repository: ghcr.io/calibrain/shelfmark
+          tag: 1.2.1
+        env:
+          TZ: America/Vancouver
+          FLASK_PORT: "8084"
+          INGEST_DIR: /books
+          PUID: "1026"
+          PGID: "100"
+          SEARCH_MODE: universal
+          USING_TOR: "false"
+        probes:
+          liveness:
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /api/health
+                port: 8084
+              initialDelaySeconds: 30
+              periodSeconds: 30
+              timeoutSeconds: 30
+          readiness:
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /api/health
+                port: 8084
+              initialDelaySeconds: 10
+              periodSeconds: 10
+              timeoutSeconds: 30
+          startup:
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /api/health
+                port: 8084
+              initialDelaySeconds: 0
+              periodSeconds: 5
+              timeoutSeconds: 30
+              failureThreshold: 30
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: false
+          capabilities:
+            drop: ['ALL']
+        resources:
+          requests:
+            cpu: 50m
+            memory: 256Mi
+          limits:
+            memory: 2Gi
+
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 8084
+
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "shelfmark.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - identifier: main
+            port: http
+
+persistence:
+  config:
+    enabled: true
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    storageClass: nas-apps
+    size: 5Gi
+    globalMounts:
+      - path: /config
+  books:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Comics/Books
+    globalMounts:
+      - path: /books
+  tmp:
+    enabled: true
+    type: emptyDir
+    globalMounts:
+      - path: /tmp
