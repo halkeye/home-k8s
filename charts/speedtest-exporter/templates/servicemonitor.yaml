@@ -14,3 +14,12 @@ spec:
     port: http
     scheme: http
     scrapeTimeout: 1m
+  relabelings:
+    - replacement: "speedtest-exporter"
+      action: replace
+      targetLabel: job
+    # - replacement: "<instance>"
+    #   action: replace
+    #   targetLabel: instance
+    - action: labeldrop
+      regex: pod
