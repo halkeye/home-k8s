@@ -8,8 +8,8 @@ controllers:
     containers:
       main:
         image:
-          repository: ghcr.io/miguelndecarvalho/speedtest-exporter
-          tag: v3.5.4
+          repository: ghcr.io/heathcliff26/speedtest-exporter
+          tag: v1.5.0
         env:
           TZ: America/Vancouver
         securityContext:
@@ -28,7 +28,7 @@ service:
     controller: main
     ports:
       http:
-        port: 9798
+        port: 8080
 # serviceMonitor:
 #   main:
 #     serviceName: '{{ include "bjw-s.common.lib.chart.names.fullname" $ }}'
@@ -37,10 +37,10 @@ service:
 #         scheme: http
 #         path: /metrics
 #         interval: 60m
-#         scrapeTimeout: 1m
-persistence:
-  tmp:
-    enabled: true
-    type: emptyDir
-    globalMounts:
-      - path: /home/speedtest/.config/
+#         scrapeTimeout: 5m
+# persistence:
+#   tmp:
+#     enabled: true
+#     type: emptyDir
+#     globalMounts:
+#       - path: /home/speedtest/.config/
