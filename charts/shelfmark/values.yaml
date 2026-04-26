@@ -91,10 +91,10 @@ persistence:
     size: 5Gi
     globalMounts:
       - path: /config
-  books:
+  downloads:
     type: nfs
     server: 172.16.10.10
-    path: /volume1/Comics/Books
+    path: "/volume1/Downloads/Books"
     globalMounts:
       - path: /books
   tmp:
