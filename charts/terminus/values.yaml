@@ -8,7 +8,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/usetrmnl/terminus
-          tag: 0.55.0
+          tag: 0.56.0
         env:
           TZ: America/Vancouver
           API_URI: https://terminus-h.g4v.dev
