@@ -9,7 +9,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/heathcliff26/speedtest-exporter
-          tag: v1.5.0
+          tag: v1.5.1
         env:
           TZ: America/Vancouver
         securityContext:
