@@ -1,0 +1,16 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: matrix
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+helmCharts:
+  - name: matrix-stack
+    version: 26.4.0
+    repo: oci://ghcr.io/element-hq/ess-helm
+    valuesFile: values.yaml
+    releaseName: matrix-stack

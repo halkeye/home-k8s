@@ -1,0 +1,133 @@
+serverName: g4v.dev
+
+initSecrets:
+  enabled: true
+
+elementAdmin:
+  ingress:
+    host: element-admin.g4v.dev
+
+elementWeb:
+  ingress:
+    host: chat.g4v.dev
+
+matrixAuthenticationService:
+  ingress:
+    host: matrix-mas.g4v.dev
+  encryptionSecret:
+    secret: matrix-stack
+    secretKey: mas_encryption_secret
+  synapseSharedSecret:
+    secret: matrix-stack
+    secretKey: global_registration_shared_secret
+  privateKeys:
+    rsa:
+      secret: matrix-stack
+      secretKey: mas_keys_rsa_private
+    ecdsaPrime256v1:
+      secret: matrix-stack
+      secretKey: mas_keys_ed25519_private
+  syn2mas:
+    enabled: true
+    dryRun: true
+  additional:
+    1-custom-config:
+      configSecret: matrix-stack
+      configSecretKey: mas_upstream_oidc.yaml
+  postgres:
+    host: dok8s-sfo2-do-user-8094590-0.b.db.ondigitalocean.com
+    port: 5432
+    user: synapse
+    database: synapse-mas
+    sslMode: prefer
+    password:
+      secret: matrix-stack
+      secretKey: synapse_postgres_password
+
+matrixRTC:
+  sfu:
+    exposedServices:
+      turn:
+        enabled: true
+  ingress:
+    host: matrix-rtc.g4v.dev
+
+synapse:
+  ingress:
+    host: matrix.g4v.dev
+  signingKey:
+    secret: matrix-stack
+    secretKey: synapse_signing_key
+  macaroon:
+    secret: matrix-stack
+    secretKey: synapse_macaroon_secret_key
+  registrationSharedSecret:
+    secret: matrix-stack
+    secretKey: global_registration_shared_secret
+  postgres:
+    host: dok8s-sfo2-do-user-8094590-0.b.db.ondigitalocean.com
+    port: 5432
+    user: synapse
+    database: synapse
+    sslMode: prefer
+    password:
+      secret: matrix-stack
+      secretKey: synapse_postgres_password
+  additional:
+    1-storage:
+      configSecret: matrix-stack
+      configSecretKey: synapse_media_s3.yaml
+  ## additional:
+  ##   0-customConfig:
+  ##     config: |
+  ##       <any valid configuration>
+  ##   1-customConfig:
+  ##     configSecret: custom-config
+  ##     configSecretKey: shared.yaml
+  ##
+  ## Most settings are configurable but some settings are owned by the chart and can't overwritten
+
+  ## Details of Application Service registration files to give to Synapse
+  appservices:
+    - secret: matrix-stack-appservice
+      secretKey: googlechat-doublepuppet.yaml
+    - secret: matrix-stack-appservice
+      secretKey: googlechat-registration.yaml
+    - secret: matrix-stack-appservice
+      secretKey: mautrix-gmessages-doublepuppet.yaml
+    - secret: matrix-stack-appservice
+      secretKey: mautrix-gmessages.yaml
+    - secret: matrix-stack-appservice
+      secretKey: mautrix-instagram-doublepuppet.yaml
+    - secret: matrix-stack-appservice
+      secretKey: mautrix-instagram.yaml
+    - secret: matrix-stack-appservice
+      secretKey: mautrix-linkedin-doublepuppet.yaml
+    - secret: matrix-stack-appservice
+      secretKey: mautrix-linkedin.yaml
+    - secret: matrix-stack-appservice
+      secretKey: signal-doublepuppet.yaml
+    - secret: matrix-stack-appservice
+      secretKey: signal-registration.yaml
+    - secret: matrix-stack-appservice
+      secretKey: telegram-doublepuppet.yaml
+    - secret: matrix-stack-appservice
+      secretKey: telegram-registration.yaml
+    - secret: matrix-stack-appservice
+      secretKey: whatsapp-doublepuppet.yaml
+    - secret: matrix-stack-appservice
+      secretKey: whatsapp-registration.yaml
+
+wellKnownDelegation:
+  enabled: false
+
+postgres:
+  enabled: false
+
+hookshot:
+  appserviceRegistration:
+    secret: matrix-stack
+    secretKey: hookshot_appservice
+  passkey:
+    secret: matrix-stack
+    secretKey: hookshot_passkey
