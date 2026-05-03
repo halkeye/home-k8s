@@ -31,7 +31,13 @@ matrixAuthenticationService:
       secretKey: mas_keys_rsa_private
     ecdsaPrime256v1:
       secret: matrix-stack
-      secretKey: mas_keys_ed25519_private
+      secretKey: mas_keys_additional_private_0
+    ecdsaSecp256k1:
+      secret: matrix-stack
+      secretKey: mas_keys_additional_private_1
+    ecdsaSecp384r1:
+      secret: matrix-stack
+      secretKey: mas_keys_additional_private_2
   syn2mas:
     enabled: true
     dryRun: true
