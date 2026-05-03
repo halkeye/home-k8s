@@ -94,7 +94,7 @@ synapse:
       secretKey: synapse_postgres_password
   additional:
     1-storage:
-      configSecret: matrix-stack
+      configSecret: matrix-stack-synapse
       configSecretKey: synapse_media_s3.yaml
   ## additional:
   ##   0-customConfig:
