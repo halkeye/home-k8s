@@ -96,9 +96,9 @@ synapse:
     1-storage:
       configSecret: matrix-stack-synapse2
       configSecretKey: synapse_media_s3.yaml
-    2-oidc:
-      configSecret: matrix-stack-synapse2
-      configSecretKey: synapse_oidc.yaml
+    # 2-oidc:
+    #   configSecret: matrix-stack-synapse2
+    #   configSecretKey: synapse_oidc.yaml
   ## additional:
   ##   0-customConfig:
   ##     config: |
