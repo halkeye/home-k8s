@@ -20,30 +20,30 @@ matrixAuthenticationService:
   ingress:
     host: matrix-mas.g4v.dev
   encryptionSecret:
-    secret: matrix-stack
+    secret: matrix-stack-mas
     secretKey: mas_encryption_secret
   synapseSharedSecret:
     secret: matrix-stack
     secretKey: global_registration_shared_secret
   privateKeys:
     rsa:
-      secret: matrix-stack
+      secret: matrix-stack-mas
       secretKey: mas_keys_rsa_private
     ecdsaPrime256v1:
-      secret: matrix-stack
+      secret: matrix-stack-mas
       secretKey: mas_keys_additional_private_0
     ecdsaSecp256k1:
-      secret: matrix-stack
+      secret: matrix-stack-mas
       secretKey: mas_keys_additional_private_1
     ecdsaSecp384r1:
-      secret: matrix-stack
+      secret: matrix-stack-mas
       secretKey: mas_keys_additional_private_2
   syn2mas:
     enabled: true
     dryRun: true
   additional:
     1-custom-config:
-      configSecret: matrix-stack
+      configSecret: matrix-stack-mas
       configSecretKey: mas_upstream_oidc.yaml
   postgres:
     host: private-dok8s-sfo2-do-user-8094590-0.b.db.ondigitalocean.com
@@ -75,10 +75,10 @@ synapse:
   ingress:
     host: matrix.g4v.dev
   signingKey:
-    secret: matrix-stack
+    secret: matrix-stack-synapse
     secretKey: synapse_signing_key
   macaroon:
-    secret: matrix-stack
+    secret: matrix-stack-synapse
     secretKey: synapse_macaroon_secret_key
   registrationSharedSecret:
     secret: matrix-stack
@@ -90,7 +90,7 @@ synapse:
     database: synapse
     sslMode: prefer
     password:
-      secret: matrix-stack
+      secret: matrix-stack-synapse
       secretKey: synapse_postgres_password
   additional:
     1-storage:
@@ -147,8 +147,8 @@ hookshot:
   annotations:
     reloader.stakater.com/auto: 'true'
   appserviceRegistration:
-    secret: matrix-stack
+    secret: matrix-stack-hookshot
     secretKey: hookshot_appservice
   passkey:
-    secret: matrix-stack
+    secret: matrix-stack-hookshot
     secretKey: hookshot_passkey
