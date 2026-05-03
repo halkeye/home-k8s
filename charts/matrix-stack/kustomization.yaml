@@ -14,3 +14,6 @@ helmCharts:
     repo: oci://ghcr.io/element-hq/ess-helm
     valuesFile: values.yaml
     releaseName: matrix-stack
+
+resources:
+  - ./databases.yaml

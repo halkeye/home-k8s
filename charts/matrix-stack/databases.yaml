@@ -1,0 +1,22 @@
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: matrix-authentication-service
+spec:
+  role: matrix-authentication-service
+  database: matrix-authentication-service
+  secretName: matrix-authentication-service-db-secret
+  privileges: OWNER
+  secretTemplate:
+    HOST_NO_PORT: "{{ .Hostname }}"
+    PORT: "{{ .Port }}"
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: matrix-authentication-service
+spec:
+  database: matrix-authentication-service
+  dropOnDelete: false
+  masterRole: matrix-authentication-service
