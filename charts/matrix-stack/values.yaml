@@ -37,7 +37,7 @@ matrixAuthenticationService:
       secretKey: mas_keys_additional_private_2
   syn2mas:
     enabled: true
-    dryRun: true
+    dryRun: false
   additional:
     1-custom-config:
       configSecret: matrix-stack-mas
