@@ -18,7 +18,7 @@ spec:
           - { namespace: matrix, name: mautrix-googlechat }
           - { namespace: matrix, name: mautrix-linkedin }
           - { namespace: matrix, name: mautrix-whatsapp }
-          - { namespace: matrix, name: synapse }
+          # - { namespace: matrix, name: synapse }
 
           # Apps
           - name: authentik
@@ -72,7 +72,8 @@ spec:
           - { namespace: monitoring, name: mysqld-exporter }
 
           # Matrix
-          - { namespace: matrix, name: element-web }
+          # - { namespace: matrix, name: element-web }
+          - { namespace: matrix, name: matrix-stack }
           - { namespace: matrix, name: mautrix-gmessages }
           - { namespace: matrix, name: mautrix-instagram }
           - { namespace: matrix, name: mautrix-signal }
@@ -99,7 +100,7 @@ spec:
           - name: planka
           - name: searxng
           - name: string-is
-          - name: synapse-admin
+          # - name: synapse-admin
           - name: tautulli
           - name: teamspeak
           - name: tranquil-pds
