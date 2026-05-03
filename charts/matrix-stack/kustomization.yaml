@@ -10,7 +10,7 @@ generatorOptions:
 
 helmCharts:
   - name: matrix-stack
-    version: 26.4.0
+    version: 26.4.1
     repo: oci://ghcr.io/element-hq/ess-helm
     valuesFile: values.yaml
     releaseName: matrix-stack
