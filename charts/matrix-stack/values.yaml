@@ -38,7 +38,7 @@ matrixAuthenticationService:
     host: dok8s-sfo2-do-user-8094590-0.b.db.ondigitalocean.com
     port: 5432
     user: synapse
-    database: synapse-mas
+    database: matrix-authentication-service
     sslMode: prefer
     password:
       secret: matrix-stack
