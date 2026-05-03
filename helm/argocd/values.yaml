@@ -174,3 +174,4 @@ argo-cd:
                 - profile
                 - email
                 - groups
+                - offline_access
