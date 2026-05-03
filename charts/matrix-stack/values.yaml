@@ -35,8 +35,8 @@ matrixAuthenticationService:
       configSecret: matrix-stack
       configSecretKey: mas_upstream_oidc.yaml
   postgres:
-    host: dok8s-sfo2-do-user-8094590-0.b.db.ondigitalocean.com
-    port: 5432
+    host: private-dok8s-sfo2-do-user-8094590-0.b.db.ondigitalocean.com
+    port: 25060
     user: matrix-authentication-service-DrutXJ
     database: matrix-authentication-service
     sslMode: prefer
@@ -65,8 +65,8 @@ synapse:
     secret: matrix-stack
     secretKey: global_registration_shared_secret
   postgres:
-    host: dok8s-sfo2-do-user-8094590-0.b.db.ondigitalocean.com
-    port: 5432
+    host: private-dok8s-sfo2-do-user-8094590-0.b.db.ondigitalocean.com
+    port: 25060
     user: synapse
     database: synapse
     sslMode: prefer
