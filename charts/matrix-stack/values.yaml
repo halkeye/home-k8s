@@ -42,6 +42,9 @@ matrixAuthenticationService:
     1-custom-config:
       configSecret: matrix-stack-mas
       configSecretKey: mas_upstream_oidc.yaml
+    2-passwords:
+      configSecret: matrix-stack-mas
+      configSecretKey: mas_passwords.yaml
   postgres:
     host: private-dok8s-sfo2-do-user-8094590-0.b.db.ondigitalocean.com
     port: 25060
@@ -96,9 +99,6 @@ synapse:
     2-oidc:
       configSecret: matrix-stack-synapse2
       configSecretKey: synapse_oidc.yaml
-    2-passwords:
-      configSecret: matrix-stack-synapse2
-      configSecretKey: synapse_passwords.yaml
   ## additional:
   ##   0-customConfig:
   ##     config: |
