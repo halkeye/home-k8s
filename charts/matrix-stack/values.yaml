@@ -53,6 +53,9 @@ matrixRTC:
     host: matrix-rtc.g4v.dev
 
 synapse:
+  image:
+    repository: ghcr.io/halkeye/docker-synapse
+    tag: v1.152.0.4
   ingress:
     host: matrix.g4v.dev
   signingKey:
