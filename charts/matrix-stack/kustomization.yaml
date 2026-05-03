@@ -16,4 +16,5 @@ helmCharts:
     releaseName: matrix-stack
 
 resources:
+  - ./secret.enc.yaml
   - ./databases.yaml
