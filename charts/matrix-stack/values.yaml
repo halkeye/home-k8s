@@ -16,6 +16,8 @@ matrixAuthenticationService:
     reloader.stakater.com/auto: 'true'
   ingress:
     host: matrix-mas.g4v.dev
+    annotations:
+      external-dns.alpha.kubernetes.io/cloudflare-proxied: 'false'
   encryptionSecret:
     secret: matrix-stack-mas
     secretKey: mas_encryption_secret
@@ -74,6 +76,8 @@ synapse:
     tag: v1.152.0.4
   ingress:
     host: matrix.g4v.dev
+    annotations:
+      external-dns.alpha.kubernetes.io/cloudflare-proxied: 'false'
   signingKey:
     secret: matrix-stack-synapse2
     secretKey: synapse_signing_key
