@@ -12,6 +12,8 @@ elementWeb:
     host: chat.g4v.dev
 
 matrixAuthenticationService:
+  extraEnv:
+    RUST_LOG: debug
   ingress:
     host: matrix-mas.g4v.dev
   encryptionSecret:
