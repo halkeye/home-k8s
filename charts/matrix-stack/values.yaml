@@ -75,10 +75,10 @@ synapse:
   ingress:
     host: matrix.g4v.dev
   signingKey:
-    secret: matrix-stack-synapse
+    secret: matrix-stack-synapse2
     secretKey: synapse_signing_key
   macaroon:
-    secret: matrix-stack-synapse
+    secret: matrix-stack-synapse2
     secretKey: synapse_macaroon_secret_key
   registrationSharedSecret:
     secret: matrix-stack
@@ -90,11 +90,11 @@ synapse:
     database: synapse
     sslMode: prefer
     password:
-      secret: matrix-stack-synapse
+      secret: matrix-stack-synapse2
       secretKey: synapse_postgres_password
   additional:
     1-storage:
-      configSecret: matrix-stack-synapse
+      configSecret: matrix-stack-synapse2
       configSecretKey: synapse_media_s3.yaml
   ## additional:
   ##   0-customConfig:
