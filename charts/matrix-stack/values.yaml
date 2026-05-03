@@ -12,6 +12,8 @@ elementWeb:
     host: chat.g4v.dev
 
 matrixAuthenticationService:
+  annotations:
+    reloader.stakater.com/auto: 'true'
   extraEnv:
     RUST_LOG: debug
   ingress:
@@ -55,6 +57,8 @@ matrixRTC:
     host: matrix-rtc.g4v.dev
 
 synapse:
+  annotations:
+    reloader.stakater.com/auto: 'true'
   checkConfigHook:
     enabled: false
   image:
@@ -133,6 +137,8 @@ postgres:
   enabled: false
 
 hookshot:
+  annotations:
+    reloader.stakater.com/auto: 'true'
   appserviceRegistration:
     secret: matrix-stack
     secretKey: hookshot_appservice
