@@ -35,9 +35,9 @@ matrixAuthenticationService:
     ecdsaSecp384r1:
       secret: matrix-stack-mas
       secretKey: mas_keys_additional_private_2
-  syn2mas:
-    enabled: true
-    dryRun: false
+  # syn2mas:
+  #   enabled: true
+  #   dryRun: false
   additional:
     1-custom-config:
       configSecret: matrix-stack-mas
