@@ -37,12 +37,12 @@ matrixAuthenticationService:
   postgres:
     host: dok8s-sfo2-do-user-8094590-0.b.db.ondigitalocean.com
     port: 5432
-    user: synapse
+    user: matrix-authentication-service-DrutXJ
     database: matrix-authentication-service
     sslMode: prefer
     password:
-      secret: matrix-stack
-      secretKey: synapse_postgres_password
+      secret: matrix-authentication-service-db-secret-matrix-authentication-service
+      secretKey: PASSWORD
 
 matrixRTC:
   sfu:
