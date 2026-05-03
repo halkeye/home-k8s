@@ -15,7 +15,8 @@ matrixAuthenticationService:
   annotations:
     reloader.stakater.com/auto: 'true'
   extraEnv:
-    RUST_LOG: debug
+    - name: RUST_LOG
+      value: debug
   ingress:
     host: matrix-mas.g4v.dev
   encryptionSecret:
