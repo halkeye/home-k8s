@@ -162,12 +162,12 @@ hookshot:
   ingress:
     host: element-hookshot.g4v.dev
   appserviceRegistration:
-    secret: matrix-stack-hookshot
+    secret: matrix-stack-hookshot-2
     secretKey: hookshot_registration.yaml
   passkey:
-    secret: matrix-stack-hookshot
+    secret: matrix-stack-hookshot-2
     secretKey: hookshot_passkey
   additional:
     permissions.yaml:
-      configSecret: matrix-stack-hookshot
+      configSecret: matrix-stack-hookshot-2
       configSecretKey: permissions.yaml
