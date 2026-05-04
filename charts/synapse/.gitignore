@@ -1,6 +1,0 @@
-node_modules/
-
-### Helm ###
-# Chart dependencies
-**/charts/*.tgz
-
