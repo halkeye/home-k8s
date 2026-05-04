@@ -75,7 +75,7 @@ spec:
           - { namespace: matrix, name: mautrix-gmessages }
           - { namespace: matrix, name: mautrix-instagram }
           - { namespace: matrix, name: mautrix-signal }
-          - { namespace: matrix, name: synatainer }
+          # - { namespace: matrix, name: synatainer }
 
           - { namespace: bitwarden, name: vaultwarden }
 

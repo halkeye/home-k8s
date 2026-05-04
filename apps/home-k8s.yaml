@@ -115,6 +115,7 @@ spec:
           - name: navidrome
           - name: netbootxyz
           - name: nortverse-downloader
+          - name: obsidian-livesync
           - name: ollama
           - name: openbooks
           - name: pinchflat
@@ -126,8 +127,8 @@ spec:
           - name: recommendarr
           - name: recyclarr
           - name: romm
-          - name: snapshot-controller
           - name: shelfmark
+          - name: snapshot-controller
           - name: sonarr
           - name: stash
           - name: synology
