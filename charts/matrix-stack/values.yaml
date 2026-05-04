@@ -148,6 +148,8 @@ synapse:
       secretKey: whatsapp-doublepuppet.yaml
     - secret: matrix-stack-appservice
       secretKey: whatsapp-registration.yaml
+    - secret: matrix-stack-appservice
+      secretKey: hookshot-registration.yaml
 
 wellKnownDelegation:
   enabled: false
@@ -156,11 +158,26 @@ postgres:
   enabled: false
 
 hookshot:
+  enabled: true
   annotations:
     reloader.stakater.com/auto: 'true'
+  ingress:
+    host: element-hookshot.g4v.dev
   appserviceRegistration:
     secret: matrix-stack-hookshot
-    secretKey: hookshot_appservice
+    secretKey: hookshot_registration
   passkey:
     secret: matrix-stack-hookshot
     secretKey: hookshot_passkey
+  additional:
+    1-custom-config:
+      config: |-
+        permissions:
+          - actor: g4v.dev
+            services:
+              - service: "*"
+                level: commands
+          - actor: "@halkeye:g4v.dev"
+            services:
+              - service: "*"
+                level: admin
