@@ -14,11 +14,9 @@ spec:
 
           - { namespace: kube-system, name: do-ingress-nginx }
           # matrix
-          # - { namespace: matrix, name: matrix-authentication-service }
           - { namespace: matrix, name: mautrix-googlechat }
           - { namespace: matrix, name: mautrix-linkedin }
           - { namespace: matrix, name: mautrix-whatsapp }
-          # - { namespace: matrix, name: synapse }
 
           # Apps
           - name: authentik
@@ -100,7 +98,6 @@ spec:
           - name: planka
           - name: searxng
           - name: string-is
-          # - name: synapse-admin
           - name: tautulli
           - name: teamspeak
           - name: tranquil-pds
