@@ -169,13 +169,5 @@ hookshot:
     secretKey: hookshot_passkey
   additional:
     permissions.yaml:
-      config: |
-        permissions:
-          - actor: g4v.dev
-            services:
-              - service: "*"
-                level: manageConnections
-          - actor: "@halkeye:g4v.dev"
-            services:
-              - service: "*"
-                level: admin
+      configSecret: matrix-stack-hookshot
+      configSecretKey: permissions
