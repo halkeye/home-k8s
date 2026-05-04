@@ -148,6 +148,8 @@ synapse:
       secretKey: whatsapp-doublepuppet.yaml
     - secret: matrix-stack-appservice
       secretKey: whatsapp-registration.yaml
+    # - secret: matrix-stack-hookshot-2
+    #   secretKey: hookshot_registration.yaml
 
 wellKnownDelegation:
   enabled: false
@@ -156,7 +158,7 @@ postgres:
   enabled: false
 
 hookshot:
-  enabled: true
+  enabled: false
   annotations:
     reloader.stakater.com/auto: 'true'
   ingress:
