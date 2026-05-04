@@ -31,7 +31,7 @@ controllers:
             spec:
               httpGet:
                 path: /_up
-                port: &port 5984
+                port: 5984
               initialDelaySeconds: 0
               periodSeconds: 10
               timeoutSeconds: 1
@@ -43,7 +43,7 @@ controllers:
             spec:
               httpGet:
                 path: /_up
-                port: *port
+                port: 5984
               failureThreshold: 30
               periodSeconds: 10
         resources:
@@ -64,7 +64,7 @@ service:
     controller: main
     ports:
       http:
-        port: *port
+        port: 5984
 
 route:
   main:
@@ -83,6 +83,21 @@ route:
         backendRefs:
           - identifier: main
             port: http
+
+ingress:
+  main:
+    enabled: true
+    className: tailscale
+    hosts:
+      - host: obsidian-livesync
+        paths:
+          - path: /
+            service:
+              identifier: main
+              port: http
+    tls:
+      - hosts:
+        - obsidian-livesync
 
 persistence:
   data:
