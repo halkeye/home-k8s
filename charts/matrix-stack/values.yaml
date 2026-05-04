@@ -163,11 +163,11 @@ hookshot:
     host: element-hookshot.g4v.dev
   appserviceRegistration:
     secret: matrix-stack-hookshot
-    secretKey: hookshot_registration
+    secretKey: hookshot_registration.yaml
   passkey:
     secret: matrix-stack-hookshot
     secretKey: hookshot_passkey
   additional:
     permissions.yaml:
       configSecret: matrix-stack-hookshot
-      configSecretKey: permissions
+      configSecretKey: permissions.yaml
