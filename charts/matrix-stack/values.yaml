@@ -148,8 +148,6 @@ synapse:
       secretKey: whatsapp-doublepuppet.yaml
     - secret: matrix-stack-appservice
       secretKey: whatsapp-registration.yaml
-    - secret: matrix-stack-appservice
-      secretKey: hookshot-registration.yaml
 
 wellKnownDelegation:
   enabled: false
@@ -170,13 +168,13 @@ hookshot:
     secret: matrix-stack-hookshot
     secretKey: hookshot_passkey
   additional:
-    1-custom-config:
-      config: |-
+    permissions.yaml:
+      config: |
         permissions:
           - actor: g4v.dev
             services:
               - service: "*"
-                level: commands
+                level: manageConnections
           - actor: "@halkeye:g4v.dev"
             services:
               - service: "*"
