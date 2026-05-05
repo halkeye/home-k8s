@@ -40,17 +40,8 @@ app-template:
             tag: v26.04
           env:
             TZ: America/Vancouver
-            MAUTRIX_DB_URI:
-              valueFrom:
-                secretKeyRef:
-                  name: "{{.Release.Name}}-db-secret-{{.Release.Name}}"
-                  key: POSTGRES_URL
           command:
-            - python3
-            - -m
-            - linkedin_matrix
-            - -c
-            - /data/config.yaml
+            - /usr/bin/mautrix-linkedin
           probes:
             liveness:
               enabled: true
