@@ -36,8 +36,8 @@ app-template:
       containers:
         main:
           image:
-            repository: ghcr.io/beeper/linkedin
-            tag: 45cf608ea6a4b8076f72b601dfa5d5a14b8c17be
+            repository: dock.mau.dev/mautrix/linkedin
+            tag: v26.04
           env:
             TZ: America/Vancouver
             MAUTRIX_DB_URI:
