@@ -10,7 +10,7 @@ app-template:
       annotations:
         reloader.stakater.com/auto: "true"
       type: deployment
-      replicas: 1
+      replicas: 0
       strategy: Recreate
       initContainers:
         01-init:
