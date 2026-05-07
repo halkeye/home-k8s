@@ -55,6 +55,7 @@ controllers:
               fieldRef:
                 fieldPath: metadata.namespace
     pod:
+      automountServiceAccountToken: true
       securityContext:
         runAsNonRoot: true
         runAsUser: 65534
