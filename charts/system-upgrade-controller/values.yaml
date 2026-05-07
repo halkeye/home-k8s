@@ -2,11 +2,13 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 
 serviceAccount:
-  system-upgrade-controller: {}
+  system-upgrade-controller:
+    enabled: true
 
 rbac:
   bindings:
     system-upgrade-controller:
+      enabled: true
       type: ClusterRoleBinding
       roleRef:
         kind: ClusterRole
@@ -17,6 +19,10 @@ rbac:
 controllers:
   main:
     strategy: RollingUpdate
+    labels:
+      upgrade.cattle.io/controller: system-upgrade-controller
+      app.kubernetes.io/component: controller
+      app.kubernetes.io/name: system-upgrade-controller
     serviceAccount:
       identifier: system-upgrade-controller
     containers:
@@ -29,7 +35,7 @@ controllers:
           capabilities:
             drop: ["ALL"]
         env:
-          SYSTEM_UPGRADE_CONTROLLER_DEBUG: false
+          SYSTEM_UPGRADE_CONTROLLER_DEBUG: true
           SYSTEM_UPGRADE_CONTROLLER_THREADS: 2
           SYSTEM_UPGRADE_CONTROLLER_LEADER_ELECT: "true"
           SYSTEM_UPGRADE_JOB_ACTIVE_DEADLINE_SECONDS: 900
@@ -39,7 +45,7 @@ controllers:
           SYSTEM_UPGRADE_JOB_PRIVILEGED: true
           SYSTEM_UPGRADE_JOB_TTL_SECONDS_AFTER_FINISH: 900
           SYSTEM_UPGRADE_PLAN_POLLING_INTERVAL: 15m
-          SYSTEM_UPGRADE_CONTROLLER_NAME: system-upgrade-controller
+          SYSTEM_UPGRADE_CONTROLLER_NAME: "system-upgrade-controller"
           SYSTEM_UPGRADE_CONTROLLER_NODE_NAME:
             valueFrom:
               fieldRef:
