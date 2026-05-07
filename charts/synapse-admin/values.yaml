@@ -1,0 +1,33 @@
+controllers:
+  main:
+    enabled: true
+    containers:
+      main:
+        image:
+          repository: ghcr.io/etkecc/synapse-admin
+          tag: v0.11.4-etke54
+
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "synapse-admin.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - identifier: main
+            port: http
+service:
+  main:
+    enabled: true
+    controller: main
+    ports:
+      http:
+        port: 80
