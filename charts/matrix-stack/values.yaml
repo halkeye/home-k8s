@@ -10,6 +10,14 @@ elementAdmin:
 elementWeb:
   ingress:
     host: chat.g4v.dev
+  additional:
+    config: |
+      {
+        "disable_guests": true,
+        "show_labs_settings": true,
+        "sso_redirect_options": { "immediate": true },
+        "room_directory": {"servers": ["https://matrix.org", "https://mozilla.org", "https://gitter.im", "https://g4v.dev"]}
+      }
 
 matrixAuthenticationService:
   annotations:
