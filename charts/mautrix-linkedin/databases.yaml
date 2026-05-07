@@ -1,0 +1,18 @@
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: "mautrix-linkedin"
+spec:
+  role: "mautrix-linkedin"
+  database: "mautrix-linkedin"
+  secretName: "mautrix-linkedin-db-secret"
+  privileges: OWNER
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: "mautrix-linkedin"
+spec:
+  database: "mautrix_linkedin"
+  dropOnDelete: false
