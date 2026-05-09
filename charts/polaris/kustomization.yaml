@@ -7,7 +7,7 @@ namespace: polaris
 
 helmCharts:
   - name: polaris
-    version: 5.19.0
+    version: 6.0.0
     repo: https://charts.fairwinds.com/stable
     valuesFile: values.yaml
     releaseName: polaris
