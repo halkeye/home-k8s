@@ -97,6 +97,6 @@ spec:
     matchLabels:
       dashboards: "grafana"
   grafanaCom:
-    # renovate: depName="Tailscale / Overview"
+    # renovate: depName="Tailscale - Overview"
     id: 24177
     revision: 1
