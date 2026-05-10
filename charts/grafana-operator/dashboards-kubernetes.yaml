@@ -37,7 +37,7 @@ spec:
     matchLabels:
       dashboards: "grafana"
   grafanaCom:
-    # renovate: depName="Kubernetes / System / API Server"
+    # renovate: depName="Kubernetes - System - API Server"
     id: 15761
     revision: 20
 ---
@@ -54,7 +54,7 @@ spec:
     matchLabels:
       dashboards: "grafana"
   grafanaCom:
-    # renovate: depName="Kubernetes / System / CoreDNS"
+    # renovate: depName="Kubernetes - System - CoreDNS"
     id: 15762
     revision: 22
 ---
@@ -71,7 +71,7 @@ spec:
     matchLabels:
       dashboards: "grafana"
   grafanaCom:
-    # renovate: depName="Kubernetes / Views / Namespaces"
+    # renovate: depName="Kubernetes - Views - Namespaces"
     id: 15758
     revision: 44
 ---
@@ -88,7 +88,7 @@ spec:
     matchLabels:
       dashboards: "grafana"
   grafanaCom:
-    # renovate: depName="Kubernetes / Views / Nodes"
+    # renovate: depName="Kubernetes - Views - Nodes"
     id: 15759
     revision: 40
 ---
@@ -105,7 +105,7 @@ spec:
     matchLabels:
       dashboards: "grafana"
   grafanaCom:
-    # renovate: depName="Kubernetes / Views / Pods"
+    # renovate: depName="Kubernetes - Views - Pods"
     id: 15760
     revision: 21
 ---
@@ -122,7 +122,7 @@ spec:
     matchLabels:
       dashboards: "grafana"
   grafanaCom:
-    # renovate: depName="K8s / Storage / Volumes / Cluster"
+    # renovate: depName="K8s - Storage - Volumes - Cluster"
     id: 11454
     revision: 14
 ---
@@ -175,7 +175,7 @@ spec:
     matchLabels:
       dashboards: "grafana"
   grafanaCom:
-    # renovate: depName="Kubernetes / Views / Global"
+    # renovate: depName="Kubernetes - Views - Global"
     id: 15757
     revision: 43
 ---
