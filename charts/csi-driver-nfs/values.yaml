@@ -5,7 +5,7 @@ csi-driver-nfs:
     create: true
     name: nas-apps
     annotations:
-      storageclass.kubernetes.io/is-default-class: "true"
+      storageclass.kubernetes.io/is-default-class: "false"
     parameters:
       server: 172.16.10.10
       share: /volume1/Apps
