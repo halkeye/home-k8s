@@ -13,15 +13,14 @@ controllers:
       main:
         image:
           repository: ghcr.io/halkeye/nortverse-downloader
-          tag: 1.6.0
+          tag: 1.7.0
         args:
           - download
           - "--output"
           - /webcomics/Nortverse/
           - "--flaresolverr"
           - "http://172.16.10.10:8191/"
-          - "--start-url"
-          - "https://nortverse.com/comic/fun-in-the-sun-11"
+          - "--latest"
     pod:
       securityContext:
         runAsUser: 1026
