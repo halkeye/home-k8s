@@ -36,9 +36,6 @@ snapshots:
 
 record:
   enabled: true
-  retain:
-    days: 5
-    mode: all
 
 go2rtc:
   log:
