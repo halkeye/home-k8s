@@ -1,0 +1,101 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  main:
+    annotations:
+      reloader.stakater.com/auto: "true"
+    type: deployment
+    replicas: 0
+    strategy: Recreate
+    initContainers:
+      01-init:
+        image:
+          # probably already downloaded, and includes envsubst
+          repository: nginx
+          tag: 1.29.0
+        env:
+          TZ: America/Vancouver
+          MAUTRIX_DB_URI:
+            valueFrom:
+              secretKeyRef:
+                name: "mautrix-linkedin-db-secret-mautrix-linkedin"
+                key: POSTGRES_URL
+        envFrom:
+          - secretRef:
+              name: "mautrix-linkedin-secret"
+        command:
+          - bash
+          - -c
+          - cat /configmap/config.yaml | envsubst > /data/config.yaml
+    containers:
+      main:
+        image:
+          repository: dock.mau.dev/mautrix/linkedin
+          tag: v26.04
+        env:
+          TZ: America/Vancouver
+        command:
+          - /usr/bin/mautrix-linkedin
+          - "-c"
+          - "/data/config.yaml"
+        probes:
+          liveness:
+            enabled: false
+            custom: true
+            spec:
+              httpGet:
+                path: /_matrix/mau/live
+                port: 29341
+              initialDelaySeconds: 0
+              periodSeconds: 10
+              timeoutSeconds: 1
+              failureThreshold: 3
+          readiness:
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /_matrix/mau/ready
+                port: 29341
+              initialDelaySeconds: 0
+              periodSeconds: 10
+              timeoutSeconds: 1
+              failureThreshold: 3
+          startup:
+            enabled: false
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+        resources:
+          limits:
+            memory: 100Mi
+          requests:
+            cpu: 10m
+            memory: 100Mi
+    pod:
+      securityContext:
+        runAsUser: 1337
+        runAsGroup: 1337
+        runAsNonRoot: true
+        fsGroup: 1337
+        fsGroupChangePolicy: OnRootMismatch
+service:
+  main:
+    controller: main
+    publishNotReadyAddresses: true
+    ports:
+      http:
+        port: 29341
+
+persistence:
+  tmp:
+    enabled: true
+    type: emptyDir
+  data:
+    enabled: true
+    type: emptyDir
+  configmap:
+    enabled: true
+    type: configMap
+    name: "mautrix-linkedin-configmap"
