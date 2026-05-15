@@ -6,7 +6,7 @@ controllers:
       kavita:
         image:
           repository: ghcr.io/kareadita/kavita
-          tag: 0.9.0
+          tag: 0.9.0.2
         env:
           TZ: America/Vancouver
           COMPlus_EnableDiagnostics: "0"

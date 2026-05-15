@@ -7,7 +7,7 @@ namespace: romm
 
 helmCharts:
   - name: app-template
-    version: 5.0.0
+    version: 5.0.1
     repo: https://bjw-s-labs.github.io/helm-charts
     valuesFile: values.yaml
     releaseName: romm
