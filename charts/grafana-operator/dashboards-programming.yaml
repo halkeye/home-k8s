@@ -22,10 +22,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="Go Host & Runtime Metrics Dashboard"
-    id: 21221
-    revision: 1
+  url: https://grafana.com/api/dashboards/21221/revisions/1/download
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -39,10 +36,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="NodeJS Application Dashboard"
-    id: 11159
-    revision: 1
+  url: https://grafana.com/api/dashboards/11159/revisions/1/download
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -56,7 +50,4 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="Nodejs Metrics"
-    id: 11956
-    revision: 1
+  url: https://grafana.com/api/dashboards/11956/revisions/1/download

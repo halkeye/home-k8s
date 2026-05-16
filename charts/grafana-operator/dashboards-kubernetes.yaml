@@ -19,10 +19,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="OOM and restarts"
-    id: 16718
-    revision: 1
+  url: https://grafana.com/api/dashboards/16718/revisions/1/download
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -36,10 +33,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="Kubernetes - System - API Server"
-    id: 15761
-    revision: 20
+  url: https://grafana.com/api/dashboards/15761/revisions/20/download
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -53,10 +47,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="Kubernetes - System - CoreDNS"
-    id: 15762
-    revision: 22
+  url: https://grafana.com/api/dashboards/15762/revisions/22/download
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -70,10 +61,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="Kubernetes - Views - Namespaces"
-    id: 15758
-    revision: 44
+  url: https://grafana.com/api/dashboards/15758/revisions/44/download
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -87,10 +75,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="Kubernetes - Views - Nodes"
-    id: 15759
-    revision: 40
+  url: https://grafana.com/api/dashboards/15759/revisions/40/download
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -104,10 +89,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="Kubernetes - Views - Pods"
-    id: 15760
-    revision: 21
+  url: https://grafana.com/api/dashboards/15760/revisions/21/download
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -121,10 +103,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="K8s - Storage - Volumes - Cluster"
-    id: 11454
-    revision: 14
+  url: https://grafana.com/api/dashboards/11454/revisions/14/download
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -138,10 +117,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="Kubernetes Cluster"
-    id: 6417
-    revision: 1
+  url: https://grafana.com/api/dashboards/6417/revisions/1/download
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -157,10 +133,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="kube-state-metrics-v2"
-    id: 13332
-    revision: 12
+  url: https://grafana.com/api/dashboards/13332/revisions/12/download
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -174,10 +147,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="Kubernetes - Views - Global"
-    id: 15757
-    revision: 43
+  url: https://grafana.com/api/dashboards/15757/revisions/43/download
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -191,10 +161,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="Node Exporter Full"
-    id: 1860
-    revision: 42
+  url: https://grafana.com/api/dashboards/1860/revisions/42/download
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -222,10 +189,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="Cluster Monitoring for Kubernetes"
-    id: 10000
-    revision: 1
+  url: https://grafana.com/api/dashboards/10000/revisions/1/download
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -239,10 +203,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="Cadvisor"
-    id: 14282
-    revision: 1
+  url: https://grafana.com/api/dashboards/14282/revisions/1/download
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -270,10 +231,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="Alertmanager"
-    id: 9578
-    revision: 4
+  url: https://grafana.com/api/dashboards/9578/revisions/4/download
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -287,10 +245,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="Prometheus"
-    id: 19105
-    revision: 8
+  url: https://grafana.com/api/dashboards/19105/revisions/8/download
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -304,7 +259,4 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="kubernetes-persistent-volumes"
-    id: 13646
-    revision: 2
+  url: https://grafana.com/api/dashboards/13646/revisions/2/download

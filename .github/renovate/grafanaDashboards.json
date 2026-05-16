@@ -5,28 +5,24 @@
       "defaultRegistryUrlTemplate": "https://grafana.com/api/dashboards/{{packageName}}",
       "format": "json",
       "transformTemplates": [
-        "{\"releases\":[{\"version\": $string(revision)}]}"
+        "{\"releases\":[{\"version\": $string(revision)}], \"sourceDirectory\": name}"
       ]
     }
   },
   "customManagers": [
     {
-      "customType": "regex",
       "description": "Process Grafana dashboards",
-      "fileMatch": [
-        "(^|/)charts\\/prometheus\\/values\\.ya?ml(\\.j2)?$",
-        "(^|/)charts\\/grafana\\/values\\.ya?ml(\\.j2)?$",
-        "charts\\/prometheus\\/values\\.ya?ml(\\.j2)?$",
-        "charts\\/grafana\\/values\\.ya?ml(\\.j2)?$",
+      "customType": "regex",
+      "managerFilePatterns": [
         "dashboards\\.ya?ml?$",
         "dashboards-(.*)\\.ya?ml?$"
       ],
       "matchStrings": [
-        "depName=\"(?<depName>.*)\"\\n(?<indentation>\\s+)(?<gnetKey>id|gnetId): (?<packageName>\\d+)\\n.+revision: (?<currentValue>\\d+)"
+        "dashboards\\/(?<depName>\\d+)\\/revisions\\/(?<currentValue>\\d+)\\/download"
       ],
-      "autoReplaceStringTemplate": "depName=\"{{{depName}}}\"\n{{{indentation}}}{{{gnetKey}}}: {{{packageName}}}\n{{{indentation}}}revision: {{{newValue}}}",
       "datasourceTemplate": "custom.grafana-dashboards",
-      "versioningTemplate": "regex:^(?<major>\\d+)$"
+      "versioningTemplate": "regex:^(?<major>\\d+)$",
+      "autoReplaceStringTemplate": "dashboards/{{depName}}/revisions/{{newValue}}/download"
     }
   ],
   "packageRules": [
@@ -34,19 +30,19 @@
       "addLabels": [
         "renovate/grafana-dashboard"
       ],
-      "groupName": "grafana dashboards dependencies",
-      "groupSlug": "grafana-dashboards",
+      "automerge": true,
+      "automergeType": "branch",
+      "commitMessageExtra": "( {{currentVersion}} ➔ {{newVersion}} )",
+      "commitMessageTopic": "dashboard {{sourceDirectory}}",
+      "ignoreTests": true,
       "matchDatasources": [
-        "grafana-dashboards",
         "custom.grafana-dashboards"
       ],
       "matchUpdateTypes": [
         "major"
       ],
       "semanticCommitScope": "grafana-dashboards",
-      "semanticCommitType": "",
-      "commitMessageTopic": "dashboard {{depName}}",
-      "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
+      "semanticCommitType": "chore"
     }
   ]
 }

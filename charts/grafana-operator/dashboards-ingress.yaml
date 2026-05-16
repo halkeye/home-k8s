@@ -22,10 +22,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="nginx"
-    id: 14900
-    revision: 2
+  url: https://grafana.com/api/dashboards/14900/revisions/2/download
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -39,10 +36,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="Traefik"
-    id: 4475
-    revision: 5
+  url: https://grafana.com/api/dashboards/4475/revisions/5/download
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -70,10 +64,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="Envoy Gateway - Overview"
-    id: 24460
-    revision: 1
+  url: https://grafana.com/api/dashboards/24460/revisions/1/download
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -87,10 +78,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="Envoy - Downstream"
-    id: 24458
-    revision: 1
+  url: https://grafana.com/api/dashboards/24458/revisions/1/download
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -104,10 +92,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="Envoy - Upstream"
-    id: 24457
-    revision: 1
+  url: https://grafana.com/api/dashboards/24457/revisions/1/download
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -121,10 +106,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="Envoy - Overview"
-    id: 24459
-    revision: 1
+  url: https://grafana.com/api/dashboards/24459/revisions/1/download
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -140,7 +122,4 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="Envoy Proxy Monitoring gRPC"
-    id: 23239
-    revision: 1
+  url: https://grafana.com/api/dashboards/23239/revisions/1/download

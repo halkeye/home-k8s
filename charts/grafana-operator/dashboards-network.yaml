@@ -22,10 +22,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="CoreDNS"
-    id: 14981
-    revision: 2
+  url: https://grafana.com/api/dashboards/14981/revisions/2/download
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -39,7 +36,4 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  grafanaCom:
-    # renovate: depName="Cilium v1.12 Hubble Metrics"
-    id: 16613
-    revision: 1
+  url: https://grafana.com/api/dashboards/16613/revisions/1/download
