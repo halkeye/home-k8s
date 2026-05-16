@@ -10,15 +10,45 @@
     ":automergeDigest",
     ":automergeBranch",
     ":timezone(America/Vancouver)",
-    "helpers:pinGitHubActionDigests",
-    "github>halkeye/home-k8s//.github/renovate/grafanaDashboards.json"
+    "helpers:pinGitHubActionDigests"
   ],
+  "customDatasources": {
+    "grafana-dashboards": {
+      "defaultRegistryUrlTemplate": "https://grafana.com/api/dashboards/{{packageName}}",
+      "format": "json",
+      "transformTemplates": [
+        "{\"releases\":[{\"version\": $string(revision)}], \"sourceDirectory\": name}"
+      ]
+    }
+  },
   "customManagers": [
     {
+      "description": "Process Grafana dashboards",
       "customType": "regex",
-      "description": [
-        "Process custom dependencies"
+      "managerFilePatterns": [
+        "/dashboards(-\\w+)?\\.yaml$/"
       ],
+      "matchStrings": [
+        "dashboards\\/(?<depName>\\d+)\\/revisions\\/(?<currentValue>\\d+)\\/download"
+      ],
+      "datasourceTemplate": "custom.grafana-dashboards",
+      "versioningTemplate": "regex:^(?<major>\\d+)$",
+      "autoReplaceStringTemplate": "dashboards/{{depName}}/revisions/{{newValue}}/download"
+    },
+    {
+      "customType": "regex",
+      "description": "Process Kustomization CRD dependencies - Image and Github Release are the same version",
+      "managerFilePatterns": [
+        "/kustomization.yaml/"
+      ],
+      "matchStrings": [
+        "datasource=(?<datasource>\\S+) image=(?<depName>\\S+)\n.*?-\\s(.*?)/(?<currentValue>[^/]+)/[^/]+\n"
+      ],
+      "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}docker{{/if}}"
+    },
+    {
+      "customType": "regex",
+      "description": "Process custom dependencies",
       "managerFilePatterns": [
         "/inventory/group_vars/all.yml/",
         "/(^|/)charts/.+\\.ya?ml(?:\\.j2)?$/",
@@ -28,19 +58,6 @@
         "(?<indentation>\\s*)(?<version_prefix>\\w*)(?<version_word>version|tag): \"(?<currentValue>[^\"]+)\" # renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)"
       ],
       "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}"
-    },
-    {
-      "customType": "regex",
-      "description": [
-        "Process Kustomization CRD dependencies - Image and Github Release are the same version"
-      ],
-      "managerFilePatterns": [
-        "/(^|/)charts/.+\\.ya?ml(?:\\.j2)?$/"
-      ],
-      "matchStrings": [
-        "datasource=(?<datasource>\\S+) image=(?<depName>\\S+)\n.*?-\\s(.*?)/(?<currentValue>[^/]+)/[^/]+\n"
-      ],
-      "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}docker{{/if}}"
     }
   ],
   "packageRules": [
@@ -131,6 +148,24 @@
         "mariadb-operator",
         "mariadb-cluster"
       ]
+    },
+    {
+      "addLabels": [
+        "renovate/grafana-dashboard"
+      ],
+      "automerge": true,
+      "automergeType": "branch",
+      "commitMessageExtra": "( {{currentVersion}} ➔ {{newVersion}} )",
+      "commitMessageTopic": "dashboard {{sourceDirectory}}",
+      "ignoreTests": true,
+      "matchDatasources": [
+        "custom.grafana-dashboards"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "semanticCommitScope": "grafana-dashboards",
+      "semanticCommitType": "chore"
     }
   ]
 }
