@@ -22,11 +22,10 @@
       "managerFilePatterns": [
         "/inventory/group_vars/all.yml/",
         "/(^|/)charts/.+\\.ya?ml(?:\\.j2)?$/",
-        "/charts/system-upgrade-controller/templates/agent.yaml/",
-        "/charts/system-upgrade-controller/templates/server.yaml/"
+        "/(^|/)charts/system-upgrade-controller/templates/(agent|server).yaml/"
       ],
       "matchStrings": [
-        "(?<indentation>\\s*)(?<version_prefix>\\w+)(?<version_word>version|tag): \"(?<currentValue>[^\"]+)\" # renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)"
+        "(?<indentation>\\s*)(?<version_prefix>\\w*)(?<version_word>version|tag): \"(?<currentValue>[^\"]+)\" # renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)"
       ],
       "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}"
     },
