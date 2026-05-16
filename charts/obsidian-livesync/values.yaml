@@ -111,6 +111,6 @@ persistence:
     type: configMap
     name: obsidian-livesync-config
     globalMounts:
-      - path: /opt/couchdb/etc/local.ini
+      - path: /opt/couchdb/etc/local.d/obsidian.ini
         subPath: local.ini
         readOnly: true
