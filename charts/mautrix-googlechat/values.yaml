@@ -83,7 +83,7 @@ app-template:
               drop: ["ALL"]
           resources:
             limits:
-              memory: 100Mi
+              memory: 2000Mi
             requests:
               cpu: 10m
               memory: 100Mi
