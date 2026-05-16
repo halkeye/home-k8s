@@ -33,7 +33,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  url: https://grafana.com/api/dashboards/15761/revisions/21/download
+  url: https://grafana.com/api/dashboards/15761/revisions/20/download
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
@@ -61,7 +61,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  url: https://grafana.com/api/dashboards/15758/revisions/44/download
+  url: https://grafana.com/api/dashboards/15758/revisions/46/download
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
