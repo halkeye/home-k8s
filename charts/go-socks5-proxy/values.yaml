@@ -41,9 +41,17 @@ controllers:
                       - arm64
 service:
   socks5:
+    forceRename: go-socks5-proxy
     controller: proxy
     type: LoadBalancer
     loadBalancerClass: tailscale
+    ports:
+      socks5:
+        port: 1080
+        protocol: TCP
+  exposed:
+    controller: proxy
+    type: LoadBalancer
     ports:
       socks5:
         port: 1080
