@@ -1,21 +1,21 @@
 controllers:
   proxy:
     strategy: RollingUpdate
-    annotations:
-      reloader.stakater.com/auto: "true"
     containers:
       main:
         image:
-          repository: docker.io/serjs/go-socks5-proxy
-          tag: latest@sha256:0af522996f402c03ecd985a87997158eabeb28935365e3a384df37eafcf740ea
+          repository: ghcr.io/ryanbekhen/nanoproxy
+          tag: 0.17.3
         env:
-          PROXY_PORT: 1080
-          REQUIRE_AUTH: false
+          ADDR: ":1080"
+          ADDR_HTTP: ":8080"
+          NO_AUTH_MODE: "true"
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
             drop: ["ALL"]
+            add: ["NET_ADMIN"]
         resources:
           requests:
             cpu: 10m
@@ -49,10 +49,16 @@ service:
       socks5:
         port: 1080
         protocol: TCP
+      http:
+        port: 8080
+        protocol: TCP
   exposed:
     controller: proxy
     type: LoadBalancer
     ports:
       socks5:
         port: 1080
+        protocol: TCP
+      http:
+        port: 8080
         protocol: TCP
