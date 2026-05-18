@@ -19,7 +19,8 @@ controllers:
           tag: 2026.05.0@sha256:70a9c11171ded2eee735d88c127996da209284a329d50f5ae59c06b861d401b3
         env:
           TZ: America/Vancouver
-          FTLCONF_dns_listeningMode: all
+          # nebulasync doesn't like env variable configs
+          # FTLCONF_dns_listeningMode: all
           FTLCONF_webserver_port: 80
           FTLCONF_webserver_api_password:
             valueFrom:
