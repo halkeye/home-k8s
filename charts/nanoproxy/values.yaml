@@ -35,6 +35,8 @@ service:
     controller: proxy
     type: LoadBalancer
     loadBalancerClass: tailscale
+    annotations:
+      tailscale.com/hostname: nanoproxy
     ports:
       socks5:
         port: 1080
