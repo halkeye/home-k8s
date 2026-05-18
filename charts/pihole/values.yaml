@@ -52,7 +52,7 @@ controllers:
             memory: 512Mi
 
 service:
-  pihole:
+  dns:
     forceRename: pihole
     controller: pihole
     type: LoadBalancer
@@ -69,7 +69,7 @@ service:
       dns-tcp:
         port: 53
         protocol: TCP
-  pihole-web:
+  web:
     controller: pihole
     ports:
       http:
@@ -88,7 +88,7 @@ route:
         namespace: envoy-gateway
         sectionName: https
     hostnames:
-      - 'pihole.g4v.dev'
+      - 'pihole-bak.g4v.dev'
     rules:
       - matches:
         - path:
