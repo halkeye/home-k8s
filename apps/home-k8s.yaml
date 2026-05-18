@@ -112,6 +112,7 @@ spec:
           - name: mdns-reflector
           - name: minio
           - name: music-assistant
+          - name: nanoproxy
           - name: navidrome
           - name: netbootxyz
           - name: nortverse-downloader
