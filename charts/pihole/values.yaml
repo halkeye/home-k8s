@@ -95,7 +95,7 @@ route:
             type: PathPrefix
             value: /
         backendRefs:
-          - identifier: pihole-web
+          - identifier: web
             port: http
 
 persistence:
