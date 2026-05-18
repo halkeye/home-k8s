@@ -2,7 +2,7 @@ fullnameOverride: "prometheus"
 crds:
   enabled: false
 cleanPrometheusOperatorObjectNames: true
-prometheusOperation:
+prometheusOperator:
   kubeletEndpointsEnabled: false
   kubeletEndpointSliceEnabled: true
 # kubeApiServer:
