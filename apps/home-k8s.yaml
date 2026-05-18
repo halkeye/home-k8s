@@ -102,7 +102,6 @@ spec:
           - name: esphome
           - name: frigate
           - name: goldilocks
-          - name: go-socks5-proxy
           - name: hass-lovelace-kindle-screensaver
           - name: headlamp
           - name: immich
