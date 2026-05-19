@@ -242,7 +242,7 @@ appservice:
     # Appservice bot details.
     bot:
         # Username of the appservice bot.
-        username: linkedinbot
+        username: linkedinbot2026
         # Display name and avatar for bot. Set to "remove" to remove display name/avatar, leave empty
         # to leave display name/avatar as-is.
         displayname: LinkedIn bridge bot
