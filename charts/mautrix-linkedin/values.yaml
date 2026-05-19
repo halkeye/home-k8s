@@ -25,6 +25,7 @@ controllers:
           - bash
           - -c
           - cat /configmap/config.yaml | envsubst > /data/config.yaml
+          - cat /data/config.yaml
     containers:
       main:
         image:
