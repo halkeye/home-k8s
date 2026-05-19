@@ -238,7 +238,7 @@ appservice:
     port: 29341
 
     # The unique ID of this appservice.
-    id: linkedin
+    id: linkedin2026
     # Appservice bot details.
     bot:
         # Username of the appservice bot.
