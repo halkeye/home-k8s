@@ -20,7 +20,6 @@ elementWeb:
       }
 
 matrixAuthenticationService:
-  replicas: 0
   annotations:
     reloader.stakater.com/auto: 'true'
   ingress:
