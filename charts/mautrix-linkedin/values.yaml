@@ -3,6 +3,7 @@ controllers:
   main:
     annotations:
       reloader.stakater.com/auto: "true"
+    replicas: 0
     type: deployment
     strategy: Recreate
     initContainers:
