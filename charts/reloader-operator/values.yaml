@@ -1,8 +1,0 @@
----
-reloader:
-  reloader:
-    deployment:
-      image:
-        name: ghcr.io/stakater/reloader
-        base: stakater/reloader
-        tag: v1.2.0
