@@ -22,7 +22,7 @@ controllers:
         command:
           - "/usr/bin/mautrix-meta"
           - "-c"
-          - "/data/config.yaml"
+          - "/configmap/config.yaml"
         probes:
           liveness:
             enabled: false
