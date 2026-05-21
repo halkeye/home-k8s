@@ -16,6 +16,7 @@ spec:
                 - { appname: cert-manager, useOverlay: true }
                 - { appname: envoy-gateway }
                 - { appname: grafana-operator, useOverlay: true }
+                - { appname: reloader-operator, namespace: reloader }
                 - { appname: remove-empty-ns-operator }
                 - { appname: smtp-relay }
                 - { appname: sops-secrets-operator }
