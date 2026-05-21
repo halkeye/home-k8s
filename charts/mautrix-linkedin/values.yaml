@@ -4,28 +4,7 @@ controllers:
     annotations:
       reloader.stakater.com/auto: "true"
     replicas: 1
-    type: deployment
-    strategy: Recreate
-    initContainers:
-      01-init:
-        image:
-          # probably already downloaded, and includes envsubst
-          repository: nginx
-          tag: 1.29.0
-        env:
-          TZ: America/Vancouver
-          MAUTRIX_DB_URI:
-            valueFrom:
-              secretKeyRef:
-                name: "mautrix-linkedin-db-secret-mautrix-linkedin"
-                key: POSTGRES_URL
-        envFrom:
-          - secretRef:
-              name: "mautrix-linkedin-secret"
-        command:
-          - bash
-          - -c
-          - cat /configmap/config.yaml | envsubst > /data/config.yaml
+    type: statefulset
     containers:
       main:
         image:
@@ -33,10 +12,13 @@ controllers:
           tag: v26.04
         env:
           TZ: America/Vancouver
+        envFrom:
+          - secretRef:
+              name: "mautrix-linkedin-secret"
         command:
           - /usr/bin/mautrix-linkedin
           - "-c"
-          - "/data/config.yaml"
+          - "/configmap/config.yaml"
         probes:
           liveness:
             enabled: false
