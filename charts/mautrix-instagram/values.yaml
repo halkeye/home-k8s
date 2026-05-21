@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
   main:
     annotations:
@@ -26,7 +27,7 @@ controllers:
           - "/configmap/config.yaml"
         probes:
           liveness:
-            enabled: false
+            enabled: true
             custom: true
             spec:
               httpGet:
@@ -37,7 +38,7 @@ controllers:
               timeoutSeconds: 1
               failureThreshold: 3
           readiness:
-            enabled: false
+            enabled: true
             custom: true
             spec:
               httpGet:

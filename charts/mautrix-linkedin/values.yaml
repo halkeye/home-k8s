@@ -27,7 +27,7 @@ controllers:
           - "/configmap/config.yaml"
         probes:
           liveness:
-            enabled: false
+            enabled: true
             custom: true
             spec:
               httpGet:
