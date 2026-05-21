@@ -2,29 +2,8 @@ controllers:
   main:
     annotations:
       reloader.stakater.com/auto: "true"
-    type: deployment
     replicas: 1
-    strategy: Recreate
-    initContainers:
-      01-init:
-        image:
-          # probably already downloaded, and includes envsubst
-          repository: nginx
-          tag: 1.29.0
-        env:
-          TZ: America/Vancouver
-          MAUTRIX_DB_URI:
-            valueFrom:
-              secretKeyRef:
-                name: "mautrix-instagram-db-secret-mautrix-instagram"
-                key: POSTGRES_URL
-        envFrom:
-          - secretRef:
-              name: "mautrix-instagram-secret"
-        command:
-          - bash
-          - -c
-          - cat /configmap/config.yaml | envsubst > /data/config.yaml
+    type: statefulset
     containers:
       main:
         image:
@@ -32,6 +11,14 @@ controllers:
           tag: v0.2605.0
         env:
           TZ: America/Vancouver
+          BRIDGE_DATABASE__URI:
+            valueFrom:
+              secretKeyRef:
+                name: "mautrix-instagram-db-secret-mautrix-instagram"
+                key: POSTGRES_URL
+        envFrom:
+          - secretRef:
+              name: "mautrix-linkedin-secret"
         command:
           - "/usr/bin/mautrix-meta"
           - "-c"
@@ -98,3 +85,27 @@ persistence:
     enabled: true
     type: configMap
     name: "mautrix-instagram-configmap"
+
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "mautrix-bridges.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /instagram
+        filters:
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /
+        backendRefs:
+          - identifier: main
+            port: http
