@@ -1,3 +1,12 @@
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: "mautrix-instagram"
+spec:
+  database: "mautrix-instagram"
+  dropOnDelete: false
+---
 apiVersion: db.movetokube.com/v1alpha1
 kind: PostgresUser
 metadata:

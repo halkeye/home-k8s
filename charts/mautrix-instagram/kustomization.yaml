@@ -18,10 +18,10 @@ helmCharts:
 
 resources:
   - ./secret.enc.yaml
-  - ./templates/postgres.yaml
-  - ./templates/postgres-user.yaml
+  - ./postgres.yaml
+  - ./postgres-user.yaml
 
 configMapGenerator:
   - name: mautrix-instagram-configmap
     files:
-      - ./templates/config.yaml
+      - ./config.yaml
