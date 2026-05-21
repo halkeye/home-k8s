@@ -12,6 +12,11 @@ controllers:
           tag: v26.04
         env:
           TZ: America/Vancouver
+          BRIDGE_DATABASE__URI:
+            valueFrom:
+              secretKeyRef:
+                name: "mautrix-linkedin-db-secret-mautrix-linkedin"
+                key: POSTGRES_URL
         envFrom:
           - secretRef:
               name: "mautrix-linkedin-secret"
