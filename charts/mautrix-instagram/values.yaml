@@ -18,9 +18,10 @@ controllers:
                 key: POSTGRES_URL
         envFrom:
           - secretRef:
-              name: "mautrix-linkedin-secret"
+              name: "mautrix-instagram-secret"
         command:
           - "/usr/bin/mautrix-meta"
+          - "-n"
           - "-c"
           - "/configmap/config.yaml"
         probes:

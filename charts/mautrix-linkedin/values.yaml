@@ -22,6 +22,7 @@ controllers:
               name: "mautrix-linkedin-secret"
         command:
           - /usr/bin/mautrix-linkedin
+          - "-n"
           - "-c"
           - "/configmap/config.yaml"
         probes:
