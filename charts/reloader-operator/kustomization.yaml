@@ -5,11 +5,5 @@ kind: Kustomization
 
 namespace: reloader
 
-helmCharts:
-  - name: reloader
-    version: 2.2.11
-    repo: https://stakater.github.io/stakater-charts
-    valuesFile: values.yaml
-
 resources:
   - https://github.com/stakater/Reloader//deployments/kubernetes/?timeout=120&ref=release-v1.4.11
