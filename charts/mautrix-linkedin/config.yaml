@@ -28,7 +28,7 @@ homeserver:
 # Changing these values requires regeneration of the registration (except when noted otherwise)
 appservice:
     address: "http://mautrix-linkedin.matrix.svc.cluster.local.:29341"
-    public_address: https://mautrix-linkedin.g4v.dev
+    public_address: https://mautrix-bridges.g4v.dev/linkedin
     hostname: 0.0.0.0
     port: 29341
     id: linkedin2026
