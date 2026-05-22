@@ -15,7 +15,6 @@ spec:
           - { namespace: kube-system, name: do-ingress-nginx }
           # matrix
           - { namespace: matrix, name: mautrix-googlechat }
-          - { namespace: matrix, name: mautrix-whatsapp }
 
           # Apps
           - name: authentik
@@ -75,6 +74,7 @@ spec:
           - { namespace: matrix, name: mautrix-instagram }
           - { namespace: matrix, name: mautrix-linkedin }
           - { namespace: matrix, name: mautrix-signal }
+          - { namespace: matrix, name: mautrix-whatsapp }
           - { namespace: matrix, name: synatainer }
 
           - { namespace: bitwarden, name: vaultwarden }

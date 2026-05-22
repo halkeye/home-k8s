@@ -7,8 +7,8 @@ controllers:
     containers:
       main:
         image:
-          repository: ghcr.io/halkeye/docker-mautrix-whatsapp
-          tag: v0.2605.0.65
+          repository: dock.mau.dev/mautrix/whatsapp
+          tag: v0.2605.0
         env:
           TZ: America/Vancouver
           BRIDGE_DATABASE__URI:
@@ -19,7 +19,7 @@ controllers:
         envFrom:
           - secretRef:
               name: "mautrix-whatsapp-secret"
-        args:
+        command:
           - /usr/bin/mautrix-whatsapp
           - "-n"
           - "-c"
@@ -83,7 +83,7 @@ persistence:
   data:
     enabled: true
     type: emptyDir
-  secrets:
+  configmap:
     enabled: true
     type: secret
     name: "mautrix-whatsapp-secret"

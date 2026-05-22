@@ -68,6 +68,7 @@ controllers:
         runAsNonRoot: true
         fsGroup: 1337
         fsGroupChangePolicy: OnRootMismatch
+
 service:
   main:
     controller: main
