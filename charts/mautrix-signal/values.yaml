@@ -1,44 +1,30 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
   main:
     annotations:
       reloader.stakater.com/auto: "true"
-    type: deployment
     replicas: 1
-    strategy: Recreate
-    initContainers:
-      01-init:
+    type: statefulset
+    containers:
+      main:
         image:
-          repository: ghcr.io/halkeye/docker-mautrix-signal
-          tag: v0.2605.0.53
+          repository: dock.mau.dev/mautrix/signal
+          tag: v0.2605.0
         env:
           TZ: America/Vancouver
-          MAUTRIX_DB_URI:
+          BRIDGE_DATABASE__URI:
             valueFrom:
               secretKeyRef:
-                name: "{{.Release.Name }}-db-secret-{{.Release.Name }}"
+                name: "mautrix-signal-db-secret-mautrix-signal"
                 key: POSTGRES_URL
         envFrom:
           - secretRef:
               name: "mautrix-signal-secret"
         command:
-          - bash
-          - -c
-          - cat /configmap/config.yaml | envsubst > /data/config.yaml
-    containers:
-      main:
-        image:
-          repository: ghcr.io/halkeye/docker-mautrix-signal
-          tag: v0.2605.0.53
-        env:
-          TZ: America/Vancouver
-          MAUTRIX_DB_URI:
-            valueFrom:
-              secretKeyRef:
-                name: "mautrix-signal-db-secret-mautrix-signal"
-                key: POSTGRES_URL
-        args:
+          - "/usr/bin/mautrix-signal"
+          - "-n"
           - "-c"
-          - "/data/config.yaml"
+          - "/configmap/config.yaml"
         probes:
           liveness:
             enabled: true
@@ -101,3 +87,27 @@ persistence:
     enabled: true
     type: configMap
     name: "mautrix-signal-configmap"
+
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "mautrix-bridges.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /signal
+        filters:
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /
+        backendRefs:
+          - identifier: main
+            port: http
