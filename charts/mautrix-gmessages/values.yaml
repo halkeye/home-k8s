@@ -1,18 +1,18 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
   main:
     annotations:
       reloader.stakater.com/auto: "true"
-    type: deployment
     replicas: 1
-    strategy: Recreate
-    initContainers:
-      01-init:
+    type: statefulset
+    containers:
+      main:
         image:
-          repository: ghcr.io/halkeye/docker-mautrix-gmessages
-          tag: "v0.2605.0.52"
+          repository: dock.mau.dev/mautrix/gmessages
+          tag: "v0.2605.0"
         env:
           TZ: America/Vancouver
-          MAUTRIX_DB_URI:
+          BRIDGE_DATABASE__URI:
             valueFrom:
               secretKeyRef:
                 name: "mautrix-gmessages-db-secret-mautrix-gmessages"
@@ -21,23 +21,8 @@ controllers:
           - secretRef:
               name: "mautrix-gmessages-secret"
         command:
-          - bash
-          - -c
-          - cat /configmap/config.yaml | envsubst > /data/config.yaml
-    containers:
-      main:
-        image:
-          repository: ghcr.io/halkeye/docker-mautrix-gmessages
-          tag: "v0.2605.0.52"
-        env:
-          TZ: America/Vancouver
-          MAUTRIX_DB_URI:
-            valueFrom:
-              secretKeyRef:
-                name: "mautrix-gmessages-db-secret-mautrix-gmessages"
-                key: POSTGRES_URL
-        command:
           - "/usr/bin/mautrix-gmessages"
+          - "-n"
           - "-c"
           - "/data/config.yaml"
         probes:
@@ -102,3 +87,27 @@ persistence:
     enabled: true
     type: configMap
     name: "mautrix-gmessages-configmap"
+
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "mautrix-bridges.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /gmessages
+        filters:
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /
+        backendRefs:
+          - identifier: main
+            port: http
