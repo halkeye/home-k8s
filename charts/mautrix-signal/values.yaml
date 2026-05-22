@@ -9,7 +9,7 @@ controllers:
       main:
         image:
           repository: dock.mau.dev/mautrix/signal
-          tag: v0.2605.0
+          tag: v26.02.2
         env:
           TZ: America/Vancouver
           BRIDGE_DATABASE__URI:
