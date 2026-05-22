@@ -1,0 +1,40 @@
+network:
+    displayname_template: "{{or .BusinessName .PushName .JID}} (WA)"
+    proxy_media: true
+
+bridge:
+    permissions:
+      "*": relay
+      "g4v.dev": user
+      "@halkeye:g4v.dev": admin
+
+# Config for the bridge's database.
+database:
+    type: postgres
+    uri: "$MAUTRIX_DB_URI"
+
+# Homeserver details.
+homeserver:
+    address: "http://matrix-stack-synapse-main.matrix.svc.cluster.local.:8008"
+    domain: g4v.dev
+    async_media: true
+
+# Application service host/registration related details.
+# Changing these values requires regeneration of the registration (except when noted otherwise)
+appservice:
+    address: "http://mautrix-whatsapp.matrix.svc.cluster.local.:29318"
+    public_address: https://mautrix-bridges.g4v.dev/linkedin
+    hostname: 0.0.0.0
+    port: 29318
+
+encryption:
+    allow: false
+
+env_config_prefix: BRIDGE_
+
+# Logging config. See https://github.com/tulir/zeroconfig for details.
+logging:
+    min_level: info
+    writers:
+        - type: stdout
+          format: pretty-colored

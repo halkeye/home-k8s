@@ -1,9 +1,0 @@
-apiVersion: db.movetokube.com/v1alpha1
-kind: PostgresUser
-metadata:
-  name: "{{ .Release.Name }}"
-spec:
-  role: "{{ .Release.Name }}"
-  database: "{{ .Release.Name }}"
-  secretName: "{{ .Release.Name }}-db-secret"
-  privileges: OWNER

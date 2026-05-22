@@ -1,0 +1,18 @@
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: "mautrix-whatsapp"
+spec:
+  role: "mautrix-whatsapp"
+  database: "mautrix-whatsapp"
+  secretName: "mautrix-whatsapp-db-secret"
+  privileges: OWNER
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: "mautrix-whatsapp"
+spec:
+  database: "mautrix_whatsapp"
+  dropOnDelete: false

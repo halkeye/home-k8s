@@ -1,160 +1,113 @@
-app-template:
-  provisioning_shared_secret: "foo"
-  login_shared_secret: "login_shared_secret"
-  as_token: "This value is generated when generating the registration"
-  hs_token: "This value is generated when generating the registration"
-
-  controllers:
-    main:
-      annotations:
-        reloader.stakater.com/auto: "true"
-      type: deployment
-      replicas: 1
-      strategy: Recreate
-      initContainers:
-        01-init:
-          image:
-            repository: ghcr.io/halkeye/docker-mautrix-whatsapp
-            tag: v0.2605.0.65
-          env:
-            TZ: America/Vancouver
-            MAUTRIX_DB_URI:
-              valueFrom:
-                secretKeyRef:
-                  name: "{{.Release.Name }}-db-secret-{{.Release.Name }}"
-                  key: POSTGRES_URL
-          command:
-            - bash
-            - -c
-            - cat /secrets/config.yaml | envsubst > /data/config.yaml
-      containers:
-        main:
-          image:
-            repository: ghcr.io/halkeye/docker-mautrix-whatsapp
-            tag: v0.2605.0.65
-          env:
-            TZ: America/Vancouver
-            MAUTRIX_DB_URI:
-              valueFrom:
-                secretKeyRef:
-                  name: "{{.Release.Name}}-db-secret-{{.Release.Name}}"
-                  key: POSTGRES_URL
-          args:
-            - "-c"
-            - "/data/config.yaml"
-          probes:
-            liveness:
-              enabled: true
-              custom: true
-              spec:
-                httpGet:
-                  path: /_matrix/mau/live
-                  port: 29318
-                initialDelaySeconds: 0
-                periodSeconds: 10
-                timeoutSeconds: 1
-                failureThreshold: 3
-            readiness:
-              enabled: true
-              custom: true
-              spec:
-                httpGet:
-                  path: /_matrix/mau/ready
-                  port: 29318
-                initialDelaySeconds: 0
-                periodSeconds: 10
-                timeoutSeconds: 1
-                failureThreshold: 3
-            startup:
-              enabled: false
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            capabilities:
-              drop: ["ALL"]
-          resources:
-            limits:
-              memory: 100Mi
-            requests:
-              cpu: 10m
-              memory: 100Mi
-      pod:
+controllers:
+  main:
+    annotations:
+      reloader.stakater.com/auto: "true"
+    replicas: 1
+    type: statefulset
+    containers:
+      main:
+        image:
+          repository: ghcr.io/halkeye/docker-mautrix-whatsapp
+          tag: v0.2605.0.65
+        env:
+          TZ: America/Vancouver
+          BRIDGE_DATABASE__URI:
+            valueFrom:
+              secretKeyRef:
+                name: "mautrix-whatsapp-db-secret-mautrix-whatsapp"
+                key: POSTGRES_URL
+        envFrom:
+          - secretRef:
+              name: "mautrix-whatsapp-secret"
+        args:
+          - /usr/bin/mautrix-whatsapp
+          - "-n"
+          - "-c"
+          - "/configmap/config.yaml"
+        probes:
+          liveness:
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /_matrix/mau/live
+                port: 29318
+              initialDelaySeconds: 0
+              periodSeconds: 10
+              timeoutSeconds: 1
+              failureThreshold: 3
+          readiness:
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /_matrix/mau/ready
+                port: 29318
+              initialDelaySeconds: 0
+              periodSeconds: 10
+              timeoutSeconds: 1
+              failureThreshold: 3
+          startup:
+            enabled: false
         securityContext:
-          runAsUser: 1337
-          runAsGroup: 1337
-          runAsNonRoot: true
-          fsGroup: 1337
-          fsGroupChangePolicy: OnRootMismatch
-  service:
-    main:
-      controller: main
-      publishNotReadyAddresses: true
-      ports:
-        http:
-          port: 29318
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+        resources:
+          limits:
+            memory: 100Mi
+          requests:
+            cpu: 10m
+            memory: 100Mi
+    pod:
+      securityContext:
+        runAsUser: 1337
+        runAsGroup: 1337
+        runAsNonRoot: true
+        fsGroup: 1337
+        fsGroupChangePolicy: OnRootMismatch
 
-  persistence:
-    tmp:
-      enabled: true
-      type: emptyDir
-    data:
-      enabled: true
-      type: emptyDir
-    secrets:
-      enabled: true
-      type: secret
-      name: "{{ .Release.Name }}-secret"
+service:
+  main:
+    controller: main
+    publishNotReadyAddresses: true
+    ports:
+      http:
+        port: 29318
 
+persistence:
+  tmp:
+    enabled: true
+    type: emptyDir
+  data:
+    enabled: true
+    type: emptyDir
   secrets:
-    secret:
-      enabled: true
-      suffix: secret
-      stringData:
-        config.yaml: |-
-          # Network-specific config options
-          network:
-              displayname_template: "{{`{{or .BusinessName .PushName .JID}} (WA)`}}"
+    enabled: true
+    type: secret
+    name: "mautrix-whatsapp-secret"
 
-          bridge:
-              permissions:
-                "*": relay
-                "g4v.dev": user
-                "@halkeye:g4v.dev": admin
-
-          # Config for the bridge's database.
-          database:
-              type: postgres
-              uri: "$MAUTRIX_DB_URI"
-
-          # Homeserver details.
-          homeserver:
-              address: "http://matrix-stack-synapse-main.matrix.svc.cluster.local.:8008"
-              domain: g4v.dev
-              # Does the homeserver support https://github.com/matrix-org/matrix-spec-proposals/pull/2246?
-              async_media: true
-
-          # Application service host/registration related details.
-          # Changing these values requires regeneration of the registration (except when noted otherwise)
-          appservice:
-              address: "http://{{ .Release.Name }}.{{ .Release.Namespace }}.svc.cluster.local.:29318"
-              hostname: 0.0.0.0
-              port: 29318
-              # Authentication tokens for AS <-> HS communication. Autogenerated; do not modify.
-              as_token: "{{ .Values.as_token }}"
-              hs_token: "{{ .Values.hs_token }}"
-
-
-          # Settings for provisioning API
-          provisioning:
-              shared_secret: "{{ .Values.provisioning_shared_secret }}"
-
-          double_puppet:
-              secrets:
-                  g4v.dev: "{{ .Values.login_shared_secret }}"
-
-          # Logging config. See https://github.com/tulir/zeroconfig for details.
-          logging:
-              min_level: warn
-              writers:
-                  - type: stdout
-                    format: pretty-colored
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "mautrix-bridges.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /whatsapp
+        filters:
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /
+        backendRefs:
+          - identifier: main
+            port: http
