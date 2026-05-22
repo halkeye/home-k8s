@@ -23,7 +23,7 @@ controllers:
           - /usr/bin/mautrix-whatsapp
           - "-n"
           - "-c"
-          - "/configmap/config.yaml"
+          - /configmap/config.yaml
         probes:
           liveness:
             enabled: true

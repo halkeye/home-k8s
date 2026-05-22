@@ -9,7 +9,7 @@ controllers:
       main:
         image:
           repository: dock.mau.dev/mautrix/gmessages
-          tag: "v0.2605.0"
+          tag: v0.2605.0
         env:
           TZ: America/Vancouver
           BRIDGE_DATABASE__URI:
@@ -21,10 +21,10 @@ controllers:
           - secretRef:
               name: "mautrix-gmessages-secret"
         command:
-          - "/usr/bin/mautrix-gmessages"
+          - /usr/bin/mautrix-gmessages
           - "-n"
           - "-c"
-          - "/data/config.yaml"
+          - "/configmap/config.yaml"
         probes:
           liveness:
             enabled: true

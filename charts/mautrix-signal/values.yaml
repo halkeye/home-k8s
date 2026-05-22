@@ -21,10 +21,10 @@ controllers:
           - secretRef:
               name: "mautrix-signal-secret"
         command:
-          - "/usr/bin/mautrix-signal"
+          - /usr/bin/mautrix-signal
           - "-n"
           - "-c"
-          - "/configmap/config.yaml"
+          - /configmap/config.yaml
         probes:
           liveness:
             enabled: true
