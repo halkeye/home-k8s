@@ -85,8 +85,8 @@ persistence:
     type: emptyDir
   configmap:
     enabled: true
-    type: secret
-    name: "mautrix-whatsapp-secret"
+    type: configMap
+    name: "mautrix-whatsapp-configmap"
 
 route:
   main:
