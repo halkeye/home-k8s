@@ -18,7 +18,7 @@ controllers:
       main:
         image:
           repository: couchdb
-          tag: 3.5.1
+          tag: 3.5.2
         env:
           TZ: America/Vancouver
         envFrom:
