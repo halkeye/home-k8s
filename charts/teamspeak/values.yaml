@@ -6,7 +6,7 @@ controllers:
       teamspeak:
         image:
           repository: teamspeak
-          tag: "3.13.7"
+          tag: "3.13.8"
         env:
           TZ: America/Vancouver
           TS3SERVER_LICENSE: accept
