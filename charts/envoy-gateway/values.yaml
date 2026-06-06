@@ -1,7 +1,3 @@
-crds:
-  gatewayAPI:
-    enabled: true
-    channel: standard
 config:
   envoyGateway:
     rbac:

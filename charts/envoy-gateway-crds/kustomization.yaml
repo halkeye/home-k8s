@@ -6,13 +6,8 @@ kind: Kustomization
 namespace: envoy-gateway
 
 helmCharts:
-  - name: gateway-helm
+  - name: gateway-crds-helm
     version: 1.8.1
     repo: oci://docker.io/envoyproxy
     valuesFile: values.yaml
-    releaseName: envoy-gateway
-
-resources:
-  - certificate.yaml
-  - referencegrant.yaml
-  - gateway.yaml
+    releaseName: gateway-crds
