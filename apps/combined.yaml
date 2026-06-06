@@ -14,6 +14,7 @@ spec:
           - list:
               elements:
                 - { appname: cert-manager, useOverlay: true }
+                - { appname: envoy-gateway-crds }
                 - { appname: envoy-gateway }
                 - { appname: grafana-operator, useOverlay: true }
                 - { appname: reloader-operator, namespace: reloader }
