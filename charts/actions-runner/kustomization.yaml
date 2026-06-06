@@ -1,0 +1,16 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: gha-runner-g4v
+
+helmCharts:
+  - name: gha-runner-scale-set
+    version: 0.14.2
+    repo: oci://ghcr.io/actions/actions-runner-controller-charts
+    valuesFile: values.yaml
+    releaseName: "g4v"
+
+resources:
+  - ./secret.enc.yaml

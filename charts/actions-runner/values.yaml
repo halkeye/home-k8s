@@ -1,0 +1,7 @@
+---
+githubConfigUrl: https://github.com/g4v-dev
+githubConfigSecret: actions-runner-controller
+
+controllerServiceAccount:
+  namespace: actions-runner-controller
+  name: gha-rs-controller
