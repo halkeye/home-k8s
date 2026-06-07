@@ -4,3 +4,6 @@ config:
       cluster: true
     extensionApis:
       enableBackend: true
+gatewayAPI:
+  safeUpgradePolicy:
+    enabled: false
