@@ -16,3 +16,11 @@ resources:
   - certificate.yaml
   - referencegrant.yaml
   - gateway.yaml
+
+patches:
+  - patch: |-
+      $patch: delete
+      apiVersion: admissionregistration.k8s.io/v1
+      kind: ValidatingAdmissionPolicy
+      metadata:
+        name: safe-upgrades.gateway.networking.k8s.io
