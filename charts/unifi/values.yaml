@@ -41,7 +41,7 @@ app-template:
         external-dns.alpha.kubernetes.io/cloudflare-proxied: 'false'
         external-dns.alpha.kubernetes.io/hostname: "unifi-lb.gavinmogan.com"
       ports:
-        http:
+        https:
           port: 8443
           protocol: HTTPS
         controller:
@@ -72,38 +72,43 @@ app-template:
           enabled: true
           port: 10001
           protocol: UDP
-  ingress:
+  route:
     main:
       enabled: true
       annotations:
-        nginx.ingress.kubernetes.io/proxy-body-size: '0'
-        nginx.ingress.kubernetes.io/proxy-read-timeout: '600'
-        nginx.ingress.kubernetes.io/proxy-send-timeout: '600'
-        nginx.ingress.kubernetes.io/force-ssl-redirect: 'true'
-        nginx.ingress.kubernetes.io/backend-protocol: 'HTTPS'
         external-dns.alpha.kubernetes.io/cloudflare-proxied: 'false'
-      hosts:
-        - host: unifi.g4v.dev
-          paths:
-            - path: /
-              service:
-                identifier: main
-                port: http
+      parentRefs:
+        - name: http-gateway
+          namespace: envoy-gateway
+          sectionName: https
+      hostnames:
+        - "unifi.g4v.dev"
+      rules:
+        - matches:
+          - path:
+              type: PathPrefix
+              value: /
+          backendRefs:
+            - identifier: main
+              port: http
     controller:
       enabled: true
       annotations:
-        nginx.ingress.kubernetes.io/proxy-body-size: '0'
-        nginx.ingress.kubernetes.io/proxy-read-timeout: '600'
-        nginx.ingress.kubernetes.io/proxy-send-timeout: '600'
-        nginx.ingress.kubernetes.io/force-ssl-redirect: 'true'
         external-dns.alpha.kubernetes.io/cloudflare-proxied: 'false'
-      hosts:
-        - host: unifi-controller.g4v.dev
-          paths:
-            - path: /inform
-              service:
-                identifier: main
-                port: controller
+      parentRefs:
+        - name: http-gateway
+          namespace: envoy-gateway
+          sectionName: https
+      hostnames:
+        - "unifi-controller.g4v.dev"
+      rules:
+        - matches:
+          - path:
+              type: PathPrefix
+              value: /
+          backendRefs:
+            - identifier: main
+              port: controller
   configMaps:
     config:
       suffix: config
