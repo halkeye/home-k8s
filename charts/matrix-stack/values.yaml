@@ -101,7 +101,7 @@ synapse:
     secret: matrix-stack
     secretKey: global_registration_shared_secret
   workers:
-    appservices:
+    appservice:
       enabled: true
     client-reader:
       enabled: true
