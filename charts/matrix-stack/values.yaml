@@ -103,19 +103,11 @@ synapse:
   workers:
     appservice:
       enabled: true
-    client-reader:
-      enabled: true
-    federation-inbound:
-      enabled: true
     federation-reader:
       enabled: true
     federation-sender:
       enabled: true
     pusher:
-      enabled: true
-    sliding-sync:
-      enabled: true
-    synchrotron:
       enabled: true
   logging:
     rootLevel: ERROR
