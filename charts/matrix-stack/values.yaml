@@ -100,6 +100,25 @@ synapse:
   registrationSharedSecret:
     secret: matrix-stack
     secretKey: global_registration_shared_secret
+  workers:
+    appservices:
+      enabled: true
+    client-reader:
+      enabled: true
+    federation-inbound:
+      enabled: true
+    federation-reader:
+      enabled: true
+    federation-sender:
+      enabled: true
+    pusher:
+      enabled: true
+    sliding-sync:
+      enabled: true
+    synchrotron:
+      enabled: true
+  logging:
+    rootLevel: ERROR
   postgres:
     host: private-dok8s-sfo2-do-user-8094590-0.b.db.ondigitalocean.com
     port: 25060
