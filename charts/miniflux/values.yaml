@@ -21,7 +21,7 @@ controllers:
           OAUTH2_REDIRECT_URL: https://miniflux.g4v.dev/oauth2/oidc/callback
           POLLING_SCHEDULER: entry_frequency
           POLLING_FREQUENCY: "15"
-          PORT: &port 3000
+          PORT: 3000
           RUN_MIGRATIONS: "1"
         envFrom:
           - secretRef:
@@ -33,7 +33,7 @@ controllers:
             spec:
               httpGet:
                 path: /healthcheck
-                port: *port
+                port: 3000
               initialDelaySeconds: 0
               periodSeconds: 10
               timeoutSeconds: 1
@@ -70,7 +70,7 @@ service:
     controller: main
     ports:
       http:
-        port: *port
+        port: 3000
 
 route:
   main:
@@ -98,8 +98,8 @@ serviceMonitor:
     enabled: true
     serviceName: 'miniflux'
     endpoints:
-      - port: metrics
+      - port: http
         scheme: http
         path: /metrics
         interval: 1m
-        scrapeTimeout: 1m
+        scrapeTimeout: 10s
