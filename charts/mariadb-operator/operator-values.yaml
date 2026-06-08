@@ -1,8 +1,0 @@
----
-metrics:
-  enabled: true
-webhook:
-  cert:
-    certManager:
-      enabled: true
-
