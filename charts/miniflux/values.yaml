@@ -12,7 +12,7 @@ controllers:
           BASE_URL: https://miniflux.g4v.dev
           CREATE_ADMIN: "1"
           LOG_DATE_TIME: "1"
-          METRICS_ALLOWED_NETWORKS: "10.32.0.0/16"
+          METRICS_ALLOWED_NETWORKS: "10.244.0.0/16"
           METRICS_COLLECTOR: "1"
           FETCHER_ALLOW_PRIVATE_NETWORKSFETCHER_ALLOW_PRIVATE_NETWORKS: "1"
           OAUTH2_USER_CREATION: "1"
