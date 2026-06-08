@@ -90,7 +90,7 @@ app-template:
               value: /
           backendRefs:
             - identifier: main
-              port: http
+              port: https
     controller:
       enabled: true
       annotations:
