@@ -6,7 +6,7 @@ metadata:
   namespace: authentik
 spec:
   from:
-  - group: gateway.networking.k8s.io
+  - group: gateway.envoyproxy.io/v1alpha1
     kind: SecurityPolicy
     namespace: stirling-pdf
   - group: gateway.networking.k8s.io
