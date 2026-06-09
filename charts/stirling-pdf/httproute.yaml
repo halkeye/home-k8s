@@ -31,11 +31,18 @@ spec:
     - group: gateway.networking.k8s.io
       kind: HTTPRoute
       name: stirling-pdf
-  oidc:
-    provider:
-      issuer: "https://auth.g4v.dev/application/o/stirling-pdf/"
-    clientID: "HuF52rnHoQrTvPGJ43hh5x4lkLYLf70u3crkSWgQ"
-    clientSecret:
-      name: "stirling-pdf"
-    redirectURL: "https://pdf.g4v.dev/oauth2/callback"
-    logoutPath: "/myapp/logout"
+  # oidc:
+  #   provider:
+  #     issuer: "https://auth.g4v.dev/application/o/stirling-pdf/"
+  #   clientID: "HuF52rnHoQrTvPGJ43hh5x4lkLYLf70u3crkSWgQ"
+  #   clientSecret:
+  #     name: "stirling-pdf"
+  #   redirectURL: "https://pdf.g4v.dev/oauth2/callback"
+  #   logoutPath: "/myapp/logout"
+  extAuth:
+    http:
+      backendRefs:
+        - name: ak-outpost-k8s
+          namespace: authentik
+          port: 9000
+      headersToBackend: ["x-current-user"]
