@@ -124,6 +124,24 @@ synapse:
     1-storage:
       configSecret: matrix-stack-synapse2
       configSecretKey: synapse_media_s3.yaml
+    2-retention:
+      config: |
+        forgotten_room_retention_period: 30d
+        retention:
+          enabled: true
+          default_policy:
+            min_lifetime: 180d
+            max_lifetime: 1y
+          allowed_lifetime_min: 1d
+          allowed_lifetime_max: 1y
+          purge_jobs:
+          - interval: 1d
+      3-rooms:
+        config: |
+          room_list_publication_rules:
+            - action: allow
+          forget_rooms_on_leave: true
+
     # 2-oidc:
     #   configSecret: matrix-stack-synapse2
     #   configSecretKey: synapse_oidc.yaml
