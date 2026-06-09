@@ -37,5 +37,5 @@ spec:
     clientID: "HuF52rnHoQrTvPGJ43hh5x4lkLYLf70u3crkSWgQ"
     clientSecret:
       name: "stirling-pdf"
-    redirectURL: "https://stirling-pdf.g4v.dev/oauth2/callback"
+    redirectURL: "https://pdf.g4v.dev/oauth2/callback"
     logoutPath: "/myapp/logout"
