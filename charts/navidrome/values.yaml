@@ -17,7 +17,7 @@ controllers:
       oauth2proxy:
         image: 
           repository: quay.io/oauth2-proxy/oauth2-proxy
-          tag: v7.15.2
+          tag: v7.15.3
         command:
           - oauth2-proxy
           - --alpha-config
@@ -54,7 +54,7 @@ controllers:
       navidrome:
         image:
           repository: ghcr.io/navidrome/navidrome
-          tag: 0.61.2
+          tag: 0.62.0
         env:
           TZ: America/Vancouver
           ND_DATAFOLDER: /config
