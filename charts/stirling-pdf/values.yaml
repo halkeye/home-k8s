@@ -7,8 +7,6 @@ envs:
   - { name: SECURITY_ENABLELOGIN, value: "false" }
   - { name: FAT_DOCKER, value: "true" }
   - { name: DISABLE_ADDITIONAL_FEATURES, value: "false" }
-serviceMonitor:
-  enabled: true
 
 probes:
   liveness:
