@@ -7,6 +7,7 @@ envs:
   - { name: SECURITY_ENABLELOGIN, value: "false" }
   - { name: FAT_DOCKER, value: "true" }
   - { name: DISABLE_ADDITIONAL_FEATURES, value: "false" }
+  - { name: SYSTEM_ENABLEANALYTICS, value: "false" }
 
 probes:
   liveness:
