@@ -1,18 +1,7 @@
 fullnameOverride: stirling-pdf
 nameOverride: stirling-pdf
 envs:
-  - { name: DOCKER_ENABLE_SECURITY, value: "true" }
-  - { name: SECURITY_ENABLE_LOGIN, value: "true" }
-  - { name: SECURITY_LOGINMETHOD, value: "oauth2" }
-  - { name: SECURITY_OAUTH2_ENABLED, value: "true" }
-  - { name: SECURITY_OAUTH2_AUTOCREATEUSER, value: "true" }
-  - { name: SECURITY_OAUTH2_ISSUER, value: "https://auth.g4v.dev/application/o/stirling-pdf/" }
-  - { name: SECURITY_OAUTH2_BLOCKREGISTRATION, value: "false" }
-  - { name: SECURITY_OAUTH2_SCOPES, value: "openid,profile" }
-  - { name: SECURITY_OAUTH2_USEASUSERNAME, value: "preferred_username" }
-  - { name: SECURITY_OAUTH2_PROVIDER, value: "Auth" }
-envsFrom:
-- secretRef:
-    name: stirling-pdf
+  - { name: DOCKER_ENABLE_SECURITY, value: "false" }
+  - { name: SECURITY_ENABLE_LOGIN, value: "false" }
 serviceMonitor:
   enabled: true
