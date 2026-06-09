@@ -9,6 +9,9 @@ spec:
   - group: gateway.networking.k8s.io
     kind: SecurityPolicy
     namespace: stirling-pdf
+  - group: gateway.networking.k8s.io
+    kind: HTTPRoute
+    namespace: stirling-pdf
   to:
   - group: ""
     kind: Service
