@@ -1,48 +1,49 @@
-apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
-metadata:
-  name: stirling-pdf
-spec:
-  parentRefs:
-    - name: http-gateway
-      group: gateway.networking.k8s.io
-      kind: Gateway
-      namespace: envoy-gateway
-      sectionName: https
-  hostnames:
-    - pdf.g4v.dev
-  rules:
-    - backendRefs:
-        - name: stirling-pdf
-          port: 8080
-          kind: Service
-      matches:
-        - path:
-            type: PathPrefix
-            value: /
-
----
-apiVersion: gateway.envoyproxy.io/v1alpha1
-kind: SecurityPolicy
-metadata:
-  name: stirling-pdf-oidc
-spec:
-  targetRefs:
-    - group: gateway.networking.k8s.io
-      kind: HTTPRoute
-      name: stirling-pdf
-  # oidc:
-  #   provider:
-  #     issuer: "https://auth.g4v.dev/application/o/stirling-pdf/"
-  #   clientID: "HuF52rnHoQrTvPGJ43hh5x4lkLYLf70u3crkSWgQ"
-  #   clientSecret:
-  #     name: "stirling-pdf"
-  #   redirectURL: "https://pdf.g4v.dev/oauth2/callback"
-  #   logoutPath: "/myapp/logout"
-  extAuth:
-    http:
-      backendRefs:
-        - name: ak-outpost-k8s
-          namespace: authentik
-          port: 9000
-      headersToBackend: ["x-current-user"]
+# ---
+# apiVersion: gateway.networking.k8s.io/v1
+# kind: HTTPRoute
+# metadata:
+#   name: stirling-pdf
+# spec:
+#   parentRefs:
+#     - name: http-gateway
+#       group: gateway.networking.k8s.io
+#       kind: Gateway
+#       namespace: envoy-gateway
+#       sectionName: https
+#   hostnames:
+#     - pdf.g4v.dev
+#   rules:
+#     - backendRefs:
+#         - name: stirling-pdf
+#           port: 8080
+#           kind: Service
+#       matches:
+#         - path:
+#             type: PathPrefix
+#             value: /
+#
+# ---
+# apiVersion: gateway.envoyproxy.io/v1alpha1
+# kind: SecurityPolicy
+# metadata:
+#   name: stirling-pdf-oidc
+# spec:
+#   targetRefs:
+#     - group: gateway.networking.k8s.io
+#       kind: HTTPRoute
+#       name: stirling-pdf
+#   # oidc:
+#   #   provider:
+#   #     issuer: "https://auth.g4v.dev/application/o/stirling-pdf/"
+#   #   clientID: "HuF52rnHoQrTvPGJ43hh5x4lkLYLf70u3crkSWgQ"
+#   #   clientSecret:
+#   #     name: "stirling-pdf"
+#   #   redirectURL: "https://pdf.g4v.dev/oauth2/callback"
+#   #   logoutPath: "/myapp/logout"
+#   extAuth:
+#     http:
+#       backendRefs:
+#         - name: ak-outpost-k8s
+#           namespace: authentik
+#           port: 9000
+#       headersToBackend: ["x-current-user"]
