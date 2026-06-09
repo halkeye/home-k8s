@@ -3,9 +3,9 @@ nameOverride: stirling-pdf
 image:
   repository: stirlingtools/stirling-pdf
   tag: 2.11.0-fat
-envs:
-  - { name: SECURITY_ENABLELOGIN, value: "false" }
-  - { name: FAT_DOCKER, value: "true" }
-  - { name: DISABLE_ADDITIONAL_FEATURES, value: "false" }
+# envs:
+#   - { name: SECURITY_ENABLELOGIN, value: "false" }
+#   - { name: FAT_DOCKER, value: "true" }
+#   - { name: DISABLE_ADDITIONAL_FEATURES, value: "false" }
 serviceMonitor:
   enabled: true
