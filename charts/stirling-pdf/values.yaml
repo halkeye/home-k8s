@@ -9,3 +9,9 @@ image:
 #   - { name: DISABLE_ADDITIONAL_FEATURES, value: "false" }
 serviceMonitor:
   enabled: true
+
+probes:
+  liveness:
+    enabled: false
+  readiness:
+    enabled: false
