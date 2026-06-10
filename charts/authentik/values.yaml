@@ -1,43 +1,48 @@
+redis:
+  enabled: false
+
+global:
+  image:
+    repository: ghcr.io/goauthentik/server
+    tag: "2026.5.2"
+  deploymentAnnotations:
+    reloader.stakater.com/auto: "true"
+
 authentik:
-  redis:
-    enabled: false
+  # This sends anonymous usage-data, stack traces on errors and
+  # performance data to sentry.beryju.org, and is fully opt-in
+  error_reporting:
+    enabled: true
+  existingSecret:
+    secretName: "authentik"
 
-  global:
-    image:
-      repository: ghcr.io/goauthentik/server
-      tag: "2026.5.2"
-    deploymentAnnotations:
-      reloader.stakater.com/auto: "true"
+prometheus:
+  rules:
+    enabled: true
 
-  authentik:
-    # This sends anonymous usage-data, stack traces on errors and
-    # performance data to sentry.beryju.org, and is fully opt-in
-    error_reporting:
+server:
+  route:
+    main:
       enabled: true
+      # -- Route annotations
+      # annotations:
+      #   cert-manager.io/cluster-issuer: letsencrypt
+      #   kubernetes.io/tls-acme: "true"
+      # -- Route hostnames
+      hostnames:
+        - auth.g4v.dev
+      # -- Reference to parent gateways
+      parentRefs:
+        - name: http-gateway
+          group: gateway.networking.k8s.io
+          kind: Gateway
+          namespace: envoy-gateway
+          sectionName: https
+  volumeMounts:
+    - name: certs
+      mountPath: /certs
 
-  server:
-    route:
-      main:
-        enabled: true
-        # -- Route annotations
-        # annotations:
-        #   cert-manager.io/cluster-issuer: letsencrypt
-        #   kubernetes.io/tls-acme: "true"
-        # -- Route hostnames
-        hostnames:
-          - auth.g4v.dev
-        # -- Reference to parent gateways
-        parentRefs:
-          - name: http-gateway
-            group: gateway.networking.k8s.io
-            kind: Gateway
-            namespace: envoy-gateway
-            sectionName: https
-    volumeMounts:
-      - name: certs
-        mountPath: /certs
-
-    volumes:
-      - name: certs
-        secret:
-          secretName: "authentik-tls"
+  volumes:
+    - name: certs
+      secret:
+        secretName: "authentik-tls"
