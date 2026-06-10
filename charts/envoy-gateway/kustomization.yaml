@@ -13,9 +13,11 @@ helmCharts:
     releaseName: envoy-gateway
 
 resources:
-  - certificate.yaml
-  - referencegrant.yaml
-  - gateway.yaml
+  - ./certificate.yaml
+  - ./referencegrant.yaml
+  - ./gateway.yaml
+  - ./backend-traffic-policies.yaml
+  - ./client-traffic-policy.yaml
 
 patches:
   - patch: |-
