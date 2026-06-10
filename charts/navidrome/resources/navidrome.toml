@@ -7,16 +7,16 @@ EnableSharing = true
 EnableTranscodingConfig = true
 # EnableUserEditing = true # needed to set external password
 ImageCacheSize = "1GB"
-LogLevel = 'INFO'
+LogLevel = 'DEBUG'
 MusicFolder = '/music'
-SessionTimeout = 86400000000000
+SessionTimeout = 99d
 TranscodingCacheSize = '5GB'
 
 [Search]
 FullString = true
 
 [ExtAuth]
-TrustedSources = "0.0.0.0/0,172.16.10.0/24"
+TrustedSources = "10.0.0.0/8"
 UserHeader = "X-Authentik-Username"
 
 [Scanner]
