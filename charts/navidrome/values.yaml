@@ -10,6 +10,14 @@ defaultPodOptions:
     fsGroupChangePolicy: "OnRootMismatch"
 
 controllers:
+  whoami:
+    containers:
+      whoami:
+        image:
+          repository: traefik/whoami
+          tag: v1.11.0
+        env:
+          WHOAMI_PORT_NUMBER: 8080
   authentik:
     annotations:
       reloader.stakater.com/auto: "true"
@@ -117,6 +125,11 @@ service:
     ports:
       oauth:
         port: 4180
+  whoami:
+    controller: whoami
+    ports:
+      http:
+        port: 8080
 
 route:
   main:
@@ -134,6 +147,13 @@ route:
             value: /
         backendRefs:
           - identifier: authentik
+            port: http
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /whoami
+        backendRefs:
+          - identifier: whoami
             port: http
       # - matches:
       #   - path:
