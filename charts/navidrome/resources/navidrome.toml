@@ -15,7 +15,7 @@ TranscodingCacheSize = '5GB'
 FullString = true
 
 [ExtAuth]
-TrustedSources = "10.0.0.0/8"
+TrustedSources = "10.0.0.0/8,172.16.10.5/32,172.16.10.6/32,172.16.10.11/32"
 UserHeader = "X-Authentik-Username"
 
 [Scanner]
