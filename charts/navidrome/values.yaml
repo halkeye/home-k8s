@@ -14,6 +14,16 @@ controllers:
     annotations:
       reloader.stakater.com/auto: "true"
     containers:
+      authentik:
+        image:
+          repository: ghcr.io/goauthentik/proxy
+          tag: 2026.5.2
+        env:
+          AUTHENTIK_HOST: https://auth.g4v.dev
+          AUTHENTIK_INSECURE: false
+        envFrom:
+          - secretRef:
+              name: authentik
       oauth2proxy:
         image: 
           repository: quay.io/oauth2-proxy/oauth2-proxy
@@ -74,6 +84,13 @@ controllers:
             memory: 1Gi
 
 service:
+  authentik:
+    controller: authentik
+    ports:
+      http:
+        port: 9000
+      https:
+        port: 9443
   navidrome:
     controller: navidrome
     ports:
@@ -100,22 +117,29 @@ route:
             type: PathPrefix
             value: /
         backendRefs:
-          - identifier: oauth2proxy
-            port: oauth
-      - matches:
-        - path:
-            type: PathPrefix
-            value: /share/
-        backendRefs:
-          - identifier: navidrome
+          - identifier: authentik
             port: http
-      - matches:
-        - path:
-            type: PathPrefix
-            value: /rest/
-        backendRefs:
-          - identifier: navidrome
-            port: http
+      # - matches:
+      #   - path:
+      #       type: PathPrefix
+      #       value: /
+      #   backendRefs:
+      #     - identifier: oauth2proxy
+      #       port: oauth
+      # - matches:
+      #   - path:
+      #       type: PathPrefix
+      #       value: /share/
+      #   backendRefs:
+      #     - identifier: navidrome
+      #       port: http
+      # - matches:
+      #   - path:
+      #       type: PathPrefix
+      #       value: /rest/
+      #   backendRefs:
+      #     - identifier: navidrome
+      #       port: http
 
 persistence:
   data:
