@@ -1,7 +1,6 @@
 # https://www.navidrome.org/docs/usage/configuration-options/#available-options
-
 AuthRequestLimit = 0
-CoverJpegQuality = 100
+CoverArtQuality = 100
 DefaultTheme = "Dark"
 EnableGravatar = false
 EnableSharing = true
@@ -10,9 +9,11 @@ EnableTranscodingConfig = true
 ImageCacheSize = "1GB"
 LogLevel = 'INFO'
 MusicFolder = '/music'
-SearchFullString = true
 SessionTimeout = 86400000000000
 TranscodingCacheSize = '5GB'
+
+[Search]
+FullString = true
 
 [ExtAuth]
 TrustedSources = "0.0.0.0/0,172.16.10.0/24"

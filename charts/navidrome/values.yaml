@@ -142,20 +142,20 @@ route:
       #   backendRefs:
       #     - identifier: oauth2proxy
       #       port: oauth
-      # - matches:
-      #   - path:
-      #       type: PathPrefix
-      #       value: /share/
-      #   backendRefs:
-      #     - identifier: navidrome
-      #       port: http
-      # - matches:
-      #   - path:
-      #       type: PathPrefix
-      #       value: /rest/
-      #   backendRefs:
-      #     - identifier: navidrome
-      #       port: http
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /share/
+        backendRefs:
+          - identifier: navidrome
+            port: http
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /rest/
+        backendRefs:
+          - identifier: navidrome
+            port: http
 
 persistence:
   data:
