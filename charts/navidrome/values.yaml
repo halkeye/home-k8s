@@ -10,7 +10,7 @@ defaultPodOptions:
     fsGroupChangePolicy: "OnRootMismatch"
 
 controllers:
-  oauth2proxy:
+  authentik:
     annotations:
       reloader.stakater.com/auto: "true"
     containers:
@@ -24,6 +24,22 @@ controllers:
         envFrom:
           - secretRef:
               name: authentik
+        resources:
+          limits:
+            memory: 110Mi
+          requests:
+            cpu: 30m
+            memory: 110Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
+          readOnlyRootFilesystem: true
+  oauth2proxy:
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
       oauth2proxy:
         image: 
           repository: quay.io/oauth2-proxy/oauth2-proxy
