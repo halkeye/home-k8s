@@ -10,14 +10,6 @@ defaultPodOptions:
     fsGroupChangePolicy: "OnRootMismatch"
 
 controllers:
-  whoami:
-    containers:
-      whoami:
-        image:
-          repository: traefik/whoami
-          tag: v1.11.0
-        env:
-          WHOAMI_PORT_NUMBER: 8080
   authentik:
     annotations:
       reloader.stakater.com/auto: "true"
@@ -32,42 +24,6 @@ controllers:
         envFrom:
           - secretRef:
               name: authentik
-        resources:
-          limits:
-            memory: 110Mi
-          requests:
-            cpu: 30m
-            memory: 110Mi
-        securityContext:
-          allowPrivilegeEscalation: false
-          capabilities:
-            drop:
-              - ALL
-          readOnlyRootFilesystem: true
-  oauth2proxy:
-    annotations:
-      reloader.stakater.com/auto: "true"
-    containers:
-      oauth2proxy:
-        image: 
-          repository: quay.io/oauth2-proxy/oauth2-proxy
-          tag: v7.15.3
-        command:
-          - oauth2-proxy
-          - --alpha-config
-          - /data/oauth2_proxy.cfg
-        env:
-          OAUTH2_PROXY_EMAIL_DOMAINS: '*'
-          OAUTH2_PROXY_SILENCE_PING_LOGGING: "true"
-          OAUTH2_PROXY_SKIP_PROVIDER_BUTTON: "true"
-        envFrom:
-          - secretRef:
-              name: navidrome-oauth2-proxy
-        probes:
-          liveness:
-            enabled: true
-          readiness:
-            enabled: true
         resources:
           limits:
             memory: 110Mi
@@ -120,16 +76,6 @@ service:
     ports:
       http:
         port: 4533
-  oauth2proxy:
-    controller: oauth2proxy
-    ports:
-      oauth:
-        port: 4180
-  whoami:
-    controller: whoami
-    ports:
-      http:
-        port: 8080
 
 route:
   main:
@@ -148,20 +94,6 @@ route:
         backendRefs:
           - identifier: authentik
             port: http
-      - matches:
-        - path:
-            type: PathPrefix
-            value: /whoami
-        backendRefs:
-          - identifier: whoami
-            port: http
-      # - matches:
-      #   - path:
-      #       type: PathPrefix
-      #       value: /
-      #   backendRefs:
-      #     - identifier: oauth2proxy
-      #       port: oauth
       - matches:
         - path:
             type: PathPrefix
@@ -203,17 +135,3 @@ persistence:
       navidrome:
         navidrome:
           - path: /audio
-  configmap:
-    type: configMap
-    name: navidrome-configmap
-    globalMounts:
-      - path: /data/navidrome.toml
-        subPath: navidrome.toml
-        readOnly: true
-      - path: /data/oauth2_proxy.cfg
-        subPath: oauth2_proxy.cfg
-        readOnly: true
-  # litestream-configmap:
-  #   type: configMap
-  #   name: litestream-configmap
-  #   globalMounts: []
