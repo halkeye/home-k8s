@@ -17,7 +17,7 @@ FullString = true
 
 [ExtAuth]
 TrustedSources = "0.0.0.0/0,172.16.10.0/24"
-UserHeader = "X-Auth-Request-User"
+UserHeader = "X-Authentik-Username"
 
 [Scanner]
 Schedule = '@every 1h'
