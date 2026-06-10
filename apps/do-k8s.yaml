@@ -17,7 +17,6 @@ spec:
           - { namespace: matrix, name: mautrix-googlechat }
 
           # Apps
-          - name: authentik
           - name: unifi
   template:
     metadata:
@@ -79,6 +78,7 @@ spec:
 
           - { namespace: bitwarden, name: vaultwarden }
 
+          - name: authentik
           - name: bytestash
           - name: changedetection
           - name: excalidraw
