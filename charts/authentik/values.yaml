@@ -4,7 +4,7 @@ redis:
 global:
   image:
     repository: ghcr.io/goauthentik/server
-    tag: "2026.5.2"
+    tag: "2026.5.3"
   deploymentAnnotations:
     reloader.stakater.com/auto: "true"
 
