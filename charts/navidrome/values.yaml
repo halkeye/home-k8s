@@ -135,3 +135,14 @@ persistence:
       navidrome:
         navidrome:
           - path: /audio
+  configmap:
+    type: configMap
+    name: navidrome-configmap
+    globalMounts:
+      - path: /data/navidrome.toml
+        subPath: navidrome.toml
+        readOnly: true
+  # litestream-configmap:
+  #   type: configMap
+  #   name: litestream-configmap
+  #   globalMounts: []
