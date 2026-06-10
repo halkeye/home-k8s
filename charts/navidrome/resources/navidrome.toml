@@ -9,7 +9,7 @@ EnableTranscodingConfig = true
 ImageCacheSize = "1GB"
 LogLevel = 'INFO'
 MusicFolder = '/music'
-SessionTimeout = 99d
+SessionTimeout = '99d'
 TranscodingCacheSize = '5GB'
 
 [Search]
