@@ -17,7 +17,7 @@ controllers:
       authentik:
         image:
           repository: ghcr.io/goauthentik/proxy
-          tag: 2026.5.2
+          tag: 2026.5.3
         env:
           AUTHENTIK_HOST: https://auth.g4v.dev
           AUTHENTIK_INSECURE: false
