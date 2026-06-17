@@ -8,7 +8,7 @@ controllers:
       main:
         image:
           repository: dock.mau.dev/mautrix/whatsapp
-          tag: v0.2605.0
+          tag: v0.2606.0
         env:
           TZ: America/Vancouver
           BRIDGE_DATABASE__URI:
