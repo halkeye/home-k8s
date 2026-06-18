@@ -43,7 +43,7 @@ app-template:
       ports:
         https:
           port: 8443
-          protocol: TCP
+          protocol: HTTPS
           appProtocol: HTTPS
         controller:
           enabled: true
@@ -57,6 +57,7 @@ app-template:
           enabled: false
           port: 8843
           protocol: HTTPS
+          appProtocol: HTTPS
         speedtest:
           enabled: true
           port: 6789
