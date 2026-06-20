@@ -94,6 +94,9 @@ route:
         backendRefs:
           - identifier: authentik
             port: http
+        timeouts:
+            request: 0s # websocket, never time out
+            backendRequest: 0s # websocket, never time out
       - matches:
         - path:
             type: PathPrefix
@@ -101,6 +104,9 @@ route:
         backendRefs:
           - identifier: navidrome
             port: http
+        timeouts:
+            request: 0s # websocket, never time out
+            backendRequest: 0s # websocket, never time out
       - matches:
         - path:
             type: PathPrefix
@@ -108,6 +114,9 @@ route:
         backendRefs:
           - identifier: navidrome
             port: http
+        timeouts:
+            request: 0s # websocket, never time out
+            backendRequest: 0s # websocket, never time out
 
 persistence:
   data:
