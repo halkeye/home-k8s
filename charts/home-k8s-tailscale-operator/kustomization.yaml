@@ -19,3 +19,4 @@ helmCharts:
 
 resources:
   - ./secret.enc.yaml
+  - ./connectors.yaml
