@@ -29,11 +29,11 @@ image:
 config:
   sessionTTL: null
   extraArgs:
-    - "-kubeconfig=/home/headlamp/.kube/config"
+    - "-kubeconfig=/configmap/kubeconfig/config"
 
 volumeMounts:
   - name: kubeconfig
-    mountPath: /home/headlamp/.kube/config
+    mountPath: /configmap/kubeconfig
 
 volumes:
   - name: kubeconfig

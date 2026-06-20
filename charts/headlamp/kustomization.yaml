@@ -19,4 +19,4 @@ resources:
 configMapGenerator:
   - name: kubeconfig
     files:
-      - ./kubeconfig
+      - ./kubeconfig:config
