@@ -1,4 +1,7 @@
 ---
+deploymentAnnotations:
+  reloader.stakater.com/auto: "true"
+
 httpRoute:
   enabled: true
   parentRefs:
