@@ -39,11 +39,3 @@ volumes:
   - name: kubeconfig
     configMap:
       name: kubeconfig
-
-serviceAccount:
-  create: true
-  name: "headlamp-admin"
-
-clusterRoleBinding:
-  create: true
-  clusterRoleName: headlamp-admin
