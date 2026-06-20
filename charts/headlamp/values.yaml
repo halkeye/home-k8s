@@ -39,3 +39,11 @@ volumes:
   - name: kubeconfig
     configMap:
       name: kubeconfig
+
+serviceAccount:
+  create: true
+  name: "headlamp-readonly"
+
+clusterRoleBinding:
+  create: true
+  clusterRoleName: headlamp-readonly
