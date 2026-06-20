@@ -6,6 +6,7 @@ metadata:
 spec:
   replicas: 1
   hostnamePrefix: ts-home-cidrs
+  exitNode: true
   subnetRouter:
     advertiseRoutes:
       - "172.16.10.0/24"
