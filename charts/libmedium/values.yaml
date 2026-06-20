@@ -7,7 +7,7 @@ controllers:
       libmedium:
         image:
           repository: realaravinth/libmedium
-          tag: latest@sha256:6b8b3a640637d4f2422bf096372b18bfdeb76f869867e8d34d2b25e783501860
+          tag: latest@sha256:f5bd632ac284c69aeb9a2d1420c12b89d2fe4a637b2a92a101cad795a5a6469a
         env:
           TZ: America/Vancouver
           LOG_LEVEL: 'info'
