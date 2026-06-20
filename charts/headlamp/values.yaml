@@ -17,7 +17,7 @@ httpRoute:
           value: /
       backendRefs:
         - kind: Service
-          name: authentik
+          name: authentik-proxy
           port: 9000
       timeouts:
           request: 0s # websocket, never time out
