@@ -31,14 +31,4 @@ image:
 
 config:
   sessionTTL: null
-  extraArgs:
-    - "-kubeconfig=/configmap/kubeconfig/config"
-
-volumeMounts:
-  - name: kubeconfig
-    mountPath: /configmap/kubeconfig
-
-volumes:
-  - name: kubeconfig
-    configMap:
-      name: kubeconfig
+  unsafeUseServiceAccountToken: true
