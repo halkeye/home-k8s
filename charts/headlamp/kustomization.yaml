@@ -15,3 +15,8 @@ helmCharts:
 resources:
   - ./secret.enc.yaml
   - ./securitypolicy.yaml
+
+configMapGenerator:
+  - name: kubeconfig
+    files:
+      - ./kubeconfig

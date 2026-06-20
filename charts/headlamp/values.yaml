@@ -20,9 +20,22 @@ httpRoute:
         - path:
             type: PathPrefix
             value: /
+
 image:
   registry: ghcr.io
   repository: headlamp-k8s/headlamp
   tag: "v0.43.0"
+
 config:
   sessionTTL: null
+  extraArgs:
+    - "-kubeconfig=/home/headlamp/.kube/config"
+
+volumeMounts:
+  - name: kubeconfig
+    mountPath: /home/headlamp/.kube/config
+
+volumes:
+  - name: kubeconfig
+    configMap:
+      name: kubeconfig
