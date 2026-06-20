@@ -31,8 +31,14 @@ image:
 
 config:
   sessionTTL: null
-  unsafeUseServiceAccountToken: true
-  oidc:
-    externalSecret:
-      enabled: true
-      name: headlamp-oidc
+  extraArgs:
+    - "-kubeconfig=/configmap/kubeconfig/config"
+
+volumeMounts:
+  - name: kubeconfig
+    mountPath: /configmap/kubeconfig
+
+volumes:
+  - name: kubeconfig
+    configMap:
+      name: kubeconfig
