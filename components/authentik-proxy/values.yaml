@@ -1,0 +1,46 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+defaultPodOptions:
+  enableServiceLinks: false
+  securityContext:
+    runAsUser: 1026
+    runAsGroup: 100
+    runAsNonRoot: true
+    fsGroup: 100
+    fsGroupChangePolicy: "OnRootMismatch"
+
+controllers:
+  authentik:
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      authentik:
+        image:
+          repository: ghcr.io/goauthentik/proxy
+          tag: 2026.5.3
+        env:
+          AUTHENTIK_HOST: https://auth.g4v.dev
+          AUTHENTIK_INSECURE: false
+        envFrom:
+          - secretRef:
+              name: authentik
+        resources:
+          limits:
+            memory: 110Mi
+          requests:
+            cpu: 30m
+            memory: 110Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
+          readOnlyRootFilesystem: true
+
+service:
+  authentik:
+    controller: authentik
+    ports:
+      http:
+        port: 9000
+      https:
+        port: 9443

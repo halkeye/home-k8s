@@ -5,24 +5,23 @@ deploymentAnnotations:
 httpRoute:
   enabled: true
   parentRefs:
-    - group: gateway.networking.k8s.io
-      kind: Gateway
-      name: http-gateway
-      namespace: envoy-gateway
-      sectionName: https
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
   hostnames:
     - headlamp-h.g4v.dev
   rules:
-    - backendRefs:
-        - group: ''
-          kind: Service
-          name: headlamp
-          port: 80
-          weight: 1
-      matches:
-        - path:
-            type: PathPrefix
-            value: /
+    - matches:
+      - path:
+          type: PathPrefix
+          value: /
+      backendRefs:
+        - kind: Service
+          name: authentik
+          port: 9000
+      timeouts:
+          request: 0s # websocket, never time out
+          backendRequest: 0s # websocket, never time out
 
 image:
   registry: ghcr.io
