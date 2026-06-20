@@ -19,4 +19,4 @@ resources:
 configMapGenerator:
   - name: kubeconfig
     files:
-      - ./kubeconfig:config
+      - config=./kubeconfig.yaml

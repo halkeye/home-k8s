@@ -42,8 +42,8 @@ volumes:
 
 serviceAccount:
   create: true
-  name: "headlamp-readonly"
+  name: "headlamp-admin"
 
 clusterRoleBinding:
   create: true
-  clusterRoleName: headlamp-readonly
+  clusterRoleName: headlamp-admin
