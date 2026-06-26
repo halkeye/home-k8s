@@ -125,6 +125,12 @@
       "allowedVersions": "!/^0.27.0$/"
     },
     {
+      "matchPackageNames": [
+        "/system-upgrade-controller/"
+      ],
+      "allowedVersions": "!/^v0.20.0$/"
+    },
+    {
       "groupName": "Immich",
       "matchDatasources": [
         "docker"
