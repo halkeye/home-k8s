@@ -3,7 +3,8 @@
   "extends": [
     "config:recommended",
     "docker:enableMajor",
-    "replacements:k8s-registry-move",
+    "replacements:all",
+    "abandonments:recommended",
     ":disableRateLimiting",
     ":dependencyDashboard",
     ":semanticCommits",
@@ -12,6 +13,7 @@
     ":timezone(America/Vancouver)",
     "helpers:pinGitHubActionDigests"
   ],
+  "minimumReleaseAge": "1 days",
   "customDatasources": {
     "grafana-dashboards": {
       "defaultRegistryUrlTemplate": "https://grafana.com/api/dashboards/{{packageName}}",
