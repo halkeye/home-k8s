@@ -5,6 +5,8 @@
     "docker:enableMajor",
     "replacements:all",
     "abandonments:recommended",
+    "group:all",
+    "group:immichMonorepo",
     ":disableRateLimiting",
     ":dependencyDashboard",
     ":semanticCommits",
@@ -131,15 +133,6 @@
         "/system-upgrade-controller/"
       ],
       "allowedVersions": "!/^v0.20.0$/"
-    },
-    {
-      "groupName": "Immich",
-      "matchDatasources": [
-        "docker"
-      ],
-      "matchPackageNames": [
-        "ghcr.io/immich-app/**"
-      ]
     },
     {
       "groupName": "mariadb-operator",
