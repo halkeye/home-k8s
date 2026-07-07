@@ -141,3 +141,10 @@ persistence:
       - path: /etc/vikunja/config.yml
         readOnly: true
         subPath: config.yml
+  secrets:
+    enabled: true
+    type: secret
+    name: "vikunja"
+    globalMounts:
+      - path: /secrets
+        readOnly: true
