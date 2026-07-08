@@ -8,8 +8,8 @@ controllers:
     containers:
       app:
         image:
-          repository: vikunja/vikunja
-          tag: 1.0.0-rc3
+          repository: ghcr.io/go-vikunja/vikunja
+          tag: 2.3.0
         env:
           TZ: America/Vancouver
           VIKUNJA_SERVICE_ENABLEREGISTRATION: false
