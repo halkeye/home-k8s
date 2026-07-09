@@ -78,8 +78,7 @@ controllers:
         resources:
           requests:
             cpu: 10m
-          limits:
-            memory: 4000Mi
+            memory: 1000Mi
 service:
   main:
     controller: romm
