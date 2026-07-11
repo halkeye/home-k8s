@@ -7,7 +7,7 @@ controllers:
       main:
         image:
           repository: cloudflare/cloudflared
-          tag: "2026.7.0"
+          tag: "2026.7.1"
         env:
           TZ: America/Vancouver
           NO_AUTOUPDATE: "true"
