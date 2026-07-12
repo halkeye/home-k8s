@@ -1,6 +1,6 @@
 # Network-specific config options
 network:
-    displayname_template: '{{or .ProfileName .PhoneNumber "Unknown user"}} (Signal)'
+    displayname_template: '{{or .ProfileName .PhoneNumber "Unknown user"}} (Bluesky)'
 bridge:
     permissions:
       "*": relay
