@@ -1,0 +1,18 @@
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: "mautrix-bluesky"
+spec:
+  role: "mautrix-bluesky"
+  database: "mautrix-bluesky"
+  secretName: "mautrix-bluesky-db-secret"
+  privileges: OWNER
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: "mautrix-bluesky"
+spec:
+  database: "mautrix_bluesky"
+  dropOnDelete: false

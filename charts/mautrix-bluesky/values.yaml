@@ -1,0 +1,111 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  main:
+    annotations:
+      reloader.stakater.com/auto: "true"
+    replicas: 1
+    type: statefulset
+    containers:
+      main:
+        image:
+          repository: dock.mau.dev/mautrix/bluesky
+          tag: v0.2510.0
+        env:
+          TZ: America/Vancouver
+          BRIDGE_DATABASE__URI:
+            valueFrom:
+              secretKeyRef:
+                name: "mautrix-bluesky-db-secret-mautrix-bluesky"
+                key: POSTGRES_URL
+        envFrom:
+          - secretRef:
+              name: "mautrix-bluesky-secret"
+        command:
+          - /usr/bin/mautrix-bluesky
+          - "-n"
+          - "-c"
+          - /configmap/config.yaml
+        probes:
+          liveness:
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /_matrix/mau/live
+                port: 29328
+              initialDelaySeconds: 0
+              periodSeconds: 10
+              timeoutSeconds: 1
+              failureThreshold: 3
+          readiness:
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /_matrix/mau/ready
+                port: 29328
+              initialDelaySeconds: 0
+              periodSeconds: 10
+              timeoutSeconds: 1
+              failureThreshold: 3
+          startup:
+            enabled: false
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+        resources:
+          requests:
+            cpu: 10m
+            memory: 100Mi
+    pod:
+      securityContext:
+        runAsUser: 1337
+        runAsGroup: 1337
+        runAsNonRoot: true
+        fsGroup: 1337
+        fsGroupChangePolicy: OnRootMismatch
+service:
+  main:
+    controller: main
+    publishNotReadyAddresses: true
+    ports:
+      http:
+        port: 29328
+
+persistence:
+  tmp:
+    enabled: true
+    type: emptyDir
+  data:
+    enabled: true
+    type: emptyDir
+  configmap:
+    enabled: true
+    type: configMap
+    name: "mautrix-bluesky-configmap"
+
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "mautrix-bridges.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /bluesky
+        filters:
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /
+        backendRefs:
+          - identifier: main
+            port: http
