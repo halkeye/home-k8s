@@ -9,7 +9,7 @@ controllers:
       main:
         image:
           repository: dock.mau.dev/mautrix/bluesky
-          tag: v0.2510.0
+          tag: 0c2076b1b0093ed3c131520f1fd032c3898414ef-amd64
         env:
           TZ: America/Vancouver
           BRIDGE_DATABASE__URI:
