@@ -185,6 +185,10 @@ synapse:
       secretKey: whatsapp-doublepuppet.yaml
     - secret: matrix-stack-appservice
       secretKey: whatsapp-registration.yaml
+    - secret: matrix-stack-appservice
+      secretKey: bluesky-doublepuppet.yaml
+    - secret: matrix-stack-appservice
+      secretKey: bluesky-registration.yaml
     # - secret: matrix-stack-hookshot-2
     #   secretKey: hookshot_registration.yaml
 
