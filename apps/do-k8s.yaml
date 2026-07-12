@@ -69,6 +69,7 @@ spec:
           # Matrix
           - { namespace: matrix, name: synapse-admin }
           - { namespace: matrix, name: matrix-stack }
+          - { namespace: matrix, name: mautrix-bluesky }
           - { namespace: matrix, name: mautrix-gmessages }
           - { namespace: matrix, name: mautrix-instagram }
           - { namespace: matrix, name: mautrix-linkedin }
