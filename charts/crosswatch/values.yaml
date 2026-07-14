@@ -7,8 +7,8 @@ controllers:
     containers:
       main:
         image:
-          repository: ghcr.io/cenodude/crosswatch
-          tag: 0.10.0
+          repository: ghcr.io/cenodude/crosswatch-dev
+          tag: dev-a1c191f
         env:
           TZ: America/Vancouver
         probes:

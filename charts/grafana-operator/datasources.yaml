@@ -18,6 +18,38 @@ spec:
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDatasource
 metadata:
+  name: prometheus-do-k8s
+spec:
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  valuesFrom:
+    - targetPath: "basicAuthUser"
+      valueFrom:
+        secretKeyRef:
+          name: "credentials"
+          key: "PROMETHEUS_USERNAME"
+    - targetPath: "secureJsonData.basicAuthPassword"
+      valueFrom:
+        secretKeyRef:
+          name: "credentials"
+          key: "PROMETHEUS_PASSWORD"
+  datasource:
+    name: prometheus-do-k8s
+    type: prometheus
+    access: proxy
+    url: https://prometheus-do.g4v.dev
+    isDefault: false
+    basicAuth: true
+    basicAuthUser: ${PROMETHEUS_USERNAME}
+    jsonData:
+      prometheusType: Prometheus
+    secureJsonData:
+      "basicAuthPassword": ${PROMETHEUS_PASSWORD}
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDatasource
+metadata:
   name: alertmanager
 spec:
   instanceSelector:
