@@ -7,7 +7,7 @@ controllers:
       gathio:
         image:
           repository: ghcr.io/lowercasename/gathio
-          tag: 1.6.2
+          tag: 1.6.3
         command:
           - npm
           - run
