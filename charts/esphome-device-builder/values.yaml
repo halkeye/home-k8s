@@ -1,0 +1,96 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  main:
+    replicas: 1
+    type: statefulset
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      app:
+        image:
+          repository: esphome/esphome
+          tag: "2026.7"
+        env:
+          - name: TZ
+            value: America/Vancouver
+          - name: ESPHOME_BUILD_PATH
+            value: /cache/build
+          - name: ESPHOME_DATA_DIR
+            value: /cache/data
+          - name: PLATFORMIO_CORE_DIR
+            value: /cache/pio
+          - name: PLATFORMIO_PLATFORMS_DIR
+            value: /cache/platforms
+          - name: PLATFORMIO_PACKAGES_DIR
+            value: /cache/packages
+          - name: PLATFORMIO_CACHE_DIR
+            value: /cache/cache
+          - name: ESPHOME_TRUSTED_DOMAINS
+            value: esphome-buildserver.g4v.dev
+          - name: POD_IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
+        command:
+          - esphome-device-builder
+          - --remote-build-only
+          - /config
+        probes:
+          liveness:
+            enabled: false
+          readiness:
+            enabled: false
+          startup:
+            enabled: false
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
+        resources:
+          requests:
+            memory: 512Mi
+            cpu: 10m
+    pod:
+      securityContext:
+        runAsUser: 1026
+        runAsGroup: 100
+        runAsNonRoot: true
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
+service:
+  main:
+    controller: main
+    type: LoadBalancer
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: "esphome-buildserver.g4v.dev"
+    ports:
+      peer-link:
+        port: 6055
+persistence:
+  tmp:
+    enabled: true
+    type: emptyDir
+  work:
+    enabled: true
+    type: emptyDir
+    globalMounts:
+      - path: /cache
+        subPath: cache
+      - path: /cache/build
+        subPath: build
+      - path: /cache/cache
+        subPath: cache
+      - path: /cache/packages
+        subPath: packages
+      - path: /cache/platforms
+        subPath: platforms
+      - path: /cache/pio
+        subPath: pio
+      - path: /cache/data
+        subPath: data
+  config:
+    enabled: true
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    size: 1Gi

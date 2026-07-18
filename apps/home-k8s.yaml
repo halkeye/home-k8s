@@ -100,7 +100,8 @@ spec:
           - name: cloudnative-pg
           - name: cross-seed
           - name: crosswatch
-          - name: esphome
+          - { namespace: esphome, name: esphome }
+          - { namespace: esphome, name: esphome-device-builder }
           - name: frigate
           - name: goldilocks
           - name: hass-lovelace-kindle-screensaver
