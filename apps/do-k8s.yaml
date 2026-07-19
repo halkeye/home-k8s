@@ -97,7 +97,6 @@ spec:
           - name: not-the-plants
           - name: phanpy
           - name: planka
-          - name: searxng
           - name: stirling-pdf
           - name: string-is
           - name: tautulli
