@@ -7,8 +7,8 @@ controllers:
     containers:
       main:
         image:
-          repository: ghcr.io/cenodude/crosswatch-dev
-          tag: dev-a1c191f
+          repository: ghcr.io/cenodude/crosswatch
+          tag: 0.10.4
         env:
           TZ: America/Vancouver
         probes:
@@ -40,8 +40,6 @@ controllers:
           requests:
             cpu: 50m
             memory: 256Mi
-          limits:
-            memory: 512Mi
     pod:
       securityContext:
         runAsUser: 1000
