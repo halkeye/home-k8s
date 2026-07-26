@@ -1,0 +1,4 @@
+---
+monitoring:
+  serviceMonitor:
+    enabled: true

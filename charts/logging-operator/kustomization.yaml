@@ -1,0 +1,13 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: logging-operator
+
+helmCharts:
+  - name: logging-operator
+    version: 4.3.0
+    repo: oci://ghcr.io/kube-logging/helm-charts
+    valuesFile: values.yaml
+    releaseName: logging-operator
