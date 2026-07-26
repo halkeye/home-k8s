@@ -1,4 +1,5 @@
 ---
+createCustomResource: true
 monitoring:
   serviceMonitor:
     enabled: true
