@@ -7,7 +7,7 @@ namespace: logging-operator
 
 helmCharts:
   - name: logging-operator
-    version: 4.3.0
+    version: 6.5.1
     repo: oci://ghcr.io/kube-logging/helm-charts
     valuesFile: values.yaml
     releaseName: logging-operator
