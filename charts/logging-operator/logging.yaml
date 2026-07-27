@@ -17,6 +17,8 @@ spec:
     host: db-os-tor1-85523-do-user-8094590-0.e.db.ondigitalocean.com
     port: 25060
     scheme: https
+    log_os_400_reason: true
+    with_transporter_log: true
     buffer:
       timekey: 1m
       timekey_wait: 30s
