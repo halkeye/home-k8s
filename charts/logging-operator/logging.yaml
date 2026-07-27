@@ -21,6 +21,8 @@ spec:
     with_transporter_log: true
     logstash_format: true
     logstash_prefix: kubernetes
+    flatten_hashes: true
+    flatten_hashes_separator: _
     buffer:
       timekey: 1m
       timekey_wait: 30s
