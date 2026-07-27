@@ -36,9 +36,18 @@ metadata:
   name: all-to-opensearch
   namespace: logging
 spec:
+  filters:
+    dedot:
+      de_dot_separator: "-"
+      de_dot_nested: true
   match:
-    # Match every namespace. The empty `select: {}` is the
-    # operator's canonical "match all" form.
+    # should be select or exclude, empty select is everything
+    # container_names
+    # hosts
+    # labels
+    # namespace_labels
+    # namespaces
+    # namespaces_regex
     - select: {}
   globalOutputRefs:
     - os-output
