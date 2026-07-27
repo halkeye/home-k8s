@@ -50,6 +50,13 @@ spec:
         remove_key_name_field: true
         reserve_data: true
         emit_invalid_record_to_error: false
+    - parser:
+        key_name: ts
+        parse:
+          type: date
+        remove_key_name_field: true
+        reserve_data: true
+        emit_invalid_record_to_error: false
   match:
     # should be select or exclude, empty select is everything
     # container_names
