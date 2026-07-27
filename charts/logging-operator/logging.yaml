@@ -37,9 +37,9 @@ metadata:
   namespace: logging
 spec:
   filters:
-    dedot:
-      de_dot_separator: "-"
-      de_dot_nested: true
+    - dedot:
+        de_dot_separator: "-"
+        de_dot_nested: true
   match:
     # should be select or exclude, empty select is everything
     # container_names
