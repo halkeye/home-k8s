@@ -1,0 +1,42 @@
+---
+apiVersion: logging.banzaicloud.io/v1beta1
+kind: Logging
+metadata:
+  name: default-logging
+spec:
+  fluentd: {}
+  fluentbit: {}
+  controlNamespace: logging-operator
+---
+apiVersion: logging.banzaicloud.io/v1beta1
+kind: ClusterOutput
+metadata:
+  name: os-output
+spec:
+  opensearch:
+    host: db-os-tor1-85523-do-user-8094590-0.e.db.ondigitalocean.com
+    port: 25060
+    scheme: https
+    buffer:
+      timekey: 1m
+      timekey_wait: 30s
+      timekey_use_utc: true
+    user: doadmin
+    password:
+      valueFrom:
+        secretKeyRef:
+          name: opensearch
+          key: password
+---
+apiVersion: logging.banzaicloud.io/v1beta1
+kind: ClusterFlow
+metadata:
+  name: all-to-opensearch
+  namespace: logging
+spec:
+  match:
+    # Match every namespace. The empty `select: {}` is the
+    # operator's canonical "match all" form.
+    - select: {}
+  globalOutputRefs:
+    - os-output

@@ -11,3 +11,7 @@ helmCharts:
     repo: oci://ghcr.io/kube-logging/helm-charts
     valuesFile: values.yaml
     releaseName: logging-operator
+
+resources:
+  - ./secret.enc.yaml
+  - ./logging.yaml
