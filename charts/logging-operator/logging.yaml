@@ -61,5 +61,9 @@ spec:
         namespaces:
           - smtp-relay
           - whoami
+    - exclude:
+        namespaces:
+          - longhorn-system
+          - tailscale
   globalOutputRefs:
     - os-output
