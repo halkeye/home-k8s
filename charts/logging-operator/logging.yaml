@@ -19,6 +19,8 @@ spec:
     scheme: https
     log_os_400_reason: true
     with_transporter_log: true
+    logstash_format: true
+    logstash_prefix: kubernetes
     buffer:
       timekey: 1m
       timekey_wait: 30s
