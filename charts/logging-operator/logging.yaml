@@ -60,7 +60,12 @@ spec:
     - select:
         namespaces:
           - smtp-relay
+    - select:
+        namespaces:
           - whoami
+    - exclude:
+        namespaces:
+          - longhorn-system
     - exclude:
         namespaces:
           - longhorn-system
