@@ -40,6 +40,13 @@ spec:
     - dedot:
         de_dot_separator: "-"
         de_dot_nested: true
+    - parser:
+        key_name: message
+        parse:
+          type: json
+        remove_key_name_field: true
+        reserve_data: true
+        emit_invalid_record_to_error: false
   match:
     # should be select or exclude, empty select is everything
     # container_names
