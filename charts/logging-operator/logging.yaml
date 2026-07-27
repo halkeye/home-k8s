@@ -57,6 +57,9 @@ spec:
     # namespace_labels
     # namespaces
     # namespaces_regex
-    - select: {}
+    - select:
+        namespaces:
+          - smtp-relay
+          - whoami
   globalOutputRefs:
     - os-output
