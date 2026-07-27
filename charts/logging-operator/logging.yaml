@@ -53,7 +53,10 @@ spec:
     - parser:
         key_name: ts
         parse:
-          type: date
+          type: time
+          time_type: mixed
+          time_format: unixtime
+          time_format_fallbacks: "%iso8601"
         remove_key_name_field: true
         reserve_data: true
         emit_invalid_record_to_error: false
