@@ -1,0 +1,15 @@
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: bookorbit
+  annotations:
+    postgres.db.movetokube.com/instance: postgres17-rw
+spec:
+  role: bookorbit
+  database: bookorbit-main
+  secretName: bookorbit-db-secret
+  privileges: OWNER
+  secretTemplate:
+    HOST_NO_PORT: "{{ .Hostname }}"
+    PORT: "{{ .Port }}"
