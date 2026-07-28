@@ -25,6 +25,7 @@ controllers:
           LOG_CHANNEL: stderr
           LOG_LEVEL: info
           MAIL_HOST: smtp-relay.smtp-relay.svc.cluster.local
+          MAIL_FROM_ADDRESS: "larapaper@g4v.dev"
           MAIL_MAILER: smtp
           MAIL_PORT: "2525"
           OIDC_ENABLED: true
