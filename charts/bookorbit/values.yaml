@@ -18,23 +18,23 @@ controllers:
           POSTGRES_HOST:
             valueFrom:
               secretKeyRef:
-                name: "bookorbit-db-secret-bookorbit"
+                name: "bookorbit-db-bookorbit"
                 key: HOST
           POSTGRES_PORT: "5432"
           POSTGRES_USER:
             valueFrom:
               secretKeyRef:
-                name: "bookorbit-db-secret-bookorbit"
+                name: "bookorbit-db-bookorbit"
                 key: LOGIN
           POSTGRES_PASSWORD:
             valueFrom:
               secretKeyRef:
-                name: "bookorbit-db-secret-bookorbit"
+                name: "bookorbit-db-bookorbit"
                 key: PASSWORD
           POSTGRES_DB: bookorbit
         envFrom:
           - secretRef:
-              name: "bookorbit-secret"
+              name: "bookorbit"
         probes:
           liveness: &probes
             enabled: true

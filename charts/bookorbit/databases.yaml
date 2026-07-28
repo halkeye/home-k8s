@@ -1,0 +1,28 @@
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: bookorbit
+  annotations:
+    postgres.db.movetokube.com/instance: postgres17-rw
+spec:
+  role: bookorbit
+  database: bookorbit
+  secretName: bookorbit-db
+  privileges: OWNER
+  secretTemplate:
+    HOST_NO_PORT: "{{ .Hostname }}"
+    PORT: "{{ .Port }}"
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: bookorbit
+  annotations:
+    postgres.db.movetokube.com/instance: postgres17-rw
+spec:
+  database: bookorbit
+  dropOnDelete: false
+  masterRole: bookorbit
+  extensions:
+    - vector
