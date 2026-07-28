@@ -14,7 +14,7 @@ controllers:
           # https://github.com/Radarr/Radarr/issues/7030#issuecomment-1039689518
           # https://github.com/dotnet/runtime/issues/9336
           COMPlus_EnableDiagnostics: "0"
-          SONARR__INSTANCENAME: "{{ .Release.Name }}"
+          SONARR__INSTANCENAME: "sonarr"
           SONARR__LOG__LEVEL: info
           SONARR__AUTHENTICATION__METHOD: External
           SONARR__AUTH__REQUIRED: DisabledForLocalAddresses
@@ -22,23 +22,23 @@ controllers:
           SONARR__POSTGRES__HOST:
             valueFrom:
               secretKeyRef:
-                name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                name: "sonarr-db-secret-sonarr"
                 key: HOST
-          SONARR__POSTGRES__MAINDB: "{{ .Release.Name }}_main"
-          SONARR__POSTGRES__LOGDB: "{{ .Release.Name }}_log"
+          SONARR__POSTGRES__MAINDB: "sonarr_main"
+          SONARR__POSTGRES__LOGDB: "sonarr_log"
           SONARR__POSTGRES__USER:
             valueFrom:
               secretKeyRef:
-                name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                name: "sonarr-db-secret-sonarr"
                 key: LOGIN
           SONARR__POSTGRES__PASSWORD:
             valueFrom:
               secretKeyRef:
-                name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                name: "sonarr-db-secret-sonarr"
                 key: PASSWORD
         envFrom:
           - secretRef:
-              name: "{{.Release.Name}}-secret"
+              name: "sonarr-secret"
         probes:
           liveness: &probes
             enabled: true
@@ -77,7 +77,7 @@ controllers:
           APIKEY:
             valueFrom:
               secretKeyRef:
-                name: "{{.Release.Name}}-secret"
+                name: "sonarr-secret"
                 key: SONARR__AUTH__APIKEY
         resources:
           requests:
@@ -107,7 +107,6 @@ service:
 serviceMonitor:
   main:
     enabled: true
-    serviceName: '{{ include "bjw-s.common.lib.chart.names.fullname" $ }}'
     endpoints:
       - port: metrics
         scheme: http
@@ -122,7 +121,7 @@ route:
         namespace: envoy-gateway
         sectionName: https
     hostnames:
-      - "{{ .Release.Name }}.g4v.dev"
+      - "sonarr.g4v.dev"
     rules:
       - matches:
         - path:
