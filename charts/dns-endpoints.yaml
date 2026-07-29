@@ -6,7 +6,47 @@ metadata:
     external-dns: public
 spec:
   endpoints:
-  - dnsName: "*.nas.g4v.dev"
+  - dnsName: "qbittorrent.nas.g4v.dev"
+    recordTTL: 180
+    recordType: A
+    targets:
+    - 172.16.10.10
+  - dnsName: "sabnzbd.nas.g4v.dev"
+    recordTTL: 180
+    recordType: A
+    targets:
+    - 172.16.10.10
+  - dnsName: "syncthing.nas.g4v.dev"
+    recordTTL: 180
+    recordType: A
+    targets:
+    - 172.16.10.10
+  - dnsName: "traefik.nas.g4v.dev"
+    recordTTL: 180
+    recordType: A
+    targets:
+    - 172.16.10.10
+  - dnsName: "node-exporter.nas.g4v.dev"
+    recordTTL: 180
+    recordType: A
+    targets:
+    - 172.16.10.10
+  - dnsName: "cadvisor.nas.g4v.dev"
+    recordTTL: 180
+    recordType: A
+    targets:
+    - 172.16.10.10
+  - dnsName: "smartctl-exporter.nas.g4v.dev"
+    recordTTL: 180
+    recordType: A
+    targets:
+    - 172.16.10.10
+  - dnsName: "scrutiny.nas.g4v.dev"
+    recordTTL: 180
+    recordType: A
+    targets:
+    - 172.16.10.10
+  - dnsName: "plex.nas.g4v.dev"
     recordTTL: 180
     recordType: A
     targets:
