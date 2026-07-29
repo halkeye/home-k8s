@@ -22,6 +22,7 @@ sources:
   - gateway-httproute
   - gateway-grpcroute
   - service
+  - crd
 provider:
   name: pihole
 registry: noop
