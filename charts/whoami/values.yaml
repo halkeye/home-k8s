@@ -4,7 +4,7 @@ controllers:
       whoami:
         image:
           repository: traefik/whoami
-          tag: v1.11.0
+          tag: v1.12.0
         env:
           WHOAMI_PORT_NUMBER: 8080
         probes:
