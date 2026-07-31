@@ -46,6 +46,7 @@ route:
         sectionName: https
     hostnames:
       - "kavita.g4v.dev"
+      - "comics.g4v.dev"
     rules:
       - matches:
         - path:

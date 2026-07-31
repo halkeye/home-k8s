@@ -96,6 +96,7 @@ route:
         sectionName: https
     hostnames:
       - "bookorbit.g4v.dev"
+      - "books.g4v.dev"
     rules:
       - matches:
         - path:
