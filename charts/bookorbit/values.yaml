@@ -95,7 +95,6 @@ route:
         namespace: envoy-gateway
         sectionName: https
     hostnames:
-      - "bookorbit.g4v.dev"
       - "books.g4v.dev"
     rules:
       - matches:
