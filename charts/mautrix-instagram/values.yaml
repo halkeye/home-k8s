@@ -9,7 +9,7 @@ controllers:
       main:
         image:
           repository: dock.mau.dev/mautrix/meta
-          tag: v26.05.1
+          tag: ig-v26.07
         env:
           TZ: America/Vancouver
           BRIDGE_DATABASE__URI:
