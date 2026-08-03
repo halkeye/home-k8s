@@ -68,15 +68,7 @@ spec:
     # namespace_labels
     # namespaces
     # namespaces_regex
-    - select:
-        namespaces:
-          - smtp-relay
-    - select:
-        namespaces:
-          - whoami
-    - exclude:
-        namespaces:
-          - longhorn-system
+    - select: {}
     - exclude:
         namespaces:
           - longhorn-system
