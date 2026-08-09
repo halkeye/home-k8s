@@ -115,8 +115,8 @@ persistence:
     accessMode: ReadWriteOnce
     size: 100Gi
     globalMounts:
-      - path: /shared
+      - path: /opt/seafile-data/seafile
   logs:
     type: emptyDir
     globalMounts:
-      - path: /shared/logs
+      - path: /opt/seafile-data/logs
