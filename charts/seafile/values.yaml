@@ -12,7 +12,7 @@ controllers:
         env:
           TZ: America/Vancouver
           TIME_ZONE: America/Vancouver
-          NON_ROOT: "true"
+          # NON_ROOT: "true"
           SEAFILE_SERVER_HOSTNAME: "seafile.g4v.dev"
           SEAFILE_SERVER_PROTOCOL: "https"
           SEAF_SERVER_STORAGE_TYPE: "s3"
