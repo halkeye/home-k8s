@@ -123,7 +123,6 @@ persistence:
   data:
     enabled: true
     type: persistentVolumeClaim
-    storageClass: nas-apps
     accessMode: ReadWriteMany
     size: 100Gi
     globalMounts:
