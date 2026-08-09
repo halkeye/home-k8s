@@ -1,0 +1,134 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  seafile:
+    replicas: 1
+    annotations:
+      reloader.stakater.com/auto: "true"
+    containers:
+      app:
+        image:
+          repository: docker.io/seafileltd/seafile-pro-mc
+          tag: 13.0.9
+        env:
+          TZ: America/Vancouver
+          TIME_ZONE: America/Vancouver
+          NON_ROOT: "true"
+          SEAFILE_SERVER_HOSTNAME: "seafile.g4v.dev"
+          SEAFILE_SERVER_PROTOCOL: "https"
+          SEAF_SERVER_STORAGE_TYPE: "s3"
+          S3_COMMIT_BUCKET: halkeye-seafile-commit
+          S3_FS_BUCKET: halkeye-seafile-fs
+          S3_BLOCK_BUCKET: halkeye-seafile-block-2
+          S3_AWS_REGION: tor1
+          S3_HOST: https://tor1.digitaloceanspaces.com
+          S3_USE_HTTPS: "true"
+          S3_USE_V4_SIGNATURE: "true"
+          S3_PATH_STYLE_REQUEST: "true"
+          # PostgreSQL database configuration
+          DB_TYPE: "pgsql"
+          SEAFILE_DB_HOST:
+            valueFrom:
+              secretKeyRef:
+                name: "seafile-db-secret-seafile"
+                key: HOST
+          SEAFILE_DB_PORT: "5432"
+          SEAFILE_DB_USER:
+            valueFrom:
+              secretKeyRef:
+                name: "seafile-db-secret-seafile"
+                key: LOGIN
+          SEAFILE_DB_PASSWORD:
+            valueFrom:
+              secretKeyRef:
+                name: "seafile-db-secret-seafile"
+                key: PASSWORD
+          SEAFILE_DB_CCNET_DB_NAME: "ccnet_db"
+          SEAFILE_DB_SEAFILE_DB_NAME: "seafile_db"
+          SEAFILE_DB_SEAHUB_DB_NAME: "seahub_db"
+
+          # Cache configuration using valkey component
+          CACHE_PROVIDER: "redis"
+          REDIS_HOST: "valkey"
+          REDIS_PORT: "6379"
+
+          # Other settings
+          ENABLE_NOTIFICATION_SERVER: "false"
+          ENABLE_SEADOC: "false"
+          ENABLE_SEAFILE_AI: "false"
+          MD_FILE_COUNT_LIMIT: "100000"
+          SEAFILE_DOCKER_VERBOSE: "true"
+          SEAFILE_LOG_TO_STDOUT: "false"
+        envFrom:
+          - secretRef:
+              name: seafile-secret
+        probes:
+          liveness: &probes
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /api2/ping/
+                port: &port 80
+              initialDelaySeconds: 0
+              periodSeconds: 10
+              timeoutSeconds: 1
+              failureThreshold: 30
+          readiness: *probes
+          startup:
+            enabled: false
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop: ["ALL"]
+        resources:
+          requests:
+            cpu: 50m
+            memory: 700Mi
+          limits:
+            memory: 4Gi
+    pod:
+      securityContext:
+        runAsUser: 1026
+        runAsGroup: 100
+        runAsNonRoot: true
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+
+service:
+  main:
+    controller: seafile
+    ports:
+      http:
+        port: *port
+
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames:
+      - "seafile.g4v.dev"
+    rules:
+      - matches:
+        - path:
+            type: PathPrefix
+            value: /
+        backendRefs:
+          - identifier: main
+            port: http
+
+persistence:
+  data:
+    enabled: true
+    type: persistentVolumeClaim
+    storageClass: nas-apps
+    accessMode: ReadWriteMany
+    size: 100Gi
+    globalMounts:
+      - path: /shared
+  logs:
+    type: emptyDir
+    globalMounts:
+      - path: /shared/logs

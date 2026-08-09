@@ -1,0 +1,40 @@
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: PostgresUser
+metadata:
+  name: seafile
+spec:
+  role: seafile
+  database: seafile-db
+  secretName: seafile-db-secret
+  privileges: OWNER
+  secretTemplate:
+    HOST_NO_PORT: "{{ .Hostname }}"
+    PORT: "{{ .Port }}"
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: seafile-db
+spec:
+  database: seafile_db
+  dropOnDelete: false
+  masterRole: seafile
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: ccnet-db
+spec:
+  database: ccnet_db
+  dropOnDelete: false
+  masterRole: seafile
+---
+apiVersion: db.movetokube.com/v1alpha1
+kind: Postgres
+metadata:
+  name: seahub-db
+spec:
+  database: seahub_db
+  dropOnDelete: false
+  masterRole: seafile
