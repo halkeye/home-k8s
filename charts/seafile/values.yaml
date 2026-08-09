@@ -60,7 +60,7 @@ controllers:
           SEAFILE_LOG_TO_STDOUT: "false"
         envFrom:
           - secretRef:
-              name: seafile-secret
+              name: seafile
         probes:
           liveness: &probes
             enabled: true
