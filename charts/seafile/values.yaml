@@ -123,7 +123,7 @@ persistence:
   data:
     enabled: true
     type: persistentVolumeClaim
-    accessMode: ReadWriteMany
+    accessMode: ReadWriteOnce
     size: 100Gi
     globalMounts:
       - path: /shared
