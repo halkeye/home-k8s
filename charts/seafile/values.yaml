@@ -86,13 +86,6 @@ controllers:
             memory: 700Mi
           limits:
             memory: 4Gi
-    pod:
-      securityContext:
-        runAsUser: 1026
-        runAsGroup: 100
-        runAsNonRoot: true
-        fsGroup: 1000
-        fsGroupChangePolicy: OnRootMismatch
 
 service:
   main:
