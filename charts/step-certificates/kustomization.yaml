@@ -15,3 +15,12 @@ helmCharts:
 resources:
   - ./secret.enc.yaml
   - ./httproute.yaml
+
+patches:
+  - target:
+      kind: Service
+      name: step-certificates
+    patch: |-
+      - op: add
+        path: /spec/ports/0/appProtocol
+        value: https
