@@ -11,3 +11,6 @@ helmCharts:
     repo: https://smallstep.github.io/helm-charts
     valuesFile: values.yaml
     releaseName: step-issuer
+
+resources:
+  - ./secret.enc.yaml
