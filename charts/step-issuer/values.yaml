@@ -8,5 +8,6 @@ stepClusterIssuer:
     kid: "s7mgcaL-wSc9GX9zbbbsN2TR9tZtFQNfYAdbpx7JUcM"
     passwordRef:
       name: "step-issuer"
+      namespace: step-issuer
       key: "password"
 
