@@ -7,7 +7,7 @@ spec:
   endpoints:
     - fqdn:
         hostname: step-certificates.step-certificates.svc.cluster.local
-        port: 9000
+        port: 443
   tls:
     insecureSkipVerify: true
 ---
