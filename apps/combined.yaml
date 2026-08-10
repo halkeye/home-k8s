@@ -22,6 +22,7 @@ spec:
                 - { appname: remove-empty-ns-operator }
                 - { appname: smtp-relay }
                 - { appname: sops-secrets-operator }
+                - { appname: step-issuer }
                 - { appname: vpa }
                 - { appname: whoami, useOverlay: true }
   template:

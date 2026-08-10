@@ -8,6 +8,7 @@ namespace: sops-secrets-operator
 helmCharts:
   - name: sops-secrets-operator
     version: 0.25.1
+    includeCRDs: true
     repo: https://isindir.github.io/sops-secrets-operator/
     valuesFile: ./values.yaml
     releaseName: sops-secrets-operator
