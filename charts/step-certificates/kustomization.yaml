@@ -15,7 +15,6 @@ helmCharts:
 resources:
   - ./secret.enc.yaml
   - ./httproute.yaml
-  - ./backendtlspolicy.yaml
 
 patches:
   - target:
