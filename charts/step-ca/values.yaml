@@ -1,0 +1,41 @@
+# CA configuration
+ca:
+  name: "G4V CA"
+  address: ":9000"
+  # dns will be auto-generated if left empty
+  dns: ""
+  # Provisioner configuration
+  provisioner:
+    name: admin
+  # Database configuration
+  db:
+    enabled: true
+    persistent: true
+    storageClass: ""
+    accessModes:
+      - ReadWriteOnce
+    size: 10Gi
+  # SSH support (optional)
+  ssh:
+    enabled: false
+
+# Service configuration
+service:
+  type: ClusterIP
+  port: 443
+  targetPort: 9000
+
+# Resource limits
+resources:
+  requests:
+    cpu: 50m
+    memory: 128Mi
+  limits:
+    memory: 256Mi
+
+# Security context
+podSecurityContext:
+  runAsUser: 1000
+  runAsNonRoot: true
+  runAsGroup: 1000
+  fsGroup: 1000
