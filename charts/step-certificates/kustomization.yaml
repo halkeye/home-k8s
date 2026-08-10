@@ -15,6 +15,7 @@ helmCharts:
 resources:
   - ./secret.enc.yaml
   - ./httproute.yaml
+  - ./backendtlspolicy.yaml
 
 patches:
   - target:
@@ -24,3 +25,10 @@ patches:
       - op: add
         path: /spec/ports/0/appProtocol
         value: https
+  - target:
+      kind: StatefulSet
+      name: step-certificates
+    patch: |-
+      - op: add
+        path: /metadata/annotations/reloader.stakater.com~1auto
+        value: "true"
