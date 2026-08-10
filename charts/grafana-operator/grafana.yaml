@@ -36,6 +36,10 @@ spec:
           containers:
             - name: grafana
               env:
+                - name: GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS
+                  value: joshuagrisham-gcxonpremoauth-app
+                - name: GF_PLUGINS_PREINSTALL_SYNC
+                  value: joshuagrisham-gcxonpremoauth-app@0.1.2@https://github.com/joshuagrisham/grafana-gcx-on-prem-oauth-plugin/releases/download/v0.1.2/joshuagrisham-gcxonpremoauth-app-0.1.2.zip
                 - name: AUTH_CLIENT_ID
                   valueFrom:
                     secretKeyRef:
