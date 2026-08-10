@@ -8,5 +8,6 @@ spec:
   - 'admin-vpn.g4v.dev'
   issuerRef:
     kind: ClusterIssuer
+    group: cert-manager.io
     name: acme-letsencrypt-prod
   secretName: wg-access-server-tls

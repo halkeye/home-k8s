@@ -9,6 +9,7 @@ spec:
   commonName: "*.g4v.dev"
   issuerRef:
     name: acme-letsencrypt-prod
+    group: cert-manager.io
     kind: ClusterIssuer
   secretName: cilium-wildcard-g4v-tls
 ---
@@ -22,6 +23,7 @@ spec:
   commonName: "*.h.g4v.dev"
   issuerRef:
     name: acme-letsencrypt-prod
+    group: cert-manager.io
     kind: ClusterIssuer
   secretName: cilium-wildcard-home-g4v-tls
 # ---
@@ -36,5 +38,6 @@ spec:
 #   commonName: "*.g4v.dev"
 #   issuerRef:
 #     name: acme-letsencrypt-prod
+#     group: cert-manager.io
 #     kind: ClusterIssuer
 #   secretName: wildcard-do-g4v-tls

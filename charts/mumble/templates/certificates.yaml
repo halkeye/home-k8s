@@ -9,4 +9,5 @@ spec:
   issuerRef:
     kind: ClusterIssuer
     name: acme-letsencrypt-prod
+    group: cert-manager.io
   secretName: "{{.Release.Name}}-tls"

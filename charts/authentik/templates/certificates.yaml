@@ -9,5 +9,6 @@ spec:
   commonName: "auth.g4v.dev"
   issuerRef:
     name: acme-letsencrypt-prod
+    group: cert-manager.io
     kind: ClusterIssuer
   secretName: authentik-tls
