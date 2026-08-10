@@ -1,0 +1,17 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: step-ca
+
+helmCharts:
+  - name: step-certificates
+    version: 1.30.1
+    repo: https://smallstep.github.io/helm-charts
+    releaseName: step-certificates
+    valuesFile: values.yaml
+
+resources:
+  - ./secret.enc.yaml
+  - ./httproute.yaml
