@@ -8,6 +8,7 @@ namespace: step-ca
 helmCharts:
   - name: step-issuer
     version: 1.11.0
+    includeCRDs: true
     repo: https://smallstep.github.io/helm-charts
     valuesFile: values.yaml
     releaseName: step-issuer
