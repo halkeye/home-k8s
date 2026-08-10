@@ -9,9 +9,14 @@ helmCharts:
   - name: step-certificates
     version: 1.30.1
     repo: https://smallstep.github.io/helm-charts
-    releaseName: step-ca
+    releaseName: step-certificates
+    valuesFile: step-certificates-values.yaml
   - name: step-issuer
     version: 1.11.0
     repo: https://smallstep.github.io/helm-charts
-    valuesFile: values.yaml
-#    releaseName: step-issuer
+    valuesFile: step-issuer-values.yaml
+    releaseName: step-issuer
+
+resources:
+  - ./secret.enc.yaml
+  - ./httproute.yaml
