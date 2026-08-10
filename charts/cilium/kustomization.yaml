@@ -15,6 +15,5 @@ helmCharts:
 resources:
   - announce.yaml
   - ip-pool.yaml
-  - certificates.yaml
   - dashboards.yaml
   - hubble-httproute.yaml
