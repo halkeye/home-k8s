@@ -1,0 +1,24 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: grafana-h
+  namespace: grafana-operator
+spec:
+  # The secret name to store the signed certificate
+  secretName: grafana-h-tls
+  # Common Name
+  commonName: grafana-h.home.arpa
+  # DNS SAN
+  dnsNames:
+    - grafana-h.home.arpa
+  # Duration of the certificate
+  duration: 24h
+  # Renew 8 hours before the certificate expiration
+  renewBefore: 8h
+  # The reference to the step issuer
+  issuerRef:
+    group: certmanager.step.sm
+    kind: StepClusterIssuer
+    name: step-issuer
+

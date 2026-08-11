@@ -5,6 +5,7 @@ namespace: grafana-operator
 
 resources:
 - ../../../charts/grafana-operator/
+- ./certificate.yaml
 - dashboards-3dprinter.yaml
 - dashboards-data.yaml
 - dashboards-mediafetchers.yaml
