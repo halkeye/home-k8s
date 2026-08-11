@@ -105,7 +105,6 @@ spec:
           - { namespace: esphome, name: esphome-device-builder }
           - name: frigate
           - name: goldilocks
-          - name: hass-lovelace-kindle-screensaver
           - name: headlamp
           - name: immich
           - name: kavita
@@ -120,7 +119,6 @@ spec:
           - name: nortverse-downloader
           - name: obsidian-livesync
           - name: ollama
-          - name: openbooks
           - name: pinchflat
           - name: polaris
           - name: postgres-do-k8s-backup
