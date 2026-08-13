@@ -67,8 +67,6 @@ controllers:
         image:
           repository: ghcr.io/karakeep-app/karakeep-chrome
           tag: 151.0.7922.47-r1
-        command:
-          - chromium-browser
         args:
           - --headless
           - --disable-gpu
