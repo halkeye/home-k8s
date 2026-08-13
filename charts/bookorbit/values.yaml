@@ -15,6 +15,7 @@ controllers:
           PORT: "3000"
           PUID: "1026"
           PGID: "100"
+          LOG_LEVEL: "debug"
           NODE_MAX_OLD_SPACE_SIZE: auto
           DATABASE_URL:
             valueFrom:
