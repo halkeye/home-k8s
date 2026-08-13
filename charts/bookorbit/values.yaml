@@ -8,7 +8,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/bookorbit/bookorbit
-          tag: 2.3.0
+          tag: 2.5.0
         env:
           TZ: America/Vancouver
           NODE_ENV: production
