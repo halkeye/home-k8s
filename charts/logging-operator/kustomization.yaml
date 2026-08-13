@@ -14,4 +14,4 @@ helmCharts:
 
 resources:
   - ./secret.enc.yaml
-  - ./logging.yaml
+#  - ./logging.yaml
