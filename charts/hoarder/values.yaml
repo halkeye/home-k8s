@@ -65,7 +65,7 @@ controllers:
     containers:
       app:
         image:
-          repository: ghcr.io/karakeep-app/karakeep-chrome:release
+          repository: ghcr.io/karakeep-app/karakeep-chrome
           tag: 151.0.7922.47-r1
         command:
           - chromium-browser
