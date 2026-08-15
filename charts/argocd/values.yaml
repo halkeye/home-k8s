@@ -3,6 +3,8 @@ global:
   image:
     repository: ghcr.io/halkeye/docker-argocd
     tag: "v3.4.2.146"
+  networkPolicy:
+    enabled: false
 fullnameOverride: argocd
 createClusterRoles: true
 createAggregateRoles: true
