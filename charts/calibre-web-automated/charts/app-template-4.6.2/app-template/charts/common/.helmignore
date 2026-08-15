@@ -14,10 +14,20 @@
 *.swp
 *.bak
 *.tmp
-*.orig
 *~
 # Various IDEs
 .project
 .idea/
 *.tmproj
 .vscode/
+# OWNERS file for Kubernetes
+OWNERS
+# helm-docs templates
+*.gotmpl
+
+# Schema files
+schemas/
+
+# Test files
+test-chart/
+unittests/
