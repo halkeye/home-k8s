@@ -35,3 +35,6 @@ longhornDriver:
       effect: NoSchedule
 longhornManager:
   tolerations: *tolerations
+networkPolicies:
+  enabled: false
+  restrictInternalTraffic: false
