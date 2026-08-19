@@ -1,3 +1,4 @@
+---
 controllers:
   main:
     type: cronjob
@@ -21,18 +22,21 @@ controllers:
           ## Additional logging information
           DEBUG: 'True'
           ## Debugging level, "info" is default, "debug" is more verbose
-          DEBUG_LEVEL: 'info'
+          DEBUG_LEVEL: info
           ## If set to true then the script will only run once and then exit
           RUN_ONLY_ONCE: 'True'
           ## How often to run the script in seconds
           SLEEP_DURATION: '3600'
           ## Log file where all output will be written to
-          LOG_FILE: '/dev/stdout'
+          LOG_FILE: /dev/stdout
           ## Map libraries between servers in the event that they are different, order does not matter
           ## Comma separated for multiple options
-          LIBRARY_MAPPING: '{"TV Shows":"TV Shows", "Comedians (Video)": "Comedians", "Comedians (Audio)": "Comedians", "Movies": "Movies", "Webseries (Movies)": "Web Content", "Webseries": "Web Content", "Anime (TV)": "Anime (TV)", "Anime (Movies)": "Anime (Movies)", "Music": "Music"}'
+          LIBRARY_MAPPING: '{"TV Shows":"TV Shows", "Comedians (Video)": "Comedians",
+            "Comedians (Audio)": "Comedians", "Movies": "Movies", "Webseries (Movies)":
+            "Web Content", "Webseries": "Web Content", "Anime (TV)": "Anime (TV)",
+            "Anime (Movies)": "Anime (Movies)", "Music": "Music"}'
           ## Mark file where all shows/movies that have been marked as played will be written to
-          MARK_FILE: '/data/mark.txt'
+          MARK_FILE: /data/mark.txt
           ## Timeout for requests for jellyfin
           REQUEST_TIMEOUT: 3000
           ## Generate guids

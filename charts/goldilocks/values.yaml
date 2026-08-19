@@ -2,12 +2,10 @@
 image:
   repository: us-docker.pkg.dev/fairwinds-ops/oss/goldilocks
   tag: v4.15.1
-
 dashboard:
   flags:
     on-by-default: true
     enable-cost: false
-
 controller:
   flags:
     on-by-default: true

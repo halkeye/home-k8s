@@ -1,14 +1,14 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 app-template:
-  provisioning_shared_secret: "foo"
-  login_shared_secret: "login_shared_secret"
-  as_token: "This value is generated when generating the registration"
-  hs_token: "This value is generated when generating the registration"
-
+  provisioning_shared_secret: foo
+  login_shared_secret: login_shared_secret
+  as_token: This value is generated when generating the registration
+  hs_token: This value is generated when generating the registration
   controllers:
     main:
       annotations:
-        reloader.stakater.com/auto: "true"
+        reloader.stakater.com/auto: 'true'
       type: deployment
       replicas: 1
       strategy: Recreate
@@ -23,16 +23,16 @@ app-template:
             MAUTRIX_DB_URI:
               valueFrom:
                 secretKeyRef:
-                  name: "{{.Release.Name}}-db-secret-{{.Release.Name}}"
+                  name: '{{.Release.Name}}-db-secret-{{.Release.Name}}'
                   key: POSTGRES_URL
           command:
             - bash
             - -c
             - |-
-                cat /secrets/config.yaml | envsubst > /data/config.yaml
-                find /secrets
-                find /data
-                cat /data/config.yaml
+              cat /secrets/config.yaml | envsubst > /data/config.yaml
+              find /secrets
+              find /data
+              cat /data/config.yaml
       containers:
         main:
           image:
@@ -43,14 +43,9 @@ app-template:
             MAUTRIX_DB_URI:
               valueFrom:
                 secretKeyRef:
-                  name: "{{.Release.Name}}-db-secret-{{.Release.Name}}"
+                  name: '{{.Release.Name}}-db-secret-{{.Release.Name}}'
                   key: POSTGRES_URL
-          command:
-            - "python3"
-            - "-m"
-            - "mautrix_googlechat"
-            - "-c"
-            - "/data/config.yaml"
+          command: [python3, -m, mautrix_googlechat, -c, /data/config.yaml]
           probes:
             liveness:
               enabled: false
@@ -80,7 +75,7 @@ app-template:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
             capabilities:
-              drop: ["ALL"]
+              drop: [ALL]
           resources:
             requests:
               cpu: 10m
@@ -99,7 +94,6 @@ app-template:
       ports:
         http:
           port: 29320
-
   persistence:
     tmp:
       enabled: true
@@ -110,8 +104,7 @@ app-template:
     secrets:
       enabled: true
       type: secret
-      name: "{{ .Release.Name }}-secret"
-
+      name: '{{ .Release.Name }}-secret'
   secrets:
     secret:
       enabled: true
@@ -364,7 +357,6 @@ app-template:
               # If set to `always`, all DM rooms will have explicit names and avatars set.
               # If set to `never`, DM rooms will never have names and avatars set.
               private_chat_portal_meta: default
-
               provisioning:
                   # Internal prefix in the appservice web server for the login endpoints.
                   prefix: /_matrix/provision

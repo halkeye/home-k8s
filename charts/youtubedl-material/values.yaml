@@ -31,7 +31,6 @@ service:
     ports:
       http:
         port: 17442
-
 route:
   main:
     enabled: true
@@ -39,20 +38,18 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "youtubedl.g4v.dev"
+    hostnames: [youtubedl.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - group: ''
             kind: Service
             identifier: main
             port: http
             weight: 1
-
 persistence:
   config:
     enabled: true

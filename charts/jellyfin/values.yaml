@@ -1,6 +1,7 @@
+---
 defaultPodOptions:
   nodeSelector:
-    feature.node.kubernetes.io/gpu: "true"
+    feature.node.kubernetes.io/gpu: 'true'
 controllers:
   main:
     strategy: Recreate
@@ -50,17 +51,16 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "jellyfin.g4v.dev"
+    hostnames: [jellyfin.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /metrics
+          - path:
+              type: PathPrefix
+              value: /metrics
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - group: ''
             kind: Service
@@ -93,7 +93,7 @@ persistence:
   anime-movies:
     type: nfs
     server: 172.16.10.10
-    path: '/volume1/Anime Movies'
+    path: /volume1/Anime Movies
     globalMounts:
       - path: /anime-movies
   tv:
@@ -123,25 +123,24 @@ persistence:
   webseries-movies:
     type: nfs
     server: 172.16.10.10
-    path: '/volume1/Webseries Movies'
+    path: /volume1/Webseries Movies
     globalMounts:
       - path: /webseries-movies
   comedian-specials:
     type: nfs
     server: 172.16.10.10
-    path: '/volume1/Comedian Specials'
+    path: /volume1/Comedian Specials
     globalMounts:
       - path: /comedian-specials
   zap2xml:
     enabled: true
     type: nfs
     server: 172.16.10.10
-    path: '/volume1/Apps/zap2xml'
-
+    path: /volume1/Apps/zap2xml
   configmap:
     enabled: true
     type: configMap
-    name: 'jellyfin-configmap'
+    name: jellyfin-configmap
     globalMounts:
       - path: /config/logging.json
         subPath: logging.json

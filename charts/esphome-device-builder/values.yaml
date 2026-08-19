@@ -1,15 +1,16 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
   main:
     replicas: 1
     type: statefulset
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     containers:
       app:
         image:
           repository: esphome/esphome
-          tag: "2026.7"
+          tag: '2026.7'
         env:
           - name: TZ
             value: America/Vancouver
@@ -31,10 +32,7 @@ controllers:
             valueFrom:
               fieldRef:
                 fieldPath: status.podIP
-        command:
-          - esphome-device-builder
-          - --remote-build-only
-          - /config
+        command: [esphome-device-builder, --remote-build-only, /config]
         probes:
           liveness:
             enabled: false
@@ -46,7 +44,7 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
         resources:
           requests:
             memory: 512Mi
@@ -63,7 +61,7 @@ service:
     controller: main
     type: LoadBalancer
     annotations:
-      external-dns.alpha.kubernetes.io/hostname: "esphome-buildserver.g4v.dev"
+      external-dns.alpha.kubernetes.io/hostname: esphome-buildserver.g4v.dev
     ports:
       peer-link:
         port: 6055

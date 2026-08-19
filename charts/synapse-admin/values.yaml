@@ -1,3 +1,4 @@
+---
 controllers:
   main:
     enabled: true
@@ -6,7 +7,6 @@ controllers:
         image:
           repository: ghcr.io/etkecc/ketesa
           tag: v1.3.0
-
 route:
   main:
     enabled: true
@@ -14,13 +14,12 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "synapse-admin.g4v.dev"
+    hostnames: [synapse-admin.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - identifier: main
             port: http

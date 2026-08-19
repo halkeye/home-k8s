@@ -1,3 +1,4 @@
+---
 nameOverride: external-dns-cloudflare
 fullnameOverride: external-dns-cloudflare
 policy: sync
@@ -20,15 +21,10 @@ domainFilters:
   - saltystories.ca
 serviceMonitor:
   enabled: true
-sources:
-  - ingress
-  - gateway-httproute
-  - gateway-grpcroute
-  - service
+sources: [ingress, gateway-httproute, gateway-grpcroute, service]
 provider:
   name: cloudflare
-extraArgs:
-  - --cloudflare-proxied
+extraArgs: [--cloudflare-proxied]
 env:
   - name: CF_API_TOKEN
     valueFrom:

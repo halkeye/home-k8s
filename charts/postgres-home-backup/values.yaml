@@ -1,5 +1,5 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
-
 defaultPodOptions:
   enableServiceLinks: false
   securityContext:
@@ -12,9 +12,9 @@ controllers:
   main:
     type: cronjob
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     cronjob:
-      schedule: "@daily"
+      schedule: '@daily'
       ttlSecondsAfterFinished: 43200
       backoffLimit: 1
     containers:
@@ -22,25 +22,25 @@ controllers:
         image:
           repository: docker.io/prodrigestivill/postgres-backup-local
           tag: 18@sha256:f70742ebe42b2277689b028d1fd15aa80f77cffa01da163cc9f85a6ff1866e7f
-        command: ["/backup.sh"]
+        command: [/backup.sh]
         envFrom:
           - secretRef:
               name: postgres-home-backup-secret
         env:
           - name: BACKUP_KEEP_DAYS
-            value: "7"
+            value: '7'
           - name: BACKUP_KEEP_WEEKS
-            value: "4"
+            value: '4'
           - name: BACKUP_KEEP_MONTHS
-            value: "6"
+            value: '6'
           - name: BACKUP_KEEP_MINS
-            value: "7200"
+            value: '7200'
           # - name: POSTGRES_EXTRA_OPTS
           #   value: "-Z1 --schema=public --blobs"
 persistence:
   backups:
     type: nfs
     server: 172.16.10.10
-    path: "/volume1/Backups/postgresql/homek8s"
+    path: /volume1/Backups/postgresql/homek8s
     globalMounts:
       - path: /backups

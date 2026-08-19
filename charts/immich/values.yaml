@@ -1,3 +1,4 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 service:
   main:
@@ -20,12 +21,11 @@ service:
         primary: true
         port: 3003
         protocol: HTTP
-
 controllers:
   main:
     replicas: 1
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     containers:
       main:
         image:
@@ -34,9 +34,9 @@ controllers:
           tag: v3.0.2
         envFrom:
           - secretRef:
-              name: "immich-secret"
+              name: immich-secret
         env:
-          IMMICH_TRUSTED_PROXIES: "0.0.0.0"
+          IMMICH_TRUSTED_PROXIES: 0.0.0.0
           IMMICH_PORT: 3001
           DB_URL:
             valueFrom:
@@ -58,11 +58,10 @@ controllers:
           readiness: *server_probes
           startup:
             enabled: false
-
   machine-learning:
     replicas: 1
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     containers:
       main:
         image:
@@ -71,7 +70,7 @@ controllers:
           pullPolicy: IfNotPresent
         envFrom:
           - secretRef:
-              name: "immich-secret"
+              name: immich-secret
         env:
           TRANSFORMERS_CACHE: /cache
           DB_URL:
@@ -94,11 +93,10 @@ controllers:
           readiness: *machine_probes
           startup:
             enabled: false
-
   typesense:
     replicas: 1
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     strategy: RollingUpdate
     pod:
       affinity:
@@ -108,8 +106,7 @@ controllers:
               - matchExpressions:
                   - key: kubernetes.io/arch
                     operator: NotIn
-                    values:
-                      - arm64
+                    values: [arm64]
     containers:
       main:
         image:
@@ -118,7 +115,7 @@ controllers:
           pullPolicy: IfNotPresent
         envFrom:
           - secretRef:
-              name: "immich-secret"
+              name: immich-secret
         env:
           TYPESENSE_DATA_DIR: /typesense-data
         probes:
@@ -145,7 +142,6 @@ controllers:
               periodSeconds: 5
               successThreshold: 1
               timeoutSeconds: 1
-
 persistence:
   machine-learning-cache:
     enabled: true
@@ -176,7 +172,6 @@ persistence:
     type: emptyDir
     globalMounts:
       - path: /usr/src/app/.transformers_cache
-
 route:
   main:
     enabled: true
@@ -184,14 +179,12 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "immich.g4v.dev"
-      - "photos.g4v.dev"
+    hostnames: [immich.g4v.dev, photos.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - identifier: main
             port: http

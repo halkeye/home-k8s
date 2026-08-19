@@ -1,3 +1,4 @@
+---
 controllers:
   music-assistant:
     strategy: Recreate
@@ -10,15 +11,11 @@ controllers:
           tag: 2.9.8
         env:
           TZ: America/Vancouver
-          LOG_LEVEL: "info"
+          LOG_LEVEL: info
         securityContext:
           privileged: true
           capabilities:
-            add:
-              - SYS_ADMIN
-              - CAP_SYSLOG
-              - NET_BIND_SERVICE
-              - DAC_READ_SEARCH
+            add: [SYS_ADMIN, CAP_SYSLOG, NET_BIND_SERVICE, DAC_READ_SEARCH]
         probes:
           liveness:
             enabled: false
@@ -67,13 +64,12 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "music-assistant.g4v.dev"
+    hostnames: [music-assistant.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - group: ''
             kind: Service

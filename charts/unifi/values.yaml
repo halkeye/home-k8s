@@ -1,3 +1,4 @@
+---
 app-template:
   controllers:
     main:
@@ -22,12 +23,12 @@ app-template:
         kscb:
           image:
             repository: dkruyt/kscb
-            tag: 'latest'
-            pullPolicy: "Always"
+            tag: latest
+            pullPolicy: Always
           env:
             TZ: America/Vancouver
-            KSCB_SRC: "/unifi/data/backup/autobackup"
-            KSCB_DST: "halkeye-unifi"
+            KSCB_SRC: /unifi/data/backup/autobackup
+            KSCB_DST: halkeye-unifi
           envFrom:
             - secretRef:
                 name: '{{.Release.Name}}-secret'
@@ -37,9 +38,9 @@ app-template:
       type: LoadBalancer
       externalTrafficPolicy: Local
       annotations:
-        service.beta.kubernetes.io/do-loadbalancer-name: 'dok8s-unifi'
+        service.beta.kubernetes.io/do-loadbalancer-name: dok8s-unifi
         external-dns.alpha.kubernetes.io/cloudflare-proxied: 'false'
-        external-dns.alpha.kubernetes.io/hostname: "unifi-lb.gavinmogan.com"
+        external-dns.alpha.kubernetes.io/hostname: unifi-lb.gavinmogan.com
       ports:
         https:
           port: 8443
@@ -83,20 +84,19 @@ app-template:
         - name: http-gateway
           namespace: envoy-gateway
           sectionName: https
-      hostnames:
-        - "unifi.g4v.dev"
+      hostnames: [unifi.g4v.dev]
       rules:
         - matches:
-          - path:
-              type: PathPrefix
+            - path:
+                type: PathPrefix
               value: /
           backendRefs:
             - group: gateway.envoyproxy.io
               kind: Backend
               name: unifi-https
           timeouts:
-            request: 0s # websocket, never time out
-            backendRequest: 0s # websocket, never time out
+            request: 0s  # websocket, never time out
+            backendRequest: 0s  # websocket, never time out
     controller:
       enabled: true
       annotations:
@@ -105,26 +105,24 @@ app-template:
         - name: http-gateway
           namespace: envoy-gateway
           sectionName: https
-      hostnames:
-        - "unifi-controller.g4v.dev"
+      hostnames: [unifi-controller.g4v.dev]
       rules:
         - matches:
-          - path:
-              type: PathPrefix
+            - path:
+                type: PathPrefix
               value: /
           backendRefs:
             - identifier: main
               port: controller
           timeouts:
-            request: 0s # websocket, never time out
-            backendRequest: 0s # websocket, never time out
+            request: 0s  # websocket, never time out
+            backendRequest: 0s  # websocket, never time out
   configMaps:
     config:
       suffix: config
       data:
         crontab: |
           0 3 * * * rclone sync "$KSCB_SRC" "$KSCB_DST:unifi" -v --backup-dir="$KSCB_DST:unifi-old/$(date -u +"%Y-%m-%dT%H-%M-%SZ")"
-
   persistence:
     data:
       enabled: true

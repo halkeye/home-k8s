@@ -7,12 +7,11 @@ defaultPodOptions:
     runAsGroup: 100
     runAsNonRoot: true
     fsGroup: 100
-    fsGroupChangePolicy: "OnRootMismatch"
-
+    fsGroupChangePolicy: OnRootMismatch
 controllers:
   authentik:
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     containers:
       authentik:
         image:
@@ -33,12 +32,11 @@ controllers:
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
-            drop:
-              - ALL
+            drop: [ALL]
           readOnlyRootFilesystem: true
   navidrome:
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
       # litestream: enabled
     containers:
       navidrome:
@@ -62,7 +60,6 @@ controllers:
             memory: 250Mi
           limits:
             memory: 1Gi
-
 service:
   authentik:
     controller: authentik
@@ -76,7 +73,6 @@ service:
     ports:
       http:
         port: 4533
-
 route:
   main:
     enabled: true
@@ -84,40 +80,38 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "navidrome.g4v.dev"
+    hostnames: [navidrome.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - identifier: authentik
             port: http
         timeouts:
-            request: 0s # websocket, never time out
-            backendRequest: 0s # websocket, never time out
+          request: 0s  # websocket, never time out
+          backendRequest: 0s  # websocket, never time out
       - matches:
-        - path:
-            type: PathPrefix
-            value: /share/
+          - path:
+              type: PathPrefix
+              value: /share/
         backendRefs:
           - identifier: navidrome
             port: http
         timeouts:
-            request: 0s # websocket, never time out
-            backendRequest: 0s # websocket, never time out
+          request: 0s  # websocket, never time out
+          backendRequest: 0s  # websocket, never time out
       - matches:
-        - path:
-            type: PathPrefix
-            value: /rest/
+          - path:
+              type: PathPrefix
+              value: /rest/
         backendRefs:
           - identifier: navidrome
             port: http
         timeouts:
-            request: 0s # websocket, never time out
-            backendRequest: 0s # websocket, never time out
-
+          request: 0s  # websocket, never time out
+          backendRequest: 0s  # websocket, never time out
 persistence:
   data:
     enabled: true
@@ -127,7 +121,7 @@ persistence:
     advancedMounts:
       navidrome:
         navidrome:
-        - path: /config
+          - path: /config
   music:
     type: nfs
     server: 172.16.10.10

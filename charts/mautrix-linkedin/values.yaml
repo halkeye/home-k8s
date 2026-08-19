@@ -1,8 +1,9 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
   main:
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     replicas: 1
     type: statefulset
     containers:
@@ -15,16 +16,12 @@ controllers:
           BRIDGE_DATABASE__URI:
             valueFrom:
               secretKeyRef:
-                name: "mautrix-linkedin-db-secret-mautrix-linkedin"
+                name: mautrix-linkedin-db-secret-mautrix-linkedin
                 key: POSTGRES_URL
         envFrom:
           - secretRef:
-              name: "mautrix-linkedin-secret"
-        command:
-          - /usr/bin/mautrix-linkedin
-          - "-n"
-          - "-c"
-          - "/configmap/config.yaml"
+              name: mautrix-linkedin-secret
+        command: [/usr/bin/mautrix-linkedin, -n, -c, /configmap/config.yaml]
         probes:
           liveness:
             enabled: true
@@ -54,7 +51,7 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
         resources:
           requests:
             cpu: 10m
@@ -66,7 +63,6 @@ controllers:
         runAsNonRoot: true
         fsGroup: 1337
         fsGroupChangePolicy: OnRootMismatch
-
 service:
   main:
     controller: main
@@ -74,7 +70,6 @@ service:
     ports:
       http:
         port: 29341
-
 persistence:
   tmp:
     enabled: true
@@ -85,8 +80,7 @@ persistence:
   configmap:
     enabled: true
     type: configMap
-    name: "mautrix-linkedin-configmap"
-
+    name: mautrix-linkedin-configmap
 route:
   main:
     enabled: true
@@ -94,19 +88,18 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "mautrix-bridges.g4v.dev"
+    hostnames: [mautrix-bridges.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /linkedin
+          - path:
+              type: PathPrefix
+              value: /linkedin
         filters:
-        - type: URLRewrite
-          urlRewrite:
-            path:
-              type: ReplacePrefixMatch
-              replacePrefixMatch: /
+          - type: URLRewrite
+            urlRewrite:
+              path:
+                type: ReplacePrefixMatch
+                replacePrefixMatch: /
         backendRefs:
           - identifier: main
             port: http

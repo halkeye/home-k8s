@@ -1,26 +1,26 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 fullnameOverride: sabnzbd-exporter
 controllers:
   main:
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     containers:
       main:
         image:
-          repository: "ghcr.io/onedr0p/exportarr"
-          tag: "v2.3.0"
-        args:
-          - sabnzbd
+          repository: ghcr.io/onedr0p/exportarr
+          tag: v2.3.0
+        args: [sabnzbd]
         env:
-          PORT: "9707"
+          PORT: '9707'
         envFrom:
           - secretRef:
-              name: "sabnzbd-exporter-secret"
+              name: sabnzbd-exporter-secret
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
         resources:
           requests:
             cpu: 10m
@@ -47,7 +47,6 @@ service:
     ports:
       http:
         port: 9707
-
 serviceMonitor:
   main:
     enabled: true

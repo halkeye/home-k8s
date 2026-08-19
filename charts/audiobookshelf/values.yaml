@@ -1,3 +1,4 @@
+---
 app-template:
   controllers:
     main:
@@ -29,7 +30,7 @@ app-template:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
             capabilities:
-              drop: ['ALL']
+              drop: [ALL]
           resources:
             limits:
               memory: 600Mi
@@ -56,13 +57,12 @@ app-template:
         - name: http-gateway
           namespace: envoy-gateway
           sectionName: https
-      hostnames:
-        - "audiobookshelf.g4v.dev"
+      hostnames: [audiobookshelf.g4v.dev]
       rules:
         - matches:
-          - path:
-              type: PathPrefix
-              value: /
+            - path:
+                type: PathPrefix
+                value: /
           backendRefs:
             - identifier: main
               port: http
@@ -79,11 +79,11 @@ app-template:
     audiobooks:
       type: nfs
       server: 172.16.10.10
-      path: '/volume1/Audio/Audio Books'
+      path: /volume1/Audio/Audio Books
     podcasts:
       type: nfs
       server: 172.16.10.10
-      path: '/volume1/Audio/Podcasts'
+      path: /volume1/Audio/Podcasts
     comedians:
       type: nfs
       server: 172.16.10.10
@@ -91,4 +91,4 @@ app-template:
     backups:
       type: nfs
       server: 172.16.10.10
-      path: '/volume1/Backups/audiobookshelf'
+      path: /volume1/Backups/audiobookshelf

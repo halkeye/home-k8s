@@ -1,14 +1,15 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 fullnameOverride: mysqld-exporter
 controllers:
   main:
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     containers:
       main:
         image:
-          repository: "prom/mysqld-exporter"
-          tag: "v0.20.0"
+          repository: prom/mysqld-exporter
+          tag: v0.20.0
         args:
           - --mysqld.address
           - db-mysql-sfo2-06502-do-user-8094590-0.b.db.ondigitalocean.com:25060
@@ -16,12 +17,12 @@ controllers:
           - exporter
         envFrom:
           - secretRef:
-              name: "mysqld-exporter-secret"
+              name: mysqld-exporter-secret
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
         resources:
           requests:
             cpu: 10m
@@ -42,7 +43,7 @@ service:
 serviceMonitor:
   main:
     enabled: true
-    serviceName: 'mysqld'
+    serviceName: mysqld
     endpoints:
       - port: http
         scheme: http

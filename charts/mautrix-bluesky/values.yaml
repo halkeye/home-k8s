@@ -1,8 +1,9 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
   main:
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     replicas: 1
     type: statefulset
     containers:
@@ -15,16 +16,12 @@ controllers:
           BRIDGE_DATABASE__URI:
             valueFrom:
               secretKeyRef:
-                name: "mautrix-bluesky-db-secret-mautrix-bluesky"
+                name: mautrix-bluesky-db-secret-mautrix-bluesky
                 key: POSTGRES_URL
         envFrom:
           - secretRef:
-              name: "mautrix-bluesky-secret"
-        command:
-          - /usr/bin/mautrix-bluesky
-          - "-n"
-          - "-c"
-          - /configmap/config.yaml
+              name: mautrix-bluesky-secret
+        command: [/usr/bin/mautrix-bluesky, -n, -c, /configmap/config.yaml]
         probes:
           liveness:
             enabled: true
@@ -54,7 +51,7 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
         resources:
           requests:
             cpu: 10m
@@ -73,7 +70,6 @@ service:
     ports:
       http:
         port: 29328
-
 persistence:
   tmp:
     enabled: true
@@ -84,8 +80,7 @@ persistence:
   configmap:
     enabled: true
     type: configMap
-    name: "mautrix-bluesky-configmap"
-
+    name: mautrix-bluesky-configmap
 route:
   main:
     enabled: true
@@ -93,19 +88,18 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "mautrix-bridges.g4v.dev"
+    hostnames: [mautrix-bridges.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /bluesky
+          - path:
+              type: PathPrefix
+              value: /bluesky
         filters:
-        - type: URLRewrite
-          urlRewrite:
-            path:
-              type: ReplacePrefixMatch
-              replacePrefixMatch: /
+          - type: URLRewrite
+            urlRewrite:
+              path:
+                type: ReplacePrefixMatch
+                replacePrefixMatch: /
         backendRefs:
           - identifier: main
             port: http

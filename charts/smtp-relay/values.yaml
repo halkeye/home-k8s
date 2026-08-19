@@ -4,7 +4,7 @@ controllers:
   main:
     strategy: RollingUpdate
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     containers:
       app:
         image:
@@ -12,14 +12,14 @@ controllers:
           tag: 0.9.5
         env:
           TZ: America/Vancouver
-          DEBUG: "no"
+          DEBUG: 'no'
         envFrom:
           - secretRef:
               name: smtp-relay
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: false
-          capabilities: { drop: ["ALL"] }
+          capabilities: {drop: [ALL]}
         resources:
           requests:
             cpu: 10m

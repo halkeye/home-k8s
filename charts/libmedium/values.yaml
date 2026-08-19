@@ -1,3 +1,4 @@
+---
 controllers:
   main:
     strategy: RollingUpdate
@@ -10,7 +11,7 @@ controllers:
           tag: latest@sha256:f72ef522a3cb3b2d202da76ba0d749e3b90c0ad27cea136662ae6901701f4ebb
         env:
           TZ: America/Vancouver
-          LOG_LEVEL: 'info'
+          LOG_LEVEL: info
           PORT: '7000'
         probes:
           liveness: &probes
@@ -21,7 +22,7 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ['ALL']
+            drop: [ALL]
         resources:
           requests:
             cpu: 10m
@@ -48,8 +49,7 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "libmedium.g4v.dev"
+    hostnames: [libmedium.g4v.dev]
     rules:
       - backendRefs:
           - identifier: main

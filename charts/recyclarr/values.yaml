@@ -16,14 +16,13 @@ controllers:
         image:
           repository: ghcr.io/recyclarr/recyclarr
           tag: 8.6.0
-        args:
-          - sync
+        args: [sync]
         env:
           COMPlus_EnableDiagnostics: '0'
           TZ: America/Vancouver
         envFrom:
           - secretRef:
-              name: 'recylarr-secret'
+              name: recylarr-secret
         probes:
           liveness:
             enabled: false
@@ -35,7 +34,7 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ['ALL']
+            drop: [ALL]
         resources:
           limits:
             memory: 256Mi
@@ -57,7 +56,7 @@ persistence:
   configs:
     enabled: true
     type: configMap
-    name: 'recylarr-config'
+    name: recylarr-config
     globalMounts:
       - path: /config/configs
         readOnly: true

@@ -1,25 +1,22 @@
+---
 redis:
   enabled: false
-
 global:
   image:
     repository: ghcr.io/goauthentik/server
-    tag: "2026.5.4"
+    tag: 2026.5.4
   deploymentAnnotations:
-    reloader.stakater.com/auto: "true"
-
+    reloader.stakater.com/auto: 'true'
 authentik:
   # This sends anonymous usage-data, stack traces on errors and
   # performance data to sentry.beryju.org, and is fully opt-in
   error_reporting:
     enabled: true
   existingSecret:
-    secretName: "authentik"
-
+    secretName: authentik
 prometheus:
   rules:
     enabled: true
-
 server:
   route:
     main:
@@ -41,8 +38,7 @@ server:
   volumeMounts:
     - name: certs
       mountPath: /certs
-
   volumes:
     - name: certs
       secret:
-        secretName: "authentik-tls"
+        secretName: authentik-tls

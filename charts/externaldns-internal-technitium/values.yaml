@@ -1,12 +1,11 @@
+---
 nameOverride: externaldns-internal-technitium
 fullnameOverride: externaldns-internal-technitium
 policy: sync
 image:
   repository: registry.k8s.io/external-dns/external-dns
   tag: v0.20.0
-domainFilters:
-  - g4v.dev
-  - h.g4v.dev
+domainFilters: [g4v.dev, h.g4v.dev]
 serviceMonitor:
   enabled: true
 sources:
@@ -15,19 +14,18 @@ sources:
   - gateway-httproute
   - gateway-grpcroute
   - traefik-proxy
-extraArgs:
-  - --traefik-disable-legacy
+extraArgs: [--traefik-disable-legacy]
 provider:
   name: rfc2136
 env:
   - name: EXTERNAL_DNS_RFC2136_HOST
-    value: "172.16.10.3"
+    value: 172.16.10.3
   - name: EXTERNAL_DNS_RFC2136_PORT
-    value: "53"
+    value: '53'
   - name: EXTERNAL_DNS_RFC2136_ZONE
     value: g4v.dev
   - name: EXTERNAL_DNS_RFC2136_TSIG_AXFR
-    value: "true"
+    value: 'true'
   - name: EXTERNAL_DNS_RFC2136_TSIG_KEYNAME
     value: home-k8s
   - name: EXTERNAL_DNS_RFC2136_TSIG_SECRET_ALG

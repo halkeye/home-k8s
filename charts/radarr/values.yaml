@@ -1,9 +1,10 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
   main:
     replicas: 1
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     containers:
       radarr:
         image:
@@ -13,33 +14,33 @@ controllers:
           TZ: America/Vancouver
           # https://github.com/Radarr/Radarr/issues/7030#issuecomment-1039689518
           # https://github.com/dotnet/runtime/issues/9336
-          COMPlus_EnableDiagnostics: "0"
-          RADARR__INSTANCENAME: "{{ .Release.Name }}"
+          COMPlus_EnableDiagnostics: '0'
+          RADARR__INSTANCENAME: '{{ .Release.Name }}'
           RADARR__PORT: &port 80
           RADARR__LOG__LEVEL: info
           RADARR__AUTHENTICATION__METHOD: External
           RADARR__AUTH__REQUIRED: DisabledForLocalAddresses
-          RADARR__POSTGRES__PORT: "5432"
+          RADARR__POSTGRES__PORT: '5432'
           RADARR__POSTGRES__HOST:
             valueFrom:
               secretKeyRef:
-                name: "{{.Release.Name}}-db-secret-{{.Release.Name}}"
+                name: '{{.Release.Name}}-db-secret-{{.Release.Name}}'
                 key: HOST
-          RADARR__POSTGRES__MAINDB: "{{.Release.Name}}_main"
-          RADARR__POSTGRES__LOGDB: "{{.Release.Name}}_log"
+          RADARR__POSTGRES__MAINDB: '{{.Release.Name}}_main'
+          RADARR__POSTGRES__LOGDB: '{{.Release.Name}}_log'
           RADARR__POSTGRES__USER:
             valueFrom:
               secretKeyRef:
-                name: "{{.Release.Name}}-db-secret-{{.Release.Name}}"
+                name: '{{.Release.Name}}-db-secret-{{.Release.Name}}'
                 key: LOGIN
           RADARR__POSTGRES__PASSWORD:
             valueFrom:
               secretKeyRef:
-                name: "{{.Release.Name}}-db-secret-{{.Release.Name}}"
+                name: '{{.Release.Name}}-db-secret-{{.Release.Name}}'
                 key: PASSWORD
         envFrom:
           - secretRef:
-              name: "{{.Release.Name}}-secret"
+              name: '{{.Release.Name}}-secret'
         probes:
           liveness: &probes
             enabled: true
@@ -59,7 +60,7 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
         resources:
           limits: &resources
             memory: 1Gi
@@ -70,15 +71,14 @@ controllers:
         image:
           repository: ghcr.io/onedr0p/exportarr
           tag: v2.3.0
-        args:
-          - radarr
+        args: [radarr]
         env:
           PORT: 9707
           URL: http://localhost:80
           APIKEY:
             valueFrom:
               secretKeyRef:
-                name: "{{.Release.Name}}-secret"
+                name: '{{.Release.Name}}-secret'
                 key: RADARR__API_KEY
         resources:
           requests:
@@ -89,7 +89,7 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
     pod:
       securityContext:
         runAsUser: 1026
@@ -122,13 +122,12 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "{{ .Release.Name }}.g4v.dev"
+    hostnames: ['{{ .Release.Name }}.g4v.dev']
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - identifier: main
             port: http
@@ -164,24 +163,24 @@ persistence:
   webseries-movies:
     type: nfs
     server: 172.16.10.10
-    path: "/volume1/Webseries Movies"
+    path: /volume1/Webseries Movies
     globalMounts:
       - path: /webseries-movies
   anime-movies:
     type: nfs
     server: 172.16.10.10
-    path: "/volume1/Anime Movies"
+    path: /volume1/Anime Movies
     globalMounts:
       - path: /anime-movies
   comedian-specials:
     type: nfs
     server: 172.16.10.10
-    path: "/volume1/Comedian Specials"
+    path: /volume1/Comedian Specials
     globalMounts:
       - path: /comedian-specials
   downloads:
     type: nfs
     server: 172.16.10.10
-    path: "/volume1/Downloads"
+    path: /volume1/Downloads
     globalMounts:
       - path: /downloads

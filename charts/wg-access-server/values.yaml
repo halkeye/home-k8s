@@ -1,21 +1,18 @@
+---
 app-template:
   appConfigs:
-    sessionSecret: ""
-    oidcClientID: ""
-    oidcClientSecret: ""
-    wireguardPrivateKey: ""
-
+    sessionSecret: ''
+    oidcClientID: ''
+    oidcClientSecret: ''
+    wireguardPrivateKey: ''
   podAnnotations:
-    reloader.stakater.com/auto: "true"
-
+    reloader.stakater.com/auto: 'true'
   defaultPodOptions:
     dnsConfig:
       options:
         - name: ndots
-          value: "1"
-      nameservers:
-        - 172.16.10.3
-
+          value: '1'
+      nameservers: [172.16.10.3]
   controllers:
     main:
       containers:
@@ -27,22 +24,22 @@ app-template:
             TZ: America/Vancouver
             WG_CONFIG: /config/config.yaml
             WG_VPN_CIDRV6: 0
-            WG_VPN_GATEWAY_INTERFACE: "eth0"
+            WG_VPN_GATEWAY_INTERFACE: eth0
             WG_EXTERNAL_HOST: vpn.gavinmogan.com
             # WG_VPN_ALLOWED_IPS: 0.0.0.0/0, ::/0, 172.16.10.0/24
             WG_STORAGE:
               valueFrom:
                 secretKeyRef:
-                  name: "{{.Release.Name}}-db-secret-wg-access-server"
+                  name: '{{.Release.Name}}-db-secret-wg-access-server'
                   key: DB_URL
           securityContext:
             allowPrivilegeEscalation: true
             readOnlyRootFilesystem: true
             capabilities:
-              drop: ["ALL"]
+              drop: [ALL]
               add:
-                - NET_ADMIN           # perform various network-related operations
-                - SYS_MODULE          # load and unload kernel modules
+                - NET_ADMIN  # perform various network-related operations
+                - SYS_MODULE  # load and unload kernel modules
           resources:
             limits: &resources
               memory: 1Gi
@@ -56,7 +53,6 @@ app-template:
           runAsNonRoot: false
           fsGroup: 0
           fsGroupChangePolicy: OnRootMismatch
-
   service:
     main:
       controller: main
@@ -78,7 +74,6 @@ app-template:
           enabled: true
           protocol: UDP
           port: 51820
-
   route:
     main:
       enabled: true
@@ -86,29 +81,26 @@ app-template:
         - name: http-gateway
           namespace: envoy-gateway
           sectionName: https
-      hostnames:
-        - "admin-vpn.g4v.dev"
+      hostnames: [admin-vpn.g4v.dev]
       rules:
         - matches:
-          - path:
-              type: PathPrefix
-              value: /
+            - path:
+                type: PathPrefix
+                value: /
           backendRefs:
             - identifier: main
               port: http
-
   persistence:
     config:
       enabled: true
       type: secret
-      name: "{{ .Release.Name }}"
+      name: '{{ .Release.Name }}'
     data:
       type: emptyDir
     certs:
       enabled: true
       type: secret
-      name: "wg-access-server-tls"
-
+      name: wg-access-server-tls
   secrets:
     secret:
       # -- Enables or disables the Secret

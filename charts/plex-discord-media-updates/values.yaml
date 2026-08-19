@@ -1,10 +1,10 @@
+---
 defaultPodOptions:
   dnsConfig:
     options:
       - name: ndots
-        value: "1"
-    nameservers:
-      - 8.8.8.8
+        value: '1'
+    nameservers: [8.8.8.8]
 controllers:
   main:
     type: cronjob
@@ -12,7 +12,7 @@ controllers:
     annotations:
       reloader.stakater.com/auto: 'true'
     cronjob:
-      schedule: '0 2 * * *'
+      schedule: 0 2 * * *
       successfulJobsHistory: 1
       failedJobsHistory: 2
       backoffLimit: 1
@@ -37,7 +37,7 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ['ALL']
+            drop: [ALL]
         resources:
           limits:
             memory: 256Mi
@@ -58,5 +58,4 @@ controllers:
               - matchExpressions:
                   - key: kubernetes.io/arch
                     operator: NotIn
-                    values:
-                      - arm64
+                    values: [arm64]

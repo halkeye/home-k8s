@@ -1,16 +1,15 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
   pihole:
     replicas: 1
     strategy: Recreate
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     pod:
       dnsConfig:
-        nameservers:
-          - 127.0.0.1
-          - 8.8.8.8
-      dnsPolicy: "None"
+        nameservers: [127.0.0.1, 8.8.8.8]
+      dnsPolicy: None
     containers:
       pihole:
         image:
@@ -34,7 +33,8 @@ controllers:
                 command:
                   - /bin/sh
                   - -c
-                  - curl --silent http://localhost/api/info/login | jq 'if (.dns | not) then halt_error(1) end'
+                  - curl --silent http://localhost/api/info/login | jq 'if (.dns |
+                    not) then halt_error(1) end'
               failureThreshold: 10
               initialDelaySeconds: 60
               periodSeconds: 10
@@ -50,14 +50,13 @@ controllers:
             cpu: 200m
             # looking at the query log can spike the memory usage very high
             memory: 512Mi
-
 service:
   dns:
     forceRename: pihole
     controller: pihole
     type: LoadBalancer
     annotations:
-      external-dns.alpha.kubernetes.io/hostname: "dns.g4v.dev"
+      external-dns.alpha.kubernetes.io/hostname: dns.g4v.dev
       lbipam.cilium.io/ips: 172.16.10.211
     ports:
       client-udp:
@@ -79,7 +78,6 @@ service:
       https:
         port: 443
         protocol: HTTPS
-
 route:
   app:
     enabled: true
@@ -87,17 +85,15 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - 'pihole-bak.g4v.dev'
+    hostnames: [pihole-bak.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - identifier: web
             port: http
-
 persistence:
   config:
     enabled: true
@@ -107,5 +103,5 @@ persistence:
     advancedMounts:
       pihole:
         pihole:
-          - path: "/etc/pihole"
-            subPath: "pihole"
+          - path: /etc/pihole
+            subPath: pihole

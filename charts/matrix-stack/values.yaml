@@ -1,12 +1,10 @@
+---
 serverName: g4v.dev
-
 initSecrets:
   enabled: true
-
 elementAdmin:
   ingress:
     host: element-admin.g4v.dev
-
 elementWeb:
   ingress:
     host: chat.g4v.dev
@@ -18,7 +16,6 @@ elementWeb:
         "sso_redirect_options": { "immediate": true },
         "room_directory": {"servers": ["https://matrix.org", "https://mozilla.org", "https://gitter.im", "https://g4v.dev"]}
       }
-
 matrixAuthenticationService:
   annotations:
     reloader.stakater.com/auto: 'true'
@@ -64,7 +61,6 @@ matrixAuthenticationService:
     password:
       secret: matrix-authentication-service-db-secret-matrix-authentication-service
       secretKey: PASSWORD
-
 matrixRTC:
   sfu:
     exposedServices:
@@ -72,7 +68,6 @@ matrixRTC:
         enabled: true
   ingress:
     host: matrix-rtc.g4v.dev
-
 synapse:
   annotations:
     reloader.stakater.com/auto: 'true'
@@ -85,7 +80,7 @@ synapse:
   ingress:
     host: matrix.g4v.dev
     annotations:
-      nginx.ingress.kubernetes.io/proxy-body-size: '500m'
+      nginx.ingress.kubernetes.io/proxy-body-size: 500m
       nginx.ingress.kubernetes.io/proxy-connect-timeout: '180'
       nginx.ingress.kubernetes.io/proxy-read-timeout: '180'
       nginx.ingress.kubernetes.io/proxy-send-timeout: '180'
@@ -191,13 +186,10 @@ synapse:
       secretKey: bluesky-registration.yaml
     # - secret: matrix-stack-hookshot-2
     #   secretKey: hookshot_registration.yaml
-
 wellKnownDelegation:
   enabled: false
-
 postgres:
   enabled: false
-
 hookshot:
   enabled: false
   annotations:

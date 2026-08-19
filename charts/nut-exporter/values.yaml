@@ -1,29 +1,28 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 fullnameOverride: nut-exporter
 controllers:
   main:
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     containers:
       main:
         image:
           repository: ghcr.io/druggeri/nut_exporter
-          tag: "3.3.0"
+          tag: 3.3.0
         env:
           TZ: America/Vancouver
           NUT_EXPORTER_PASSWORD:
             valueFrom:
               secretKeyRef:
-                name: "nut-exporter-secret"
+                name: nut-exporter-secret
                 key: NUT_EXPORTER_PASSWORD
-        args:
-          - "--nut.server=172.16.10.10"
-          - "--nut.username=monuser"
+        args: [--nut.server=172.16.10.10, --nut.username=monuser]
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
         resources:
           requests:
             cpu: 10m

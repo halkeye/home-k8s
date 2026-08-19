@@ -1,8 +1,8 @@
+---
 operatorConfig:
   logging: debug
-  defaultTags:
-    - "tag:home-k8s-operator"
+  defaultTags: [tag:home-k8s-operator]
 proxyConfig:
-  defaultTags: "tag:home-k8s"
+  defaultTags: tag:home-k8s
 oauth:
   clientSecret: operator-oauth

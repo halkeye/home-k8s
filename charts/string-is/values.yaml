@@ -1,3 +1,4 @@
+---
 controllers:
   main:
     containers:
@@ -18,7 +19,7 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
         resources:
           limits:
             memory: 500Mi
@@ -45,13 +46,12 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "string-is.g4v.dev"
+    hostnames: [string-is.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - group: ''
             kind: Service

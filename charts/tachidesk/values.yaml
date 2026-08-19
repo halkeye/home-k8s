@@ -10,8 +10,8 @@ controllers:
         env:
           TZ: America/Vancouver
           BIND_PORT: &port 4567
-          DOWNLOAD_AS_CBZ: "true"
-          AUTO_DOWNLOAD_CHAPTERS: "true"
+          DOWNLOAD_AS_CBZ: 'true'
+          AUTO_DOWNLOAD_CHAPTERS: 'true'
         probes:
           liveness: &probes
             enabled: false
@@ -22,7 +22,7 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: false
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
         resources:
           requests:
             memory: 2Gi
@@ -47,14 +47,12 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "tachidesk.g4v.dev"
-      - "mangadownloader.g4v.dev"
+    hostnames: [tachidesk.g4v.dev, mangadownloader.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - group: ''
             kind: Service

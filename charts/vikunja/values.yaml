@@ -4,7 +4,7 @@ controllers:
   app:
     # strategy: RollingUpdate
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     containers:
       app:
         image:
@@ -13,26 +13,26 @@ controllers:
         env:
           TZ: America/Vancouver
           VIKUNJA_SERVICE_ENABLEREGISTRATION: false
-          VIKUNJA_SERVICE_TIMEZONE: "America/Vancouver"
-          VIKUNJA_SERVICE_PUBLICURL: "https://tasks.g4v.dev"
-          VIKUNJA_SERVICE_FRONTENDURL: "https://tasks.g4v.dev"
+          VIKUNJA_SERVICE_TIMEZONE: America/Vancouver
+          VIKUNJA_SERVICE_PUBLICURL: https://tasks.g4v.dev
+          VIKUNJA_SERVICE_FRONTENDURL: https://tasks.g4v.dev
           VIKUNJA_SERVICE_ENABLEPUBLICTEAMS: true
           VIKUNJA_FILES_BASEPATH: /app/vikunja/files
           VIKUNJA_FILES_TYPE: s3
           VIKUNJA_FILES_S3_ENDPOINT: https://halkeye-vikunja.tor1.digitaloceanspaces.com
-          VIKUNJA_FILES_S3_BUCKET: "halkeye-vikunja"
+          VIKUNJA_FILES_S3_BUCKET: halkeye-vikunja
           VIKUNJA_FILES_S3_REGION: tor1
-          VIKUNJA_FILES_S3_USEPATHSTYLE: "true"
-          VIKUNJA_FRONTEND_URL: "https://tasks.g4v.dev"
+          VIKUNJA_FILES_S3_USEPATHSTYLE: 'true'
+          VIKUNJA_FRONTEND_URL: https://tasks.g4v.dev
           VIKUNJA_METRICS_ENABLED: true
           VIKUNJA_MAILER_ENABLED: true
           VIKUNJA_MAILER_HOST: smtp-relay.smtp-relay.svc.cluster.local
           VIKUNJA_MAILER_PORT: 2525
-          VIKUNJA_MAILER_FROMEMAIL: "noreply@g4v.dev"
+          VIKUNJA_MAILER_FROMEMAIL: noreply@g4v.dev
           VIKUNJA_MAILER_SKIPTLSVERIFY: true
-          VIKUNJA_KEYVALUE_TYPE: "memory"
+          VIKUNJA_KEYVALUE_TYPE: memory
           # Postgres
-          VIKUNJA_DATABASE_TYPE: "postgres"
+          VIKUNJA_DATABASE_TYPE: postgres
           VIKUNJA_DATABASE_NAME:
             valueFrom:
               secretKeyRef:
@@ -58,10 +58,10 @@ controllers:
               secretKeyRef:
                 name: vikunja-db-secret-vikunja
                 key: DATABASE_NAME
-          VIKUNJA_DATABASE_SSLMODE: "require"
+          VIKUNJA_DATABASE_SSLMODE: require
         envFrom:
           - secretRef:
-              name: "vikunja-secret"
+              name: vikunja-secret
         resources:
           requests:
             cpu: 50m
@@ -92,10 +92,10 @@ serviceMonitor:
         scrapeTimeout: 10s
         basicAuth:
           username:
-            name: "vikunja-secret"
+            name: vikunja-secret
             key: VIKUNJA_METRICS_USERNAME
           password:
-            name: "vikunja-secret"
+            name: vikunja-secret
             key: VIKUNJA_METRICS_PASSWORD
 service:
   main:
@@ -110,13 +110,12 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "tasks.g4v.dev"
+    hostnames: [tasks.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - identifier: main
             port: http
@@ -132,11 +131,11 @@ persistence:
     advancedMounts:
       app:
         app:
-        - path: /app/vikunja/files
+          - path: /app/vikunja/files
   configmap:
     enabled: true
     type: configMap
-    name: "vikunja"
+    name: vikunja
     globalMounts:
       - path: /etc/vikunja/config.yml
         readOnly: true
@@ -144,7 +143,7 @@ persistence:
   secrets:
     enabled: true
     type: secret
-    name: "vikunja"
+    name: vikunja
     globalMounts:
       - path: /secrets
         readOnly: true

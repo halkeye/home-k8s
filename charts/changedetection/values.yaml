@@ -1,9 +1,10 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
   main:
     replicas: 1
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     containers:
       changedetection:
         image:
@@ -21,10 +22,10 @@ controllers:
           repository: dgtlmoon/sockpuppetbrowser
           tag: latest@sha256:7116c61ef9cfce3d48a7efd9355d2fbe19f593ea3cfb52a5ded40ecbcb0a3f9d
         env:
-          SCREEN_WIDTH: "1920"
-          SCREEN_HEIGHT: "1024"
-          SCREEN_DEPTH: "16"
-          MAX_CONCURRENT_CHROME_PROCESSES: "16"
+          SCREEN_WIDTH: '1920'
+          SCREEN_HEIGHT: '1024'
+          SCREEN_DEPTH: '16'
+          MAX_CONCURRENT_CHROME_PROCESSES: '16'
           # - { name: ENABLE_DEBUGGER, value: "false" }
           # - { name: PREBOOT_CHROME, value: "true" }
           # - { name: CONNECTION_TIMEOUT, value: "300000" }
@@ -45,13 +46,12 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "changedetection.g4v.dev"
+    hostnames: [changedetection.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - identifier: main
             port: http

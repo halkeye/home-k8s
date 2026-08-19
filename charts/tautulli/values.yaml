@@ -3,23 +3,19 @@
 controllers:
   tautulli:
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     containers:
       app:
         image:
           repository: ghcr.io/tautulli/tautulli
           tag: v2.17.2
-        command:
-          - python
-          - Tautulli.py
-          - --datadir
-          - /config
+        command: [python, Tautulli.py, --datadir, /config]
         env:
           TZ: America/Vancouver
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
-          capabilities: { drop: ["ALL"] }
+          capabilities: {drop: [ALL]}
           runAsNonRoot: false
     pod:
       securityContext:
@@ -28,14 +24,12 @@ controllers:
         runAsNonRoot: true
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
-
 service:
   main:
     controller: tautulli
     ports:
       http:
         port: 8181
-
 route:
   main:
     enabled: true
@@ -43,20 +37,18 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "tautulli.g4v.dev"
+    hostnames: [tautulli.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - group: ''
             kind: Service
             identifier: main
             port: http
             weight: 1
-
 persistence:
   config:
     enabled: true

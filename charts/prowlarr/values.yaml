@@ -1,9 +1,10 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
   main:
     replicas: 1
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     containers:
       main:
         image:
@@ -12,7 +13,7 @@ controllers:
         env:
           # https://github.com/Radarr/Radarr/issues/7030#issuecomment-1039689518
           # https://github.com/dotnet/runtime/issues/9336
-          COMPlus_EnableDiagnostics: "0"
+          COMPlus_EnableDiagnostics: '0'
           PROWLARR__APP__INSTANCENAME: Prowlarr
           PROWLARR__LOG__LEVEL: info
           PROWLARR__AUTH__METHOD: External
@@ -29,14 +30,14 @@ controllers:
               secretKeyRef:
                 name: prowlarr-db-secret-prowlarr
                 key: PASSWORD
-          PROWLARR__POSTGRES__PORT: "5432"
+          PROWLARR__POSTGRES__PORT: '5432'
           PROWLARR__POSTGRES__HOST:
             valueFrom:
               secretKeyRef:
                 name: prowlarr-db-secret-prowlarr
                 key: HOST
-          PROWLARR__POSTGRES__MAINDB: "prowlarr_main"
-          PROWLARR__POSTGRES__LOGDB: "prowlarr_log"
+          PROWLARR__POSTGRES__MAINDB: prowlarr_main
+          PROWLARR__POSTGRES__LOGDB: prowlarr_log
         envFrom:
           - secretRef:
               name: prowlarr-secret
@@ -59,7 +60,7 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
         resources:
           limits: &resources
             memory: 512Mi
@@ -70,8 +71,7 @@ controllers:
         image:
           repository: ghcr.io/onedr0p/exportarr
           tag: v2.3.0
-        args:
-          - prowlarr
+        args: [prowlarr]
         env:
           PORT: 9707
           URL: http://localhost:9696
@@ -89,7 +89,7 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
     pod:
       securityContext:
         runAsUser: 1026
@@ -122,13 +122,12 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "prowlarr.g4v.dev"
+    hostnames: [prowlarr.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - group: ''
             kind: Service

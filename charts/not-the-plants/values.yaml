@@ -1,3 +1,4 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
   main:
@@ -11,17 +12,17 @@ controllers:
         env:
           S3_BUCKET_NAME: not-the-plants
           S3_REGION: sfo3
-          S3_SERVER_PORT: "443"
+          S3_SERVER_PORT: '443'
           S3_SERVER_PROTO: https
           S3_SERVER: sfo3.digitaloceanspaces.com
           S3_STYLE: virtual
-          AWS_REGION: "sfo3"
-          AWS_SIGS_VERSION: "4"
-          ALLOW_DIRECTORY_LIST: "false"
-          PROVIDE_INDEX_PAGE: "true"
+          AWS_REGION: sfo3
+          AWS_SIGS_VERSION: '4'
+          ALLOW_DIRECTORY_LIST: 'false'
+          PROVIDE_INDEX_PAGE: 'true'
         envFrom:
           - secretRef:
-              name: "not-the-plants"
+              name: not-the-plants
         probes:
           liveness: &probes
             enabled: true
@@ -41,7 +42,7 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: false
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
         resources:
           limits: &resources
             memory: 256Mi
@@ -66,13 +67,12 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "not-the-plants.g4v.dev"
+    hostnames: [not-the-plants.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - identifier: main
             port: http

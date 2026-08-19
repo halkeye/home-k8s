@@ -1,3 +1,4 @@
+---
 app-template:
   controllers:
     main:
@@ -11,8 +12,8 @@ app-template:
             TZ: America/Vancouver
             MUMBLE_CONFIG_sslCert: /certs/tls.crt
             MUMBLE_CONFIG_sslKey: /certs/tls.key
-            MUMBLE_CONFIG_registerName: "Halkeye's Wholesome Server"
-            MUMBLE_CONFIG_port: "64739"
+            MUMBLE_CONFIG_registerName: Halkeye's Wholesome Server
+            MUMBLE_CONFIG_port: '64739'
           resources:
             limits:
               memory: 2Gi
@@ -31,10 +32,10 @@ app-template:
       type: LoadBalancer
       externalTrafficPolicy: Local
       annotations:
-        service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "false"
-        service.beta.kubernetes.io/do-loadbalancer-name: "dok8s-mumble"
-        external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
-        external-dns.alpha.kubernetes.io/hostname: "mumble.halkeye.net"
+        service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: 'false'
+        service.beta.kubernetes.io/do-loadbalancer-name: dok8s-mumble
+        external-dns.alpha.kubernetes.io/cloudflare-proxied: 'false'
+        external-dns.alpha.kubernetes.io/hostname: mumble.halkeye.net
       ports:
         http:
           port: 80
@@ -57,4 +58,4 @@ app-template:
     certs:
       enabled: true
       type: secret
-      name: "{{ .Release.Name }}-tls"
+      name: '{{ .Release.Name }}-tls'

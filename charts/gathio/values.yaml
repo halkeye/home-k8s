@@ -1,3 +1,4 @@
+---
 controllers:
   gathio:
     strategy: Recreate
@@ -8,13 +9,10 @@ controllers:
         image:
           repository: ghcr.io/lowercasename/gathio
           tag: 1.6.3
-        command:
-          - npm
-          - run
-          - start
+        command: [npm, run, start]
         envFrom:
           - secretRef:
-              name: "gathio"
+              name: gathio
         probes:
           liveness: &probes
             enabled: false
@@ -24,7 +22,7 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
         resources:
           requests:
             memory: 256Mi
@@ -51,13 +49,12 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "events.g4v.dev"
+    hostnames: [events.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - identifier: main
             port: http
@@ -65,7 +62,7 @@ persistence:
   configmap:
     enabled: true
     type: configMap
-    name: "gathio"
+    name: gathio
     globalMounts:
       - path: /app/config/config.toml
         readOnly: true
@@ -77,7 +74,7 @@ persistence:
     accessMode: ReadWriteOnce
     size: 10Gi
     globalMounts:
-      - subPath: "events"
-        path: "/app/public/events"
+      - subPath: events
+        path: /app/public/events
   tmp:
     type: emptyDir

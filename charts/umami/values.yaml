@@ -1,10 +1,10 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
   main:
     replicas: 1
     annotations:
-      reloader.stakater.com/auto: "true"
-
+      reloader.stakater.com/auto: 'true'
     containers:
       main:
         image:
@@ -12,13 +12,13 @@ controllers:
           tag: 3.2.0
         env:
           TZ: American/Vancouver
-          DISABLE_TELEMETRY: "true"
+          DISABLE_TELEMETRY: 'true'
           DATABASE_TYPE: postgresql
           NODE_TLS_REJECT_UNAUTHORIZED: '0'
           DATABASE_URL:
             valueFrom:
               secretKeyRef:
-                name: "umami-db-secret-umami"
+                name: umami-db-secret-umami
                 key: POSTGRES_URL_WITH_ARGS
         probes:
           liveness: &probes
@@ -39,7 +39,6 @@ controllers:
             memory: 300Mi
           limits:
             memory: 500Mi
-
 service:
   main:
     controller: main
@@ -53,14 +52,12 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "umami.g4v.dev"
-      - "u.g4v.dev"
+    hostnames: [umami.g4v.dev, u.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - group: ''
             kind: Service

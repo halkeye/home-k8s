@@ -1,10 +1,11 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
   main:
     strategy: Recreate
     replicas: 1
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     containers:
       autobrr:
         image:
@@ -16,34 +17,34 @@ controllers:
           AUTOBRR__HOST: 0.0.0.0
           AUTOBRR__PORT: 7474
           AUTOBRR__LOG_LEVEL: DEBUG
-          AUTOBRR__OIDC_ENABLED: "true"
-          AUTOBRR__OIDC_ISSUER: "https://auth.g4v.dev/application/o/autobrr/"
-          AUTOBRR__OIDC_REDIRECT_URL: "https://autobrr.g4v.dev/api/auth/oidc/callback"
+          AUTOBRR__OIDC_ENABLED: 'true'
+          AUTOBRR__OIDC_ISSUER: https://auth.g4v.dev/application/o/autobrr/
+          AUTOBRR__OIDC_REDIRECT_URL: https://autobrr.g4v.dev/api/auth/oidc/callback
           AUTOBRR__DATABASE_TYPE: postgres
-          AUTOBRR__POSTGRES_DATABASE: "{{ .Release.Name }}"
+          AUTOBRR__POSTGRES_DATABASE: '{{ .Release.Name }}'
           AUTOBRR__POSTGRES_PORT:
             valueFrom:
               secretKeyRef:
-                name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                name: '{{ .Release.Name }}-db-secret-{{ .Release.Name }}'
                 key: PORT
           AUTOBRR__POSTGRES_HOST:
             valueFrom:
               secretKeyRef:
-                name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                name: '{{ .Release.Name }}-db-secret-{{ .Release.Name }}'
                 key: HOST_NO_PORT
           AUTOBRR__POSTGRES_USER:
             valueFrom:
               secretKeyRef:
-                name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                name: '{{ .Release.Name }}-db-secret-{{ .Release.Name }}'
                 key: LOGIN
           AUTOBRR__POSTGRES_PASS:
             valueFrom:
               secretKeyRef:
-                name: "{{ .Release.Name }}-db-secret-{{ .Release.Name }}"
+                name: '{{ .Release.Name }}-db-secret-{{ .Release.Name }}'
                 key: PASSWORD
         envFrom:
           - secretRef:
-              name: "{{.Release.Name}}-secret"
+              name: '{{.Release.Name}}-secret'
         probes:
           liveness: &probes
             enabled: true
@@ -63,7 +64,7 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
         resources:
           limits:
             memory: 1024Mi
@@ -90,13 +91,12 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "autobrr.g4v.dev"
+    hostnames: [autobrr.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - group: ''
             kind: Service

@@ -1,3 +1,4 @@
+---
 app-template:
   controllers:
     main:
@@ -6,7 +7,7 @@ app-template:
       annotations:
         reloader.stakater.com/auto: 'true'
       cronjob:
-        schedule: '0 */12 * * *'
+        schedule: 0 */12 * * *
         ttlSecondsAfterFinished: 86400
         successfulJobsHistory: 3
         failedJobsHistory: 2
@@ -19,7 +20,8 @@ app-template:
           command:
             - sh
             - -c
-            - /zap2xml.pl -u "$USERNAME" -p "$PASSWORD" -U -o "/data/xmltv.xml" -c "/data/cache" -I -D -F -a
+            - /zap2xml.pl -u "$USERNAME" -p "$PASSWORD" -U -o "/data/xmltv.xml" -c
+              "/data/cache" -I -D -F -a
           env:
             TZ: America/Vancouver
           envFrom:
@@ -30,4 +32,4 @@ app-template:
       enabled: true
       type: nfs
       server: 172.16.10.10
-      path: '/volume1/Apps/zap2xml'
+      path: /volume1/Apps/zap2xml

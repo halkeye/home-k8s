@@ -1,3 +1,4 @@
+---
 controllers:
   main:
     strategy: Recreate
@@ -6,22 +7,22 @@ controllers:
       foundryvtt:
         image:
           repository: felddy/foundryvtt
-          tag: "13.334.0"
+          tag: 13.334.0
         env:
           TZ: America/Vancouver
           TIMEZONE: America/Vancouver
           CONTAINER_CACHE: /data/container_cache
           CONTAINER_PATCHES: /data/container_patches
-          CONTAINER_URL_FETCH_RETRY: "50"
-          CONTAINER_VERBOSE: "true"
-          FOUNDRY_MINIFY_STATIC_FILES: "true"
-          FOUNDRY_PROTOCOL: "4"
-          FOUNDRY_PROXY_SSL: "true"
-          FOUNDRY_COMPRESS_WEBSOCKET: "true"
-          FOUNDRY_TELEMETRY: "false"
+          CONTAINER_URL_FETCH_RETRY: '50'
+          CONTAINER_VERBOSE: 'true'
+          FOUNDRY_MINIFY_STATIC_FILES: 'true'
+          FOUNDRY_PROTOCOL: '4'
+          FOUNDRY_PROXY_SSL: 'true'
+          FOUNDRY_COMPRESS_WEBSOCKET: 'true'
+          FOUNDRY_TELEMETRY: 'false'
         envFrom:
           - secretRef:
-              name: "foundry-vtt"
+              name: foundry-vtt
         probes:
           liveness: &probes
             enabled: false
@@ -38,7 +39,7 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: false
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
     pod:
       securityContext:
         runAsUser: 1000
@@ -59,13 +60,12 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "vtt.g4v.dev"
+    hostnames: [vtt.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - identifier: main
             port: http

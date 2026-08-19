@@ -1,3 +1,4 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 defaultPodOptions:
   securityContext:
@@ -6,7 +7,6 @@ defaultPodOptions:
     runAsNonRoot: true
     fsGroup: 100
     fsGroupChangePolicy: OnRootMismatch
-
 controllers:
   main:
     strategy: Recreate
@@ -37,21 +37,19 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
         resources:
           limits:
             memory: 4Gi
           requests:
             memory: 256Mi
             cpu: 10m
-
 service:
   main:
     controller: main
     ports:
       http:
         port: 8945
-
 route:
   main:
     enabled: true
@@ -59,17 +57,15 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "pinchflat.g4v.dev"
+    hostnames: [pinchflat.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - identifier: main
             port: http
-
 persistence:
   yt-dlp:
     type: emptyDir

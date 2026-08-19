@@ -1,9 +1,10 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
   main:
     replicas: 1
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     containers:
       sonarr:
         image:
@@ -13,32 +14,32 @@ controllers:
           TZ: America/Vancouver
           # https://github.com/Radarr/Radarr/issues/7030#issuecomment-1039689518
           # https://github.com/dotnet/runtime/issues/9336
-          COMPlus_EnableDiagnostics: "0"
-          SONARR__INSTANCENAME: "anime-sonarr"
+          COMPlus_EnableDiagnostics: '0'
+          SONARR__INSTANCENAME: anime-sonarr
           SONARR__LOG__LEVEL: info
           SONARR__AUTHENTICATION__METHOD: External
           SONARR__AUTH__REQUIRED: DisabledForLocalAddresses
-          SONARR__POSTGRES__PORT: "5432"
+          SONARR__POSTGRES__PORT: '5432'
           SONARR__POSTGRES__HOST:
             valueFrom:
               secretKeyRef:
-                name: "anime-sonarr-db-secret-anime-sonarr"
+                name: anime-sonarr-db-secret-anime-sonarr
                 key: HOST
-          SONARR__POSTGRES__MAINDB: "anime-sonarr_main"
-          SONARR__POSTGRES__LOGDB: "anime-sonarr_log"
+          SONARR__POSTGRES__MAINDB: anime-sonarr_main
+          SONARR__POSTGRES__LOGDB: anime-sonarr_log
           SONARR__POSTGRES__USER:
             valueFrom:
               secretKeyRef:
-                name: "anime-sonarr-db-secret-anime-sonarr"
+                name: anime-sonarr-db-secret-anime-sonarr
                 key: LOGIN
           SONARR__POSTGRES__PASSWORD:
             valueFrom:
               secretKeyRef:
-                name: "anime-sonarr-db-secret-anime-sonarr"
+                name: anime-sonarr-db-secret-anime-sonarr
                 key: PASSWORD
         envFrom:
           - secretRef:
-              name: "anime-sonarr-secret"
+              name: anime-sonarr-secret
         probes:
           liveness: &probes
             enabled: true
@@ -58,7 +59,7 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
         resources:
           limits:
             memory: 4Gi
@@ -69,15 +70,14 @@ controllers:
         image:
           repository: ghcr.io/onedr0p/exportarr
           tag: v2.3.0
-        args:
-          - sonarr
+        args: [sonarr]
         env:
           PORT: 9707
           URL: http://localhost:8989
           APIKEY:
             valueFrom:
               secretKeyRef:
-                name: "anime-sonarr-secret"
+                name: anime-sonarr-secret
                 key: SONARR__AUTH__APIKEY
         resources:
           requests:
@@ -88,7 +88,7 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
     pod:
       securityContext:
         runAsUser: 1026
@@ -121,13 +121,12 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "anime-sonarr.g4v.dev"
+    hostnames: [anime-sonarr.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - identifier: main
             port: http
@@ -174,6 +173,6 @@ persistence:
   downloads:
     type: nfs
     server: 172.16.10.10
-    path: "/volume1/Downloads"
+    path: /volume1/Downloads
     globalMounts:
       - path: /downloads

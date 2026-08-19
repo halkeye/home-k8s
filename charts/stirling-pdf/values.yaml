@@ -1,14 +1,14 @@
+---
 fullnameOverride: stirling-pdf
 nameOverride: stirling-pdf
 image:
   repository: stirlingtools/stirling-pdf
   tag: 2.14.3-fat
 envs:
-  - { name: SECURITY_ENABLELOGIN, value: "false" }
-  - { name: FAT_DOCKER, value: "true" }
-  - { name: DISABLE_ADDITIONAL_FEATURES, value: "false" }
-  - { name: SYSTEM_ENABLEANALYTICS, value: "false" }
-
+  - {name: SECURITY_ENABLELOGIN, value: 'false'}
+  - {name: FAT_DOCKER, value: 'true'}
+  - {name: DISABLE_ADDITIONAL_FEATURES, value: 'false'}
+  - {name: SYSTEM_ENABLEANALYTICS, value: 'false'}
 probes:
   liveness:
     enabled: false

@@ -1,4 +1,5 @@
-fullnameOverride: "prometheus"
+---
+fullnameOverride: prometheus
 crds:
   enabled: false
 cleanPrometheusOperatorObjectNames: true
@@ -16,38 +17,32 @@ alertmanager:
   route:
     main:
       enabled: true
-      hostnames:
-        - alertmanager-h.g4v.dev
-        - alertmanager.h.g4v.dev
+      hostnames: [alertmanager-h.g4v.dev, alertmanager.h.g4v.dev]
       parentRefs:
         - name: http-gateway
           namespace: envoy-gateway
           sectionName: https
   alertmanagerSpec:
-    secrets:
-      - alertmanager-secrets
+    secrets: [alertmanager-secrets]
   externalUrl: https://alertmanager-h.g4v.dev
   config:
     receivers:
       - name: 'null'
-      - name: 'matrix-receiver'
+      - name: matrix-receiver
         webhook_configs:
-        - url: 'http://matrix-alertmanager:8080/alerts'
-          http_config:
-            basic_auth:
-              username: alertmanager
-              password_file: /etc/alertmanager/secrets/alertmanager-secrets/matrix-alertmanager
+          - url: http://matrix-alertmanager:8080/alerts
+            http_config:
+              basic_auth:
+                username: alertmanager
+                password_file: /etc/alertmanager/secrets/alertmanager-secrets/matrix-alertmanager
     route:
-      receiver: 'matrix-receiver'
+      receiver: matrix-receiver
       routes:
-        - receiver: "null"
-          matchers:
-          - alertname="Watchdog"
         - receiver: 'null'
-          matchers:
-          - severity =~ "none"
-        - receiver: 'matrix-receiver'
-
+          matchers: [alertname="Watchdog"]
+        - receiver: 'null'
+          matchers: [severity =~ "none"]
+        - receiver: matrix-receiver
 prometheus:
   enabled: true
   # agentMode: true
@@ -56,8 +51,7 @@ prometheus:
       - action: replace
         regex: (.*)
         replacement: $1
-        sourceLabels:
-          - __meta_kubernetes_pod_node_name
+        sourceLabels: [__meta_kubernetes_pod_node_name]
         targetLabel: kubernetes_node
   prometheusSpec:
     externalUrl: https://prometheus-h.g4v.dev
@@ -80,14 +74,13 @@ prometheus:
     serviceMonitorSelectorNilUsesHelmValues: false
     podMonitorSelectorNilUsesHelmValues: false
     probeSelectorNilUsesHelmValues: false
-    enableFeatures:
-      - new-service-discovery-manager
+    enableFeatures: [new-service-discovery-manager]
     additionalScrapeConfigs:
       - job_name: nas-syncthing-job
-        bearer_token_file: '/etc/prometheus/secrets/prometheus-secrets/nas-syncthings-key'
+        bearer_token_file: /etc/prometheus/secrets/prometheus-secrets/nas-syncthings-key
         scheme: https
         static_configs:
-          - targets: ['syncthing.nas.g4v.dev']
+          - targets: [syncthing.nas.g4v.dev]
       # - job_name: traefik
       #   static_configs:
       #     - targets: ['traefik.nas.g4v.dev:8000']
@@ -104,21 +97,19 @@ prometheus:
       - job_name: nas-smartctl
         scheme: https
         static_configs:
-          - targets: ['smartctl-exporter.nas.g4v.dev:443']
-      - job_name: 'homeassistant'
+          - targets: [smartctl-exporter.nas.g4v.dev:443]
+      - job_name: homeassistant
         scrape_interval: 60s
         metrics_path: /api/prometheus
         authorization:
-          credentials_file: '/etc/prometheus/secrets/prometheus-secrets/homeassistant-key'
+          credentials_file: /etc/prometheus/secrets/prometheus-secrets/homeassistant-key
         scheme: http
         static_configs:
-          - targets: ['homeassistant.dhcp.home:8123']
+          - targets: [homeassistant.dhcp.home:8123]
   route:
     main:
       enabled: true
-      hostnames:
-        - prometheus-h.g4v.dev
-        - prometheus.h.g4v.dev
+      hostnames: [prometheus-h.g4v.dev, prometheus.h.g4v.dev]
       parentRefs:
         - name: http-gateway
           namespace: envoy-gateway
@@ -159,7 +150,7 @@ prometheus-node-exporter:
         - action: replace
           regex: (.*)
           replacement: $1
-          sourceLabels: ["__meta_kubernetes_pod_node_name"]
+          sourceLabels: [__meta_kubernetes_pod_node_name]
           targetLabel: kubernetes_node
 kube-state-metrics:
   fullnameOverride: kube-state-metrics
@@ -173,7 +164,7 @@ kube-state-metrics:
         - action: replace
           regex: (.*)
           replacement: $1
-          sourceLabels: ["__meta_kubernetes_pod_node_name"]
+          sourceLabels: [__meta_kubernetes_pod_node_name]
           targetLabel: kubernetes_node
 additionalPrometheusRulesMap:
   oom-rules:
@@ -182,8 +173,12 @@ additionalPrometheusRulesMap:
         rules:
           - alert: OomKilled
             annotations:
-              summary: Container {{ $labels.container }} in pod {{ $labels.namespace }}/{{ $labels.pod }} has been OOMKilled {{ $value }} times in the last 10 minutes.
-            expr: (kube_pod_container_status_restarts_total - kube_pod_container_status_restarts_total offset 10m >= 1) and ignoring (reason) min_over_time(kube_pod_container_status_last_terminated_reason{reason="OOMKilled"}[10m]) == 1
+              summary: Container {{ $labels.container }} in pod {{ $labels.namespace }}/{{
+                $labels.pod }} has been OOMKilled {{ $value }} times in the last 10
+                minutes.
+            expr: (kube_pod_container_status_restarts_total - kube_pod_container_status_restarts_total
+              offset 10m >= 1) and ignoring (reason) min_over_time(kube_pod_container_status_last_terminated_reason{reason="OOMKilled"}[10m])
+              == 1
             labels:
               severity: critical
 # kubernetesServiceMonitors:

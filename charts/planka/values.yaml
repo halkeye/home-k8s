@@ -1,8 +1,9 @@
+---
 controllers:
   main:
     replicas: 0
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     containers:
       main:
         image:
@@ -11,7 +12,7 @@ controllers:
         env:
           TZ: America/Vancouver
           BASE_URL: https://planka.g4v.dev
-          WEBHOOKS: "[]"
+          WEBHOOKS: '[]'
           PGSSLMODE: no-verify
           DATABASE_URL:
             valueFrom:
@@ -20,12 +21,12 @@ controllers:
                 key: DB_URL
         envFrom:
           - secretRef:
-              name: "planka"
+              name: planka
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: false
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
         # resources:
         #   limits: &resources
         #     memory: 2Gi
@@ -52,13 +53,12 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "planka.g4v.dev"
+    hostnames: [planka.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - group: ''
             kind: Service

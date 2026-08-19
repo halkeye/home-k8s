@@ -1,7 +1,8 @@
+---
 controllers:
   main:
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     replicas: 1
     type: statefulset
     containers:
@@ -14,16 +15,12 @@ controllers:
           BRIDGE_DATABASE__URI:
             valueFrom:
               secretKeyRef:
-                name: "mautrix-whatsapp-db-secret-mautrix-whatsapp"
+                name: mautrix-whatsapp-db-secret-mautrix-whatsapp
                 key: POSTGRES_URL
         envFrom:
           - secretRef:
-              name: "mautrix-whatsapp-secret"
-        command:
-          - /usr/bin/mautrix-whatsapp
-          - "-n"
-          - "-c"
-          - /configmap/config.yaml
+              name: mautrix-whatsapp-secret
+        command: [/usr/bin/mautrix-whatsapp, -n, -c, /configmap/config.yaml]
         probes:
           liveness:
             enabled: true
@@ -53,7 +50,7 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
         resources:
           requests:
             cpu: 10m
@@ -65,7 +62,6 @@ controllers:
         runAsNonRoot: true
         fsGroup: 1337
         fsGroupChangePolicy: OnRootMismatch
-
 service:
   main:
     controller: main
@@ -73,7 +69,6 @@ service:
     ports:
       http:
         port: 29318
-
 persistence:
   tmp:
     enabled: true
@@ -84,8 +79,7 @@ persistence:
   configmap:
     enabled: true
     type: configMap
-    name: "mautrix-whatsapp-configmap"
-
+    name: mautrix-whatsapp-configmap
 route:
   main:
     enabled: true
@@ -93,19 +87,18 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "mautrix-bridges.g4v.dev"
+    hostnames: [mautrix-bridges.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /whatsapp
+          - path:
+              type: PathPrefix
+              value: /whatsapp
         filters:
-        - type: URLRewrite
-          urlRewrite:
-            path:
-              type: ReplacePrefixMatch
-              replacePrefixMatch: /
+          - type: URLRewrite
+            urlRewrite:
+              path:
+                type: ReplacePrefixMatch
+                replacePrefixMatch: /
         backendRefs:
           - identifier: main
             port: http

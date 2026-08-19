@@ -1,3 +1,4 @@
+---
 nameOverride: external-dns-pihole
 fullnameOverride: external-dns-pihole
 policy: sync
@@ -12,9 +13,7 @@ resources:
   requests:
     cpu: 10m
     memory: 100Mi
-domainFilters:
-  - g4v.dev
-  - h.g4v.dev
+domainFilters: [g4v.dev, h.g4v.dev]
 serviceMonitor:
   enabled: true
 sources:
@@ -28,7 +27,7 @@ provider:
 registry: noop
 env:
   - name: EXTERNAL_DNS_PIHOLE_API_VERSION
-    value: "6"
+    value: '6'
   - name: EXTERNAL_DNS_PIHOLE_PASSWORD
     valueFrom:
       secretKeyRef:

@@ -1,3 +1,4 @@
+---
 controllers:
   main:
     strategy: Recreate
@@ -10,13 +11,12 @@ controllers:
         env:
           TZ: America/Vancouver
           IGNORES_FILE: /ignores/ignores.txt
-        command:
-          - bandcampsync-service
+        command: [bandcampsync-service]
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ['ALL']
+            drop: [ALL]
         resources:
           limits:
             memory: 1Gi
@@ -36,7 +36,7 @@ persistence:
   config:
     enabled: true
     type: secret
-    name: 'bandcampsync-secret'
+    name: bandcampsync-secret
   ignores:
     enabled: true
     suffix: config

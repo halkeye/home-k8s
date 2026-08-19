@@ -1,15 +1,15 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 defaultPodOptions:
   securityContext:
     runAsGroup: 65534
     runAsUser: 65534
     runAsNonRoot: true
-
 controllers:
   main:
     replicas: 1
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     containers:
       main:
         image:
@@ -17,23 +17,23 @@ controllers:
           tag: 0.29.1@sha256:3e1253477066eb2aefa91145f7f9038bb931ed88c8a3ee05310a933594cdba7d
         env:
           TZ: America/Vancouver
-          MEMOS_MODE: "prod"
+          MEMOS_MODE: prod
           MEMOS_INSTANCE_URL: https://memos.g4v.dev
-          MEMOS_PORT: "5230" # https://github.com/usememos/memos/issues/1782
+          MEMOS_PORT: '5230' # https://github.com/usememos/memos/issues/1782
           MEMOS_DRIVER: postgres
           MEMOS_DSN:
             valueFrom:
               secretKeyRef:
-                name: "memos-db-secret-memos"
+                name: memos-db-secret-memos
                 key: DB_URL
         envFrom:
           - secretRef:
-              name: "memos-secret"
+              name: memos-secret
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
         resources:
           requests:
             cpu: 25m
@@ -60,13 +60,12 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "memos.g4v.dev"
+    hostnames: [memos.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - identifier: main
             port: http

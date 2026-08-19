@@ -1,3 +1,4 @@
+---
 controllers:
   main:
     containers:
@@ -7,10 +8,10 @@ controllers:
           tag: 1.37.1@sha256:ebdfe70701c60ac0c28c697e787cea767d7972940b786037b29fe0d507f821e8
         env:
           PUSH_ENABLED: true
-          DOMAIN: "https://bitwarden.g4v.dev"
-          TZ: "America/Vancouver"
-          SIGNUPS_ALLOWED: "false"
-          WEBSOCKET_ENABLED: "true"
+          DOMAIN: https://bitwarden.g4v.dev
+          TZ: America/Vancouver
+          SIGNUPS_ALLOWED: 'false'
+          WEBSOCKET_ENABLED: 'true'
           WEBSOCKET_ADDRESS: 0.0.0.0
           WEBSOCKET_PORT: 3012
           ROCKET_PORT: 8000
@@ -19,7 +20,7 @@ controllers:
           ATTACHMENTS_FOLDER: data/attachments
         envFrom:
           - secretRef:
-              name: "vaultwarden"
+              name: vaultwarden
         probes:
           liveness: &probes
             enabled: true
@@ -39,7 +40,7 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
         resources:
           requests:
             cpu: 10m
@@ -68,20 +69,19 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "bitwarden.g4v.dev"
+    hostnames: [bitwarden.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - identifier: main
             port: http
       - matches:
-        - path:
-            type: PathPrefix
-            value: /notifications/hub
+          - path:
+              type: PathPrefix
+              value: /notifications/hub
         backendRefs:
           - identifier: main
             port: ws

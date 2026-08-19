@@ -1,3 +1,4 @@
+---
 defaultPodOptions:
   securityContext:
     runAsNonRoot: true
@@ -5,7 +6,6 @@ defaultPodOptions:
     runAsGroup: 100
     fsGroup: 100
     fsGroupChangePolicy: OnRootMismatch
-
 controllers:
   main:
     replicas: 1
@@ -16,8 +16,8 @@ controllers:
           tag: v0.31.1
         env:
           HOME: /config
-          STASH_NO_BROWSER: "true"
-          STASH_PORT: "9999"
+          STASH_NO_BROWSER: 'true'
+          STASH_PORT: '9999'
           STASH_STASH: /content/
           STASH_CONFIG_FILE: /config/config.yml
           STASH_CACHE: /cache
@@ -42,7 +42,7 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
         resources:
           limits: &resources
             memory: 2Gi
@@ -62,13 +62,12 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "stash.g4v.dev"
+    hostnames: [stash.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - group: ''
             kind: Service

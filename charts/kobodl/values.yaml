@@ -1,3 +1,4 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
   kobodl:
@@ -11,20 +12,20 @@ controllers:
         env:
           TZ: America/Vancouver
         args:
-          - "--config"
-          - "/config/kobodl.json"
-          - "serve"
-          - "-h"
-          - "0.0.0.0"
-          - "-p"
-          - "5000"
-          - "--output-dir"
-          - "/tmp"
+          - --config
+          - /config/kobodl.json
+          - serve
+          - -h
+          - 0.0.0.0
+          - -p
+          - '5000'
+          - --output-dir
+          - /tmp
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
         resources:
           limits: &resources
             memory: 128Mi
@@ -51,13 +52,12 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "kobodl.g4v.dev"
+    hostnames: [kobodl.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - group: ''
             kind: Service

@@ -1,7 +1,8 @@
+---
 controllers:
   main:
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     containers:
       main:
         image:
@@ -9,7 +10,7 @@ controllers:
           tag: sha-2581b55
         envFrom:
           - secretRef:
-              name: "stashapp-exporter"
+              name: stashapp-exporter
         probes:
           liveness:
             enabled: true
@@ -21,7 +22,7 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
         resources:
           requests:
             cpu: 15m

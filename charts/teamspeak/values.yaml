@@ -1,3 +1,4 @@
+---
 controllers:
   main:
     replicas: 0
@@ -6,7 +7,7 @@ controllers:
       teamspeak:
         image:
           repository: teamspeak
-          tag: "3.13.8"
+          tag: 3.13.8
         env:
           TZ: America/Vancouver
           TS3SERVER_LICENSE: accept
@@ -23,9 +24,9 @@ service:
     type: LoadBalancer
     externalTrafficPolicy: Local
     annotations:
-      service.beta.kubernetes.io/do-loadbalancer-name: "dok8s-teamspeak"
-      external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
-      external-dns.alpha.kubernetes.io/hostname: "teamspeak.halkeye.net"
+      service.beta.kubernetes.io/do-loadbalancer-name: dok8s-teamspeak
+      external-dns.alpha.kubernetes.io/cloudflare-proxied: 'false'
+      external-dns.alpha.kubernetes.io/hostname: teamspeak.halkeye.net
     ports:
       serverquery-raw:
         enabled: true
@@ -63,4 +64,4 @@ persistence:
   certs:
     enabled: true
     type: secret
-    name: "teamspeak-tls"
+    name: teamspeak-tls

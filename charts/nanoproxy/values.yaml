@@ -1,3 +1,4 @@
+---
 controllers:
   proxy:
     strategy: RollingUpdate
@@ -7,15 +8,15 @@ controllers:
           repository: ghcr.io/ryanbekhen/nanoproxy
           tag: 0.17.3
         env:
-          ADDR: ":1080"
-          ADDR_HTTP: ":8080"
-          NO_AUTH_MODE: "true"
+          ADDR: :1080
+          ADDR_HTTP: :8080
+          NO_AUTH_MODE: 'true'
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ["ALL"]
-            add: ["NET_ADMIN"]
+            drop: [ALL]
+            add: [NET_ADMIN]
         resources:
           requests:
             cpu: 10m

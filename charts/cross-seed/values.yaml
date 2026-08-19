@@ -1,9 +1,10 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
   main:
     replicas: 1
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     containers:
       main:
         image:
@@ -11,7 +12,7 @@ controllers:
           tag: 6.13.7
         env:
           TZ: America/Vancouver
-        args: ["daemon", "--verbose"]
+        args: [daemon, --verbose]
         envFrom:
           - secretRef:
               name: cross-seed-secret
@@ -44,7 +45,7 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
         resources:
           limits:
             memory: 512Mi
@@ -84,6 +85,6 @@ persistence:
   downloads:
     type: nfs
     server: 172.16.10.10
-    path: "/volume1/Downloads"
+    path: /volume1/Downloads
     globalMounts:
       - path: /downloads

@@ -32,14 +32,13 @@ controllers:
   #           memory: 64M
   #         limits:
   #           memory: 256M
-
   purge-rooms:
     type: cronjob
     annotations:
       reloader.stakater.com/auto: 'true'
     cronjob:
       ttlSecondsAfterFinished: 43200
-      schedule: "0 3 * * *" # Every day at 3am
+      schedule: 0 3 * * *  # Every day at 3am
       concurrencyPolicy: Forbid
       successfulJobsHistory: 1
       failedJobsHistory: 1
@@ -47,7 +46,7 @@ controllers:
     containers:
       main:
         image:
-          repository:  ghcr.io/halkeye/docker-synatainer
+          repository: ghcr.io/halkeye/docker-synatainer
           tag: v0.4.4.2
         envFrom:
           - secretRef:
@@ -61,9 +60,8 @@ controllers:
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
-          capabilities: { drop: ["ALL"] }
-        command: ["purge_rooms_no_local_members.sh"]
-
+          capabilities: {drop: [ALL]}
+        command: [purge_rooms_no_local_members.sh]
   purge-history:
     type: cronjob
     annotations:
@@ -71,14 +69,14 @@ controllers:
     cronjob:
       ttlSecondsAfterFinished: 43200
       concurrencyPolicy: Forbid
-      schedule: "0 5 * * 1" # Every monday at 5am
+      schedule: 0 5 * * 1  # Every monday at 5am
       successfulJobsHistory: 1
       failedJobsHistory: 1
       backoffLimit: 1
     containers:
       main:
         image:
-          repository:  ghcr.io/halkeye/docker-synatainer
+          repository: ghcr.io/halkeye/docker-synatainer
           tag: v0.4.4.2
         envFrom:
           - secretRef:
@@ -92,19 +90,18 @@ controllers:
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
-          capabilities: { drop: ["ALL"] }
+          capabilities: {drop: [ALL]}
         env:
           HISTORY_MAX_AGE: 365
           HISTORY_ROOM_LIST: all
-        command: ["purge_history.sh"]
-
+        command: [purge_history.sh]
   vacuum:
     type: cronjob
     annotations:
       reloader.stakater.com/auto: 'true'
     cronjob:
       ttlSecondsAfterFinished: 43200
-      schedule: "0 4 1 * *" # First day of every month at 4:00 am
+      schedule: 0 4 1 * *  # First day of every month at 4:00 am
       concurrencyPolicy: Forbid
       successfulJobsHistory: 1
       failedJobsHistory: 1
@@ -112,7 +109,7 @@ controllers:
     containers:
       main:
         image:
-          repository:  ghcr.io/halkeye/docker-synatainer
+          repository: ghcr.io/halkeye/docker-synatainer
           tag: v0.4.4.2
         envFrom:
           - secretRef:
@@ -126,6 +123,5 @@ controllers:
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
-          capabilities: { drop: ["ALL"] }
-        command: ["stui", "vacuum-db", "--full"]
-
+          capabilities: {drop: [ALL]}
+        command: [stui, vacuum-db, --full]

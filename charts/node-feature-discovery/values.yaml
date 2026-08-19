@@ -1,6 +1,7 @@
+---
 worker:
   config:
     core:
-      sources: ["pci", "system", "usb"]
+      sources: [pci, system, usb]
 prometheus:
   enable: true

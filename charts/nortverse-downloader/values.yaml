@@ -1,3 +1,4 @@
+---
 controllers:
   main:
     type: cronjob
@@ -16,11 +17,11 @@ controllers:
           tag: 1.7.0
         args:
           - download
-          - "--output"
+          - --output
           - /webcomics/Nortverse/
-          - "--flaresolverr"
-          - "http://172.16.10.10:8191/"
-          - "--latest"
+          - --flaresolverr
+          - http://172.16.10.10:8191/
+          - --latest
     pod:
       securityContext:
         runAsUser: 1026

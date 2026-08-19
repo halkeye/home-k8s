@@ -1,3 +1,4 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
   main:
@@ -10,7 +11,7 @@ controllers:
           repository: flungo/avahi
           tag: latest@sha256:01d3bb36c0fc7e98ace7e21c74a52ceffbd53d7a5165175e80f46d815a1d4ee0
         env:
-          REFLECTOR_ENABLE_REFLECTOR: yes
+          REFLECTOR_ENABLE_REFLECTOR: true
         securityContext:
           privileged: true
         resources:

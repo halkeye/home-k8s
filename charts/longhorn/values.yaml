@@ -20,8 +20,7 @@ defaultSettings:
   concurrentAutomaticEngineUpgradePerNodeLimit: 2
 httproute:
   enabled: true
-  hostnames:
-    - longhorn-h.g4v.dev
+  hostnames: [longhorn-h.g4v.dev]
   parentRefs:
     - name: http-gateway
       namespace: envoy-gateway

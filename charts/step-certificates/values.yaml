@@ -2,7 +2,6 @@
 # Helm template
 inject:
   enabled: false
-
 existingSecrets:
   enabled: true
   ca: true
@@ -11,7 +10,6 @@ existingSecrets:
   configAsSecret: true
   sshHostCa: true
   sshUserCa: true
-
 bootstrap:
   secrets: false
   enabled: false

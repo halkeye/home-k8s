@@ -6,22 +6,17 @@ defaultPodOptions:
     runAsGroup: 100
     runAsNonRoot: true
     fsGroup: 100
-    fsGroupChangePolicy: "OnRootMismatch"
-
+    fsGroupChangePolicy: OnRootMismatch
 controllers:
   romm:
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     initContainers:
       init:
         image:
           repository: busybox
           tag: 1.38
-        command:
-          - sh
-          - -c
-          - |-
-              cp /configmap/config.yml /romm/config
+        command: [sh, -c, "cp /configmap/config.yml /romm/config"]
     containers:
       app:
         image:
@@ -31,32 +26,32 @@ controllers:
           TZ: America/Vancouver
           DISABLE_USERPASS_LOGIN: true
           ENABLE_SCHEDULED_RESCAN: true
-          SCHEDULED_RESCAN_CRON: "0 3 * * *"
+          SCHEDULED_RESCAN_CRON: 0 3 * * *
           ROMM_DB_DRIVER: postgresql
           DB_HOST:
             valueFrom:
               secretKeyRef:
-                name: "romm-db-romm"
+                name: romm-db-romm
                 key: HOST_NO_PORT
           DB_PORT:
             valueFrom:
               secretKeyRef:
-                name: "romm-db-romm"
+                name: romm-db-romm
                 key: PORT
           DB_NAME:
             valueFrom:
               secretKeyRef:
-                name: "romm-db-romm"
+                name: romm-db-romm
                 key: DATABASE_NAME
           DB_USER:
             valueFrom:
               secretKeyRef:
-                name: "romm-db-romm"
+                name: romm-db-romm
                 key: LOGIN
           DB_PASSWD:
             valueFrom:
               secretKeyRef:
-                name: "romm-db-romm"
+                name: romm-db-romm
                 key: PASSWORD
           ROMM_PORT: 8080
           REDIS_HOST: valkey
@@ -74,7 +69,7 @@ controllers:
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: false
-          capabilities: { drop: ["ALL"] }
+          capabilities: {drop: [ALL]}
         resources:
           requests:
             cpu: 10m
@@ -85,7 +80,6 @@ service:
     ports:
       http:
         port: 8080
-
 route:
   main:
     enabled: true
@@ -93,20 +87,18 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "romm.g4v.dev"
+    hostnames: [romm.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - group: ''
             kind: Service
             identifier: main
             port: http
             weight: 1
-
 persistence:
   config:
     type: emptyDir
@@ -122,10 +114,10 @@ persistence:
     advancedMounts:
       romm:
         app:
-          - subPath: "resources"
-            path: "/romm/resources"
-          - subPath: "assets"
-            path: "/romm/assets"
+          - subPath: resources
+            path: /romm/resources
+          - subPath: assets
+            path: /romm/assets
   tmp:
     type: emptyDir
     globalMounts:
@@ -133,7 +125,7 @@ persistence:
   games:
     type: nfs
     server: 172.16.10.10
-    path: "/volume1/Games"
+    path: /volume1/Games
     globalMounts:
       - path: /romm/library
   configmap:

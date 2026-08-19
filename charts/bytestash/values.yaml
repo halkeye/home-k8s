@@ -1,8 +1,9 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
   main:
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     strategy: Recreate
     containers:
       bytestash:
@@ -12,15 +13,15 @@ controllers:
         env:
           # See https://github.com/jordan-dalby/ByteStash/wiki/FAQ#environment-variables
           TZ: America/Vancouver
-          BASE_PATH: ""
+          BASE_PATH: ''
           TOKEN_EXPIRY: 24h
-          ALLOW_NEW_ACCOUNTS: "true"
-          DEBUG: "true"
-          DISABLE_ACCOUNTS: "false"
-          DISABLE_INTERNAL_ACCOUNTS: "true"
+          ALLOW_NEW_ACCOUNTS: 'true'
+          DEBUG: 'true'
+          DISABLE_ACCOUNTS: 'false'
+          DISABLE_INTERNAL_ACCOUNTS: 'true'
         envFrom:
           - secretRef:
-              name: "{{.Release.Name}}-secret"
+              name: '{{.Release.Name}}-secret'
         probes:
           liveness: &probes
             enabled: true
@@ -35,14 +36,12 @@ controllers:
       securityContext:
         fsGroup: 33
         fsGroupChangePolicy: OnRootMismatch
-
 service:
   main:
     controller: main
     ports:
       http:
         port: 5000
-
 route:
   main:
     enabled: true
@@ -50,20 +49,18 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "bytestash.g4v.dev"
+    hostnames: [bytestash.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - group: ''
             kind: Service
             identifier: main
             port: http
             weight: 1
-
 persistence:
   data:
     enabled: true

@@ -3,7 +3,7 @@
 controllers:
   app:
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     containers:
       app:
         image:
@@ -11,7 +11,8 @@ controllers:
           tag: sha-0f64b6e39a9ed192b2e0fab41a66452e24759d6a
         env:
           TZ: America/Vancouver
-          DATABASE_URL: { valueFrom: { secretKeyRef: { name: "tranquil-pds-db-secret-tranquil-pds", key: POSTGRES_URL } } }
+          DATABASE_URL: {valueFrom: {secretKeyRef: {name: tranquil-pds-db-secret-tranquil-pds,
+                key: POSTGRES_URL}}}
           ## App Config
           SERVER_HOST: 0.0.0.0
           PDS_HOSTNAME: tranquil-pds.g4v.dev
@@ -32,7 +33,7 @@ controllers:
           SSO_OIDC_DISPLAY_NAME: G4V Auth
         envFrom:
           - secretRef:
-              name: "tranquil-pds"
+              name: tranquil-pds
         probes:
           liveness: &probes
             enabled: true
@@ -48,14 +49,12 @@ controllers:
           readiness: *probes
           startup:
             enabled: false
-
 service:
   main:
     controller: app
     ports:
       http:
         port: 3000
-
 route:
   main:
     enabled: true
@@ -63,20 +62,18 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "tranquil-pds.g4v.dev"
+    hostnames: [tranquil-pds.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - group: ''
             kind: Service
             identifier: main
             port: http
             weight: 1
-
 persistence:
   tmp:
     type: emptyDir

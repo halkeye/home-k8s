@@ -1,16 +1,17 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
   main:
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     containers:
       main:
         image:
           repository: cloudflare/cloudflared
-          tag: "2026.8.2"
+          tag: 2026.8.2
         env:
           TZ: America/Vancouver
-          NO_AUTOUPDATE: "true"
+          NO_AUTOUPDATE: 'true'
           # TUNNEL_CRED_FILE: /etc/cloudflared/creds/credentials.json
           TUNNEL_METRICS: 0.0.0.0:2000
           TUNNEL_TRANSPORT_PROTOCOL: quic
@@ -21,10 +22,10 @@ controllers:
           - /etc/cloudflared/config/config.yaml
           - run
           - --token
-          - "$(CLOUDFLARE_TUNNEL_SECRET)"
+          - $(CLOUDFLARE_TUNNEL_SECRET)
         envFrom:
           - secretRef:
-              name: "cloudflared-secret"
+              name: cloudflared-secret
         probes:
           liveness: &probes
             enabled: true

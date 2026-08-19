@@ -1,10 +1,11 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
   main:
     replicas: 1
     strategy: Recreate
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     containers:
       main:
         image:
@@ -12,12 +13,12 @@ controllers:
           tag: v1.3.3
         env:
           TZ: America/Vancouver
-          FLASK_PORT: "8084"
+          FLASK_PORT: '8084'
           INGEST_DIR: /books
-          PUID: "1026"
-          PGID: "100"
+          PUID: '1026'
+          PGID: '100'
           SEARCH_MODE: universal
-          USING_TOR: "false"
+          USING_TOR: 'false'
         probes:
           liveness:
             enabled: true
@@ -56,14 +57,12 @@ controllers:
             memory: 256Mi
           limits:
             memory: 2Gi
-
 service:
   main:
     controller: main
     ports:
       http:
         port: 8084
-
 route:
   main:
     enabled: true
@@ -71,17 +70,15 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "shelfmark.g4v.dev"
+    hostnames: [shelfmark.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - identifier: main
             port: http
-
 persistence:
   config:
     enabled: true
@@ -94,7 +91,7 @@ persistence:
   downloads:
     type: nfs
     server: 172.16.10.10
-    path: "/volume1/Downloads/Books"
+    path: /volume1/Downloads/Books
     globalMounts:
       - path: /books
   tmp:

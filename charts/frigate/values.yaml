@@ -1,8 +1,9 @@
+---
 controllers:
   frigate:
     strategy: Recreate
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     containers:
       frigate:
         image:
@@ -10,7 +11,7 @@ controllers:
           tag: 0.17.2@sha256:d4351369984d4a9e2a49ac59736f6490856a7ea11f7790040746d21496967010
         envFrom:
           - secretRef:
-              name: "frigate-secret"
+              name: frigate-secret
         env:
           CONFIG_FILE: /configmap/config.yml
           TZ: America/Vancouver
@@ -42,7 +43,7 @@ controllers:
             cpu: 100m
 defaultPodOptions:
   nodeSelector:
-    google.feature.node.kubernetes.io/coral: "true"
+    google.feature.node.kubernetes.io/coral: 'true'
 service:
   main:
     controller: frigate
@@ -89,13 +90,12 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "frigate.g4v.dev"
+    hostnames: [frigate.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - group: ''
             kind: Service
@@ -115,7 +115,7 @@ persistence:
       - path: /config
   configmap:
     type: configMap
-    name: "frigate-config"
+    name: frigate-config
     globalMounts:
       - path: /configmap/
   cache:

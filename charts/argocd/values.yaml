@@ -1,8 +1,9 @@
+---
 global:
   domain: argocd.h.g4v.dev
   image:
     repository: ghcr.io/halkeye/docker-argocd
-    tag: "v3.4.2.146"
+    tag: v3.4.2.146
   networkPolicy:
     enabled: false
 fullnameOverride: argocd
@@ -28,10 +29,12 @@ controller:
           labels:
             severity: critical
           annotations:
-            summary: "[Argo CD] No reported applications"
+            summary: '[Argo CD] No reported applications'
             description: >
-              Argo CD has not reported any applications data for the past 15 minutes which
-              means that it must be down or not functioning properly.  This needs to be
+              Argo CD has not reported any applications data for the past 15 minutes
+              which
+              means that it must be down or not functioning properly.  This needs
+              to be
               resolved for this cloud to continue to maintain state.
         - alert: ArgoAppNotSynced
           expr: |
@@ -40,10 +43,11 @@ controller:
           labels:
             severity: warning
           annotations:
-            summary: "[`{{$labels.name}}`] Application not synchronized"
+            summary: '[`{{$labels.name}}`] Application not synchronized'
             description: >
               The application [`{{$labels.name}}`] has not been synchronized for over
-              12 hours which means that the state of this cloud has drifted away from the
+              12 hours which means that the state of this cloud has drifted away from
+              the
               state inside Git.
     serviceMonitor:
       enabled: true
@@ -70,8 +74,7 @@ server:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - argocd.h.g4v.dev
+    hostnames: [argocd.h.g4v.dev]
   configManagementPlugins: |
     - name: sops
       init:
@@ -106,10 +109,10 @@ configs:
     policy.csv: g, ArgoCD Admins, role:admin
     policy.default: role:readonly
   params:
-    server.insecure: "true"
+    server.insecure: 'true'
   cm:
     exec.enabled: false
-    admin.enabled: "true"
+    admin.enabled: 'true'
     resource.exclusions: |
       - apiGroups:
         - cilium.io
@@ -147,9 +150,10 @@ configs:
         - /metadata/annotations/deprecated.daemonset.template.generation
     helm.valuesFileSchemes: secrets+gpg-import, secrets+gpg-import-kubernetes, secrets+age-import,
       secrets+age-import-kubernetes, secrets,secrets+literal, https
-    kustomize.buildOptions: --enable-helm --enable-alpha-plugins --enable-exec --load-restrictor LoadRestrictionsNone
+    kustomize.buildOptions: --enable-helm --enable-alpha-plugins --enable-exec --load-restrictor
+      LoadRestrictionsNone
     url: *url
-    dex.config: |
+    dex.config: |-
       connectors:
         # OIDC
         - type: oidc

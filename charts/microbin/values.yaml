@@ -1,7 +1,8 @@
+---
 controllers:
   main:
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     strategy: Recreate
     containers:
       microbin:
@@ -27,7 +28,7 @@ controllers:
           MICROBIN_PORT: 8080
         envFrom:
           - secretRef:
-              name: "{{.Release.Name}}-secret"
+              name: '{{.Release.Name}}-secret'
         probes:
           liveness: &probes
             enabled: true
@@ -38,7 +39,7 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
         resources:
           limits:
             memory: 80Mi
@@ -65,13 +66,12 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "mb.g4v.dev"
+    hostnames: [mb.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - identifier: main
             port: http

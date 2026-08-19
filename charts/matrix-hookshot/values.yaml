@@ -1,8 +1,9 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
   main:
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     type: deployment
     replicas: 0
     strategy: Recreate
@@ -17,11 +18,11 @@ controllers:
           MAUTRIX_DB_URI:
             valueFrom:
               secretKeyRef:
-                name: "mautrix-linkedin-db-secret-mautrix-linkedin"
+                name: mautrix-linkedin-db-secret-mautrix-linkedin
                 key: POSTGRES_URL
         envFrom:
           - secretRef:
-              name: "mautrix-linkedin-secret"
+              name: mautrix-linkedin-secret
         command:
           - bash
           - -c
@@ -33,10 +34,7 @@ controllers:
           tag: v26.04
         env:
           TZ: America/Vancouver
-        command:
-          - /usr/bin/mautrix-linkedin
-          - "-c"
-          - "/data/config.yaml"
+        command: [/usr/bin/mautrix-linkedin, -c, /data/config.yaml]
         probes:
           liveness:
             enabled: false
@@ -66,7 +64,7 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
         resources:
           limits:
             memory: 100Mi
@@ -87,7 +85,6 @@ service:
     ports:
       http:
         port: 29341
-
 persistence:
   tmp:
     enabled: true
@@ -98,4 +95,4 @@ persistence:
   configmap:
     enabled: true
     type: configMap
-    name: "mautrix-linkedin-configmap"
+    name: mautrix-linkedin-configmap

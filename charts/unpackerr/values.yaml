@@ -21,7 +21,7 @@ controllers:
           UN_LIDARR_0_PROTOCOLS: torrent,usenet
           UN_READARR_0_URL: https://readarr.g4v.dev
           UN_READARR_0_PROTOCOLS: torrent,usenet
-          UN_WEBSERVER_METRICS: "true"
+          UN_WEBSERVER_METRICS: 'true'
         envFrom:
           - secretRef:
               name: unpackerr-secret
@@ -36,12 +36,11 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
         resources:
           requests:
             cpu: 10m
             memory: 500Mi
-
     pod:
       securityContext:
         runAsUser: 1026
@@ -49,15 +48,12 @@ controllers:
         runAsNonRoot: true
         fsGroup: 100
         fsGroupChangePolicy: OnRootMismatch
-
-
 service:
   main:
     controller: main
     ports:
       http:
         port: 5656
-
 persistence:
   tmp:
     enabled: true
@@ -65,10 +61,9 @@ persistence:
   downloads:
     type: nfs
     server: 172.16.10.10
-    path: "/volume1/Downloads"
+    path: /volume1/Downloads
     globalMounts:
       - path: /downloads
-
 serviceMonitor:
   app:
     serviceName: '{{ include "bjw-s.common.lib.chart.names.fullname" $ }}'

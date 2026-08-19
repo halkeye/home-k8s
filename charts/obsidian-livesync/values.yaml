@@ -9,11 +9,10 @@ defaultPodOptions:
     fsGroupChangePolicy: OnRootMismatch
     seccompProfile:
       type: RuntimeDefault
-
 controllers:
   main:
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     containers:
       main:
         image:
@@ -56,16 +55,13 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: false
           capabilities:
-            drop:
-              - ALL
-
+            drop: [ALL]
 service:
   main:
     controller: main
     ports:
       http:
         port: 5984
-
 route:
   main:
     enabled: true
@@ -73,8 +69,7 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "obsidian-livesync.g4v.dev"
+    hostnames: [obsidian-livesync.g4v.dev]
     rules:
       - matches:
           - path:
@@ -83,7 +78,6 @@ route:
         backendRefs:
           - identifier: main
             port: http
-
 ingress:
   main:
     enabled: true
@@ -96,9 +90,7 @@ ingress:
               identifier: main
               port: http
     tls:
-      - hosts:
-        - obsidian-livesync
-
+      - hosts: [obsidian-livesync]
 persistence:
   data:
     enabled: true

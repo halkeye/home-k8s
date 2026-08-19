@@ -6,13 +6,12 @@ defaultPodOptions:
     runAsGroup: 1000
     runAsNonRoot: true
     fsGroup: 1000
-    fsGroupChangePolicy: "OnRootMismatch"
-
+    fsGroupChangePolicy: OnRootMismatch
 controllers:
   minio:
     strategy: RollingUpdate
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     containers:
       app:
         image:
@@ -20,7 +19,7 @@ controllers:
           tag: RELEASE.2025-02-28T09-55-16Z
         env:
           MINIO_API_CORS_ALLOW_ORIGIN: https://minio.g4v.dev,https://s3.g4v.dev
-          MINIO_IDENTITY_OPENID_ENABLE: "on"
+          MINIO_IDENTITY_OPENID_ENABLE: 'on'
           MINIO_BROWSER_REDIRECT_URL: https://minio.g4v.dev
           MINIO_PROMETHEUS_JOB_ID: minio
           MINIO_PROMETHEUS_URL: https://prometheus.h.g4v.dev
@@ -28,12 +27,12 @@ controllers:
           MINIO_SERVER_URL: https://s3.g4v.dev
           MINIO_STORAGE_CLASS_RRS: EC:0
           MINIO_STORAGE_CLASS_STANDARD: EC:0
-          MINIO_UPDATE: "off"
-          MINIO_HTTP_TRACE: "/tmp/minio.log"
+          MINIO_UPDATE: 'off'
+          MINIO_HTTP_TRACE: /tmp/minio.log
         envFrom:
           - secretRef:
               name: minio-secret
-        args: ["server", "/data", "--console-address", ":9001"]
+        args: [server, /data, --console-address, :9001]
         probes:
           liveness: &probes
             enabled: true
@@ -50,13 +49,12 @@ controllers:
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
-          capabilities: { drop: ["ALL"] }
+          capabilities: {drop: [ALL]}
         resources:
           requests:
             cpu: 100m
           limits:
             memory: 2Gi
-
 service:
   app:
     controller: minio
@@ -65,7 +63,6 @@ service:
         port: 9001
       s3:
         port: 9000
-
 serviceMonitor:
   app:
     serviceName: minio
@@ -73,7 +70,6 @@ serviceMonitor:
       - port: s3
         scheme: http
         path: /minio/v2/metrics/cluster
-
 route:
   main:
     enabled: true
@@ -81,13 +77,12 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "minio.g4v.dev"
+    hostnames: [minio.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - identifier: app
             port: http
@@ -97,17 +92,15 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "s3.g4v.dev"
+    hostnames: [s3.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - identifier: app
             port: s3
-
 persistence:
   data:
     type: nfs

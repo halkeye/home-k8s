@@ -1,9 +1,10 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
   main:
     replicas: 1
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     containers:
       main:
         image:
@@ -12,36 +13,36 @@ controllers:
         env:
           TZ: America/Vancouver
           NODE_ENV: production
-          PORT: "3000"
-          PUID: "1026"
-          PGID: "100"
-          LOG_LEVEL: "debug"
+          PORT: '3000'
+          PUID: '1026'
+          PGID: '100'
+          LOG_LEVEL: debug
           NODE_MAX_OLD_SPACE_SIZE: auto
           DATABASE_URL:
             valueFrom:
               secretKeyRef:
-                name: "bookorbit-db-bookorbit"
+                name: bookorbit-db-bookorbit
                 key: POSTGRES_URL
           POSTGRES_HOST:
             valueFrom:
               secretKeyRef:
-                name: "bookorbit-db-bookorbit"
+                name: bookorbit-db-bookorbit
                 key: HOST
-          POSTGRES_PORT: "5432"
+          POSTGRES_PORT: '5432'
           POSTGRES_USER:
             valueFrom:
               secretKeyRef:
-                name: "bookorbit-db-bookorbit"
+                name: bookorbit-db-bookorbit
                 key: LOGIN
           POSTGRES_PASSWORD:
             valueFrom:
               secretKeyRef:
-                name: "bookorbit-db-bookorbit"
+                name: bookorbit-db-bookorbit
                 key: PASSWORD
           POSTGRES_DB: bookorbit
         envFrom:
           - secretRef:
-              name: "bookorbit"
+              name: bookorbit
         probes:
           liveness: &probes
             enabled: true
@@ -61,14 +62,8 @@ controllers:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
           capabilities:
-            drop:
-              - ALL
-            add:
-              - CHOWN
-              - DAC_OVERRIDE
-              - FOWNER
-              - SETGID
-              - SETUID
+            drop: [ALL]
+            add: [CHOWN, DAC_OVERRIDE, FOWNER, SETGID, SETUID]
         resources:
           limits:
             memory: 2Gi
@@ -95,13 +90,12 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "books.g4v.dev"
+    hostnames: [books.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - identifier: main
             port: http

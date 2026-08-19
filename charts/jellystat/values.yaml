@@ -1,3 +1,4 @@
+---
 controllers:
   main:
     strategy: Recreate
@@ -15,7 +16,7 @@ controllers:
               secretKeyRef:
                 name: '{{ .Release.Name }}-db-secret-{{ .Release.Name }}'
                 key: DATABASE_NAME
-          POSTGRES_ROLE: "jellystat-group"
+          POSTGRES_ROLE: jellystat-group
           POSTGRES_PORT:
             valueFrom:
               secretKeyRef:
@@ -59,13 +60,12 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "jellystat.g4v.dev"
+    hostnames: [jellystat.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - identifier: main
             port: http

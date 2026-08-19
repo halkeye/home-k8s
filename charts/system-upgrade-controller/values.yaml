@@ -1,10 +1,8 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
-
 serviceAccount:
   system-upgrade-controller:
     enabled: true
-
 rbac:
   bindings:
     system-upgrade-controller:
@@ -15,7 +13,6 @@ rbac:
         name: cluster-admin
       subjects:
         - identifier: system-upgrade-controller
-
 controllers:
   main:
     strategy: RollingUpdate
@@ -33,11 +30,11 @@ controllers:
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
-            drop: ["ALL"]
+            drop: [ALL]
         env:
           SYSTEM_UPGRADE_CONTROLLER_DEBUG: true
           SYSTEM_UPGRADE_CONTROLLER_THREADS: 2
-          SYSTEM_UPGRADE_CONTROLLER_LEADER_ELECT: "true"
+          SYSTEM_UPGRADE_CONTROLLER_LEADER_ELECT: 'true'
           SYSTEM_UPGRADE_JOB_ACTIVE_DEADLINE_SECONDS: 900
           SYSTEM_UPGRADE_JOB_BACKOFF_LIMIT: 99
           SYSTEM_UPGRADE_JOB_IMAGE_PULL_POLICY: IfNotPresent
@@ -45,7 +42,7 @@ controllers:
           SYSTEM_UPGRADE_JOB_PRIVILEGED: true
           SYSTEM_UPGRADE_JOB_TTL_SECONDS_AFTER_FINISH: 900
           SYSTEM_UPGRADE_PLAN_POLLING_INTERVAL: 15m
-          SYSTEM_UPGRADE_CONTROLLER_NAME: "system-upgrade-controller"
+          SYSTEM_UPGRADE_CONTROLLER_NAME: system-upgrade-controller
           SYSTEM_UPGRADE_CONTROLLER_NODE_NAME:
             valueFrom:
               fieldRef:
@@ -71,13 +68,12 @@ controllers:
                     operator: Exists
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
-            - topologyKey: "kubernetes.io/hostname"
+            - topologyKey: kubernetes.io/hostname
               labelSelector:
                 matchExpressions:
-                  - key: "app.kubernetes.io/name"
-                    operator: "In"
-                    values:
-                      - "system-upgrade-controller"
+                  - key: app.kubernetes.io/name
+                    operator: In
+                    values: [system-upgrade-controller]
       tolerations:
         - {key: CriticalAddonsOnly, operator: Exists}
         - {key: node-role.kubernetes.io/master, operator: Exists, effect: NoSchedule}

@@ -1,14 +1,14 @@
 ---
 image:
   repository: quay.io/isindir/sops-secrets-operator
-  tag: "0.21.1"
+  tag: 0.21.1
 secretsAsFiles:
-- mountPath: /etc/sops-age-key-file
-  name: sops-age-key-file
-  secretName: sops-age-key-file
+  - mountPath: /etc/sops-age-key-file
+    name: sops-age-key-file
+    secretName: sops-age-key-file
 extraEnv:
-- name: SOPS_AGE_KEY_FILE
-  value: /etc/sops-age-key-file/key
+  - name: SOPS_AGE_KEY_FILE
+    value: /etc/sops-age-key-file/key
 metrics:
   enabled: true
 rbac:

@@ -1,3 +1,4 @@
+---
 subscriptions:
   - name: patch-operator
     namespace: patch-operator

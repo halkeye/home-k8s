@@ -1,9 +1,10 @@
+---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
 controllers:
   main:
     replicas: 1
     annotations:
-      reloader.stakater.com/auto: "true"
+      reloader.stakater.com/auto: 'true'
     containers:
       main:
         image:
@@ -18,23 +19,23 @@ controllers:
           DB_URL:
             valueFrom:
               secretKeyRef:
-                name: "larapaper-db-secret-larapaper"
+                name: larapaper-db-secret-larapaper
                 key: POSTGRES_URL
           FILESYSTEM_DISK: s3
           FORCE_HTTPS: true
           LOG_CHANNEL: stderr
           LOG_LEVEL: info
           MAIL_HOST: smtp-relay.smtp-relay.svc.cluster.local
-          MAIL_FROM_ADDRESS: "larapaper@g4v.dev"
+          MAIL_FROM_ADDRESS: larapaper@g4v.dev
           MAIL_MAILER: smtp
-          MAIL_PORT: "2525"
+          MAIL_PORT: '2525'
           OIDC_ENABLED: true
           PHP_OPCACHE_ENABLE: 1
           REGISTRATION_ENABLED: false
-          TRUSTED_PROXIES: "*"
+          TRUSTED_PROXIES: '*'
         envFrom:
           - secretRef:
-              name: "larapaper"
+              name: larapaper
     pod:
       securityContext:
         runAsUser: 82
@@ -57,13 +58,12 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - "trmnl.g4v.dev"
+    hostnames: [trmnl.g4v.dev]
     rules:
       - matches:
-        - path:
-            type: PathPrefix
-            value: /
+          - path:
+              type: PathPrefix
+              value: /
         backendRefs:
           - identifier: main
             port: http
