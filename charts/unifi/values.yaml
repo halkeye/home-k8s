@@ -89,7 +89,7 @@ app-template:
         - matches:
             - path:
                 type: PathPrefix
-              value: /
+                value: /
           backendRefs:
             - group: gateway.envoyproxy.io
               kind: Backend
@@ -110,7 +110,7 @@ app-template:
         - matches:
             - path:
                 type: PathPrefix
-              value: /
+                value: /
           backendRefs:
             - identifier: main
               port: controller
