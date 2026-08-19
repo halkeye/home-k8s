@@ -95,8 +95,8 @@ app-template:
               kind: Backend
               name: unifi-https
           timeouts:
-              request: 0s # websocket, never time out
-              backendRequest: 0s # websocket, never time out
+            request: 0s # websocket, never time out
+            backendRequest: 0s # websocket, never time out
     controller:
       enabled: true
       annotations:
@@ -116,8 +116,8 @@ app-template:
             - identifier: main
               port: controller
           timeouts:
-              request: 0s # websocket, never time out
-              backendRequest: 0s # websocket, never time out
+            request: 0s # websocket, never time out
+            backendRequest: 0s # websocket, never time out
   configMaps:
     config:
       suffix: config
