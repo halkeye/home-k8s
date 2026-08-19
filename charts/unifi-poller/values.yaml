@@ -6,7 +6,7 @@ controllers:
       main:
         image:
           repository: golift/unifi-poller
-          tag: v3.4.1
+          tag: v3.5.0
         env:
           TZ: America/Vancouver
           UP_UNIFI_DEFAULT_USER:
