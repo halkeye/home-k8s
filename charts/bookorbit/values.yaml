@@ -113,7 +113,38 @@ persistence:
     path: /volume1/Comics/Books
     globalMounts:
       - path: /books
+      - path: /content/books
   tmp:
     type: emptyDir
     globalMounts:
       - path: /tmp
+  comics:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Comics/Comics
+    globalMounts:
+      - path: /content/comics
+  manga:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Comics/Manga
+    globalMounts:
+      - path: /content/manga
+  webtoons:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Comics/Webtoons
+    globalMounts:
+      - path: /content/webtoons
+  webcomics:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Comics/Webcomics
+    globalMounts:
+      - path: /content/webcomics
+  rpgs:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/RPGs
+    globalMounts:
+      - path: /content/rpgs
