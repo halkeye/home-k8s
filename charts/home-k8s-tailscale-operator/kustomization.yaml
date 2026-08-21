@@ -12,7 +12,7 @@ generatorOptions:
 
 helmCharts:
   - name: tailscale-operator
-    version: 1.102.2
+    version: 1.102.3
     repo: https://pkgs.tailscale.com/helmcharts/
     valuesFile: ./values.yaml
     releaseName: tailscale-operator

@@ -10,7 +10,7 @@ controllers:
       app:
         image:
           repository: esphome/esphome
-          tag: '2026.7'
+          tag: '2026.8'
         env:
           - name: TZ
             value: America/Vancouver
