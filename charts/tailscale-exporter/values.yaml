@@ -7,7 +7,7 @@ controllers:
       main:
         image:
           repository: adinhodovic/tailscale-exporter
-          tag: 0.6.1
+          tag: 0.7.0
         envFrom:
           - secretRef:
               name: tailscale-exporter
