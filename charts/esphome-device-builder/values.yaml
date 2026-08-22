@@ -15,17 +15,17 @@ controllers:
           - name: TZ
             value: America/Vancouver
           - name: ESPHOME_BUILD_PATH
-            value: /cache/build
+            value: /build
           - name: ESPHOME_DATA_DIR
-            value: /cache/data
+            value: /data
           - name: PLATFORMIO_CORE_DIR
-            value: /cache/pio
+            value: /pio
           - name: PLATFORMIO_PLATFORMS_DIR
-            value: /cache/platforms
+            value: /platforms
           - name: PLATFORMIO_PACKAGES_DIR
-            value: /cache/packages
+            value: /packages
           - name: PLATFORMIO_CACHE_DIR
-            value: /cache/cache
+            value: /cache
           - name: ESPHOME_TRUSTED_DOMAINS
             value: esphome-buildserver.g4v.dev
           - name: POD_IP
