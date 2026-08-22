@@ -4,6 +4,8 @@ controllers:
     strategy: Recreate
     pod:
       hostNetwork: true
+    annotations:
+      k8s.v1.cni.cncf.io/networks: media-vlan-conf
     containers:
       music-assistant:
         image:

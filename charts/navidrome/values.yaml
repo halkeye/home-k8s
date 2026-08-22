@@ -37,6 +37,7 @@ controllers:
   navidrome:
     annotations:
       reloader.stakater.com/auto: 'true'
+      k8s.v1.cni.cncf.io/networks: media-vlan-conf
       # litestream: enabled
     containers:
       navidrome:
@@ -80,7 +81,9 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames: [navidrome.g4v.dev]
+    hostnames:
+      - navidrome.g4v.dev
+      - music.g4v.dev
     rules:
       - matches:
           - path:
