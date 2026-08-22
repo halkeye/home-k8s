@@ -6,6 +6,7 @@ global:
 defaultPodOptions:
   hostNetwork: true
   hostPID: true
+  automountServiceAccountToken: true
   tolerations:
     - operator: Exists
       effect: NoSchedule
