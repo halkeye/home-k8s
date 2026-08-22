@@ -8,6 +8,7 @@ controllers:
     replicas: 1
     annotations:
       reloader.stakater.com/auto: 'true'
+      k8s.v1.cni.cncf.io/networks: media-vlan-conf
     containers:
       main:
         image:
@@ -44,6 +45,11 @@ service:
     ports:
       http:
         port: 8096
+      dnla:
+        enabled: true
+        port: 1900
+        protocol: UDP
+        targetPort: 1900
 route:
   main:
     enabled: true
@@ -51,7 +57,8 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames: [jellyfin.g4v.dev]
+    hostnames: 
+      - jellyfin.g4v.dev
     rules:
       - matches:
           - path:
