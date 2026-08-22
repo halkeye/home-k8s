@@ -15,9 +15,9 @@ controllers:
           - name: TZ
             value: America/Vancouver
           - name: ESPHOME_BUILD_PATH
-            value: /build
+            value: /cache/build
           - name: ESPHOME_DATA_DIR
-            value: /data
+            value: /cache/data
           - name: PLATFORMIO_CORE_DIR
             value: /pio
           - name: PLATFORMIO_PLATFORMS_DIR
