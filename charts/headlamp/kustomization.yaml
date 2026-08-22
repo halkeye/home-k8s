@@ -7,7 +7,7 @@ namespace: headlamp
 
 helmCharts:
   - name: headlamp
-    version: 0.44.0
+    version: 0.45.0
     repo: https://kubernetes-sigs.github.io/headlamp/
     valuesFile: values.yaml
     releaseName: headlamp
