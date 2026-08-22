@@ -1,0 +1,144 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+global:
+  createDefaultServiceAccount: false
+
+defaultPodOptions:
+  hostNetwork: true
+  hostPID: true
+  tolerations:
+    - operator: Exists
+      effect: NoSchedule
+    - operator: Exists
+      effect: NoExecute
+
+controllers:
+  main:
+    type: daemonset
+    annotations:
+      reloader.stakater.com/auto: 'true'
+    serviceAccount:
+      name: multus
+    containers:
+      kube-multus:
+        image:
+          repository: ghcr.io/k8snetworkplumbingwg/multus-cni
+          tag: v4.3.0-thick
+        command: ["/usr/src/multus-cni/bin/multus-daemon"]
+        env:
+          MULTUS_NODE_NAME:
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+        securityContext:
+          privileged: true
+        terminationMessagePolicy: FallbackToLogsOnError
+        resources:
+          requests:
+            cpu: 100m
+            memory: 50Mi
+          limits:
+            cpu: 100m
+            memory: 50Mi
+    initContainers:
+      install-multus-binary:
+        image:
+          repository: ghcr.io/k8snetworkplumbingwg/multus-cni
+          tag: v4.3.0-thick
+        command:
+          - "/usr/src/multus-cni/bin/install_multus"
+          - "-d"
+          - "/host/opt/cni/bin"
+          - "-t"
+          - "thick"
+        securityContext:
+          privileged: true
+        terminationMessagePolicy: FallbackToLogsOnError
+        resources:
+          requests:
+            cpu: 10m
+            memory: 15Mi
+    pod:
+      terminationGracePeriodSeconds: 30
+
+configMaps:
+  daemon-config:
+    data:
+      daemon-config.json: |
+        {
+          "namespaceIsolation": false,
+          "chrootDir": "/hostroot",
+          "cniVersion": "0.3.1",
+          "logLevel": "verbose",
+          "logToStderr": true,
+          "cniConfigDir": "/host/etc/cni/net.d",
+          "multusAutoconfigDir": "/host/etc/cni/net.d",
+          "multusConfigFile": "auto",
+          "socketDir": "/host/run/multus/",
+          "systemNamespaces": [
+            "kube-system",
+            "multus"
+          ],
+          "multusNamespace": "multus"
+        }
+
+persistence:
+  cni:
+    type: hostPath
+    hostPath: /etc/cni/net.d
+    globalMounts:
+      - path: /host/etc/cni/net.d
+  cnibin:
+    type: hostPath
+    hostPath: /opt/cni/bin
+    advancedMounts:
+      main:
+        kube-multus:
+          - path: /opt/cni/bin
+        install-multus-binary:
+          - path: /host/opt/cni/bin
+            mountPropagation: Bidirectional
+  hostroot:
+    type: hostPath
+    hostPath: /
+    globalMounts:
+      - path: /hostroot
+        mountPropagation: HostToContainer
+  host-run:
+    type: hostPath
+    hostPath: /run
+    globalMounts:
+      - path: /host/run
+  host-var-lib-cni-multus:
+    type: hostPath
+    hostPath: /var/lib/cni/multus
+    globalMounts:
+      - path: /var/lib/cni/multus
+  host-var-lib-kubelet:
+    type: hostPath
+    hostPath: /var/lib/kubelet
+    globalMounts:
+      - path: /var/lib/kubelet
+        mountPropagation: HostToContainer
+  host-run-k8s-cni-cncf-io:
+    type: hostPath
+    hostPath: /run/k8s.cni.cncf.io
+    globalMounts:
+      - path: /run/k8s.cni.cncf.io
+  host-run-netns:
+    type: hostPath
+    hostPath: /run/netns/
+    globalMounts:
+      - path: /run/netns
+        mountPropagation: HostToContainer
+  multus-daemon-config:
+    type: configMap
+    identifier: daemon-config
+    globalMounts:
+      - path: /etc/cni/net.d/multus.d
+        readOnly: true
+  multus-conf-dir:
+    type: hostPath
+    hostPath: /etc/cni/multus/net.d
+    globalMounts:
+      - path: /etc/cni/multus/net.d
