@@ -8,7 +8,7 @@ controllers:
     replicas: 1
     annotations:
       reloader.stakater.com/auto: 'true'
-      k8s.v1.cni.cncf.io/networks: media-vlan-conf
+      k8s.v1.cni.cncf.io/networks: media-vlan-conf,native-conf
     containers:
       main:
         image:
