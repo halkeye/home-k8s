@@ -67,7 +67,7 @@ configMaps:
     data:
       daemon-config.json: |
         {
-          "namespaceIsolation": false,
+          "globalNamespaces": "multus",
           "chrootDir": "/hostroot",
           "cniVersion": "0.3.1",
           "logLevel": "verbose",
