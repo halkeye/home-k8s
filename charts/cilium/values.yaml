@@ -1,4 +1,6 @@
 ---
+cni:
+  exclusive: false
 operator:
   replica: 1
   prometheus:
