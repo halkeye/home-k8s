@@ -11,3 +11,4 @@ helmCharts:
     repo: oci://ghcr.io/k8snetworkplumbingwg
     valuesFile: values.yaml
     releaseName: whereabouts
+    includeCRDs: true
