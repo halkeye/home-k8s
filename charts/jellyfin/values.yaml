@@ -48,11 +48,16 @@ service:
     ports:
       http:
         port: 8096
-      dnla:
+      dlna:
         enabled: true
         port: 1900
         protocol: UDP
         targetPort: 1900
+      discovery:
+        enabled: true
+        port: 7359
+        protocol: UDP
+        targetPort: 7359
 route:
   main:
     enabled: true
