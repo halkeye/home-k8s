@@ -1,0 +1,3 @@
+---
+# Override namespace to deploy to whereabouts namespace instead of kube-system
+namespaceOverride: whereabouts

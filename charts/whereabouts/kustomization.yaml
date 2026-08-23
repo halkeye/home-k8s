@@ -1,0 +1,13 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: whereabouts
+
+helmCharts:
+  - name: whereabouts-chart
+    version: 0.9.4
+    repo: oci://ghcr.io/k8snetworkplumbingwg
+    valuesFile: values.yaml
+    releaseName: whereabouts
