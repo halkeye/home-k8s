@@ -10,7 +10,7 @@ controllers:
       reloader.stakater.com/auto: 'true'
     pod:
       annotations:
-        k8s.v1.cni.cncf.io/networks: multus/media-vlan-conf,multus/native-conf
+        k8s.v1.cni.cncf.io/networks: multus/media-vlan-conf, multus/native-conf
         reloader.stakater.com/auto: 'true'
     containers:
       main:
