@@ -21,24 +21,20 @@ spec:
       }
     }'
 ---
-apiVersion: "k8s.cni.cncf.io/v1"
+apiVersion: k8s.cni.cncf.io/v1
 kind: NetworkAttachmentDefinition
 metadata:
-  name: native-conf
+  name: media-macvlan-whereabouts
 spec:
-  config: '{
+  config: |-
+    {
       "cniVersion": "0.4.0",
       "type": "macvlan",
       "master": "eth10",
       "mode": "bridge",
       "ipam": {
-        "type": "host-local",
-        "subnet": "172.16.10.0/24",
-        "rangeStart": "172.16.10.193",
-        "rangeEnd": "172.16.10.199",
-        "routes": [
-          { "dst": "0.0.0.0/0" }
-        ],
-        "gateway": "172.16.10.1"
+        "type": "whereabouts",
+        "range": "172.16.11.0/24",
+        "gateway": "172.16.11.1"
       }
-    }'
+    }
