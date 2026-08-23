@@ -136,6 +136,7 @@ spec:
           - name: tasmoadmin
           - name: tracearr
           - name: unpackerr
+          - name: whereabouts
           - name: youtubedl-material
   template:
     metadata:
