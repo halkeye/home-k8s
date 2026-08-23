@@ -111,6 +111,7 @@ spec:
           - name: manga-manager
           - name: mdns-reflector
           - name: minio
+          - name: multi-scrobbler
           - name: multus
           - name: music-assistant
           - name: nanoproxy
