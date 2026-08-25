@@ -14,6 +14,7 @@ helmCharts:
 
 resources:
   - ./templates/grafana-dashboard.yaml
+  - ./secret.enc.yaml
 
 components:
   - ../../components/valkey

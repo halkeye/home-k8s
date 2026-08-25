@@ -47,6 +47,7 @@ controllers:
         env:
           TZ: America/Vancouver
           ND_DATAFOLDER: /config
+          ND_LISTENBRAINZ_BASEURL: http://multi-scrobbler.multi-scrobbler.svc.cluster.local.:9078/1/ 
         envFrom:
           - secretRef:
               name: navidrome-secret
