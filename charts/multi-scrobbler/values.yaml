@@ -16,21 +16,21 @@ controllers:
         envFrom:
           - secretRef:
               name: multi-scrobbler
-        probes:
-          liveness: &probes
-            enabled: true
-            custom: true
-            spec:
-              httpGet:
-                path: /api/health
-                port: 9078
-              initialDelaySeconds: 0
-              periodSeconds: 10
-              timeoutSeconds: 1
-              failureThreshold: 3
-          readiness: *probes
-          startup:
-            enabled: false
+        # probes:
+        #   liveness: &probes
+        #     enabled: true
+        #     custom: true
+        #     spec:
+        #       httpGet:
+        #         path: /api/health
+        #         port: 9078
+        #       initialDelaySeconds: 0
+        #       periodSeconds: 10
+        #       timeoutSeconds: 1
+        #       failureThreshold: 3
+        #   readiness: *probes
+        #   startup:
+        #     enabled: false
         securityContext:
           readOnlyRootFilesystem: true
         resources:
