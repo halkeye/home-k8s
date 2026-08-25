@@ -13,6 +13,9 @@ controllers:
           TZ: America/Vancouver
           BASE_URL: https://multi-scrobbler.g4v.dev
           CACHE_VALKEY: redis://valkey:6379
+        envFrom:
+          - secretRef:
+              name: multi-scrobbler
         probes:
           liveness: &probes
             enabled: true
