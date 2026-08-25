@@ -37,7 +37,7 @@ controllers:
   navidrome:
     annotations:
       reloader.stakater.com/auto: 'true'
-      k8s.v1.cni.cncf.io/networks: multus/media-vlan-conf
+      k8s.v1.cni.cncf.io/networks: multus/native-conf
       # litestream: enabled
     containers:
       navidrome:
