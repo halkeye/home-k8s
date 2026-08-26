@@ -82,9 +82,7 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames:
-      - navidrome.g4v.dev
-      - music.g4v.dev
+    hostnames: [music.g4v.dev]
     rules:
       - matches:
           - path:
