@@ -111,6 +111,12 @@ persistence:
     type: emptyDir
     globalMounts:
       - path: /tmp
+  books:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Comics/Books
+    globalMounts:
+      - path: /content/books
   comics:
     type: nfs
     server: 172.16.10.10
