@@ -107,13 +107,6 @@ persistence:
     size: 5Gi
     globalMounts:
       - path: /data
-  books:
-    type: nfs
-    server: 172.16.10.10
-    path: /volume1/Comics/Books
-    globalMounts:
-      - path: /books
-      - path: /content/books
   tmp:
     type: emptyDir
     globalMounts:
@@ -148,3 +141,9 @@ persistence:
     path: /volume1/RPGs
     globalMounts:
       - path: /content/rpgs
+  stashcontent:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/StashContent
+    globalMounts:
+      - path: /content/stash
