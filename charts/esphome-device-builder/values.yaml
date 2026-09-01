@@ -78,7 +78,7 @@ persistence:
       - path: /cache/build
         subPath: build
       - path: /cache/cache
-        subPath: cache
+        subPath: subcache
       - path: /cache/packages
         subPath: packages
       - path: /cache/platforms
