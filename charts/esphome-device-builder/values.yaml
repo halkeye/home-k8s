@@ -19,13 +19,13 @@ controllers:
           - name: ESPHOME_DATA_DIR
             value: /cache/data
           - name: PLATFORMIO_CORE_DIR
-            value: /pio
+            value: /cache/pio
           - name: PLATFORMIO_PLATFORMS_DIR
-            value: /platforms
+            value: /cache/platforms
           - name: PLATFORMIO_PACKAGES_DIR
-            value: /packages
+            value: /cache/packages
           - name: PLATFORMIO_CACHE_DIR
-            value: /cache
+            value: /cache/cache
           - name: ESPHOME_TRUSTED_DOMAINS
             value: esphome-buildserver.g4v.dev
           - name: POD_IP
