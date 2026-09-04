@@ -8,7 +8,7 @@ controllers:
       app:
         image:
           repository: docker.io/foxxmd/multi-scrobbler
-          tag: 0.16.5
+          tag: 0.17.0
         env:
           TZ: America/Vancouver
           BASE_URL: https://multi-scrobbler.g4v.dev
