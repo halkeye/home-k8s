@@ -7,7 +7,7 @@ namespace: monitoring
 
 helmCharts:
   - name: kube-prometheus-stack
-    version: 88.6.4
+    version: 89.1.0
     repo: https://prometheus-community.github.io/helm-charts
     valuesFile: values.yaml
     releaseName: prometheus
