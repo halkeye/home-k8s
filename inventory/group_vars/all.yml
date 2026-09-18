@@ -1,5 +1,5 @@
 ---
-k3s_version: "v1.36.4+k3s1" # renovate: datasource=github-releases depName=k3s-io/k3s
+k3s_version: "v1.37.0+k3s1" # renovate: datasource=github-releases depName=k3s-io/k3s
 k3s_token: "{{ lookup('community.sops.sops', 'k3s_token') }}"
 # this is the user that has ssh access to these machines
 ansible_user: halkeye
@@ -21,7 +21,7 @@ calico_tag: v3.28.0 # renovate: datasource=github-releases depName=projectcalico
 # cilium_iface: "eth0"
 #cilium_iface: "enp1s0 enp2s0 enx000ec6ab18ca"
 cilium_mode: native # native when nodes on same subnet or using bgp, else set routed
-cilium_tag: "v1.20.1" # renovate: datasource=github-releases depName=cilium/cilium
+cilium_tag: "v1.20.2" # renovate: datasource=github-releases depName=cilium/cilium
 cilium_hubble: true # enable hubble observability relay and ui
 
 # if using calico or cilium, you may specify the cluster pod cidr pool
@@ -92,7 +92,7 @@ extra_agent_args: >-
   {{ extra_args }}
 
 # image tag for kube-vip
-kube_vip_tag_version: "v1.2.3" # renovate: datasource=github-releases depName=kube-vip/kube-vip
+kube_vip_tag_version: "v1.2.4" # renovate: datasource=github-releases depName=kube-vip/kube-vip
 
 # tag for kube-vip-cloud-provider manifest
 # kube_vip_cloud_provider_tag_version: "main"
