@@ -59,6 +59,7 @@ spec:
           - { name: externaldns-pihole, namespace: kube-system }
           - { name: node-feature-discovery, namespace: kube-system }
           - { name: home-metrics-server, chart: metrics-server, namespace: kube-system }
+          - { name: csi-driver-nfs, namespace: system-upgrade }
 
           - { name: longhorn, namespace: longhorn-system }
 
