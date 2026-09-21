@@ -1,17 +1,16 @@
 ---
-csi-driver-nfs:
-  controller:
-    defaultOnDeletePolicy: archive
-  storageClass:
-    create: true
-    name: nas-apps
-    annotations:
-      storageclass.kubernetes.io/is-default-class: 'false'
-    parameters:
-      server: 172.16.10.10
-      share: /volume1/Apps
-      subDir: ${pvc.metadata.namespace}-${pvc.metadata.name}
-      # mountPermissions: "0"
-    reclaimPolicy: Retain
-    volumeBindingMode: Immediate
-    mountOptions: [nfsvers=4.1]
+controller:
+  defaultOnDeletePolicy: archive
+storageClass:
+  create: true
+  name: nas-apps
+  annotations:
+    storageclass.kubernetes.io/is-default-class: 'false'
+  parameters:
+    server: 172.16.10.10
+    share: /volume1/Apps
+    subDir: ${pvc.metadata.namespace}-${pvc.metadata.name}
+    # mountPermissions: "0"
+  reclaimPolicy: Retain
+  volumeBindingMode: Immediate
+  mountOptions: [nfsvers=4.1]

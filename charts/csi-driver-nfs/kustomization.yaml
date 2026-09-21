@@ -1,0 +1,13 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: system-upgrade
+
+helmCharts:
+  - name: csi-driver-nfs
+    version: 4.13.4
+    repo: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts
+    valuesFile: values.yaml
+    releaseName: csi-driver-nfs
