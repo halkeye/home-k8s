@@ -8,8 +8,8 @@ controllers:
     containers:
       main:
         image:
-          repository: dock.mau.dev/mautrix/whatsapp
-          tag: v0.2606.0
+          repository: ghcr.io/halkeye/docker-mautrix-whatsapp
+          tag: v0.2603.0.61
         env:
           TZ: America/Vancouver
           BRIDGE_DATABASE__URI:
