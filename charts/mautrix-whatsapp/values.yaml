@@ -9,7 +9,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/halkeye/docker-mautrix-whatsapp
-          tag: v0.2603.0.61
+          tag: v0.2609.0.73
         env:
           TZ: America/Vancouver
           BRIDGE_DATABASE__URI:

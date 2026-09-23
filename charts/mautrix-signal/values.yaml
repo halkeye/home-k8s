@@ -10,7 +10,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/halkeye/docker-mautrix-signal
-          tag: v0.2604.0.51
+          tag: v0.2609.0.61
         env:
           TZ: America/Vancouver
           BRIDGE_DATABASE__URI:
