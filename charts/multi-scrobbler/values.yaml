@@ -13,6 +13,11 @@ controllers:
           TZ: America/Vancouver
           BASE_URL: https://multi-scrobbler.g4v.dev
           CACHE_VALKEY: redis://valkey:6379
+          # searches with the searchOrder
+          # isrc => basic
+          RS_PRESETS: default
+          # applies Rocksky Stage to preTransform of Rocksky Client
+          ROCKSKY_TRANSFORMS: rocksky
         envFrom:
           - secretRef:
               name: multi-scrobbler
