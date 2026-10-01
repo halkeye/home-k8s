@@ -17,6 +17,7 @@
     "helpers:pinGitHubActionDigests"
   ],
   "minimumReleaseAge": "1 days",
+  "minimumReleaseAgeBehaviour": "timestamp-optional",
   "customDatasources": {
     "grafana-dashboards": {
       "defaultRegistryUrlTemplate": "https://grafana.com/api/dashboards/{{packageName}}",
