@@ -36,7 +36,7 @@ kube-prometheus-stack:
       enabled: true
       annotations:
         nginx.ingress.kubernetes.io/proxy-body-size: 1G
-        nginx.ingress.kubernetes.io/whitelist-source-range: 104.37.60.186/32
+        nginx.ingress.kubernetes.io/whitelist-source-range: 38.145.227.22/32
         external-dns.alpha.kubernetes.io/cloudflare-proxied: 'false'
         gethomepage.dev/enabled: 'true'
         gethomepage.dev/group: Monitoring
