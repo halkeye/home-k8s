@@ -3,7 +3,7 @@ fullnameOverride: stirling-pdf
 nameOverride: stirling-pdf
 image:
   repository: stirlingtools/stirling-pdf
-  tag: 2.14.3-fat
+  tag: 3.0.0-fat
 envs:
   - {name: SECURITY_ENABLELOGIN, value: 'false'}
   - {name: FAT_DOCKER, value: 'true'}
