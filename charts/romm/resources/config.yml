@@ -39,3 +39,8 @@ exclude:
         - rominfo.txt
         - readme.txt
         - systeminfo.txt
+
+filesystem:
+  structure:
+    default: "{platform}/roms/{game}"
+    firmware: "{platform}/bios"
