@@ -9,7 +9,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/usetrmnl/larapaper
-          tag: 0.38.0
+          tag: 0.43.1
         env:
           TZ: America/Vancouver
           APP_DEBUG: true

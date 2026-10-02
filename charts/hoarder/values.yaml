@@ -16,7 +16,7 @@ controllers:
       app:
         image:
           repository: ghcr.io/karakeep-app/karakeep
-          tag: 0.32.0
+          tag: 0.33.2
         env:
           ASSET_STORE_S3_BUCKET: halkeye-hoarder
           ASSET_STORE_S3_ENDPOINT: https://halkeye-hoarder.tor1.digitaloceanspaces.com
@@ -90,7 +90,7 @@ controllers:
           # --experimental-dumpless-upgrade
         image:
           repository: docker.io/getmeili/meilisearch
-          tag: v1.54.2
+          tag: v1.54.3
         env:
           MEILI_NO_ANALYTICS: true
           MEILI_MASTER_KEY:
