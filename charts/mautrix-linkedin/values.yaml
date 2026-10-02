@@ -10,7 +10,7 @@ controllers:
       main:
         image:
           repository: dock.mau.dev/mautrix/linkedin
-          tag: v26.04
+          tag: v26.09
         env:
           TZ: America/Vancouver
           BRIDGE_DATABASE__URI:

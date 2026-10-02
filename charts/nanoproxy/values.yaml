@@ -6,7 +6,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/ryanbekhen/nanoproxy
-          tag: 0.17.3
+          tag: 0.17.7
         env:
           ADDR: :1080
           ADDR_HTTP: :8080

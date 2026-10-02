@@ -10,7 +10,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/calibrain/shelfmark
-          tag: v1.3.3
+          tag: v1.4.0
         env:
           TZ: America/Vancouver
           FLASK_PORT: '8084'

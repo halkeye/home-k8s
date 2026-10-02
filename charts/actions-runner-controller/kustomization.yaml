@@ -7,6 +7,6 @@ namespace: actions-runner-controller
 
 helmCharts:
   - name: gha-runner-scale-set-controller
-    version: 0.14.2
+    version: 0.15.0
     repo: oci://ghcr.io/actions/actions-runner-controller-charts
     releaseName: "gha-rs-controller"

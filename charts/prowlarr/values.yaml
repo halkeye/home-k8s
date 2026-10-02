@@ -9,7 +9,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/home-operations/prowlarr
-          tag: 2.5.1.5464
+          tag: 2.6.5.5623
         env:
           # https://github.com/Radarr/Radarr/issues/7030#issuecomment-1039689518
           # https://github.com/dotnet/runtime/issues/9336

@@ -24,7 +24,7 @@ controllers:
       kube-multus:
         image:
           repository: ghcr.io/k8snetworkplumbingwg/multus-cni
-          tag: v4.3.0-thick
+          tag: v4.3.1-thick
         command: ["/usr/src/multus-cni/bin/multus-daemon"]
         env:
           MULTUS_NODE_NAME:
@@ -45,7 +45,7 @@ controllers:
       install-multus-binary:
         image:
           repository: ghcr.io/k8snetworkplumbingwg/multus-cni
-          tag: v4.3.0-thick
+          tag: v4.3.1-thick
         command:
           - "/usr/src/multus-cni/bin/install_multus"
           - "-d"

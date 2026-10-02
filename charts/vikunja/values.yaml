@@ -9,7 +9,7 @@ controllers:
       app:
         image:
           repository: ghcr.io/go-vikunja/vikunja
-          tag: 2.3.0
+          tag: 2.7.0
         env:
           TZ: America/Vancouver
           VIKUNJA_SERVICE_ENABLEREGISTRATION: false
