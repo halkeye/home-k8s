@@ -90,7 +90,6 @@ spec:
           - name: it-tools
           - name: larapaper
           - name: libmedium
-          - name: memos
           - name: metrics-server
           - name: microbin
           - name: miniflux
