@@ -1,0 +1,19 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: ext-mysql-operator
+
+resources:
+  # crds first
+  - https://raw.githubusercontent.com/tomaszkiewicz/mysql-operator/55df70475cce123fe734eba1bd177cf3aeae9ce6/deploy/crds/mysql_v1_mysqlcluster_crd.yaml
+  - https://raw.githubusercontent.com/tomaszkiewicz/mysql-operator/55df70475cce123fe734eba1bd177cf3aeae9ce6/deploy/crds/mysql_v1_mysqldatabase_crd.yaml
+  - https://raw.githubusercontent.com/tomaszkiewicz/mysql-operator/55df70475cce123fe734eba1bd177cf3aeae9ce6/deploy/crds/mysql_v1_mysqluser_crd.yaml
+  # after crds
+  - https://raw.githubusercontent.com/tomaszkiewicz/mysql-operator/55df70475cce123fe734eba1bd177cf3aeae9ce6/deploy/ns.yaml
+  - https://raw.githubusercontent.com/tomaszkiewicz/mysql-operator/55df70475cce123fe734eba1bd177cf3aeae9ce6/deploy/operator.yaml
+  - https://raw.githubusercontent.com/tomaszkiewicz/mysql-operator/55df70475cce123fe734eba1bd177cf3aeae9ce6/deploy/role.yaml
+  - https://raw.githubusercontent.com/tomaszkiewicz/mysql-operator/55df70475cce123fe734eba1bd177cf3aeae9ce6/deploy/role_binding.yaml
+  - https://raw.githubusercontent.com/tomaszkiewicz/mysql-operator/55df70475cce123fe734eba1bd177cf3aeae9ce6/deploy/service_account.yaml
+  - ./secret.enc.yaml
