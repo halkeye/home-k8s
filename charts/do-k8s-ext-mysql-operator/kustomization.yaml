@@ -7,4 +7,5 @@ namespace: ext-mysql-operator
 
 resources:
   - https://github.com/halkeye/mysql-operator//deploy/
+  - ./mysql.yaml
   - ./secret.enc.yaml
