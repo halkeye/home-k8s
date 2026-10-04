@@ -4,7 +4,7 @@ kind: MysqlCluster
 metadata:
   name: mysqlcluster
 spec:
-  host: mysql.test.luktom.net
+  host: db-mysql-sfo2-06502-do-user-8094590-0.b.db.ondigitalocean.com:25060
   username: doadmin
   secretRef:
     name: mysqlcluster
