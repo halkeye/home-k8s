@@ -9,7 +9,7 @@ controllers:
       app:
         image:
           repository: ghcr.io/foxcpp/maddy
-          tag: 0.9.5
+          tag: 0.9.6
         env:
           TZ: America/Vancouver
           DEBUG: 'no'
