@@ -23,8 +23,6 @@ controllers:
           SEAFILE_MYSQL_DB_CCNET_DB_NAME: ccnet-db
           SEAFILE_MYSQL_DB_SEAFILE_DB_NAME: seafile-db
           SEAFILE_MYSQL_DB_SEAHUB_DB_NAME: seahub-db
-          SEAFILE_MYSQL_DB_HOST: db-mysql-sfo2-06502-do-user-8094590-0.b.db.ondigitalocean.com
-          SEAFILE_MYSQL_DB_USER: seafile
           SEAFILE_MYSQL_DB_PASSWORD:
             valueFrom:
               secretKeyRef:
