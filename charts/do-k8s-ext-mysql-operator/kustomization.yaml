@@ -6,12 +6,5 @@ kind: Kustomization
 namespace: ext-mysql-operator
 
 resources:
-  # crds first
-  - ./crds.yaml
-  # after crds
-  - ./upstream/ns.yaml
-  - ./upstream/operator.yaml
-  - ./upstream/role.yaml
-  - ./upstream/role_binding.yaml
-  - ./upstream/service_account.yaml
+  - https://github.com/halkeye/mysql-operator//deploy/
   - ./secret.enc.yaml
