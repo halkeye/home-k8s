@@ -9,3 +9,7 @@ resources:
   - https://github.com/halkeye/mysql-operator//deploy/
   - ./mysql.yaml
   - ./secret.enc.yaml
+
+images:
+  - name: ghcr.io/halkeye/mysql-operator
+    newTag: "v0.0.1"
