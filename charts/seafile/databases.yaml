@@ -33,4 +33,4 @@ metadata:
 spec:
   clusterRef:
     name: mysqlcluster
-  privileges: "*.ccnet-db:*/*.seafile-db:*/*.seahub-db:*"
+  privileges: "ccnet-db.*:*/seafile-db.*:*/seahub-db.*:*"
