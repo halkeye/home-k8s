@@ -2,7 +2,7 @@
 apiVersion: mysql.operator.luktom.net/v1
 kind: MysqlDatabase
 metadata:
-  name: ccnet_db
+  name: ccnet-db
 spec:
   dropOnDelete: false
   clusterRef:
@@ -11,7 +11,7 @@ spec:
 apiVersion: mysql.operator.luktom.net/v1
 kind: MysqlDatabase
 metadata:
-  name: seafile_db
+  name: seafile-db
 spec:
   dropOnDelete: false
   clusterRef:
@@ -20,7 +20,7 @@ spec:
 apiVersion: mysql.operator.luktom.net/v1
 kind: MysqlDatabase
 metadata:
-  name: seahub_db
+  name: seahub-db
 spec:
   dropOnDelete: false
   clusterRef:
@@ -33,4 +33,4 @@ metadata:
 spec:
   clusterRef:
     name: mysqlcluster
-  privileges: "*.ccnet_db:*/*.seafile_db:*/*.seahub_db:*"
+  privileges: "*.ccnet-db:*/*.seafile-db:*/*.seahub-db:*"
