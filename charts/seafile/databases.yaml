@@ -1,0 +1,36 @@
+---
+apiVersion: mysql.operator.luktom.net/v1
+kind: MysqlDatabase
+metadata:
+  name: ccnet_db
+spec:
+  dropOnDelete: false
+  clusterRef:
+    name: mysqlcluster
+---
+apiVersion: mysql.operator.luktom.net/v1
+kind: MysqlDatabase
+metadata:
+  name: seafile_db
+spec:
+  dropOnDelete: false
+  clusterRef:
+    name: mysqlcluster
+---
+apiVersion: mysql.operator.luktom.net/v1
+kind: MysqlDatabase
+metadata:
+  name: seahub_db
+spec:
+  dropOnDelete: false
+  clusterRef:
+    name: mysqlcluster
+---
+apiVersion: mysql.operator.luktom.net/v1
+kind: MysqlUser
+metadata:
+  name: seafile
+spec:
+  clusterRef:
+    name: mysqlcluster
+  privileges: "*.ccnet_db:*/*.seafile_db:*/*.seahub_db:*"

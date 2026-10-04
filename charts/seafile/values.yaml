@@ -1,0 +1,91 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+# Requires secret `seafile-secret` (secret.enc.yaml) with keys:
+#   JWT_PRIVATE_KEY, INIT_SEAFILE_ADMIN_EMAIL, INIT_SEAFILE_ADMIN_PASSWORD,
+#   DB_ROOT_PASSWD, SEAFILE_MYSQL_DB_PASSWORD
+controllers:
+  main:
+    replicas: 1
+    annotations:
+      reloader.stakater.com/auto: 'true'
+    containers:
+      seafile:
+        image:
+          repository: seafileltd/seafile-mc
+          tag: 12.0.14
+        env:
+          TZ: America/Vancouver
+          CACHE_PROVIDER: redis
+          REDIS_HOST: valkey
+          REDIS_PORT: '6379'
+          SEAFILE_SERVER_HOSTNAME: seafile.g4v.dev
+          SEAFILE_SERVER_PROTOCOL: https
+          SEAFILE_MYSQL_DB_CCNET_DB_NAME: ccnet_db
+          SEAFILE_MYSQL_DB_SEAFILE_DB_NAME: seafile_db
+          SEAFILE_MYSQL_DB_SEAHUB_DB_NAME: seahub_db
+          SEAFILE_MYSQL_DB_HOST: db-mysql-sfo2-06502-do-user-8094590-0.b.db.ondigitalocean.com
+          SEAFILE_MYSQL_DB_USER: seafile
+          SEAFILE_MYSQL_DB_PASSWORD:
+            valueFrom:
+              secretKeyRef:
+                key: password
+                name: "seafile-mysqluser"
+          NON_ROOT: 'false'
+          FORCE_HTTPS_IN_CONF: 'true'
+        envFrom:
+          - secretRef:
+              name: seafile-secret
+        probes:
+          liveness: &probes
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /api2/ping/
+                port: 80
+              initialDelaySeconds: 30
+              periodSeconds: 20
+              timeoutSeconds: 5
+              failureThreshold: 5
+          readiness: *probes
+          startup:
+            enabled: false
+        resources:
+          requests:
+            cpu: 50m
+            memory: 1Gi
+          limits:
+            memory: 4Gi
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 80
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames: [seafile.g4v.dev]
+    rules:
+      - matches:
+          - path:
+              type: PathPrefix
+              value: /
+        backendRefs:
+          - identifier: main
+            port: http
+persistence:
+  data:
+    enabled: true
+    type: persistentVolumeClaim
+    storageClass: nas-apps
+    accessMode: ReadWriteMany
+    size: 50Gi
+    advancedMounts:
+      main:
+        seafile:
+          - path: /shared
