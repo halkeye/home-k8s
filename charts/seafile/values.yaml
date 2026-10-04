@@ -34,7 +34,7 @@ controllers:
           FORCE_HTTPS_IN_CONF: 'true'
         envFrom:
           - secretRef:
-              name: seafile-secret
+              name: seafile
         probes:
           liveness: &probes
             enabled: true
