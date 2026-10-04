@@ -129,7 +129,6 @@ spec:
           - name: radarr
           - name: recyclarr
           - name: romm
-          - name: seafile
           - name: shelfmark
           - name: snapshot-controller
           - name: sonarr
