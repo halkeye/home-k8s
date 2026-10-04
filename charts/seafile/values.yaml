@@ -29,7 +29,7 @@ controllers:
             valueFrom:
               secretKeyRef:
                 key: password
-                name: "seafile-mysqluser"
+                name: "mysql-user-seafile"
           NON_ROOT: 'false'
           FORCE_HTTPS_IN_CONF: 'true'
         envFrom:
