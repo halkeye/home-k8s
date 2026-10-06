@@ -15,7 +15,7 @@ controllers:
       recyclarr:
         image:
           repository: ghcr.io/recyclarr/recyclarr
-          tag: 8.7.2
+          tag: 8.7.3
         args: [sync]
         env:
           COMPlus_EnableDiagnostics: '0'
