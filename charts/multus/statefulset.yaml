@@ -1,0 +1,70 @@
+# apiVersion: apps/v1
+# kind: StatefulSet
+# metadata:
+#   name: multus-test-whereabouts
+#   namespace: multus
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: multus-test-whereabouts
+#   template:
+#     metadata:
+#       labels:
+#         app: multus-test-whereabouts
+#       annotations:
+#         k8s.v1.cni.cncf.io/networks: multus/media-macvlan-whereabouts
+#     spec:
+#       containers:
+#         - name: samplepod-busybox
+#           command: ["/bin/bash", "-c", "trap : TERM INT; sleep infinity & wait"]
+#           image: dougbtv/centos-network
+#           ports:
+#           - containerPort: 80
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: multus-test-vlan
+  namespace: multus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: multus-test-vlan
+  template:
+    metadata:
+      labels:
+        app: multus-test-vlan
+      annotations:
+        k8s.v1.cni.cncf.io/networks: multus/media-vlan-conf
+    spec:
+      containers:
+        - name: app
+          command: ["/bin/bash", "-c", "trap : TERM INT; sleep infinity & wait"]
+          image: aeciopires/nettools
+          ports:
+          - containerPort: 80
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: multus-test-bridge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: multus-test-bridge
+  template:
+    metadata:
+      labels:
+        app: multus-test-bridge
+      annotations:
+        k8s.v1.cni.cncf.io/networks: multus/media-bridge
+    spec:
+      containers:
+        - name: app
+          command: ["/bin/bash", "-c", "trap : TERM INT; sleep infinity & wait"]
+          image: aeciopires/nettools
+          ports:
+          - containerPort: 80

@@ -9,7 +9,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/cenodude/crosswatch
-          tag: 0.13.2
+          tag: 0.13.3
         env:
           TZ: America/Vancouver
         probes:
