@@ -99,6 +99,19 @@ route:
             identifier: main
             port: http
             weight: 1
+ingress:
+  main:
+    enabled: true
+    className: tailscale
+    hosts:
+      - host: romm
+        paths:
+          - path: /
+            service:
+              identifier: main
+              port: http
+    tls:
+      - hosts: [romm]
 persistence:
   config:
     type: emptyDir
