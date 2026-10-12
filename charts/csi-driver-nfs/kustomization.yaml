@@ -7,7 +7,7 @@ namespace: system-upgrade
 
 helmCharts:
   - name: csi-driver-nfs
-    version: 4.13.4
+    version: 4.13.5
     repo: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts
     valuesFile: values.yaml
     releaseName: csi-driver-nfs
