@@ -30,6 +30,12 @@ controllers:
                 name: "mysql-user-seafile"
           NON_ROOT: 'false'
           FORCE_HTTPS_IN_CONF: 'true'
+          ENABLE_NOTIFICATION_SERVER: 'true'
+          ENABLE_SEADOC: 'false'
+          ENABLE_SEAFILE_AI: 'false'
+          MD_FILE_COUNT_LIMIT: '100000'
+          SEAFILE_DOCKER_VERBOSE: 'true'
+          SEAFILE_LOG_TO_STDOUT: 'false'
         envFrom:
           - secretRef:
               name: seafile
