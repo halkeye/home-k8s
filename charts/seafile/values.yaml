@@ -4,7 +4,7 @@
 #   JWT_PRIVATE_KEY, INIT_SEAFILE_ADMIN_EMAIL, INIT_SEAFILE_ADMIN_PASSWORD,
 #   DB_ROOT_PASSWD, SEAFILE_MYSQL_DB_PASSWORD
 controllers:
-  main:
+  seafile:
     replicas: 1
     annotations:
       reloader.stakater.com/auto: 'true'
@@ -31,11 +31,13 @@ controllers:
           NON_ROOT: 'false'
           FORCE_HTTPS_IN_CONF: 'true'
           ENABLE_NOTIFICATION_SERVER: 'true'
+          INNER_NOTIFICATION_SERVER_URL: http://notifications:8083
+          NOTIFICATION_SERVER_URL: https://seafile.g4v.dev/notification
           ENABLE_SEADOC: 'false'
           ENABLE_SEAFILE_AI: 'false'
           MD_FILE_COUNT_LIMIT: '100000'
           SEAFILE_DOCKER_VERBOSE: 'true'
-          SEAFILE_LOG_TO_STDOUT: 'false'
+          SEAFILE_LOG_TO_STDOUT: 'true'
         envFrom:
           - secretRef:
               name: seafile
@@ -60,14 +62,64 @@ controllers:
             memory: 1Gi
           limits:
             memory: 4Gi
+  notifications:
+    replicas: 1
+    annotations:
+      reloader.stakater.com/auto: 'true'
+    containers:
+      notifications:
+        image:
+          repository: seafileltd/notification-server
+          tag: 13.0.28
+        env:
+          TZ: America/Vancouver
+          SEAFILE_DOCKER_VERBOSE: 'true'
+          SEAFILE_LOG_TO_STDOUT: 'true'
+          SEAFILE_MYSQL_DB_CCNET_DB_NAME: ccnet-db
+          SEAFILE_MYSQL_DB_SEAFILE_DB_NAME: seafile-db
+          SEAFILE_MYSQL_DB_SEAHUB_DB_NAME: seahub-db
+          SEAFILE_MYSQL_DB_PASSWORD:
+            valueFrom:
+              secretKeyRef:
+                key: password
+                name: "mysql-user-seafile"
+        envFrom:
+          - secretRef:
+              name: seafile
+        resources:
+          requests:
+            cpu: 50m
+            memory: 1Gi
+          limits:
+            memory: 4Gi
+        probes:
+          liveness: &probes
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /notification/ping
+                port: 8083
+              initialDelaySeconds: 30
+              periodSeconds: 20
+              timeoutSeconds: 5
+              failureThreshold: 5
+          readiness: *probes
+          startup:
+            enabled: false
 service:
-  main:
-    controller: main
+  seafile:
+    controller: seafile
     ports:
       http:
         port: 80
+  notifications:
+    controller: notifications
+    ports:
+      http:
+        port: 8083
 route:
-  main:
+  seafile:
     enabled: true
     parentRefs:
       - name: http-gateway
@@ -80,7 +132,14 @@ route:
               type: PathPrefix
               value: /
         backendRefs:
-          - identifier: main
+          - identifier: seafile
+            port: http
+      - matches:
+          - path:
+              type: PathPrefix
+              value: /notification
+        backendRefs:
+          - identifier: notifications
             port: http
 persistence:
   data:
@@ -89,6 +148,12 @@ persistence:
     accessMode: ReadWriteOnce
     size: 50Gi
     advancedMounts:
-      main:
+      seafile:
         seafile:
           - path: /shared
+  logs:
+    enabled: true
+    type: emptyDir
+    globalMounts:
+      - path: /shared/seafile/logs
+
