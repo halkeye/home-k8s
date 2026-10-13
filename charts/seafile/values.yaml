@@ -70,7 +70,7 @@ controllers:
       notifications:
         image:
           repository: seafileltd/notification-server
-          tag: 13.0.28
+          tag: 13.0.21
         env:
           TZ: America/Vancouver
           SEAFILE_DOCKER_VERBOSE: 'true'
