@@ -12,7 +12,7 @@ controllers:
       seafile:
         image:
           repository: seafileltd/seafile-mc
-          tag: 13.0.28
+          tag: 14.0.9
         env:
           TZ: America/Vancouver
           CACHE_PROVIDER: redis
@@ -70,7 +70,7 @@ controllers:
       notifications:
         image:
           repository: seafileltd/notification-server
-          tag: 13.0.21
+          tag: 14.0.8
         env:
           TZ: America/Vancouver
           SEAFILE_DOCKER_VERBOSE: 'true'
