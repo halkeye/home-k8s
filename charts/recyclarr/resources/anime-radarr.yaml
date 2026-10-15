@@ -19,5 +19,5 @@ radarr:
       add:
         - trash_id: "4a3b087eea2ce012fcc1ce319259a3be" # Anime Dual Audio
       skip:
-        - trash_id: "064af5f084a0a24458cc8ecd3220f93f" # Uncensored
-        - trash_id: "a5d148168c4506b55cf53984107c396e" # 10bit
+        - "064af5f084a0a24458cc8ecd3220f93f" # Uncensored
+        - "a5d148168c4506b55cf53984107c396e" # 10bit
