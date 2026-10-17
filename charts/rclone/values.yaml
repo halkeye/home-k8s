@@ -14,7 +14,6 @@ controllers:
         args:
           - rcd
           - --rc-user-from-header=x-remote-user
-          - --rc-user=halkeye
           - --rc-web-gui
           - --rc-web-gui-no-open-browser
           - --rc-web-gui-update=false
