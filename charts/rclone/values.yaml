@@ -21,6 +21,8 @@ controllers:
         env:
           TZ: America/Vancouver
           RCLONE_RC_WEB_GUI_UPDATE: 'false'
+          RCLONE_RC_USER: user
+          RCLONE_RC_PASS: password
         envFrom:
           - secretRef:
               name: 'rclone'
@@ -78,6 +80,13 @@ route:
           - path:
               type: PathPrefix
               value: /
+        # Always inject basic auth (user:password) so clients don't need to supply it
+        filters:
+          - type: RequestHeaderModifier
+            requestHeaderModifier:
+              set:
+                - name: Authorization
+                  value: Basic dXNlcjpwYXNzd29yZA==
         backendRefs:
           - group: ''
             kind: Service
