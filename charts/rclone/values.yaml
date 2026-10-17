@@ -13,15 +13,16 @@ controllers:
           tag: 1.75.2
         args:
           - rcd
-          - --rc-user-from-header=x-remote-email
+          - --rc-user-from-header=x-remote-user
+          - --rc-user=halkeye
           - --rc-web-gui
           - --rc-web-gui-no-open-browser
+          - --rc-web-gui-update=false
           - --rc-addr=:5572
           - --cache-dir=/cache
           - --config=/config/rclone.conf
         env:
           TZ: America/Vancouver
-          RCLONE_RC_WEB_GUI_UPDATE: 'false'
         probes:
           liveness: &probes
             enabled: true
