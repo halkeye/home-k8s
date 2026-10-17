@@ -13,6 +13,8 @@ controllers:
           tag: 1.69.1
         args:
           - rcd
+          - --rc-no-auth
+          - --rc-user-from-header=x-remote-email
           - --rc-web-gui
           - --rc-web-gui-no-open-browser
           - --rc-addr=:5572
@@ -21,11 +23,6 @@ controllers:
         env:
           TZ: America/Vancouver
           RCLONE_RC_WEB_GUI_UPDATE: 'false'
-          RCLONE_RC_USER: user
-          RCLONE_RC_PASS: password
-        envFrom:
-          - secretRef:
-              name: 'rclone'
         probes:
           liveness: &probes
             enabled: true
@@ -80,13 +77,6 @@ route:
           - path:
               type: PathPrefix
               value: /
-        # Always inject basic auth (user:password) so clients don't need to supply it
-        filters:
-          - type: RequestHeaderModifier
-            requestHeaderModifier:
-              set:
-                - name: Authorization
-                  value: Basic dXNlcjpwYXNzd29yZA==
         backendRefs:
           - group: ''
             kind: Service

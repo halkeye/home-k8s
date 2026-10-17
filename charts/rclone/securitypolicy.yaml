@@ -1,0 +1,35 @@
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: rclone-oidc
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: rclone
+  oidc:
+    provider:
+      issuer: "https://auth.g4v.dev/application/o/rclone/"
+    clientID: "6K90R4JFbtKBEAeN26zaTJuFd3FGsPw1PrDa1wNR"
+    clientSecret:
+      name: "rclone-oidc"
+    redirectURL: "https://rclone.g4v.dev/oauth2/callback"
+    logoutPath: "/myapp/logout"
+    # pass the token upstream as Authorization: Bearer so the jwt filter can read claims
+    forwardAccessToken: true
+  jwt:
+    providers:
+      - name: authentik
+        issuer: "https://auth.g4v.dev/application/o/rclone/"
+        remoteJWKS:
+          uri: "https://auth.g4v.dev/application/o/rclone/jwks/"
+        # copy the username claim into a header for rclone --rc-user-from-header
+        claimToHeaders:
+          - claim: preferred_username
+            header: x-remote-user
+          - claim: email
+            header: x-remote-email
+        extractFrom:
+          headers:
+            - name: Authorization
+              valuePrefix: "Bearer "

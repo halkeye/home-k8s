@@ -21,3 +21,4 @@ helmCharts:
 
 resources:
   - ./secret.enc.yaml
+  - ./securitypolicy.yaml
