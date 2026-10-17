@@ -1,0 +1,149 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+# Requires a secret `rclone-secret` (add as secret.enc.yaml and list under kustomization resources) with keys:
+#   rclone.conf   - rclone remotes config
+#   RCLONE_RC_USER / RCLONE_RC_PASS - credentials for the web ui / rc API
+controllers:
+  main:
+    annotations:
+      reloader.stakater.com/auto: 'true'
+    strategy: Recreate
+    replicas: 1
+    containers:
+      app:
+        image:
+          repository: rclone/rclone
+          tag: 1.69.1
+        args:
+          - rcd
+          - --rc-web-gui
+          - --rc-web-gui-no-open-browser
+          - --rc-addr=:5572
+          - --cache-dir=/cache
+          - --config=/config/rclone.conf
+        env:
+          TZ: America/Vancouver
+          RCLONE_RC_WEB_GUI_UPDATE: 'false'
+        envFrom:
+          - secretRef:
+              name: '{{ .Release.Name }}-secret'
+        probes:
+          liveness: &probes
+            enabled: true
+            custom: true
+            spec:
+              tcpSocket:
+                port: 5572
+          readiness: *probes
+          startup:
+            enabled: false
+        resources:
+          requests:
+            memory: 128Mi
+            cpu: 10m
+          limits:
+            memory: 1Gi
+      # Runs `rclone bisync` for each entry of /bisync/bisync.conf on an interval.
+      bisync:
+        image:
+          repository: rclone/rclone
+          tag: 1.69.1
+        command: [/bin/sh, /bisync/bisync.sh]
+        env:
+          TZ: America/Vancouver
+          BISYNC_INTERVAL: '3600'
+        resources:
+          requests:
+            memory: 128Mi
+            cpu: 10m
+          limits:
+            memory: 1Gi
+    pod:
+      securityContext:
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 5572
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames: [rclone.g4v.dev]
+    rules:
+      - matches:
+          - path:
+              type: PathPrefix
+              value: /
+        backendRefs:
+          - group: ''
+            kind: Service
+            identifier: main
+            port: http
+            weight: 1
+configMaps:
+  bisync:
+    enabled: true
+    data:
+      # One job per line: <name> <path1> <path2> [extra bisync flags...]
+      # e.g.  docs gdrive:Documents /data/documents --resilient --recover
+      bisync.conf: |
+        gdrive:Documents/Jewel smb:home/Documents/Jewel
+      bisync.sh: |
+        #!/bin/sh
+        # First run of a job needs --resync to seed the listings.
+        while true; do
+          grep -v '^\s*\(#\|$\)' /bisync/bisync.conf | while read -r name p1 p2 flags; do
+            marker="/cache/bisync-$name.initialized"
+            extra=""
+            [ -f "$marker" ] || extra="--resync"
+            echo "$(date -Iseconds) bisync $name: $p1 <-> $p2"
+            # shellcheck disable=SC2086
+            if rclone bisync "$p1" "$p2" --config=/config/rclone.conf --cache-dir=/cache $extra $flags; then
+              touch "$marker"
+            else
+              echo "bisync $name failed"
+            fi
+          done
+          sleep "${BISYNC_INTERVAL:-3600}"
+        done
+persistence:
+  config:
+    type: secret
+    name: 'rclone'
+    advancedMounts:
+      main:
+        app:
+          - path: /config
+            readOnly: true
+        bisync:
+          - path: /config
+            readOnly: true
+  bisync:
+    type: configMap
+    identifier: bisync
+    defaultMode: 0755
+    advancedMounts:
+      main:
+        bisync:
+          - path: /bisync
+  cache:
+    enabled: true
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    size: 5Gi
+    globalMounts:
+      - path: /cache
+  # Add data mounts (nfs / pvc) at the same path in both containers, e.g.:
+  # data:
+  #   type: nfs
+  #   server: 172.16.10.10
+  #   path: /volume1/xyz
+  #   globalMounts:
+  #     - path: /data
