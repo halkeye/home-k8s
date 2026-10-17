@@ -90,7 +90,7 @@ configMaps:
       # One job per line: <name> <path1> <path2> [extra bisync flags...]
       # e.g.  docs gdrive:Documents /data/documents --resilient --recover
       bisync.conf: |
-        gdrive:Documents/Jewel smb:home/Documents/Jewel
+        jewel-docs gdrive:Documents/Jewel smb:home/Documents/Jewel
       bisync.sh: |
         #!/bin/sh
         # First run of a job needs --resync to seed the listings.
