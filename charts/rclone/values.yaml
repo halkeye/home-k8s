@@ -13,7 +13,8 @@ controllers:
           tag: 1.75.2
         args:
           - rcd
-          - --rc-user-from-header=x-remote-user
+          - --rc-no-auth
+          # - --rc-user-from-header=x-remote-user
           - --rc-web-gui
           - --rc-web-gui-no-open-browser
           - --rc-web-gui-update=false
