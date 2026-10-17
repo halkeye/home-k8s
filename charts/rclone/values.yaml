@@ -10,7 +10,7 @@ controllers:
       app:
         image:
           repository: rclone/rclone
-          tag: 1.69.1
+          tag: 1.75.2
         args:
           - rcd
           - --rc-no-auth
@@ -43,7 +43,7 @@ controllers:
       bisync:
         image:
           repository: rclone/rclone
-          tag: 1.69.1
+          tag: 1.75.2
         command: [/bin/sh, /bisync/bisync.sh]
         env:
           TZ: America/Vancouver

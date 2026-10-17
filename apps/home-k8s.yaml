@@ -127,6 +127,7 @@ spec:
           - name: postgres-home-backup
           - name: prowlarr
           - name: radarr
+          - name: rclone
           - name: recyclarr
           - name: romm
           - name: shelfmark
