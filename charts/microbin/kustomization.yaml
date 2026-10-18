@@ -29,7 +29,7 @@ patches:
         value: microbin 
       - op: replace
         path: /spec/rclone/rcloneDestPath
-        value: microbin 
+        value: halkeye-volsync:microbin 
   - target: {kind: ReplicationDestination, name: volsync-restore}
     patch: |-
       - op: replace
@@ -40,4 +40,4 @@ patches:
         value: 1Gi
       - op: replace
         path: /spec/rclone/rcloneDestPath
-        value: microbin 
+        value: halkeye-volsync:microbin 

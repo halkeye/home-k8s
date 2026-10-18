@@ -7,7 +7,7 @@ spec:
   trigger:
     schedule: "0 */6 * * *"
   rclone:
-    rcloneConfigSection: halkeye-volsync
+    rcloneConfigSection: volsync
     rcloneDestPath: PVC_NAME
     rcloneConfig: volsync-rclone-config
     copyMethod: Snapshot
