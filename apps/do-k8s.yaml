@@ -103,7 +103,6 @@ spec:
           - name: string-is
           - name: tautulli
           - name: teamspeak
-          - name: tranquil-pds
           - name: umami
           - name: vikunja
   template:
