@@ -19,7 +19,7 @@ radarr:
 
     custom_format_groups:
       add:
-        - trash_id: "4a3b087eea2ce012fcc1ce319259a3be" # Anime Dual Audio
+        - trash_id: "35069a3636bff36afe63e3c2c5118b1d" # [Optional] Anime Optional
           exclude:
             - "064af5f084a0a24458cc8ecd3220f93f" # Uncensored
             - "a5d148168c4506b55cf53984107c396e" # 10bit
