@@ -26,7 +26,7 @@ patches:
     patch: |-
       - op: replace
         path: /spec/sourcePVC
-        value: tachidesk 
+        value: tachidesk-config
       - op: replace
         path: /spec/rclone/rcloneDestPath
         value: home-volsync:tachidesk 
@@ -34,10 +34,10 @@ patches:
     patch: |-
       - op: replace
         path: /spec/rclone/destinationPVC
-        value: tachidesk
+        value: tachidesk-config
       - op: replace
         path: /spec/rclone/capacity
-        value: 1Gi
+        value: 10Gi
       - op: replace
         path: /spec/rclone/rcloneDestPath
         value: home-volsync:tachidesk 
