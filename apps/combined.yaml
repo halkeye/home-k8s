@@ -22,6 +22,7 @@ spec:
                 - { appname: smtp-relay }
                 - { appname: sops-secrets-operator }
                 - { appname: step-issuer }
+                - { appname: volsync }
                 - { appname: vpa }
                 - { appname: whoami, useOverlay: true }
   template:
