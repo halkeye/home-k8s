@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/recyclarr/recyclarr/master/schemas/config-schema.json
 # Instance Definition: https://recyclarr.dev/wiki/yaml/config-reference/basic/
 sonarr:
-  sonarr-v4:
+  sonarr-v5:
     # Set the URL/API Key to your actual instance
     base_url: https://sonarr.g4v.dev:443
     api_key: !env_var SONARR_API_KEY
