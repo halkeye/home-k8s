@@ -30,6 +30,9 @@ patches:
       - op: replace
         path: /spec/rclone/rcloneDestPath
         value: home-volsync:tachidesk 
+      - op: replace
+        path: /spec/rclone/moverSecurityContext
+        value: { runAsUser: 1026, runAsGroup: 100 }
   - target: {kind: ReplicationDestination, name: volsync-restore}
     patch: |-
       - op: replace
@@ -41,3 +44,6 @@ patches:
       - op: replace
         path: /spec/rclone/rcloneDestPath
         value: home-volsync:tachidesk 
+      - op: replace
+        path: /spec/rclone/moverSecurityContext
+        value: { runAsUser: 1026, runAsGroup: 100 }
