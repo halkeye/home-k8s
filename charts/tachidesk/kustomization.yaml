@@ -29,7 +29,7 @@ patches:
         value: tachidesk-config
       - op: replace
         path: /spec/rclone/rcloneDestPath
-        value: home-volsync:tachidesk
+        value: tachidesk
       - op: replace
         path: /spec/rclone/moverSecurityContext
         value: { runAsUser: 1026, runAsGroup: 100, fsGroup: 100, fsGroupChangePolicy: OnRootMismatch }
@@ -43,7 +43,7 @@ patches:
         value: 10Gi
       - op: replace
         path: /spec/rclone/rcloneDestPath
-        value: home-volsync:tachidesk
+        value: tachidesk
       - op: replace
         path: /spec/rclone/moverSecurityContext
         value: { runAsUser: 1026, runAsGroup: 100, fsGroup: 100, fsGroupChangePolicy: OnRootMismatch }
