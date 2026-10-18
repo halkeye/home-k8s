@@ -12,12 +12,14 @@ radarr:
 
     quality_profiles:
       - trash_id: 722b624f9af1e492284c4bc842153a38  # [Anime] Remux-1080p
+        quality_definition:
+          type: anime
         reset_unmatched_scores:
           enabled: true
 
     custom_format_groups:
       add:
         - trash_id: "4a3b087eea2ce012fcc1ce319259a3be" # Anime Dual Audio
-      skip:
-        - "064af5f084a0a24458cc8ecd3220f93f" # Uncensored
-        - "a5d148168c4506b55cf53984107c396e" # 10bit
+          exclude:
+            - "064af5f084a0a24458cc8ecd3220f93f" # Uncensored
+            - "a5d148168c4506b55cf53984107c396e" # 10bit

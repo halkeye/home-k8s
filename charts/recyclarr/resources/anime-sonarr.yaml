@@ -10,12 +10,14 @@ sonarr:
       type: anime
     quality_profiles:
       - trash_id: 20e0fc959f1f1704bed501f23bdae76f  # [Anime] Remux-1080p
+        quality_definition:
+          type: anime
         reset_unmatched_scores:
           enabled: true
 
     custom_format_groups:
       add:
         - trash_id: 418f50b10f1907201b6cfdf881f467b7 # Anime Dual Audio
-      skip:
-        - 026d5aadd1a6b4e550b134cb6c72b3ca # Uncensored
-        - b2550eb333d27b75833e25b8c2557b38 # 10bit
+          exclude:
+            - 026d5aadd1a6b4e550b134cb6c72b3ca # Uncensored
+            - b2550eb333d27b75833e25b8c2557b38 # 10bit
