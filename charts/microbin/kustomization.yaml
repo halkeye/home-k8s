@@ -3,6 +3,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+namespace: microbin
+
 helmGlobals:
   chartHome: ./charts/
 
@@ -15,3 +17,27 @@ helmCharts:
     repo: https://bjw-s-labs.github.io/helm-charts
     valuesFile: ./values.yaml
     releaseName: microbin
+
+components:
+  - ../../components/volsync
+
+patches:
+  - target: {kind: ReplicationSource, name: volsync-backup}
+    patch: |-
+      - op: replace
+        path: /spec/sourcePVC
+        value: microbin 
+      - op: replace
+        path: /spec/rclone/rcloneDestPath
+        value: halkeye-volsync/microbin 
+  - target: {kind: ReplicationDestination, name: volsync-restore}
+    patch: |-
+      - op: replace
+        path: /spec/rclone/destinationPVC
+        value: microbin
+      - op: replace
+        path: /spec/rclone/capacity
+        value: 1Gi
+      - op: replace
+        path: /spec/rclone/rcloneDestPath
+        value: halkeye-volsync/microbin 

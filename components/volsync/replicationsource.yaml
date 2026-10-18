@@ -1,0 +1,13 @@
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: volsync-backup
+spec:
+  sourcePVC: PVC_NAME
+  trigger:
+    schedule: "0 */6 * * *"
+  rclone:
+    rcloneConfigSection: rclone.yaml
+    rcloneDestPath: PVC_NAME
+    rcloneConfig: volsync-rclone-config
+    copyMethod: Snapshot
