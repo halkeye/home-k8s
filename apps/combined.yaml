@@ -17,7 +17,6 @@ spec:
                 - { appname: envoy-gateway }
                 - { appname: envoy-gateway-crds }
                 - { appname: grafana-operator, useOverlay: true }
-                - { appname: logging-operator }
                 - { appname: reloader-operator, namespace: reloader }
                 - { appname: remove-empty-ns-operator }
                 - { appname: smtp-relay }
