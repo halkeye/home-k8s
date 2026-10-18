@@ -16,7 +16,7 @@ controllers:
         image:
           repository: ghcr.io/recyclarr/recyclarr
           tag: 8.8.0
-        args: [sync]
+        args: [sync, "--log", "debug"]
         env:
           COMPlus_EnableDiagnostics: '0'
           TZ: America/Vancouver
