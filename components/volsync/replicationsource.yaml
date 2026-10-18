@@ -7,7 +7,7 @@ spec:
   trigger:
     schedule: "0 */6 * * *"
   rclone:
-    rcloneConfigSection: rclone.yaml
+    rcloneConfigSection: rclone.conf
     rcloneDestPath: PVC_NAME
     rcloneConfig: volsync-rclone-config
     copyMethod: Snapshot
