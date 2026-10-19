@@ -159,6 +159,10 @@ spec:
         kustomize:
           namespace: '{{- if index . "namespace" -}}{{ .namespace | normalize }}{{- else }}{{ .name | normalize }}{{ end }}'
       ignoreDifferences:
+        - group: 'apps'
+          kind: 'Deployment'
+          jsonPointers:
+            - /spec/replicas
         - group: grafana.integreatly.org
           kind: Grafana
           jqPathExpressions:
@@ -173,6 +177,7 @@ spec:
           selfHeal: true
           prune: true
         syncOptions:
+          - RespectIgnoreDifferences=true
           - CreateNamespace=true
           - ServerSideApply=true
           - Prune=true
