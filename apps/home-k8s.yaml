@@ -94,7 +94,6 @@ spec:
           - name: amd-gpu
           - name: anime-radarr
           - name: anime-sonarr
-          - name: audiomuse
           - name: autobrr
           - name: bandcampsync
           - name: bookorbit
