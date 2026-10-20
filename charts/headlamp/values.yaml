@@ -27,6 +27,7 @@ image:
 config:
   sessionTTL:
   unsafeUseServiceAccountToken: true
+  watchPlugins: true
 pluginsManager:
   enabled: true
   configContent: |-
