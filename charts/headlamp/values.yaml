@@ -27,3 +27,26 @@ image:
 config:
   sessionTTL:
   unsafeUseServiceAccountToken: true
+pluginsManager:
+  enabled: true
+  configContent: |-
+    ---
+    plugins:
+      - name: cert-manager
+        source: https://artifacthub.io/packages/headlamp/headlamp-plugins/headlamp_cert-manager
+        version: 0.1.1
+      - name: argocd
+        source: https://artifacthub.io/packages/headlamp/headlamp-plugins/headlamp_argocd
+        version: 0.1.0-alpha
+      - name: envoy-gateway
+        source: https://artifacthub.io/packages/headlamp/headlamp-envoy-gateway/envoy-gateway
+        version: 0.3.0
+      - name: cloudnative-pg
+        source: https://artifacthub.io/packages/headlamp/cnpg-headlamp-plugin/cnpg-headlamp-plugin
+        version: 0.1.4
+      - name: kube-vip
+        source: https://artifacthub.io/packages/headlamp/headlamp-kube-vip/headlamp-kube-vip
+        version: 1.0.2
+    installOptions:
+      parallel: true
+      maxConcurrent: 2
