@@ -8,7 +8,7 @@ controllers:
       app:
         image:
           repository: ghcr.io/connorgallopo/tracearr
-          tag: 2.8.0
+          tag: 3.0.0
         env:
           TZ: America/Vancouver
           CORS_ORIGIN: https://tracearr.g4v.dev
