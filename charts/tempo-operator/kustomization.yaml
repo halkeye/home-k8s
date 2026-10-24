@@ -7,3 +7,5 @@ namespace: tempo-operator
 
 resources:
   - https://github.com/grafana/tempo-operator/releases/download/v0.23.1/tempo-operator.yaml
+  - secret.enc.yaml
+  - tempostack.yaml
