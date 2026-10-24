@@ -14,3 +14,33 @@ helmCharts:
     repo: https://bjw-s-labs.github.io/helm-charts
     valuesFile: values.yaml
     releaseName: stash
+
+components:
+  - ../../components/volsync
+
+patches:
+  - target: {kind: ReplicationSource, name: volsync-backup}
+    patch: |-
+      - op: replace
+        path: /spec/sourcePVC
+        value: stash-config
+      - op: replace
+        path: /spec/rclone/rcloneDestPath
+        value: stash
+      - op: replace
+        path: /spec/rclone/moverSecurityContext
+        value: { runAsUser: 1026, runAsGroup: 100, fsGroup: 100, fsGroupChangePolicy: OnRootMismatch }
+  - target: {kind: ReplicationDestination, name: volsync-restore}
+    patch: |-
+      - op: replace
+        path: /spec/rclone/destinationPVC
+        value: stash-config
+      - op: replace
+        path: /spec/rclone/capacity
+        value: 10Gi
+      - op: replace
+        path: /spec/rclone/rcloneDestPath
+        value: stash
+      - op: replace
+        path: /spec/rclone/moverSecurityContext
+        value: { runAsUser: 1026, runAsGroup: 100, fsGroup: 100, fsGroupChangePolicy: OnRootMismatch }
