@@ -21,7 +21,16 @@ tempo:
   metricsGenerator:
     enabled: true
     remoteWriteUrl: "http://prometheus-prometheus.monitoring:9090/api/v1/write"
+    processor:
+      service_graphs: {}
+      span_metrics: {}
 
+    overrides:
+      defaults:
+        metrics_generator:
+          processors:
+            - service-graphs
+            - span-metrics
 serviceMonitor:
   enabled: true
 
