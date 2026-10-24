@@ -14,6 +14,14 @@ spec:
     url: http://tempo.tempo.svc.cluster.local:3200
     editable: false
     jsonData:
+      tracesToLogsV2:
+        datasourceUid: loki
+        spanStartTimeShift: "-1h"
+        spanEndTimeShift: "1h"
+        filterByTraceID: true
+        filterBySpanID: false
+        customQuery: true
+        query: '{service_name="${__span.tags["service.name"]}"} | json | trace_id="${__span.traceId}"'
       tracesToMetrics:
         datasourceUid: prometheus
         spanStartTimeShift: "-1h"
@@ -33,3 +41,25 @@ spec:
         timeShiftEnabled: true
         spanStartTimeShift: "-1h"
         spanEndTimeShift: "1h"
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDatasource
+metadata:
+  name: loki
+spec:
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  datasource:
+    name: loki
+    type: loki
+    access: proxy
+    url: http://loki.loki.svc.cluster.local:3100
+    editable: false
+    jsonData:
+      derivedFields:
+        - datasourceUid: tempo
+          matcherRegex: '"otelTraceID":"(\w+)"'
+          name: TraceID
+          url: "$${__value.raw}"
+          urlDisplayLabel: "View Trace"
