@@ -76,12 +76,11 @@ route:
 persistence:
   config:
     enabled: true
-    existingClaim: stash-config
-    # type: persistentVolumeClaim
-    # storageClass: longhorn
-    # accessMode: ReadWriteOnce
-    # suffix: config
-    # size: 10Gi
+    type: persistentVolumeClaim
+    storageClass: longhorn
+    accessMode: ReadWriteOnce
+    suffix: config
+    size: 10Gi
     globalMounts:
       - path: /root/.stash
       - path: /config
