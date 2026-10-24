@@ -1,0 +1,64 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  main:
+    annotations:
+      reloader.stakater.com/auto: 'true'
+    containers:
+      sonarr:
+        image:
+          repository: otel/opentelemetry-collector-contrib
+          tag: 0.163.2
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: [ALL]
+        resources:
+          requests:
+            memory: 512Mi
+            cpu: 10m
+    pod:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 100
+        runAsNonRoot: true
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
+service:
+  main:
+    controller: main
+    ports:
+      otlp-grpc:
+        port: 4317
+      otlp-http:
+        port: 4318
+      collectormetrics:
+        port: 8888
+      metrics:
+        port: 8889
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames: [tracer.g4v.dev]
+    rules:
+      - matches:
+          - path:
+              type: PathPrefix
+              value: /
+        backendRefs:
+          - identifier: main
+            port: otlp-http
+persistence:
+  configs:
+    enabled: true
+    type: configMap
+    name: config
+    globalMounts:
+      - path: /etc/otelcol/config.yaml
+        subPath: otel-collector-config.yaml
+        readOnly: true
