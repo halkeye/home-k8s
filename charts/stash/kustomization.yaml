@@ -15,6 +15,9 @@ helmCharts:
     valuesFile: values.yaml
     releaseName: stash
 
+resources:
+  - pvc.yaml
+
 components:
   - ../../components/volsync
 
