@@ -13,8 +13,12 @@ spec:
     access: proxy
     url: http://prometheus-operated.monitoring.svc.cluster.local:9090
     isDefault: true
+    editable: false
     jsonData:
       prometheusType: Prometheus
+      exemplarTraceIdDestinations:
+        - name: traceID
+          datasourceUid: tempo
 ---
 # apiVersion: grafana.integreatly.org/v1beta1
 # kind: GrafanaDatasource

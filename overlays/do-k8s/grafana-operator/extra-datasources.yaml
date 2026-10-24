@@ -12,4 +12,24 @@ spec:
     type: tempo
     access: proxy
     url: http://tempo.tempo.svc.cluster.local:3200
-
+    editable: false
+    jsonData:
+      tracesToMetrics:
+        datasourceUid: prometheus
+        spanStartTimeShift: "-1h"
+        spanEndTimeShift: "1h"
+        queries:
+          - name: Request rate
+            query: 'sum(rate(traces_spanmetrics_latency_count{$$__tags}[5m]))'
+          - name: P99 latency
+            query: 'histogram_quantile(0.99, sum(rate(traces_spanmetrics_latency_bucket{$$__tags}[5m])) by (le))'
+      serviceMap:
+        datasourceUid: prometheus
+      nodeGraph:
+        enabled: true
+      search:
+        hide: false
+      traceQuery:
+        timeShiftEnabled: true
+        spanStartTimeShift: "-1h"
+        spanEndTimeShift: "1h"
