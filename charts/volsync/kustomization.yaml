@@ -11,3 +11,6 @@ helmCharts:
     repo: https://backube.github.io/helm-charts/
     valuesFile: values.yaml
     releaseName: volsync
+
+resources:
+  - prometheus-rule.yaml
