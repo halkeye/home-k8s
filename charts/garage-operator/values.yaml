@@ -1,0 +1,15 @@
+---
+# https://github.com/rajsinghtech/garage-operator
+# webhooks need cert-manager; disable if unwanted
+# webhooks:
+#   enabled: false
+grafanaDashboard:
+  enabled: true
+prometheusRules:
+  enabled: true
+networkPolicy:
+  enabled: false
+gatewayAPI:
+  enabled: true
+serviceMonitor:
+  enabled: true

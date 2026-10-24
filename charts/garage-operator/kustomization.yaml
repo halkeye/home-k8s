@@ -1,0 +1,15 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: garage-operator
+
+helmCharts:
+  - name: garage-operator
+    releaseName: garage-operator
+    version: 0.8.2
+    repo: oci://ghcr.io/rajsinghtech/charts
+    namespace: garage-operator
+    includeCRDs: true
+    valuesFile: ./values.yaml
