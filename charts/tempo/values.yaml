@@ -33,6 +33,7 @@ persistence:
 route:
   main:
     enabled: true
+    backendPort: 4318
     parentRefs:
       - name: http-gateway
         namespace: envoy-gateway
