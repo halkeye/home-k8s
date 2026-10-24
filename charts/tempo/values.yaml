@@ -9,7 +9,7 @@ tempo:
     trace:
       backend: s3
       s3:
-        endpoint: https://tor1.digitaloceanspaces.com/
+        endpoint: tor1.digitaloceanspaces.com
         bucket: halkeye-tempo
         region: tor1
   resources:
