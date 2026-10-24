@@ -1,12 +1,12 @@
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: SecurityPolicy
 metadata:
-  name: apikey-auth-example
+  name: tempo-apikey-auth
 spec:
   targetRefs:
     - group: gateway.networking.k8s.io
       kind: HTTPRoute
-      name: backend
+      name: tempo
   apiKeyAuth:
     credentialRefs:
     - group: ""
