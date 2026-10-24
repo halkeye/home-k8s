@@ -1,0 +1,23 @@
+---
+global:
+  extraEnvFrom:
+    - secretRef:
+        name: tempo
+tempo:
+  reportingEnabled: false
+  storage:
+    trace:
+      backend: s3
+      s3:
+        endpoint: https://tor1.digitaloceanspaces.com
+        bucket: halkeye-tempo
+        region: tor1
+  resources:
+    requests:
+      cpu: 10m
+      memory: 100Mi
+  metricsGenerator:
+    enabled: true
+    remoteWriteUrl: "http://prometheus-prometheus.monitoring:9090/api/v1/write"
+serviceMonitor:
+  enabled: true
