@@ -13,3 +13,5 @@ spec:
     destinationPVC: PVC_NAME
     accessModes: [ReadWriteOnce]
     capacity: 1Gi
+    storageClassName: longhorn
+    volumeSnapshotClassName: longhorn
