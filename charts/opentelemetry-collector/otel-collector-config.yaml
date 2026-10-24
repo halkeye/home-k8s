@@ -61,7 +61,7 @@ exporters:
       enabled: true
   
   loki:
-    endpoint: http://loki:3100/loki/api/v1/push
+    endpoint: http://loki.loki:3100/loki/api/v1/push
     default_labels_enabled:
       exporter: false
       job: true
