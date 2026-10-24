@@ -3,8 +3,9 @@ global:
   extraEnvFrom:
     - secretRef:
         name: tempo
+
 tempo:
-  reportingEnabled: false
+  reportingEnabled: true
   # storage:
   #   trace:
   #     backend: s3
@@ -16,8 +17,24 @@ tempo:
     requests:
       cpu: 10m
       memory: 100Mi
+
   metricsGenerator:
-    enabled: false
+    enabled: true
     remoteWriteUrl: "http://prometheus-prometheus.monitoring:9090/api/v1/write"
+
 serviceMonitor:
-  enabled: false
+  enabled: true
+
+persistence:
+  enabled: true
+  enableStatefulSetAutoDeletePVC: true
+  size: 10Gi
+
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames: [traces.g4v.dev]

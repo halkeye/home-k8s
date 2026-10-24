@@ -13,5 +13,5 @@ helmCharts:
     releaseName: tempo
 
 resources:
-  - ./secret.enc.yaml
-  - ./job.yaml
+  - secret.enc.yaml
+  - securitypolicy.yaml
