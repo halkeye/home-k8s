@@ -103,6 +103,7 @@ spec:
           - name: string-is
           - name: tautulli
           - name: teamspeak
+          - name: tempo
           - name: umami
           - name: vikunja
   template:

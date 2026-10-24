@@ -6,6 +6,7 @@ namespace: grafana-operator
 resources:
 - ../../../charts/grafana-operator/
 - ./dashboards-software.yaml
+- ./extra-datasources.yaml
 
 patches:
   - patch: |-
