@@ -35,9 +35,8 @@ patches:
         value: { runAsUser: 1026, runAsGroup: 100, fsGroup: 100, fsGroupChangePolicy: OnRootMismatch }
   - target: {kind: ReplicationDestination, name: volsync-restore}
     patch: |-
-      - op: replace
+      - op: remove
         path: /spec/rclone/destinationPVC
-        value: stash-config
       - op: replace
         path: /spec/rclone/capacity
         value: 10Gi
