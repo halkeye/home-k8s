@@ -10,7 +10,6 @@ spec:
     rcloneDestPath: PVC_NAME
     rcloneConfig: volsync-rclone-config
     copyMethod: Snapshot
-    destinationPVC: PVC_NAME
     accessModes: [ReadWriteOnce]
     capacity: 1Gi
     storageClassName: longhorn

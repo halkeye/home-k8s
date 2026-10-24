@@ -33,9 +33,6 @@ helmCharts:
 #   - target: {kind: ReplicationDestination, name: volsync-restore}
 #     patch: |-
 #       - op: replace
-#         path: /spec/rclone/destinationPVC
-#         value: microbin
-#       - op: replace
 #         path: /spec/rclone/capacity
 #         value: 1Gi
 #       - op: replace
