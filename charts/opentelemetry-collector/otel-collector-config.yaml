@@ -73,7 +73,7 @@ exporters:
         - "service.*"
   
   otlp_http/loki:
-    endpoint: http://loki.loki:3100/otlp/v1/logs
+    endpoint: http://loki.loki:3100/otlp
     tls:
       insecure: true
     retry_on_failure:

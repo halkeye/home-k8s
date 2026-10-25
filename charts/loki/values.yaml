@@ -24,6 +24,7 @@ loki:
           prefix: loki_index_
           period: 24h
   limits_config:
+    allow_structured_metadata: true
     retention_period: 14d
 singleBinary:
   replicas: 1
