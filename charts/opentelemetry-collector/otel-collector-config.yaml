@@ -1,5 +1,4 @@
 ---
-# yaml-language-server: $schema=https://raw.githubusercontent.com/srikanthccv/otelcol-jsonschema/main/schema.json
 # otel-collector-config.yaml
 # Borrowed from https://reshamchaudhary.com/homelab/observability-opentelemetry-homelab
 receivers:
@@ -94,12 +93,13 @@ exporters:
     endpoint: 0.0.0.0:8888
 
 service:
-  telemetry:
-    # logs:
-    #   level: info
+  telemetry: # Collector's own telemetry (handy for debugging)
+    logs:
+      level: debug
+      encoding: json
     metrics:
-      address: 0.0.0.0:8888
-  
+      level: detailed
+
   pipelines:
     traces:
       receivers: [otlp]
