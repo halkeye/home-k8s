@@ -54,7 +54,7 @@ exporters:
   debug:
     verbosity: detailed
 
-  otlp/tempo:
+  otlp_grpc/tempo:
     endpoint: tempo.tempo.svc.cluster.local:4317
     tls:
       insecure: true
@@ -64,14 +64,15 @@ exporters:
       max_interval: 30s
       max_elapsed_time: 300s
   
-  prometheusremotewrite:
+  prometheus_remote_write:
     endpoint: http://prometheus-prometheus.monitoring:9090/api/v1/write
     tls:
       insecure: true
-    resource_to_telemetry_conversion:
-      enabled: true
+    resource_constant_labels:
+      included:
+        - "service.*"
   
-  otlphttp/loki:
+  otlp_http/loki:
     endpoint: http://loki.loki:3100/loki/api/v1/push
     tls:
       insecure: true
@@ -93,25 +94,25 @@ exporters:
     endpoint: 0.0.0.0:8888
 
 service:
-  telemetry: # Collector's own telemetry (handy for debugging)
-    logs:
-      level: debug
-      encoding: json
-    metrics:
-      level: detailed
+  # telemetry: # Collector's own telemetry (handy for debugging)
+  #   logs:
+  #     level: debug
+  #     encoding: json
+  #   metrics:
+  #     level: detailed
 
   pipelines:
     traces:
       receivers: [otlp]
       processors: [memory_limiter, tail_sampling, batch, resource]
-      exporters: [otlp/tempo]
+      exporters: [otlp_grpc/tempo]
     
     metrics:
       receivers: [otlp]
       processors: [memory_limiter, batch]
-      exporters: [prometheusremotewrite]
+      exporters: [prometheus_remote_write]
     
     logs:
       receivers: [otlp]
       processors: [memory_limiter, batch]
-      exporters: [otlphttp/loki]
+      exporters: [otlp_http/loki]
