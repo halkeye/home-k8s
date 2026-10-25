@@ -9,7 +9,7 @@ controllers:
         image:
           repository: otel/opentelemetry-collector-contrib
           tag: 0.163.2
-        command: ["--config=/etc/otelcol/config.yaml"]
+        args: ["--config=/etc/otelcol/config.yaml"]
         env:
           # Ensure the Collector's own SDK doesn't try to export via OTLP
           OTEL_TRACES_EXPORTER: none
