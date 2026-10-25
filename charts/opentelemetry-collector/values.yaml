@@ -10,6 +10,12 @@ controllers:
           repository: otel/opentelemetry-collector-contrib
           tag: 0.163.2
         command: ["--config=/etc/otelcol/config.yaml"]
+        env:
+          # Ensure the Collector's own SDK doesn't try to export via OTLP
+          OTEL_TRACES_EXPORTER: none
+          OTEL_METRICS_EXPORTER: none
+          OTEL_LOGS_EXPORTER: none
+          OTEL_EXPORTER_OTLP_ENDPOINT: ""
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
