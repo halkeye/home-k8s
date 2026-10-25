@@ -44,7 +44,7 @@ route:
       - name: http-gateway
         namespace: envoy-gateway
         sectionName: https
-    hostnames: [tracer.g4v.dev]
+    hostnames: [traces.g4v.dev]
     rules:
       - matches:
           - path:
