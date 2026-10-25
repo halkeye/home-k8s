@@ -5,7 +5,7 @@ controllers:
     annotations:
       reloader.stakater.com/auto: 'true'
     containers:
-      sonarr:
+      main:
         image:
           repository: otel/opentelemetry-collector-contrib
           tag: 0.163.2
