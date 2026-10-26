@@ -60,6 +60,22 @@ persistence:
     path: /volume1/Downloads
     globalMounts:
       - path: /downloads
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames: [unpackerr.g4v.dev]
+    rules:
+      - matches:
+          - path:
+              type: PathPrefix
+              value: /
+        backendRefs:
+          - identifier: main
+            port: http
 serviceMonitor:
   app:
     serviceName: '{{ include "bjw-s.common.lib.chart.names.fullname" $ }}'
