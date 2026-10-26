@@ -20,6 +20,7 @@ controllers:
           UN_RADARR_1_URL: https://anime-radarr.g4v.dev
           UN_RADARR_1_PROTOCOLS: torrent,usenet
           UN_WEBSERVER_METRICS: 'true'
+          UN_WEBSERVER_UPSTREAMS: '0.0.0.0/32'
         envFrom:
           - secretRef:
               name: unpackerr-secret
