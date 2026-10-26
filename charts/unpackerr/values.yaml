@@ -17,10 +17,6 @@ controllers:
           UN_RADARR_0_PROTOCOLS: torrent,usenet
           UN_RADARR_1_URL: https://anime-radarr.g4v.dev
           UN_RADARR_1_PROTOCOLS: torrent,usenet
-          UN_LIDARR_0_URL: https://lidarr.g4v.dev
-          UN_LIDARR_0_PROTOCOLS: torrent,usenet
-          UN_READARR_0_URL: https://readarr.g4v.dev
-          UN_READARR_0_PROTOCOLS: torrent,usenet
           UN_WEBSERVER_METRICS: 'true'
         envFrom:
           - secretRef:
