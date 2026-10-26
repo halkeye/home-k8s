@@ -56,6 +56,9 @@ persistence:
   tmp:
     enabled: true
     type: emptyDir
+  config:
+    enabled: true
+    type: emptyDir
   downloads:
     type: nfs
     server: 172.16.10.10
