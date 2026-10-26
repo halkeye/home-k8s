@@ -89,3 +89,8 @@ serviceMonitor:
       - port: http
         scheme: http
         path: /metrics
+        authorization:
+          type: Bearer
+          credentials:
+            name: unpackerr-secret
+            key: metrics_token
