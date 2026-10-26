@@ -93,4 +93,4 @@ serviceMonitor:
           type: Bearer
           credentials:
             name: unpackerr-secret
-            key: metrics_token
+            key: UN_WEBSERVER_API_KEYS_0_KEY
