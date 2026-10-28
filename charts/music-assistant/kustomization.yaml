@@ -17,3 +17,33 @@ helmCharts:
     repo: https://bjw-s-labs.github.io/helm-charts
     valuesFile: values.yaml
     releaseName: music-assistant
+
+resources:
+  - pvc.yaml
+
+components:
+  - ../../components/volsync
+
+patches:
+  - target: {kind: ReplicationSource, name: volsync-backup}
+    patch: |-
+      - op: replace
+        path: /spec/sourcePVC
+        value: music-assistant
+      - op: replace
+        path: /spec/rclone/rcloneDestPath
+        value: music-assistant
+      - op: replace
+        path: /spec/rclone/moverSecurityContext
+        value: { }
+  - target: {kind: ReplicationDestination, name: volsync-restore}
+    patch: |-
+      - op: replace
+        path: /spec/rclone/capacity
+        value: 5Gi
+      - op: replace
+        path: /spec/rclone/rcloneDestPath
+        value: music-assistant
+      - op: replace
+        path: /spec/rclone/moverSecurityContext
+        value: { }
