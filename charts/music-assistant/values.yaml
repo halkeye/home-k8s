@@ -81,10 +81,7 @@ route:
 persistence:
   data:
     enabled: true
-    type: persistentVolumeClaim
-    accessMode: ReadWriteOnce
-    size: 5Gi
-    storageClass: longhorn
+    existingClaim: music-assistant
     globalMounts:
       - path: /data
   audio:
