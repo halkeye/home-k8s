@@ -6,10 +6,6 @@ controllers:
       reloader.stakater.com/auto: 'true'
     containers:
       main:
-        command:
-          - sh
-          - -c
-          - "sleep 99999"
         image:
           repository: ghcr.io/cenodude/crosswatch
           tag: 0.14.0
