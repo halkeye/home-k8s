@@ -11,3 +11,33 @@ helmCharts:
     repo: https://bjw-s-labs.github.io/helm-charts
     valuesFile: values.yaml
     releaseName: crosswatch
+
+resources:
+  - pvc.yaml
+
+components:
+  - ../../components/volsync
+
+patches:
+  - target: {kind: ReplicationSource, name: volsync-backup}
+    patch: |-
+      - op: replace
+        path: /spec/sourcePVC
+        value: crosswatch
+      - op: replace
+        path: /spec/rclone/rcloneDestPath
+        value: crosswatch
+      - op: replace
+        path: /spec/rclone/moverSecurityContext
+        value: { runAsUser: 1000, runAsGroup: 1000, fsGroup: 1000, fsGroupChangePolicy: OnRootMismatch }
+  - target: {kind: ReplicationDestination, name: volsync-restore}
+    patch: |-
+      - op: replace
+        path: /spec/rclone/capacity
+        value: 1Gi
+      - op: replace
+        path: /spec/rclone/rcloneDestPath
+        value: crosswatch
+      - op: replace
+        path: /spec/rclone/moverSecurityContext
+        value: { runAsUser: 1000, runAsGroup: 1000, fsGroup: 1000, fsGroupChangePolicy: OnRootMismatch }
