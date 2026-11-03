@@ -1,0 +1,44 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: subwave
+
+helmCharts:
+  - name: app-template
+    version: 5.3.0
+    repo: https://bjw-s-labs.github.io/helm-charts
+    valuesFile: values.yaml
+    releaseName: subwave
+
+resources:
+  - pvc.yaml
+  - httproutefilter.yaml
+
+components:
+  - ../../components/volsync
+
+patches:
+  - target: {kind: ReplicationSource, name: volsync-backup}
+    patch: |-
+      - op: replace
+        path: /spec/sourcePVC
+        value: subwave
+      - op: replace
+        path: /spec/rclone/rcloneDestPath
+        value: subwave
+      - op: replace
+        path: /spec/rclone/rcloneConfigSection
+        value: do-volsync
+  - target: {kind: ReplicationDestination, name: volsync-restore}
+    patch: |-
+      - op: replace
+        path: /spec/rclone/capacity
+        value: 10Gi
+      - op: replace
+        path: /spec/rclone/rcloneDestPath
+        value: subwave
+      - op: replace
+        path: /spec/rclone/rcloneConfigSection
+        value: do-volsync

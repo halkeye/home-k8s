@@ -1,0 +1,231 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  subwave:
+    annotations:
+      reloader.stakater.com/auto: 'true'
+    containers:
+      #  BROADCAST — icecast2 + liquidsoap in one container
+      broadcast:
+        image:
+          repository: ghcr.io/perminder-klair/subwave-broadcast
+          tag: 1.29.0
+        env:
+          TZ: America/Vancouver
+          SUBWAVE_STEMS_DIR: /var/sub-wave/stems
+        envFrom:
+          - secretRef:
+              name: subwave
+        resources:
+          limits:
+            memory: 4Gi
+          requests:
+            memory: 2Gi
+            cpu: 30m
+        probes:
+          liveness: &probes
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /status-json.xml
+                port: 7702
+              initialDelaySeconds: 0
+              periodSeconds: 10
+              timeoutSeconds: 1
+              failureThreshold: 3
+          readiness: *probes
+          startup:
+            enabled: false
+      #  CONTROLLER — AI DJ brain
+      controller:
+        image:
+          repository: ghcr.io/perminder-klair/subwave-controller
+          tag: 1.29.0
+        env:
+          TZ: America/Vancouver
+          NODE_ENV: production
+          STATE_DIR: /var/sub-wave
+          SOUNDS_DIR: /sounds
+          SUBWAVE_STEMS_DIR: /var/sub-wave/stems
+          ANALYZE_URL: http://analyzer:8080
+        envFrom:
+          - secretRef:
+              name: subwave
+        probes:
+          liveness: &probes
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /health
+                port: 7701
+              initialDelaySeconds: 0
+              periodSeconds: 10
+              timeoutSeconds: 1
+              failureThreshold: 3
+          readiness: *probes
+          startup:
+            enabled: false
+        resources:
+          limits:
+            memory: 4Gi
+          requests:
+            memory: 2Gi
+            cpu: 30m
+      # WEB — Next.js listener UI
+      web:
+        image:
+          repository: ghcr.io/perminder-klair/subwave-web
+          tag: 1.29.0
+        env:
+          TZ: America/Vancouver
+          SUBWAVE_HOMEPAGE: player
+          SUBWAVE_DJ_BRAIN_ENABLED: false
+          CONTROLLER_INTERNAL_URL: http://controller:7701
+        envFrom:
+          - secretRef:
+              name: subwave
+        resources:
+          limits:
+            memory: 4Gi
+          requests:
+            memory: 2Gi
+            cpu: 30m
+service:
+  subwave:
+    controller: subwave
+    ports:
+      http:
+        port: 7700
+      controller:
+        port: 7701
+      broadcast:
+        port: 7702
+route:
+  subwave:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames: [radio.g4v.dev]
+    rules:
+      # Icecast's URL-auth callback must not be reachable from the internet
+      - matches:
+          - path:
+              type: RegularExpression
+              value: (?i)^/api/listener-auth.*
+        filters:
+          - type: ExtensionRef
+            extensionRef:
+              group: gateway.envoyproxy.io
+              kind: HTTPRouteFilter
+              name: subwave-not-found
+      # Icecast streams: drop WWW-Authenticate when the token is in the URL
+      - matches:
+          - path:
+              type: RegularExpression
+              value: ^/stream\.(mp3|opus|flac|aac)$
+            queryParams:
+              - name: auth
+                type: RegularExpression
+                value: .+
+        filters:
+          - &secHeaders
+            type: ResponseHeaderModifier
+            responseHeaderModifier:
+              set:
+                - {name: X-Content-Type-Options, value: nosniff}
+                - {name: Referrer-Policy, value: strict-origin-when-cross-origin}
+                - {name: X-Frame-Options, value: SAMEORIGIN}
+              remove: [WWW-Authenticate]
+        backendRefs: &broadcast
+          - identifier: subwave
+            port: broadcast
+      # ... or when a same-origin media element requests it
+      - matches:
+          - path:
+              type: RegularExpression
+              value: ^/stream\.(mp3|opus|flac|aac)$
+            headers:
+              - {name: Sec-Fetch-Dest, type: Exact, value: audio}
+              - {name: Sec-Fetch-Site, type: Exact, value: same-origin}
+        filters:
+          - *secHeaders
+        backendRefs: *broadcast
+      - matches:
+          - path:
+              type: RegularExpression
+              value: ^/stream\.(mp3|opus|flac|aac)$
+            headers:
+              - {name: Sec-Fetch-Dest, type: Exact, value: video}
+              - {name: Sec-Fetch-Site, type: Exact, value: same-origin}
+        filters:
+          - *secHeaders
+        backendRefs: *broadcast
+      # Default: keep the challenge for ffmpeg/mpv/etc.
+      - matches:
+          - path:
+              type: RegularExpression
+              value: ^/stream\.(mp3|opus|flac|aac)$
+        filters:
+          - &secHeadersKeepAuth
+            type: ResponseHeaderModifier
+            responseHeaderModifier:
+              set:
+                - {name: X-Content-Type-Options, value: nosniff}
+                - {name: Referrer-Policy, value: strict-origin-when-cross-origin}
+                - {name: X-Frame-Options, value: SAMEORIGIN}
+        backendRefs: *broadcast
+      # Controller REST API, /api prefix stripped
+      - matches:
+          - path:
+              type: PathPrefix
+              value: /api
+        filters:
+          - type: URLRewrite
+            urlRewrite:
+              path:
+                type: ReplacePrefixMatch
+                replacePrefixMatch: /
+          - *secHeadersKeepAuth
+        backendRefs:
+          - identifier: subwave
+            port: controller
+      # Tune-in files, served at controller root
+      - matches:
+          - path:
+              type: Exact
+              value: /listen.pls
+          - path:
+              type: Exact
+              value: /listen.m3u
+        filters:
+          - *secHeadersKeepAuth
+        backendRefs:
+          - identifier: subwave
+            port: controller
+      # Everything else -> web UI
+      - matches:
+          - path:
+              type: PathPrefix
+              value: /
+        filters:
+          - *secHeadersKeepAuth
+        backendRefs:
+          - identifier: subwave
+            port: http
+persistence:
+  data:
+    enabled: true
+    existingClaim: subwave
+    globalMounts:
+      - path: /var/sub-wave
+        subPath: state
+  tmp:
+    enabled: true
+    type: emptyDir
+    globalMounts:
+      - path: /var/log/liquidsoap
+        subPath: liquidsoap-logs
