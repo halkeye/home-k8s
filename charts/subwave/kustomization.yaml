@@ -14,6 +14,7 @@ helmCharts:
 
 resources:
   - pvc.yaml
+  - secret.enc.yaml
   - httproutefilter.yaml
 
 components:
@@ -28,6 +29,9 @@ patches:
       - op: replace
         path: /spec/rclone/rcloneDestPath
         value: subwave
+      - op: replace
+        path: /spec/rclone/moverSecurityContext
+        value: { runAsUser: 0, runAsGroup: 0, fsGroup: 0, fsGroupChangePolicy: OnRootMismatch }
   - target: {kind: ReplicationDestination, name: volsync-restore}
     patch: |-
       - op: replace
@@ -36,3 +40,6 @@ patches:
       - op: replace
         path: /spec/rclone/rcloneDestPath
         value: subwave
+      - op: replace
+        path: /spec/rclone/moverSecurityContext
+        value: { runAsUser: 0, runAsGroup: 0, fsGroup: 0, fsGroupChangePolicy: OnRootMismatch }
