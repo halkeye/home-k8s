@@ -15,6 +15,7 @@ controllers:
           SUBWAVE_STEMS_DIR: /var/sub-wave/stems
           ICECAST_TRUSTED_PROXY_IPS: 0.0.0.0
           ICECAST_TRUSTED_PROXY_HOSTS: "localhost"
+          NAVIDROME_URL: https://music.g4v.dev/
         envFrom:
           - secretRef:
               name: subwave
@@ -51,7 +52,7 @@ controllers:
           SOUNDS_DIR: /sounds
           SUBWAVE_STEMS_DIR: /var/sub-wave/stems
           ANALYZE_URL: http://analyzer:8080
-          NAVIDROME_URL: http://navidrome.navidrome:4533/
+          NAVIDROME_URL: https://music.g4v.dev/
         envFrom:
           - secretRef:
               name: subwave
@@ -86,6 +87,7 @@ controllers:
           SUBWAVE_HOMEPAGE: player
           SUBWAVE_DJ_BRAIN_ENABLED: false
           CONTROLLER_INTERNAL_URL: http://controller:7701
+          NAVIDROME_URL: https://music.g4v.dev/
         envFrom:
           - secretRef:
               name: subwave
