@@ -28,9 +28,6 @@ patches:
       - op: replace
         path: /spec/rclone/rcloneDestPath
         value: subwave
-      - op: replace
-        path: /spec/rclone/rcloneConfigSection
-        value: do-volsync
   - target: {kind: ReplicationDestination, name: volsync-restore}
     patch: |-
       - op: replace
@@ -39,6 +36,3 @@ patches:
       - op: replace
         path: /spec/rclone/rcloneDestPath
         value: subwave
-      - op: replace
-        path: /spec/rclone/rcloneConfigSection
-        value: do-volsync
