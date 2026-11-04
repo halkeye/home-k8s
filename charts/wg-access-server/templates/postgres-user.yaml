@@ -10,4 +10,4 @@ spec:
   secretName: wg-access-server-db-secret
   privileges: OWNER
   secretTemplate:
-    DB_URL: {{ `postgresql://{{.Role}}:{{.Password}}@{{.Host}}/{{.Database}}?{{ "" | mergeUriArgs }}` }}
+    DB_URL: 'postgresql://{{.Role}}:{{.Password}}@{{.Host}}/{{.Database}}?{{ "" | mergeUriArgs }}'
