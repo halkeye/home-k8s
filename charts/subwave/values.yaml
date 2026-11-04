@@ -26,7 +26,7 @@ controllers:
             cpu: 30m
         probes:
           liveness: &probes
-            enabled: true
+            enabled: false
             custom: true
             spec:
               httpGet:
@@ -57,7 +57,7 @@ controllers:
               name: subwave
         probes:
           liveness: &probes
-            enabled: true
+            enabled: false
             custom: true
             spec:
               httpGet:
