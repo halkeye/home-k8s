@@ -15,7 +15,6 @@ controllers:
           SUBWAVE_STEMS_DIR: /var/sub-wave/stems
           ICECAST_TRUSTED_PROXY_IPS: 0.0.0.0
           ICECAST_TRUSTED_PROXY_HOSTS: "localhost"
-          NAVIDROME_URL: https://music.g4v.dev/
         envFrom:
           - secretRef:
               name: subwave
@@ -53,6 +52,8 @@ controllers:
           SUBWAVE_STEMS_DIR: /var/sub-wave/stems
           ANALYZE_URL: http://analyzer:8080
           NAVIDROME_URL: https://music.g4v.dev/
+          LIQUIDSOAP_HOST: 127.0.0.1
+          LIQUIDSOAP_PORT: 7702
         envFrom:
           - secretRef:
               name: subwave
@@ -88,6 +89,8 @@ controllers:
           SUBWAVE_DJ_BRAIN_ENABLED: false
           CONTROLLER_INTERNAL_URL: http://controller:7701
           NAVIDROME_URL: https://music.g4v.dev/
+          LIQUIDSOAP_HOST: 127.0.0.1
+          LIQUIDSOAP_PORT: 7702
         envFrom:
           - secretRef:
               name: subwave
