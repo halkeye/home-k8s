@@ -20,7 +20,7 @@ controllers:
           limits:
             memory: 4Gi
           requests:
-            memory: 2Gi
+            memory: 1Gi
             cpu: 30m
         probes:
           liveness: &probes
@@ -71,7 +71,7 @@ controllers:
           limits:
             memory: 4Gi
           requests:
-            memory: 2Gi
+            memory: 1Gi
             cpu: 30m
       # WEB — Next.js listener UI
       web:
@@ -90,7 +90,7 @@ controllers:
           limits:
             memory: 4Gi
           requests:
-            memory: 2Gi
+            memory: 1Gi
             cpu: 30m
 service:
   subwave:
