@@ -54,6 +54,8 @@ controllers:
           NAVIDROME_URL: https://music.g4v.dev/
           LIQUIDSOAP_HOST: 127.0.0.1
           LIQUIDSOAP_PORT: 1234
+          ICECAST_STATUS_URL: http://localhost:7702/status-json.xsl
+          ICECAST_ADMIN_URL: http://localhost:7702/admin/listclients
         envFrom:
           - secretRef:
               name: subwave
