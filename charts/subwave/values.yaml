@@ -153,6 +153,9 @@ route:
         backendRefs: &broadcast
           - identifier: subwave
             port: broadcast
+        timeouts:
+          request: 0s  # websocket, never time out
+          backendRequest: 0s  # websocket, never time out
       # ... or when a same-origin media element requests it
       - matches:
           - path:
@@ -164,6 +167,9 @@ route:
         filters:
           - *secHeaders
         backendRefs: *broadcast
+        timeouts:
+          request: 0s  # websocket, never time out
+          backendRequest: 0s  # websocket, never time out
       - matches:
           - path:
               type: RegularExpression
@@ -174,6 +180,9 @@ route:
         filters:
           - *secHeaders
         backendRefs: *broadcast
+        timeouts:
+          request: 0s  # websocket, never time out
+          backendRequest: 0s  # websocket, never time out
       # Default: keep the challenge for ffmpeg/mpv/etc.
       - matches:
           - path:
@@ -188,6 +197,9 @@ route:
                 - {name: Referrer-Policy, value: strict-origin-when-cross-origin}
                 - {name: X-Frame-Options, value: SAMEORIGIN}
         backendRefs: *broadcast
+        timeouts:
+          request: 0s  # websocket, never time out
+          backendRequest: 0s  # websocket, never time out
       # Controller REST API, /api prefix stripped
       - matches:
           - path:
