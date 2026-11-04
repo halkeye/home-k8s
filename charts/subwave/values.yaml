@@ -90,7 +90,7 @@ controllers:
           CONTROLLER_INTERNAL_URL: http://controller:7701
           NAVIDROME_URL: https://music.g4v.dev/
           LIQUIDSOAP_HOST: 127.0.0.1
-          LIQUIDSOAP_PORT: 7702
+          LIQUIDSOAP_PORT: 1234
         envFrom:
           - secretRef:
               name: subwave
@@ -110,6 +110,8 @@ service:
         port: 7701
       broadcast:
         port: 7702
+      liquidsoap:
+        port: 1234
 route:
   subwave:
     enabled: true
