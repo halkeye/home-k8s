@@ -15,7 +15,6 @@ controllers:
           SUBWAVE_STEMS_DIR: /var/sub-wave/stems
           ICECAST_TRUSTED_PROXY_IPS: 0.0.0.0
           ICECAST_TRUSTED_PROXY_HOSTS: "localhost"
-          NAVIDROME_URL: http://navidrome.navidrome:4533/
         envFrom:
           - secretRef:
               name: subwave
@@ -52,6 +51,7 @@ controllers:
           SOUNDS_DIR: /sounds
           SUBWAVE_STEMS_DIR: /var/sub-wave/stems
           ANALYZE_URL: http://analyzer:8080
+          NAVIDROME_URL: http://navidrome.navidrome:4533/
         envFrom:
           - secretRef:
               name: subwave
