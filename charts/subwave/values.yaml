@@ -53,7 +53,7 @@ controllers:
           ANALYZE_URL: http://analyzer:8080
           NAVIDROME_URL: https://music.g4v.dev/
           LIQUIDSOAP_HOST: 127.0.0.1
-          LIQUIDSOAP_PORT: 7702
+          LIQUIDSOAP_PORT: 1234
         envFrom:
           - secretRef:
               name: subwave
