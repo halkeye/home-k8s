@@ -12,7 +12,6 @@ spec:
         elements:
           # App
           - name: audiobookshelf
-          - name: wg-access-server
           # - name: ytdl-sub
   template:
     metadata:
@@ -84,7 +83,6 @@ spec:
           - { namespace: plex, name: plex-discord-media-updates }
 
           - { namespace: jellyfin, name: jellyfin }
-          - { namespace: jellyfin, name: jellyplex-watched }
           - { namespace: jellyfin, name: jellystat }
 
           - { namespace: pihole, name: pihole }
@@ -133,11 +131,13 @@ spec:
           - name: snapshot-controller
           - name: sonarr
           - name: stash
+          - name: subwave
           - name: synology
           - name: tachidesk
           - name: tasmoadmin
           - name: tracearr
           - name: unpackerr
+          - name: wg-access-server
           - name: whereabouts
           - name: youtubedl-material
   template:
