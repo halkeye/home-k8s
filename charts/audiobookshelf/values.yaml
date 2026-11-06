@@ -1,94 +1,93 @@
 ---
-app-template:
-  controllers:
-    main:
-      strategy: Recreate
-      containers:
-        audiobookshelf:
-          image:
-            repository: ghcr.io/advplyr/audiobookshelf
-            tag: 2.37.1
-          env:
-            TZ: America/Vancouver
-            PORT: 8080
-            AUDIOBOOKSHELF_UID: 1026
-            AUDIOBOOKSHELF_GID: 100
-            CONFIG_PATH: /config
-            METADATA_PATH: /config/metadata
-          probes:
-            liveness: &probes
-              enabled: true
-              custom: true
-              spec:
-                httpGet:
-                  path: /healthcheck
-                  port: 8080
-            readiness: *probes
-            startup:
-              enabled: false
-          securityContext:
-            allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
-            capabilities:
-              drop: [ALL]
-          resources:
-            limits:
-              memory: 600Mi
-            requests:
-              memory: 200Mi
-              cpu: 50m
-      pod:
+controllers:
+  main:
+    strategy: Recreate
+    containers:
+      audiobookshelf:
+        image:
+          repository: ghcr.io/advplyr/audiobookshelf
+          tag: 2.37.1
+        env:
+          TZ: America/Vancouver
+          PORT: 8080
+          AUDIOBOOKSHELF_UID: 1026
+          AUDIOBOOKSHELF_GID: 100
+          CONFIG_PATH: /config
+          METADATA_PATH: /config/metadata
+        probes:
+          liveness: &probes
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /healthcheck
+                port: 8080
+          readiness: *probes
+          startup:
+            enabled: false
         securityContext:
-          runAsUser: 1026
-          runAsGroup: 100
-          runAsNonRoot: true
-          fsGroup: 100
-          fsGroupChangePolicy: OnRootMismatch
-  service:
-    main:
-      controller: main
-      ports:
-        http:
-          port: 8080
-  route:
-    main:
-      enabled: true
-      parentRefs:
-        - name: http-gateway
-          namespace: envoy-gateway
-          sectionName: https
-      hostnames: [audiobookshelf.g4v.dev]
-      rules:
-        - matches:
-            - path:
-                type: PathPrefix
-                value: /
-          backendRefs:
-            - identifier: main
-              port: http
-  persistence:
-    config:
-      enabled: true
-      suffix: config
-      type: persistentVolumeClaim
-      accessMode: ReadWriteOnce
-      storageClass: nas-apps
-      size: 10Gi
-    tmp:
-      type: emptyDir
-    audiobooks:
-      type: nfs
-      server: 172.16.10.10
-      path: /volume1/Audio/Audio Books
-    podcasts:
-      type: nfs
-      server: 172.16.10.10
-      path: /volume1/Audio/Podcasts
-    comedians:
-      type: nfs
-      server: 172.16.10.10
-      path: /volume1/Audio/Comedians
-    backups:
-      type: nfs
-      server: 172.16.10.10
-      path: /volume1/Backups/audiobookshelf
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: [ALL]
+        resources:
+          limits:
+            memory: 600Mi
+          requests:
+            memory: 200Mi
+            cpu: 50m
+    pod:
+      securityContext:
+        runAsUser: 1026
+        runAsGroup: 100
+        runAsNonRoot: true
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 8080
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames: [audiobookshelf.g4v.dev]
+    rules:
+      - matches:
+          - path:
+              type: PathPrefix
+              value: /
+        backendRefs:
+          - identifier: main
+            port: http
+persistence:
+  config:
+    enabled: true
+    suffix: config
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    storageClass: nas-apps
+    size: 10Gi
+  tmp:
+    type: emptyDir
+  audiobooks:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Audio/Audio Books
+  podcasts:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Audio/Podcasts
+  comedians:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Audio/Comedians
+  backups:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Backups/audiobookshelf
