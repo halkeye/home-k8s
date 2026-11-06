@@ -1,49 +1,3 @@
----
-apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
-metadata:
-  name: home-k8s
-  namespace: argocd
-spec:
-  goTemplate: true
-  goTemplateOptions: ['missingkey=error']
-  generators:
-    - list:
-        elements:
-          # App
-          - name: audiobookshelf
-          # - name: ytdl-sub
-  template:
-    metadata:
-      name: '{{.name}}'
-      namespace: argocd
-      annotations:
-        argocd.argoproj.io/sync-wave: '{{dig "syncwave" "20" . }}'
-    spec:
-      destination:
-        namespace: '{{- if index . "namespace" -}}{{ .namespace | normalize }}{{- else }}{{ .name | normalize }}{{ end }}'
-        server: '{{dig "server" "https://kubernetes.default.svc" . }}'
-      project: default
-      source:
-        path: 'charts/{{dig "chart" .name .}}'
-        repoURL: https://github.com/halkeye/home-k8s
-        targetRevision: HEAD
-        helm:
-          valueFiles:
-            - values.yaml
-            - secrets://values-secrets.yaml
-          values: |
-            global:
-              privateDomainName: h.g4v.dev
-      syncPolicy:
-        automated:
-          selfHeal: true
-          prune: true
-        syncOptions:
-          - CreateNamespace=true
-          - ServerSideApply=true
-          - Prune=true
----
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
@@ -92,6 +46,7 @@ spec:
           - name: amd-gpu
           - name: anime-radarr
           - name: anime-sonarr
+          - name: audiobookshelf
           - name: autobrr
           - name: bandcampsync
           - name: bookorbit
