@@ -1,0 +1,78 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  main:
+    containers:
+      main:
+        image:
+          repository: neosy/elengrab
+          tag: 0.27.2
+        env:
+          TZ: America/Vancouver
+          ELENGRAB_DOWNLOAD_WORKERS: "1"
+          ELENGRAB_MODE: "authenticated"
+        resources:
+          limits:
+            memory: 4Gi
+          requests:
+            memory: 1Gi
+            cpu: 10m
+        probes:
+          liveness:
+            enabled: false
+          readiness:
+            enabled: false
+          startup:
+            enabled: false
+
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 8080
+
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames: [elengrab.g4v.dev]
+    rules:
+      - matches:
+          - path:
+              type: PathPrefix
+              value: /
+        backendRefs:
+          - group: ''
+            kind: Service
+            identifier: main
+            port: http
+            weight: 1
+
+persistence:
+  data:
+    enabled: true
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Apps/elengrab
+    advancedMounts:
+      main:
+        main:
+          - path: /app_n/sqlite/data
+            subPath: data
+          - path: /app_n/sqlite/backups
+            subPath: backups
+          - path: /app_n/downloads
+            subPath: downloads
+          - path: /app_n/cookies
+            subPath: cookies
+          - path: /app_n/media
+            subPath: media
+  tmp:
+    enabled: true
+    type: emptyDir
+    globalMounts:
+      - path: /tmp
