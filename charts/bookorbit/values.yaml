@@ -153,3 +153,7 @@ persistence:
     path: /volume1/StashContent
     globalMounts:
       - path: /content/stash
+  audiobooks:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Audio/Audio Books
