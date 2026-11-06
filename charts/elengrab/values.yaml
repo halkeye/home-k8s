@@ -10,8 +10,8 @@ controllers:
         env:
           TZ: America/Vancouver
           ELENGRAB_DOWNLOAD_WORKERS: "1"
-          # ELENGRAB_MODE: "authenticated"
-          ELENGRAB_MODE: "public"
+          ELENGRAB_MODE: "authenticated"
+          # ELENGRAB_MODE: "public"
         resources:
           limits:
             memory: 4Gi
