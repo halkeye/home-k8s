@@ -19,7 +19,6 @@ controllers:
           PROWLARR__AUTH__METHOD: External
           PROWLARR__AUTH__REQUIRED: DisabledForLocalAddresses
           PROWLARR__SERVER__TRUSTEDNETWORKS: 10.0.0.0/8,172.16.10.5/32,172.16.10.6/32,172.16.10.11/32
-          PROWLARR__SERVER__ALLOWEDHOSTS: prowlarr.g4v.dev,localhost
           PROWLARR__THEME: auto
           TZ: America/Vancouver
           PROWLARR__POSTGRES__USER:
