@@ -1,0 +1,70 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  main:
+    containers:
+      main:
+        image:
+          repository: akhilrex/podgrab
+          tag: 1.0.0
+        env:
+          TZ: America/Vancouver
+          CHECK_FREQUENCY: 240
+        resources:
+          limits:
+            memory: 4Gi
+          requests:
+            memory: 1Gi
+            cpu: 10m
+        probes:
+          liveness:
+            enabled: false
+          readiness:
+            enabled: false
+          startup:
+            enabled: false
+
+service:
+  main:
+    controller: main
+    ports:
+      http:
+        port: 8080
+
+route:
+  main:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames: [podgrab.g4v.dev]
+    rules:
+      - matches:
+          - path:
+              type: PathPrefix
+              value: /
+        backendRefs:
+          - group: ''
+            kind: Service
+            identifier: main
+            port: http
+            weight: 1
+
+persistence:
+  config:
+    enabled: true
+    suffix: config
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    storageClass: nas-apps
+    size: 10Gi
+  tmp:
+    enabled: true
+    type: emptyDir
+    globalMounts:
+      - path: /tmp
+  podcasts:
+    type: nfs
+    server: 172.16.10.10
+    path: /volume1/Audio/Podcasts
