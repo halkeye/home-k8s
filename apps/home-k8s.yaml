@@ -53,6 +53,7 @@ spec:
           - name: cloudnative-pg
           - name: cross-seed
           - name: crosswatch
+          - name: elengrab
           - { namespace: esphome, name: esphome }
           - { namespace: esphome, name: esphome-device-builder }
           - name: frigate
@@ -74,6 +75,7 @@ spec:
           - name: obsidian-livesync
           - name: ollama
           - name: pinchflat
+          - name: podgrab
           - name: polaris
           - name: postgres-do-k8s-backup
           - name: postgres-home-backup
