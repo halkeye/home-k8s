@@ -1,6 +1,4 @@
 ---
-deployment:
-  priorityClassName: envoy-gateway-priority
 config:
   envoyGateway:
     rbac:
