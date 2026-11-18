@@ -13,6 +13,7 @@ helmCharts:
     releaseName: envoy-gateway
 
 resources:
+  - ./priorityclass.yaml
   - ./certificate.yaml
   - ./referencegrant.yaml
   - ./gateway.yaml
