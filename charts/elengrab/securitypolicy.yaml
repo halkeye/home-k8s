@@ -15,6 +15,10 @@ spec:
       name: "elengrab-client-secret"
     redirectURL: "https://elengrab.g4v.dev/oauth2/callback"
     logoutPath: "/myapp/logout"
+    # openid is added automatically; profile is needed for preferred_username
+    scopes:
+      - profile
+      - email
     # pass the token upstream as Authorization: Bearer so the jwt filter can read claims
     forwardAccessToken: true
   jwt:
