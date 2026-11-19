@@ -13,7 +13,7 @@ spec:
     clientID: "lh522ApbpZ1oW6MrZOx7NifAjVTJFoU23h59NK2X"
     clientSecret:
       name: "elengrab-client-secret"
-    redirectURL: "https://elengrab-do.g4v.dev/oauth2/callback"
+    redirectURL: "https://elengrab.g4v.dev/oauth2/callback"
     logoutPath: "/myapp/logout"
     # pass the token upstream as Authorization: Bearer so the jwt filter can read claims
     forwardAccessToken: true
