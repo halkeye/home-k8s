@@ -6,12 +6,15 @@ controllers:
       main:
         image:
           repository: neosy/elengrab
-          tag: 0.27.2
+          tag: 0.28.0
         env:
           TZ: America/Vancouver
           ELENGRAB_DOWNLOAD_WORKERS: "1"
           # ELENGRAB_MODE: "authenticated"
           ELENGRAB_MODE: "public"
+          ELENGRAB_HTTP_SERVER_REVERSE_PROXY_ENABLE_AUTH: "true"
+          # so it can read X-Auth-Request-User
+          ELENGRAB_HTTP_SERVER_REVERSE_PROXY_TRUSTED_PROXIES: "10.0.0.0/8,172.16.10.5/32,172.16.10.6/32,172.16.10.11/32"
         resources:
           limits:
             memory: 4Gi
