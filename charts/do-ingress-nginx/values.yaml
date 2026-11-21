@@ -24,6 +24,7 @@ ingress-nginx:
       port: 10254
     allowSnippetAnnotations: true
     config:
+      use-http2: false
       denylist-source-range: 34.92.62.113
       use-forwarded-headers: 'true'
       use-proxy-protocol: 'true'  # DigitalOcean loadbalancer
