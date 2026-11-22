@@ -9,7 +9,7 @@ controllers:
       lms:
         image:
           repository: flungo/avahi
-          tag: latest@sha256:da320c386da37514f3244991ad7611b495682bd9a3c3c71806062169d32a67be
+          tag: latest@sha256:beb853b5539f59b4f45139e2537bb065075339da2f951610954735bc71bed2aa
         env:
           REFLECTOR_ENABLE_REFLECTOR: true
         securityContext:
