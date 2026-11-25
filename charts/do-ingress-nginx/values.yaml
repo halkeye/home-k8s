@@ -48,7 +48,9 @@ controller:
       service.beta.kubernetes.io/do-loadbalancer-protocol: http
       service.beta.kubernetes.io/do-loadbalancer-tls-ports: '443'
       service.beta.kubernetes.io/do-loadbalancer-tls-passthrough: 'true'
-      service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: 'true'
+      kubernetes.digitalocean.com/load-balancer-id: 51249a84-8755-42cc-b0b0-1126581c7745?i=d6693c
+      service.beta.kubernetes.io/do-loadbalancer-type: "REGIONAL"
+      service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
       # Fix some issues for internal references - see https://github.com/digitalocean/digitalocean-cloud-controller-manager/blob/master/docs/controllers/services/annotations.md#servicebetakubernetesiodo-loadbalancer-hostname
       # service.beta.kubernetes.io/do-loadbalancer-hostname: "do.g4v.dev"
       # Per https://github.com/digitalocean/digitalocean-cloud-controller-manager/blob/master/docs/controllers/services/annotations.md#servicebetakubernetesiodo-loadbalancer-http-ports
