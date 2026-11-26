@@ -17,3 +17,4 @@ resources:
   - ./templates/certificates.yaml
   - ./templates/reference-grants.yaml
   - ./templates/crontab-certs.yaml
+  - ./securitypolicy.yaml
