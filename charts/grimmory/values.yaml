@@ -1,0 +1,98 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+controllers:
+  grimmory:
+    annotations:
+      reloader.stakater.com/auto: 'true'
+    containers:
+      grimmory:
+        image:
+          repository: docker.io/grimmory/grimmory
+          tag: v3.5.0@sha256:bf6fe21c6e247597f7869664a440b5a34242e2d2940575cae39c17bfaa66dc0b
+        command: ["java", "--enable-native-access=ALL-UNNAMED", "--enable-preview", "-jar", "/app/app.jar"]
+        env:
+          TZ: America/Vancouver
+          DB_PASSWORD:
+            valueFrom:
+              secretKeyRef:
+                key: password
+                name: "mysql-user-grimmory"
+        envFrom:
+          - secretRef:
+              name: grimmory
+        probes:
+          liveness: &probes
+            enabled: true
+            custom: true
+            spec:
+              httpGet:
+                path: /api/v1/healthcheck
+                port: 6060
+              initialDelaySeconds: 60
+              periodSeconds: 30
+              timeoutSeconds: 10
+              failureThreshold: 5
+          readiness: *probes
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities: {drop: ["ALL"]}
+        resources:
+          requests:
+            cpu: 840m
+            memory: 544Mi
+          limits:
+            memory: 1536Mi
+defaultPodOptions:
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 1000
+    runAsGroup: 1000
+    fsGroup: 1000
+    fsGroupChangePolicy: OnRootMismatch
+service:
+  grimmory:
+    controller: grimmory
+    ports:
+      http:
+        port: 6060
+route:
+  grimmory:
+    enabled: true
+    parentRefs:
+      - name: http-gateway
+        namespace: envoy-gateway
+        sectionName: https
+    hostnames: [grimmory.g4v.dev]
+    rules:
+      - matches:
+          - path:
+              type: PathPrefix
+              value: /
+        backendRefs:
+          - identifier: grimmory
+            port: http
+        timeouts:
+          request: 600s
+          backendRequest: 600s
+persistence:
+  data:
+    enabled: true
+    type: persistentVolumeClaim
+    accessMode: ReadWriteOnce
+    size: 50Gi
+    globalMounts:
+      - path: /app/data
+        subPath: data
+      - path: /bookdrop
+        subPath: bookdrop
+      - path: /books
+        subPath: books
+
+  logs:
+    enabled: true
+    type: emptyDir
+    globalMounts:
+      - path: /tmp
+        subPath: tmp
+

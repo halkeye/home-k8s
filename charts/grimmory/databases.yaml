@@ -1,0 +1,18 @@
+---
+apiVersion: mysql.operator.luktom.net/v1
+kind: MysqlDatabase
+metadata:
+  name: grimmory
+spec:
+  dropOnDelete: false
+  clusterRef:
+    name: mysqlcluster
+---
+apiVersion: mysql.operator.luktom.net/v1
+kind: MysqlUser
+metadata:
+  name: grimmory
+spec:
+  clusterRef:
+    name: mysqlcluster
+  privileges: "grimmory.*:ALL"
