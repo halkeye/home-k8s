@@ -17,6 +17,11 @@ controllers:
               secretKeyRef:
                 key: password
                 name: "mysql-user-grimmory"
+          DATABASE_PASSWORD:
+            valueFrom:
+              secretKeyRef:
+                key: password
+                name: "mysql-user-grimmory"
         envFrom:
           - secretRef:
               name: grimmory
