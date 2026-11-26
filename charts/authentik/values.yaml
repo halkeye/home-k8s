@@ -5,6 +5,9 @@ global:
   image:
     repository: ghcr.io/goauthentik/server
     tag: 2026.8.7
+  env:
+    - name: AUTHENTIK_LOG_LEVEL
+      value: warning
   deploymentAnnotations:
     reloader.stakater.com/auto: 'true'
 authentik:
