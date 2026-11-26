@@ -9,7 +9,7 @@ controllers:
         image:
           repository: docker.io/grimmory/grimmory
           tag: v3.5.0@sha256:bf6fe21c6e247597f7869664a440b5a34242e2d2940575cae39c17bfaa66dc0b
-        command: ["java", "--enable-native-access=ALL-UNNAMED", "--enable-preview", "-jar", "/app/app.jar"]
+        command: ["java", "--enable-native-access=ALL-UNNAMED", "--enable-preview", "-XX:-UseBASE64Intrinsics", "-jar", "/app/app.jar"]
         env:
           TZ: America/Vancouver
           DB_PASSWORD:
