@@ -11,8 +11,6 @@ spec:
     - list:
         elements:
           - { namespace: monitoring, name: do-prometheus }
-
-          - { namespace: kube-system, name: do-ingress-nginx }
           # matrix
           - { namespace: matrix, name: mautrix-googlechat }
 
@@ -79,6 +77,8 @@ spec:
           - { namespace: matrix, name: synatainer }
 
           - { namespace: bitwarden, name: vaultwarden }
+
+          - { namespace: kube-system, name: do-ingress-nginx }
 
           - name: authentik
           - name: bytestash
