@@ -91,6 +91,9 @@ configMaps:
       # e.g.  docs gdrive:Documents /data/documents --resilient --recover
       bisync.conf: |
         jewel-docs gdrive:Documents/Jewel smb:home/Documents/Jewel
+        taxes-docs gdrive:Taxes smb:home/Taxes
+        backups-docs gdrive:Backups smb:home/Backups
+        therapy-docs gdrive:TherapyFiles smb:home/Documents/Therapy
       bisync.sh: |
         #!/bin/sh
         # First run of a job needs --resync to seed the listings.
