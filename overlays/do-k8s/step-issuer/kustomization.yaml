@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: step-issuer
+
+resources:
+- ../../../charts/step-issuer/
+
+patches:
+  - patch: |-
+      apiVersion: certmanager.step.sm/v1beta1
+      kind: StepClusterIssuer
+      metadata:
+        name: step-issuer
+      spec:
+        url: https://step-certificates.step-certificates.svc.cluster.local.
