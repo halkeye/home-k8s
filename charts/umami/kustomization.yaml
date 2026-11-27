@@ -3,8 +3,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-helmGlobals:
-  chartHome: ./charts/
+namespace: umami
 
 generatorOptions:
   disableNameSuffixHash: true
@@ -18,3 +17,4 @@ helmCharts:
 
 resources:
   - ./database.yaml
+  - ./secret.enc.yaml

@@ -10,6 +10,9 @@ controllers:
         image:
           repository: ghcr.io/umami-software/umami
           tag: 3.5.0
+        envFrom:
+          - secretRef:
+              name: umami
         env:
           TZ: American/Vancouver
           DISABLE_TELEMETRY: 'true'
