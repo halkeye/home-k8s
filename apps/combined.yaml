@@ -18,10 +18,10 @@ spec:
                 - { appname: envoy-gateway-crds }
                 - { appname: grafana-operator, useOverlay: true }
                 - { appname: reloader-operator, namespace: reloader }
-                - { appname: remove-empty-ns-operator }
+                - { appname: remove-empty-ns }
                 - { appname: smtp-relay }
                 - { appname: sops-secrets-operator }
-                - { appname: step-issuer }
+                - { appname: step-issuer, useOverlay: true }
                 - { appname: volsync }
                 - { appname: vpa }
                 - { appname: whoami, useOverlay: true }
