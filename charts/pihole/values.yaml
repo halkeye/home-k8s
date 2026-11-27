@@ -14,7 +14,7 @@ controllers:
       pihole:
         image:
           repository: ghcr.io/pi-hole/pihole
-          tag: 2026.09.0@sha256:5b9c8cf51de7d6d3f2240dbe72baf5f06e1fd39cb4d77a99fab4fa13e23bd1be
+          tag: 2026.11.0@sha256:66c798d79a95c2691f280329c3611dba1746117c61c9f331907ca35a06a52778
         env:
           TZ: America/Vancouver
           # nebulasync doesn't like env variable configs

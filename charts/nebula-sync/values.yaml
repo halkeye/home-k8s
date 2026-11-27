@@ -16,7 +16,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/lovelaze/nebula-sync
-          tag: v0.11.2
+          tag: v0.11.3
         env:
           TZ: American/Vancouver
           FULL_SYNC: 'true'

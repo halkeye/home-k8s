@@ -8,7 +8,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/miniflux/miniflux
-          tag: 2.3.3-distroless@sha256:59e4e31b349f008ecd34b547f23498b1d8abc0c03d5f6d12bdb713ab7f7c04bf
+          tag: 2.3.5-distroless@sha256:c826edc9c2284a8181e297d22a5ade1482bd9a8a4beabb2b6356bd22ce731310
         env:
           BASE_URL: https://miniflux.g4v.dev
           CREATE_ADMIN: '1'
