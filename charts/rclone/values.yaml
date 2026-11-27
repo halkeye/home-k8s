@@ -5,40 +5,7 @@ controllers:
     annotations:
       reloader.stakater.com/auto: 'true'
     strategy: Recreate
-    replicas: 1
     containers:
-      app:
-        image:
-          repository: rclone/rclone
-          tag: 1.76.0
-        args:
-          - rcd
-          - --rc-no-auth
-          # - --rc-user-from-header=x-remote-user
-          - --rc-web-gui
-          - --rc-web-gui-no-open-browser
-          - --rc-web-gui-update=false
-          - --rc-addr=:5572
-          - --cache-dir=/cache
-          - --config=/config/rclone.conf
-        env:
-          TZ: America/Vancouver
-        probes:
-          liveness: &probes
-            enabled: true
-            custom: true
-            spec:
-              tcpSocket:
-                port: 5572
-          readiness: *probes
-          startup:
-            enabled: false
-        resources:
-          requests:
-            memory: 128Mi
-            cpu: 10m
-          limits:
-            memory: 1Gi
       # Runs `rclone bisync` for each entry of /bisync/bisync.conf on an interval.
       bisync:
         image:
@@ -58,31 +25,6 @@ controllers:
       securityContext:
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
-service:
-  main:
-    controller: main
-    ports:
-      http:
-        port: 5572
-route:
-  main:
-    enabled: true
-    parentRefs:
-      - name: http-gateway
-        namespace: envoy-gateway
-        sectionName: https
-    hostnames: [rclone.g4v.dev]
-    rules:
-      - matches:
-          - path:
-              type: PathPrefix
-              value: /
-        backendRefs:
-          - group: ''
-            kind: Service
-            identifier: main
-            port: http
-            weight: 1
 configMaps:
   bisync:
     enabled: true
@@ -116,33 +58,12 @@ persistence:
   config:
     type: secret
     name: 'rclone'
-    advancedMounts:
-      main:
-        app:
-          - path: /config
-            readOnly: true
-        bisync:
-          - path: /config
-            readOnly: true
   bisync:
     type: configMap
     identifier: bisync
     defaultMode: 0755
-    advancedMounts:
-      main:
-        bisync:
-          - path: /bisync
   cache:
     enabled: true
     type: persistentVolumeClaim
     accessMode: ReadWriteOnce
     size: 5Gi
-    globalMounts:
-      - path: /cache
-  # Add data mounts (nfs / pvc) at the same path in both containers, e.g.:
-  # data:
-  #   type: nfs
-  #   server: 172.16.10.10
-  #   path: /volume1/xyz
-  #   globalMounts:
-  #     - path: /data
