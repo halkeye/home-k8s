@@ -10,7 +10,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/halkeye/docker-mautrix-gmessages
-          tag: v0.2609.0.59
+          tag: v0.2611.0.63
         env:
           TZ: America/Vancouver
           BRIDGE_DATABASE__URI:

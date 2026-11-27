@@ -5,11 +5,11 @@ controllers:
       valkey:
         image:
           repository: ghcr.io/valkey-io/valkey
-          tag: 9.1.2-alpine@sha256:48332870af354a799964c0012ae1194a0bf2bf894eb508f945810596dc2d8d11
+          tag: 9.2.1-alpine@sha256:3ad5a213cb1bc2fd4a113c89b6248a88655a6bf1dda69519d04e03cd3e3d2742
       exporter:
         image:
           repository: ghcr.io/oliver006/redis_exporter
-          tag: v1.93.0
+          tag: v1.99.0
         securityContext:
           runAsUser: 59000
           runAsGroup: 59000

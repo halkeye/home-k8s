@@ -7,7 +7,7 @@ namespace: volsync
 
 helmCharts:
   - name: volsync
-    version: 0.16.0
+    version: 0.17.0
     repo: https://backube.github.io/helm-charts/
     valuesFile: values.yaml
     releaseName: volsync

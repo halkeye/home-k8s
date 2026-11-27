@@ -9,7 +9,7 @@ controllers:
       bytestash:
         image:
           repository: ghcr.io/jordan-dalby/bytestash
-          tag: 1.5.14
+          tag: 1.6.2
         env:
           # See https://github.com/jordan-dalby/ByteStash/wiki/FAQ#environment-variables
           TZ: America/Vancouver

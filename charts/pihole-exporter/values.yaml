@@ -7,7 +7,7 @@ controllers:
       main:
         image:
           repository: ekofr/pihole-exporter
-          tag: v1.2.0
+          tag: v1.4.0
         envFrom:
           - secretRef:
               name: pihole-exporter-secret

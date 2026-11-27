@@ -6,7 +6,7 @@ controllers:
       main:
         image:
           repository: ghcr.io/etkecc/ketesa
-          tag: v1.5.1
+          tag: v1.5.2
 route:
   main:
     enabled: true

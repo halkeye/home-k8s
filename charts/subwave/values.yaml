@@ -9,7 +9,7 @@ controllers:
       broadcast:
         image:
           repository: ghcr.io/perminder-klair/subwave-broadcast
-          tag: 1.29.0
+          tag: 1.34.0
         env:
           TZ: America/Vancouver
           SUBWAVE_STEMS_DIR: /var/sub-wave/stems
@@ -43,7 +43,7 @@ controllers:
       controller:
         image:
           repository: ghcr.io/perminder-klair/subwave-controller
-          tag: 1.29.0
+          tag: 1.34.0
         env:
           TZ: America/Vancouver
           NODE_ENV: production
@@ -84,7 +84,7 @@ controllers:
       web:
         image:
           repository: ghcr.io/perminder-klair/subwave-web
-          tag: 1.29.0
+          tag: 1.34.0
         env:
           TZ: America/Vancouver
           SUBWAVE_HOMEPAGE: player
