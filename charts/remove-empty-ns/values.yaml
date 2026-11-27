@@ -16,6 +16,8 @@ controllers:
       concurrencyPolicy: Forbid # No pod concurrency is supported
     serviceAccount: 
       identifier: remove-empty-ns
+    pod:
+      automountServiceAccountToken: true
     containers:
       main:
         image:
