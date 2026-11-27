@@ -1,0 +1,58 @@
+# Check only these namespaces for emptiness. Respects namespacesBlacklist.
+namespacesConsidered:
+  # - ^feature-.+$
+  # - ^bugfix-.+$
+  # - ^pr-.+$
+  - ^.+$
+# These namespaces will be ignored by the app
+namespacesIgnored:
+  - default
+  - kube-public
+  - kube-system
+# Age greater than (in seconds) before namespace will be checked for emptiness
+# ageGreaterThan: 1814400 # 21 days = 21 * 24 * 60 * 60 = 1814400 seconds
+ageGreaterThan: 432000 # 5 days
+# Don't delete a namespace instantly; just add a label. Delete it on the next run if
+# it's still empty. Useful for short intervals between runs or for tracking changes.
+doubleCheck:
+  enabled: true
+  label: remove-empty-ns/will-remove
+# If these resources are present, the namespace will not be treated as empty.
+# Precedence: resourcesIgnored entries are filtered out first; resourcesConsidered
+# is then applied to the remaining resources.
+resourcesConsidered: []
+# Ignore the presence of these resources (evaluated before resourcesConsidered).
+# Matching objects never count as "present", even when also listed above.
+resourcesIgnored:
+  - apiGroup: ""
+    kind: ConfigMap
+    name: kube-root-ca.crt
+  - apiGroup: ""
+    kind: Secret
+    name: default-token-\w+$
+  - apiGroup: ""
+    kind: ServiceAccount
+    name: default
+# Check only for these kinds in namespaces.
+# Precedence: apiResourcesIgnored runs first, then apiResourcesConsidered filters the rest.
+apiResourcesConsidered: []
+# Resource presence will not be checked for these kinds (always applied first).
+apiResourcesIgnored:
+  - apiGroup: ""
+    kind: Event$
+  - apiGroup: events.k8s.io
+    kind: Event$
+  - apiGroup: coordination.k8s.io
+    kind: Lease$
+  - apiGroup: external.metrics.k8s.io
+    kind: .+$
+  - apiGroup: metrics.k8s.io
+    kind: .+$
+  - apiGroup: ""
+    kind: Endpoints$
+  - apiGroup: discovery.k8s.io
+    kind: EndpointSlice$
+  - apiGroup: policy
+    kind: PodDisruptionBudget
+# Dry run mode. Don't delete namespaces, just log what would be deleted.
+dryRun: false

@@ -1,0 +1,72 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/library/common/values.schema.json
+createDefaultServiceAccount: false
+controllers:
+  main:
+    type: cronjob
+    revisionHistoryLimit: 1
+    annotations:
+      reloader.stakater.com/auto: 'true'
+    cronjob:
+      schedule: 0 2 * * *
+      successfulJobsHistory: 2
+      failedJobsHistory: 5
+      backoffLimit: 3
+      startingDeadlineSeconds: 200 # Optional: time in seconds to allow starting a missed job
+      concurrencyPolicy: Forbid # No pod concurrency is supported
+    serviceAccount: 
+      identifier: remove-empty-ns
+    containers:
+      main:
+        image:
+          repository: rgeraskin/remove-empty-ns
+          tag: 0.1.0
+        env:
+          TZ: America/Vancouver
+        restartPolicy: Never
+        probes:
+          liveness:
+            enabled: false
+          readiness:
+            enabled: false
+          startup:
+            enabled: false
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: [ALL]
+        resources:
+          limits:
+            memory: 256Mi
+          requests:
+            memory: 256Mi
+            cpu: 10m
+persistence:
+  config:
+    enabled: true
+    type: configMap
+    name: remove-empty-ns-config
+    globalMounts:
+      - path: /config
+        readOnly: true
+rbac:
+  roles:
+    remove-empty-ns:
+      type: ClusterRole
+      rules:
+        - apiGroups: [""]
+          resources: ["namespaces"]
+          verbs: [list, watch, patch, delete]
+        - apiGroups: ["*"]
+          resources: ["*"]
+          verbs: ["list"]
+  bindings:
+    remove-empty-ns:
+      type: ClusterRoleBinding
+      roleRef:
+        kind: ClusterRole
+        identifier: remove-empty-ns
+      subjects:
+        - kind: ServiceAccount
+          identifier: remove-empty-ns
