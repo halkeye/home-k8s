@@ -44,14 +44,6 @@ controllers:
           requests:
             memory: 256Mi
             cpu: 10m
-persistence:
-  config:
-    enabled: true
-    type: configMap
-    name: remove-empty-ns-config
-    globalMounts:
-      - path: /config
-        readOnly: true
 rbac:
   roles:
     remove-empty-ns:
@@ -72,3 +64,11 @@ rbac:
       subjects:
         - kind: ServiceAccount
           identifier: remove-empty-ns
+persistence:
+  config:
+    enabled: true
+    type: configMap
+    name: remove-empty-ns-config
+  tmp:
+    enabled: true
+    type: emptyDir
