@@ -26,7 +26,7 @@ patches:
     patch: |-
       - op: replace
         path: /spec/sourcePVC
-        value: tachidesk-config
+        value: tachidesk
       - op: replace
         path: /spec/rclone/rcloneDestPath
         value: tachidesk

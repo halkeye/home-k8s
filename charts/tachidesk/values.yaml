@@ -62,7 +62,7 @@ route:
 persistence:
   config:
     enabled: true
-    existingClaim: 'tachidesk-config'
+    existingClaim: tachidesk
     globalMounts:
       - path: /home/suwayomi/.local/share/Tachidesk
   downloads:
