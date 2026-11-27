@@ -9,6 +9,7 @@ namespacesIgnored:
   - default
   - kube-public
   - kube-system
+  - kube-node-lease
 # Age greater than (in seconds) before namespace will be checked for emptiness
 # ageGreaterThan: 1814400 # 21 days = 21 * 24 * 60 * 60 = 1814400 seconds
 ageGreaterThan: 432000 # 5 days
