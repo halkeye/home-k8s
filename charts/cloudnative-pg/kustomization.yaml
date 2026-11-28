@@ -25,21 +25,9 @@ helmCharts:
       env:
         POSTGRES_INSTANCE: postgres17-rw
         POSTGRES_HOST: postgres17-rw.cloudnative-pg.svc.cluster.local:5432
-  - name: ext-postgres-operator
-    releaseName: ext-postgres-timescaledb
-    version: 3.0.0
-    repo: https://movetokube.github.io/postgres-operator/
-    valuesFile: ./values-ext-postgres.yaml
-    valuesInline:
-      fullnameOverride: ext-postgres-timescaledb
-      nameOverride: ext-postgres-timescaledb
-      env:
-        POSTGRES_INSTANCE: timescaledb
-        POSTGRES_HOST: timescaledb-rw.cloudnative-pg.svc.cluster.local:5432
 
 resources:
   - ./secret.enc.yaml
   - ./resources/clusterimagecatalog.yaml
   - ./resources/postgres17.yaml
-  - ./resources/timescaledb.yaml
   - ./resources/scheduled-backup.yaml
