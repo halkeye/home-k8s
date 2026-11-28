@@ -54,7 +54,7 @@ spec:
         compression: bzip2
         maxParallel: 8
       destinationPath: s3://timescaledb-backups/
-      endpointURL: http://minio.minio.svc.cluster.local:9000
+      endpointURL: http://172.16.10.10:9000
       serverName: timescaledb-001
       s3Credentials:
         accessKeyId:
