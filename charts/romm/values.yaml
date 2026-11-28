@@ -131,6 +131,20 @@ persistence:
             path: /romm/resources
           - subPath: assets
             path: /romm/assets
+  data2:
+    enabled: true
+    suffix: data
+    type: persistentVolumeClaim
+    storageClass: nas-apps
+    accessMode: ReadWriteOnce
+    size: 50Gi
+    advancedMounts:
+      romm:
+        app:
+          - subPath: resources
+            path: /romm/resources2
+          - subPath: assets
+            path: /romm/assets2
   tmp:
     type: emptyDir
     globalMounts:
