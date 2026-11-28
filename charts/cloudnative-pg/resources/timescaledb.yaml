@@ -63,3 +63,21 @@ spec:
         secretAccessKey:
           name: cloudnative-pg-secret
           key: S3_SECRET_KEY
+---
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: s3-timescaledb-backups
+spec:
+  configuration:
+    destinationPath: s3://timescaledb-backups/
+    endpointURL: http://172.16.10.10:9000
+    s3Credentials:
+      accessKeyId:
+        name: cloudnative-pg-secret
+        key: S3_ACCESS_KEY
+      secretAccessKey:
+        name: cloudnative-pg-secret
+        key: S3_SECRET_KEY
+    wal:
+      compression: gzip

@@ -59,3 +59,21 @@ spec:
       postInitSQL:
         - ALTER SYSTEM SET search_path TO "$user", public, vcord;
         - CREATE EXTENSION IF NOT EXISTS vchord CASCADE;
+---
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: s3-pg17-backups
+spec:
+  configuration:
+    destinationPath: s3://pg17-backups/
+    endpointURL: http://172.16.10.10:9000
+    s3Credentials:
+      accessKeyId:
+        name: cloudnative-pg-secret
+        key: S3_ACCESS_KEY
+      secretAccessKey:
+        name: cloudnative-pg-secret
+        key: S3_SECRET_KEY
+    wal:
+      compression: gzip
