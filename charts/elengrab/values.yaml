@@ -6,7 +6,7 @@ controllers:
       main:
         image:
           repository: neosy/elengrab
-          tag: 0.28.0
+          tag: 0.29.0
         env:
           TZ: America/Vancouver
           ELENGRAB_DOWNLOAD_WORKERS: "1"

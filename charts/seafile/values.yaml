@@ -12,7 +12,7 @@ controllers:
       seafile:
         image:
           repository: seafileltd/seafile-mc
-          tag: 14.0.9
+          tag: 14.0.11
         env:
           TZ: America/Vancouver
           CACHE_PROVIDER: redis
