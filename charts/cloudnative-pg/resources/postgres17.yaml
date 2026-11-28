@@ -3,7 +3,7 @@ kind: Cluster
 metadata:
   name: postgres17
 spec:
-  instances: 2
+  instances: 1
   imageName: ghcr.io/tensorchord/cloudnative-vectorchord:17.5
   primaryUpdateStrategy: unsupervised
   storage:
@@ -75,14 +75,11 @@ spec:
 
   # Note: previousCluster needs to be set to the name of the previous
   # cluster when recovering from an existing cnpg cluster
-  bootstrap:
-    recovery:
-      backup:
-        name: backup-postgres17-manual
-    # initdb:
-    #   postInitSQL:
-    #     - ALTER SYSTEM SET search_path TO "$user", public, vcord;
-    #     - CREATE EXTENSION IF NOT EXISTS vchord CASCADE;
+  # bootstrap:
+  #   initdb:
+  #     postInitSQL:
+  #       - ALTER SYSTEM SET search_path TO "$user", public, vcord;
+  #       - CREATE EXTENSION IF NOT EXISTS vchord CASCADE;
 ---
 apiVersion: barmancloud.cnpg.io/v1
 kind: ObjectStore
