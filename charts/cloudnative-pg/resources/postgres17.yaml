@@ -15,19 +15,31 @@ spec:
   monitoring:
     enablePodMonitor: true
 
-  plugins:
-  - name: barman-cloud.cloudnative-pg.io
-    isWALArchiver: true
-    parameters:
-      barmanObjectName: s3-pg17-backups
+  # plugins:
+  # - name: barman-cloud.cloudnative-pg.io
+  #   isWALArchiver: true
+  #   parameters:
+  #     barmanObjectName: s3-pg17-backups
 
   externalClusters:
   - name: postgres17
-    plugin:
-      name: barman-cloud.cloudnative-pg.io
-      parameters:
-        barmanObjectName: s3-pg17-backups
-        serverName: postgres17
+    # plugin:
+    #   name: barman-cloud.cloudnative-pg.io
+    #   parameters:
+    #     barmanObjectName: s3-pg17-backups
+    #     serverName: postgres17
+    barmanObjectStore:
+      destinationPath: s3://pg17-backups/
+      endpointURL: http://172.16.10.10:9000
+      s3Credentials:
+        accessKeyId:
+          name: cloudnative-pg-secret
+          key: S3_ACCESS_KEY
+        secretAccessKey:
+          name: cloudnative-pg-secret
+          key: S3_SECRET_KEY
+      wal:
+        compression: gzip
 
   resources:
     requests:
@@ -46,6 +58,20 @@ spec:
     parameters:
       max_connections: "300"
       shared_buffers: 512MB
+
+  backup:
+    barmanObjectStore:
+      destinationPath: s3://pg17-backups/
+      endpointURL: http://172.16.10.10:9000
+      s3Credentials:
+        accessKeyId:
+          name: cloudnative-pg-secret
+          key: S3_ACCESS_KEY
+        secretAccessKey:
+          name: cloudnative-pg-secret
+          key: S3_SECRET_KEY
+      wal:
+        compression: gzip
 
   # Note: previousCluster needs to be set to the name of the previous
   # cluster when recovering from an existing cnpg cluster
