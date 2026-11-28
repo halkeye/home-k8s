@@ -79,10 +79,10 @@ spec:
     recovery:
       backup:
         name: backup-postgres17-manual
-    initdb:
-      postInitSQL:
-        - ALTER SYSTEM SET search_path TO "$user", public, vcord;
-        - CREATE EXTENSION IF NOT EXISTS vchord CASCADE;
+    # initdb:
+    #   postInitSQL:
+    #     - ALTER SYSTEM SET search_path TO "$user", public, vcord;
+    #     - CREATE EXTENSION IF NOT EXISTS vchord CASCADE;
 ---
 apiVersion: barmancloud.cnpg.io/v1
 kind: ObjectStore
