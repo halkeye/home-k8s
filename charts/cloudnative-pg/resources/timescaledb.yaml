@@ -20,6 +20,12 @@ spec:
   monitoring:
     enablePodMonitor: true
 
+  plugins:
+  - name: barman-cloud.cloudnative-pg.io
+    isWALArchiver: true
+    parameters:
+      barmanObjectName: s3-timescaledb-backups
+
   resources:
     requests:
       cpu: 500m
