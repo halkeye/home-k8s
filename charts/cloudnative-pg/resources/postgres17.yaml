@@ -76,6 +76,9 @@ spec:
   # Note: previousCluster needs to be set to the name of the previous
   # cluster when recovering from an existing cnpg cluster
   bootstrap:
+    recovery:
+      backup:
+        name: backup-postgres17-manual
     initdb:
       postInitSQL:
         - ALTER SYSTEM SET search_path TO "$user", public, vcord;
