@@ -21,6 +21,14 @@ spec:
     parameters:
       barmanObjectName: s3-pg17-backups
 
+  externalClusters:
+  - name: postgres17
+    plugin:
+      name: barman-cloud.cloudnative-pg.io
+      parameters:
+        barmanObjectName: s3-pg17-backups
+        serverName: postgres17
+
   resources:
     requests:
       cpu: 500m
