@@ -91,7 +91,6 @@ spec:
           - name: synology
           - name: tachidesk
           - name: tasmoadmin
-          - name: tracearr
           - name: unpackerr
           - name: wg-access-server
           - name: whereabouts
