@@ -12,7 +12,7 @@ spec:
     major: 18
   primaryUpdateStrategy: unsupervised
   storage:
-    size: 50Gi
+    size: 100Gi
     storageClass: longhorn
   enableSuperuserAccess: true
   superuserSecret:
