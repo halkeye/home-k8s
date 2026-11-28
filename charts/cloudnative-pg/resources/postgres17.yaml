@@ -39,25 +39,6 @@ spec:
       max_connections: "300"
       shared_buffers: 512MB
 
-  backup:
-    retentionPolicy: 14d
-    barmanObjectStore:
-      data:
-        compression: bzip2
-      wal:
-        compression: bzip2
-        maxParallel: 8
-      destinationPath: s3://pg17-backups/
-      endpointURL: http://172.16.10.10:9000
-      serverName: postgres17-001
-      s3Credentials:
-        accessKeyId:
-          name: cloudnative-pg-secret
-          key: S3_ACCESS_KEY
-        secretAccessKey:
-          name: cloudnative-pg-secret
-          key: S3_SECRET_KEY
-
   # Note: previousCluster needs to be set to the name of the previous
   # cluster when recovering from an existing cnpg cluster
   bootstrap:
@@ -71,6 +52,7 @@ kind: ObjectStore
 metadata:
   name: s3-pg17-backups
 spec:
+  retentionPolicy: 14d
   configuration:
     destinationPath: s3://pg17-backups/
     endpointURL: http://172.16.10.10:9000
